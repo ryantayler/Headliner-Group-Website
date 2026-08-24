@@ -110,7 +110,8 @@ Everything marked `PLACEHOLDER` in the HTML needs a real answer.
 
 ## Notes
 
-- Fonts load from Google Fonts. Self host them if you want the site to work offline or you care about the third party request.
+- Fonts are **self hosted** in `assets/fonts/` (about 460KB, latin and latin-ext subsets). No third party request, works offline. Archivo, Instrument Serif, Inter and Caveat are all under the SIL Open Font License 1.1.
+- Caveat only appears on `ryan.html`. If you care about the last 100KB, split `fonts.css` and load it there only.
 - `main.js` is about eighty lines and has no dependencies. It handles the sticky header, the mobile menu, reveal on scroll and the demo forms.
 - The header and footer markup is duplicated across all six pages. Editing the nav means editing six files. That is the cost of having no build step, and at six pages it is the cheaper trade.
 - Motion respects `prefers-reduced-motion`.

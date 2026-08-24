@@ -237,8 +237,8 @@ button,input,textarea,select{font:inherit;color:inherit}
     linear-gradient(to right,rgba(14,14,15,.94) 0%,rgba(14,14,15,.78) 46%,rgba(14,14,15,.42) 100%),
     linear-gradient(to top,rgba(14,14,15,1) 2%,rgba(14,14,15,0) 46%);
 }
-.hero__media:has(img)::after{content:none}
-.hero__media::after{
+.hero__media:has(img)+.hero__scrim::after{content:none}
+.hero__scrim::after{
   content:attr(data-slot);position:absolute;left:0;bottom:0;padding:14px 18px;
   font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);
   opacity:.7;
@@ -249,8 +249,8 @@ button,input,textarea,select{font:inherit;color:inherit}
     radial-gradient(90% 120% at 78% 10%,#2A2A31 0%,#16161A 55%,#0E0E0F 100%);
 }
 .hero__in{padding-top:clamp(140px,17vw,210px);padding-bottom:clamp(64px,9vw,120px);position:relative}
-.hero--tall .hero__media:has(img)::after{content:none}
-.hero__media::after{
+.hero--tall .hero__media:has(img)+.hero__scrim::after{content:none}
+.hero__scrim::after{
   content:attr(data-slot);position:absolute;left:0;bottom:0;padding:14px 18px;
   font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);
   opacity:.7;
@@ -419,7 +419,7 @@ a.card:hover,.card--hover:hover{transform:translateY(-4px);border-color:var(--ac
 .field{display:grid;gap:7px}
 .field label{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--mute)}
 .band--dark .field label,.ftr .field label{color:var(--mute-d)}
-.field input,.field textarea,.field select{
+.field input,.field textarea,.field select,.inline-form input{
   width:100%;padding:13px 15px;border-radius:var(--r-sm);
   background:var(--paper);border:1px solid var(--rule);color:var(--text);
   transition:border-color .2s,box-shadow .2s;font-size:15px;
@@ -430,17 +430,17 @@ a.card:hover,.card--hover:hover{transform:translateY(-4px);border-color:var(--ac
   background:var(--ink-2);border-color:var(--rule-d);color:var(--text-d);
 }
 .field textarea{min-height:130px;resize:vertical}
-.field input:focus,.field textarea:focus,.field select:focus{
+.field input:focus,.field textarea:focus,.field select:focus,.inline-form input:focus{
   outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft);
 }
-.field input::placeholder,.field textarea::placeholder{color:var(--mute)}
+.field input::placeholder,.field textarea::placeholder,.inline-form input::placeholder{color:var(--mute)}
 .form__note{font-size:12.5px;color:var(--mute)}
 .band--dark .form__note,.ftr .form__note{color:var(--mute-d)}
 .form__row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
 @media (max-width:640px){.form__row{grid-template-columns:1fr}}
 
 .inline-form{display:flex;gap:10px;flex-wrap:wrap}
-.inline-form input{flex:1 1 240px}
+.inline-form input{flex:1 1 150px;min-width:0}
 .formmsg{display:none;gap:10px;align-items:center;padding:13px 16px;border-radius:var(--r-sm);
   background:var(--accent-soft);border:1px solid var(--accent-line);font-size:14px}
 .formmsg.is-on{display:flex}
@@ -479,6 +479,7 @@ a.card:hover,.card--hover:hover{transform:translateY(-4px);border-color:var(--ac
 
 /* ---------- 16. Utilities ---------- */
 .stack{display:grid;gap:16px}
+.stack>.btn,.pair__copy>.btn,.head>.btn{justify-self:start}
 .stack-lg{display:grid;gap:28px}
 .row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
 .mt-s{margin-top:14px}.mt-m{margin-top:28px}.mt-l{margin-top:clamp(36px,4vw,56px)}
