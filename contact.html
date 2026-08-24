@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Start a conversation | Headliner Group</title>
+<meta name="description" content="Tell us about your business in live events or production. Everything you send stays between us.">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,500..800&family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="hdr">
+  <div class="shell hdr__in">
+    <a class="wordmark" href="index.html">Headliner<span class="dot"></span><small>GROUP</small></a>
+    <nav class="nav" id="nav" aria-label="Main">
+      <a href="lineup.html">The Lineup</a>
+      <a href="partnerships.html">Partnerships</a>
+      <a href="ryan.html">Ryan</a>
+      <a href="free.html">Free Sh!t</a>
+      <a class="btn btn--fill" href="contact.html">Start a conversation <span class="arw">&#8594;</span></a>
+    </nav>
+    <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav"><span></span></button>
+  </div>
+</header>
+
+<main id="main">
+
+<section class="hero">
+  <div class="hero__media" data-slot="Hero &middot; empty venue before doors"><!-- <img src="assets/img/hero-contact.jpg" alt=""> --></div>
+  <div class="hero__scrim"></div>
+  <div class="shell hero__in">
+    <div class="hero__grid">
+      <div>
+        <p class="eyebrow rv">Contact</p>
+        <h1 class="display d1 rv rv-d1 mt-s">Start a conversation</h1>
+      </div>
+      <div class="rv rv-d2">
+        <p class="lede">One reply from Ryan, usually within two business days, and never from an assistant.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FORM ===== -->
+<section class="band band--bone">
+  <div class="shell">
+    <div class="pair">
+      <div class="pair__copy rv">
+        <p class="eyebrow">Tell us about it</p>
+        <h2 class="display d2">What we'd like to know</h2>
+        <p class="sub">Enough to have a useful first conversation. You don't need to send financials to say hello, and nothing you send here goes anywhere else.</p>
+
+        <div class="mt-m">
+          <div class="step"><div class="step__n">01</div><div class="step__body"><h3 class="display d4">You send this form</h3><p class="sub">Or email directly if you'd rather.</p></div></div>
+          <div class="step"><div class="step__n">02</div><div class="step__body"><h3 class="display d4">We reply within two business days</h3><p class="sub">A real reply, even when the answer is no.</p></div></div>
+          <div class="step"><div class="step__n">03</div><div class="step__body"><h3 class="display d4">A coffee or a call</h3><p class="sub">Forty five minutes, nothing signed, nothing shared.</p></div></div>
+        </div>
+
+        <div class="card mt-m" style="background:var(--paper)">
+          <p class="card__n">DIRECT</p>
+          <ul class="ticks">
+            <li><a class="tlink" href="mailto:hello@headlinergroup.com.au">hello@headlinergroup.com.au</a></li>
+            <li><a class="tlink" href="https://www.linkedin.com/" rel="noopener">Ryan on LinkedIn</a></li>
+            <li>Melbourne, Australia. We travel for the right conversation.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="rv rv-d1">
+        <div class="card" style="background:var(--paper);padding:clamp(24px,3vw,40px)">
+          <!-- Point action at your form endpoint, then delete data-demo. -->
+          <form class="form" data-demo>
+            <div class="form__row">
+              <div class="field">
+                <label for="c-name">Your name</label>
+                <input id="c-name" name="name" type="text" autocomplete="name" required>
+              </div>
+              <div class="field">
+                <label for="c-biz">Business name</label>
+                <input id="c-biz" name="business" type="text" autocomplete="organization" required>
+              </div>
+            </div>
+            <div class="form__row">
+              <div class="field">
+                <label for="c-email">Email</label>
+                <input id="c-email" name="email" type="email" autocomplete="email" required>
+              </div>
+              <div class="field">
+                <label for="c-phone">Phone (optional)</label>
+                <input id="c-phone" name="phone" type="tel" autocomplete="tel">
+              </div>
+            </div>
+            <div class="field">
+              <label for="c-topic">What's this about</label>
+              <select id="c-topic" name="topic" required>
+                <option value="">Choose one</option>
+                <option>A partnership in my business</option>
+                <option>I'm thinking about selling</option>
+                <option>Working with one of the group's businesses</option>
+                <option>Speaking or podcast</option>
+                <option>Something else</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="c-size">Roughly what does the business turn over</label>
+              <select id="c-size" name="revenue">
+                <option value="">Prefer not to say</option>
+                <option>Under $1m</option>
+                <option>$1m to $2m</option>
+                <option>$2m to $5m</option>
+                <option>$5m to $10m</option>
+                <option>$10m to $20m</option>
+                <option>Over $20m</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="c-msg">Tell us a bit more</label>
+              <textarea id="c-msg" name="message" placeholder="What you've built, how long you've been at it, and what you want to happen next." required></textarea>
+            </div>
+            <button class="btn btn--fill" type="submit">Send it <span class="arw">&#8594;</span></button>
+            <p class="form__note">Everything you send stays between us. We'll never pass it on or use it anywhere else.</p>
+            <p class="formmsg">Got it. You'll hear back from Ryan within two business days.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band band--dark band--tight">
+  <div class="shell shell--narrow">
+    <div class="pull rv" style="border-top:0;padding-top:0">
+      <q class="serif">If it isn't a fit we'll tell you in the first week, and we'll tell you why.</q>
+      <p class="by">Ryan Tayler &middot; Founder</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="ftr">
+  <div class="shell">
+    <div class="ftr__top">
+      <div>
+        <a class="wordmark" href="index.html">Headliner<span class="dot"></span><small>GROUP</small></a>
+        <p class="sub mt-s" style="max-width:30ch">Partnering with founders in live events and production across Australia.</p>
+      </div>
+      <div><h4>Group</h4><ul><li><a href="lineup.html">The Lineup</a></li><li><a href="partnerships.html">Partnerships</a></li><li><a href="ryan.html">Ryan Tayler</a></li></ul></div>
+      <div><h4>More</h4><ul><li><a href="free.html">Free Sh!t</a></li><li><a href="contact.html">Contact</a></li><li><a href="https://www.linkedin.com/" rel="noopener">LinkedIn</a></li></ul></div>
+      <div>
+        <h4>Get the good stuff</h4>
+        <p class="sub" style="font-size:14px">One email when there's something worth sending.</p>
+        <form class="inline-form mt-s" data-demo>
+          <label class="skip" for="f-nl-c">Email address</label>
+          <input id="f-nl-c" type="email" name="email" placeholder="you@company.com" required>
+          <button class="btn btn--fill" type="submit">Join</button>
+          <p class="formmsg">You're in. Check your inbox.</p>
+        </form>
+      </div>
+    </div>
+    <div class="ftr__base">
+      <span>&copy; 2026 Headliner Group Pty Ltd. All rights reserved.</span>
+      <span class="row"><a href="#">Privacy</a><a href="#">Terms</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>
