@@ -15,16 +15,42 @@ Static template for the Headliner Group website. Six pages, one stylesheet, no b
 
 ## The identity
 
-Built to the Headliner Group logo and beam spec. Dark only, one accent, and Archivo Black reserved entirely for the logo.
+Dark at the ends, light through the middle. Header, hero and footer are the locked dark set; every reading section between them is light. One brand accent, aqua, plus a separate functional colour for actions.
 
 | | Value |
 | --- | --- |
-| Page ground | `--base #0A0A0A`. Dark only, there is no light theme |
-| Raised surfaces | `--panel #111111` for cards and alternating bands |
-| Accent | Aqua `#2DE2C3`, one per page, no second accent anywhere |
+| Dark surfaces | `--base #0A0A0A`, `--panel #111111`. Header, hero, footer |
+| Light surfaces | `--paper #F2F4F3`, `--paper-2 #E7EBE9`, cards `#FFFFFF` |
+| Brand accent | Aqua `#2DE2C3` on dark, deepened to `#0A7261` on light so it can carry text |
+| Action colour | Coral `#FF5A36` with `#0A0A0A` labels, 6.38:1. **Buttons only** |
 | Logo face | Archivo Black, the logo and nothing else |
 | Everything else | Inter 400 / 500 / 600, headings included |
-| Light source | The beam, one per section and not every section |
+| Light source | The beam, on dark surfaces only |
+
+Components never name a surface. Each band sets a context and the components read from it:
+
+```css
+:root{ --ground --surface --line --tx --tx-sub --tx-mute --tx-accent }   /* dark */
+.band--paper,.band--paper2,.cta-band{ /* the same seven, light */ }
+```
+
+To restyle a surface, change those seven in one place. Nothing else moves.
+
+**Two consequences of going light**, both worth knowing before you add sections:
+
+- **The beam only works on dark.** `mix-blend-mode:screen` adds light and does nothing on a light ground, which is in your own spec. Section beams were removed from every light band. Beams now live on the header logo, the footer logo and the hero.
+- **Coral is a second colour.** The spec says one accent per page, and this breaks it deliberately because the aqua buttons were disappearing into the page. It is scoped to `--cta` and used on `.btn--fill` only, never a surface and never type elsewhere, so aqua remains the only brand accent.
+
+## Motion in the hero
+
+Two drifts, deliberately out of step so they never look mechanical.
+
+```css
+.hero__media img   { animation:heroDrift 26s var(--ease-sway) infinite alternate }
+.hl-lit-beam--hero { animation:beamSway  19s var(--ease-sway) infinite alternate }
+```
+
+`alternate` plus a symmetric ease is the whole trick: it decelerates into each end, holds a beat, then accelerates back the other way. The photo slides 1.15% either side and is scaled to 1.06 so the drift never exposes an edge. The beam rotates between 31.4 and 36.6 degrees, a few degrees either side of the spec's 34. Both stop under `prefers-reduced-motion`.
 
 `ryan.html` is his personal brand page, so it swaps the one accent to purple `#8B5CF6` through `.theme-ryan` on the body. It is also the only page with Caveat handwriting and his signature. Still one accent on that page, just a different one.
 
@@ -160,7 +186,7 @@ These are Ryan's locked positioning rules and the copy already obeys them. Keep 
 Everything marked `PLACEHOLDER` in the HTML needs a real answer.
 
 - [ ] Business names, sectors, cities, copy and links in `lineup.html` and on the home page
-- [ ] The stat band numbers. `115+` and `56,000+` are real, `6` businesses and `20+` years are not
+- [ ] The stat band numbers on `ryan.html`. `115+` and `56,000+` are real, `6` businesses is not. The stats are his personal record, so they appear on his page only and never on the group's home page
 - [ ] Revenue thresholds on `partnerships.html` (currently $2m to $20m)
 - [ ] The three frameworks on `ryan.html`. Confirm which are public and delete the rest
 - [ ] Real files in `assets/downloads/` for every link on `free.html`
