@@ -54,14 +54,12 @@ button,input,textarea,select{font:inherit;color:inherit}
 
 /* ---------- 3. The logo ----------
    Headliner Group 14.8, verbatim. Archivo Black is the logo face only.
-   Everything scales off the font-size on .hl-logo.
-   The one added line is line-height on .hl-logo: this page sets 1.65 on body,
-   which .hl-group would otherwise inherit as leading and drop GROUP too low. */
+   Everything scales off the font-size on .hl-logo. This block is byte for
+   byte as supplied. Do not edit it. */
 .hl-logo{
   position:relative;
   display:inline-block;
   font-size:44px;                 /* the only number to change when resizing */
-  line-height:1;                  /* neutralises the page's inherited leading */
   --ink:#ECE8E0;
   --sub:#ADA9A3;
   --beam:45,226,195;              /* aqua */
@@ -112,10 +110,16 @@ button,input,textarea,select{font:inherit;color:inherit}
   z-index:0;
 }
 
+/* Isolation, not design. This page sets line-height and font smoothing on
+   body; the logo would inherit both and render differently to the spec's
+   neutral context. Neither property belongs to the logo, so they sit in their
+   own rule and the block above stays exactly as supplied. */
+.hl-logo{line-height:normal;-webkit-font-smoothing:auto}
+
 /* Placements. font-size is the only thing that changes. */
+.hl-link{display:block;flex:none}
 .hdr .hl-logo{font-size:21px}
-.ftr .hl-logo{font-size:34px;margin-bottom:6px}
-.hdr__brand{position:relative;align-self:stretch;display:flex;align-items:center;flex:none}
+.ftr .hl-logo{font-size:34px}
 
 /* ---------- 4. The beam as a background accent ----------
    Sized to the block, not the word, and soft rather than hard edged: the blur

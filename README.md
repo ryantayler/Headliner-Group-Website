@@ -51,7 +51,17 @@ Tokens live at the top of `assets/css/styles.css`. Never hardcode a hex where a 
 
 `assets/css/styles.css` section 3 is the Headliner Group 14.8 logo, verbatim. Do not adjust the beam's `transform`, `width`, `margin` or `clip-path`. Resize the lockup by changing `font-size` on `.hl-logo` and nothing else, which is what the header (21px) and footer (34px) do.
 
-One line was added to `.hl-logo`: `line-height:1`. This page sets `1.65` on `body`, which `.hl-group` inherits as leading and which drops GROUP well below the wordmark. With it, GROUP sits at the spec'd 2px.
+The spec block is byte for byte as supplied. Two inherited properties are neutralised in a **separate** rule directly beneath it, because this page sets them on `body` and the logo would otherwise render differently to the spec's neutral context:
+
+```css
+.hl-logo{line-height:normal;-webkit-font-smoothing:auto}
+```
+
+Neither belongs to the logo. Delete that one rule and the block above is a bare drop in.
+
+Markup is `div.hl-logo > div.hl-beam + span.hl-word + div.hl-group`, exactly as supplied. The link wraps **outside** it (`a.hl-link`), so the logo is a div rather than an anchor and is not blockified into a flex item, which would change its computed `display` from `inline-block` to `block`.
+
+Verified by diffing every computed property and every box measurement of `.hl-logo`, `.hl-word`, `.hl-group` and `.hl-beam` against the supplied code rendered in isolation. They match exactly.
 
 `--beam` is scoped to `.hl-logo` and hardcoded aqua, so the logo stays aqua everywhere, including `ryan.html` where the page accent is purple.
 
