@@ -63,21 +63,17 @@ Markup is `div.hl-logo > div.hl-beam + span.hl-word + div.hl-group`, exactly as 
 
 Verified by diffing every computed property and every box measurement of `.hl-logo`, `.hl-word`, `.hl-group` and `.hl-beam` against the supplied code rendered in isolation. They match exactly.
 
-### The header beam is adapted, and has to be
+### The header beam is scaled, uniformly
 
-The beam is `20.455em` tall. At the header's 21px that is **430px, in a 74px bar**. Changing `font-size` does not help, because the beam is sized in `em` and shrinks with the type, so the ratio of beam to container never moves. You always see the same top 17% of the throw: a flat slab with no taper and no falloff.
-
-So the header, and only the header, shortens it:
+The beam is `20.455em`. At the header's 21px that is 430px, inside a 74px bar, so at spec size you only ever see the widest, flattest part of the throw. The header scales the beam down by appending `scale()` to the spec's own transform chain:
 
 ```css
-.hdr .hl-beam{height:5.6em;margin-top:-2.4em;filter:blur(.34em)}
+.hdr .hl-beam{transform:translate(-3.864em,-.682em) rotate(34deg) scale(.25)}
 ```
 
-That lets the taper and the fade both complete inside the bar. Delete those three lines for spec exact geometry, and accept the slab. The footer is untouched at 34px, because it has 300px of height to give the throw.
+`scale()` evaluates before `rotate()` and `translate()`, so width, length, taper, blur and falloff all shrink by the same factor. Do not shorten `height` on its own, which changes the taper from 1:4.5 to something else and produces a stubby beam.
 
-`--beam` is scoped to `.hl-logo` and hardcoded aqua, so the logo stays aqua everywhere, including `ryan.html` where the page accent is purple.
-
-The logo beam is a **hard edged tapered shaft with a gradient inside**. CSS applies `clip-path` after `filter`, which is what produces that edge. It looks like a bug and is not. Do not move the blur and the clip onto separate layers.
+Provable from the painted matrix. Header: `matrix(0.207259, 0.139798, -0.139798, 0.207259, …)`. Footer, unscaled: `matrix(0.829038, 0.559193, -0.559193, 0.829038, …)`. Equal diagonals and equal magnitude off diagonals in both means pure rotation plus uniform scale, no shear, no stretch. `sqrt(0.207259² + 0.139798²) = 0.25` exactly, against `1.0` for the footer.
 
 ## The section beam
 
