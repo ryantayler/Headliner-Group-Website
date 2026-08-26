@@ -52,6 +52,26 @@ Two drifts, deliberately out of step so they never look mechanical.
 
 `alternate` plus a symmetric ease is the whole trick: it decelerates into each end, holds a beat, then accelerates back the other way. The photo travels asymmetrically, `-1.15%` to `+0.58%`, and is scaled to 1.06 so the drift never exposes an edge. Positive `translateX` slides the photo right, which pans the view onto the far left of the frame, and that third is the emptiest part of the shot (mean luminance 39.9 against 63.9 on the right, and the least detail of the three). So the travel that way is half the other. The beam is a followspot. Its lamp sits off screen at roughly x 1520, y -300 on a 1440 hero, which is 80px past the right edge and 300px above the top. The element's top centre **is** that lamp, so `transform-origin` stays `top center` and the whole throw swings from it. It sweeps 11.5 to 56.5 degrees, 45 end to end, 22.5 either side of the spec's 34, and it is long enough (1800px) that the tail leaves the frame at both ends.
 
+### Beam lit copy
+
+As the throw passes over a piece of hero copy it picks up the beam colour, and the glow fades the further from the lamp it falls.
+
+Each element runs the beam's own 16s clock, `alternate`, but with **linear** timing so its peak keyframe lands exactly where the eased beam crosses it. `alternate` then mirrors it on the way back, so the two stay locked forever without any script.
+
+The windows and amplitudes are derived, not eyeballed. For each element: the angle the lamp sees it at, the angular width of the throw at that distance (the clip taper plus the 52px blur, which is real width), and the distance from the lamp. That gives when the glow starts, peaks and ends, and how strong it is.
+
+| element | lit window | peak | alpha |
+| --- | --- | --- | --- |
+| lede | 40% to 71% | 54% | .315 |
+| ghost button | 26% to 58% | 43% | .289 |
+| primary button | 43% to 73% | 56% | .242 |
+| headline | 70% to 100% | 100% | .095 |
+| eyebrow | 88% to 100% | 100% | .016 |
+
+The headline is faint and the eyebrow nearly nothing because the sweep only just reaches that far. That is the falloff doing its job, not a mistake. Buttons use `box-shadow`, text uses `text-shadow`. The colour is `--accent-rgb`, so the glow is aqua on the group's pages and purple on Ryan's without a second rule. The whole block sits inside `prefers-reduced-motion: no-preference`.
+
+If you move hero copy, the phases go stale. They are geometry, so recompute them rather than nudging by eye.
+
 Hero beam peak alpha is `.38`, not the `.55` the section beam uses. The wider sweep carries the throw across the lede, and at `.5` that dropped the lede to 4.22:1. Contrast was checked at five points through the sweep, not just the ends; the worst is the lede at 4.84:1 mid sweep. Both stop under `prefers-reduced-motion`.
 
 `ryan.html` is his personal brand page, so it swaps the one accent to purple `#8B5CF6` through `.theme-ryan` on the body. It is also the only page with Caveat handwriting and his signature. Still one accent on that page, just a different one.

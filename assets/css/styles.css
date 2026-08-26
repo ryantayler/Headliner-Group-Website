@@ -534,6 +534,48 @@ a.card:hover,.card--hover:hover{transform:translateY(-4px);border-color:rgba(var
 /* Signature. Ink only, clean ground only, never tinted. */
 .sig{width:190px;color:var(--tx);opacity:.92}
 
+
+/* ---------- Beam lit text ----------
+   As the throw passes over a piece of hero copy it picks up the beam colour.
+   Each element runs the beam's own 16s clock, alternate, but with LINEAR
+   timing so its peak keyframe lands exactly where the eased beam crosses it,
+   and alternate mirrors it on the way back. Windows and amplitudes are
+   derived from the beam geometry: the angle it reaches each element at, the
+   angular width of the throw there (clip taper plus the 52px blur), and the
+   distance from the lamp, so the glow fades the further out it falls. */
+@media (prefers-reduced-motion:no-preference){
+  .hero .eyebrow{animation:lit-eyebrow 16s linear infinite alternate}
+  .hero .d1{animation:lit-d1 16s linear infinite alternate}
+  .hero .lede{animation:lit-lede 16s linear infinite alternate}
+  .hero .btn--fill{animation:lit-btn-fill 16s linear infinite alternate}
+  .hero .btn--ghost{animation:lit-btn-ghost 16s linear infinite alternate}
+}
+@keyframes lit-eyebrow{
+  0%,88.1%{text-shadow:0 0 0 rgba(var(--accent-rgb),0)}
+  100.0%{text-shadow:0 0 29px rgba(var(--accent-rgb),0.016)}
+  100%{text-shadow:0 0 29px rgba(var(--accent-rgb),0.016)}
+}
+@keyframes lit-d1{
+  0%,70.0%{text-shadow:0 0 0 rgba(var(--accent-rgb),0)}
+  100.0%{text-shadow:0 0 30px rgba(var(--accent-rgb),0.095)}
+  100%{text-shadow:0 0 30px rgba(var(--accent-rgb),0.095)}
+}
+@keyframes lit-lede{
+  0%,39.7%{text-shadow:0 0 0 rgba(var(--accent-rgb),0)}
+  54.4%{text-shadow:0 0 42px rgba(var(--accent-rgb),0.315)}
+  71.3%,100%{text-shadow:0 0 0 rgba(var(--accent-rgb),0)}
+}
+@keyframes lit-btn-fill{
+  0%,43.2%{box-shadow:0 0 0 rgba(var(--accent-rgb),0)}
+  56.4%{box-shadow:0 0 37px rgba(var(--accent-rgb),0.242)}
+  72.5%,100%{box-shadow:0 0 0 rgba(var(--accent-rgb),0)}
+}
+@keyframes lit-btn-ghost{
+  0%,26.0%{box-shadow:0 0 0 rgba(var(--accent-rgb),0)}
+  43.4%{box-shadow:0 0 40px rgba(var(--accent-rgb),0.289)}
+  57.5%,100%{box-shadow:0 0 0 rgba(var(--accent-rgb),0)}
+}
+
 /* ---------- 17. Reveal ---------- */
 .rv{opacity:0;transform:translateY(18px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
 .rv.is-in{opacity:1;transform:none}
