@@ -308,12 +308,12 @@ button,input,textarea,select{font:inherit;color:inherit}
 .hero{position:relative;background:var(--base);overflow:hidden;isolation:isolate;min-height:clamp(500px,64vh,720px);display:flex;align-items:flex-end}
 .hero>.shell{width:100%}
 .hero__media{position:absolute;inset:0;z-index:-2}
-.hero__media img{width:100%;height:100%;object-fit:cover;opacity:.42}
+.hero__media img{width:100%;height:100%;object-fit:cover;opacity:.72}
 .hero__scrim{
   position:absolute;inset:0;z-index:-1;
   background:
-    linear-gradient(to right,rgba(10,10,10,.95) 0%,rgba(10,10,10,.8) 46%,rgba(10,10,10,.45) 100%),
-    linear-gradient(to top,rgba(10,10,10,1) 2%,rgba(10,10,10,0) 46%);
+    linear-gradient(to right,rgba(10,10,10,.94) 0%,rgba(10,10,10,.76) 46%,rgba(10,10,10,.58) 100%),
+    linear-gradient(to top,rgba(10,10,10,1) 0%,rgba(10,10,10,0) 52%);
 }
 .hero__media:has(img)+.hero__scrim::after{content:none}
 .hero__scrim::after{
@@ -330,6 +330,8 @@ button,input,textarea,select{font:inherit;color:inherit}
 .hero__grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(24px,5vw,72px);align-items:end}
 @media (max-width:900px){.hero__grid{grid-template-columns:1fr;gap:28px}}
 .hero .d1{max-width:16ch;overflow-wrap:anywhere}
+/* over a photo the dimmest token does not hold, so the hero label lifts a step */
+.hero .eyebrow{color:var(--sub)}
 .hero .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
 
 /* ---------- 11. Media frames ----------

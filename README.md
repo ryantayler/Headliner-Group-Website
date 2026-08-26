@@ -125,7 +125,9 @@ Every image slot is a placeholder that names the shot it wants, so nothing looks
 
 Ratio classes: `r-32` `r-43` `r-11` `r-45` `r-169` `r-219`.
 
-Hero images work the same way, inside `<div class="hero__media">`. The scrim above them is already tuned so white text stays readable on any photo.
+Hero images work the same way, inside `<div class="hero__media">`. The home hero is live: `assets/img/hero-foh.jpg`, a 2400px wide crop of the front of house shot with a Gaussian blur of 4 baked in, plus a 1200px variant wired through `srcset` for phones. Baked rather than a CSS `filter`, so it costs nothing to paint and has no soft edge artefacts.
+
+When you drop a photo into a hero, re-check contrast against the **pixels**, not the tokens. A CSS audit will pass while text sits on a bright part of the image. The scrim and `img` opacity on this one were tuned by sampling the brightest ground pixel under each piece of hero text: eyebrow 7.67:1, headline 12.74:1, lede 4.99:1, ghost button 14.17:1. The hero eyebrow also lifts from `--mute` to `--sub`, because the dimmest token does not hold over a photograph.
 
 ## Adding a business to the lineup
 
@@ -165,7 +167,7 @@ Everything marked `PLACEHOLDER` in the HTML needs a real answer.
 - [ ] The contact email, currently `hello@headlinergroup.com.au`
 - [ ] LinkedIn and Instagram URLs, currently pointing at the platform home pages
 - [ ] Privacy and Terms pages, currently `#`
-- [ ] Photography for every placeholder
+- [ ] Photography for the remaining placeholders. The home hero is done
 - [ ] Open Graph images and tags if this gets shared anywhere
 
 ## Notes
