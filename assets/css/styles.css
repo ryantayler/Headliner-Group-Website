@@ -609,8 +609,74 @@ a.card:hover,.card--hover:hover{transform:translateY(-4px);border-color:rgba(var
 
 /* ---------- 14. Magnets ---------- */
 .magnet{position:relative;overflow:hidden}
-.magnet__fmt{position:absolute;top:16px;right:16px;font-size:10px;font-weight:700;letter-spacing:.16em;padding:5px 9px;border-radius:100px;background:var(--accent);color:#0A0A0A}
+.magnet__fmt{position:absolute;top:16px;right:16px;font-size:10px;font-weight:700;letter-spacing:.16em;padding:5px 9px;border-radius:100px;background:var(--accent);color:#0A0A0A;z-index:1}
 .theme-ryan .magnet__fmt{color:var(--ink)}
+/* the title is the only real control. Its ::after covers the whole card, so the
+   card is one big hit area but the accessibility tree still sees one button. */
+.magnet__hit{
+  font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;
+  text-align:left;cursor:pointer;letter-spacing:inherit;text-transform:inherit;
+}
+.magnet__hit::after{content:"";position:absolute;inset:0;z-index:2}
+.magnet__hit:focus-visible{outline:none}
+.magnet:has(.magnet__hit:focus-visible){outline:2px solid var(--tx-accent);outline-offset:3px}
+.magnet .card__foot{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.magnet .tlink{color:var(--tx-accent)}
+.magnet:hover .tlink{background-size:100% 1.5px}
+.magnet__gate{
+  font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  padding:4px 9px;border-radius:100px;border:1px solid var(--line);color:var(--tx-mute);
+}
+
+/* Filter chips. Plain buttons, state carried on aria-pressed so the styling and
+   the accessibility tree can never disagree. */
+.filters{display:flex;flex-wrap:wrap;gap:10px}
+.chip--f{background:none;cursor:pointer;font-family:inherit;transition:color .2s var(--ease),border-color .2s var(--ease)}
+.chip--f:hover{color:var(--tx);border-color:var(--tx-mute)}
+.chip--f[aria-pressed="true"]{border-color:var(--tx-accent);color:var(--tx-accent)}
+.chip__n{opacity:.55;margin-left:5px;font-variant-numeric:tabular-nums}
+.magnet[hidden]{display:none}
+.empty{margin-top:32px;color:var(--tx-mute)}
+
+/* ---------- 14b. Detail sheet ----------
+   One dialog reused by every magnet. Above the header (60), below nothing. */
+.sheet{position:fixed;inset:0;z-index:90;display:grid;place-items:center;padding:clamp(12px,3vw,40px)}
+.sheet[hidden]{display:none}
+.sheet__scrim{position:absolute;inset:0;background:rgba(6,7,7,.72);backdrop-filter:blur(6px);animation:sheetIn .25s var(--ease)}
+.sheet__panel{
+  position:relative;width:min(1080px,100%);max-height:100%;overflow:auto;
+  background:var(--card);color:var(--ink-l);border:1px solid var(--rim-l);border-radius:var(--r-md);
+  --ground:var(--card);--surface:var(--paper-2);--line:var(--rim-l);
+  --tx:var(--ink-l);--tx-sub:var(--sub-l);--tx-mute:var(--mute-l);--tx-accent:var(--accent-deep);
+  animation:sheetUp .3s var(--ease);
+}
+.sheet__grid{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr)}
+.sheet__media{position:relative;min-height:340px;background:var(--panel)}
+/* the card art is cloned in with its 4:3 ratio still on it, which would leave a
+   dead strip under the image. The column sets the height here, not the ratio. */
+.sheet__media .media{position:absolute;inset:0;border-radius:0;aspect-ratio:auto}
+.sheet__body{padding:clamp(26px,3.4vw,48px)}
+.sheet__body .sub{color:var(--sub-l);margin-top:14px}
+/* the format already has its own chip in the body, and up here it fouls the close */
+.sheet__media .magnet__fmt{display:none}
+.sheet__x{
+  position:absolute;top:14px;right:14px;z-index:3;width:42px;height:42px;border-radius:100px;
+  background:rgba(10,10,10,.62);border:1px solid rgba(255,255,255,.14);cursor:pointer;color:var(--ink);
+  display:grid;place-items:center;transition:background-color .2s var(--ease);
+}
+.sheet__x:hover{background:rgba(10,10,10,.86)}
+.sheet__x span{position:relative;width:15px;height:1.5px;background:var(--ink);transform:rotate(45deg)}
+.sheet__x span::before{content:"";position:absolute;inset:0;background:var(--ink);transform:rotate(90deg)}
+@keyframes sheetIn{from{opacity:0}to{opacity:1}}
+@keyframes sheetUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.sheet__scrim,.sheet__panel{animation:none}}
+@media (max-width:860px){
+  .sheet{padding:0;place-items:stretch}
+  .sheet__panel{width:100%;max-height:none;min-height:100%;border:0;border-radius:0}
+  .sheet__grid{grid-template-columns:1fr}
+  .sheet__media{min-height:min(46vh,300px)}
+}
+body.sheet-open{overflow:hidden}
 
 /* ---------- 15. Forms ---------- */
 .form{display:grid;gap:18px}
