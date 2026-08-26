@@ -76,7 +76,23 @@ If you move hero copy, the phases go stale. They are geometry, so recompute them
 
 Hero beam peak alpha is `.342`, not the `.55` the section beam uses. The wider sweep carries the throw across the lede, and at `.5` that dropped the lede to 4.22:1. Contrast was checked at five points through the sweep, not just the ends; the worst is the lede at 4.97:1 mid sweep. Both stop under `prefers-reduced-motion`.
 
-`ryan.html` is his personal brand page, so it swaps the one accent to purple `#8B5CF6` through `.theme-ryan` on the body. It is also the only page with Caveat handwriting and his signature. Still one accent on that page, just a different one.
+## `ryan.html` runs a different brand
+
+It is his personal brand page and it uses **his** system, not Headliner's. One class on the body, `.theme-ryan`, swaps the whole thing.
+
+| | Headliner | Ryan |
+| --- | --- | --- |
+| Ground | light body, dark ends | **dark end to end**, his canonical |
+| Accent | aqua `#2DE2C3` | **pink `#FF2D6B`**, the only one |
+| Action colour | coral `#FF5A36` | pink, because pink does every accent job |
+| Headers | Inter 600 | **Anton**, uppercase |
+| Beam | hero and both logos | **none on this page** |
+
+Rules of his system that this build honours: text on a pink fill is always black `#0A0A0A` (5.5:1, off white fails at 2.9); one handwritten Caveat moment per view and no more; the signature is ink only on a clean ground, never on a photo or a colour; purple, cyan and aqua are **archived** in his system and appear nowhere on the page.
+
+**The site header is the one thing that does not change.** It re-asserts Headliner's accent and action colour inside the bar, so the CTA stays coral, the active nav link stays aqua and the logo beam stays aqua. Verified identical to `index.html` on every one of those.
+
+The hero is his portrait holding the left of the frame and dissolving into the ground on two axes, with the **signature as the name mark** on the clean right. That placement is not decorative: his system forbids the signature on a photo, so the image has to be gone by the time it reaches the mark. There is no Anton headline in the hero because the signature is the wordmark.
 
 ```html
 <body class="theme-ryan">
