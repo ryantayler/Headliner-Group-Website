@@ -161,6 +161,14 @@ button,input,textarea,select{font:inherit;color:inherit}
    own rule and the block above stays exactly as supplied. */
 .hl-logo{line-height:normal;-webkit-font-smoothing:auto}
 
+/* Header only: the wordmark runs 30% larger. Both faces scale by the same
+   1.3, so GROUP keeps its .295 ratio to the word and its -.42em margin still
+   cancels the trailing letter space, which is what holds the right edge flush
+   with the final R. The beam is sized in em of .hl-logo, which is untouched,
+   so the throw does not change. */
+.hdr .hl-word{font-size:1.3em}
+.hdr .hl-group{font-size:.3835em}
+
 /* Placements. font-size is the only thing that changes. */
 .hl-link{display:block;flex:none}
 .hdr .hl-logo{font-size:21px}
