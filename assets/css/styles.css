@@ -53,74 +53,108 @@ button,input,textarea,select{font:inherit;color:inherit}
 ::selection{background:var(--accent);color:var(--base)}
 
 /* ---------- 3. The logo ----------
-   Archivo Black is the logo face only. Never a heading, never body. */
-.hl-logo{position:relative;display:inline-block;font-size:42px}
+   Headliner Group 14.8, verbatim. Archivo Black is the logo face only.
+   Everything scales off the font-size on .hl-logo.
+   The one added line is line-height on .hl-logo: this page sets 1.65 on body,
+   which .hl-group would otherwise inherit as leading and drop GROUP too low. */
+.hl-logo{
+  position:relative;
+  display:inline-block;
+  font-size:44px;                 /* the only number to change when resizing */
+  line-height:1;                  /* neutralises the page's inherited leading */
+  --ink:#ECE8E0;
+  --sub:#ADA9A3;
+  --beam:45,226,195;              /* aqua */
+}
 
 .hl-word{
   font-family:'Archivo Black',Impact,sans-serif;
-  font-size:1em;line-height:1;letter-spacing:-.01em;
-  text-transform:uppercase;color:var(--ink);
-  display:block;position:relative;z-index:2;white-space:nowrap;
+  font-size:1em;
+  line-height:1;
+  letter-spacing:-.01em;
+  text-transform:uppercase;
+  color:var(--ink);
+  display:block;
+  white-space:nowrap;
+  position:relative;
+  z-index:2;
 }
 
 .hl-group{
-  font-family:'Inter',sans-serif;font-weight:600;
-  font-size:.29em;letter-spacing:.42em;text-transform:uppercase;
-  color:var(--sub);text-align:right;
+  font-family:'Inter',sans-serif;
+  font-weight:600;
+  font-size:.295em;
+  letter-spacing:.42em;
+  text-transform:uppercase;
+  color:var(--sub);
+  text-align:right;
   margin:2px -.42em 0 0;          /* cancels the trailing letter space */
-  position:relative;z-index:2;
+  position:relative;
+  z-index:2;
 }
 
-/* ---------- 4. The beam, on the logo ----------
-   All em, so it scales with the wordmark. */
 .hl-beam{
-  position:absolute;top:.5em;left:50%;
-  width:3.864em;height:20.455em;
-  margin:-10.227em 0 0 -1.932em;
-  transform:translate(-.455em,-.682em) rotate(34deg);
+  position:absolute;
+  top:.5em;                       /* anchored to the centre of the word */
+  left:50%;
+  width:4.545em;
+  height:20.455em;
+  margin:-10.227em 0 0 -2.273em;
+  transform:translate(-3.864em,-.682em) rotate(34deg);
   clip-path:polygon(43% 0,57% 0,100% 100%,0 100%);
   background:linear-gradient(to bottom,
-    rgba(var(--accent-rgb),.9),
-    rgba(var(--accent-rgb),.16) 55%,
-    rgba(var(--accent-rgb),0));
-  filter:blur(.59em);
+    rgba(var(--beam),.9),
+    rgba(var(--beam),.16) 55%,
+    rgba(var(--beam),0));
+  filter:blur(.591em);
   mix-blend-mode:screen;
-  -webkit-mask-image:linear-gradient(to bottom,#000 0,#000 52%,transparent 66%);
-  mask-image:linear-gradient(to bottom,#000 0,#000 52%,transparent 66%);
-  pointer-events:none;z-index:0;
+  pointer-events:none;
+  z-index:0;
 }
 
-/* Header and footer lockups. The logo itself is unchanged, only its size.
-   The beam is 20em tall, so on a fixed bar it is faded out once the header
-   goes solid, otherwise it rakes across whatever is scrolling underneath. */
-.hl-logo--flat .hl-beam{display:none}
+/* Placements. font-size is the only thing that changes. */
 .hdr .hl-logo{font-size:21px}
 .ftr .hl-logo{font-size:34px;margin-bottom:6px}
 .hdr__brand{position:relative;align-self:stretch;display:flex;align-items:center;flex:none}
-.hdr .hl-beam{transition:opacity .35s var(--ease)}
-.hdr.is-stuck .hl-beam,.hdr.is-open .hl-beam{opacity:0}
 
-/* ---------- 5. The beam as a background accent ----------
+/* ---------- 4. The beam as a background accent ----------
+   Sized to the block, not the word, and soft rather than hard edged: the blur
+   sits on the element and the clip on ::before, so the throw fades out.
    One per section, and not every section. It is a light source. */
 .hl-lit-beam{
   position:absolute;top:-220px;left:12%;
   width:260px;height:1100px;
   transform:rotate(34deg);transform-origin:top center;
+  filter:blur(40px);
+  mix-blend-mode:screen;
+  pointer-events:none;
+}
+.hl-lit-beam::before{
+  content:"";position:absolute;inset:0;
   clip-path:polygon(43% 0,57% 0,100% 100%,0 100%);
   background:linear-gradient(to bottom,
     rgba(var(--accent-rgb),.55),
     rgba(var(--accent-rgb),.10) 55%,
     rgba(var(--accent-rgb),0));
-  filter:blur(40px);
-  mix-blend-mode:screen;
-  pointer-events:none;
 }
-/* mirrored, per the spec: rotate(-34deg) and anchored from the right */
-.hl-lit-beam--right{left:auto;right:10%;transform:rotate(-34deg)}
+/* anchored right. same throw direction as the logo beam, down and to the left. */
+.hl-lit-beam--right{left:auto;right:10%}
 .hl-lit-beam--wide{width:340px;height:1300px}
-/* same construction, sized to the hero */
-.hl-lit-beam--hero{top:-180px;left:22%;width:300px;height:1150px;filter:blur(45px)}
-@media (max-width:900px){.hl-lit-beam--hero{left:44%;height:900px}}
+
+/* Hero. Enters top right and rakes down across the middle of the body. */
+.hl-lit-beam--hero{
+  top:-120px;left:auto;right:2%;width:420px;height:900px;
+  filter:blur(52px);
+}
+.hl-lit-beam--hero::before{
+  background:linear-gradient(to bottom,
+    rgba(var(--accent-rgb),.5),
+    rgba(var(--accent-rgb),.1) 55%,
+    rgba(var(--accent-rgb),0));
+}
+@media (max-width:900px){
+  .hl-lit-beam--hero{right:-18%;width:340px;height:760px}
+}
 
 /* ---------- 6. Type roles. Inter carries all of it. ---------- */
 .display{font-weight:600;letter-spacing:-.028em;line-height:1.04;text-wrap:balance}

@@ -47,28 +47,31 @@ Alternate them. Cards invert against their band, so a card on `band--base` is `-
 
 Tokens live at the top of `assets/css/styles.css`. Never hardcode a hex where a token exists.
 
-## The beam
+## The logo
 
-Two placements, same construction.
+`assets/css/styles.css` section 3 is the Headliner Group 14.8 logo, verbatim. Do not adjust the beam's `transform`, `width`, `margin` or `clip-path`. Resize the lockup by changing `font-size` on `.hl-logo` and nothing else, which is what the header (21px) and footer (34px) do.
+
+One line was added to `.hl-logo`: `line-height:1`. This page sets `1.65` on `body`, which `.hl-group` inherits as leading and which drops GROUP well below the wordmark. With it, GROUP sits at the spec'd 2px.
+
+`--beam` is scoped to `.hl-logo` and hardcoded aqua, so the logo stays aqua everywhere, including `ryan.html` where the page accent is purple.
+
+The logo beam is a **hard edged tapered shaft with a gradient inside**. CSS applies `clip-path` after `filter`, which is what produces that edge. It looks like a bug and is not. Do not move the blur and the clip onto separate layers.
+
+## The section beam
+
+Different treatment to the logo beam, on purpose. Sized to the block rather than the word, and **soft**: the blur sits on the element and the clip on `::before`, so the throw fades rather than ending on a hard edge.
 
 ```html
 <div class="hl-lit-beam hl-lit-beam--hero"></div>   <!-- inside .hero -->
 <div class="hl-lit-beam hl-lit-beam--right"></div>  <!-- inside any .band--lit -->
 ```
 
-Rules that hold it together:
-
 - `mix-blend-mode:screen` needs a dark ground. Light only ever adds.
-- The taper is the light. Narrow at the source, wide at the throw.
-- Blur is roughly 15% of the beam width, or the edges harden and it becomes a shape.
 - One per section, and not every section. More than one implies more than one lamp.
 - Keep it off body copy. Behind a heading is fine, behind a paragraph is not.
+- Every band carrying a beam needs `band--lit` (`overflow:hidden`) or it bleeds into the next section.
 
-One implementation note, because it looks like a bug and is not:
-
-- **`clip-path` is applied after `filter`.** That is what gives the beam its hard tapered edge with a soft gradient inside, which is the whole look. Do not "fix" it by moving the blur and the clip onto separate layers. That turns a spotlight into a soft blob.
-
-Both the header beam and the hero beam throw down and to the left, so they read as one distant source rather than two lamps.
+The hero beam enters top right and rakes down across the middle of the body. All beams throw down and to the left, matching the logo, so they read as one distant source.
 
 ## Swapping in photography
 
