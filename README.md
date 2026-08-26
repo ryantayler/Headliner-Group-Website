@@ -15,37 +15,61 @@ Static template for the Headliner Group website. Six pages, one stylesheet, no b
 
 ## The identity
 
-Headliner Group is its own brand. It shares taste with Ryan's personal system but not its assets.
+Built to the Headliner Group logo and beam spec. Dark only, one accent, and Archivo Black reserved entirely for the logo.
 
-| | Headliner Group | Ryan Tayler |
-| --- | --- | --- |
-| Accent | Marquee amber `#E0A040` | Purple `#8B5CF6` |
-| Display face | Archivo, uppercase, set wide (`font-stretch:118%`) | Anton in his own system |
-| Editorial voice | Instrument Serif, one pull quote per page | Caveat handwriting, one moment per page |
-| Signature | Never used | Ink only, clean ground, `ryan.html` only |
+| | Value |
+| --- | --- |
+| Page ground | `--base #0A0A0A`. Dark only, there is no light theme |
+| Raised surfaces | `--panel #111111` for cards and alternating bands |
+| Accent | Aqua `#2DE2C3`, one per page, no second accent anywhere |
+| Logo face | Archivo Black, the logo and nothing else |
+| Everything else | Inter 400 / 500 / 600, headings included |
+| Light source | The beam, one per section and not every section |
 
-The Ryan page flips the whole palette with one class on `<body>`:
+`ryan.html` is his personal brand page, so it swaps the one accent to purple `#8B5CF6` through `.theme-ryan` on the body. It is also the only page with Caveat handwriting and his signature. Still one accent on that page, just a different one.
 
 ```html
 <body class="theme-ryan">
 ```
 
-That swaps `--accent` and `--accent-deep`. Nothing else in the stylesheet changes. Adding another themed page is one class and two tokens.
+That swaps `--accent` and `--accent-rgb`. Nothing else changes, including the beams, which read the accent from those tokens.
 
 ## Structure of every page
 
-Every page runs the same rhythm: **dark hero, light body, dark close.** The dark is structural, not decoration, and it is what stops the site reading as a template. Keep the rhythm when you add sections.
-
-Bands are the unit of layout:
+Dark only, so separation comes from alternating the two dark surfaces and from where the light falls.
 
 ```html
-<section class="band band--bone">   <!-- warm paper, the default reading ground -->
-<section class="band band--paper">  <!-- white, for contrast against bone -->
-<section class="band band--recess"> <!-- slightly deeper paper -->
-<section class="band band--dark">   <!-- stage black -->
+<section class="band band--base">   <!-- #0A0A0A -->
+<section class="band band--panel">  <!-- #111111 -->
 ```
 
+Alternate them. Cards invert against their band, so a card on `band--base` is `--panel` and a card on `band--panel` is `--base`. Every band carries `band--lit` (`overflow:hidden`), which is required or a beam bleeds into the next section.
+
 Tokens live at the top of `assets/css/styles.css`. Never hardcode a hex where a token exists.
+
+## The beam
+
+Two placements, same construction.
+
+```html
+<div class="hl-lit-beam hl-lit-beam--hero"></div>   <!-- inside .hero -->
+<div class="hl-lit-beam hl-lit-beam--right"></div>  <!-- inside any .band--lit -->
+```
+
+Rules that hold it together:
+
+- `mix-blend-mode:screen` needs a dark ground. Light only ever adds.
+- The taper is the light. Narrow at the source, wide at the throw.
+- Blur is roughly 15% of the beam width, or the edges harden and it becomes a shape.
+- One per section, and not every section. More than one implies more than one lamp.
+- Keep it off body copy. Behind a heading is fine, behind a paragraph is not.
+
+Two implementation notes worth knowing before you change the values:
+
+- **`rotate(34deg)` throws the beam down and to the left**, so it anchors from the right. `rotate(-34deg)` throws down and right and anchors from the left. Getting this backwards sends the beam straight off the near edge.
+- **The blur sits on the element and the clip sits on `::before`.** CSS applies `clip-path` after `filter`, so putting both on one element re-cuts the blurred edge back to a hard line and the beam reads as a solid wedge. Keeping them on separate layers is what makes it look like light.
+
+The header and footer logos use `.hl-logo--flat`, which hides the logo beam. A 20em beam cannot live inside a 74px bar without smearing across the nav. The full lockup with its beam sits in the footer at 34px.
 
 ## Swapping in photography
 
@@ -110,8 +134,12 @@ Everything marked `PLACEHOLDER` in the HTML needs a real answer.
 
 ## Notes
 
-- Fonts are **self hosted** in `assets/fonts/` (about 460KB, latin and latin-ext subsets). No third party request, works offline. Archivo, Instrument Serif, Inter and Caveat are all under the SIL Open Font License 1.1.
+- Fonts are **self hosted** in `assets/fonts/` (about 284KB, latin and latin-ext subsets). No third party request, works offline. Archivo Black, Inter and Caveat are all under the SIL Open Font License 1.1.
 - Caveat only appears on `ryan.html`. If you care about the last 100KB, split `fonts.css` and load it there only.
+
+## One accessibility note
+
+`--mute #7A7A7A` on `--panel #111111` measures **4.40:1**, just under the 4.5:1 needed for normal text. On `--base` it is 4.61:1 and passes. Since cards are `--panel` on base bands, roughly half the body copy sits at 4.40. The tokens are locked so it has been left exactly as specced. Moving `--mute` to `#7C7C7C` takes it to 4.51:1 and is not perceptibly different, if you want it to clear AA outright.
 - `main.js` is about eighty lines and has no dependencies. It handles the sticky header, the mobile menu, reveal on scroll and the demo forms.
 - The header and footer markup is duplicated across all six pages. Editing the nav means editing six files. That is the cost of having no build step, and at six pages it is the cheaper trade.
 - Motion respects `prefers-reduced-motion`.

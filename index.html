@@ -15,7 +15,7 @@
 <!-- ===== HEADER (identical on every page, update all six when you edit) ===== -->
 <header class="hdr">
   <div class="shell hdr__in">
-    <a class="wordmark" href="index.html">Headliner<span class="dot"></span><small>GROUP</small></a>
+    <a class="hl-logo hl-logo--flat" href="index.html" aria-label="Headliner Group, home"><span class="hl-word">Headliner</span><span class="hl-group">Group</span></a>
     <nav class="nav" id="nav" aria-label="Main">
       <a href="lineup.html">The Lineup</a>
       <a href="partnerships.html">Partnerships</a>
@@ -35,6 +35,7 @@
     <!-- Swap for a real photo: <img src="assets/img/hero-crowd.jpg" alt=""> -->
   </div>
   <div class="hero__scrim" data-slot="Hero &middot; wide crowd or load in, shot from back of house"></div>
+    <div class="hl-lit-beam hl-lit-beam--hero"></div>
   <div class="shell hero__in">
     <div class="hero__grid">
       <div>
@@ -53,7 +54,7 @@
 </section>
 
 <!-- ===== 2. PROOF (dark, no padding, butts against hero) ===== -->
-<section class="band--dark" aria-label="Track record">
+<section class="band--base" aria-label="Track record">
   <div class="shell">
     <div class="stats rv">
       <div class="stat"><span class="num">115+</span><span>Live events delivered</span></div>
@@ -66,7 +67,7 @@
 </section>
 
 <!-- ===== 3. POSITION (bone) ===== -->
-<section class="band band--bone">
+<section class="band band--panel band--lit">
   <div class="shell">
     <div class="head head--split">
       <div class="stack rv">
@@ -81,7 +82,7 @@
 
     <div class="grid g2 mt-l">
       <article class="card card--media card--hover rv">
-        <div class="media r-32 media--soft">
+        <div class="media r-32">
           <div class="ph" data-slot="Image 3:2"><span>Load in, empty room, trucks at the dock. The unglamorous start of an event.</span></div>
         </div>
         <p class="card__n">01</p>
@@ -90,7 +91,7 @@
       </article>
 
       <article class="card card--media card--hover rv rv-d1">
-        <div class="media r-32 media--soft">
+        <div class="media r-32">
           <div class="ph" data-slot="Image 3:2"><span>Two people mid handshake in a warehouse or on site. Real, not stock.</span></div>
         </div>
         <p class="card__n">02</p>
@@ -99,7 +100,7 @@
       </article>
 
       <article class="card card--media card--hover rv">
-        <div class="media r-32 media--soft">
+        <div class="media r-32">
           <div class="ph" data-slot="Image 3:2"><span>New product or venture shot. A rig being built, a new room, a launch.</span></div>
         </div>
         <p class="card__n">03</p>
@@ -108,7 +109,7 @@
       </article>
 
       <article class="card card--media card--hover rv rv-d1">
-        <div class="media r-32 media--soft">
+        <div class="media r-32">
           <div class="ph" data-slot="Image 3:2"><span>Wide shot of a full room from the back of house. Scale as proof.</span></div>
         </div>
         <p class="card__n">04</p>
@@ -120,7 +121,7 @@
 </section>
 
 <!-- ===== 4. BELIEF (dark) ===== -->
-<section class="band band--dark">
+<section class="band band--base band--lit">
   <div class="shell">
     <div class="pair">
       <div class="media r-45 rv">
@@ -137,14 +138,14 @@
     </div>
 
     <div class="pull mt-l rv">
-      <q class="serif">A supplier is someone you swap out when it's inconvenient. A partner is someone you stick with even when it is.</q>
+      <q>A supplier is someone you swap out when it's inconvenient. A partner is someone you stick with even when it is.</q>
       <p class="by">Ryan Tayler &middot; Founder</p>
     </div>
   </div>
 </section>
 
 <!-- ===== 5. LINEUP PREVIEW (paper) ===== -->
-<section class="band band--paper">
+<section class="band band--panel band--lit">
   <div class="shell">
     <div class="head head--split">
       <div class="stack rv">
@@ -195,12 +196,12 @@
       </a>
     </div>
 
-    <div class="row mt-l rv"><a class="btn btn--ink" href="lineup.html">See the full lineup <span class="arw">&#8594;</span></a></div>
+    <div class="row mt-l rv"><a class="btn btn--quiet" href="lineup.html">See the full lineup <span class="arw">&#8594;</span></a></div>
   </div>
 </section>
 
 <!-- ===== 6. RYAN (bone) ===== -->
-<section class="band band--bone">
+<section class="band band--base band--lit">
   <div class="shell">
     <div class="pair pair--flip">
       <div class="pair__copy rv">
@@ -210,7 +211,7 @@
         <p class="sub">My goal is to be in business with, or partnered into, every area of live events and production in Australia.</p>
         <div class="row mt-s"><a class="btn btn--ghost" href="ryan.html">More about Ryan <span class="arw">&#8594;</span></a></div>
       </div>
-      <div class="media r-45 media--soft rv rv-d1">
+      <div class="media r-45 rv rv-d1">
         <div class="ph" data-slot="Portrait 4:5"><span>Ryan, clean portrait, warm ground, shoulders up. This is the one that gets reused everywhere.</span></div>
       </div>
     </div>
@@ -218,7 +219,7 @@
 </section>
 
 <!-- ===== 7. FREE SH!T TEASER (recess) ===== -->
-<section class="band band--recess band--tight">
+<section class="band band--panel band--tight">
   <div class="shell">
     <div class="head head--split" style="margin-bottom:0">
       <div class="stack rv">
@@ -227,14 +228,14 @@
         <p class="sub">Checklists, run sheets, contract templates and the numbers we use to work out whether an event is worth doing. Built for real jobs, given away because they're more useful in your hands than in our drive.</p>
       </div>
       <div class="stack rv rv-d1" style="align-content:end">
-        <a class="btn btn--ink" href="free.html">Go and take it <span class="arw">&#8594;</span></a>
+        <a class="btn btn--quiet" href="free.html">Go and take it <span class="arw">&#8594;</span></a>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ===== 8. CTA (dark) ===== -->
-<section class="band band--tight cta-band">
+<section class="band band--tight cta-band"><div class="hl-lit-beam hl-lit-beam--right"></div>
   <div class="shell">
     <div class="cta-band__in">
       <div class="stack rv">
@@ -254,7 +255,7 @@
   <div class="shell">
     <div class="ftr__top">
       <div>
-        <a class="wordmark" href="index.html">Headliner<span class="dot"></span><small>GROUP</small></a>
+        <a class="hl-logo" href="index.html" aria-label="Headliner Group, home"><span class="hl-beam"></span><span class="hl-word">Headliner</span><span class="hl-group">Group</span></a>
         <p class="sub mt-s" style="max-width:30ch">Partnering with founders in live events and production across Australia.</p>
       </div>
       <div>
