@@ -161,17 +161,6 @@ button,input,textarea,select{font:inherit;color:inherit}
    own rule and the block above stays exactly as supplied. */
 .hl-logo{line-height:normal;-webkit-font-smoothing:auto}
 
-/* Header only: the throw opens out 12% wider at the tail. The source is
-   untouched, so the narrow end keeps its exact width (.6363em) and is
-   re-expressed as a percentage of the wider box: 14% of 4.545em becomes
-   12.5% of 5.09em. The element centre does not move, because margin-left
-   stays at half the width. The footer lockup is left on the spec. */
-.hdr .hl-beam{
-  width:5.09em;
-  margin:-10.227em 0 0 -2.545em;
-  clip-path:polygon(43.75% 0,56.25% 0,100% 100%,0 100%);
-}
-
 /* Placements. font-size is the only thing that changes. */
 .hl-link{display:block;flex:none}
 .hdr .hl-logo{font-size:21px}
@@ -238,7 +227,12 @@ button,input,textarea,select{font:inherit;color:inherit}
      The element's top centre IS the lamp, so transform-origin stays top centre
      and the whole throw swings from that point like a followspot. Long enough
      that the tail always leaves the frame at both ends of the sweep. */
-  top:-300px;left:auto;right:-290px;width:420px;height:1800px;
+  top:-300px;left:auto;right:-311px;width:462px;height:1800px;
+  /* Tail 10% wider (420 -> 462). The source is held: the narrow end keeps its
+     58.8px and is re-expressed as a percentage of the wider box, 14% of 420
+     becoming 12.73% of 462. `right` shifts by half the extra width so the lamp
+     stays put at x 1520. */
+  clip-path:polygon(43.64% 0,56.36% 0,100% 100%,0 100%);
   transform-origin:top center;
   filter:blur(52px);
   animation:beamSway 16s var(--ease-sway) infinite alternate;
@@ -250,15 +244,14 @@ button,input,textarea,select{font:inherit;color:inherit}
   to{transform:rotate(56.5deg)}
 }
 .hl-lit-beam--hero::before{
-  /* 10% down on .38/.08, so the throw washes the frame less and the copy on
-     top of it reads harder. */
+  /* 10% down on the section beam's .38/.08 */
   background:linear-gradient(to bottom,
     rgba(var(--accent-rgb),.342),
     rgba(var(--accent-rgb),.072) 55%,
     rgba(var(--accent-rgb),0));
 }
 @media (max-width:900px){
-  .hl-lit-beam--hero{right:-150px;width:300px;height:1400px}
+  .hl-lit-beam--hero{right:-165px;width:330px;height:1400px}
 }
 
 /* ---------- 6. Type roles. Inter carries all of it. ---------- */
@@ -548,6 +541,7 @@ a.card:hover,.card--hover:hover{transform:translateY(-4px);border-color:rgba(var
 .sig{width:190px;color:var(--tx);opacity:.92}
 
 
+
 /* ---------- Beam lit text ----------
    As the throw passes over a piece of hero copy it picks up the beam colour.
    Each element runs the beam's own 16s clock, alternate, but with LINEAR
@@ -555,7 +549,8 @@ a.card:hover,.card--hover:hover{transform:translateY(-4px);border-color:rgba(var
    and alternate mirrors it on the way back. Windows and amplitudes are
    derived from the beam geometry: the angle it reaches each element at, the
    angular width of the throw there (clip taper plus the 52px blur), and the
-   distance from the lamp, so the glow fades the further out it falls. */
+   distance from the lamp, so the glow fades the further out it falls.
+   Recompute these if the hero copy moves or the beam is resized. */
 @media (prefers-reduced-motion:no-preference){
   .hero .eyebrow{animation:lit-eyebrow 16s linear infinite alternate}
   .hero .d1{animation:lit-d1 16s linear infinite alternate}
@@ -564,29 +559,29 @@ a.card:hover,.card--hover:hover{transform:translateY(-4px);border-color:rgba(var
   .hero .btn--ghost{animation:lit-btn-ghost 16s linear infinite alternate}
 }
 @keyframes lit-eyebrow{
-  0%,88.1%{text-shadow:0 0 0 rgba(var(--accent-rgb),0)}
-  100.0%{text-shadow:0 0 29px rgba(var(--accent-rgb),0.016)}
-  100%{text-shadow:0 0 29px rgba(var(--accent-rgb),0.016)}
+  0%,85.2%{text-shadow:0 0 0 rgba(var(--accent-rgb),0)}
+  100.0%{text-shadow:0 0 29px rgba(var(--accent-rgb),0.017)}
+  100%{text-shadow:0 0 29px rgba(var(--accent-rgb),0.017)}
 }
 @keyframes lit-d1{
-  0%,70.0%{text-shadow:0 0 0 rgba(var(--accent-rgb),0)}
-  100.0%{text-shadow:0 0 30px rgba(var(--accent-rgb),0.095)}
-  100%{text-shadow:0 0 30px rgba(var(--accent-rgb),0.095)}
+  0%,68.8%{text-shadow:0 0 0 rgba(var(--accent-rgb),0)}
+  100.0%{text-shadow:0 0 30px rgba(var(--accent-rgb),0.084)}
+  100%{text-shadow:0 0 30px rgba(var(--accent-rgb),0.084)}
 }
 @keyframes lit-lede{
-  0%,39.7%{text-shadow:0 0 0 rgba(var(--accent-rgb),0)}
-  54.4%{text-shadow:0 0 42px rgba(var(--accent-rgb),0.315)}
-  71.3%,100%{text-shadow:0 0 0 rgba(var(--accent-rgb),0)}
+  0%,38.8%{text-shadow:0 0 0 rgba(var(--accent-rgb),0)}
+  54.4%{text-shadow:0 0 42px rgba(var(--accent-rgb),0.32)}
+  72.5%,100%{text-shadow:0 0 0 rgba(var(--accent-rgb),0)}
 }
 @keyframes lit-btn-fill{
-  0%,43.2%{box-shadow:0 0 0 rgba(var(--accent-rgb),0)}
-  56.4%{box-shadow:0 0 37px rgba(var(--accent-rgb),0.242)}
-  72.5%,100%{box-shadow:0 0 0 rgba(var(--accent-rgb),0)}
+  0%,42.3%{box-shadow:0 0 0 rgba(var(--accent-rgb),0)}
+  56.4%{box-shadow:0 0 37px rgba(var(--accent-rgb),0.266)}
+  73.8%,100%{box-shadow:0 0 0 rgba(var(--accent-rgb),0)}
 }
 @keyframes lit-btn-ghost{
-  0%,26.0%{box-shadow:0 0 0 rgba(var(--accent-rgb),0)}
-  43.4%{box-shadow:0 0 40px rgba(var(--accent-rgb),0.289)}
-  57.5%,100%{box-shadow:0 0 0 rgba(var(--accent-rgb),0)}
+  0%,24.6%{box-shadow:0 0 0 rgba(var(--accent-rgb),0)}
+  43.4%{box-shadow:0 0 40px rgba(var(--accent-rgb),0.301)}
+  58.4%,100%{box-shadow:0 0 0 rgba(var(--accent-rgb),0)}
 }
 
 /* ---------- 17. Reveal ---------- */

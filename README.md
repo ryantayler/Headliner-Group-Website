@@ -52,6 +52,8 @@ Two drifts, deliberately out of step so they never look mechanical.
 
 `alternate` plus a symmetric ease is the whole trick: it decelerates into each end, holds a beat, then accelerates back the other way. The photo travels asymmetrically, `-1.15%` to `+0.58%`, and is scaled to 1.06 so the drift never exposes an edge. Positive `translateX` slides the photo right, which pans the view onto the far left of the frame, and that third is the emptiest part of the shot (mean luminance 39.9 against 63.9 on the right, and the least detail of the three). So the travel that way is half the other. The beam is a followspot. Its lamp sits off screen at roughly x 1520, y -300 on a 1440 hero, which is 80px past the right edge and 300px above the top. The element's top centre **is** that lamp, so `transform-origin` stays `top center` and the whole throw swings from it. It sweeps 11.5 to 56.5 degrees, 45 end to end, 22.5 either side of the spec's 34, and it is long enough (1800px) that the tail leaves the frame at both ends.
 
+The hero throw is **462px** at the tail, 10% wider than the 420 it started at. The source is held: the narrow end keeps its 58.8px and is re-expressed as a percentage of the wider box, 14% of 420 becoming 12.73% of 462. `right` shifts by half the extra width so the lamp stays put at x 1520.
+
 ### Beam lit copy
 
 As the throw passes over a piece of hero copy it picks up the beam colour, and the glow fades the further from the lamp it falls.
@@ -62,17 +64,17 @@ The windows and amplitudes are derived, not eyeballed. For each element: the ang
 
 | element | lit window | peak | alpha |
 | --- | --- | --- | --- |
-| lede | 40% to 71% | 54% | .315 |
-| ghost button | 26% to 58% | 43% | .289 |
-| primary button | 43% to 73% | 56% | .242 |
-| headline | 70% to 100% | 100% | .095 |
-| eyebrow | 88% to 100% | 100% | .016 |
+| lede | 39% to 73% | 54% | .320 |
+| ghost button | 25% to 58% | 43% | .301 |
+| primary button | 42% to 74% | 56% | .266 |
+| headline | 69% to 100% | 100% | .084 |
+| eyebrow | 85% to 100% | 100% | .017 |
 
 The headline is faint and the eyebrow nearly nothing because the sweep only just reaches that far. That is the falloff doing its job, not a mistake. Buttons use `box-shadow`, text uses `text-shadow`. The colour is `--accent-rgb`, so the glow is aqua on the group's pages and purple on Ryan's without a second rule. The whole block sits inside `prefers-reduced-motion: no-preference`.
 
 If you move hero copy, the phases go stale. They are geometry, so recompute them rather than nudging by eye.
 
-Hero beam peak alpha is `.342`, not the `.55` the section beam uses. The wider sweep carries the throw across the lede, and at `.5` that dropped the lede to 4.22:1. Contrast was checked at five points through the sweep, not just the ends; the worst is the lede at 5.03:1 mid sweep. Both stop under `prefers-reduced-motion`.
+Hero beam peak alpha is `.342`, not the `.55` the section beam uses. The wider sweep carries the throw across the lede, and at `.5` that dropped the lede to 4.22:1. Contrast was checked at five points through the sweep, not just the ends; the worst is the lede at 4.97:1 mid sweep. Both stop under `prefers-reduced-motion`.
 
 `ryan.html` is his personal brand page, so it swaps the one accent to purple `#8B5CF6` through `.theme-ryan` on the body. It is also the only page with Caveat handwriting and his signature. Still one accent on that page, just a different one.
 
@@ -98,8 +100,6 @@ Tokens live at the top of `assets/css/styles.css`. Never hardcode a hex where a 
 ## The logo
 
 `assets/css/styles.css` section 3 is the Headliner Group 14.8 logo, verbatim. Do not adjust the beam's `transform`, `width`, `margin` or `clip-path`. Resize the lockup by changing `font-size` on `.hl-logo` and nothing else, which is what the header (21px) and footer (34px) do.
-
-The header lockup is the one exception: its beam opens out 12% wider at the tail (`5.09em` against the spec's `4.545em`). The source is untouched, so the narrow end keeps its exact width and is simply re-expressed as a percentage of the wider box, 14% of 4.545em becoming 12.5% of 5.09em. Measured at 0.6362em against the footer's 0.6363em. The element centre does not move, because `margin-left` stays at half the width. The footer lockup is on the spec.
 
 The spec block is byte for byte as supplied. Two inherited properties are neutralised in a **separate** rule directly beneath it, because this page sets them on `body` and the logo would otherwise render differently to the spec's neutral context:
 
