@@ -23,6 +23,7 @@
   --r-sm:6px;
   --r-md:14px;
   --ease:cubic-bezier(.22,.61,.36,1);
+  --hdr-h:100px;
 }
 
 /* His personal brand, on his page only. Swaps the one accent, nothing else. */
@@ -121,12 +122,37 @@ button,input,textarea,select{font:inherit;color:inherit}
 .hdr .hl-logo{font-size:21px}
 .ftr .hl-logo{font-size:34px}
 
-/* Header placement. The logo is your code untouched at 21px. The beam alone
-   is scaled down, uniformly, by appending scale() to your own transform chain.
-   scale() runs before rotate() and translate(), so width, length, taper, blur
-   and falloff all shrink by exactly the same factor and the shape is identical
-   to the 44px original. Nothing is stretched on one axis. */
-.hdr .hl-beam{transform:translate(-3.864em,-.682em) rotate(34deg) scale(.25)}
+/* The lockup is never resized. It is rendered at its full 44px inside a fixed
+   container that crops it the way the reference card does, and the whole
+   container is then scaled down. Word, GROUP, beam, taper, blur and every
+   distance between them shrink by one factor, because they are one image. */
+.hl-stage{
+  position:relative;overflow:hidden;
+  font-size:44px;                       /* the code runs at full size in here */
+  width:12.5em;height:5.9em;
+  display:flex;align-items:center;justify-content:center;
+  transform-origin:left top;position:absolute;top:0;left:0;
+  /* The container crops the beam the way the card does, but a card has a
+     border to justify the cut and a header does not. These fades dissolve the
+     crop instead. They clear the wordmark on every side. */
+  --m:linear-gradient(to bottom,transparent 0,#000 12%,#000 78%,transparent 100%),
+      linear-gradient(to right,transparent 0,#000 9%,#000 100%);
+  -webkit-mask-image:var(--m);mask-image:var(--m);
+  -webkit-mask-composite:source-in;mask-composite:intersect;
+}
+.hl-stage .hl-logo{font-size:1em}
+
+/* .hl-link reserves the SCALED footprint so layout is not thrown out by the
+   unscaled box. width = 14em * 44px * scale, height = 5.9em * 44px * scale. */
+.hl-link{display:block;flex:none;position:relative}
+
+/* header: 259.6px tall container scaled to the 100px bar */
+.hdr .hl-stage{transform:scale(.385)}
+.hdr .hl-link{width:212px;height:100px}
+
+/* footer: same container, larger */
+.ftr .hl-stage{transform:scale(.6)}
+.ftr .hl-link{width:330px;height:156px;margin:0 0 4px -40px}
 
 /* ---------- 4. The beam as a background accent ----------
    Sized to the block, not the word, and soft rather than hard edged: the blur
@@ -252,7 +278,7 @@ button,input,textarea,select{font:inherit;color:inherit}
   border-bottom:1px solid transparent;
   transition:background-color .3s var(--ease),border-color .3s var(--ease);
 }
-.hdr__in{display:flex;align-items:center;justify-content:space-between;gap:24px;height:74px}
+.hdr__in{display:flex;align-items:center;justify-content:space-between;gap:24px;height:var(--hdr-h)}
 .hdr.is-stuck{background:rgba(10,10,10,.88);border-bottom-color:var(--rim);backdrop-filter:saturate(140%) blur(10px)}
 
 .nav{display:flex;align-items:center;gap:clamp(14px,2vw,30px)}
@@ -269,7 +295,7 @@ button,input,textarea,select{font:inherit;color:inherit}
 
 @media (max-width:900px){
   .nav{
-    position:fixed;inset:74px 0 auto 0;flex-direction:column;align-items:stretch;gap:0;
+    position:fixed;inset:var(--hdr-h) 0 auto 0;flex-direction:column;align-items:stretch;gap:0;
     background:var(--base);border-bottom:1px solid var(--rim);padding:8px var(--gutter) 24px;display:none;
   }
   .nav.is-open{display:flex}

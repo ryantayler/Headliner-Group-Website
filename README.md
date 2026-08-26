@@ -63,17 +63,29 @@ Markup is `div.hl-logo > div.hl-beam + span.hl-word + div.hl-group`, exactly as 
 
 Verified by diffing every computed property and every box measurement of `.hl-logo`, `.hl-word`, `.hl-group` and `.hl-beam` against the supplied code rendered in isolation. They match exactly.
 
-### The header beam is scaled, uniformly
+### The lockup is never resized, the container is
 
-The beam is `20.455em`. At the header's 21px that is 430px, inside a 74px bar, so at spec size you only ever see the widest, flattest part of the throw. The header scales the beam down by appending `scale()` to the spec's own transform chain:
+The logo always runs at its full 44px. It sits inside `.hl-stage`, a fixed box that crops it the way the reference card does, and the **whole container** is scaled down with one `transform`. Word, GROUP, beam, taper, blur and every distance between them shrink by one factor, because they are one image.
 
-```css
-.hdr .hl-beam{transform:translate(-3.864em,-.682em) rotate(34deg) scale(.25)}
+```html
+<a class="hl-link" href="index.html">
+  <div class="hl-stage">
+    <div class="hl-logo">…your code…</div>
+  </div>
+</a>
 ```
 
-`scale()` evaluates before `rotate()` and `translate()`, so width, length, taper, blur and falloff all shrink by the same factor. Do not shorten `height` on its own, which changes the taper from 1:4.5 to something else and produces a stubby beam.
+```css
+.hl-stage{font-size:44px;width:12.5em;height:5.9em;overflow:hidden;transform-origin:left top}
+.hdr .hl-stage{transform:scale(.385)}    /* header, 100px bar */
+.ftr .hl-stage{transform:scale(.6)}      /* footer */
+```
 
-Provable from the painted matrix. Header: `matrix(0.207259, 0.139798, -0.139798, 0.207259, …)`. Footer, unscaled: `matrix(0.829038, 0.559193, -0.559193, 0.829038, …)`. Equal diagonals and equal magnitude off diagonals in both means pure rotation plus uniform scale, no shear, no stretch. `sqrt(0.207259² + 0.139798²) = 0.25` exactly, against `1.0` for the footer.
+`.hl-link` reserves the scaled footprint so layout is not thrown out by the unscaled box. To resize the logo anywhere, change the `scale()` and the matching `.hl-link` width and height. Never touch the values inside `.hl-logo`.
+
+A card has a border to justify cropping the beam. A header does not, so `.hl-stage` carries a two axis mask that dissolves the crop instead of cutting it. The fades clear the wordmark on every side.
+
+The header bar is `--hdr-h:100px` rather than 74px, so the lockup lands at a legible 17px wordmark while keeping the container's proportions.
 
 ## The section beam
 
