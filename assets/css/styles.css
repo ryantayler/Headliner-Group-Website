@@ -367,9 +367,12 @@ button,input,textarea,select{font:inherit;color:inherit}
 }
 /* alternate + ease-in-out is the whole trick: it decelerates into each end,
    holds a beat, then accelerates back the other way. */
+/* Asymmetric on purpose. Positive translateX slides the photo right, which
+   pans the view onto the far left of the frame, and that side is the empty
+   one (darkest third, least detail). So the travel that way is halved. */
 @keyframes heroDrift{
   from{transform:scale(1.06) translateX(-1.15%)}
-  to{transform:scale(1.06) translateX(1.15%)}
+  to{transform:scale(1.06) translateX(.58%)}
 }
 .hero__scrim{
   position:absolute;inset:0;z-index:-1;

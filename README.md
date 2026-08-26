@@ -50,7 +50,7 @@ Two drifts, deliberately out of step so they never look mechanical.
 .hl-lit-beam--hero { animation:beamSway  19s var(--ease-sway) infinite alternate }
 ```
 
-`alternate` plus a symmetric ease is the whole trick: it decelerates into each end, holds a beat, then accelerates back the other way. The photo slides 1.15% either side and is scaled to 1.06 so the drift never exposes an edge. The beam rotates between 31.4 and 36.6 degrees, a few degrees either side of the spec's 34. Both stop under `prefers-reduced-motion`.
+`alternate` plus a symmetric ease is the whole trick: it decelerates into each end, holds a beat, then accelerates back the other way. The photo travels asymmetrically, `-1.15%` to `+0.58%`, and is scaled to 1.06 so the drift never exposes an edge. Positive `translateX` slides the photo right, which pans the view onto the far left of the frame, and that third is the emptiest part of the shot (mean luminance 39.9 against 63.9 on the right, and the least detail of the three). So the travel that way is half the other. The beam rotates between 31.4 and 36.6 degrees, a few degrees either side of the spec's 34. Both stop under `prefers-reduced-motion`.
 
 `ryan.html` is his personal brand page, so it swaps the one accent to purple `#8B5CF6` through `.theme-ryan` on the body. It is also the only page with Caveat handwriting and his signature. Still one accent on that page, just a different one.
 
