@@ -161,6 +161,17 @@ button,input,textarea,select{font:inherit;color:inherit}
    own rule and the block above stays exactly as supplied. */
 .hl-logo{line-height:normal;-webkit-font-smoothing:auto}
 
+/* Header only: the throw opens out 12% wider at the tail. The source is
+   untouched, so the narrow end keeps its exact width (.6363em) and is
+   re-expressed as a percentage of the wider box: 14% of 4.545em becomes
+   12.5% of 5.09em. The element centre does not move, because margin-left
+   stays at half the width. The footer lockup is left on the spec. */
+.hdr .hl-beam{
+  width:5.09em;
+  margin:-10.227em 0 0 -2.545em;
+  clip-path:polygon(43.75% 0,56.25% 0,100% 100%,0 100%);
+}
+
 /* Placements. font-size is the only thing that changes. */
 .hl-link{display:block;flex:none}
 .hdr .hl-logo{font-size:21px}
@@ -239,9 +250,11 @@ button,input,textarea,select{font:inherit;color:inherit}
   to{transform:rotate(56.5deg)}
 }
 .hl-lit-beam--hero::before{
+  /* 10% down on .38/.08, so the throw washes the frame less and the copy on
+     top of it reads harder. */
   background:linear-gradient(to bottom,
-    rgba(var(--accent-rgb),.38),
-    rgba(var(--accent-rgb),.08) 55%,
+    rgba(var(--accent-rgb),.342),
+    rgba(var(--accent-rgb),.072) 55%,
     rgba(var(--accent-rgb),0));
 }
 @media (max-width:900px){

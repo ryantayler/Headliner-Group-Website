@@ -72,7 +72,7 @@ The headline is faint and the eyebrow nearly nothing because the sweep only just
 
 If you move hero copy, the phases go stale. They are geometry, so recompute them rather than nudging by eye.
 
-Hero beam peak alpha is `.38`, not the `.55` the section beam uses. The wider sweep carries the throw across the lede, and at `.5` that dropped the lede to 4.22:1. Contrast was checked at five points through the sweep, not just the ends; the worst is the lede at 4.84:1 mid sweep. Both stop under `prefers-reduced-motion`.
+Hero beam peak alpha is `.342`, not the `.55` the section beam uses. The wider sweep carries the throw across the lede, and at `.5` that dropped the lede to 4.22:1. Contrast was checked at five points through the sweep, not just the ends; the worst is the lede at 5.03:1 mid sweep. Both stop under `prefers-reduced-motion`.
 
 `ryan.html` is his personal brand page, so it swaps the one accent to purple `#8B5CF6` through `.theme-ryan` on the body. It is also the only page with Caveat handwriting and his signature. Still one accent on that page, just a different one.
 
@@ -98,6 +98,8 @@ Tokens live at the top of `assets/css/styles.css`. Never hardcode a hex where a 
 ## The logo
 
 `assets/css/styles.css` section 3 is the Headliner Group 14.8 logo, verbatim. Do not adjust the beam's `transform`, `width`, `margin` or `clip-path`. Resize the lockup by changing `font-size` on `.hl-logo` and nothing else, which is what the header (21px) and footer (34px) do.
+
+The header lockup is the one exception: its beam opens out 12% wider at the tail (`5.09em` against the spec's `4.545em`). The source is untouched, so the narrow end keeps its exact width and is simply re-expressed as a percentage of the wider box, 14% of 4.545em becoming 12.5% of 5.09em. Measured at 0.6362em against the footer's 0.6363em. The element centre does not move, because `margin-left` stays at half the width. The footer lockup is on the spec.
 
 The spec block is byte for byte as supplied. Two inherited properties are neutralised in a **separate** rule directly beneath it, because this page sets them on `body` and the logo would otherwise render differently to the spec's neutral context:
 
