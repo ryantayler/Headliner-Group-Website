@@ -121,6 +121,19 @@ button,input,textarea,select{font:inherit;color:inherit}
 .hdr .hl-logo{font-size:21px}
 .ftr .hl-logo{font-size:34px}
 
+/* Header placement adaptation, NOT the logo.
+   The beam is 20.455em, which at 21px is 430px, in a 74px bar. Shrinking
+   font-size does not help because the beam shrinks with the type, so the
+   ratio of beam to container never changes and you only ever see the top
+   17% of the throw: a flat slab with no taper and no falloff.
+   The beam is shortened here so the taper and the fade both complete inside
+   the bar. Delete these three lines to go back to spec exact. */
+.hdr .hl-beam{
+  height:5.6em;
+  margin-top:-2.4em;
+  filter:blur(.34em);
+}
+
 /* ---------- 4. The beam as a background accent ----------
    Sized to the block, not the word, and soft rather than hard edged: the blur
    sits on the element and the clip on ::before, so the throw fades out.
