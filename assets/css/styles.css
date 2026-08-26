@@ -66,7 +66,7 @@ button,input,textarea,select{font:inherit;color:inherit}
 .hl-group{
   font-family:'Inter',sans-serif;font-weight:600;
   font-size:.29em;letter-spacing:.42em;text-transform:uppercase;
-  color:var(--sub);text-align:right;display:block;
+  color:var(--sub);text-align:right;
   margin:2px -.42em 0 0;          /* cancels the trailing letter space */
   position:relative;z-index:2;
 }
@@ -78,79 +78,49 @@ button,input,textarea,select{font:inherit;color:inherit}
   width:3.864em;height:20.455em;
   margin:-10.227em 0 0 -1.932em;
   transform:translate(-.455em,-.682em) rotate(34deg);
+  clip-path:polygon(43% 0,57% 0,100% 100%,0 100%);
+  background:linear-gradient(to bottom,
+    rgba(var(--accent-rgb),.9),
+    rgba(var(--accent-rgb),.16) 55%,
+    rgba(var(--accent-rgb),0));
   filter:blur(.59em);
   mix-blend-mode:screen;
   -webkit-mask-image:linear-gradient(to bottom,#000 0,#000 52%,transparent 66%);
   mask-image:linear-gradient(to bottom,#000 0,#000 52%,transparent 66%);
   pointer-events:none;z-index:0;
 }
-.hl-beam::before{
-  content:"";position:absolute;inset:0;
-  clip-path:polygon(43% 0,57% 0,100% 100%,0 100%);   /* narrow at the source */
-  background:linear-gradient(to bottom,
-    rgba(var(--accent-rgb),.9),
-    rgba(var(--accent-rgb),.16) 55%,
-    rgba(var(--accent-rgb),0));
-}
-/* Header lockup. The beam is 20em tall, so it needs a clipping context the
-   height of the bar or it smears down over the hero. The wrapper is padded
-   sideways (and pulled back with a matching negative margin) to give the
-   throw room before it clips. */
+
+/* Header and footer lockups. The logo itself is unchanged, only its size.
+   The beam is 20em tall, so on a fixed bar it is faded out once the header
+   goes solid, otherwise it rakes across whatever is scrolling underneath. */
 .hl-logo--flat .hl-beam{display:none}
 .hdr .hl-logo{font-size:21px}
-.hdr__brand{position:relative;align-self:stretch;display:flex;align-items:center;flex:none}
-/* Pull the throw to the far left so it rakes across the H rather than the
-   middle of the word, and let it spill into the hero rather than clipping it
-   to the bar, where a 430px beam only shows as a tinted slab. */
-.hdr .hl-beam{
-  left:0;transition:opacity .35s var(--ease);
-  /* Shortened for the bar. At full 20.455em the bright source sits above the
-     viewport and only the faded tail shows beside the word. */
-  height:9.5em;margin-top:-4.2em;
-  -webkit-mask-image:linear-gradient(to bottom,#000 0,#000 44%,transparent 72%);
-  mask-image:linear-gradient(to bottom,#000 0,#000 44%,transparent 72%);
-}
-/* once the bar goes solid the beam would rake over page content, so it goes */
-.hdr.is-stuck .hl-beam,.hdr.is-open .hl-beam{opacity:0}
 .ftr .hl-logo{font-size:34px;margin-bottom:6px}
+.hdr__brand{position:relative;align-self:stretch;display:flex;align-items:center;flex:none}
+.hdr .hl-beam{transition:opacity .35s var(--ease)}
+.hdr.is-stuck .hl-beam,.hdr.is-open .hl-beam{opacity:0}
 
 /* ---------- 5. The beam as a background accent ----------
    One per section, and not every section. It is a light source. */
 .hl-lit-beam{
   position:absolute;top:-220px;left:12%;
   width:260px;height:1100px;
-  transform:rotate(-34deg);transform-origin:top center;   /* anchored left, throws right */
-  filter:blur(40px);
-  mix-blend-mode:screen;
-  pointer-events:none;
-}
-.hl-lit-beam::before{
-  content:"";position:absolute;inset:0;
+  transform:rotate(34deg);transform-origin:top center;
   clip-path:polygon(43% 0,57% 0,100% 100%,0 100%);
   background:linear-gradient(to bottom,
     rgba(var(--accent-rgb),.55),
     rgba(var(--accent-rgb),.10) 55%,
     rgba(var(--accent-rgb),0));
+  filter:blur(40px);
+  mix-blend-mode:screen;
+  pointer-events:none;
 }
-/* mirrored: anchored right, throws left */
-.hl-lit-beam--right{left:auto;right:10%;transform:rotate(34deg)}
+/* mirrored, per the spec: rotate(-34deg) and anchored from the right */
+.hl-lit-beam--right{left:auto;right:10%;transform:rotate(-34deg)}
 .hl-lit-beam--wide{width:340px;height:1300px}
-
-/* Hero placement. Enters top right, rakes down and left behind the headline,
-   exits the bottom edge. Clears the right column so it never sits behind the lede. */
-.hl-lit-beam--hero{
-  top:-120px;left:auto;right:2%;width:420px;height:900px;transform:rotate(34deg);
-  filter:blur(52px);
-}
-.hl-lit-beam--hero::before{
-  background:linear-gradient(to bottom,
-    rgba(var(--accent-rgb),.5),
-    rgba(var(--accent-rgb),.1) 55%,
-    rgba(var(--accent-rgb),0));
-}
-@media (max-width:900px){
-  .hl-lit-beam--hero{right:-18%;width:340px;height:760px}
-}
+/* same construction, sized to the hero */
+.hl-lit-beam--hero{top:-180px;left:22%;width:300px;height:1150px;filter:blur(45px)}
+@media (max-width:900px){.hl-lit-beam--hero{left:44%;height:900px}}
 
 /* ---------- 6. Type roles. Inter carries all of it. ---------- */
 .display{font-weight:600;letter-spacing:-.028em;line-height:1.04;text-wrap:balance}

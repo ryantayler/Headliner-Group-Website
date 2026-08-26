@@ -64,17 +64,9 @@ Rules that hold it together:
 - One per section, and not every section. More than one implies more than one lamp.
 - Keep it off body copy. Behind a heading is fine, behind a paragraph is not.
 
-Two implementation notes worth knowing before you change the values:
+One implementation note, because it looks like a bug and is not:
 
-- **`rotate(34deg)` throws the beam down and to the left**, so it anchors from the right. `rotate(-34deg)` throws down and right and anchors from the left. Getting this backwards sends the beam straight off the near edge.
-- **The blur sits on the element and the clip sits on `::before`.** CSS applies `clip-path` after `filter`, so putting both on one element re-cuts the blurred edge back to a hard line and the beam reads as a solid wedge. Keeping them on separate layers is what makes it look like light.
-
-The footer carries the full lockup at 34px, beam and all.
-
-The header lockup keeps its beam too, pulled to the far left so it rakes across the H rather than the middle of the word. Two adjustments make it work in a 74px bar:
-
-- The beam is shortened to `9.5em` with a matching `margin-top`. At the full `20.455em` the bright source sits above the viewport and only the faded tail shows beside the word.
-- It fades to zero once the header goes solid on scroll (`.hdr.is-stuck`), and while the mobile menu is open. Otherwise a beam pinned to a fixed bar rakes across whatever is scrolling underneath.
+- **`clip-path` is applied after `filter`.** That is what gives the beam its hard tapered edge with a soft gradient inside, which is the whole look. Do not "fix" it by moving the blur and the clip onto separate layers. That turns a spotlight into a soft blob.
 
 Both the header beam and the hero beam throw down and to the left, so they read as one distant source rather than two lamps.
 
