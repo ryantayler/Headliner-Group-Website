@@ -94,6 +94,12 @@ Rules of his system that this build honours: text on a pink fill is always black
 
 The hero is his portrait holding the left of the frame and dissolving into the ground on two axes, with the **signature as the name mark** on the clean right. That placement is not decorative: his system forbids the signature on a photo, so the image has to be gone by the time it reaches the mark. There is no Anton headline in the hero because the signature is the wordmark.
 
+`assets/img/ryan-hero.jpg` is 1800px wide with a 900px variant on `srcset`. No blur on this one, unlike the home hero. `object-position: 58% 32%` is what keeps his face in the left third as the frame narrows.
+
+Two things had to be tuned against pixels rather than tokens. The bar sits over the brightest part of the shot (the blown out background behind his head), and without help the wordmark measured **2.29:1** and GROUP **1.19:1**, effectively invisible. The scrim therefore carries a dedicated top band, `rgba(10,10,10,.93)` holding to `.86` at 100px and clearing by 300px, and the image itself drops to `opacity:.92`. Re-measured: wordmark 14.15, GROUP 7.31, eyebrow 6.22, lede 11.59, ghost button 16.11, signature 11.02. The signature's own ground samples at luminance **0.028**, which is the rule about clean grounds being satisfied rather than approximated.
+
+Below 900px there is no clean right hand side to move to, so the split turns horizontal instead of collapsing. The portrait takes a band under the bar (`min(44vh, 360px)`), dissolves downward, and the whole text stack including the signature sits on flat ground beneath it. Going full bleed here is the obvious shortcut and it is wrong: it puts the signature straight back on the photo. Measured at 390px, the signature's ground is luminance 0.003 and every element clears 6.8:1.
+
 ```html
 <body class="theme-ryan">
 ```
@@ -233,7 +239,7 @@ Everything marked `PLACEHOLDER` in the HTML needs a real answer.
 - [ ] The contact email, currently `hello@headlinergroup.com.au`
 - [ ] LinkedIn and Instagram URLs, currently pointing at the platform home pages
 - [ ] Privacy and Terms pages, currently `#`
-- [ ] Photography for the remaining placeholders. The home hero is done
+- [ ] Photography for the remaining placeholders. The home hero and the Ryan hero are done
 - [ ] Open Graph images and tags if this gets shared anywhere
 
 ## Notes

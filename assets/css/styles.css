@@ -152,19 +152,33 @@
 }
 .hero--ryan .hero__media img{opacity:1;object-position:58% 32%}
 .hero--ryan .hero__scrim{
-  background:linear-gradient(to right,rgba(10,10,10,.55) 0%,rgba(10,10,10,.2) 34%,rgba(10,10,10,.86) 62%,#0A0A0A 78%),
-             linear-gradient(to top,#0A0A0A 0%,rgba(10,10,10,0) 42%);
+  background:
+    /* the bar sits over the brightest part of the shot, so it gets its own
+       ground or the wordmark drops to 2.3:1 and disappears */
+    linear-gradient(to bottom,rgba(10,10,10,.93) 0,rgba(10,10,10,.86) 100px,rgba(10,10,10,0) 300px),
+    linear-gradient(to right,rgba(10,10,10,.5) 0%,rgba(10,10,10,.18) 34%,rgba(10,10,10,.88) 62%,#0A0A0A 76%),
+    linear-gradient(to top,#0A0A0A 0%,rgba(10,10,10,0) 44%);
 }
+.hero--ryan .hero__media img{opacity:.92}
 .hero--ryan .hero__grid{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);align-items:center}
 .hero--ryan .hero__sign{display:grid;gap:20px;justify-items:start}
 /* the signature IS the name mark here. ink only, on the clean side. */
 .sig.sig--hero{width:clamp(230px,30vw,380px);color:var(--ink);opacity:1}
+/* Narrow: there is no clean right hand side to move to, so the split turns
+   horizontal. The portrait takes a band under the bar and dissolves downward,
+   and the whole text stack, signature included, sits on clean ground below it.
+   Full bleed would put the signature on the photo, which his system forbids. */
 @media (max-width:900px){
-  .hero--ryan .hero__media{right:0;
-    --hm:linear-gradient(to top,transparent 0,#000 34%,#000 100%);}
-  .hero--ryan .hero__scrim{background:linear-gradient(to top,#0A0A0A 8%,rgba(10,10,10,.35) 60%),
-                                      linear-gradient(to right,rgba(10,10,10,.5),rgba(10,10,10,.5))}
+  .hero--ryan{--ryan-photo-h:min(44vh,360px)}
+  .hero--ryan .hero__media{
+    right:0;bottom:auto;height:calc(var(--hdr-h) + var(--ryan-photo-h));
+    --hm:linear-gradient(to bottom,#000 0,#000 42%,rgba(0,0,0,.35) 82%,transparent 100%);}
+  .hero--ryan .hero__media img{object-position:52% 26%}
+  .hero--ryan .hero__scrim{
+    background:linear-gradient(to bottom,rgba(10,10,10,.93) 0,rgba(10,10,10,.86) 92px,rgba(10,10,10,0) 220px)}
+  .hero--tall.hero--ryan .hero__in{padding-top:calc(var(--hdr-h) + var(--ryan-photo-h) + 26px)}
   .hero--ryan .hero__grid{grid-template-columns:1fr}
+  .hero--ryan .hero__portrait{display:none}
 }
 
 /* ---------- 2. Reset and base ---------- */
