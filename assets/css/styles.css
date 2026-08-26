@@ -223,24 +223,29 @@ button,input,textarea,select{font:inherit;color:inherit}
 
 /* Hero. Enters top right and rakes down across the middle of the body. */
 .hl-lit-beam--hero{
-  top:-120px;left:auto;right:2%;width:420px;height:900px;
+  /* The lamp sits off screen, up and to the right, and the beam pivots on it.
+     The element's top centre IS the lamp, so transform-origin stays top centre
+     and the whole throw swings from that point like a followspot. Long enough
+     that the tail always leaves the frame at both ends of the sweep. */
+  top:-300px;left:auto;right:-290px;width:420px;height:1800px;
+  transform-origin:top center;
   filter:blur(52px);
-  animation:beamSway 19s var(--ease-sway) infinite alternate;
+  animation:beamSway 16s var(--ease-sway) infinite alternate;
 }
-/* A few degrees either side of the spec angle, so the tail lifts and falls.
-   19s against the photo's 26s so the two never march in step. */
+/* 45 degrees end to end, 22.5 either side of the spec's 34.
+   16s against the photo's 26s so the two never march in step. */
 @keyframes beamSway{
-  from{transform:rotate(31.4deg)}
-  to{transform:rotate(36.6deg)}
+  from{transform:rotate(11.5deg)}
+  to{transform:rotate(56.5deg)}
 }
 .hl-lit-beam--hero::before{
   background:linear-gradient(to bottom,
-    rgba(var(--accent-rgb),.5),
-    rgba(var(--accent-rgb),.1) 55%,
+    rgba(var(--accent-rgb),.38),
+    rgba(var(--accent-rgb),.08) 55%,
     rgba(var(--accent-rgb),0));
 }
 @media (max-width:900px){
-  .hl-lit-beam--hero{right:-18%;width:340px;height:760px}
+  .hl-lit-beam--hero{right:-150px;width:300px;height:1400px}
 }
 
 /* ---------- 6. Type roles. Inter carries all of it. ---------- */
