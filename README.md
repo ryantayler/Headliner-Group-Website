@@ -83,7 +83,11 @@ The logo always runs at its full 44px. It sits inside `.hl-stage`, a fixed box t
 
 `.hl-link` reserves the scaled footprint so layout is not thrown out by the unscaled box. To resize the logo anywhere, change the `scale()` and the matching `.hl-link` width and height. Never touch the values inside `.hl-logo`.
 
-A card has a border to justify cropping the beam. A header does not, so `.hl-stage` carries a two axis mask that dissolves the crop instead of cutting it. The fades clear the wordmark on every side.
+The container is `18em` wide, which is what it takes to hold the whole throw. The beam is a long diagonal, so it reaches much further left than the wordmark does; anything narrower puts a vertical cut through it. Verified as contained, not assumed: the beam's painted left edge sits inside the container's, measured in the browser.
+
+The only crop left is top and bottom, and `.hl-stage` carries a vertical mask that dissolves those rather than cutting them. A card has a border to justify a hard edge. A header does not. The fades clear the wordmark.
+
+`.hdr .hl-link` pulls left with `max(-60px, calc(var(--gutter) * -1))` so the throw starts before the gutter on wide screens, and never further left than the gutter itself, which would drag it off a narrow viewport.
 
 The header bar is `--hdr-h:100px` rather than 74px, so the lockup lands at a legible 17px wordmark while keeping the container's proportions.
 
