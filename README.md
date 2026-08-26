@@ -69,7 +69,14 @@ Two implementation notes worth knowing before you change the values:
 - **`rotate(34deg)` throws the beam down and to the left**, so it anchors from the right. `rotate(-34deg)` throws down and right and anchors from the left. Getting this backwards sends the beam straight off the near edge.
 - **The blur sits on the element and the clip sits on `::before`.** CSS applies `clip-path` after `filter`, so putting both on one element re-cuts the blurred edge back to a hard line and the beam reads as a solid wedge. Keeping them on separate layers is what makes it look like light.
 
-The header and footer logos use `.hl-logo--flat`, which hides the logo beam. A 20em beam cannot live inside a 74px bar without smearing across the nav. The full lockup with its beam sits in the footer at 34px.
+The footer carries the full lockup at 34px, beam and all.
+
+The header lockup keeps its beam too, pulled to the far left so it rakes across the H rather than the middle of the word. Two adjustments make it work in a 74px bar:
+
+- The beam is shortened to `9.5em` with a matching `margin-top`. At the full `20.455em` the bright source sits above the viewport and only the faded tail shows beside the word.
+- It fades to zero once the header goes solid on scroll (`.hdr.is-stuck`), and while the mobile menu is open. Otherwise a beam pinned to a fixed bar rakes across whatever is scrolling underneath.
+
+Both the header beam and the hero beam throw down and to the left, so they read as one distant source rather than two lamps.
 
 ## Swapping in photography
 
