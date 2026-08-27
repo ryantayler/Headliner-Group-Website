@@ -12,9 +12,12 @@ const p=await b.newPage({viewport:{width:1200,height:630},deviceScaleFactor:1});
 for(const [slug,title,foot,ryan] of CARDS){
   await p.goto('file://'+__dirname+'/card.html');
   await p.evaluate(([t,f,r])=>{
-    if(!r) document.querySelector('.r').remove();
-    document.getElementById('t').textContent=t;
-    document.getElementById('f').textContent=f;
+    document.querySelector(r ? '.g' : '.r').remove();
+    // Ryan's card carries its own fixed copy, so only the group cards take a title
+    if(!r){
+      document.getElementById('t').textContent=t;
+      document.getElementById('f').textContent=f;
+    }
     if(r) document.body.classList.add('ryan');
   },[title,foot,ryan]);
   await p.evaluate(()=>document.fonts.ready);

@@ -236,7 +236,9 @@ The `.biz` card styles are still in the stylesheet and the pattern is documented
 
 Every page carries a canonical, the Open Graph set and `twitter:card`, with the title and description pulled from what the page already declares so the two can never drift.
 
-The five cards in `assets/img/og-*.png` are 1200 by 630 and they are **generated, not drawn**. `tools-og/card.html` links the real stylesheet and uses the real `.hl-stage` markup, so the lockup on the card is the header lockup rather than a redrawing of it, beam and taper included. Re-run the generator whenever a page headline changes.
+The five cards in `assets/img/og-*.png` are 1200 by 630 and they are **generated, not drawn**. `tools-og/card.html` links the real stylesheet and uses the real `.hl-stage` markup, so the lockup on the card is the header lockup rather than a redrawing of it, beam and taper included. Re-run `tools-og/gen.js` whenever a page headline changes.
+
+All five share one anatomy. A photograph holds the left and dissolves into the ground on two axes, the mark sits top right, the headline and record sit bottom right. Only the brand changes between them. The group's four use the venue shot already on the home page, the header lockup and the aqua beam. The venue shot is far lighter and wider than the portrait, so it dissolves earlier and takes a heavier right hand scrim, or the headline lands on a wooden floor.
 
 `ryan.html` gets a different card on purpose, built to the anatomy of his LinkedIn banner. Signature as the mark, Caveat kicker, Anton headline and the record, all right aligned, with his portrait holding the left of the frame and dissolving into the ground on two axes, the same move his page hero makes. No round crop. That is a LinkedIn requirement rather than a design decision and it does not belong on a surface with no such rule. His page exists to read as a different business and the card has to do the same job.
 
