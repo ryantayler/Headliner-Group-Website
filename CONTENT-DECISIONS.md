@@ -134,3 +134,84 @@ That is a focus, not a filter.
 **Off the group's pages entirely.** `115+` and `56,000+` are Ryan's personal record and
 belong on `ryan.html` only. The invented `6` businesses figure is gone. Headliner needs
 its own proof, which is a separate open question.
+
+
+---
+
+## Round 3, answered
+
+### 16. How the offer is framed
+
+**Both.** Headliner connects a business to partners **and** builds the partnerships it
+does not have yet. What the site must never do is claim an extensive network, because
+there is not one. Ryan's words: *"as we're just starting up we don't have an extensive
+network."*
+
+So the copy sells the method and the doing of it, never the size of the roster. It
+upgrades into a network claim as partners land, with no rewrite.
+
+### 17. The position
+
+The concept, in Ryan's words: *"we don't consult, we partner and take equity in exchange
+for growth."*
+
+He has ruled the **concept** stands and the **wording** gets written in his style. That
+matters because the phrasing above is a "not X, Y" construction, which his ban list
+forbids. So it goes on the site carrying the same meaning without that shape.
+
+### 18. What adjacent means
+
+Live event production, plus up and down the supply chain:
+
+- Video production
+- Suppliers required for events
+- Specialist finance and accounting
+- Logistics and transport
+- Labour
+
+Not a closed list. It is a focus, not a filter.
+
+### 19. Who Headliner is looking for
+
+| | |
+| --- | --- |
+| Turnover | **$1m minimum**, open to discussion |
+| Location | **Australia only.** No international |
+| Owner | Any situation. **Hands on is good**, because that is the owner Headliner can help exit |
+
+The `$2m to $20m` figure on `partnerships.html` was invented and is now wrong. Replace it
+with the $1m floor.
+
+### 20. Headliner's own proof
+
+**There is none yet.** Right now the only proof is Ryan's personal record, and a deal in
+progress is expected to become the first proof piece for the group.
+
+So the group's pages lean on the argument, on the method being documented, and on Ryan.
+No invented numbers, no vague claims of scale.
+
+### 21. The process
+
+**It starts with the owner's goal.** What do they actually want? Then Headliner targets
+that. If the goal is exit, meaning the owner stops being the operator, the sequence is:
+
+1. Processes
+2. Systems
+3. Team
+4. Build plan
+5. Execute
+6. Trial for 7 to 30 days
+7. If it does not work, run it again
+8. If it works, support for a further 60 days until the owner is out
+
+Step 7 is the honest part and it stays in. Nobody else puts a failure loop on their
+website.
+
+### The method is Ryan's own IP
+
+**This is the thing that makes the group's pages work.** Headliner runs on Ryan's
+processes, documents and frameworks. Not generic consulting.
+
+The Free Sh!t page is a **sample of that IP**, with far more held back for partners. That
+connects the two pages and gives Headliner proof of a method at a point where it has no
+proof of results. Free Sh!t stops being a lead magnet page and becomes the evidence.
