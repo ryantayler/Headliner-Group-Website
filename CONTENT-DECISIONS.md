@@ -311,3 +311,33 @@ downloads rather than a dead end.
 ### 34. Social URLs and the contact address
 
 **Later.** Still placeholders, still on the pre launch checklist.
+
+
+---
+
+## Round 6, answered
+
+### 35. The muted grey
+
+**Changed.** `--mute` moves from `#7A7A7A` to `#7C7C7C` in both token sets, the group's and
+`.theme-ryan`. That takes it from 4.40:1 to **4.52:1** on `--panel` and 4.74 on `--base`, so
+the six pieces of body copy on his page that were failing AA now pass. The change is
+invisible at a glance. Ryan will say if he does not like it.
+
+### 36. The dead download links
+
+**Left as they are.** Twelve links point at files that do not exist yet. Ryan supplies the
+files later. This stays on the pre launch checklist as the one thing that genuinely cannot
+ship as is.
+
+### 37. Privacy and Terms
+
+**Removed from the footer.** Both were dead links and Ryan's position is that this paperwork
+is per deal rather than on the site.
+
+Worth separating the two, because they are different things. Terms are genuinely optional
+for a site like this. **A privacy policy is not a deal document.** It explains what happens
+to the email addresses collected through the forms, and under the Privacy Act and the Spam
+Act it is required from the moment the Free Sh!t form actually works. The links are out as
+instructed, and the privacy policy stays on the pre launch checklist for when the forms go
+live.

@@ -14,7 +14,7 @@
   --rim:#2E2E2E;             /* borders */
   --ink:#ECE8E0;             /* primary text and the wordmark */
   --sub:#ADA9A3;             /* the GROUP line, muted */
-  --mute:#7A7A7A;            /* body copy on dark */
+  --mute:#7C7C7C;            /* body copy on dark. 4.52:1 on --panel, 4.74 on --base */
   --accent:#2DE2C3;          /* aqua */
   --accent-rgb:45,226,195;   /* same colour, for rgba() */
 
@@ -77,7 +77,7 @@
    ========================================================================= */
 .theme-ryan{
   --base:#0A0A0A;   --panel:#111111;  --hair:#1c1c1c;  --rim:#2E2E2E;
-  --ink:#ECE8E0;    --mute:#7A7A7A;
+  --ink:#ECE8E0;    --mute:#7C7C7C;
   --pink:#FF2D6B;   --ol-pink:rgba(255,45,107,.45);
   --accent:#FF2D6B; --accent-rgb:255,45,107;
   /* his page is dark end to end, so the contextual set never flips to paper */

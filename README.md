@@ -264,7 +264,7 @@ Everything marked `PLACEHOLDER` in the HTML needs a real answer.
 - [ ] Real files in `assets/downloads/` for every link on `free.html`
 - [ ] The contact email, currently `hello@headlinergroup.com.au`
 - [ ] LinkedIn and Instagram URLs, currently pointing at the platform home pages
-- [ ] Privacy and Terms pages, currently `#`
+- [ ] A privacy policy, before the forms are wired to anything real. Ryan removed the footer links because this paperwork is per deal, which is right for Terms and not for privacy. Collecting an email address triggers Privacy Act and Spam Act obligations regardless of what the site says
 - [ ] Photography for the remaining placeholders. The home hero and the Ryan hero are done
 - [ ] Open Graph images and tags if this gets shared anywhere
 
