@@ -204,6 +204,12 @@ Three things in there change how you edit these pages:
 
 Two claims the site deliberately does not make. It never says the partner network is large, because it is not one yet, and it never puts a percentage or a timeline on a deal. Both absences are explained in the copy rather than left as holes.
 
+## Things deliberately not in this build
+
+**No dotted kicker above every heading.** There used to be a small uppercase label with an accent square in front of it above every h2 on the site. Ryan cut it, and he was right. It was decoration pretending to be structure, and it made every section look identical whatever it said. Where a block genuinely needs labelling there is one `.minihead`, used twice on the whole site.
+
+Two of those kickers were carrying information rather than decorating, so that information moved rather than disappearing. The count of ungated files went into the Free Sh!t lede, and the label above the sector chips on Partnerships became a plain line of copy.
+
 ## Swapping in photography
 
 Every image slot is a placeholder that names the shot it wants, so nothing looks broken before the photos land. To use a real image, delete the `<div class="ph">` and drop in an `<img>`:

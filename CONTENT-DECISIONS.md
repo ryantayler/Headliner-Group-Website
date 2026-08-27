@@ -389,3 +389,34 @@ each naming the shot it wants.
 ### 40. Analytics
 
 **Nothing for now.**
+
+
+---
+
+## Later calls
+
+### The dotted kickers
+
+**Cut.** The small uppercase label above every heading read as generated filler, in Ryan's
+words very AI vibe coded. Twenty nine of them removed across the five pages.
+
+Two were carrying information rather than decorating it, so it moved rather than vanishing.
+The ungated file count went into the Free Sh!t lede, and the label above the sector chips
+on Partnerships became a plain line of copy. The twelve `What is in it` labels inside the
+download dialogs are real headings, so they stayed and lost the dot.
+
+### Home in the nav
+
+Added to the main nav and the footer's Group column on all five pages. The logo already
+went home, but a nav without a Home is a small friction for no reason.
+
+### Ryan's hero framing
+
+His sunglasses sit at 65.5 percent across and 43 percent down the source. The crop is
+anchored hard right so everything it loses comes off the left, meaning the back of his
+head goes off frame before the front of his face is touched, and the narrow band shifts
+to 93 percent which lands his glasses within about 25px of centre from 390 through 500.
+
+Placing the point exactly was built and then abandoned. It works at any viewport, but
+keeping the picture covering its box then forces it to roughly 150 percent of the box
+height, and a crop that tight is a worse photograph than a slightly off centre one.

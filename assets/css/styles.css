@@ -153,9 +153,13 @@
   -webkit-mask-image:var(--hm);mask-image:var(--hm);
   -webkit-mask-composite:source-in;mask-composite:intersect;
 }
-/* Anchored to the right edge of the photograph, which is what pins his face clear of
-   the fade at every width. Everything the crop loses comes off the left, so the back
-   of his head goes off frame before the front of his face is ever touched. */
+/* His sunglasses sit at 65.5 percent across and 43 percent down the source, so the crop
+   is anchored hard right. Everything it loses comes off the left, which means the back
+   of his head goes off frame before the front of his face is ever touched.
+
+   Placing that point exactly was tried and abandoned. It works, but keeping the picture
+   covering the box then forces it to about 150 percent of the box height, and the crop
+   that tight is a worse picture than a slightly off centre one. */
 .hero--ryan .hero__media img{opacity:1;object-position:100% 32%}
 .hero--ryan .hero__scrim{
   background:
@@ -181,7 +185,10 @@
        full bleed, so that cap has to come back off here. */
     right:0;left:0;width:auto;bottom:auto;height:calc(var(--hdr-h) + var(--ryan-photo-h));
     --hm:linear-gradient(to bottom,#000 0,#000 42%,rgba(0,0,0,.35) 82%,transparent 100%);}
-  .hero--ryan .hero__media img{object-position:52% 26%}
+  /* full bleed, so the sunglasses want the middle of the screen rather than one side.
+     93 percent lands them within about 25px of centre from 390 through 500, which is
+     the width real phones actually are. */
+  .hero--ryan .hero__media img{object-position:93% 26%}
   .hero--ryan .hero__scrim{
     background:linear-gradient(to bottom,rgba(10,10,10,.93) 0,rgba(10,10,10,.86) 92px,rgba(10,10,10,0) 220px)}
   .hero--tall.hero--ryan .hero__in{padding-top:calc(var(--hdr-h) + var(--ryan-photo-h) + 26px)}
@@ -390,11 +397,14 @@ button,input,textarea,select{font:inherit;color:inherit}
 /* Handwriting. ryan.html only, one moment per view. */
 .hand{font-family:'Caveat',cursive;font-weight:600;font-size:clamp(21px,2.4vw,29px);line-height:1.1;color:var(--tx-accent)}
 
-.eyebrow{
-  display:inline-flex;align-items:center;gap:10px;
-  font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--tx-mute);
+/* The dotted uppercase kicker above every heading is gone. It was decoration
+   pretending to be structure, and it made every section look the same. What is left
+   is one small heading style, used where a block genuinely needs labelling rather
+   than above every h2 on the site. */
+.minihead{
+  font-size:11.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--tx-accent);
 }
-.eyebrow::before{content:"";width:7px;height:7px;background:var(--tx-accent);border-radius:1px;flex:none}
 
 .sub{color:var(--tx-mute);max-width:56ch;font-size:1.02rem}
 .tight{max-width:44ch}
