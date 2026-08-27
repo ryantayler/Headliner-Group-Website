@@ -269,3 +269,45 @@ Partnerships.
 
 Ryan replies personally by email. He does not want it feeling official, so the page also
 offers **LinkedIn for a more casual conversation**. Both paths go to him.
+
+
+---
+
+## Round 5, answered
+
+### 29. The frameworks on `ryan.html`
+
+**Keep for now.** The CRAFT Method, the Momentum Formula and the Negotiation Playbook stay
+on his page.
+
+### 30. Ryan's page naming Headliner
+
+**Allowed.** It now says Headliner Group is the business he does this through, and links to
+it, in the About section and on the partnership card. Nothing else about that page changes.
+
+Careful with the wording there. His personal brand bans equity, acquisition, acquire, roll
+up and PE, and **minority share carries the same signal**, so his page says **buy into**,
+which his own positioning rules sanction explicitly. The group's pages say minority share.
+
+### 31. The free files
+
+**None exist yet.** The twelve titles stand as the plan and Ryan supplies files as he has
+them. Every download link on `free.html` currently points at a file that is not there, and
+that is the one thing on the site that cannot go live as is.
+
+### 32. Contact
+
+**Keep the formal form**, and offer LinkedIn beside it for anyone who would rather just
+send a message. Both go to Ryan and he replies personally.
+
+The page is now written in the first person, because he is the one answering it. It also
+carries a route out for anyone who is not partnership material, pointing them at the free
+downloads rather than a dead end.
+
+### 33. The database
+
+**Ignore for now.** Forms stay inert with `data-demo` until Ryan supplies the connection.
+
+### 34. Social URLs and the contact address
+
+**Later.** Still placeholders, still on the pre launch checklist.

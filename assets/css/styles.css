@@ -684,6 +684,8 @@ body.sheet-open{overflow:hidden}
 
 /* ---------- 15. Forms ---------- */
 .form{display:grid;gap:18px}
+/* the form is a grid, so a lone button stretches the full column unless told not to */
+.form>.btn{justify-self:start}
 .field{display:grid;gap:7px}
 .field label{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--tx-mute)}
 .field input,.field textarea,.field select,.inline-form input{
