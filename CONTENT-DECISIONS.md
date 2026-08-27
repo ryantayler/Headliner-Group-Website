@@ -341,3 +341,26 @@ to the email addresses collected through the forms, and under the Privacy Act an
 Act it is required from the moment the Free Sh!t form actually works. The links are out as
 instructed, and the privacy policy stays on the pre launch checklist for when the forms go
 live.
+
+
+### 38. Social cards
+
+**Built.** Five 1200 by 630 cards in `assets/img/og-*.png`, generated from the site's own
+stylesheet rather than redrawn, so the lockup on the card is the header lockup, beam,
+taper and GROUP alignment included. Ryan's call.
+
+His card is the exception. It carries his **signature** rather than the group's wordmark,
+on a clean dark ground with the pink accent and no beam, because `ryan.html` is his brand
+and putting the Headliner lockup on it would undo the separation the page exists to make.
+Say the word and it becomes the lockup like the others.
+
+Regenerate them with `scratchpad/og/gen.js` whenever a page headline changes.
+
+### 39. Photography
+
+**Ryan uploads later.** Four heroes and around twenty inline slots stay as placeholders,
+each naming the shot it wants.
+
+### 40. Analytics
+
+**Nothing for now.**

@@ -232,6 +232,16 @@ There used to be a sixth page listing the businesses in the group, plus a three 
 
 The `.biz` card styles are still in the stylesheet and the pattern is documented in git history, so bringing the page back is a copy job once there are three or four names to put on it. Until then the home page carries what the group does, and `partnerships.html` carries the detail.
 
+## Metadata and social cards
+
+Every page carries a canonical, the Open Graph set and `twitter:card`, with the title and description pulled from what the page already declares so the two can never drift.
+
+The five cards in `assets/img/og-*.png` are 1200 by 630 and they are **generated, not drawn**. The generator links the real stylesheet and uses the real `.hl-stage` markup, so the lockup on the card is the header lockup rather than a redrawing of it, beam and taper included. Re-run the generator whenever a page headline changes.
+
+`ryan.html` gets a different card on purpose. His signature instead of the group's wordmark, pink instead of aqua, no beam. His page exists to read as a different business and its social card has to do the same job.
+
+**The domain in every canonical and `og:url` is a placeholder.** Until `headlinergroup.com.au` is swapped for the real one, every shared link points at nothing.
+
 ## Wiring the forms
 
 Every form is inert on purpose. It carries `data-demo`, which makes `main.js` fake a success message so you can see the state. To make one real:
@@ -266,7 +276,8 @@ Everything marked `PLACEHOLDER` in the HTML needs a real answer.
 - [ ] LinkedIn and Instagram URLs, currently pointing at the platform home pages
 - [ ] A privacy policy, before the forms are wired to anything real. Ryan removed the footer links because this paperwork is per deal, which is right for Terms and not for privacy. Collecting an email address triggers Privacy Act and Spam Act obligations regardless of what the site says
 - [ ] Photography for the remaining placeholders. The home hero and the Ryan hero are done
-- [ ] Open Graph images and tags if this gets shared anywhere
+- [ ] The real domain, in every canonical and `og:url`. Currently `headlinergroup.com.au` as a placeholder
+- [ ] Regenerate the social cards if any page headline changes
 
 ## Notes
 
