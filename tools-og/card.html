@@ -32,14 +32,21 @@
   .rec i{width:7px;height:7px;border-radius:99px;display:block}
 
   /* ---------- Headliner Group ---------- */
-  /* the venue shot is 2400 wide and far lighter than his portrait, so it dissolves
-     earlier or the headline ends up sitting on a wooden floor */
-  .g .photo{--m:linear-gradient(to right,#000 0,#000 34%,transparent 88%),
-                linear-gradient(to top,transparent 0,#000 22%)}
-  .g .photo img{object-position:24% 66%}
+  /* the venue shot runs much further right than his portrait does, so the wordmark
+     goes top left over it the way it does in the site header, and the frame gets the
+     width. It is 2400 wide and far lighter than a portrait, so it needs a heavier
+     scrim under the headline or the copy lands on a lit wooden floor. */
+  .g .photo{width:80%;
+     --m:linear-gradient(to right,#000 0,#000 46%,transparent 94%),
+         linear-gradient(to top,transparent 0,#000 18%)}
+  .g .photo img{object-position:26% 66%}
   .g .photo::after{background:
-       linear-gradient(to bottom,rgba(10,10,10,.62) 0,rgba(10,10,10,.16) 42%,rgba(10,10,10,.40) 100%),
-       linear-gradient(to right,rgba(10,10,10,.30),rgba(10,10,10,.10) 40%,rgba(10,10,10,.55) 100%)}
+       /* the copy block sits over the lit floor and a front of house monitor, so that
+          corner gets its own pool of shade. Widening the frame dropped the headline to
+          4.71:1 without it, with the bright pixel landing under the first word. */
+       radial-gradient(96% 94% at 100% 106%,rgba(10,10,10,.88),rgba(10,10,10,.46) 46%,rgba(10,10,10,0) 88%),
+       linear-gradient(to bottom,rgba(10,10,10,.80) 0,rgba(10,10,10,.42) 22%,rgba(10,10,10,.16) 46%,rgba(10,10,10,.40) 100%),
+       linear-gradient(to right,rgba(10,10,10,.24),rgba(10,10,10,.06) 34%,rgba(10,10,10,.52) 78%,rgba(10,10,10,.62) 100%)}
   /* the site's own hero beam, same construction: blur on the element, clip on ::before */
   .g__beam{position:absolute;top:-260px;right:-130px;width:420px;height:1400px;z-index:1;
         transform:rotate(34deg);transform-origin:top center;filter:blur(46px);
@@ -47,11 +54,12 @@
   .g__beam::before{content:"";position:absolute;inset:0;
         clip-path:polygon(43% 0,57% 0,100% 100%,0 100%);
         background:linear-gradient(to bottom,rgba(45,226,195,.34),rgba(45,226,195,.07) 55%,rgba(45,226,195,0))}
-  /* the stage is 18em by 5.9em at 44px, so scale .68 leaves it 539 by 177 */
-  .g .mark{width:539px;height:177px}
+  /* the stage is 18em by 5.9em at 44px, so scale .68 leaves it 539 by 177. Pulled
+     left so the beam bleeds off the edge the way it does in the bar. */
+  .g .mark{right:auto;left:-24px;top:40px;width:539px;height:177px}
   .g .hl-stage{transform:scale(.68)}
   .g h1{font-family:'Inter',sans-serif;font-weight:600;font-size:58px;line-height:1.05;
-     letter-spacing:-.02em;color:#ECE8E0;margin:0;text-wrap:balance}
+     letter-spacing:-.02em;color:#ECE8E0;margin:0;text-wrap:balance;max-width:600px}
   .g .rec i{background:#2DE2C3}
 
   /* ---------- Ryan Tayler ---------- */

@@ -238,7 +238,9 @@ Every page carries a canonical, the Open Graph set and `twitter:card`, with the 
 
 The five cards in `assets/img/og-*.png` are 1200 by 630 and they are **generated, not drawn**. `tools-og/card.html` links the real stylesheet and uses the real `.hl-stage` markup, so the lockup on the card is the header lockup rather than a redrawing of it, beam and taper included. Re-run `tools-og/gen.js` whenever a page headline changes.
 
-All five share one anatomy. A photograph holds the left and dissolves into the ground on two axes, the mark sits top right, the headline and record sit bottom right. Only the brand changes between them. The group's four use the venue shot already on the home page, the header lockup and the aqua beam. The venue shot is far lighter and wider than the portrait, so it dissolves earlier and takes a heavier right hand scrim, or the headline lands on a wooden floor.
+All five share one anatomy. A photograph holds the left and dissolves into the ground on two axes, with the headline and record bottom right. Only the brand changes. The group's four put the header lockup top left with the beam bleeding off the edge exactly as it does in the bar, run the venue shot to 80 percent of the card, and rake the aqua beam down the right. His keeps the signature top right.
+
+The venue shot is far lighter and wider than his portrait, so it carries its own numbers: an earlier dissolve, a heavier right hand scrim, and a pool of shade in the bottom right corner where the copy sits over a lit floor and a front of house monitor. Without that pool the headline measures 4.71:1, with the bright pixel landing under the first word.
 
 `ryan.html` gets a different card on purpose, built to the anatomy of his LinkedIn banner. Signature as the mark, Caveat kicker, Anton headline and the record, all right aligned, with his portrait holding the left of the frame and dissolving into the ground on two axes, the same move his page hero makes. No round crop. That is a LinkedIn requirement rather than a design decision and it does not belong on a surface with no such rule. His page exists to read as a different business and the card has to do the same job.
 

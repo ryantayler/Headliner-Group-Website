@@ -349,11 +349,16 @@ live.
 stylesheet rather than redrawn, so the lockup on the card is the header lockup, beam,
 taper and GROUP alignment included. Ryan's call.
 
-**All five share one anatomy.** A photograph holds the left and dissolves into the ground
-on two axes, the mark sits top right, the headline and the record sit bottom right. What
-changes between them is the brand, which is the point. The group's cards use the venue shot
-already on the home page, the header lockup and the aqua beam. His uses his portrait, his
-signature, the Caveat kicker and a pink bloom.
+**All five share one anatomy.** A photograph holds the left and dissolves into the ground on
+two axes, with the headline and the record bottom right. What changes between them is the
+brand, which is the point. The group's cards use the venue shot already on the home page,
+the header lockup **top left with the beam bleeding off the edge exactly as it does in the
+bar**, and the aqua beam raking down the right. His uses his portrait, his signature top
+right, the Caveat kicker and a pink bloom.
+
+The venue shot runs to 80 percent of the card, so the copy block sits over a lit floor and a
+front of house monitor. It gets its own pool of shade in that corner, without which the
+headline measures 4.71:1 with the bright pixel landing under the first word.
 
 His card is built to the anatomy of **his LinkedIn banner**, at his request. Signature as
 the mark, the Caveat kicker, the Anton headline over three lines and the record underneath,
