@@ -142,15 +142,21 @@
 .theme-ryan .hero .btn--fill,.theme-ryan .hero .btn--ghost{animation:none;text-shadow:none;box-shadow:none}
 
 .hero--ryan .hero__media{
-  right:34%;                       /* the portrait holds the left of the frame */
-  /* fades out to the right and off the bottom, so it dissolves into the page
-     rather than ending on an edge, and the signature gets a clean ground */
-  --hm:linear-gradient(to right,#000 0,#000 40%,transparent 97%),
+  /* the portrait holds the left of the frame. Capped in px as well as percent, or
+     past about 1900 the box outgrows the photo's aspect, cover switches to scaling
+     by width, and object-position stops controlling anything horizontally. */
+  right:auto;left:0;width:min(60%,980px);
+  /* fades out to the right and off the bottom, so it dissolves into the page rather
+     than ending on an edge, and the signature gets a clean ground */
+  --hm:linear-gradient(to right,#000 0,#000 55%,transparent 100%),
        linear-gradient(to top,transparent 0,#000 30%);
   -webkit-mask-image:var(--hm);mask-image:var(--hm);
   -webkit-mask-composite:source-in;mask-composite:intersect;
 }
-.hero--ryan .hero__media img{opacity:1;object-position:58% 32%}
+/* Anchored to the right edge of the photograph, which is what pins his face clear of
+   the fade at every width. Everything the crop loses comes off the left, so the back
+   of his head goes off frame before the front of his face is ever touched. */
+.hero--ryan .hero__media img{opacity:1;object-position:100% 32%}
 .hero--ryan .hero__scrim{
   background:
     /* the bar sits over the brightest part of the shot, so it gets its own
@@ -171,7 +177,9 @@
 @media (max-width:900px){
   .hero--ryan{--ryan-photo-h:min(44vh,360px)}
   .hero--ryan .hero__media{
-    right:0;bottom:auto;height:calc(var(--hdr-h) + var(--ryan-photo-h));
+    /* the desktop rule caps the width so cover keeps scaling by height. The band is
+       full bleed, so that cap has to come back off here. */
+    right:0;left:0;width:auto;bottom:auto;height:calc(var(--hdr-h) + var(--ryan-photo-h));
     --hm:linear-gradient(to bottom,#000 0,#000 42%,rgba(0,0,0,.35) 82%,transparent 100%);}
   .hero--ryan .hero__media img{object-position:52% 26%}
   .hero--ryan .hero__scrim{
