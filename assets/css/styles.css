@@ -547,6 +547,10 @@ button,input,textarea,select{font:inherit;color:inherit}
 .pair--flip .pair__copy{order:-1}
 @media (max-width:860px){.pair{grid-template-columns:1fr;gap:24px}.pair--flip .pair__copy{order:0}}
 .pair__copy{display:grid;gap:16px;align-content:center}
+/* a lane is a headed block whose grid runs full width under it, rather than a
+   pair. Four cards squeezed into half a row read as a list, not a set. */
+.lane__h{display:grid;gap:14px;max-width:62ch}
+.lane__h .sub{max-width:58ch}
 
 /* ---------- 12. Cards ---------- */
 .card{

@@ -7,7 +7,7 @@ Static template for the Headliner Group website. Six pages, one stylesheet, no b
 | File | Page | Job |
 | --- | --- | --- |
 | `index.html` | Home | Sets the scene. Images, short headings, proof, one link into every other page. |
-| `partnerships.html` | Partnerships | The depth page. What we look for, what we bring, the process, the deal shapes. |
+| `partnerships.html` | Partnerships | The depth page. The belief, the two lanes, the exit sequence, the deal, who it fits. |
 | `ryan.html` | Ryan | Ryan's personal brand page. Runs on his own colours, not the group's. |
 | `free.html` | Free Sh!t | Lead magnets. Some download straight away, some sit behind an email. |
 | `contact.html` | Contact | The conversion point. Form, direct contact, what happens next. |
@@ -189,6 +189,20 @@ Nine download straight away. Three are gated, marked with an `Email` pill on the
 The dialog is a real one. It traps Tab, closes on Escape and on the scrim, locks body scroll, and returns focus to the card that opened it. The one exception is the gated button, which closes the dialog without pulling focus back, because it is jumping the reader down to the form.
 
 Card titles are buttons, and the button's `::after` covers the whole card. That gives one big hit area while the accessibility tree still sees a single named control per card, rather than a heading and a link and a stray click handler.
+
+## The copy
+
+`CONTENT-DECISIONS.md` is the source of truth for what every page says. It records Ryan's answers round by round, and where it contradicts something in the HTML, it wins.
+
+Three things in there change how you edit these pages:
+
+**Headliner Group and Ryan Tayler are different brands.** Equity, minority share, acquisition and full sale are allowed on the group's pages and written in his voice. None of that language appears on `ryan.html`, which runs his personal brand and its own stricter rules.
+
+**Two locked quotes, one per page.** The keeper line about suppliers and partners is on the home page. The emergency line is on Partnerships. They are reproduced word for word and they are never chained in the same piece, so if you move one, move it whole and do not put both on one page. The long belief statement on Partnerships is also verbatim and stays in the first person, attributed, because that is how it was written.
+
+**The prose rules bite.** No dash of any kind in prose, no colon unless a list follows immediately, Australian spelling, and no "not X, Y" contrast constructions. The last one is easy to write by accident in a headline. `We take equity, not a fee` was drafted and cut for exactly that reason.
+
+Two claims the site deliberately does not make. It never says the partner network is large, because it is not one yet, and it never puts a percentage or a timeline on a deal. Both absences are explained in the copy rather than left as holes.
 
 ## Swapping in photography
 
