@@ -440,3 +440,13 @@ down the left hand side.
 **Gone.** It was recorded as decided in round two and then never actually removed from
 the page, which the wide screenshots caught. His record now runs three across, 115+ live
 events, 56,000+ attendees, and Australia.
+
+
+### Free Sh!t, stripped back
+
+**The stat band is gone** and so is the second heading. The page was making a reader get
+through a headline, a paragraph, a four across counter and then another headline before
+reaching a single file. Ryan's call, and it was one screen of throat clearing.
+
+It is now the hero, one heading with the context beside it, and the files. The two bands
+merged into one rather than leaving a heading stranded in an empty band.

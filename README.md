@@ -184,7 +184,7 @@ Twelve magnets in a four by three grid, filtered by which part of the business t
 
 The content lives in the page, not in a JS array. Each card carries `data-id`, and a matching `<template data-detail="...">` at the bottom of the file holds the long write up, the ticks and the download button. `main.js` section 5 clones the template into the dialog and clones the card's own `.media` in beside it, so the artwork is written once. To add a magnet, copy a card and its template, give both the same id, and put the real file in `assets/downloads/`.
 
-Nine download straight away. Three are gated, marked with an `Email` pill on the card, and their button jumps to `#gate` instead of a file. Which ones are gated is a copy decision, not a code one, so flipping a magnet either way means editing its template and its pill.
+Some download straight away. The gated ones are marked with an `Email` pill on the card, and their button jumps to `#gate` instead of a file. Which ones are gated is a copy decision, not a code one, so flipping a magnet either way means editing its template and its pill.
 
 The dialog is a real one. It traps Tab, closes on Escape and on the scrim, locks body scroll, and returns focus to the card that opened it. The one exception is the gated button, which closes the dialog without pulling focus back, because it is jumping the reader down to the form.
 
