@@ -160,7 +160,21 @@
    Placing that point exactly was tried and abandoned. It works, but keeping the picture
    covering the box then forces it to about 150 percent of the box height, and the crop
    that tight is a worse picture than a slightly off centre one. */
-.hero--ryan .hero__media img{opacity:1;object-position:100% 32%}
+/* Pinned right at the widest, then it gives way. Every 2px the box loses, the frame
+   slides 1px back off the pin, so his face drifts toward the middle at half the rate
+   the window shrinks rather than staying welded to the right edge while the crop eats
+   the back of his head. The pin is exact at a 940px box, so half of that is the 470.
+   min() holds it at zero above that, or the picture would pull away from the edge.
+
+   Half the box width has to be written as min(30vw,490px) and not 50%. Inside
+   object-position a percentage resolves against box width minus image width, which is
+   NEGATIVE under cover, so a 50% here comes out around -156px and the whole calc
+   inverts. That mistake leaves the photograph parked in the middle of the box with
+   daylight down the left hand side. */
+.hero--ryan .hero__media img{
+  opacity:1;
+  object-position:right min(0px,calc(min(30vw,490px) - 470px)) top 32%;
+}
 .hero--ryan .hero__scrim{
   background:
     /* the bar sits over the brightest part of the shot, so it gets its own
@@ -598,6 +612,9 @@ a.card:hover,.card--hover:hover{transform:translateY(-4px);border-color:rgba(var
 .step__body{display:grid;gap:8px}
 
 .stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line)}
+/* the group count was invented and is gone, so his record runs three across */
+.stats--3{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:820px){.stats--3{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:820px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .stat{background:var(--ground);padding:clamp(24px,3vw,38px) clamp(18px,2vw,28px);display:grid;gap:6px}
 .stat .num{font-size:clamp(30px,4.2vw,50px);line-height:1;color:var(--tx-accent)}

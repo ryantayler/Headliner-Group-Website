@@ -420,3 +420,23 @@ to 93 percent which lands his glasses within about 25px of centre from 390 throu
 Placing the point exactly was built and then abandoned. It works at any viewport, but
 keeping the picture covering its box then forces it to roughly 150 percent of the box
 height, and a crop that tight is a worse photograph than a slightly off centre one.
+
+
+### The 2:1 damped pin on Ryan's hero
+
+Pinned hard right at the widest, then it gives way. For every 2px the media box loses,
+the frame slides 1px back off the pin, so his face drifts toward the middle at half the
+rate the window shrinks instead of staying welded to the right edge while the crop eats
+the back of his head. Exact at a 940px box, held at zero above that.
+
+One trap worth knowing. Half the box width has to be written as `min(30vw,490px)`, never
+`50%`. Inside `object-position` a percentage resolves against **box width minus image
+width**, which is negative under `cover`, so a `50%` there came out around -156px, the
+calc inverted, and the photograph ended up parked in the middle of the box with daylight
+down the left hand side.
+
+### The invented businesses figure
+
+**Gone.** It was recorded as decided in round two and then never actually removed from
+the page, which the wide screenshots caught. His record now runs three across, 115+ live
+events, 56,000+ attendees, and Australia.
