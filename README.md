@@ -7,7 +7,6 @@ Static template for the Headliner Group website. Six pages, one stylesheet, no b
 | File | Page | Job |
 | --- | --- | --- |
 | `index.html` | Home | Sets the scene. Images, short headings, proof, one link into every other page. |
-| `lineup.html` | The Lineup | The businesses in the group. Each card links out to that business's own site. |
 | `partnerships.html` | Partnerships | The depth page. What we look for, what we bring, the process, the deal shapes. |
 | `ryan.html` | Ryan | Ryan's personal brand page. Runs on his own colours, not the group's. |
 | `free.html` | Free Sh!t | Lead magnets. Some download straight away, some sit behind an email. |
@@ -213,9 +212,11 @@ Hero images work the same way, inside `<div class="hero__media">`. The home hero
 
 When you drop a photo into a hero, re-check contrast against the **pixels**, not the tokens. A CSS audit will pass while text sits on a bright part of the image. The scrim and `img` opacity on this one were tuned by sampling the brightest ground pixel under each piece of hero text: eyebrow 7.67:1, headline 12.74:1, lede 4.99:1, ghost button 14.17:1. The hero eyebrow also lifts from `--mute` to `--sub`, because the dimmest token does not hold over a photograph.
 
-## Adding a business to the lineup
+## The Lineup, cut on purpose
 
-Copy any `<a class="card biz card--hover">` block in `lineup.html` and change five things: the image, the sector, the city, the name, and the link. The grid reflows on its own.
+There used to be a sixth page listing the businesses in the group, plus a three card preview of it on the home page. Both are gone. The group is one business, and a portfolio wall with one card on it makes a group look smaller than saying nothing does.
+
+The `.biz` card styles are still in the stylesheet and the pattern is documented in git history, so bringing the page back is a copy job once there are three or four names to put on it. Until then the home page carries what the group does, and `partnerships.html` carries the detail.
 
 ## Wiring the forms
 
@@ -243,8 +244,7 @@ These are Ryan's locked positioning rules and the copy already obeys them. Keep 
 
 Everything marked `PLACEHOLDER` in the HTML needs a real answer.
 
-- [ ] Business names, sectors, cities, copy and links in `lineup.html` and on the home page
-- [ ] The stat band numbers on `ryan.html`. `115+` and `56,000+` are real, `6` businesses is not. The stats are his personal record, so they appear on his page only and never on the group's home page
+- [ ] The stat band on `ryan.html`. `115+` and `56,000+` are real and locked. The `6` businesses figure is invented and has to go, since Ryan has ruled the stat band is his personal record only
 - [ ] Revenue thresholds on `partnerships.html` (currently $2m to $20m)
 - [ ] The three frameworks on `ryan.html`. Confirm which are public and delete the rest
 - [ ] Real files in `assets/downloads/` for every link on `free.html`
