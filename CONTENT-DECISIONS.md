@@ -354,7 +354,7 @@ on a clean dark ground with the pink accent and no beam, because `ryan.html` is 
 and putting the Headliner lockup on it would undo the separation the page exists to make.
 Say the word and it becomes the lockup like the others.
 
-Regenerate them with `scratchpad/og/gen.js` whenever a page headline changes.
+Regenerate them with `tools-og/gen.js` whenever a page headline changes.
 
 ### 39. Photography
 

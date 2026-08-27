@@ -236,7 +236,7 @@ The `.biz` card styles are still in the stylesheet and the pattern is documented
 
 Every page carries a canonical, the Open Graph set and `twitter:card`, with the title and description pulled from what the page already declares so the two can never drift.
 
-The five cards in `assets/img/og-*.png` are 1200 by 630 and they are **generated, not drawn**. The generator links the real stylesheet and uses the real `.hl-stage` markup, so the lockup on the card is the header lockup rather than a redrawing of it, beam and taper included. Re-run the generator whenever a page headline changes.
+The five cards in `assets/img/og-*.png` are 1200 by 630 and they are **generated, not drawn**. `tools-og/card.html` links the real stylesheet and uses the real `.hl-stage` markup, so the lockup on the card is the header lockup rather than a redrawing of it, beam and taper included. Re-run the generator whenever a page headline changes.
 
 `ryan.html` gets a different card on purpose. His signature instead of the group's wordmark, pink instead of aqua, no beam. His page exists to read as a different business and its social card has to do the same job.
 
