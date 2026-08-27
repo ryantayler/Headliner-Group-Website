@@ -215,3 +215,57 @@ processes, documents and frameworks. Not generic consulting.
 The Free Sh!t page is a **sample of that IP**, with far more held back for partners. That
 connects the two pages and gives Headliner proof of a method at a point where it has no
 proof of results. Free Sh!t stops being a lead magnet page and becomes the evidence.
+
+
+---
+
+## Round 4, answered
+
+### 22. The goals, and the lanes that serve them
+
+The work starts with what the owner actually wants. Two lanes deliver it.
+
+**Growth through partnerships.** Headliner finds suppliers, clients, contacts and people
+worth knowing, then negotiates the partnership deals on the business's behalf. Four shapes
+it takes:
+
+- **Reach.** Partnerships that put the business in front of people it could not reach alone
+- **Margin.** Partnering into the supply chain so the business buys better and keeps more
+- **Revenue, by service.** Partnering in an extra service the business's clients already need
+- **Revenue, by audience.** Partnering with someone whose ICP complements theirs, so both get more clients
+
+**Efficiency and operations.** Going through the processes, the products and everything
+else, and using industry knowledge to make the company more efficient and grow it.
+
+**Exit** is a goal, not a lane. The sequence for it is in round 3.
+
+### 23. Naming the process
+
+**Not yet.** Everything will eventually be named and become an IP piece, but nothing gets
+named on the site today. So the sequence appears as a numbered process with no title.
+
+### 24. How much equity
+
+**Per deal, and not stated on the site.** Minority share is as specific as the copy gets.
+
+### 25. How long it takes
+
+**Per deal, and not stated on the site.**
+
+### 26. Public IP against partner only IP
+
+| | |
+| --- | --- |
+| **Public** | The free worksheets, templates and checklists. What is on Free Sh!t |
+| **Partner only** | The exact step by step process for running the partnerships. The high value material |
+
+### 27. Free Sh!t doing two jobs
+
+**Confirmed.** It collects the secondary ICP into the database and it proves to owners
+that the method is real and documented. The page gets a line pointing owners at
+Partnerships.
+
+### 28. After the contact form
+
+Ryan replies personally by email. He does not want it feeling official, so the page also
+offers **LinkedIn for a more casual conversation**. Both paths go to him.
