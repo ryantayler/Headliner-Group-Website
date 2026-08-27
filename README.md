@@ -240,7 +240,7 @@ The five cards in `assets/img/og-*.png` are 1200 by 630 and they are **generated
 
 `ryan.html` gets a different card on purpose, built to the anatomy of his LinkedIn banner. Signature as the mark, Caveat kicker, Anton headline and the record, all right aligned, with his portrait holding the left of the frame and dissolving into the ground on two axes, the same move his page hero makes. No round crop. That is a LinkedIn requirement rather than a design decision and it does not belong on a surface with no such rule. His page exists to read as a different business and the card has to do the same job.
 
-Two of his brand rules constrain it and both were checked against pixels rather than tokens. The pink bloom stops short of the signature, since his system keeps that mark on clean ground and never on a colour fill, and the ground under it measures luminance 0.003. The kicker is the single handwritten moment. Pink at 5.51:1, the record at 15.67, and the headline at 11.27 where it crosses the softest part of the dissolve.
+Two of his brand rules constrain it and both were checked against pixels rather than tokens. The pink bloom stops short of the signature, since his system keeps that mark on clean ground and never on a colour fill, and the ground under it measures luminance 0.003. The kicker is the single handwritten moment. Pink at 5.51:1, the record at 15.67, and the headline at 10.03 where it crosses the softest part of the dissolve.
 
 **The domain in every canonical and `og:url` is a placeholder.** Until `headlinergroup.com.au` is swapped for the real one, every shared link points at nothing.
 

@@ -41,13 +41,13 @@
   /* the portrait holds the left and dissolves into the ground on two axes, the same
      move the hero on his page makes. No circle. That was a LinkedIn constraint, not
      a design decision, and it does not belong on a surface that has no such rule. */
-  .r__photo{position:absolute;left:0;top:0;bottom:0;width:52%;z-index:1;
-     --m:linear-gradient(to right,#000 0,#000 30%,transparent 94%),
+  .r__photo{position:absolute;left:0;top:0;bottom:0;width:56%;z-index:1;
+     --m:linear-gradient(to right,#000 0,#000 45%,transparent 96%),
          linear-gradient(to top,transparent 0,#000 22%);
      -webkit-mask-image:var(--m);mask-image:var(--m);
      -webkit-mask-composite:source-in;mask-composite:intersect}
   .r__photo img{width:100%;height:100%;object-fit:cover;display:block;
-     object-position:58% 30%;opacity:.88}
+     object-position:95% 30%;opacity:.88}
   /* the background behind his head is blown out, and left raw it fights the dark
      card. Same scrim move the hero on his page makes. Inside the masked element,
      so the scrim dissolves with the photo instead of ending on a line. */

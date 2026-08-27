@@ -362,7 +362,7 @@ Two of his own rules shaped it. The bloom stops well short of the signature, bec
 system keeps the mark on clean ground and never on a colour fill. The kicker is the one
 handwritten moment on the card. Measured against the pixels rather than the tokens, the
 signature's ground sits at luminance **0.003**, the pink kicker at **5.51:1**, the record
-at 15.67 and the headline at 11.27 where it passes over the softest part of the dissolve.
+at 15.67 and the headline at 10.03 where it passes over the softest part of the dissolve.
 
 The background behind his head is blown out, so the portrait carries the same scrim
 treatment as the hero on his page, applied inside the masked element so it dissolves with
