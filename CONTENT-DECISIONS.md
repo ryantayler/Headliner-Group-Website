@@ -350,17 +350,23 @@ stylesheet rather than redrawn, so the lockup on the card is the header lockup, 
 taper and GROUP alignment included. Ryan's call.
 
 His card is built to the anatomy of **his LinkedIn banner**, at his request. Signature as
-the mark, portrait bottom left in a pink ringed circle, the Caveat kicker, the Anton
-headline over three lines and the record underneath, both right aligned. Pink bloom out of
-the bottom left corner.
+the mark, the Caveat kicker, the Anton headline over three lines and the record underneath,
+all right aligned, with the pink bloom out of the bottom left corner.
+
+**The circle is gone.** A round portrait is a LinkedIn requirement, not a design decision,
+and it has no business on a surface that imposes no such rule. His portrait instead holds
+the left of the frame and dissolves into the ground on two axes, which is the move his page
+hero already makes. Ryan's call, and he is right.
 
 Two of his own rules shaped it. The bloom stops well short of the signature, because his
 system keeps the mark on clean ground and never on a colour fill. The kicker is the one
 handwritten moment on the card. Measured against the pixels rather than the tokens, the
-signature's ground sits at luminance **0.003**, the pink kicker at **5.51:1** and
-everything else above 15:1.
+signature's ground sits at luminance **0.003**, the pink kicker at **5.51:1**, the record
+at 15.67 and the headline at 11.27 where it passes over the softest part of the dissolve.
 
-The portrait is `assets/img/ryan-avatar.jpg`, a square cut from the hero shot.
+The background behind his head is blown out, so the portrait carries the same scrim
+treatment as the hero on his page, applied inside the masked element so it dissolves with
+the photo instead of ending on a line.
 
 Regenerate them with `tools-og/gen.js` whenever a page headline changes.
 
