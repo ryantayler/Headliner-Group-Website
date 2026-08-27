@@ -238,7 +238,9 @@ Every page carries a canonical, the Open Graph set and `twitter:card`, with the 
 
 The five cards in `assets/img/og-*.png` are 1200 by 630 and they are **generated, not drawn**. `tools-og/card.html` links the real stylesheet and uses the real `.hl-stage` markup, so the lockup on the card is the header lockup rather than a redrawing of it, beam and taper included. Re-run the generator whenever a page headline changes.
 
-`ryan.html` gets a different card on purpose. His signature instead of the group's wordmark, pink instead of aqua, no beam. His page exists to read as a different business and its social card has to do the same job.
+`ryan.html` gets a different card on purpose, built to the anatomy of his LinkedIn banner. Signature as the mark, portrait bottom left in a pink ringed circle, Caveat kicker, Anton headline right aligned over the record. His page exists to read as a different business and the card has to do the same job.
+
+Two of his brand rules constrain it and both were checked against pixels rather than tokens. The pink bloom stops short of the signature, since his system keeps that mark on clean ground and never on a colour fill, and the ground under it measures luminance 0.003. The kicker is the single handwritten moment. The pink sits at 5.51:1, everything else above 15:1.
 
 **The domain in every canonical and `og:url` is a placeholder.** Until `headlinergroup.com.au` is swapped for the real one, every shared link points at nothing.
 

@@ -1,13 +1,15 @@
 <!DOCTYPE html><html><head><meta charset="utf-8">
 <link rel="stylesheet" href="/home/user/Headliner-Group-Website/assets/fonts/fonts.css">
-<!-- the real stylesheet, so the lockup on the card is the site's lockup and not a
-     redrawing of it. The beam, the taper and the GROUP alignment all come from it. -->
+<!-- the real stylesheet, so the group lockup on the card is the site's lockup and not
+     a redrawing of it. The beam, the taper and the GROUP alignment all come from it. -->
 <link rel="stylesheet" href="/home/user/Headliner-Group-Website/assets/css/styles.css">
 <style>
   html,body{width:1200px;height:630px;overflow:hidden}
   body{background:#0A0A0A;color:#ECE8E0;
        display:flex;flex-direction:column;justify-content:space-between;
        padding:52px 84px 72px;isolation:isolate;font-size:17px}
+
+  /* ---------- Headliner Group card ---------- */
   /* the site's own hero beam, same construction: blur on the element, clip on ::before */
   .beam{position:absolute;top:-260px;right:-150px;width:420px;height:1400px;
         transform:rotate(34deg);transform-origin:top center;filter:blur(46px);
@@ -15,7 +17,6 @@
   .beam::before{content:"";position:absolute;inset:0;
         clip-path:polygon(43% 0,57% 0,100% 100%,0 100%);
         background:linear-gradient(to bottom,rgba(45,226,195,.42),rgba(45,226,195,.09) 55%,rgba(45,226,195,0))}
-  /* the header lockup, container scaled exactly the way the site scales it */
   /* the stage is 18em by 5.9em at 44px, so scale 1 leaves it 792 by 260. Sized to
      match, and pulled left so the beam bleeds off the edge the way it does in the bar. */
   .lock{position:relative;width:792px;height:260px;margin-left:-140px}
@@ -24,22 +25,44 @@
      letter-spacing:-.02em;max-width:17ch;text-wrap:balance;color:#ECE8E0;margin:0}
   .foot{display:flex;align-items:center;gap:16px;font-size:19px;color:#ADA9A3;margin:0}
   .dot{width:9px;height:9px;border-radius:99px;background:#2DE2C3;flex:none}
-  /* His card runs his brand. No group wordmark, no beam, signature as the mark,
-     ink on a clean dark ground, which is the only place his system allows it. */
-  .sig{display:none;width:340px;color:#ECE8E0}
-  .sig svg{width:100%;height:auto;display:block}
-  body.ryan .sig{display:block}
-  body.ryan .lock,body.ryan .beam{display:none}
-  body.ryan h1{font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;
-     letter-spacing:0;line-height:.92;font-size:96px}
-  body.ryan .dot{background:#FF2D6B}
-  body.ryan .glow{position:absolute;inset:0;z-index:-1;
-     background:radial-gradient(70% 90% at 88% 8%,rgba(255,45,107,.20),transparent 62%)}
+
+  /* ---------- Ryan's card ----------
+     Built to the anatomy of his LinkedIn banner. Signature as the mark, portrait
+     bottom left, Caveat kicker, Anton headline and the record, both right aligned.
+     The pink bloom sits bottom left behind the portrait and never reaches the
+     signature, because his system keeps the mark on clean ground. */
+  body.ryan{display:block;padding:0;position:relative;overflow:hidden}
+  body.ryan .beam,body.ryan .lock,body.ryan h1,body.ryan .foot{display:none}
+  .r{position:absolute;inset:0}
+  .r__bloom{position:absolute;inset:0;z-index:0;
+     background:
+       radial-gradient(72% 108% at -2% 112%,rgba(255,45,107,.72),rgba(255,45,107,.22) 42%,rgba(255,45,107,0) 72%),
+       radial-gradient(90% 60% at 20% 118%,rgba(255,45,107,.34),rgba(255,45,107,0) 76%);}
+  .r__sig{position:absolute;left:330px;top:56px;width:470px;color:#ECE8E0;z-index:2}
+  .r__sig svg{width:100%;height:auto;display:block}
+  .r__photo{position:absolute;left:64px;bottom:56px;width:250px;height:250px;z-index:3;
+     border-radius:999px;overflow:hidden;border:5px solid #FF2D6B;background:#111}
+  .r__photo img{width:100%;height:100%;object-fit:cover;display:block;
+     object-position:54% 34%;transform:scale(1.04)}
+  .r__right{position:absolute;right:64px;bottom:64px;z-index:2;text-align:right;
+     display:flex;flex-direction:column;align-items:flex-end;gap:10px;max-width:700px}
+  .r__hand{font-family:'Caveat',cursive;font-size:40px;line-height:1;color:#FF2D6B;margin:0}
+  .r__head{font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;
+     font-size:56px;line-height:1.02;letter-spacing:0;color:#ECE8E0;margin:0}
+  .r__rec{display:flex;align-items:center;gap:14px;margin:8px 0 0;
+     font-family:'Inter',sans-serif;font-weight:600;font-size:17px;letter-spacing:.14em;
+     text-transform:uppercase;color:#ECE8E0}
+  .r__rec i{width:7px;height:7px;border-radius:99px;background:#FF2D6B;display:block}
 </style></head>
 <body>
-  <div class="beam"></div><div class="glow"></div>
+  <div class="beam"></div>
   <div class="lock"><div class="hl-stage"><div class="hl-logo"><div class="hl-beam"></div><span class="hl-word">Headliner</span><div class="hl-group">Group</div></div></div></div>
-  <div class="sig"><svg viewBox="0 0 601.04 273.69" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-label="Ryan Tayler signature">
+  <h1 id="t"></h1>
+  <p class="foot"><span class="dot"></span><span id="f"></span></p>
+
+  <div class="r">
+    <div class="r__bloom"></div>
+    <div class="r__sig"><svg viewBox="0 0 601.04 273.69" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-label="Ryan Tayler signature">
   <path d="M394.25,46.02c32.82.56,65.41,1.12,97.93,1.68.55-2.98,1-5.46,1.47-8.05,6.11,1.13,6.02,5.62,6.52,10.1,4.97,0,9.74.2,14.49-.05,5.58-.29,9.47,2.55,12.68,6.47,1.02,1.25,1.33,3.37,1.35,5.1.04,2.69-1.29,4.69-3.79,1.98-6.56-7.09-15.54-4.8-23.51-6.34-1.04-.2-3.15,1.45-3.63,2.68-6.12,15.73-11.35,31.84-18.19,47.24-6.12,13.79-13.8,26.92-21.18,40.12-1.1,1.98-4.36,2.75-6.62,4.08l-1.19-1.02c.64-2.21.8-4.73,2.01-6.57,8.7-13.24,16.1-27.13,21.86-41.91,5.65-14.52,11.38-29,17.56-44.72-6.9-.81-12.64-2.02-18.38-2.06-28.76-.19-57.52-.14-86.28.11-2.12.02-5.25,1.81-6.18,3.65-12.6,25.01-25.31,49.98-37.1,75.37-7.93,17.06-14.45,34.78-21.23,51.29-2.73-.29-4.63-.49-7.51-.8.2-2.64.47-6.06.72-9.49.31-4.31,1.14-8.65.82-12.91-1.41-19-6.87-36.27-22.12-49.15-10.1-8.53-21.47-14.71-33.84-19.23-9.74-3.56-19.52-7.05-29.13-10.93-2.19-.88-5.35-3.28-5.3-4.89.08-2.58,2.03-5.53,4.01-7.5,1.75-1.74,4.53-2.74,7.03-3.38,12.55-3.19,25.11-6.41,37.77-9.12,10.92-2.34,21.95-4.18,32.99-5.9,5.93-.93,11.98-1.13,17.97-1.69,9.24-.86,18.46-1.92,27.71-2.53,5.34-.35,10.73-.1,16.09.13,5.91.26,10.39-1.93,14.01-6.6,1.22-1.58,3.98-3.6,5.21-3.15,1.89.69,3.12,3.29,4.48,5.19.4.56.3,1.5.51,2.78ZM373.24,55.73c-46.61,1.06-92.54,8.58-137.92,20.46.71.88,1.4,1.22,2.12,1.47,23.34,8.13,46.84,15.94,65.22,33.68,9.73,9.39,16.05,20.68,19.22,33.73,1.13,4.64,1.8,9.38,2.68,14.12,16.33-34.71,32.45-68.96,48.68-103.46Z"/>
   <path d="M131.29,176.82c11.1-14.62,21.78-28.67,32.73-43.1-5.7-1.03-10.34-3.16-10.78-9.02-.48-6.44-1.27-13.29,5.13-17.99,2.81,2.95,5.86,5.35,2.89,10.05-1.12,1.78-.49,4.66-.71,7.71,12.73-3.86,19.39-14.44,28.61-21.48,4.99,3.58,5,5.85,1.1,10.86-17.49,22.41-34.87,44.91-52.65,67.85,7.33,5.22,14.52,10.12,21.47,15.33,19.32,14.48,38.54,29.1,57.83,43.62,4.6,3.46,9.47,6.56,13.94,10.16,1.37,1.11,1.84,3.33,2.72,5.04-2.2-.04-4.99.78-6.5-.26-8.31-5.69-16.24-11.93-24.42-17.81-21.05-15.11-42.42-29.78-63.17-45.29-16.3-12.18-31.92-25.29-47.72-38.13-2.53-2.06-4.65-4.74-6.54-7.42-6.27-8.88-4.43-16.06,5.8-20.42,6.73-2.87,14.18-4.08,20.92-6.93,15.29-6.46,31.26-11.74,44.39-22.4,3.27-2.66,6.49-5.91,8.43-9.58,5-9.46-.5-17.61-12.67-21.06-15.93-4.51-31.67-2.62-47.66-.52-15.85,2.09-29.86,8.08-42.29,17.69-4.19,3.25-7.61,7.79-10.53,12.29-3.12,4.81-1.59,8.85,3.11,12.37,2.66,1.98,5.14,4.25,7.41,6.66.64.68.79,2.71.24,3.37-.55.67-2.37.84-3.4.51-14.91-4.79-17.55-23.64-9.8-32.39,8.14-9.18,17.15-16.8,29.39-20.18,6.87-1.9,13.24-5.82,20.16-7.23,8.77-1.79,17.91-1.72,26.82-2.9,9.51-1.27,18.7.22,27.79,2.56,10.84,2.79,21.33,12.69,19.57,23.26-.68,4.1-3.03,8.23-5.55,11.65-13.77,18.68-34.49,26.22-55.19,33.74-6.19,2.25-12.38,4.49-18.48,6.96-5.5,2.22-6.34,5.1-1.98,9.05,10.77,9.74,21.88,19.1,32.91,28.55,1.98,1.69,4.22,3.08,6.68,4.86Z"/>
   <path d="M431.94,124.6c12.34-4.7,19.77-14.08,28.36-21.8,4.93,3.56,5.41,5.22,1.97,9.7-14.59,19.01-29.29,37.93-43.97,56.88-3.95,5.1-8.03,10.1-11.92,15.25-1.35,1.78-2.35,4.1-4.91,1.79-2.1-1.9-3.34-4.06-1.12-6.91,5.48-7.04,10.83-14.18,16.23-21.28,6.09-8.01,12.17-16.01,18.32-24.09-12.21-4.63-15.04-18.99-5.62-27.23,3.38,2.84,6.09,5.6,2.81,10.51-.97,1.45-.15,4.1-.15,7.2Z"/>
@@ -50,6 +73,11 @@
   <path d="M239.68,138.14c-.65-7.2,8.02-27.88,13.23-32.48,5.41,2.44,4.48,6.28,2.61,11.09,1.94-.99,3.85-2.03,5.81-2.95,7.94-3.73,14.38.27,13.54,9-.59,6.14-2.65,12.12-3.95,18.2-.75,3.5-1.01,7.14-2.07,10.53-.61,1.95-2.37,4.95-3.67,4.98-2.74.06-5.02-2.21-4.25-5.41,1.87-7.78,4.04-15.5,6.12-23.23.62-2.29,1.35-4.55,2.22-7.48-7.63-.43-12.1,4.1-16.94,7.4-3.26,2.22-5.92,5.28-8.93,7.88-1.02.89-2.27,1.52-3.71,2.46Z"/>
   <path d="M527.69,144.84c-3.08-1.21-4.62-3.9-3.22-7.44,4.02-10.2,8.33-20.3,12.56-30.42.17-.41.72-.66,1.64-1.47,1.58,2.81,3.06,5.46,4.8,8.55,2.45-1.21,5.76-2.78,9-4.46,4.33-2.24,7.89-.88,10.89,2.39.71.77,1.24,2.65.79,3.33-.77,1.18-2.61,2.78-3.57,2.53-8.9-2.31-13.91,3.76-18.84,8.97-5.04,5.34-9.12,11.58-14.06,18.01Z"/>
 </svg></div>
-  <h1 id="t"></h1>
-  <p class="foot"><span class="dot"></span><span id="f"></span></p>
+    <div class="r__photo"><img src="/home/user/Headliner-Group-Website/assets/img/ryan-avatar.jpg" alt=""></div>
+    <div class="r__right">
+      <p class="r__hand">live production expert</p>
+      <h2 class="r__head">Helping founders<br>in live events &amp; production<br>grow through partnerships</h2>
+      <p class="r__rec"><span>115+ Live events</span><i></i><span>56,000+ Attendees</span></p>
+    </div>
+  </div>
 </body></html>
