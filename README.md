@@ -238,7 +238,9 @@ Every page carries a canonical, the Open Graph set and `twitter:card`, with the 
 
 The five cards in `assets/img/og-*.png` are 1200 by 630 and they are **generated, not drawn**. `tools-og/card.html` links the real stylesheet and uses the real `.hl-stage` markup, so the lockup on the card is the header lockup rather than a redrawing of it, beam and taper included. Re-run `tools-og/gen.js` whenever a page headline changes.
 
-All five share one anatomy. A photograph holds the left and dissolves into the ground on two axes, with the headline and record bottom right. Only the brand changes. The group's four put the header lockup top left with the beam bleeding off the edge exactly as it does in the bar, run the venue shot to 80 percent of the card, and rake the aqua beam across from the top right corner. His keeps the signature top right.
+All five share one anatomy. A photograph holds the left and dissolves into the ground on two axes, with the headline and record bottom right. Only the brand changes. The group's four put the header lockup top left with the beam bleeding off the edge exactly as it does in the bar, run the venue shot to 80 percent of the card, and rake the aqua beam across from the top right corner.
+
+The card beam is its own rule and the site's is untouched. At 1200 by 630 the site's taper reads as a thread, so the card runs a 620px tail instead of 420 and widens the source from 14 percent of the box to 26, which is 162px rather than 59. His keeps the signature top right.
 
 The venue shot is far lighter and wider than his portrait, so it carries its own numbers: an earlier dissolve, a heavier right hand scrim, and a pool of shade in the bottom right corner where the copy sits over a lit floor and a front of house monitor. Without that pool the headline measures 4.71:1, with the bright pixel landing under the first word.
 

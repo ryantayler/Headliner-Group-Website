@@ -51,12 +51,16 @@
   /* the lamp is the element's top centre, so putting that on the corner is what makes
      the throw start there. 58 degrees off vertical rakes it across the card instead of
      dropping it down the middle, which is the wrong read on a landscape crop. */
-  .g__beam{position:absolute;top:0;right:-210px;width:420px;height:1500px;z-index:1;
-        transform:rotate(58deg);transform-origin:top center;filter:blur(46px);
+  /* Card only. The site's own beam is untouched. Both ends run thicker here, because
+     at 1200 by 630 the site's taper reads as a thread rather than a throw. Tail 620
+     instead of 420, and the source widens from 14 percent of the box to 26, which is
+     162px instead of 59. Right offset is half the width, so the lamp stays on the corner. */
+  .g__beam{position:absolute;top:0;right:-310px;width:620px;height:1500px;z-index:1;
+        transform:rotate(58deg);transform-origin:top center;filter:blur(52px);
         mix-blend-mode:screen;pointer-events:none}
   .g__beam::before{content:"";position:absolute;inset:0;
-        clip-path:polygon(43% 0,57% 0,100% 100%,0 100%);
-        background:linear-gradient(to bottom,rgba(45,226,195,.34),rgba(45,226,195,.07) 55%,rgba(45,226,195,0))}
+        clip-path:polygon(37% 0,63% 0,100% 100%,0 100%);
+        background:linear-gradient(to bottom,rgba(45,226,195,.32),rgba(45,226,195,.07) 55%,rgba(45,226,195,0))}
   /* the stage is 18em by 5.9em at 44px, so scale .68 leaves it 539 by 177. Pulled
      left so the beam bleeds off the edge the way it does in the bar. */
   .g .mark{right:auto;left:-24px;top:40px;width:539px;height:177px}
