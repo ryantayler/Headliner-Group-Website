@@ -48,8 +48,11 @@
        linear-gradient(to bottom,rgba(10,10,10,.80) 0,rgba(10,10,10,.42) 22%,rgba(10,10,10,.16) 46%,rgba(10,10,10,.40) 100%),
        linear-gradient(to right,rgba(10,10,10,.24),rgba(10,10,10,.06) 34%,rgba(10,10,10,.52) 78%,rgba(10,10,10,.62) 100%)}
   /* the site's own hero beam, same construction: blur on the element, clip on ::before */
-  .g__beam{position:absolute;top:-260px;right:-130px;width:420px;height:1400px;z-index:1;
-        transform:rotate(34deg);transform-origin:top center;filter:blur(46px);
+  /* the lamp is the element's top centre, so putting that on the corner is what makes
+     the throw start there. 58 degrees off vertical rakes it across the card instead of
+     dropping it down the middle, which is the wrong read on a landscape crop. */
+  .g__beam{position:absolute;top:0;right:-210px;width:420px;height:1500px;z-index:1;
+        transform:rotate(58deg);transform-origin:top center;filter:blur(46px);
         mix-blend-mode:screen;pointer-events:none}
   .g__beam::before{content:"";position:absolute;inset:0;
         clip-path:polygon(43% 0,57% 0,100% 100%,0 100%);

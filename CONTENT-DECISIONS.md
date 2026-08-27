@@ -353,7 +353,7 @@ taper and GROUP alignment included. Ryan's call.
 two axes, with the headline and the record bottom right. What changes between them is the
 brand, which is the point. The group's cards use the venue shot already on the home page,
 the header lockup **top left with the beam bleeding off the edge exactly as it does in the
-bar**, and the aqua beam raking down the right. His uses his portrait, his signature top
+bar**, and the aqua beam raking across from the top right corner. His uses his portrait, his signature top
 right, the Caveat kicker and a pink bloom.
 
 The venue shot runs to 80 percent of the card, so the copy block sits over a lit floor and a
