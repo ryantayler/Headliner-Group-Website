@@ -636,3 +636,44 @@ the man. Public profile, and convincing founders, both.
 
 Make a lot of money, doing work he enjoys, by systematising what he has learned over five
 years and implementing it in other people's businesses.
+
+---
+
+# What Round B changed in the build
+
+Recorded so nobody rebuilds a thing that was deliberately taken out.
+
+## Home
+
+Section order is now hero, belief, what we do, Ryan, free stuff, close.
+
+The standalone **We get paid in equity** band is gone. It was a section saying one thing,
+and shape (a) has no room for it. Its argument moved into the what we do intro (*a
+consultant gets paid whether anything changes or not*) and its terms into a closing line
+under the four cards (capital investment, full sale, size of the share per deal). Nothing
+was dropped, it was folded.
+
+The belief band lost its portrait placeholder and became a centred statement, because it
+now sits directly under the hero and a second photo that close to the top reads as filler.
+
+## Free Sh!t
+
+- Every `magnet__gate` "Email" pill removed. There were six.
+- Every `#gate` jump button removed. There were six.
+- All twelve download buttons are now the same control: `data-getfile` with the path and
+  the format, handled in `main.js` section 5 by `openGetForm`.
+- The form lives in `<template id="tpl-getfile">` and is swapped into the sheet body. The
+  card artwork stays on screen, and **Back to the file** returns to the detail.
+- The old gate band survives as `#everything`, retitled *Or take the whole lot at once*. It
+  is the shortcut, not the gate.
+
+**The submit handler is a placeholder.** It shows the sent note and starts the download.
+There is no endpoint. Point it at the database first, then release the file.
+
+Two live constraints on that page:
+
+- The twelve files in `assets/downloads/` **do not exist yet**. Every download resolves to
+  nothing until they do.
+- The auto download is skipped on `file://`, because the `download` attribute is same
+  origin only and an opaque origin makes the click navigate instead. Off a server it
+  behaves. The visible **grab it here** link in the sent note covers the difference.
