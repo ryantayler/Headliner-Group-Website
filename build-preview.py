@@ -17,14 +17,20 @@ for slug,_ in PAGES:
     bodies.append(f'<div class="pg" data-pg="{slug}"{"" if slug=="index" else " hidden"}>{inner}{tail}</div>')
 # single file preview: inline the hero photo so it travels with the page
 def _b64(f):
-    return 'data:image/jpeg;base64,'+base64.b64encode(open(f,'rb').read()).decode()
+    mime = 'png' if f.endswith('.png') else 'jpeg'
+    return f'data:image/{mime};base64,' + base64.b64encode(open(f,'rb').read()).decode()
 # strip the srcsets first, then swap the fallback src, or the small file rides along too
 # every srcset has to go, or the small variant rides along as a second copy and the
 # browser may pick a path that no longer resolves inside a single file
 _srcsets = [r'srcset="[^"]*"', r'sizes="[^"]*"']
-_imgs = {'assets/img/hero-foh.jpg': _b64('assets/img/hero-foh.jpg'),
-         'assets/img/ryan-hero.jpg': _b64('assets/img/ryan-hero.jpg'),
-         'assets/img/hero-partnerships.jpg': _b64('assets/img/hero-partnerships.jpg')}
+# discovered, not listed. A hardcoded list means every new photograph renders as a
+# broken path in the preview until somebody remembers to edit this file, and nobody does.
+# discovered, not listed. A hardcoded list means every new photograph renders as a
+# broken path in the preview until somebody remembers to edit this file, and nobody does.
+# Commented out slots are skipped, since they name files that do not exist yet.
+_found = re.findall(r'assets/img/[\w.-]+\.(?:jpg|png)',
+                    re.sub(r'<!--.*?-->', '', ''.join(bodies), flags=re.S))
+_imgs = {m: _b64(m) for m in sorted(set(_found)) if os.path.exists(m)}
 def _inline(x):
     for pat in _srcsets:
         x = re.sub(pat, '', x)
