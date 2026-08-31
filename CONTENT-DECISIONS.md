@@ -923,3 +923,26 @@ Shorthand he can throw at a draft: **"cut the trailing reassurance."**
 directory, so an edit made from this session would be overwritten on the next sync and
 would not reach his other sessions. To make it permanent everywhere, the ban list in
 `ryan-voice/SKILL.md` needs the three shapes added on his side.
+
+## Sweep, 31 August 2026
+
+Twenty three instances of the three banned shapes removed across all five pages. Where the
+tail carried real information it was rebuilt into the sentence rather than deleted. The
+Margin pillar is the clearest example: *"Your client pays what they always paid and the
+difference is yours"* became *"The gap between what you now pay and what your client still
+pays is yours to keep"*, which says the same thing without the appended payoff.
+
+Deleted outright, because the page already said it or it said nothing:
+
+- *and you can take the lot without ever speaking to us* (home, and again on Partnerships)
+- *The first one costs nothing and stays between us* (home close)
+- *They are more useful in your hands than sitting in our drive* (had already gone with
+  the Free Sh!t hero lede)
+- *and the good ones do more than one*
+- *which is also what stops the argument later*
+- *It will never be passed on or used anywhere else* (the form note above it says it)
+
+**Kept, deliberately.** The confidentiality note on the contact form, because a note on the
+control it describes is the documented fix rather than the banned shape. Ryan's own
+sentences in the summit story, his locked bio lines, and the lists that are genuinely
+lists rather than ramps into a punch.
