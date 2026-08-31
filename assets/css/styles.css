@@ -125,12 +125,21 @@
 
 /* Card build spec: flat fill, grey rim, 16px on panels. */
 .theme-ryan .card{border-radius:16px;border-color:var(--rim)}
-/* Pink is his only accent and it does the labelling job. The pillar names and the lane
-   numbers are the labels, so they carry it. Scoped to a band that carries the theme
-   class itself, which is the Partnerships inset. On his own page the class sits on
-   <body>, so this never reaches the pink statement card and turns pink on pink. */
-.theme-ryan .num{color:var(--pink)}
-.band.theme-ryan .card>.display{color:var(--pink)}
+/* The four pillars are Ryan's content piece dropped into a Headliner page, so the block
+   wears his skin and nothing around it does. theme-ryan sits on this box, which gives it
+   Anton and the dark token set; the pink here is deliberate and scoped, so it never
+   reaches the pink statement card on his own page and turns pink on pink. */
+.pillars{
+  background:var(--base);border:1px solid var(--rim);border-radius:var(--r-md);
+  padding:clamp(22px,3vw,40px);
+}
+.pillars__h{color:var(--pink)}
+.pillars .card{background:var(--panel);border-color:var(--rim);border-radius:16px}
+.pillars .card>.display{color:var(--pink)}
+.pillars__sig{
+  display:block;margin-left:auto;width:clamp(140px,16vw,180px);
+  margin-top:clamp(18px,2.2vw,28px);color:var(--ink);opacity:.9;
+}
 .theme-ryan .band--paper2 .card{background:var(--base)}
 /* Pink statement card. Saturated fill, so it takes the inset glow and the
    pink rim. Black text, 5.5 to 1. */
@@ -452,6 +461,8 @@ button,input,textarea,select{font:inherit;color:inherit}
 .head{display:grid;gap:16px;margin-bottom:clamp(36px,4.5vw,58px);max-width:72ch}
 .head--split{max-width:none;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(20px,4vw,64px);align-items:end}
 .head--top{align-items:start}
+/* the lane numbers take whichever accent their band is running */
+.lane__n{color:var(--tx-accent)}
 @media (max-width:860px){.head--split{grid-template-columns:1fr}}
 
 .rule{height:1px;background:var(--line);border:0;margin-block:clamp(36px,5vw,64px)}
