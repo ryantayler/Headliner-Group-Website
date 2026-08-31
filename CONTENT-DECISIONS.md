@@ -900,3 +900,26 @@ the same thing at two different depths.
 A centred hero: the Headliner lockup large in the middle with the banner line as a
 strapline under it. Built in the scratchpad only. On a phone the header logo is already
 centred, so the mark lands twice, which is the thing to solve before it could ship.
+
+---
+
+# Banned sentence shapes (permanent, 31 August 2026)
+
+Ryan named the pattern and ruled it out for good. The full rule, with examples, lives in
+`CLAUDE.md` so it loads on every session. Short version:
+
+1. **The trailing reassurance.** A clause on the end of a sentence that stops describing
+   and starts reassuring. *"...and you can take the lot without ever speaking to us."*
+2. **The rising tricolon.** Three beats where the third is longest and carries the payoff.
+3. **The bolted on kicker.** A closing line that lands a punch instead of saying something.
+
+Shorthand he can throw at a draft: **"cut the trailing reassurance."**
+
+> **Conflict, flagged.** The `ryan-voice` skill requires a LinkedIn post to close with one
+> dry punch earned by the story above it. That device stays. This ban is on the
+> manufactured version in site and marketing copy, where nothing has been earned.
+
+**The skill itself has not been changed.** `ryan-voice` lives in the synced skills
+directory, so an edit made from this session would be overwritten on the next sync and
+would not reach his other sessions. To make it permanent everywhere, the ban list in
+`ryan-voice/SKILL.md` needs the three shapes added on his side.
