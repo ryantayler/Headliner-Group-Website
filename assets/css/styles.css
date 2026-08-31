@@ -125,6 +125,12 @@
 
 /* Card build spec: flat fill, grey rim, 16px on panels. */
 .theme-ryan .card{border-radius:16px;border-color:var(--rim)}
+/* Pink is his only accent and it does the labelling job. The pillar names and the lane
+   numbers are the labels, so they carry it. Scoped to a band that carries the theme
+   class itself, which is the Partnerships inset. On his own page the class sits on
+   <body>, so this never reaches the pink statement card and turns pink on pink. */
+.theme-ryan .num{color:var(--pink)}
+.band.theme-ryan .card>.display{color:var(--pink)}
 .theme-ryan .band--paper2 .card{background:var(--base)}
 /* Pink statement card. Saturated fill, so it takes the inset glow and the
    pink rim. Black text, 5.5 to 1. */
@@ -445,6 +451,7 @@ button,input,textarea,select{font:inherit;color:inherit}
 
 .head{display:grid;gap:16px;margin-bottom:clamp(36px,4.5vw,58px);max-width:72ch}
 .head--split{max-width:none;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(20px,4vw,64px);align-items:end}
+.head--top{align-items:start}
 @media (max-width:860px){.head--split{grid-template-columns:1fr}}
 
 .rule{height:1px;background:var(--line);border:0;margin-block:clamp(36px,5vw,64px)}
@@ -693,9 +700,8 @@ a.card:hover,.card--hover:hover{transform:translateY(-4px);border-color:rgba(var
 .pull--center q{quotes:none}
 .pull--center q .ln{display:block}
 .pull__by{
-  display:block;text-align:right;margin-top:.34em;
   font-family:'Inter',system-ui,sans-serif;font-weight:500;font-size:.44em;
-  letter-spacing:-.012em;color:var(--tx-mute);
+  letter-spacing:-.012em;color:var(--tx-mute);margin-left:.32em;white-space:nowrap;
 }
 /* Handwritten. Caveat runs small for its point size and has almost no tracking of its
    own, so it needs the size back and the negative tracking off. */

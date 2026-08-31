@@ -804,3 +804,58 @@ generated ones sit outside block lines and end up on rows of their own.
 The footer was a **second copy** living in the preview template, and it went stale without
 anybody noticing, so a footer edit did not show up in the preview at all. It is now lifted
 out of `index.html` at build time. Do not paste it back into the template.
+
+---
+
+# Round F
+
+## The belief section, rewritten
+
+Now built on Ryan's best performing LinkedIn post, the Sydney summit. Two thousand
+registered against a room that held a thousand, the venue could not do AV in the bigger
+room on two weeks notice, one call to an AV partner fixed it while they were running
+shows in other states.
+
+Written as **we**, not as **I**. The story is his and the belief is the group's, so the
+page states the belief rather than performing his memoir. The locked emergency line stays
+as the pull quote, word for word.
+
+## Partnerships, new order
+
+1. Hero
+2. If you're not partnering, you're doing it wrong
+3. It starts with what you want
+4. Two ways we help you grow
+5. We partner with you, we don't invoice you
+6. Who this works for
+7. All of it is written down
+8. Close
+
+**What we don't do is deleted.**
+
+## Two ways we help you grow
+
+Was *Two lanes, and your goal decides the mix*. Lane is gone as a word.
+
+**This band is in Ryan's brand, not the group's.** Dark ground, Anton, pink accent, on a
+page that is otherwise Headliner. The four pillars are his IP and the page says so out
+loud. The `theme-ryan` class sits on the band itself rather than on `<body>`, so do not
+also give it a `band--paper` class or the paper background wins.
+
+**The Four Pillars of Partnership** (placeholder name, Ryan's own suggestion, not settled):
+
+- **Reach.** Somebody who already sells to the people you want to sell to.
+- **Margin.** Partnering into your own supply chain, up it and down it.
+- **Revenue.** Somebody who delivers what your customers already buy elsewhere.
+- **Connection.** The doors, the introductions and the phone numbers.
+
+Reach replaces the old *Revenue, by audience*. Connection is new.
+
+**Growth through efficiency** is way two, and the photo is gone from it. The argument is
+that the next bit of growth is the same work done cleaner, and that it is usually the
+fastest money in the business.
+
+## The quote
+
+**Ryan Tayler** now runs on at the end of the last line rather than sitting on its own,
+and the whole block is centred.
