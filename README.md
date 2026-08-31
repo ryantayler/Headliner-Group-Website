@@ -230,7 +230,11 @@ Ratio classes: `r-32` `r-43` `r-11` `r-45` `r-169` `r-219`.
 
 Hero images work the same way, inside `<div class="hero__media">`. Two are live, both 2400px wide with a Gaussian blur of 4 baked in and a 1200px variant wired through `srcset`. Baked rather than a CSS `filter`, so it costs nothing to paint and has no soft edge artefacts. `hero-foh.jpg` on the home page, `hero-partnerships.jpg` on Partnerships.
 
-**Every photograph needs its own scrim.** Those two shots are bright in opposite places. The default scrim eases off toward the right, which suits the front of house shot because its right hand third is dark, and fails on the boardroom shot because a lit screen and a white wall sit exactly there. Dropped in against the default, the Partnerships lede measured 3.35:1 and the GROUP line 4.40 on a phone. `.hero--boardroom` darkens the right instead and adds a band under the bar, which puts the worst case at 4.68.
+**Check the scrim against the photograph, not the tokens.** The default scrim eases off toward the right, which suits the front of house shot because its right hand third is dark. Any room with a screen in it is the opposite, and the lede sits right there. Dropped in against the default, Partnerships measured 3.35:1 on the lede and Free Sh!t 3.59, both failing.
+
+`.hero--bright-right` is the fix and it is reusable. It darkens the right instead and adds a band under the bar, which put those two at 4.68 and 4.87. Reach for it whenever a new hero photograph has its light source on the reading side.
+
+**One photograph needed more than a scrim.** The Free Sh!t shot has a document open on screen that names an ASG product, and Ryan's rules keep Aaron past tense only. The site blur of 4 left it readable. `tools-img/` holds the script that builds that hero: the frame takes the standard blur, and a feathered region over the screen takes 13, so the treatment still matches the other heroes but nothing on the monitor can be read.
 
 When you drop a photo into a hero, re-check contrast against the **pixels**, not the tokens. A CSS audit will pass while text sits on a bright part of the image. The scrim and `img` opacity on this one were tuned by sampling the brightest ground pixel under each piece of hero text: eyebrow 7.67:1, headline 12.74:1, lede 4.99:1, ghost button 14.17:1. The hero eyebrow also lifts from `--mute` to `--sub`, because the dimmest token does not hold over a photograph.
 
