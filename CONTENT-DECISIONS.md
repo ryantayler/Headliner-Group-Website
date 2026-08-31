@@ -738,3 +738,34 @@ The levers stay on Partnerships, in depth, where somebody has actually asked for
 
 The home portrait crop moved from 83 percent to 62 percent across. Lower moves him right
 on screen, because the percentage resolves against negative overflow under `cover`.
+
+
+---
+
+# Round D
+
+## The quote
+
+**One quote, one page.** The locked emergency line on Partnerships, centred, set in
+Caveat, with **&mdash; Ryan Tayler** running on from the closing quote mark in Inter
+rather than sitting under it as a label. Thirty percent smaller than the first pass.
+
+Home has **no pull quote at all** now. The keeper line, *a supplier is someone you swap
+out when it's inconvenient*, still exists once, on Ryan's own page, where it belongs to
+his personal brand rather than to the group. Contact keeps its own separate line.
+
+## Home, again
+
+**Deal terms are off the home page.** Equity partnership, capital investment and business
+acquisition are deep Partnerships material, not front door material. Home is the light
+version:
+
+1. Hero
+2. **Nobody grows a business in this industry on their own**
+3. **So we go and build it with you**, one short paragraph and a link. Nothing about how
+   we get paid, nothing about share sizes.
+4. Ryan
+5. Free sh!t
+6. Close
+
+Do not put deal terms back into section three. That is the whole point of it.
