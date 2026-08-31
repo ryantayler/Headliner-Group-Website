@@ -560,3 +560,79 @@ brand guidelines already rule out.
 
 **Reference sites.** None. His read on the category is that these firms are all boring white
 pages of text, which makes not being that a real advantage.
+
+
+---
+
+# Round B, page formats
+
+## The enemy, settled
+
+**In housing is dropped entirely.** It does not appear on the site.
+
+The only enemy is **price shopping**. Three quotes, take the cheapest, squeeze whoever wins
+it, repeat on the next job. It saves money on that job and costs everything after it.
+
+The belief above it, in his words and used as the heading: **"If you're not partnering,
+you're doing it wrong."**
+
+The locked emergency line ships as written. *"In an emergency a supplier says no when it's
+inconvenient and a partner says yes to help you."*
+
+> **This contradicts a locked asset.** The official statement in his `ryan-voice` skill, the
+> one marked as said in every video, is built entirely on in housing. The site and that
+> skill now disagree. The skill is his to change, and until he does, anything written from
+> it will reintroduce an argument he has cut.
+
+## Capacity
+
+**Say nothing.** He can take one partnership right now and two to four later, and none of
+that goes on the site.
+
+## Free Sh!t
+
+**Everything reads as free.** No gated and ungated split, no email pills on the cards, no
+jump to a separate form band.
+
+Every card opens its detail, and the download button inside opens a form. They fill it in,
+then they get the file. One rule for all twelve, which is also what makes the page work as
+the landing point for a social call to action.
+
+Look and feel is the site's, with the density of a resource library. Big image, short
+heading, short line, click through for the detail and the download.
+
+## Home
+
+Shape, in order. **Hero, belief, what we do, Ryan, free stuff, close.**
+
+Above the fold is the catch phrase and the line about helping founders grow. **The call to
+action matters less than the awareness**, because this is a long play and nobody signs a
+partnership because a button asked them to.
+
+## Partnerships
+
+**Not a sales page.** It is the how we operate page, the one that explains things properly.
+A bit of friction is fine.
+
+It covers the steps of partnering and growing a business, and the benefits of being in the
+group. Proof goes in when there is proof.
+
+The eight step sequence stays if it earns its place.
+
+## Ryan
+
+His personal brand page. It puts a face on the group and the group puts credibility behind
+the man. Public profile, and convincing founders, both.
+
+## Contact
+
+**Form first.** LinkedIn stays as the secondary, less formal route.
+
+## The group page
+
+**Still off.** There are no companies in the group to list.
+
+## Internal, never public
+
+Make a lot of money, doing work he enjoys, by systematising what he has learned over five
+years and implementing it in other people's businesses.

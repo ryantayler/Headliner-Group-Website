@@ -99,6 +99,7 @@
     var sBody = document.getElementById('sheet-body');
     var panel = sheet.querySelector('.sheet__panel');
     var opener = null;
+    var current = null;   /* the detail id on screen, so the form can go back to it */
 
     function focusables() {
       return panel.querySelectorAll('a[href], button:not([disabled]), input, [tabindex]:not([tabindex="-1"])');
@@ -108,7 +109,8 @@
       var tpl = document.querySelector('template[data-detail="' + id + '"]');
       var card = document.querySelector('.magnet[data-id="' + id + '"]');
       if (!tpl) return;
-      opener = from;
+      if (from) opener = from;
+      current = id;
       sMedia.innerHTML = '';
       sBody.innerHTML = '';
       /* the card already holds the artwork, so it gets cloned rather than
@@ -132,14 +134,59 @@
       sBody.innerHTML = '';
       if (restore !== false && opener) opener.focus();
       opener = null;
+      current = null;
+    }
+
+    /* Every file is free and every file goes through the same short form. The
+       download button swaps the sheet body for it rather than sending anyone to a
+       separate page, so the card they were reading is one button away. */
+    function openGetForm(btn) {
+      var tpl = document.getElementById('tpl-getfile');
+      if (!tpl) return;
+      var back = current;
+      var file = btn.dataset.getfile;
+      var fmt = btn.dataset.fmt || 'file';
+      sBody.innerHTML = '';
+      sBody.appendChild(tpl.content.cloneNode(true));
+      var form = sBody.querySelector('[data-getform]');
+      var link = sBody.querySelector('[data-getlink]');
+      var sub = sBody.querySelector('[data-getsubmit]');
+      if (link) { link.href = file; link.setAttribute('download', ''); }
+      if (sub) sub.innerHTML = 'Send it and download the ' + fmt + ' <span class="arw">&#8595;</span>';
+      sBody.querySelector('[data-getback]').addEventListener('click', function () {
+        openSheet(back, null);
+      });
+      form.addEventListener('submit', function (e) {
+        /* PLACEHOLDER. No endpoint yet, so it only releases the file and shows the
+           note. Post to the real database first, then start the download. */
+        e.preventDefault();
+        var msg = form.querySelector('.formmsg');
+        if (msg) msg.classList.add('is-on');
+        /* the download attribute is same origin only, and a file:// page is its own
+           opaque origin, so the click would navigate instead of downloading. Off a
+           server it behaves; opened straight off disk the visible link does the job. */
+        if (location.protocol === 'http:' || location.protocol === 'https:') {
+          var a = document.createElement('a');
+          a.href = file;
+          a.setAttribute('download', '');
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+        }
+      });
+      panel.scrollTop = 0;
+      var first = focusables()[0];
+      if (first) first.focus();
     }
 
     document.addEventListener('click', function (e) {
       var open = e.target.closest('[data-open]');
       if (open) { e.preventDefault(); openSheet(open.dataset.open, open); return; }
+      var get = e.target.closest('[data-getfile]');
+      if (get) { e.preventDefault(); openGetForm(get); return; }
       var close = e.target.closest('[data-sheet-close]');
-      /* the email link closes the sheet and jumps to the gate, so pulling focus
-         back to the card it came from would undo the jump */
+      /* a close control that is a real link goes somewhere, so pulling focus back to
+         the card it came from would undo the jump */
       if (close) closeSheet(!close.hasAttribute('href'));
     });
 
