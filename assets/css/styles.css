@@ -740,7 +740,6 @@ a.card:hover,.card--hover:hover{transform:translateY(-4px);border-color:rgba(var
   border-bottom:1px solid var(--line);
 }
 .fact+.fact{border-left:1px solid var(--line);padding-left:clamp(18px,2.4vw,32px)}
-.fact__g{width:clamp(44px,4.6vw,62px);height:auto;color:var(--tx-accent)}
 .fact__n{font-size:clamp(20px,2.1vw,27px);font-weight:600;letter-spacing:-.024em;line-height:1.1;color:var(--tx)}
 .fact p{margin:0}
 @media (max-width:800px){

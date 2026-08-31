@@ -1006,3 +1006,17 @@ grow, how we partner and invest, who this is for, all of it is written down, clo
 and moving it from `band--paper` to `band--paper2` handed `.band--paper2 .card` the win on
 source order, which put light card fill under light ink at 4.17 to 1. The dark fill is now
 pinned twice, once by specificity and once by setting `--card` on `.pillars` itself.
+
+## Two ways we help you grow, revised
+
+- **Numbers off.** No *One.* and *Two.* in front of the lane headings.
+- **Lane one, Growth through partnerships.** The subheading now credits the IP rather than
+  describing the mechanics. *We use Ryan Tayler's own IP, the four pillars of partnership,
+  in every deal we negotiate on your behalf.*
+- **Lane two is Growth through optimisation**, not efficiency. Australian spelling, and
+  `optimisation` is already approved in `ryan-voice`. Its subheading names the framework.
+  *We run Ryan Tayler's optimisation framework through your business.*
+- **The efficiency matrix is dead.** It was named twice and never existed. Both references
+  now say *the optimisation framework*, which is the thing lane two is about.
+
+**The line drawings in Who this is for are gone.** All three of them.
