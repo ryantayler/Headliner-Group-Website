@@ -132,10 +132,13 @@
 .pillars{
   background:var(--base);border:1px solid var(--rim);border-radius:var(--r-md);
   padding:clamp(22px,3vw,40px);
+  /* the band around this box can be either paper tone, and .band--paper2 .card wins on
+     source order, so the dark card fill is pinned to the token as well as the rule */
+  --card:var(--panel);
 }
 .pillars__h{color:var(--pink)}
-.pillars .card{background:var(--panel);border-color:var(--rim);border-radius:16px}
-.pillars .card>.display{color:var(--pink)}
+.pillars.theme-ryan .card{background:var(--panel);border-color:var(--rim);border-radius:16px}
+.pillars.theme-ryan .card>.display{color:var(--pink)}
 .pillars__sig{
   display:block;margin-left:auto;width:clamp(140px,16vw,180px);
   margin-top:clamp(18px,2.2vw,28px);color:var(--ink);opacity:.9;

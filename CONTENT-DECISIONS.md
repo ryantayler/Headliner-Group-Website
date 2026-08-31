@@ -993,3 +993,16 @@ Link reads **See how it works**.
 > wording. The partner network is currently at zero by his own ruling, so the claim rests
 > on his personal network out of 115+ events rather than on a group asset. Defensible as
 > written, and it stops being defensible if it ever becomes a numbers claim.
+
+## It starts with what you want, removed
+
+The eight step exit sequence is off the Partnerships page. Processes, systems, team, build
+plan, execute, trial, the loop, and the sixty days. All of it.
+
+Nothing else referenced it, so nothing broke. The page now runs hero, belief, two ways to
+grow, how we partner and invest, who this is for, all of it is written down, close.
+
+**One CSS trap this exposed.** The four pillars box sits inside whichever band it lands in,
+and moving it from `band--paper` to `band--paper2` handed `.band--paper2 .card` the win on
+source order, which put light card fill under light ink at 4.17 to 1. The dark fill is now
+pinned twice, once by specificity and once by setting `--card` on `.pillars` itself.
