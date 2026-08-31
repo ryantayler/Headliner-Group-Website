@@ -685,9 +685,10 @@ Two live constraints on that page:
 ## Type
 
 **Every hero headline is set in the logo face, uppercase.** Archivo Black, which until
-now was the mark only. Long headlines run full bleed at up to 92px; a two word headline
+now was the mark only. Long headlines run full bleed at up to 74px; a two word headline
 with no lede under it gets the poster size instead, up to 178px, because scaling it to
-match the long ones leaves a hero that is mostly empty. Free Sh!t is the poster one.
+match the long ones leaves a hero that is mostly empty (up to 142px). Free Sh!t is the
+poster one.
 
 ## Heroes
 

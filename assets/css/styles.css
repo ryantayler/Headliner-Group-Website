@@ -580,17 +580,17 @@ button,input,textarea,select{font:inherit;color:inherit}
 .hero .d1{
   font-family:'Archivo Black',Impact,sans-serif;font-weight:400;
   text-transform:uppercase;letter-spacing:-.022em;line-height:.94;
-  font-size:clamp(30px,4.6vw,62px);max-width:none;overflow-wrap:anywhere;text-wrap:balance;
+  font-size:clamp(24px,3.7vw,50px);max-width:none;overflow-wrap:anywhere;text-wrap:balance;
 }
 /* Full bleed headline with the two buttons tucked under its right hand end, the way
    GROUP sits under HEADLINER in the mark. One column, not the old two up grid. */
 .hero__grid--wide{grid-template-columns:1fr;gap:clamp(18px,2.4vw,30px);align-content:end}
 /* balance shortens lines to even them up, which is the opposite of what a full bleed
    headline wants, so the wide hero drops it and runs to the shell edge */
-.hero__grid--wide .d1{max-width:none;text-wrap:pretty;font-size:clamp(33px,6.5vw,92px)}
+.hero__grid--wide .d1{max-width:none;text-wrap:pretty;font-size:clamp(26px,5.2vw,74px)}
 /* A two word headline with no lede under it leaves a hero mostly empty, so the short
    ones are set as a poster instead of scaled to match the long ones. */
-.hero__grid--fill .d1{font-size:clamp(52px,12.6vw,178px);line-height:.86}
+.hero__grid--fill .d1{font-size:clamp(42px,10.1vw,142px);line-height:.86}
 .hero__grid--wide .cta{margin-top:0;justify-content:flex-end}
 @media (max-width:640px){.hero__grid--wide .cta{justify-content:flex-start}}
 /* over a photo the dimmest token does not hold, so the hero label lifts a step */
