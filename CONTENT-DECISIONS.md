@@ -450,3 +450,113 @@ reaching a single file. Ryan's call, and it was one screen of throat clearing.
 
 It is now the hero, one heading with the context beside it, and the files. The two bands
 merged into one rather than leaving a heading stranded in an empty band.
+
+
+---
+
+# Brand definition
+
+Answers to the identity and beliefs round. This section outranks the page by page notes
+above where the two disagree.
+
+## What Headliner is
+
+**In a founder's own words, describing it to their accountant.** A group that specialises
+in live events and production. They partner with and own a number of companies, and they
+do a partnering deal where they take a small portion of your company and you get access to
+everything the group has. Cheap and easy access to things, connections. A big part of it is
+that Ryan works on the business with you directly, out of his experience in coaching and
+mentoring, and he has grown businesses in exactly this industry.
+
+**Not an investment firm, not an events business.** A group that specialises in **business
+growth and partnerships** in live events and production.
+
+### The word
+
+**Say "group" publicly, not "PE firm".** Equity, minority share and acquisition stay
+allowed in the copy, as ruled earlier. The *label* is the group. Private equity firm never
+appears.
+
+**What founders compare it to.** A business partner, a consultant, and a good industry
+contact. Not a buyer. That comparison set is why the group framing is right.
+
+## The moat
+
+| | |
+| --- | --- |
+| **Copyable** | The approach. Anyone can start partnering with the businesses they work with |
+| **Not copyable** | Ryan's personal brand behind it, a deep library of free content and assets, and a database of people in the industry who are potential clients |
+
+That is why Free Sh!t is strategy rather than decoration. Two of the three things a
+competitor cannot copy live on that page.
+
+## Five years
+
+Ten to twenty minority stakes, possibly a few majority or outright, **all cross selling and
+cross promoting to each other's clients**. The cross promotion is a real benefit of joining
+and belongs in the copy.
+
+## The belief
+
+**The umbrella, in his words.** *"If you're not partnering in this industry you're doing it
+wrong."*
+
+That is a cleaner frame than either enemy on its own, and it holds both of them:
+
+- **Price shopping.** Chasing the cheapest quote on every event and squeezing everyone dry.
+  It saves money this month and caps the business. Pay slightly more, partner properly, and
+  you get somebody there when you need it most, free additions, priority service
+- **In housing.** Pulling AV, crew and venue in house to protect margin, which caps
+  everything else
+
+His line for it: *"A partner helps even when it's inconvenient, a supplier does not."* That
+is a variant of the locked line in his voice system, so the locked wording ships and this
+one stays as the note on what he means.
+
+**What he refuses to do.** Compromise on quality to get the job over the line. Taking the
+extra minute to hold his own standard, even when it costs time or effort.
+
+## What the site is for
+
+Three jobs, and they are not equal.
+
+1. **A resource hub for social.** He posts, the call to action says go and download the free
+   event manager worksheet, and the site delivers it
+2. **A landing page for founders.** He tells every owner and general manager he meets that
+   he has a personal site and a group site. It either seeds the idea that partnering is a
+   thing he does, or it becomes the step before they message him. Partnerships are not
+   booked off a website, so this is a long play, not a funnel
+3. **Credibility.** Proof he does what he talks about
+
+## Capacity
+
+**One at a time, right now.** His first partnership has no leverage behind it other than his
+own hours, so it is taking far more time than it will later. Two to four at a time
+eventually, spread across six months, working on the businesses rather than in them.
+
+The site should not read like it is recruiting at volume.
+
+## What twelve months of success looks like
+
+The current deal goes through and the business grows while he works on it. Real proof goes
+on the site. He is confident enough to send the site to people and say out loud that this
+is what he does. **A handful of enquiries and no signed partnerships still counts**, because
+it is the long play.
+
+## Personality
+
+Four words. **Industry** first, because people need to believe the specialisation is real.
+**Casual and friendly**, which is why Free Sh!t is called Free Sh!t. **Authentic**. And
+**professional and knowledgeable**, so the personality never reads as not knowing the job.
+
+Swearing stays rare in public copy. "We know what we're doing" carries it.
+
+**Headliner against Ryan.** Headliner is the professional face and Ryan is the personal one,
+but it stays tied to him because he runs it whoever else joins. That is why his brand is
+built into the site rather than parked beside it.
+
+**What would make him cringe.** AI slop. Phrases he does not use. Anything his personal
+brand guidelines already rule out.
+
+**Reference sites.** None. His read on the category is that these firms are all boring white
+pages of text, which makes not being that a real advantage.
