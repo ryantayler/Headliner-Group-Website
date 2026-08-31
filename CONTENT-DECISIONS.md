@@ -964,15 +964,19 @@ Three beats, one paragraph each, no mechanics.
 3. **The belief.** Partnering properly makes more money over ten years than any other
    strategy in this industry, and it makes the ten years easier to live through.
 
-Heading is **Everyone in this industry shops around**, which is Ryan's own phrasing from
-the brief.
+Heading is **It's in the title**, which points at the hero headline directly above it.
+The body then restates what the group does, names the enemy, and lands the belief. Two
+short paragraphs and nothing else.
 
 Both sections were rewritten a second time against `ryan-voice/references/exemplars.md`.
 The first pass had no contractions, no concrete nouns and the retired consultant framing
 (*the strategies that built our own network of partners are the ones we run inside your
-business*). The rewrite carries real gear (staging, truss, lighting, LED, audio, crew),
-his own numbers (20 odd suppliers on a job, four in the afternoon on show day), and echoes
-his published China line, *we're calling someone we've had lunch with*.
+business*). The second pass fixed the voice and then
+overwrote the brief, turning four briefed lines into two dense sections of invented detail.
+
+**Third pass is the one that shipped.** Ryan's own words, at Ryan's own length. Two short
+paragraphs for the why, two sentences for the how. The rule this produced is now in
+`CLAUDE.md` under *Write what Ryan said, not more*.
 
 ## Section three, the how
 

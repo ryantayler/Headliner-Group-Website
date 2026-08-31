@@ -48,6 +48,16 @@ it stays. The ban here is on the manufactured version, in website and marketing 
 where nothing has been earned and the line exists to sound good. If a punch is doing real
 work, keep it. If it is decoration, it goes.
 
+### Write what Ryan said, not more
+
+When Ryan briefs copy, write it at roughly the length he briefed it. He gives the argument
+in three or four lines and the temptation is to turn each line into a paragraph. Do not.
+The expansion is where the voice goes, because the extra sentences are the writer's, not
+his. If a beat genuinely needs more, ask, rather than filling it in.
+
+Read `ryan-voice/references/exemplars.md` before drafting anything, not just `SKILL.md`
+and the voice guide. That file says it outranks every other instruction and it does.
+
 ### How to check your own draft
 
 Read the last clause of every sentence on its own. If it could be deleted and the reader
