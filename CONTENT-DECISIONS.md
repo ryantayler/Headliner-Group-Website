@@ -677,3 +677,63 @@ Two live constraints on that page:
 - The auto download is skipped on `file://`, because the `download` attribute is same
   origin only and an opaque origin makes the click navigate instead. Off a server it
   behaves. The visible **grab it here** link in the sent note covers the difference.
+
+---
+
+# Round C
+
+## Type
+
+**Every hero headline is set in the logo face, uppercase.** Archivo Black, which until
+now was the mark only. Long headlines run full bleed at up to 92px; a two word headline
+with no lede under it gets the poster size instead, up to 178px, because scaling it to
+match the long ones leaves a hero that is mostly empty. Free Sh!t is the poster one.
+
+## Heroes
+
+**No lede under the headline** on home, Partnerships or Free Sh!t. The headline runs the
+full width and the two buttons sit under its right hand end, the way GROUP sits under
+HEADLINER in the mark. Contact keeps its lede, because that one is Ryan speaking directly
+and it is doing work.
+
+## The belief
+
+**One page owns it.** *If you're not partnering, you're doing it wrong* lives on
+Partnerships and nowhere else. Home runs the same argument from a different angle,
+*Nobody grows a business in this industry on their own*, so the two pages agree without
+repeating each other word for word.
+
+The locked keeper line stays on home as a pull quote, now **set in Caveat**, his personal
+brand hand. Attribution is his name on one line with *Founder of Headliner Group* under it
+in grey, rather than one uppercase run.
+
+## What we do
+
+The four outcome cards on home are **gone**. What they were for: answering *what do you
+actually do for me* with four levers, margin, reach, revenue and operations. Two problems.
+They said the same thing four times in the same shape, and Partnerships already covers the
+same ground properly in **Two lanes**. So home now carries the three shapes a deal can
+take, as a ruled list rather than another card grid:
+
+- **Equity partnership**, the main one
+- **Capital investment**
+- **Business acquisition**
+
+The levers stay on Partnerships, in depth, where somebody has actually asked for them.
+
+## Wording
+
+- **"We get paid in equity" is dead**, on every page. The register is *we partner with
+  you*, never *we take equity instead of a fee*. Partnerships now reads **We partner with
+  you, we don't invoice you**.
+- **"The public half of how we work"** on home is now **Get some free sh!t**.
+- **"If you've built something good"** is gone. It read as though only businesses already
+  doing well were welcome. The home close is **To the owners in the room**, and it names
+  the actual fit out loud: Australian, in or around live events and production, one to ten
+  million, wanting to grow, tighten up or step out. Ryan's page close moved the same way.
+- Footer newsletter is just **Stay in the loop**, a field and Join. No subheading.
+
+## Photography
+
+The home portrait crop moved from 83 percent to 62 percent across. Lower moves him right
+on screen, because the percentage resolves against negative overflow under `cover`.

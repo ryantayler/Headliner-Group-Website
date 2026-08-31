@@ -574,7 +574,25 @@ button,input,textarea,select{font:inherit;color:inherit}
 .hero--tall .hero__in{padding-top:clamp(160px,20vw,244px);padding-bottom:clamp(80px,11vw,144px)}
 .hero__grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(24px,5vw,72px);align-items:end}
 @media (max-width:900px){.hero__grid{grid-template-columns:1fr;gap:28px}}
-.hero .d1{max-width:16ch;overflow-wrap:anywhere}
+/* Every hero headline is set in the logo face, uppercase. Archivo Black is heavy
+   and wide, so it needs a smaller size and much tighter tracking than Inter did at
+   the same slot, or a five word line stops fitting anywhere. */
+.hero .d1{
+  font-family:'Archivo Black',Impact,sans-serif;font-weight:400;
+  text-transform:uppercase;letter-spacing:-.022em;line-height:.94;
+  font-size:clamp(30px,4.6vw,62px);max-width:none;overflow-wrap:anywhere;text-wrap:balance;
+}
+/* Full bleed headline with the two buttons tucked under its right hand end, the way
+   GROUP sits under HEADLINER in the mark. One column, not the old two up grid. */
+.hero__grid--wide{grid-template-columns:1fr;gap:clamp(18px,2.4vw,30px);align-content:end}
+/* balance shortens lines to even them up, which is the opposite of what a full bleed
+   headline wants, so the wide hero drops it and runs to the shell edge */
+.hero__grid--wide .d1{max-width:none;text-wrap:pretty;font-size:clamp(33px,6.5vw,92px)}
+/* A two word headline with no lede under it leaves a hero mostly empty, so the short
+   ones are set as a poster instead of scaled to match the long ones. */
+.hero__grid--fill .d1{font-size:clamp(52px,12.6vw,178px);line-height:.86}
+.hero__grid--wide .cta{margin-top:0;justify-content:flex-end}
+@media (max-width:640px){.hero__grid--wide .cta{justify-content:flex-start}}
 /* over a photo the dimmest token does not hold, so the hero label lifts a step */
 .hero .eyebrow{color:var(--sub)}
 .hero .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
@@ -585,9 +603,9 @@ button,input,textarea,select{font:inherit;color:inherit}
 .media img{width:100%;height:100%;object-fit:cover}
 .r-32{aspect-ratio:3/2}.r-43{aspect-ratio:4/3}.r-11{aspect-ratio:1/1}
 /* A 4:5 crop of a 3:2 photograph throws away more than half the width, and his face
-   sits at 65.5 percent across the source, so the frame is offset to keep him centred
-   rather than hard against one edge. Height scaled, so the vertical value is inert. */
-.portrait img{object-position:83% 50%}
+   sits left of centre in the source, so the frame is offset to bring him back across.
+   Lower percentage moves him right on screen. Height scaled, so the vertical is inert. */
+.portrait img{object-position:62% 50%}
 .r-45{aspect-ratio:4/5}.r-169{aspect-ratio:16/9}.r-219{aspect-ratio:21/9}
 
 .ph{
@@ -647,10 +665,32 @@ a.card:hover,.card--hover:hover{transform:translateY(-4px);border-color:rgba(var
 
 .pull{display:grid;gap:22px;padding:clamp(28px,4vw,52px) 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .pull q{
-  quotes:none;display:block;max-width:26ch;color:var(--tx);
+  quotes:'\201C' '\201D';display:block;max-width:26ch;color:var(--tx);
   font-weight:500;font-size:clamp(21px,2.7vw,36px);line-height:1.26;letter-spacing:-.026em;
 }
 .pull .by{font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--tx-mute)}
+/* Name on its own line, role under it, quieter. Not one uppercase run, because the
+   role is a caption and the name is the signature. */
+.pull .by--split{display:grid;gap:3px;letter-spacing:0;text-transform:none;font-size:15px;color:var(--tx)}
+.pull .by--split span{font-size:13px;color:var(--tx-mute)}
+/* Handwritten variant. Caveat runs small for its point size and has almost no
+   tracking of its own, so it needs the size back and the negative tracking off. */
+.pull--hand q{
+  font-family:'Caveat',cursive;font-weight:600;
+  font-size:clamp(30px,4.4vw,58px);line-height:1.06;letter-spacing:0;max-width:22ch;
+}
+
+/* Home offer rows. Deliberately not a card grid: the four card wall that used to
+   sit here said the same thing four times in the same shape. A ruled list reads as
+   three options rather than four features. */
+.offers{display:grid;border-top:1px solid var(--line)}
+.offer{
+  display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.5fr);
+  gap:clamp(10px,4vw,56px);padding-block:clamp(22px,3vw,36px);
+  border-bottom:1px solid var(--line);align-items:start;
+}
+.offer p{margin:0}
+@media (max-width:760px){.offer{grid-template-columns:1fr;gap:10px}}
 
 .chips{display:flex;flex-wrap:wrap;gap:8px}
 .chip{font-size:11.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border-radius:100px;border:1px solid var(--line);color:var(--tx-mute)}
