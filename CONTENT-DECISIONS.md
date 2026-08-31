@@ -964,9 +964,15 @@ Three beats, one paragraph each, no mechanics.
 3. **The belief.** Partnering properly makes more money over ten years than any other
    strategy in this industry, and it makes the ten years easier to live through.
 
-Heading is **The whole industry shops around**. Alternatives Ryan can swap in without
-touching the body: *Everyone buys. Nobody partners.* or *Three quotes, take the cheapest,
-do it again next month.*
+Heading is **Everyone in this industry shops around**, which is Ryan's own phrasing from
+the brief.
+
+Both sections were rewritten a second time against `ryan-voice/references/exemplars.md`.
+The first pass had no contractions, no concrete nouns and the retired consultant framing
+(*the strategies that built our own network of partners are the ones we run inside your
+business*). The rewrite carries real gear (staging, truss, lighting, LED, audio, crew),
+his own numbers (20 odd suppliers on a job, four in the afternoon on show day), and echoes
+his published China line, *we're calling someone we've had lunch with*.
 
 ## Section three, the how
 
