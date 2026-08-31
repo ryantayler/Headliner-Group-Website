@@ -549,6 +549,16 @@ button,input,textarea,select{font:inherit;color:inherit}
     linear-gradient(to right,rgba(10,10,10,.94) 0%,rgba(10,10,10,.76) 46%,rgba(10,10,10,.58) 100%),
     linear-gradient(to top,rgba(10,10,10,1) 0%,rgba(10,10,10,0) 52%);
 }
+/* The boardroom shot is bright exactly where the front of house shot is dark: a lit
+   screen through the middle and a white wall behind the right hand seats. The default
+   scrim eases OFF toward the right, which put the lede at 3.35:1 and the GROUP line at
+   4.40 on a phone. This one darkens the right instead, and adds a band for the bar. */
+.hero--boardroom .hero__scrim{
+  background:
+    linear-gradient(to bottom,rgba(10,10,10,.80) 0,rgba(10,10,10,.52) 110px,rgba(10,10,10,0) 300px),
+    linear-gradient(to right,rgba(10,10,10,.92) 0%,rgba(10,10,10,.62) 34%,rgba(10,10,10,.74) 58%,rgba(10,10,10,.86) 100%),
+    linear-gradient(to top,rgba(10,10,10,.98) 0%,rgba(10,10,10,0) 58%);
+}
 .hero__media:has(img)+.hero__scrim::after{content:none}
 .hero__scrim::after{
   content:attr(data-slot);position:absolute;left:0;bottom:0;padding:14px 18px;
