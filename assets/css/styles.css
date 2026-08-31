@@ -119,6 +119,9 @@
 
 /* Caveat. One handwritten moment per view. Pink is the default hand. */
 .theme-ryan .hand{color:var(--pink)}
+/* His page, his accent. The header is shared markup, so the marker is themed off the
+   body class rather than duplicated. */
+.theme-ryan .nav a:not(.btn).is-here{color:var(--pink)}
 
 /* Card build spec: flat fill, grey rim, 16px on panels. */
 .theme-ryan .card{border-radius:16px;border-color:var(--rim)}
@@ -587,7 +590,13 @@ button,input,textarea,select{font:inherit;color:inherit}
 .hero__grid--wide{grid-template-columns:1fr;gap:clamp(18px,2.4vw,30px);align-content:end}
 /* balance shortens lines to even them up, which is the opposite of what a full bleed
    headline wants, so the wide hero drops it and runs to the shell edge */
-.hero__grid--wide .d1{max-width:none;text-wrap:pretty;font-size:clamp(26px,5.2vw,74px)}
+.hero__grid--wide .d1{max-width:none;text-wrap:pretty;font-size:clamp(26px,4.85vw,64px)}
+/* The banner line breaks where the sense breaks, not where the box runs out. Below the
+   breakpoint the spans go back to normal flow, because forcing desktop breaks onto a
+   phone is worse than letting it wrap. */
+@media (min-width:760px){
+  .hero .d1 .ln{display:block;white-space:nowrap}
+}
 /* A two word headline with no lede under it leaves a hero mostly empty, so the short
    ones are set as a poster instead of scaled to match the long ones. */
 .hero__grid--fill .d1{font-size:clamp(42px,10.1vw,142px);line-height:.86}
@@ -674,11 +683,19 @@ a.card:hover,.card--hover:hover{transform:translateY(-4px);border-color:rgba(var
    sitting under it as a label, so the size lives on the wrapper and the q inherits it
    and goes inline. */
 .pull--center{justify-items:center;text-align:center}
-.pull--center .pull__t{margin:0;max-width:24ch}
+/* max-content, not a ch cap: the lines are broken by hand below, and the box has to
+   shrink to the widest of them so the attribution can sit against the real right edge
+   of the quote rather than the right edge of the column. */
+.pull--center .pull__t{margin:0;width:max-content;max-width:100%}
 .pull--center q{display:inline;max-width:none;font-size:inherit;line-height:inherit;letter-spacing:inherit;font-weight:inherit}
+/* the marks are typed into the spans, because the generated ones sit outside the
+   block lines and end up alone on a row of their own */
+.pull--center q{quotes:none}
+.pull--center q .ln{display:block}
 .pull__by{
+  display:block;text-align:right;margin-top:.34em;
   font-family:'Inter',system-ui,sans-serif;font-weight:500;font-size:.44em;
-  letter-spacing:-.012em;color:var(--tx-mute);white-space:nowrap;margin-left:.14em;
+  letter-spacing:-.012em;color:var(--tx-mute);
 }
 /* Handwritten. Caveat runs small for its point size and has almost no tracking of its
    own, so it needs the size back and the negative tracking off. */

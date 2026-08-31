@@ -769,3 +769,38 @@ version:
 6. Close
 
 Do not put deal terms back into section three. That is the whole point of it.
+
+---
+
+# Round E
+
+## The banner line
+
+**The breaks are set by hand.** Three lines, broken where the sense breaks:
+
+> HELPING FOUNDERS IN / LIVE EVENTS &amp; PRODUCTION / GROW THROUGH PARTNERSHIPS
+
+Each line is a `<span class="ln">`, held on one line above 760px and released below it,
+because forcing desktop breaks onto a phone is worse than letting it wrap. The type size
+is pinned so the longest line clears the shell at every width, checked from 390 to 1920.
+
+Do not let this wrap on its own again. `text-wrap:balance` and `pretty` both broke it in
+the wrong places, which is the whole reason the spans exist.
+
+## The quote
+
+Lines are broken by hand there too, so *you* never lands alone at the end. **Ryan Tayler**
+sits on its own line, right aligned to the real right edge of the quote rather than to the
+column, and there is **no em dash**. The quote marks are typed into the spans, because the
+generated ones sit outside block lines and end up on rows of their own.
+
+## Ryan's page
+
+**The current page marker in the header is pink there and nowhere else.** Themed off the
+`theme-ryan` body class, not duplicated markup.
+
+## Preview builder
+
+The footer was a **second copy** living in the preview template, and it went stale without
+anybody noticing, so a footer edit did not show up in the preview at all. It is now lifted
+out of `index.html` at build time. Do not paste it back into the template.

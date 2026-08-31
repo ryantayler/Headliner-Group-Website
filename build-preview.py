@@ -40,7 +40,19 @@ def _inline(x):
 bodies = [_inline(x) for x in bodies]
 # Home is in the real nav, so the preview has to carry it too, or the two disagree
 nav = "\n      ".join(f'<a href="#{s}" data-pg="{s}">{l}</a>' for s,l in PAGES if s != 'contact')
-fl = lambda items: "\n          ".join(f'<li><a href="#{s}" data-pg="{s}">{l}</a></li>' for s,l in items)
+
+# The footer is lifted out of index.html rather than kept as a second copy in the
+# template. It was a second copy for a while and it silently went stale, so an edit to
+# the real footer did not show up in the preview at all.
+_raw_home = open('index.html').read()
+footer = re.search(r'<footer class="ftr">.*?</footer>', _raw_home, re.S).group(0)
+def _toroute(m):
+    slug = m.group(1) or 'index'
+    return f'href="#{slug}" data-pg="{slug}"'
+footer = re.sub(r'href="(?:(\w+)\.html|(index)\.html)"',
+                lambda m: _toroute(m), footer)
+footer = footer.replace('href="index.html"', 'href="#index" data-pg="index"')
+footer = footer.replace('id="f-nl-home"', 'id="f-nl"').replace('for="f-nl-home"', 'for="f-nl"')
 # lift the wall and dialog logic straight out of main.js rather than keeping a
 # second copy of it in the preview template
 _js = open('assets/js/main.js').read()
@@ -50,8 +62,7 @@ tpl = open(os.path.join(scr,'preview-template.html')).read()
 html = (tpl.replace('/*__FONTS__*/', fonts).replace('/*__CSS__*/', css)
            .replace('/*__WALL__*/', wall)
            .replace('<!--__NAV__-->', nav).replace('<!--__BODIES__-->', "\n".join(bodies))
-           .replace('<!--__FGROUP__-->', fl([('partnerships','Partnerships'),('ryan','Ryan Tayler')]))
-           .replace('<!--__FMORE__-->', fl([('free','Free Sh!t'),('contact','Contact')])))
+           .replace('<!--__FOOTER__-->', footer))
 out = os.path.join(scr,'headliner-preview.html')
 open(out,'w').write(html)
 print('built', round(len(html)/1024), 'KB')
