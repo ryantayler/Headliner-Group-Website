@@ -946,3 +946,40 @@ Deleted outright, because the page already said it or it said nothing:
 control it describes is the documented fix rather than the banned shape. Ryan's own
 sentences in the summit story, his locked bio lines, and the lists that are genuinely
 lists rather than ramps into a punch.
+
+---
+
+# Round H, the home page argument
+
+Ryan set the structure. Two sections, the why then the how, in this order and nothing else.
+
+## Section two, the why
+
+Three beats, one paragraph each, no mechanics.
+
+1. **The enemy.** Three quotes, take the cheapest, squeeze whoever wins it. That is how the
+   industry protects margin and on paper it works.
+2. **What it costs.** The truck does not turn up at four in the afternoon and there is
+   nobody to ring.
+3. **The belief.** Partnering properly makes more money over ten years than any other
+   strategy in this industry, and it makes the ten years easier to live through.
+
+Heading is **The whole industry shops around**. Alternatives Ryan can swap in without
+touching the body: *Everyone buys. Nobody partners.* or *Three quotes, take the cheapest,
+do it again next month.*
+
+## Section three, the how
+
+The strategies that built our own network are the ones we run inside your business. We
+find the right people and negotiate the deal. Every partnership lands in one of four
+places, which names the pillars without explaining them.
+
+Heading is **So we build you one**, which only works while the section above ends on the
+belief. If the why changes, this heading changes with it.
+
+Link reads **See how it works**.
+
+> **Claim to watch.** *The strategies that built our own network of partners* is Ryan's
+> wording. The partner network is currently at zero by his own ruling, so the claim rests
+> on his personal network out of 115+ events rather than on a group asset. Defensible as
+> written, and it stops being defensible if it ever becomes a numbers claim.
