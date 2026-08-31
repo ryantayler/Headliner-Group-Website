@@ -859,3 +859,44 @@ fastest money in the business.
 
 **Ryan Tayler** now runs on at the end of the last line rather than sitting on its own,
 and the whole block is centred.
+
+---
+
+# Round G
+
+## The home hero was too dark
+
+The image sat at 72 percent opacity under a scrim that ran .94 across and solid black up
+from the bottom, which turned the front of house shot into a black blob. The image is now
+at 92 percent and the scrim does three separate jobs instead of one blanket:
+
+1. a band under the header bar so the wordmark holds
+2. a gentle left to right wash so the headline has ground
+3. a bottom lift that carries the headline and hands off to the next band
+
+**The middle of the frame is deliberately left alone**, because that is where the
+photograph is. Worst case measured contrast on the headline is 4.54 to 1 at 1440, checked
+at five widths by sampling the brightest pixel under the text box. There is not much room
+left, so do not lighten it further without re-running that check.
+
+## Who this is for
+
+Was two tick list cards, which read like pricing tiers on an online store. Rebuilt as a
+specification with three facts, each with a line drawing, separated by hairlines:
+
+- **$1m to $10m**, ascending bars
+- **Australia only**, an outline of the country
+- **Live events &amp; production**, a stage truss with two lights
+
+Then **The owner matters more than the numbers**, which is the part the old version was
+missing. Growing, plateaued or done with it are all fine. Still on the tools is fine and
+**already under management is fine**, and that second one is now said out loud.
+
+The section head is the long version of the home page close, so home and Partnerships say
+the same thing at two different depths.
+
+## Under review, not shipped
+
+A centred hero: the Headliner lockup large in the middle with the banner line as a
+strapline under it. Built in the scratchpad only. On a phone the header logo is already
+centred, so the mark lands twice, which is the thing to solve before it could ship.
