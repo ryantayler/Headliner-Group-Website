@@ -1020,3 +1020,18 @@ pinned twice, once by specificity and once by setting `--card` on `.pillars` its
   now say *the optimisation framework*, which is the thing lane two is about.
 
 **The line drawings in Who this is for are gone.** All three of them.
+
+## Founder section, home
+
+Heading is **North and Under**, Ryan's words as given. Under it, a small grey label
+reading *Our founder* with his signature below it carrying the name, so the name is never
+typed out twice on the page. Then the bio, his copy word for word.
+
+> **Two things to check.** *North and Under* reads like a dictation slip and it is live as
+> written, so it is one word to change if it is not what he meant.
+>
+> **The proof numbers changed.** `ryan-voice` locks the set at 115+ live events and 56,000+
+> attendees and says never to mix other figures in. The home bio now also carries 8 figures
+> in revenue and an additional 7 figures from optimisation and partnerships. That is Ryan
+> overruling his own skill, which is his call, and the skill and the site now disagree
+> until he updates it.
