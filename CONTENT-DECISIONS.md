@@ -1023,13 +1023,12 @@ pinned twice, once by specificity and once by setting `--card` on `.pillars` its
 
 ## Founder section, home
 
-Heading is **North and Under**, Ryan's words as given. Under it, a small grey label
-reading *Our founder* with his signature below it carrying the name, so the name is never
-typed out twice on the page. Then the bio, his copy word for word.
+Heading is **Our founder**, with his signature directly under it carrying the name, so the
+name is never typed out on this section at all. Then the bio, his copy word for word.
 
-> **Two things to check.** *North and Under* reads like a dictation slip and it is live as
-> written, so it is one word to change if it is not what he meant.
->
+(*North and Under* appeared here briefly. It was a dictation slip in the brief, taken
+literally and flagged, then corrected.)
+
 > **The proof numbers changed.** `ryan-voice` locks the set at 115+ live events and 56,000+
 > attendees and says never to mix other figures in. The home bio now also carries 8 figures
 > in revenue and an additional 7 figures from optimisation and partnerships. That is Ryan
