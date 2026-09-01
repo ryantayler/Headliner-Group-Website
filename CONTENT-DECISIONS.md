@@ -984,15 +984,15 @@ The strategies that built our own network are the ones we run inside your busine
 find the right people and negotiate the deal. Every partnership lands in one of four
 places, which names the pillars without explaining them.
 
-Heading is **So we build you one**, which only works while the section above ends on the
-belief. If the why changes, this heading changes with it.
+Heading is **So we build you one**. Body is Ryan's, word for word. It credits the founder
+rather than the group, which is the honest framing while the group is one deal deep.
 
 Link reads **See how it works**.
 
-> **Claim to watch.** *The strategies that built our own network of partners* is Ryan's
-> wording. The partner network is currently at zero by his own ruling, so the claim rests
-> on his personal network out of 115+ events rather than on a group asset. Defensible as
-> written, and it stops being defensible if it ever becomes a numbers claim.
+> **Claim resolved.** The line used to say *the strategies that built our own network of
+> partners*, which read as a group asset while the partner network was at zero. Ryan
+> rewrote it to *the same strategies our founder used to build and grow our group*, which
+> puts the record where it actually sits, with him.
 
 ## It starts with what you want, removed
 
