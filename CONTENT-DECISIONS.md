@@ -965,8 +965,8 @@ Three beats, one paragraph each, no mechanics.
    strategy in this industry, and it makes the ten years easier to live through.
 
 Heading is **It's in the title**, which points at the hero headline directly above it.
-The body then restates what the group does, names the enemy, and lands the belief. Two
-short paragraphs and nothing else.
+Body is Ryan's, word for word, three paragraphs. What we do, the enemy and what it costs,
+the belief, and then the optimisation half. Do not rewrite it.
 
 Both sections were rewritten a second time against `ryan-voice/references/exemplars.md`.
 The first pass had no contractions, no concrete nouns and the retired consultant framing
