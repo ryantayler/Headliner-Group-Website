@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Business Diagnostic</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="Fifty two questions. One constraint. A short report on the single thing capping the business.">
+<link rel="icon" href="../assets/img/favicon.svg">
+<link rel="stylesheet" href="diagnostic.css">
+</head>
+<body>
+
+<!-- ============ INTRO ============ -->
+<section class="screen is-on" id="s-intro">
+  <div class="shell">
+    <p class="eyebrow">Working title, not the product name</p>
+    <h1 class="display d1">Business<br>Diagnostic</h1>
+    <p class="lede" style="margin-top:26px;max-width:56ch">Fifty two questions about the facts of your business. No opinions, no scoring, no grade at the end. It names the one thing capping you right now and tells you what to leave alone until that's fixed.</p>
+    <ul class="intro__rules">
+      <li><b>01</b><span>Roughly fifteen minutes. You can answer every question without opening your accounts.</span></li>
+      <li><b>02</b><span>Not sure is a real answer. Take it whenever it's true, because what you can't answer is a finding on its own.</span></li>
+      <li><b>03</b><span>You get one constraint. A twelve item to do list is the thing this is built to avoid, because the order you fix things in matters more than the list.</span></li>
+      <li><b>04</b><span>Nothing leaves your browser. Your answers are saved on this device and nowhere else.</span></li>
+    </ul>
+    <p class="hand" style="margin:30px 0 22px">Answer it how it actually is, not how you'd like it to read.</p>
+    <button class="btn btn--fill" id="start">Start<span aria-hidden="true">&rarr;</span></button>
+  </div>
+</section>
+
+<!-- ============ QUESTIONS ============ -->
+<section class="screen" id="s-quiz">
+  <div class="prog">
+    <div class="shell">
+      <div class="prog__row">
+        <span class="prog__step">Step <b id="p-step">1</b> of <span id="p-total">10</span></span>
+        <span class="prog__step" id="p-count">0 of 52 answered</span>
+      </div>
+      <div class="prog__bar"><div class="prog__fill" id="p-fill"></div></div>
+    </div>
+  </div>
+  <div class="shell">
+    <h2 class="display d2 group__title" id="g-title">About the business</h2>
+    <p class="group__sub" id="g-sub"></p>
+    <form id="g-form" autocomplete="off"></form>
+    <div class="nav">
+      <button class="btn btn--ghost" id="prev" type="button">Back</button>
+      <p class="nav__warn" id="warn" hidden>Answer every question on this page before moving on.</p>
+      <button class="btn btn--fill" id="next" type="button">Next<span aria-hidden="true">&rarr;</span></button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ REPORT ============ -->
+<section class="screen" id="s-report">
+  <div class="shell" id="report"></div>
+</section>
+
+<!-- Screen only. Lets you jump straight to a report to check the wording. -->
+<div class="dev" id="dev">
+  <b>Test</b>
+  <button data-p="cashflow">Cash flow</button>
+  <button data-p="talent">Talent</button>
+  <button data-p="fulfilment">Fulfilment</button>
+  <button data-p="value">Value</button>
+  <button data-p="offer">Offer</button>
+  <button data-p="demand">Demand</button>
+  <button data-p="margin">Margin</button>
+  <button data-p="talent_suppressed">Talent + hidden fulfilment</button>
+  <button data-p="healthy">Healthy</button>
+  <button data-p="unsure">All not sure</button>
+  <button data-p="clear">Clear</button>
+</div>
+
+<script src="content.js"></script>
+<script src="engine.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
