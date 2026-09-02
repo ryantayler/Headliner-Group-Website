@@ -820,6 +820,8 @@ Written as **we**, not as **I**. The story is his and the belief is the group's,
 page states the belief rather than performing his memoir. The locked emergency line stays
 as the pull quote, word for word.
 
+The body is now **Ryan's copy, word for word**, four paragraphs. Do not rewrite it.
+
 ## Partnerships, new order
 
 1. Hero
