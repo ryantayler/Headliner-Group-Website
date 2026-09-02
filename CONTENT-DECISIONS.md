@@ -1084,6 +1084,10 @@ statement card in his brand system does it. Paint order matters: numeral, then v
 then the copy at `z-index:1`, so the vignette darkens the number's edges and never touches
 the text.
 
+Card copy sits at `#BFBAB2` rather than the muted token, which was too dark on this
+ground. Raising it forced the numeral down from 46 to 40 percent opacity at desktop,
+because the two trade against each other directly.
+
 **Three size and opacity steps**, because the card gets shorter and wider as the grid
 collapses and the numeral's bright middle rides up behind the pillar name. Checked by
 sampling the brightest pixel under every text box at twelve widths from 390 to 1600.

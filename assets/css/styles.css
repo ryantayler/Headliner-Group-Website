@@ -150,7 +150,7 @@
   position:absolute;right:-.10em;bottom:-.22em;z-index:0;pointer-events:none;
   font-family:'Anton',Impact,sans-serif;font-weight:400;
   font-size:clamp(240px,26vw,380px);line-height:.72;letter-spacing:-.04em;
-  color:#FF3F77;opacity:.46;
+  color:#FF3F77;opacity:.40;
 }
 /* The vignette. An inset shadow on the card rather than a gradient on the glyph, which
    is how the pink statement card in his brand does it. Painted after the numeral and
@@ -171,6 +171,9 @@
 }
 .pillars.theme-ryan .card>*{position:relative;z-index:1}
 .pillars.theme-ryan .card>.display{color:var(--pink)}
+/* the muted token is too dark against this card, so the pillar copy lifts a step. Not
+   ink, because these read as supporting copy under the pillar name. */
+.pillars.theme-ryan .card p{color:#BFBAB2}
 /* One handwritten moment, and it is the note plus the signature read as a pair. */
 .pillars__note{
   margin:clamp(20px,2.6vw,30px) 0 0;text-align:right;
