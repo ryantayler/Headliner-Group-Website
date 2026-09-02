@@ -152,7 +152,7 @@
       var link = sBody.querySelector('[data-getlink]');
       var sub = sBody.querySelector('[data-getsubmit]');
       if (link) { link.href = file; link.setAttribute('download', ''); }
-      if (sub) sub.innerHTML = 'Send it and download the ' + fmt + ' <span class="arw">&#8595;</span>';
+      if (sub) sub.textContent = 'Send it and download the ' + fmt;
       sBody.querySelector('[data-getback]').addEventListener('click', function () {
         openSheet(back, null);
       });

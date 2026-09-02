@@ -1034,3 +1034,17 @@ literally and flagged, then corrected.)
 > in revenue and an additional 7 figures from optimisation and partnerships. That is Ryan
 > overruling his own skill, which is his call, and the skill and the site now disagree
 > until he updates it.
+
+## Buttons
+
+**No arrows on any button, on any page.** 31 of them removed, including the download
+arrows inside the Free Sh!t sheet, which are also built in `main.js`. If a button ever
+gets rebuilt, it does not get an arrow back.
+
+The arrows on **text links** (`.tlink`) stay. Those are inline links doing wayfinding,
+not buttons.
+
+**More about Ryan** on the home page is his pink, `#FF2D6B` with black text at 5.5 to 1.
+It is the one button on a Headliner page that wears his accent, because it is the one
+that goes to his page. The value is literal in the stylesheet, since `--pink` only exists
+inside `theme-ryan`.

@@ -498,6 +498,11 @@ button,input,textarea,select{font:inherit;color:inherit}
 .btn--ghost:hover{border-color:var(--tx-accent);color:var(--tx-accent)}
 
 .btn--quiet{background:var(--base);color:var(--ink);border-color:var(--base)}
+/* His page is one click away and this is the button that goes there, so it wears his
+   accent rather than the group's. Black on pink, 5.5 to 1, per his brand. The value is
+   literal because --pink only exists inside theme-ryan. */
+.btn--pink{background:#FF2D6B;color:#0A0A0A;border-color:#FF2D6B}
+.btn--pink:hover{background:#FF5586;border-color:#FF5586}
 .btn--quiet:hover{background:#22262A;border-color:#22262A;color:var(--ink)}
 
 .tlink{
