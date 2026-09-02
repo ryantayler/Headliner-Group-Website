@@ -1106,3 +1106,10 @@ First person, which is the point. It is the only place on a Headliner page where
 as himself.
 
 Its colour rule has to outrank `.theme-ryan .hand`, which paints every hand pink.
+
+## Pillar order is fixed
+
+**Revenue, margin, reach, connection.** In that order, everywhere the four are named. The
+cards on Partnerships, the intro above them, the how section on home and the home close.
+
+Numbered 1 to 4 in that order too, so the numerals behind the cards match.
