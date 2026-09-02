@@ -137,11 +137,48 @@
   --card:var(--panel);
 }
 .pillars__h{color:var(--pink)}
-.pillars.theme-ryan .card{background:var(--panel);border-color:var(--rim);border-radius:16px}
+.pillars__intro{max-width:66ch}
+.pillars.theme-ryan .card{
+  position:relative;overflow:hidden;
+  background:var(--panel);border-color:var(--rim);border-radius:16px;
+}
+/* The pillar number sits behind the card, bigger than the card so the corners crop it.
+   background-clip on the glyph gives the fill its vignette, bright in the middle and
+   falling away at the edges, which box-shadow cannot do to a letterform. */
+.pillars.theme-ryan .card::before{
+  content:attr(data-n);
+  position:absolute;right:-.10em;bottom:-.22em;z-index:0;pointer-events:none;
+  font-family:'Anton',Impact,sans-serif;font-weight:400;
+  font-size:clamp(240px,26vw,380px);line-height:.72;letter-spacing:-.04em;
+  color:#FF3F77;opacity:.46;
+}
+/* The vignette. An inset shadow on the card rather than a gradient on the glyph, which
+   is how the pink statement card in his brand does it. Painted after the numeral and
+   before the copy, so it darkens the number's edges and never touches the text. */
+.pillars.theme-ryan .card::after{
+  content:"";position:absolute;inset:0;z-index:0;pointer-events:none;border-radius:inherit;
+  box-shadow:inset 0 0 84px 26px rgba(10,10,10,.78);
+}
+/* one column cards are short and wide, so the glyph's bright middle rides up behind the
+   pillar name. Smaller and pushed harder into the corner below the breakpoint. */
+@media (max-width:960px){
+  .pillars.theme-ryan .card::before{font-size:clamp(180px,22vw,260px);bottom:-.16em;opacity:.34}
+}
+@media (max-width:640px){
+  .pillars.theme-ryan .card::before{
+    font-size:clamp(130px,26vw,175px);right:-.04em;bottom:-.08em;opacity:.24;
+  }
+}
+.pillars.theme-ryan .card>*{position:relative;z-index:1}
 .pillars.theme-ryan .card>.display{color:var(--pink)}
+/* One handwritten moment, and it is the note plus the signature read as a pair. */
+.pillars__note{
+  margin:clamp(20px,2.6vw,30px) 0 0;text-align:right;
+  font-size:clamp(20px,2.2vw,28px);color:var(--pink);
+}
 .pillars__sig{
   display:block;margin-left:auto;width:clamp(140px,16vw,180px);
-  margin-top:clamp(18px,2.2vw,28px);color:var(--ink);opacity:.9;
+  margin-top:6px;color:var(--ink);opacity:.9;
 }
 .theme-ryan .band--paper2 .card{background:var(--base)}
 /* Pink statement card. Saturated fill, so it takes the inset glow and the

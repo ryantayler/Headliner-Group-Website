@@ -1063,3 +1063,34 @@ Was *says yes to help you*.
 > **The skill still holds the old wording.** `ryan-voice` locks this line verbatim as
 > *says yes to help you*, and notes the causality is deliberate. He has overruled that
 > here. Until the skill is updated, anything drafted from it will put the old ending back.
+
+## The four pillars block, built out
+
+Section sub, under **Two ways we help you grow**: *All of our frameworks and processes are
+Ryan Tayler's own IP, the same content he implements inside Headliner Group.* The lane one
+sub is gone, since the block below now says it properly.
+
+Inside the block, before the cards, Ryan's definition and the four reasons. Lane one is
+just the heading now.
+
+**The numbers.** Each card carries its pillar number as a `data-n`, drawn as a pseudo
+element in Anton, solid pink, sitting bottom right and bigger than the card so the corners
+crop it.
+
+The **vignette is an inset shadow on the card**, not a gradient on the glyph.
+`background-clip:text` and a mask were both tried first and both left a hard rectangular
+seam across the letterform in Chromium. An inset `box-shadow` is also how the pink
+statement card in his brand system does it. Paint order matters: numeral, then vignette,
+then the copy at `z-index:1`, so the vignette darkens the number's edges and never touches
+the text.
+
+**Three size and opacity steps**, because the card gets shorter and wider as the grid
+collapses and the numeral's bright middle rides up behind the pillar name. Checked by
+sampling the brightest pixel under every text box at twelve widths from 390 to 1600.
+Worst case is 4.79 to 1. **Do not raise the opacity without re-running that check.**
+
+## The handwritten moment
+
+One per view, and it is the note and the signature read as a pair, bottom right of the
+block. *Every partnership I've built is one of these four.* Caveat, pink, first person,
+which is the point. It is the only place on a Headliner page where he speaks as himself.
