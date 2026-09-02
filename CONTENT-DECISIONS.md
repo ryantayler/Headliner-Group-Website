@@ -1050,3 +1050,16 @@ not buttons.
 It is the one button on a Headliner page that wears his accent, because it is the one
 that goes to his page. The value is literal in the stylesheet, since `--pink` only exists
 inside `theme-ryan`.
+
+## The emergency line changed
+
+New wording, Ryan's, on both pages that carry it:
+
+> "In an emergency a supplier says no when it's inconvenient and a partner says yes
+> regardless."
+
+Was *says yes to help you*.
+
+> **The skill still holds the old wording.** `ryan-voice` locks this line verbatim as
+> *says yes to help you*, and notes the causality is deliberate. He has overruled that
+> here. Until the skill is updated, anything drafted from it will put the old ending back.
