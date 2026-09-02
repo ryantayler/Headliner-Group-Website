@@ -1088,6 +1088,11 @@ Card copy sits at `#BFBAB2` rather than the muted token, which was too dark on t
 ground. Raising it forced the numeral down from 46 to 40 percent opacity at desktop,
 because the two trade against each other directly.
 
+The numerals were raised so they run behind the pillar name, which is where Ryan wanted
+them. That put the bright middle of the glyph under the heading, so the card's `::after`
+gained a **top scrim** on top of the inset shadow. Without it the pink heading falls to
+3.5 to 1.
+
 **Three size and opacity steps**, because the card gets shorter and wider as the grid
 collapses and the numeral's bright middle rides up behind the pillar name. Checked by
 sampling the brightest pixel under every text box at twelve widths from 390 to 1600.
@@ -1095,6 +1100,9 @@ Worst case is 4.79 to 1. **Do not raise the opacity without re-running that chec
 
 ## The handwritten moment
 
-One per view, and it is the note and the signature read as a pair, bottom right of the
-block. *Every partnership I've built is one of these four.* Caveat, pink, first person,
-which is the point. It is the only place on a Headliner page where he speaks as himself.
+One per view. *Every partnership I've built is one of these four.* Caveat, **ink not
+pink**, sitting above the cards, with the signature closing the block underneath them.
+First person, which is the point. It is the only place on a Headliner page where he speaks
+as himself.
+
+Its colour rule has to outrank `.theme-ryan .hand`, which paints every hand pink.

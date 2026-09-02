@@ -147,7 +147,7 @@
    falling away at the edges, which box-shadow cannot do to a letterform. */
 .pillars.theme-ryan .card::before{
   content:attr(data-n);
-  position:absolute;right:-.10em;bottom:-.22em;z-index:0;pointer-events:none;
+  position:absolute;right:-.10em;bottom:-.10em;z-index:0;pointer-events:none;
   font-family:'Anton',Impact,sans-serif;font-weight:400;
   font-size:clamp(240px,26vw,380px);line-height:.72;letter-spacing:-.04em;
   color:#FF3F77;opacity:.40;
@@ -158,15 +158,18 @@
 .pillars.theme-ryan .card::after{
   content:"";position:absolute;inset:0;z-index:0;pointer-events:none;border-radius:inherit;
   box-shadow:inset 0 0 84px 26px rgba(10,10,10,.78);
+  /* the numeral sits high enough to reach the pillar name, so the top of the card gets
+     its own scrim. Without it the bright middle of the glyph lands under the heading. */
+  background:linear-gradient(to bottom,rgba(10,10,10,.92) 0,rgba(10,10,10,.62) 24%,rgba(10,10,10,0) 48%);
 }
 /* one column cards are short and wide, so the glyph's bright middle rides up behind the
    pillar name. Smaller and pushed harder into the corner below the breakpoint. */
 @media (max-width:960px){
-  .pillars.theme-ryan .card::before{font-size:clamp(180px,22vw,260px);bottom:-.16em;opacity:.34}
+  .pillars.theme-ryan .card::before{font-size:clamp(180px,22vw,260px);bottom:-.08em;opacity:.34}
 }
 @media (max-width:640px){
   .pillars.theme-ryan .card::before{
-    font-size:clamp(130px,26vw,175px);right:-.04em;bottom:-.08em;opacity:.24;
+    font-size:clamp(130px,26vw,175px);right:-.04em;bottom:-.06em;opacity:.24;
   }
 }
 .pillars.theme-ryan .card>*{position:relative;z-index:1}
@@ -174,11 +177,13 @@
 /* the muted token is too dark against this card, so the pillar copy lifts a step. Not
    ink, because these read as supporting copy under the pillar name. */
 .pillars.theme-ryan .card p{color:#BFBAB2}
-/* One handwritten moment, and it is the note plus the signature read as a pair. */
+/* One handwritten moment. It sits above the cards and the signature closes the block. */
 .pillars__note{
-  margin:clamp(20px,2.6vw,30px) 0 0;text-align:right;
-  font-size:clamp(20px,2.2vw,28px);color:var(--pink);
+  margin:clamp(22px,2.8vw,34px) 0 0;text-align:right;
+  font-size:clamp(20px,2.2vw,28px);
 }
+/* .theme-ryan .hand paints the hand pink, and this one is ink, so it has to outrank it */
+.pillars.theme-ryan .pillars__note{color:var(--ink)}
 .pillars__sig{
   display:block;margin-left:auto;width:clamp(140px,16vw,180px);
   margin-top:6px;color:var(--ink);opacity:.9;
