@@ -403,25 +403,25 @@ window.DIAG ={
         {
           "id": "a",
           "text": "Never",
-          "band": "never",
+          "band": "you haven't had to delay paying anyone",
           "w": 0
         },
         {
           "id": "b",
           "text": "Once or twice",
-          "band": "once or twice",
+          "band": "you've delayed paying someone once or twice",
           "w": 30
         },
         {
           "id": "c",
           "text": "Most months",
-          "band": "most months",
+          "band": "you've been delaying payments most months",
           "w": 80
         },
         {
           "id": "d",
           "text": "Every month",
-          "band": "every month",
+          "band": "you've been delaying payments every month",
           "w": 100
         },
         {
@@ -446,8 +446,8 @@ window.DIAG ={
       "options": [
         {
           "id": "a",
-          "text": "Paid upfront or on the day",
-          "band": "upfront or on the day",
+          "text": "Straight away, we're paid before we'd invoice",
+          "band": "straight away",
           "w": 0
         },
         {
@@ -850,25 +850,25 @@ window.DIAG ={
         {
           "id": "a",
           "text": "No",
-          "band": "never",
+          "band": "nothing you wanted to grow has stalled for want of someone to hand it to",
           "w": 0
         },
         {
           "id": "b",
           "text": "Once",
-          "band": "once",
+          "band": "something you wanted to grow has stalled once for want of anyone to hand it to",
           "w": 40
         },
         {
           "id": "c",
           "text": "A few times",
-          "band": "a few times",
+          "band": "a few things have stalled for want of anyone to hand them to",
           "w": 80
         },
         {
           "id": "d",
           "text": "That's the normal state",
-          "band": "as a matter of routine",
+          "band": "things stall for want of anyone to hand them to as a matter of routine",
           "w": 100
         },
         {
@@ -987,25 +987,25 @@ window.DIAG ={
         {
           "id": "a",
           "text": "No",
-          "band": "never",
+          "band": "you haven't had to turn work away",
           "w": 0
         },
         {
           "id": "b",
           "text": "Once or twice",
-          "band": "once or twice",
+          "band": "you've turned work away or pushed a start date once or twice",
           "w": 40
         },
         {
           "id": "c",
           "text": "Most months",
-          "band": "most months",
+          "band": "you're turning work away or pushing start dates most months",
           "w": 85
         },
         {
           "id": "d",
           "text": "Constantly",
-          "band": "constantly",
+          "band": "you're turning work away constantly",
           "w": 100
         },
         {
@@ -1176,13 +1176,6 @@ window.DIAG ={
           "w": 100
         },
         {
-          "id": "e",
-          "text": "We're one off by nature, they don't come back",
-          "band": "one off by design",
-          "w": 20,
-          "oneoff": true
-        },
-        {
           "id": "z",
           "text": "Not sure",
           "notSure": true,
@@ -1298,7 +1291,7 @@ window.DIAG ={
         {
           "id": "a",
           "text": "Most of them",
-          "band": "most of them",
+          "band": "most",
           "w": 0
         },
         {
@@ -1489,7 +1482,7 @@ window.DIAG ={
         {
           "id": "e",
           "text": "We don't know",
-          "band": "unknown",
+          "band": "something you can't put your finger on",
           "w": 90,
           "flags": [
             "no_data"
@@ -1829,19 +1822,19 @@ window.DIAG ={
         {
           "id": "a",
           "text": "Yes, consistently",
-          "band": "consistently",
+          "band": "you're generating enquiries consistently",
           "w": 0
         },
         {
           "id": "b",
           "text": "On and off",
-          "band": "on and off",
+          "band": "you're generating enquiries on and off",
           "w": 60
         },
         {
           "id": "c",
           "text": "No, it all comes to us",
-          "band": "nothing, it all comes to you",
+          "band": "you're doing nothing to generate enquiries, it all comes to you",
           "w": 100
         },
         {
@@ -1958,31 +1951,31 @@ window.DIAG ={
         {
           "id": "a",
           "text": "In the last 6 months",
-          "band": "inside the last six months",
+          "band": "you last raised prices inside the last six months",
           "w": 0
         },
         {
           "id": "b",
           "text": "6 to 12 months ago",
-          "band": "in the last year",
+          "band": "you last raised prices in the last year",
           "w": 30
         },
         {
           "id": "c",
           "text": "1 to 2 years ago",
-          "band": "one to two years ago",
+          "band": "you last raised prices one to two years ago",
           "w": 75
         },
         {
           "id": "d",
           "text": "More than 2 years ago",
-          "band": "more than two years ago",
+          "band": "you last raised prices more than two years ago",
           "w": 95
         },
         {
           "id": "e",
           "text": "Never",
-          "band": "never",
+          "band": "you've never raised your prices",
           "w": 100
         },
         {
@@ -2229,7 +2222,7 @@ window.DIAG ={
         {
           "id": "b",
           "text": "Two channels carry it",
-          "band": "carried by two channels",
+          "band": "through two channels",
           "flags": [
             {
               "id": "key_channel",
@@ -2240,7 +2233,7 @@ window.DIAG ={
         {
           "id": "c",
           "text": "One channel is nearly all of it",
-          "band": "almost entirely one channel",
+          "band": "almost entirely through one channel",
           "flags": [
             {
               "id": "key_channel",
@@ -2437,7 +2430,7 @@ window.DIAG ={
         {
           "id": "c",
           "text": "Month to month, cancellable anytime",
-          "band": "month to month",
+          "band": "a month to month arrangement",
           "flags": [
             {
               "id": "no_contracts",
@@ -2650,13 +2643,13 @@ window.DIAG ={
         {
           "id": "a",
           "text": "Not at all, they could take over",
-          "band": "not at all",
+          "band": "a buyer wouldn't need you at all",
           "flags": []
         },
         {
           "id": "b",
           "text": "A few weeks of handover",
-          "band": "a few weeks",
+          "band": "a buyer would need you for a few weeks of handover",
           "flags": [
             {
               "id": "owner_trapped",
@@ -2667,7 +2660,7 @@ window.DIAG ={
         {
           "id": "c",
           "text": "Six to twelve months",
-          "band": "the best part of a year",
+          "band": "a buyer would need you for the best part of a year",
           "flags": [
             {
               "id": "owner_trapped",
@@ -2678,7 +2671,7 @@ window.DIAG ={
         {
           "id": "d",
           "text": "Years, or it doesn't work without me",
-          "band": "years",
+          "band": "a buyer would need you for years, if it works without you at all",
           "flags": [
             {
               "id": "owner_trapped",
@@ -2951,14 +2944,14 @@ window.DIAG ={
             "banded": "you get paid {q54.band}"
           },
           {
-            "banded": "the balance takes {q7.band} to land",
-            "precise": "the balance takes {q7.exact} days to land"
+            "banded": "the balance lands {q7.band}",
+            "precise": "the balance lands {q7.exact} days later"
           },
           {
             "banded": "you're owed {q55.band} past its due date"
           },
           {
-            "banded": "you've been delaying payments {q6.band}"
+            "banded": "{q6.band}"
           },
           {
             "banded": "you're holding {q8.band}"
@@ -2982,7 +2975,7 @@ window.DIAG ={
             "banded": "if you went dark for a month the business {q12.band}"
           },
           {
-            "banded": "something you wanted to grow has stalled for want of anyone to hand it to, {q14.band}"
+            "banded": "{q14.band}"
           }
         ],
         "close": "Hiring another pair of hands underneath you doesn't touch this. What's missing is a whole role that doesn't exist yet, and until it does, everything you add lands on the same desk."
@@ -2997,13 +2990,13 @@ window.DIAG ={
             "precise": "you're running at {q16.exact}% booked"
           },
           {
-            "banded": "you've turned work away or pushed start dates {q17.band}"
+            "banded": "{q17.band}"
           },
           {
             "banded": "lead times have {q18.band}"
           },
           {
-            "banded": "a typical job is only ready {q19.band}"
+            "banded": "a typical job is ready {q19.band}"
           }
         ],
         "close": "Nothing at the front of the business needs attention until the back of it can breathe. Anything you do to bring in more work right now gets paid for by the customers you already have."
@@ -3046,7 +3039,7 @@ window.DIAG ={
             "banded": "prospects come back on your quote asking what's included {q28.band}"
           },
           {
-            "banded": "and they find out what you charge {q30.band}"
+            "banded": "they find out what you charge {q30.band}"
           }
         ],
         "close": "This isn't a sales technique problem. When the thing on the table is clear, priced, and it fits what the buyer came in for, an average salesperson closes it. Right now yours needs you in the room to make sense of it."
@@ -3064,7 +3057,7 @@ window.DIAG ={
             "banded": "volume has {q33.band} over the last year"
           },
           {
-            "banded": "you're doing {q35.band} to generate more"
+            "banded": "{q35.band}"
           }
         ],
         "close": "You could take on more work tomorrow, which is what separates this from a delivery problem. Nothing downstream is broken. The business just isn't being fed, and it won't start feeding itself."
@@ -3083,7 +3076,7 @@ window.DIAG ={
             "precise": "after everything it's {q37.exact}%"
           },
           {
-            "banded": "you last raised prices {q38.band}"
+            "banded": "{q38.band}"
           },
           {
             "banded": "jobs run over what you quoted {q39.band}"
@@ -3189,7 +3182,8 @@ window.DIAG ={
         "precise": "{q42.exact}% of your revenue comes from one product or service line. That's fine while the market wants it, and it's a single point of failure the day the market moves or a competitor undercuts it."
       },
       "key_channel": {
-        "banded": "Your customers arrive {q43.band}. Channels change without asking you first, and an algorithm shift, a search update or one referrer going quiet can halve your enquiries inside a month."
+        "banded": "Your customers arrive {q43.band}. Channels change without asking you first, and an algorithm shift, a search update or one referrer going quiet can halve your enquiries inside a month.",
+        "alt": "You weren't sure where your customers actually come from, which usually means one channel is doing more of the work than you think. A channel can change without asking you first, and an algorithm shift, a search update or one referrer going quiet can halve your enquiries inside a month."
       },
       "key_supplier": {
         "banded": "You've got one supplier with no ready replacement. Their price rise is your price rise, their delay is your delay, and their bad year is your bad year."
@@ -3223,7 +3217,7 @@ window.DIAG ={
         "banded": "There's nobody who could run this if you stepped out. Every decision routes through you, which caps the business at the size of your week."
       },
       "owner_trapped": {
-        "banded": "Sold tomorrow, a buyer would need you to stay {q49.band}. That's the number that decides what the business is worth to anyone but you, and it's the same number that decides whether you can ever step back.",
+        "banded": "Sold tomorrow, {q49.band}. How long that handover runs is what decides whether the business is worth anything to anyone but you, and it's the same thing that decides whether you can ever step back.",
         "alt": "You haven't thought about how long a buyer would need you to stay on, which is its own answer. Until somebody else can run it, the business is a job that owns you rather than an asset you own."
       },
       "no_succession": {

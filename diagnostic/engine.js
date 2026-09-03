@@ -194,10 +194,15 @@
       else if (missing.length === 1) d.unownedLayers = cap(missing[0]) + " sits with you rather than with somebody whose job it is.";
       else d.unownedLayers = cap(missing.slice(0, -1).join(", ") + " and " + missing[missing.length - 1]) + " sit with you rather than with somebody whose job it is.";
     }
-    var q13 = byId("q13"), t = selected(ans, q13).map(function (o) { return o.text.toLowerCase(); });
+    var q13 = byId("q13"), t = selected(ans, q13)
+      .filter(function (o) { return !o.exclusive; })     // the opt out is not a task
+      .map(function (o) { return o.text.toLowerCase(); });
+    // A serial comma when an item carries its own "and", so "chasing invoices and
+    // doing the books, and fixing things that went wrong" does not run together.
+    var joiner = t.some(function (x) { return / and /.test(x); }) ? ", and " : " and ";
     d.ownerTasks = t.length === 0 ? ""
       : t.length === 1 ? t[0]
-      : t.slice(0, -1).join(", ") + " and " + t[t.length - 1];
+      : t.slice(0, -1).join(", ") + joiner + t[t.length - 1];
     return d;
   }
   function cap(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
@@ -244,7 +249,11 @@
     if (!block) return "";
     if (block.precise && resolvable(block.precise, ans) && bandsResolve(block.precise, ans)) return sentenceCase(fill(block.precise, ans, d));
     var banded = block.banded || block.text || "";
-    if (block.alt && !bandsResolve(banded, ans)) return sentenceCase(fill(block.alt, ans, d));
+    if (!bandsResolve(banded, ans)) {
+      // No alt to fall back on, so print nothing. A gap in a sentence is worse than
+      // a missing paragraph, and the caller drops the finding entirely.
+      return block.alt ? sentenceCase(fill(block.alt, ans, d)) : "";
+    }
     return sentenceCase(fill(banded, ans, d));
   }
 
@@ -359,7 +368,11 @@
     }).sort(function (a, b) {
       return a.priority - b.priority || (flags.sev[b.flag] - flags.sev[a.flag]);
     });
-    if (matches.length) compound = { key: matches[0].constraint + " + " + matches[0].flag, text: sentenceCase(fill(matches[0].text, ans, d)) };
+    for (var mi = 0; mi < matches.length && !compound; mi++) {
+      if (!bandsResolve(matches[mi].text, ans)) continue;
+      compound = { key: matches[mi].constraint + " + " + matches[mi].flag,
+                   text: sentenceCase(fill(matches[mi].text, ans, d)) };
+    }
 
     return {
       opening: tooUnsure ? B.opening.tooUnsure : wellRun ? B.opening.wellRun : noneSevere ? B.opening.noneSevere : B.opening.normal,
@@ -384,7 +397,7 @@
         framing: B.riskFamilyFraming[primaryFam.id],
         flags: shown.map(function (f) {
           return { id: f.id, name: f.name, sev: f.sev, body: pick(B.riskDef[f.id], ans, d), fix: B.riskFix[f.id] };
-        })
+        }).filter(function (f) { return f.body; })
       } : { family: null, framing: B.riskFamilyFraming.none, flags: [] },
       minorRisk: minorRisk,
       dontDo: confident ? B.dontDoYet[primaryId] : null,
@@ -398,5 +411,11 @@
     };
   }
 
-  global.DiagEngine = { diagnose: diagnose, scoreConstraints: scoreConstraints, suppressedBy: suppressedBy };
+  global.DiagEngine = {
+    diagnose: diagnose, scoreConstraints: scoreConstraints, suppressedBy: suppressedBy,
+    // exposed so the grammar sweep can assemble a block for any answer set, without
+    // needing that answer set to actually make the constraint fire
+    _internals: { buildDef: buildDef, pick: pick, derived: derived, fill: fill, bandsResolve: bandsResolve,
+                  setCache: function (d) { d_cache = d; } }
+  };
 })(window);
