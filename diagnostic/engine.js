@@ -37,6 +37,10 @@
       var owned = sel.filter(function (o) { return !o.exclusive; }).length;
       return Math.round(((layers - owned) / layers) * 100);
     }
+    if (q.scoreRule === "owner_task_load") {
+      if (sel.some(function (o) { return o.exclusive; })) return 0;
+      return Math.min(100, sel.length * 34);
+    }
     if (q.scoreRule === "channel_count") {
       if (sel.some(function (o) { return o.exclusive; })) return 100;
       var n = sel.length;
@@ -76,10 +80,8 @@
   }
 
   function isOneOff(ans) {
-    var q21 = byId("q21"), sel = selected(ans, q21);
-    if (sel.length && sel[0].oneoff) return true;
-    var q3 = byId("q3"), s3 = selected(ans, q3);
-    return !!(s3.length && s3[0].model === "oneoff");
+    var sel = selected(ans, byId("q53"));
+    return !!(sel.length && sel[0].oneoff);
   }
 
   /* ---------- disqualifiers and hard triggers ---------- */
@@ -122,6 +124,9 @@
     });
     // Not sure is a finding. Repeated blindness compounds, and four or more
     // unanswerable data questions raises the flag on its own.
+    // "Of the ones you ticked, which would hurt most" promotes that one flag.
+    var worst = selected(ans, byId("q58"));
+    if (worst.length && worst[0].boost) raw[worst[0].boost] = 100;
     if (counts.no_data) raw.no_data = Math.max(raw.no_data, Math.min(100, 40 + 15 * counts.no_data));
     if (notSure >= T("NOT_SURE_DATA_FLAG")) raw.no_data = Math.max(raw.no_data || 0, 80);
     return { sev: raw, counts: counts, notSureCount: notSure };
@@ -189,6 +194,10 @@
       else if (missing.length === 1) d.unownedLayers = cap(missing[0]) + " sits with you rather than with somebody whose job it is.";
       else d.unownedLayers = cap(missing.slice(0, -1).join(", ") + " and " + missing[missing.length - 1]) + " sit with you rather than with somebody whose job it is.";
     }
+    var q13 = byId("q13"), t = selected(ans, q13).map(function (o) { return o.text.toLowerCase(); });
+    d.ownerTasks = t.length === 0 ? ""
+      : t.length === 1 ? t[0]
+      : t.slice(0, -1).join(", ") + " and " + t[t.length - 1];
     return d;
   }
   function cap(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
@@ -221,11 +230,13 @@
   }
   // Every {qN.band} in the text has to resolve to something. A Not sure answer
   // carries no band, so the clause holding it is dropped rather than printed empty.
+  var d_cache = {};
   function bandsResolve(text, ans) {
     var ok = true, m;
     SLOT.lastIndex = 0;
     while ((m = SLOT.exec(text)) !== null) {
       if (m[2] === "band" && !bandOf(ans, m[1])) ok = false;
+      if (m[3] && !d_cache[m[3]]) ok = false;
     }
     return ok;
   }
@@ -244,12 +255,21 @@
       if (e.precise && resolvable(e.precise, ans) && bandsResolve(e.precise, ans)) { clauses.push(fill(e.precise, ans, d)); return; }
       if (bandsResolve(e.banded, ans)) clauses.push(fill(e.banded, ans, d));
     });
-    var open = fill(def.open, ans, d).trim();
-    if (clauses.length) {
-      var joined = clauses.length === 1 ? clauses[0]
-        : clauses.slice(0, -1).join(", ") + " and " + clauses[clauses.length - 1];
-      open = (open ? open + " " : "") + cap(joined) + ".";
+    // The opening may be a list of sentences. One whose data did not resolve is
+    // dropped, same as an evidence clause, so a missing answer never leaves a hole.
+    var opens = (Array.isArray(def.open) ? def.open : [def.open]).filter(function (t) {
+      return t && bandsResolve(t, ans);
+    }).map(function (t) { return fill(t, ans, d).trim(); }).filter(Boolean);
+    var open = opens.join(" ");
+    // Four or five clauses in one sentence is a comma pile up, so they break into
+    // sentences of at most three.
+    var sentences = [];
+    for (var i = 0; i < clauses.length; i += 3) {
+      var part = clauses.slice(i, i + 3);
+      sentences.push(cap(part.length === 1 ? part[0]
+        : part.slice(0, -1).join(", ") + " and " + part[part.length - 1]) + ".");
     }
+    if (sentences.length) open = (open ? open + " " : "") + sentences.join(" ");
     if (open) parts.push(open);
     if (def.close) parts.push(fill(def.close, ans, d));
     return sentenceCase(parts.join("\n\n"));
@@ -303,6 +323,7 @@
     });
 
     var d = derived(ans, primaryId);
+    d_cache = d;
 
     // Risk. Families first, individual flags second.
     var fams = scoreFamilies(flags.sev);
@@ -315,10 +336,26 @@
       ? primaryFam.flags.filter(function (f) { return f.sev >= T("FLAG_PRINT"); }).slice(0, T("MAX_FLAGS_SHOWN"))
       : [];
 
+    // Minor risk. Names one specific flag from the second family rather than the
+    // family itself, because "there is also fragility here" tells nobody anything.
+    var minorRisk = null;
+    if (minorFam) {
+      var top = minorFam.flags.filter(function (f) {
+        return f.sev >= T("FLAG_PRINT") && shown.indexOf(f) === -1;
+      })[0];
+      if (top && B.minorRisk[top.id]) {
+        minorRisk = { family: minorFam.id, id: top.id, name: top.name,
+                      framing: B.minorRisk.framing, line: B.minorRisk[top.id] };
+      }
+    }
+
     // Compound. One block only, the highest priority match on the primary constraint.
     var compound = null;
+    var shownIds = shown.map(function (f) { return f.id; });
     var matches = B.compound.filter(function (c) {
-      return c.constraint === primaryId && (flags.sev[c.flag] || 0) >= T("FLAG_PRINT");
+      // Naming a risk the reader has not been shown reads as a non sequitur, so a
+      // compound block only fires on a flag that actually printed above it.
+      return c.constraint === primaryId && shownIds.indexOf(c.flag) !== -1;
     }).sort(function (a, b) {
       return a.priority - b.priority || (flags.sev[b.flag] - flags.sev[a.flag]);
     });
@@ -349,7 +386,7 @@
           return { id: f.id, name: f.name, sev: f.sev, body: pick(B.riskDef[f.id], ans, d), fix: B.riskFix[f.id] };
         })
       } : { family: null, framing: B.riskFamilyFraming.none, flags: [] },
-      minorRisk: minorFam ? { family: minorFam.id, line: B.minorRisk[minorFam.id] } : null,
+      minorRisk: minorRisk,
       dontDo: confident ? B.dontDoYet[primaryId] : null,
       closing: { text: tooUnsure ? B.closing.unsure : wellRun ? B.closing.loose : B.closing.text, cta: B.closing.cta },
       debug: {

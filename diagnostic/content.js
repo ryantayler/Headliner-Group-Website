@@ -194,45 +194,81 @@ window.DIAG ={
       "section": "profiling",
       "n": 3,
       "weight": 0,
-      "text": "What does the business mainly sell?",
+      "text": "What does the business sell?",
+      "type": "multi",
+      "options": [
+        {
+          "id": "a",
+          "text": "Hiring out equipment or gear"
+        },
+        {
+          "id": "b",
+          "text": "Doing the work for the client"
+        },
+        {
+          "id": "c",
+          "text": "Selling products the customer keeps"
+        },
+        {
+          "id": "d",
+          "text": "Supplying people, labour or crew"
+        },
+        {
+          "id": "e",
+          "text": "Space or a venue"
+        },
+        {
+          "id": "f",
+          "text": "Advice, consulting or training"
+        },
+        {
+          "id": "g",
+          "text": "Software or subscriptions"
+        }
+      ],
+      "help": "Tick everything that applies. Most businesses are more than one of these.",
+      "max": 7
+    },
+    {
+      "id": "q53",
+      "section": "profiling",
+      "n": 4,
+      "weight": 0,
+      "text": "How does revenue usually repeat?",
+      "help": "The shape of it, not the size.",
       "type": "single",
       "options": [
         {
           "id": "a",
-          "text": "Services delivered by people",
-          "band": "a people delivered service",
-          "model": "service"
-        },
-        {
-          "id": "b",
-          "text": "Products you make, stock or ship",
-          "band": "a product business",
-          "model": "product"
-        },
-        {
-          "id": "c",
-          "text": "A mix of both",
-          "band": "a mix of product and service",
-          "model": "mixed"
-        },
-        {
-          "id": "d",
-          "text": "Ongoing contracts, retainers or subscriptions",
-          "band": "a recurring revenue business",
+          "text": "Ongoing contracts or retainers",
+          "band": "on contracts and retainers",
           "model": "recurring"
         },
         {
-          "id": "e",
-          "text": "One off projects, rarely the same customer twice",
-          "band": "a one off project business",
-          "model": "oneoff"
+          "id": "b",
+          "text": "Same customers buy several times a year",
+          "band": "from customers who buy often",
+          "model": "repeat"
+        },
+        {
+          "id": "c",
+          "text": "Same customers come back, but not often",
+          "band": "from customers who come back occasionally",
+          "model": "occasional"
+        },
+        {
+          "id": "d",
+          "text": "Mostly one off, rarely the same customer twice",
+          "band": "one job at a time",
+          "model": "oneoff",
+          "oneoff": true
         }
       ]
     },
     {
       "id": "q4",
       "section": "profiling",
-      "n": 4,
+      "n": 5,
       "weight": 0,
       "text": "How long has the business been trading?",
       "type": "single",
@@ -266,7 +302,7 @@ window.DIAG ={
     {
       "id": "q5",
       "section": "profiling",
-      "n": 5,
+      "n": 6,
       "weight": 0,
       "text": "Where does most of your week actually go?",
       "help": "Not where you want it to go. Where it went last week.",
@@ -305,9 +341,61 @@ window.DIAG ={
       ]
     },
     {
+      "id": "q54",
+      "section": "cashflow",
+      "n": 7,
+      "weight": 1.3,
+      "text": "How do you get paid on a typical job?",
+      "type": "single",
+      "options": [
+        {
+          "id": "a",
+          "text": "All of it upfront, before we start",
+          "band": "in full before you start",
+          "w": 0
+        },
+        {
+          "id": "b",
+          "text": "A deposit upfront, balance on completion",
+          "band": "on a deposit and a balance at the end",
+          "w": 20
+        },
+        {
+          "id": "c",
+          "text": "Progress payments across the job",
+          "band": "in progress payments",
+          "w": 25
+        },
+        {
+          "id": "d",
+          "text": "A deposit upfront, balance on terms after",
+          "band": "on a deposit, with the balance on terms",
+          "w": 50
+        },
+        {
+          "id": "e",
+          "text": "Nothing upfront, invoiced on completion",
+          "band": "with nothing upfront",
+          "w": 75
+        },
+        {
+          "id": "f",
+          "text": "Nothing upfront, invoiced on terms after",
+          "band": "with nothing upfront and the rest on terms",
+          "w": 100
+        },
+        {
+          "id": "z",
+          "text": "Not sure",
+          "notSure": true,
+          "w": 0
+        }
+      ]
+    },
+    {
       "id": "q6",
       "section": "cashflow",
-      "n": 6,
+      "n": 8,
       "weight": 1.2,
       "text": "In the last 6 months, how often have you delayed paying a supplier, a bill or yourself because the money hadn't landed yet?",
       "type": "single",
@@ -347,9 +435,9 @@ window.DIAG ={
     {
       "id": "q7",
       "section": "cashflow",
-      "n": 7,
+      "n": 9,
       "weight": 1.0,
-      "text": "From finishing a job to the money hitting your account, how long does it usually take?",
+      "text": "Once you've invoiced the balance, how long until it's actually in the account?",
       "type": "single",
       "exact": {
         "label": "If you know the average, how many days?",
@@ -397,7 +485,7 @@ window.DIAG ={
     {
       "id": "q8",
       "section": "cashflow",
-      "n": 8,
+      "n": 10,
       "weight": 1.3,
       "text": "If revenue stopped tomorrow, how long could you cover wages and fixed costs from the cash you have?",
       "type": "single",
@@ -446,7 +534,7 @@ window.DIAG ={
     {
       "id": "q9",
       "section": "cashflow",
-      "n": 9,
+      "n": 11,
       "weight": 1.2,
       "text": "In the last 12 months, have you turned down or delayed work because you couldn't fund the upfront cost of it?",
       "help": "Stock, deposits, wages, gear hire, anything you'd have to pay for before the customer pays you.",
@@ -487,7 +575,7 @@ window.DIAG ={
     {
       "id": "q10",
       "section": "cashflow",
-      "n": 10,
+      "n": 12,
       "weight": 0.8,
       "text": "Over the last 12 months, was the business profitable on paper?",
       "help": "On paper, meaning the accountant's version, not what's in the bank.",
@@ -521,9 +609,56 @@ window.DIAG ={
       ]
     },
     {
+      "id": "q55",
+      "section": "cashflow",
+      "n": 13,
+      "weight": 1.2,
+      "text": "How much money are you owed right now that's past its due date?",
+      "help": "What your clients owe you, not what you owe anyone.",
+      "type": "single",
+      "options": [
+        {
+          "id": "a",
+          "text": "Nothing",
+          "band": "nothing",
+          "w": 0
+        },
+        {
+          "id": "b",
+          "text": "Under a week's revenue",
+          "band": "under a week of revenue",
+          "w": 30
+        },
+        {
+          "id": "c",
+          "text": "One to four weeks' revenue",
+          "band": "one to four weeks of revenue",
+          "w": 70
+        },
+        {
+          "id": "d",
+          "text": "More than a month's revenue",
+          "band": "more than a month of revenue",
+          "w": 100
+        },
+        {
+          "id": "z",
+          "text": "I don't know",
+          "notSure": true,
+          "w": 0,
+          "flags": [
+            {
+              "id": "no_data",
+              "sev": 80
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "q11",
       "section": "talent",
-      "n": 11,
+      "n": 14,
       "weight": 1.4,
       "text": "Which of these are somebody's actual job, not something you pick up when you get a minute?",
       "help": "Tick every one that has a real owner other than you.",
@@ -570,7 +705,7 @@ window.DIAG ={
     {
       "id": "q12",
       "section": "talent",
-      "n": 12,
+      "n": 15,
       "weight": 1.2,
       "text": "If you were uncontactable for a month, what happens to the business?",
       "type": "single",
@@ -616,33 +751,84 @@ window.DIAG ={
     {
       "id": "q13",
       "section": "talent",
-      "n": 13,
-      "weight": 1.0,
-      "text": "How much of your week goes to work someone a level below you could do?",
+      "n": 16,
+      "weight": 1.2,
+      "text": "Which of these ate the most of your week?",
+      "type": "multi",
+      "options": [
+        {
+          "id": "a",
+          "text": "Quoting and pricing jobs"
+        },
+        {
+          "id": "b",
+          "text": "Selling and chasing leads"
+        },
+        {
+          "id": "c",
+          "text": "Doing the delivery work yourself"
+        },
+        {
+          "id": "d",
+          "text": "Scheduling and rostering"
+        },
+        {
+          "id": "e",
+          "text": "Chasing invoices and doing the books"
+        },
+        {
+          "id": "f",
+          "text": "Marketing and posting"
+        },
+        {
+          "id": "g",
+          "text": "Answering questions your team could answer"
+        },
+        {
+          "id": "h",
+          "text": "Fixing things that went wrong"
+        },
+        {
+          "id": "n",
+          "text": "None of these, my week went elsewhere",
+          "exclusive": true
+        }
+      ],
+      "help": "Pick up to three. Last week, not a typical week.",
+      "max": 3,
+      "scoreRule": "owner_task_load"
+    },
+    {
+      "id": "q56",
+      "section": "talent",
+      "n": 17,
+      "weight": 1.1,
+      "text": "How much of last week went to any of these?",
+      "help": "Partnerships and relationships, planning the next twelve months, working on pricing or the model, hiring, or building something that outlasts this month.",
       "type": "single",
       "options": [
         {
           "id": "a",
-          "text": "Almost none",
-          "band": "almost none of your week",
+          "text": "More than a day",
+          "band": "more than a day a week",
           "w": 0
         },
         {
           "id": "b",
-          "text": "About a quarter",
-          "band": "about a quarter of your week",
+          "text": "Half a day",
+          "band": "about half a day a week",
           "w": 35
         },
         {
           "id": "c",
-          "text": "About half",
-          "band": "about half your week",
-          "w": 75
+          "text": "An hour or two",
+          "band": "an hour or two",
+          "w": 80
         },
         {
           "id": "d",
-          "text": "Most of it",
-          "band": "most of your week",
+          "text": "None of it",
+          "band": "none of it",
           "w": 100
         },
         {
@@ -656,9 +842,9 @@ window.DIAG ={
     {
       "id": "q14",
       "section": "talent",
-      "n": 14,
+      "n": 18,
       "weight": 1.2,
-      "text": "In the last 12 months, has something you wanted to grow stalled because there was nobody to hand it to?",
+      "text": "In the last 12 months, has a new product, a new location, a new market or an idea you've been sitting on stalled because you had nobody to give it to and no time to do it yourself?",
       "type": "single",
       "options": [
         {
@@ -696,7 +882,7 @@ window.DIAG ={
     {
       "id": "q15",
       "section": "talent",
-      "n": 15,
+      "n": 19,
       "weight": 0.9,
       "text": "How many people report directly to you?",
       "type": "single",
@@ -742,7 +928,7 @@ window.DIAG ={
     {
       "id": "q16",
       "section": "fulfilment",
-      "n": 16,
+      "n": 20,
       "weight": 1.3,
       "text": "How booked is your delivery capacity for the next 30 days?",
       "help": "Capacity meaning the hours, people or stock you'd need to actually do the work.",
@@ -793,7 +979,7 @@ window.DIAG ={
     {
       "id": "q17",
       "section": "fulfilment",
-      "n": 17,
+      "n": 21,
       "weight": 1.3,
       "text": "In the last 6 months, have you turned work away or pushed out a start date because you couldn't fit it in?",
       "type": "single",
@@ -833,7 +1019,7 @@ window.DIAG ={
     {
       "id": "q18",
       "section": "fulfilment",
-      "n": 18,
+      "n": 22,
       "weight": 1.0,
       "text": "What's happened to your lead time in the last 12 months?",
       "help": "Lead time meaning how long a customer waits from saying yes to getting the work.",
@@ -874,33 +1060,33 @@ window.DIAG ={
     {
       "id": "q19",
       "section": "fulfilment",
-      "n": 19,
+      "n": 23,
       "weight": 1.1,
-      "text": "How often does delivery slip past what you promised the customer?",
+      "text": "How far ahead is a typical job actually ready?",
       "type": "single",
       "options": [
         {
           "id": "a",
-          "text": "Rarely",
-          "band": "rarely",
+          "text": "Comfortably ahead",
+          "band": "comfortably ahead of time",
           "w": 0
         },
         {
           "id": "b",
-          "text": "Occasionally",
-          "band": "occasionally",
-          "w": 35
+          "text": "A few days ahead",
+          "band": "a few days ahead",
+          "w": 40
         },
         {
           "id": "c",
-          "text": "Regularly",
-          "band": "regularly",
-          "w": 80
+          "text": "The day before",
+          "band": "the day before",
+          "w": 85
         },
         {
           "id": "d",
-          "text": "On most jobs",
-          "band": "on most jobs",
+          "text": "We're finishing it as it starts",
+          "band": "only as it starts",
           "w": 100
         },
         {
@@ -909,14 +1095,15 @@ window.DIAG ={
           "notSure": true,
           "w": 0
         }
-      ]
+      ],
+      "help": "Ready meaning done, not still being finished off."
     },
     {
       "id": "q20",
       "section": "fulfilment",
-      "n": 20,
+      "n": 24,
       "weight": 0.9,
-      "text": "Is your team working overtime or weekends to keep up?",
+      "text": "Outside of delivery days, is the team working nights and weekends to keep up?",
       "type": "single",
       "options": [
         {
@@ -949,12 +1136,13 @@ window.DIAG ={
           "notSure": true,
           "w": 0
         }
-      ]
+      ],
+      "help": "Long hours on an event day or a job site are the job. This is about the weeks in between."
     },
     {
       "id": "q21",
       "section": "value",
-      "n": 21,
+      "n": 25,
       "weight": 1.3,
       "text": "Of the customers who bought from you a year ago, roughly how many still buy from you?",
       "type": "single",
@@ -1003,9 +1191,66 @@ window.DIAG ={
       ]
     },
     {
+      "id": "q57",
+      "section": "value",
+      "n": 26,
+      "weight": 1.4,
+      "text": "Of the work your existing customers put out, how much of it comes to you?",
+      "help": "Not how many customers you keep. How much of what they spend you actually get.",
+      "type": "single",
+      "exact": {
+        "label": "If you know it, what percentage?",
+        "unit": "%"
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": "Nearly all of it",
+          "band": "nearly all",
+          "w": 0
+        },
+        {
+          "id": "b",
+          "text": "More than half",
+          "band": "more than half",
+          "w": 25
+        },
+        {
+          "id": "c",
+          "text": "About half",
+          "band": "about half",
+          "w": 60
+        },
+        {
+          "id": "d",
+          "text": "Less than half",
+          "band": "less than half",
+          "w": 85
+        },
+        {
+          "id": "e",
+          "text": "A small slice, they spread it around",
+          "band": "only a small slice",
+          "w": 100
+        },
+        {
+          "id": "z",
+          "text": "Not sure",
+          "notSure": true,
+          "w": 0,
+          "flags": [
+            {
+              "id": "no_data",
+              "sev": 70
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "q22",
       "section": "value",
-      "n": 22,
+      "n": 27,
       "weight": 1.1,
       "text": "How often do customers come back and buy again without you chasing them?",
       "type": "single",
@@ -1045,7 +1290,7 @@ window.DIAG ={
     {
       "id": "q23",
       "section": "value",
-      "n": 23,
+      "n": 28,
       "weight": 1.2,
       "text": "How many of your new customers arrive through a referral from an existing one?",
       "type": "single",
@@ -1085,9 +1330,9 @@ window.DIAG ={
     {
       "id": "q24",
       "section": "value",
-      "n": 24,
+      "n": 29,
       "weight": 1.2,
-      "text": "In the last 12 months, how many customers have gone to a competitor or gone quiet after one purchase?",
+      "text": "In the last 12 months, how many customers have moved some or all of their work to a competitor?",
       "type": "single",
       "options": [
         {
@@ -1125,9 +1370,9 @@ window.DIAG ={
     {
       "id": "q25",
       "section": "value",
-      "n": 25,
+      "n": 30,
       "weight": 0.8,
-      "text": "Do you know why customers stop buying from you?",
+      "text": "Do you know why customers stop buying, or go to a competitor?",
       "type": "single",
       "options": [
         {
@@ -1165,7 +1410,7 @@ window.DIAG ={
     {
       "id": "q26",
       "section": "offer",
-      "n": 26,
+      "n": 31,
       "weight": 1.4,
       "text": "Of the people who enquire and get a quote or a proposal, how many go ahead?",
       "type": "single",
@@ -1212,7 +1457,7 @@ window.DIAG ={
     {
       "id": "q27",
       "section": "offer",
-      "n": 27,
+      "n": 32,
       "weight": 1.1,
       "text": "When you lose a deal, what's the most common reason?",
       "type": "single",
@@ -1264,14 +1509,14 @@ window.DIAG ={
     {
       "id": "q28",
       "section": "offer",
-      "n": 28,
+      "n": 33,
       "weight": 1.0,
-      "text": "How often do you have to explain what you do twice, or get asked what exactly you sell?",
+      "text": "When a prospect gets your quote, how often do they come back asking what's included, or why it costs what it does?",
       "type": "single",
       "options": [
         {
           "id": "a",
-          "text": "Rarely",
+          "text": "Rarely, they just decide",
           "band": "rarely",
           "w": 0
         },
@@ -1289,8 +1534,8 @@ window.DIAG ={
         },
         {
           "id": "d",
-          "text": "In most conversations",
-          "band": "in most conversations",
+          "text": "On most quotes",
+          "band": "on most quotes",
           "w": 100
         },
         {
@@ -1304,7 +1549,7 @@ window.DIAG ={
     {
       "id": "q29",
       "section": "offer",
-      "n": 29,
+      "n": 34,
       "weight": 1.1,
       "text": "Has the proportion of quotes that turn into work changed in the last 12 months?",
       "type": "single",
@@ -1347,27 +1592,33 @@ window.DIAG ={
     {
       "id": "q30",
       "section": "offer",
-      "n": 30,
+      "n": 35,
       "weight": 1.0,
-      "text": "Is there a written, priced offer a prospect could understand without you in the room?",
+      "text": "How does a prospect find out what you charge?",
       "type": "single",
       "options": [
         {
           "id": "a",
-          "text": "Yes",
-          "band": "yes",
+          "text": "There's a price list or packages they can see themselves",
+          "band": "from a price list they can see themselves",
           "w": 0
         },
         {
           "id": "b",
-          "text": "Roughly, it needs me to explain it",
-          "band": "roughly, but it needs you to explain it",
-          "w": 60
+          "text": "Standard pricing, but we walk them through it",
+          "band": "from standard pricing you walk them through",
+          "w": 40
         },
         {
           "id": "c",
-          "text": "No, every job is priced from scratch",
-          "band": "no, every job gets priced from scratch",
+          "text": "Every job gets quoted from scratch",
+          "band": "from a quote built from scratch every time",
+          "w": 90
+        },
+        {
+          "id": "d",
+          "text": "It depends who's asking",
+          "band": "from a number that depends who's asking",
           "w": 100
         },
         {
@@ -1381,7 +1632,7 @@ window.DIAG ={
     {
       "id": "q31",
       "section": "demand",
-      "n": 31,
+      "n": 36,
       "weight": 1.4,
       "text": "How many new enquiries does the business get in a typical month?",
       "help": "New people asking about buying. Not repeat customers.",
@@ -1435,7 +1686,7 @@ window.DIAG ={
     {
       "id": "q32",
       "section": "demand",
-      "n": 32,
+      "n": 37,
       "weight": 0.8,
       "text": "Where do your enquiries actually come from?",
       "help": "Tick everything that brings you real enquiries.",
@@ -1492,7 +1743,7 @@ window.DIAG ={
     {
       "id": "q33",
       "section": "demand",
-      "n": 33,
+      "n": 38,
       "weight": 1.1,
       "text": "Has enquiry volume changed in the last 12 months?",
       "type": "single",
@@ -1535,7 +1786,7 @@ window.DIAG ={
     {
       "id": "q34",
       "section": "demand",
-      "n": 34,
+      "n": 39,
       "weight": 0.6,
       "text": "If twice as many enquiries landed next month, could you deliver the work?",
       "type": "single",
@@ -1570,7 +1821,7 @@ window.DIAG ={
     {
       "id": "q35",
       "section": "demand",
-      "n": 35,
+      "n": 40,
       "weight": 1.0,
       "text": "Are you doing anything right now to generate new enquiries?",
       "type": "single",
@@ -1604,7 +1855,7 @@ window.DIAG ={
     {
       "id": "q36",
       "section": "margin",
-      "n": 36,
+      "n": 41,
       "weight": 1.4,
       "text": "On a typical job or sale, what's left after the direct cost of delivering it?",
       "help": "Direct cost meaning labour, materials, subcontractors, whatever that specific job consumed.",
@@ -1652,7 +1903,7 @@ window.DIAG ={
     {
       "id": "q37",
       "section": "margin",
-      "n": 37,
+      "n": 42,
       "weight": 1.3,
       "text": "After everything, including paying yourself properly, what's left at the end of a year?",
       "type": "single",
@@ -1699,7 +1950,7 @@ window.DIAG ={
     {
       "id": "q38",
       "section": "margin",
-      "n": 38,
+      "n": 43,
       "weight": 1.0,
       "text": "When did you last raise your prices?",
       "type": "single",
@@ -1745,7 +1996,7 @@ window.DIAG ={
     {
       "id": "q39",
       "section": "margin",
-      "n": 39,
+      "n": 44,
       "weight": 1.1,
       "text": "How often does a job end up costing more to deliver than you quoted?",
       "type": "single",
@@ -1785,7 +2036,7 @@ window.DIAG ={
     {
       "id": "q40",
       "section": "margin",
-      "n": 40,
+      "n": 45,
       "weight": 0.9,
       "text": "Do you know which customers, jobs or product lines actually make you money?",
       "type": "single",
@@ -1825,7 +2076,7 @@ window.DIAG ={
     {
       "id": "q41",
       "section": "risk",
-      "n": 41,
+      "n": 46,
       "weight": 0,
       "text": "What share of your revenue comes from your single biggest customer?",
       "type": "single",
@@ -1900,7 +2151,7 @@ window.DIAG ={
     {
       "id": "q42",
       "section": "risk",
-      "n": 42,
+      "n": 47,
       "weight": 0,
       "text": "What share of revenue comes from your single biggest product or service line?",
       "type": "single",
@@ -1964,7 +2215,7 @@ window.DIAG ={
     {
       "id": "q43",
       "section": "risk",
-      "n": 43,
+      "n": 48,
       "weight": 0,
       "text": "How spread out are the places your new customers come from?",
       "type": "single",
@@ -2017,12 +2268,12 @@ window.DIAG ={
     {
       "id": "q44",
       "section": "risk",
-      "n": 44,
+      "n": 49,
       "weight": 0,
       "text": "Which of these is there exactly one of, with nobody and nothing ready to replace it?",
       "help": "Tick every one that would leave a hole tomorrow.",
       "type": "multi",
-      "max": 5,
+      "max": 8,
       "options": [
         {
           "id": "a",
@@ -2030,17 +2281,17 @@ window.DIAG ={
           "flags": [
             {
               "id": "key_supplier",
-              "sev": 85
+              "sev": 80
             }
           ]
         },
         {
           "id": "b",
-          "text": "The person who does most of the selling",
+          "text": "The person who wins the work",
           "flags": [
             {
               "id": "key_person",
-              "sev": 85
+              "sev": 80
             }
           ]
         },
@@ -2050,17 +2301,51 @@ window.DIAG ={
           "flags": [
             {
               "id": "key_employee",
-              "sev": 90
+              "sev": 85
             }
           ]
         },
         {
           "id": "d",
+          "text": "One key piece of equipment, or one vehicle",
+          "flags": [
+            {
+              "id": "key_asset",
+              "sev": 75
+            }
+          ]
+        },
+        {
+          "id": "e",
           "text": "The city or region you sell into",
           "flags": [
             {
               "id": "key_geography",
               "sev": 70
+            }
+          ]
+        },
+        {
+          "id": "f",
+          "text": "One licence, accreditation or insurance the business runs on",
+          "flags": [
+            {
+              "id": "key_licence",
+              "sev": 85
+            }
+          ]
+        },
+        {
+          "id": "g",
+          "text": "Your own name and reputation",
+          "flags": [
+            {
+              "id": "key_person",
+              "sev": 85
+            },
+            {
+              "id": "owner_trapped",
+              "sev": 60
             }
           ]
         },
@@ -2073,9 +2358,61 @@ window.DIAG ={
       ]
     },
     {
+      "id": "q58",
+      "section": "risk",
+      "n": 50,
+      "weight": 0,
+      "text": "Of the ones you just ticked, which would hurt most if it went tomorrow?",
+      "type": "single",
+      "showIf": {
+        "q": "q44",
+        "notOnly": [
+          "n"
+        ]
+      },
+      "optionsFrom": "q44",
+      "options": [
+        {
+          "id": "a",
+          "text": "Your main supplier",
+          "boost": "key_supplier"
+        },
+        {
+          "id": "b",
+          "text": "The person who wins the work",
+          "boost": "key_person"
+        },
+        {
+          "id": "c",
+          "text": "The person who knows how the work actually gets done",
+          "boost": "key_employee"
+        },
+        {
+          "id": "d",
+          "text": "One key piece of equipment, or one vehicle",
+          "boost": "key_asset"
+        },
+        {
+          "id": "e",
+          "text": "The city or region you sell into",
+          "boost": "key_geography"
+        },
+        {
+          "id": "f",
+          "text": "One licence, accreditation or insurance the business runs on",
+          "boost": "key_licence"
+        },
+        {
+          "id": "g",
+          "text": "Your own name and reputation",
+          "boost": "key_person"
+        }
+      ]
+    },
+    {
       "id": "q45",
       "section": "risk",
-      "n": 45,
+      "n": 51,
       "weight": 0,
       "text": "How is your work actually committed by the customer?",
       "type": "single",
@@ -2139,9 +2476,9 @@ window.DIAG ={
     {
       "id": "q46",
       "section": "risk",
-      "n": 46,
+      "n": 52,
       "weight": 0,
-      "text": "How much of how the work gets done is written down well enough for someone new to follow?",
+      "text": "How much of the work is documented well enough that someone else could pick it up and finish it?",
       "type": "single",
       "options": [
         {
@@ -2152,12 +2489,12 @@ window.DIAG ={
         },
         {
           "id": "b",
-          "text": "Some of it",
-          "band": "Some",
+          "text": "About half",
+          "band": "About half",
           "flags": [
             {
               "id": "no_process",
-              "sev": 50
+              "sev": 55
             }
           ]
         },
@@ -2192,7 +2529,7 @@ window.DIAG ={
     {
       "id": "q47",
       "section": "risk",
-      "n": 47,
+      "n": 53,
       "weight": 0,
       "text": "How often do you look at numbers that tell you how the business is travelling?",
       "type": "single",
@@ -2252,7 +2589,7 @@ window.DIAG ={
     {
       "id": "q48",
       "section": "risk",
-      "n": 48,
+      "n": 54,
       "weight": 0,
       "text": "If you had to step out for three months starting Monday, who runs it?",
       "type": "single",
@@ -2305,43 +2642,43 @@ window.DIAG ={
     {
       "id": "q49",
       "section": "risk",
-      "n": 49,
+      "n": 55,
       "weight": 0,
-      "text": "If you sold the business tomorrow, how much of what the buyer is paying for is you personally?",
+      "text": "If you sold the business tomorrow, how long would the buyer need you to stay on?",
       "type": "single",
       "options": [
         {
           "id": "a",
-          "text": "Almost none, it runs without me",
-          "band": "almost none",
+          "text": "Not at all, they could take over",
+          "band": "not at all",
           "flags": []
         },
         {
           "id": "b",
-          "text": "Some of it",
-          "band": "some",
+          "text": "A few weeks of handover",
+          "band": "a few weeks",
           "flags": [
             {
               "id": "owner_trapped",
-              "sev": 45
+              "sev": 35
             }
           ]
         },
         {
           "id": "c",
-          "text": "Most of it",
-          "band": "most",
+          "text": "Six to twelve months",
+          "band": "the best part of a year",
           "flags": [
             {
               "id": "owner_trapped",
-              "sev": 85
+              "sev": 80
             }
           ]
         },
         {
           "id": "d",
-          "text": "All of it, I am the business",
-          "band": "all",
+          "text": "Years, or it doesn't work without me",
+          "band": "years",
           "flags": [
             {
               "id": "owner_trapped",
@@ -2355,21 +2692,26 @@ window.DIAG ={
         },
         {
           "id": "z",
-          "text": "Not sure",
+          "text": "Never thought about it",
           "notSure": true,
           "flags": [
             {
               "id": "owner_trapped",
               "sev": 70
+            },
+            {
+              "id": "no_succession",
+              "sev": 70
             }
           ]
         }
-      ]
+      ],
+      "help": "Not what it's worth. How long before they could run it without you."
     },
     {
       "id": "q50",
       "section": "risk",
-      "n": 50,
+      "n": 56,
       "weight": 0,
       "text": "Is there a plan for what happens to the business if you stop, sell or step back?",
       "type": "single",
@@ -2418,7 +2760,7 @@ window.DIAG ={
     {
       "id": "q51",
       "section": "risk",
-      "n": 51,
+      "n": 57,
       "weight": 0,
       "text": "Have you personally guaranteed any of the business's debt, leases or facilities?",
       "type": "single",
@@ -2471,7 +2813,7 @@ window.DIAG ={
     {
       "id": "q52",
       "section": "risk",
-      "n": 52,
+      "n": 58,
       "weight": 0,
       "text": "How well does the way you spend your week match what you wanted out of this business?",
       "type": "single",
@@ -2519,25 +2861,17 @@ window.DIAG ={
     }
   ],
   "flags": {
-    "key_client": {
+    "key_asset": {
       "family": "concentration",
-      "name": "Key client"
-    },
-    "key_product": {
-      "family": "concentration",
-      "name": "Key product"
+      "name": "Key asset"
     },
     "key_channel": {
       "family": "concentration",
       "name": "Key channel"
     },
-    "key_supplier": {
+    "key_client": {
       "family": "concentration",
-      "name": "Key supplier"
-    },
-    "key_person": {
-      "family": "concentration",
-      "name": "Key person"
+      "name": "Key client"
     },
     "key_employee": {
       "family": "concentration",
@@ -2547,6 +2881,26 @@ window.DIAG ={
       "family": "concentration",
       "name": "Key geography"
     },
+    "key_licence": {
+      "family": "concentration",
+      "name": "Key licence"
+    },
+    "key_person": {
+      "family": "concentration",
+      "name": "Key person"
+    },
+    "key_product": {
+      "family": "concentration",
+      "name": "Key product"
+    },
+    "key_supplier": {
+      "family": "concentration",
+      "name": "Key supplier"
+    },
+    "no_2ic": {
+      "family": "fragility",
+      "name": "No second in command"
+    },
     "no_buffer": {
       "family": "fragility",
       "name": "No cash buffer"
@@ -2555,33 +2909,29 @@ window.DIAG ={
       "family": "fragility",
       "name": "No contracts"
     },
-    "no_process": {
-      "family": "fragility",
-      "name": "No documented process"
-    },
     "no_data": {
       "family": "fragility",
       "name": "No data"
     },
-    "no_2ic": {
+    "no_process": {
       "family": "fragility",
-      "name": "No second in command"
+      "name": "No documented process"
     },
-    "owner_trapped": {
+    "model_misfit": {
       "family": "owner",
-      "name": "Owner trapped"
+      "name": "Model misfit"
     },
     "no_succession": {
       "family": "owner",
       "name": "No succession"
     },
+    "owner_trapped": {
+      "family": "owner",
+      "name": "Owner trapped"
+    },
     "personal_guarantee": {
       "family": "owner",
       "name": "Personally guaranteed"
-    },
-    "model_misfit": {
-      "family": "owner",
-      "name": "Model misfit"
     }
   },
   "blocks": {
@@ -2598,17 +2948,20 @@ window.DIAG ={
         "open": "You're profitable on paper and short of cash in practice. The work is sold, the money hasn't landed, and there's nothing sitting there to fund the next job.",
         "evidence": [
           {
-            "banded": "money takes {q7.band} to arrive after the work is done",
-            "precise": "money takes {q7.exact} days to arrive after the work is done"
+            "banded": "you get paid {q54.band}"
+          },
+          {
+            "banded": "the balance takes {q7.band} to land",
+            "precise": "the balance takes {q7.exact} days to land"
+          },
+          {
+            "banded": "you're owed {q55.band} past its due date"
           },
           {
             "banded": "you've been delaying payments {q6.band}"
           },
           {
             "banded": "you're holding {q8.band}"
-          },
-          {
-            "banded": "you've turned down or delayed work you could have done, {q9.band}"
           }
         ],
         "close": "That's a timing problem rather than a rate problem. Every job you win right now costs you money before it pays you, which is why winning more of them is currently the worst move available to you."
@@ -2616,10 +2969,14 @@ window.DIAG ={
       "talent": {
         "title": "Your constraint is talent",
         "titleLoose": "The tightest thing is talent",
-        "open": "Talent here means a missing layer, not missing hands. {d.unownedLayers}",
+        "open": [
+          "Talent here means a missing layer, not missing hands.",
+          "{d.unownedLayers}",
+          "Most of last week went to {d.ownerTasks}."
+        ],
         "evidence": [
           {
-            "banded": "you spend {q13.band} on work someone a level below you could do"
+            "banded": "the work that actually moves the business forward got {q56.band}"
           },
           {
             "banded": "if you went dark for a month the business {q12.band}"
@@ -2646,7 +3003,7 @@ window.DIAG ={
             "banded": "lead times have {q18.band}"
           },
           {
-            "banded": "delivery slips past what you promised {q19.band}"
+            "banded": "a typical job is only ready {q19.band}"
           }
         ],
         "close": "Nothing at the front of the business needs attention until the back of it can breathe. Anything you do to bring in more work right now gets paid for by the customers you already have."
@@ -2654,14 +3011,18 @@ window.DIAG ={
       "value": {
         "title": "Your constraint is value",
         "titleLoose": "The tightest thing is value",
-        "open": "Value here means what the customer perceives, and it has nothing to do with your pricing or your margin. They buy, and they don't come back.",
+        "open": "Value here means what the customer perceives, and it has nothing to do with your pricing or your margin. They buy, and then they stop, or they stay and give most of the work to somebody else.",
         "evidence": [
           {
             "banded": "of the customers you had a year ago, {q21.band} still buy from you",
             "precise": "of the customers you had a year ago, {q21.exact}% still buy from you"
           },
           {
-            "banded": "they return unprompted {q22.band}"
+            "banded": "you get {q57.band} of the work they put out",
+            "precise": "you get {q57.exact}% of the work they put out"
+          },
+          {
+            "banded": "they come back unprompted {q22.band}"
           },
           {
             "banded": "referrals bring in {q23.band} of your new customers"
@@ -2682,7 +3043,10 @@ window.DIAG ={
             "banded": "the most common reason you lose is {q27.band}"
           },
           {
-            "banded": "people ask you what you actually sell {q28.band}"
+            "banded": "prospects come back on your quote asking what's included {q28.band}"
+          },
+          {
+            "banded": "and they find out what you charge {q30.band}"
           }
         ],
         "close": "This isn't a sales technique problem. When the thing on the table is clear, priced, and it fits what the buyer came in for, an average salesperson closes it. Right now yours needs you in the room to make sense of it."
@@ -2848,7 +3212,7 @@ window.DIAG ={
         "alt": "You weren't sure how your work is actually committed by the customer. Revenue you can't describe the terms of isn't revenue you can plan against, hire against or borrow against."
       },
       "no_process": {
-        "banded": "{q46.band} of how the work gets done is written down. Every new hire takes longer than it should, quality moves depending on who's on the job, and nothing can be handed over cleanly.",
+        "banded": "{q46.band} of the work is documented well enough that somebody else could pick it up and finish it. Every new hire takes longer than it should, quality moves depending on who's on the job, and nothing can be handed over cleanly.",
         "alt": "You weren't sure how much of the work is documented, which almost always means less than you'd hope. Every new hire takes longer than it should, quality moves depending on who's on the job, and nothing can be handed over cleanly."
       },
       "no_data": {
@@ -2859,8 +3223,8 @@ window.DIAG ={
         "banded": "There's nobody who could run this if you stepped out. Every decision routes through you, which caps the business at the size of your week."
       },
       "owner_trapped": {
-        "banded": "{q49.band} of what a buyer would be paying for is you. That makes the business hard to sell, hard to step back from, and hard to grow past your own capacity.",
-        "alt": "You weren't sure how much of the business's value is you, which usually means more than you'd like. It makes the business hard to sell, hard to step back from, and hard to grow past your own capacity."
+        "banded": "Sold tomorrow, a buyer would need you to stay {q49.band}. That's the number that decides what the business is worth to anyone but you, and it's the same number that decides whether you can ever step back.",
+        "alt": "You haven't thought about how long a buyer would need you to stay on, which is its own answer. Until somebody else can run it, the business is a job that owns you rather than an asset you own."
       },
       "no_succession": {
         "banded": "There's {q50.band} for what happens if you stop, sell or step back. Every business has an exit, planned or otherwise. The unplanned version is the one where somebody else sets the price.",
@@ -2873,6 +3237,12 @@ window.DIAG ={
       "model_misfit": {
         "banded": "The way you spend your week is {q52.band}. It decides how long you'll keep doing this, and most businesses that fail slowly fail because the owner ran out of want.",
         "alt": "You weren't sure whether the way you spend your week matches what you wanted out of this. That question decides how long you'll keep doing it, and most businesses that fail slowly fail because the owner ran out of want."
+      },
+      "key_asset": {
+        "banded": "One piece of equipment or one vehicle is doing work you have no backup for. A breakdown, a theft or a long repair stops revenue you've already sold, and hire rates at short notice are set by people who know you're stuck."
+      },
+      "key_licence": {
+        "banded": "One licence, accreditation or policy is the thing that lets you trade at all. Lose it, let it lapse, or fail an audit, and the business stops completely rather than slows down."
       }
     },
     "riskFix": {
@@ -2888,15 +3258,33 @@ window.DIAG ={
       "no_process": "Record yourself doing the five things that go wrong most often, then turn each one into a one page checklist. Checklists beat manuals, because people actually use them.",
       "no_data": "Pick five numbers and look at them weekly. Cash in the bank, enquiries, close rate, jobs delivered, and margin on the last ten jobs. One page, same day every week.",
       "no_2ic": "Name the person, tell them, and start handing over one area at a time with the decisions attached. A deputy who can't decide anything is a job title.",
-      "owner_trapped": "Work out what only you can do and start moving everything else. The test is whether the business survives you taking a month off, so book the month and find out.",
+      "owner_trapped": "Work out what only you can do, then start moving everything else. The test is whether the business survives you taking a month off, so book the month and find out.",
       "no_succession": "Write the one page version. Who runs it, what happens to the customers, what it's worth and who'd buy it. It doesn't need to be right, it needs to exist.",
       "personal_guarantee": "List every guarantee you've signed and put a date against each one to renegotiate or release it. Most get renewed on autopilot because nobody asks.",
-      "model_misfit": "Write down what you actually wanted out of this, then hold your week up against it. The gap is the brief for the next twelve months."
+      "model_misfit": "Write down what you actually wanted out of this, then hold your week up against it. The gap is the brief for the next twelve months.",
+      "key_asset": "Find out today what it costs to hire a replacement at short notice, and who has one. A relationship you already have beats a phone number you find on the day.",
+      "key_licence": "Put every renewal date in a calendar with a ninety day warning, and make sure a second person can hold or renew it. A lapse is nearly always an admin failure rather than a real one."
     },
     "minorRisk": {
-      "concentration": "Concentration shows up as a second risk as well. Worth putting on the list behind the above, not in front of it.",
-      "fragility": "There's fragility in here as a second risk. It's real, and it sits behind the above in the order.",
-      "owner": "Owner risk shows up as a second theme too. It isn't urgent this quarter, and it gets more expensive the longer it sits."
+      "framing": "One more, from a different family to the risks above. It's behind them in the order, not in front of them.",
+      "key_client": "One customer carries enough of your revenue that losing them is a bad year rather than a bad month.",
+      "key_product": "One product or service line carries most of what you sell.",
+      "key_channel": "Nearly all your customers arrive through one channel you don't control.",
+      "key_supplier": "One supplier with no ready replacement is setting your prices and your timelines.",
+      "key_person": "The business depends on one person to function, and going by your answers that person is probably you.",
+      "key_employee": "One person holds how the work actually gets done, and it isn't written down anywhere else.",
+      "key_geography": "All of your revenue comes out of one city or region.",
+      "key_asset": "One piece of equipment or one vehicle is doing work you have no backup for.",
+      "key_licence": "One licence or accreditation is the thing that lets you trade at all.",
+      "no_buffer": "There isn't enough cash behind the business to absorb an ordinary bad month.",
+      "no_contracts": "Your work isn't committed in writing, so the revenue can leave on a phone call.",
+      "no_process": "Almost nothing is documented well enough for somebody else to pick up.",
+      "no_data": "You aren't looking at the numbers often enough to see something coming.",
+      "no_2ic": "There's nobody who could run this if you stepped out.",
+      "owner_trapped": "A buyer would need you to stay on for a long time, which is what makes the business hard to sell and hard to leave.",
+      "no_succession": "There's no plan for what happens if you stop, sell or step back.",
+      "personal_guarantee": "You've personally guaranteed obligations the business took on.",
+      "model_misfit": "The way you spend your week isn't what you wanted out of this."
     },
     "compound": [
       {
@@ -3102,6 +3490,23 @@ window.DIAG ={
             ]
           ]
         ]
+      },
+      {
+        "all": [
+          [
+            "q55",
+            [
+              "d"
+            ]
+          ],
+          [
+            "q8",
+            [
+              "c",
+              "d"
+            ]
+          ]
+        ]
       }
     ],
     "talent": [
@@ -3155,6 +3560,24 @@ window.DIAG ={
           ],
           [
             "q22",
+            [
+              "c",
+              "d"
+            ]
+          ]
+        ]
+      },
+      {
+        "all": [
+          [
+            "q57",
+            [
+              "d",
+              "e"
+            ]
+          ],
+          [
+            "q24",
             [
               "c",
               "d"

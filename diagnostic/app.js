@@ -9,21 +9,43 @@
   /* Group labels are deliberately neutral. They describe what is being asked
      about, never what the answers might mean, so nobody games the result. */
   var GROUPS = [
-    { title: "About the business",          sub: "Five quick ones so the rest of the questions read against the right size of business.", from: 1,  to: 5 },
-    { title: "Money in and money out",      sub: "Timing, not profit. Two different things.",                                              from: 6,  to: 10 },
-    { title: "You and the team",            sub: "Who does what, and what happens when you aren't there.",                                 from: 11, to: 15 },
-    { title: "Getting the work done",       sub: "Capacity, lead times, and whether promises hold.",                                       from: 16, to: 20 },
-    { title: "Your customers",              sub: "What happens after somebody buys.",                                                      from: 21, to: 25 },
-    { title: "Winning work",                sub: "What happens between an enquiry and a yes.",                                             from: 26, to: 30 },
-    { title: "Where the work comes from",   sub: "Volume and sources.",                                                                    from: 31, to: 35 },
-    { title: "What's left over",            sub: "What the work actually earns you.",                                                      from: 36, to: 40 },
-    { title: "What the business leans on",  sub: "The things there is only one of.",                                                       from: 41, to: 46 },
-    { title: "You and the business",        sub: "The last six. These are the ones owners skip, so take them slowly.",                     from: 47, to: 52 }
+    { title: "About the business",          sub: "Six quick ones so the rest of the questions read against the right size of business.",   from: 1,  to: 6 },
+    { title: "Money in and money out",      sub: "Timing, not profit. Two different things.",                                              from: 7,  to: 13 },
+    { title: "You and the team",            sub: "Where your week actually went, and what happens when you aren't there.",                 from: 14, to: 19 },
+    { title: "Getting the work done",       sub: "Capacity, lead times, and how much of it comes down to the wire.",                       from: 20, to: 24 },
+    { title: "Your customers",              sub: "What happens after somebody buys.",                                                      from: 25, to: 30 },
+    { title: "Winning work",                sub: "What happens between an enquiry and a yes.",                                             from: 31, to: 35 },
+    { title: "Where the work comes from",   sub: "Volume and sources.",                                                                    from: 36, to: 40 },
+    { title: "What's left over",            sub: "What the work actually earns you.",                                                      from: 41, to: 45 },
+    { title: "What the business leans on",  sub: "The things there is only one of.",                                                       from: 46, to: 52 },
+    { title: "You and the business",        sub: "The last six. These are the ones owners skip, so take them slowly.",                     from: 53, to: 58 }
   ];
 
   var answers = {}, step = 0;
   var $ = function (id) { return document.getElementById(id); };
   var qsOf = function (g) { return D.questions.filter(function (q) { return q.n >= g.from && q.n <= g.to; }); };
+
+  // A question with showIf only appears once its trigger has been answered a
+  // certain way. Hidden questions are never required and never scored.
+  function visible(q) {
+    if (!q.showIf) return true;
+    var a = answers[q.showIf.q];
+    if (!a) return false;
+    var picked = a.opts || (a.opt ? [a.opt] : []);
+    if (!picked.length) return false;
+    if (q.showIf.notOnly) return picked.some(function (v) { return q.showIf.notOnly.indexOf(v) === -1; });
+    return picked.some(function (v) { return (q.showIf.anyOf || []).indexOf(v) !== -1; });
+  }
+
+  // optionsFrom narrows a follow up to what they actually ticked on the question
+  // before it, so nobody is asked to rank something they never flagged.
+  function optionsOf(q) {
+    if (!q.optionsFrom) return q.options;
+    var a = answers[q.optionsFrom] || {};
+    var picked = a.opts || [];
+    var narrowed = q.options.filter(function (o) { return picked.indexOf(o.id) !== -1; });
+    return narrowed.length ? narrowed : q.options;
+  }
   var esc = function (s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); };
 
   /* ---------- storage. Per browser, never leaves the device. ---------- */
@@ -47,7 +69,7 @@
       '<legend class="q__t" style="padding:0">' + esc(q.text) + '</legend>';
     if (q.help) h += '<p class="q__help">' + esc(q.help) + '</p>';
     if (q.type === "multi") h += '<p class="q__help">Tick everything that applies.</p>';
-    h += '<div class="opts">' + q.options.map(function (o) { return optionRow(q, o); }).join("") + '</div>';
+    h += '<div class="opts">' + optionsOf(q).map(function (o) { return optionRow(q, o); }).join("") + '</div>';
     if (q.exact) {
       var a = answers[q.id] || {};
       h += '<div class="exact" data-exact="' + q.id + '">' +
@@ -63,7 +85,7 @@
     var g = GROUPS[step];
     $("g-title").textContent = g.title;
     $("g-sub").textContent = g.sub;
-    $("g-form").innerHTML = qsOf(g).map(questionBlock).join("");
+    $("g-form").innerHTML = qsOf(g).filter(visible).map(questionBlock).join("");
     $("p-step").textContent = step + 1;
     $("p-total").textContent = GROUPS.length;
     $("prev").textContent = step === 0 ? "Back to start" : "Back";
@@ -83,15 +105,16 @@
   function optOf(q, id) { for (var i = 0; i < q.options.length; i++) if (q.options[i].id === id) return q.options[i]; return null; }
 
   function answeredCount() {
-    return D.questions.filter(function (q) {
+    return D.questions.filter(visible).filter(function (q) {
       var a = answers[q.id];
       return a && (q.type === "multi" ? (a.opts || []).length : !!a.opt);
     }).length;
   }
   function updateProgress() {
     var n = answeredCount();
-    $("p-count").textContent = n + " of " + D.questions.length + " answered";
-    $("p-fill").style.width = (100 * n / D.questions.length) + "%";
+    var total = D.questions.filter(visible).length;
+    $("p-count").textContent = n + " of " + total + " answered";
+    $("p-fill").style.width = (100 * n / total) + "%";
   }
 
   /* ---------- answering ---------- */
@@ -121,6 +144,11 @@
       toggleExact(q);
     }
     save();
+    if (D.questions.some(function (x) { return x.showIf && x.showIf.q === q.id; }) ||
+        D.questions.some(function (x) { return x.optionsFrom === q.id; })) {
+      renderStep();
+      return;
+    }
     updateProgress();
   });
 
@@ -131,7 +159,7 @@
     step--; renderStep();
   });
   $("next").addEventListener("click", function () {
-    var missing = qsOf(GROUPS[step]).filter(function (q) {
+    var missing = qsOf(GROUPS[step]).filter(visible).filter(function (q) {
       var a = answers[q.id];
       return !(a && (q.type === "multi" ? (a.opts || []).length : !!a.opt));
     });
@@ -179,11 +207,6 @@
         '<div class="aside"><p>' + esc(r.minor.line) + "</p></div></div>";
     }
 
-    if (r.compound) {
-      h += '<div class="sec">' + label("The same problem, twice") +
-        '<div class="compound"><p>' + esc(r.compound.text) + "</p></div></div>";
-    }
-
     h += '<div class="sec">' + label("Your risks, and what to do about them") +
       "<p>" + esc(r.risk.framing) + "</p>";
     if (r.risk.flags.length) {
@@ -196,7 +219,17 @@
     h += "</div>";
 
     if (r.minorRisk) {
-      h += '<div class="sec">' + label("Also worth knowing") + '<div class="aside"><p>' + esc(r.minorRisk.line) + "</p></div></div>";
+      h += '<div class="sec">' + label("One more risk, behind the above") +
+        "<p>" + esc(r.minorRisk.framing) + "</p>" +
+        '<div class="flag"><h3 class="display d4 flag__n">' + esc(r.minorRisk.name) + "</h3>" +
+        '<p class="flag__fix">' + esc(r.minorRisk.line) + "</p></div></div>";
+    }
+
+    // The compound block closes the pair. It names a risk from the section above,
+    // so it only makes sense once the reader has actually met that risk.
+    if (r.compound) {
+      h += '<div class="sec">' + label("The same problem, twice") +
+        '<div class="compound"><p>' + esc(r.compound.text) + "</p></div></div>";
     }
 
     if (r.dontDo) {
@@ -251,23 +284,29 @@
   /* ---------- test presets ---------- */
   var PRESETS = {
     healthy: {},
-    cashflow:   { q6:"d", q7:"e", q8:"d", q9:"c", q10:"a", q41:"d", q45:"d" },
-    talent:     { q11:["n"], q12:"d", q13:"d", q14:"d", q15:"e", q48:"c", q49:"c", q50:"c" },
-    fulfilment: { q16:"e", q17:"d", q18:"d", q19:"c", q20:"d", q34:"c", q44:["c"], q46:"c" },
-    value:      { q21:"d", q22:"d", q23:"d", q24:"d", q25:"c", q47:"c" },
+    cashflow:   { q54:"f", q7:"e", q55:"d", q6:"d", q8:"d", q9:"c", q10:"a", q41:"d", q45:"d" },
+    talent:     { q11:["n"], q12:"d", q13:["a","c","g"], q56:"d", q14:"d", q15:"e",
+                  q48:"c", q49:"d", q50:"c" },
+    fulfilment: { q16:"e", q17:"d", q18:"d", q19:"d", q20:"d", q34:"c",
+                  q44:["c"], q58:"c", q46:"c" },
+    value:      { q21:"c", q57:"e", q22:"c", q23:"d", q24:"c", q25:"c", q47:"c", q42:"d" },
     offer:      { q26:"d", q27:"c", q28:"d", q29:"d", q30:"c", q43:"c" },
     demand:     { q16:"a", q31:"a", q32:["a"], q33:"d", q34:"a", q35:"c", q43:"c", q41:"d" },
     margin:     { q10:"c", q36:"d", q37:"d", q38:"e", q39:"d", q40:"c", q47:"c", q41:"d" },
-    talent_suppressed: { q11:["n"], q12:"d", q13:"d", q14:"d", q15:"e",
+    talent_suppressed: { q11:["n"], q12:"d", q13:["a","c","g"], q56:"d", q14:"d", q15:"e",
                          q16:"e", q17:"d", q18:"d", q19:"d", q20:"d",
-                         q21:"c", q22:"c", q23:"c", q24:"c", q25:"c", q34:"c", q49:"d" }
+                         q21:"c", q57:"d", q22:"c", q23:"c", q24:"c", q25:"c", q34:"c", q49:"d" },
+    // Customers still buying, and most of their work going somewhere else. The case
+    // the old question set scored as healthy retention.
+    wallet:     { q21:"a", q57:"e", q22:"b", q23:"c", q24:"c", q25:"c",
+                  q42:"d", q43:"c", q46:"c", q49:"c" }
   };
   var BASE = {
-    q1:"c", q2:"c", q3:"a", q4:"c", q5:"b",
-    q6:"a", q7:"a", q8:"a", q9:"a", q10:"a",
-    q11:["a","b","c","d","e"], q12:"a", q13:"a", q14:"a", q15:"b",
+    q1:"c", q2:"c", q3:["b"], q53:"b", q4:"c", q5:"b",
+    q54:"a", q6:"a", q7:"a", q8:"a", q9:"a", q10:"a", q55:"a",
+    q11:["a","b","c","d","e"], q12:"a", q13:["n"], q56:"a", q14:"a", q15:"b",
     q16:"b", q17:"a", q18:"b", q19:"a", q20:"a",
-    q21:"a", q22:"a", q23:"a", q24:"a", q25:"a",
+    q21:"a", q57:"a", q22:"a", q23:"a", q24:"a", q25:"a",
     q26:"a", q27:"b", q28:"a", q29:"a", q30:"a",
     q31:"d", q32:["a","c","d"], q33:"a", q34:"a", q35:"a",
     q36:"a", q37:"a", q38:"a", q39:"a", q40:"a",
@@ -304,7 +343,7 @@
   if (answeredCount() > 0) {
     // Pick up where they left off rather than making them start again.
     for (var i = 0; i < GROUPS.length; i++) {
-      var done = qsOf(GROUPS[i]).every(function (q) {
+      var done = qsOf(GROUPS[i]).filter(visible).every(function (q) {
         var a = answers[q.id];
         return a && (q.type === "multi" ? (a.opts || []).length : !!a.opt);
       });

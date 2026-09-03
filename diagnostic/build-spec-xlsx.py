@@ -39,6 +39,7 @@ DERIVED_NOTE = {"primaryShort": "the primary constraint's short name",
 
 
 def slots_in(*texts):
+    texts = [x for t in texts for x in (t if isinstance(t, list) else [t])]
     """Every variable used in these cells, written so somebody editing can see what
     they have to work with. Blank when the copy carries no data."""
     found = []
@@ -113,7 +114,8 @@ readme = [
     ["Report, constraint", "The constraint blocks. Opening line, evidence clauses, closing line, and the fix actions."],
     ["Report, minor", "The one line that prints when a second constraint is loud but downstream."],
     ["Report, risk flags", "All 16 risk flags. Definition, the version used when the answer was Not sure, and the fix."],
-    ["Report, risk framing", "The three family blocks and the minor risk lines."],
+    ["Report, risk framing", "The three family blocks that open the risk section."],
+    ["Report, minor risk", "One line per risk, printed when it is the second family's loudest finding."],
     ["Report, compound", "The blocks that fire when a risk and the constraint are the same problem seen twice."],
     ["Report, don't do yet", "The closing section. What not to touch until the constraint is fixed."],
     ["Report, open and close", "The opening and closing of the report, including the three opening variants."],
@@ -138,12 +140,14 @@ for q in D["questions"]:
         q.get("weight", 0),
         (q["exact"]["label"] + "  (" + q["exact"]["unit"] + ")") if q.get("exact") else "",
         q.get("scoreRule", ""),
+        ("Only shown when " + q["showIf"]["q"] + " is answered with something other than "
+         + "/".join(q["showIf"].get("notOnly", []))) if q.get("showIf") else "",
     ])
 sheet("Questions",
       ["#", "id", "Feeds", "Format", "Question wording", "Help text under the question",
-       "Weight in its block", "Optional exact figure prompt", "Special scoring"],
-      rows, [5, 7, 26, 9, 62, 48, 10, 44, 16],
-      edit_cols=(5, 6, 8), lock_cols=(2,), wrap_cols=(3, 5, 6, 8),
+       "Weight in its block", "Optional exact figure prompt", "Special scoring", "Only shown if"],
+      rows, [5, 7, 26, 9, 58, 44, 10, 40, 16, 40],
+      edit_cols=(5, 6, 8), lock_cols=(2, 10), wrap_cols=(3, 5, 6, 8, 10),
       note="Weight is how heavily a question counts inside its own constraint block. 0 means it does not score at all, it only raises risk flags or sets the profile. Profiling and risk questions never score a constraint.")
 
 # --------------------------------------------------------- 3. Answer options
@@ -158,6 +162,7 @@ for q in D["questions"]:
         if o.get("exclusive"): notes.append("Clears every other tick")
         if o.get("disqualify"): notes.append(f"Rules out {o['disqualify']} entirely")
         if o.get("oneoff"): notes.append("Shifts the value block onto referral")
+        if o.get("boost"): notes.append(f"Promotes {o['boost']} to the top severity")
         rows.append([
             q["n"], q["id"], q["text"][:58] + ("..." if len(q["text"]) > 58 else ""),
             o["id"], o["text"], o.get("band", ""),
@@ -209,7 +214,9 @@ for cid in D["chain"]:
     f = D["blocks"]["constraintFix"][cid]
     rows.append([cid, "Title", b["title"], "", ""])
     rows.append([cid, "Title, nothing failing", b["titleLoose"], "", ""])
-    rows.append([cid, "Opening", b["open"], "", slots_in(b["open"])])
+    opens = b["open"] if isinstance(b["open"], list) else [b["open"]]
+    for n, o in enumerate(opens, 1):
+        rows.append([cid, "Opening" if len(opens) == 1 else f"Opening sentence {n}", o, "", slots_in(o)])
     for n, e in enumerate(b.get("evidence", []), 1):
         rows.append([cid, f"Evidence clause {n}", e["banded"], e.get("precise", ""), slots_in(e["banded"], e.get("precise"))])
     rows.append([cid, "Closing", b["close"], "", slots_in(b["close"])])
@@ -242,13 +249,21 @@ sheet("Report, risk flags",
 # ------------------------------------------------- 8. Report, risk framing
 rows = []
 for fid, meta in D["riskFamilies"].items():
-    rows.append([fid, meta["name"], meta["line"], D["blocks"]["riskFamilyFraming"][fid], D["blocks"]["minorRisk"][fid]])
-rows.append(["none", "Nothing loud enough", "", D["blocks"]["riskFamilyFraming"]["none"], ""])
+    rows.append([fid, meta["name"], meta["line"], D["blocks"]["riskFamilyFraming"][fid]])
+rows.append(["none", "Nothing loud enough", "", D["blocks"]["riskFamilyFraming"]["none"]])
 sheet("Report, risk framing",
-      ["id", "Family", "One line definition", "Framing block, opens the risk section", "Minor risk line"],
-      rows, [15, 17, 42, 88, 76],
-      edit_cols=(3, 4, 5), lock_cols=(1,), wrap_cols=(3, 4, 5),
+      ["id", "Family", "One line definition", "Framing block, opens the risk section"],
+      rows, [15, 17, 46, 96],
+      edit_cols=(3, 4), lock_cols=(1,), wrap_cols=(3, 4),
       note="Scoring is by family, never by listing sixteen individual flags at somebody. Key person, no second in command, no documented process and owner trapped are usually one disease showing up in four places.")
+
+# ------------------------------------------------- 8b. Report, minor risk
+rows = [["", "Section framing, printed once above the line below", D["blocks"]["minorRisk"]["framing"]]]
+for fid, meta in D["flags"].items():
+    rows.append([fid, meta["name"], D["blocks"]["minorRisk"].get(fid, "")])
+sheet("Report, minor risk", ["id", "Risk", "The one line printed when this is the second family's loudest flag"],
+      rows, [19, 22, 100], edit_cols=(3,), lock_cols=(1,), wrap_cols=(3,),
+      note="This prints one specific finding from the second risk family, never the family itself. Naming a family and nothing else is the failure this replaced. The flag has to clear the print threshold and must not already appear in the main risk section.")
 
 # ---------------------------------------------------- 9. Report, compound
 rows = [[c["constraint"], c["flag"], c["priority"], c["text"], slots_in(c["text"])] for c in D["blocks"]["compound"]]
