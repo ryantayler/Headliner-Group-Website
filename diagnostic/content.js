@@ -91,20 +91,6 @@ window.DIAG ={
     ],
     "margin": []
   },
-  "riskFamilies": {
-    "concentration": {
-      "name": "Concentration",
-      "line": "One of something that should be many."
-    },
-    "fragility": {
-      "name": "Fragility",
-      "line": "The business can't absorb a hit."
-    },
-    "owner": {
-      "name": "Owner",
-      "line": "The business owns you."
-    }
-  },
   "questions": [
     {
       "id": "q1",
@@ -512,36 +498,21 @@ window.DIAG ={
           "text": "2 to 4 weeks",
           "band": "two to four weeks of cover",
           "w": 70,
-          "flags": [
-            {
-              "id": "no_buffer",
-              "sev": 75
-            }
-          ]
+          "flags": []
         },
         {
           "id": "d",
           "text": "Under 2 weeks",
           "band": "under a fortnight of cover",
           "w": 100,
-          "flags": [
-            {
-              "id": "no_buffer",
-              "sev": 75
-            }
-          ]
+          "flags": []
         },
         {
           "id": "z",
           "text": "Not sure",
           "notSure": true,
           "w": 0,
-          "flags": [
-            {
-              "id": "no_buffer",
-              "sev": 75
-            }
-          ]
+          "flags": []
         }
       ]
     },
@@ -660,12 +631,7 @@ window.DIAG ={
           "text": "I don't know",
           "notSure": true,
           "w": 0,
-          "flags": [
-            {
-              "id": "no_data",
-              "sev": 80
-            }
-          ]
+          "flags": []
         }
       ]
     },
@@ -1254,12 +1220,7 @@ window.DIAG ={
           "text": "Not sure",
           "notSure": true,
           "w": 0,
-          "flags": [
-            {
-              "id": "no_data",
-              "sev": 70
-            }
-          ]
+          "flags": []
         }
       ]
     },
@@ -1408,24 +1369,14 @@ window.DIAG ={
           "text": "No idea",
           "band": "no idea",
           "w": 100,
-          "flags": [
-            {
-              "id": "no_data",
-              "sev": 75
-            }
-          ]
+          "flags": []
         },
         {
           "id": "z",
           "text": "Not sure",
           "notSure": true,
           "w": 0,
-          "flags": [
-            {
-              "id": "no_data",
-              "sev": 75
-            }
-          ]
+          "flags": []
         }
       ]
     },
@@ -1470,12 +1421,7 @@ window.DIAG ={
           "text": "Not sure",
           "notSure": true,
           "w": 0,
-          "flags": [
-            {
-              "id": "no_data",
-              "sev": 75
-            }
-          ]
+          "flags": []
         }
       ]
     },
@@ -1516,24 +1462,14 @@ window.DIAG ={
           "text": "We don't know",
           "band": "something you can't put your finger on",
           "w": 90,
-          "flags": [
-            {
-              "id": "no_data",
-              "sev": 75
-            }
-          ]
+          "flags": []
         },
         {
           "id": "z",
           "text": "Not sure",
           "notSure": true,
           "w": 0,
-          "flags": [
-            {
-              "id": "no_data",
-              "sev": 75
-            }
-          ]
+          "flags": []
         }
       ]
     },
@@ -1614,12 +1550,7 @@ window.DIAG ={
           "text": "Not sure",
           "notSure": true,
           "w": 0,
-          "flags": [
-            {
-              "id": "no_data",
-              "sev": 75
-            }
-          ]
+          "flags": []
         }
       ]
     },
@@ -1711,12 +1642,7 @@ window.DIAG ={
           "text": "Not sure",
           "notSure": true,
           "w": 0,
-          "flags": [
-            {
-              "id": "no_data",
-              "sev": 75
-            }
-          ]
+          "flags": []
         }
       ]
     },
@@ -1770,12 +1696,7 @@ window.DIAG ={
           "text": "We don't really know",
           "w": 100,
           "exclusive": true,
-          "flags": [
-            {
-              "id": "no_data",
-              "sev": 75
-            }
-          ]
+          "flags": []
         }
       ],
       "scoreRule": "channel_count"
@@ -1817,12 +1738,7 @@ window.DIAG ={
           "text": "Not sure",
           "notSure": true,
           "w": 0,
-          "flags": [
-            {
-              "id": "no_data",
-              "sev": 75
-            }
-          ]
+          "flags": []
         }
       ]
     },
@@ -1937,12 +1853,7 @@ window.DIAG ={
           "text": "Not sure",
           "notSure": true,
           "w": 0,
-          "flags": [
-            {
-              "id": "no_data",
-              "sev": 75
-            }
-          ]
+          "flags": []
         }
       ]
     },
@@ -1987,12 +1898,7 @@ window.DIAG ={
           "text": "Not sure",
           "notSure": true,
           "w": 0,
-          "flags": [
-            {
-              "id": "no_data",
-              "sev": 75
-            }
-          ]
+          "flags": []
         }
       ]
     },
@@ -2107,24 +2013,14 @@ window.DIAG ={
           "text": "No",
           "band": "not at all",
           "w": 100,
-          "flags": [
-            {
-              "id": "no_data",
-              "sev": 75
-            }
-          ]
+          "flags": []
         },
         {
           "id": "z",
           "text": "Not sure",
           "notSure": true,
           "w": 0,
-          "flags": [
-            {
-              "id": "no_data",
-              "sev": 75
-            }
-          ]
+          "flags": []
         }
       ]
     },
@@ -2194,12 +2090,7 @@ window.DIAG ={
           "id": "z",
           "text": "Not sure",
           "notSure": true,
-          "flags": [
-            {
-              "id": "no_data",
-              "sev": 70
-            }
-          ]
+          "flags": []
         }
       ]
     },
@@ -2258,12 +2149,7 @@ window.DIAG ={
           "id": "z",
           "text": "Not sure",
           "notSure": true,
-          "flags": [
-            {
-              "id": "no_data",
-              "sev": 70
-            }
-          ]
+          "flags": []
         }
       ]
     },
@@ -2308,10 +2194,6 @@ window.DIAG ={
           "text": "Not sure",
           "notSure": true,
           "flags": [
-            {
-              "id": "no_data",
-              "sev": 70
-            },
             {
               "id": "key_channel",
               "sev": 50
@@ -2478,12 +2360,7 @@ window.DIAG ={
           "id": "b",
           "text": "Written agreements job by job",
           "band": "job by job agreements",
-          "flags": [
-            {
-              "id": "no_contracts",
-              "sev": 35
-            }
-          ]
+          "flags": []
         },
         {
           "id": "c",
@@ -2491,8 +2368,18 @@ window.DIAG ={
           "band": "a month to month arrangement",
           "flags": [
             {
-              "id": "no_contracts",
-              "sev": 75
+              "id": "key_client",
+              "sev": 70,
+              "when": [
+                [
+                  "q41",
+                  [
+                    "c",
+                    "d",
+                    "e"
+                  ]
+                ]
+              ]
             }
           ]
         },
@@ -2502,8 +2389,18 @@ window.DIAG ={
           "band": "a handshake and an email",
           "flags": [
             {
-              "id": "no_contracts",
-              "sev": 95
+              "id": "key_client",
+              "sev": 90,
+              "when": [
+                [
+                  "q41",
+                  [
+                    "c",
+                    "d",
+                    "e"
+                  ]
+                ]
+              ]
             }
           ]
         },
@@ -2513,12 +2410,18 @@ window.DIAG ={
           "notSure": true,
           "flags": [
             {
-              "id": "no_data",
-              "sev": 70
-            },
-            {
-              "id": "no_contracts",
-              "sev": 60
+              "id": "key_client",
+              "sev": 60,
+              "when": [
+                [
+                  "q41",
+                  [
+                    "c",
+                    "d",
+                    "e"
+                  ]
+                ]
+              ]
             }
           ]
         }
@@ -2544,8 +2447,8 @@ window.DIAG ={
           "band": "About half",
           "flags": [
             {
-              "id": "no_process",
-              "sev": 55
+              "id": "key_employee",
+              "sev": 45
             }
           ]
         },
@@ -2555,8 +2458,8 @@ window.DIAG ={
           "band": "Almost none",
           "flags": [
             {
-              "id": "no_process",
-              "sev": 95
+              "id": "key_employee",
+              "sev": 85
             }
           ]
         },
@@ -2566,12 +2469,8 @@ window.DIAG ={
           "notSure": true,
           "flags": [
             {
-              "id": "no_process",
-              "sev": 80
-            },
-            {
-              "id": "no_data",
-              "sev": 60
+              "id": "key_employee",
+              "sev": 50
             }
           ]
         }
@@ -2595,45 +2494,25 @@ window.DIAG ={
           "id": "b",
           "text": "Monthly",
           "band": "monthly",
-          "flags": [
-            {
-              "id": "no_data",
-              "sev": 25
-            }
-          ]
+          "flags": []
         },
         {
           "id": "c",
           "text": "At tax time",
           "band": "once a year at tax time",
-          "flags": [
-            {
-              "id": "no_data",
-              "sev": 90
-            }
-          ]
+          "flags": []
         },
         {
           "id": "d",
           "text": "We don't really",
           "band": "next to never",
-          "flags": [
-            {
-              "id": "no_data",
-              "sev": 100
-            }
-          ]
+          "flags": []
         },
         {
           "id": "z",
           "text": "Not sure",
           "notSure": true,
-          "flags": [
-            {
-              "id": "no_data",
-              "sev": 90
-            }
-          ]
+          "flags": []
         }
       ]
     },
@@ -2658,7 +2537,7 @@ window.DIAG ={
           "flags": [
             {
               "id": "owner_dependency",
-              "sev": 65
+              "sev": 45
             }
           ]
         },
@@ -2772,7 +2651,7 @@ window.DIAG ={
           "flags": [
             {
               "id": "no_succession",
-              "sev": 60
+              "sev": 40
             }
           ]
         },
@@ -2844,10 +2723,6 @@ window.DIAG ={
             {
               "id": "personal_guarantee",
               "sev": 75
-            },
-            {
-              "id": "no_data",
-              "sev": 60
             }
           ]
         }
@@ -2896,7 +2771,7 @@ window.DIAG ={
           "flags": [
             {
               "id": "model_misfit",
-              "sev": 60
+              "sev": 45
             }
           ]
         }
@@ -2905,68 +2780,52 @@ window.DIAG ={
   ],
   "flags": {
     "key_asset": {
-      "family": "concentration",
-      "name": "Key asset"
+      "name": "Key asset",
+      "group": "Concentration"
     },
     "key_channel": {
-      "family": "concentration",
-      "name": "Key channel"
+      "name": "Key channel",
+      "group": "Concentration"
     },
     "key_client": {
-      "family": "concentration",
-      "name": "Key client"
+      "name": "Key client",
+      "group": "Concentration"
     },
     "key_employee": {
-      "family": "concentration",
-      "name": "Key employee"
+      "name": "Key employee",
+      "group": "Concentration"
     },
     "key_geography": {
-      "family": "concentration",
-      "name": "Key geography"
+      "name": "Key geography",
+      "group": "Concentration"
     },
     "key_licence": {
-      "family": "concentration",
-      "name": "Key licence"
+      "name": "Key licence",
+      "group": "Concentration"
     },
     "key_product": {
-      "family": "concentration",
-      "name": "Key product"
+      "name": "Key product",
+      "group": "Concentration"
     },
     "key_supplier": {
-      "family": "concentration",
-      "name": "Key supplier"
-    },
-    "no_buffer": {
-      "family": "fragility",
-      "name": "Thin cash buffer"
-    },
-    "no_contracts": {
-      "family": "fragility",
-      "name": "Uncommitted revenue"
-    },
-    "no_data": {
-      "family": "fragility",
-      "name": "Blind spot"
-    },
-    "no_process": {
-      "family": "fragility",
-      "name": "Undocumented delivery"
+      "name": "Key supplier",
+      "group": "Concentration"
     },
     "model_misfit": {
-      "family": "owner",
-      "name": "Model misfit"
+      "name": "Model misfit",
+      "group": "Owner"
     },
     "no_succession": {
-      "family": "owner",
-      "name": "Succession gap"
+      "name": "Succession gap",
+      "group": "Owner"
     },
     "owner_dependency": {
-      "family": "owner",
-      "name": "Owner dependency"
+      "name": "Owner dependency",
+      "group": "Owner"
     },
     "personal_guarantee": {
-      "family": "owner",
-      "name": "Personal guarantee"
+      "name": "Personal guarantee",
+      "group": "Owner"
     }
   },
   "blocks": {
@@ -3432,26 +3291,10 @@ window.DIAG ={
         "banded": "You've got one supplier with no ready replacement. Their price rise is your price rise, and their bad year is your bad year."
       },
       "key_employee": {
-        "banded": "One person knows how the work actually gets done and it isn't written down anywhere else. If they leave, the knowledge goes with them, and you'll be rebuilding it from scratch while still trying to deliver."
+        "banded": "One person knows how the work actually gets done, and very little of it is written down anywhere else. If they leave, the knowledge goes with them, and you'll be rebuilding it from scratch while still trying to deliver."
       },
       "key_geography": {
         "banded": "The business sells into one city or region. A local downturn or a big competitor arriving hits all of your revenue at once rather than part of it."
-      },
-      "no_buffer": {
-        "banded": "You're holding {q8.band}. Every business runs into a bad month. Without a buffer, a bad month turns into a decision about who you can't pay.",
-        "alt": "You couldn't put a number on how long the business would last with no revenue, which is its own answer. Every business runs into a bad month, and without a buffer a bad month turns into a decision about who you can't pay."
-      },
-      "no_contracts": {
-        "banded": "Your work is committed by {q45.band}. Revenue that can be cancelled in a phone call isn't revenue you can plan against or borrow against.",
-        "alt": "You weren't sure how your work is actually committed by the customer. Revenue you can't describe the terms of isn't revenue you can plan against or borrow against."
-      },
-      "no_process": {
-        "banded": "{q46.band} of the work is documented well enough that somebody else could pick it up and finish it. Every new hire takes longer than it should, and nothing can be handed over cleanly.",
-        "alt": "You weren't sure how much of the work is documented, which almost always means less than you'd hope. Every new hire takes longer than it should, and nothing can be handed over cleanly."
-      },
-      "no_data": {
-        "banded": "You look at the numbers {q47.band}, and there were questions in here you couldn't answer. Running on feel works while the business is small enough to hold in your head. Past that, you're making decisions on a version of the business that's a few months out of date.",
-        "alt": "There were questions in here you couldn't answer, and that's the finding. Running on feel works while the business is small enough to hold in your head. Past that, you're making decisions on a version of the business that's a few months out of date."
       },
       "no_succession": {
         "banded": "There's {q50.band} for what happens if you stop or sell. Every business has an exit, planned or not. The unplanned version is the one where somebody else sets the price.",
@@ -3479,7 +3322,8 @@ window.DIAG ={
     "riskFix": {
       "key_client": [
         "Set a ceiling, say twenty percent of revenue from any one customer, and treat crossing it as the trigger to go and win two more.",
-        "Get them onto a term agreement with a notice period, so a decision to leave gives you time to react."
+        "Get them onto a term agreement with a notice period, so a decision to leave gives you time to react.",
+        "If the work is committed on a handshake, that is the first conversation to have, before the ceiling."
       ],
       "key_product": [
         "Build a second line and sell it to the customers you already have.",
@@ -3495,7 +3339,8 @@ window.DIAG ={
       ],
       "key_employee": [
         "Have them document the work while they're still here, and pay them properly to do it.",
-        "Put a second person alongside them on the next three jobs, doing rather than watching."
+        "Put a second person alongside them on the next three jobs, doing rather than watching.",
+        "Record the five things that go wrong most often as one page checklists. People use checklists, they don't use manuals."
       ],
       "key_geography": [
         "Take one thing you do well and sell it somewhere else, even at a small scale.",
@@ -3508,22 +3353,6 @@ window.DIAG ={
       "key_licence": [
         "Put every renewal date in a calendar with a ninety day warning on it.",
         "Make sure a second person can hold or renew it, so a lapse can't come down to one person's inbox."
-      ],
-      "no_buffer": [
-        "Build to one month of fixed costs in a separate account, then three.",
-        "Move a fixed percentage of every payment across automatically, so it isn't a decision you make each time."
-      ],
-      "no_contracts": [
-        "Put a written agreement behind every piece of work, with a scope and a notice period.",
-        "Start with your largest customers, because that's where the exposure actually sits."
-      ],
-      "no_process": [
-        "Record yourself doing the five things that go wrong most often, then turn each one into a one page checklist.",
-        "Checklists beat manuals, because people actually use them."
-      ],
-      "no_data": [
-        "Pick five numbers and look at them weekly. Start with cash in the bank and margin on the last ten jobs.",
-        "One page, same day every week. The habit matters more than the tool you keep it in."
       ],
       "no_succession": [
         "Write the one page version. Who runs it, and what happens to the customers.",

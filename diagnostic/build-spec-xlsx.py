@@ -232,11 +232,11 @@ rows = []
 for fid, meta in D["flags"].items():
     rd = D["blocks"]["riskDef"][fid]
     fixes = D["blocks"]["riskFix"].get(fid, [])
-    rows.append([meta["family"], fid, meta["name"], rd.get("banded", ""), rd.get("precise", ""), rd.get("alt", ""),
-                 fixes[0] if len(fixes) > 0 else "", fixes[1] if len(fixes) > 1 else "",
+    rows.append([meta["group"], fid, meta["name"], rd.get("banded", ""), rd.get("precise", ""), rd.get("alt", ""),
+                 fixes[0] if len(fixes) > 0 else "", fixes[1] if len(fixes) > 1 else "", fixes[2] if len(fixes) > 2 else "",
                  slots_in(rd.get("banded"), rd.get("precise"))])
 sheet("Report, risk flags",
-      ["Family", "id", "Name", "Definition", "Precise version", "Version used when the answer was Not sure", "What to do", "Variables in this row"],
+      ["Group", "id", "Name", "Definition", "Precise version", "Version used when the answer was Not sure", "What to do", "Variables in this row"],
       rows, [15, 19, 22, 72, 56, 72, 66, 24],
       edit_cols=(3, 4, 5, 6, 7), lock_cols=(2, 8), wrap_cols=(4, 5, 6, 7, 8),
       note="At most three flags print, from the top scoring family only. A flag has to clear the print threshold on the Thresholds tab to be named at all.")
@@ -245,7 +245,7 @@ sheet("Report, risk flags",
 rows = [["Section lead, printed once above the risks", D["blocks"]["riskLead"]]]
 sheet("Report, risk section", ["Part", "Wording"], rows, [42, 108],
       edit_cols=(2,), wrap_cols=(2,),
-      note="Risks print as one list, loudest first, regardless of which family they came from. Families still weight the internal ordering, they no longer split the section. The old family framing block, the separate minor risk section and the compound blocks were all removed after they read as filler in testing.")
+      note="Risks print as one list, loudest first, regardless of group. The old family framing, the separate minor risk section and the compound blocks were all removed after they read as filler in testing.")
 
 # ------------------------------------------------ 10. Report, don't do yet
 rows = []

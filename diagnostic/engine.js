@@ -106,6 +106,9 @@
       selected(ans, q).forEach(function (o) {
         if (o.notSure) notSure++;
         (o.flags || []).forEach(function (f) {
+          // A conditional flag only fires when the answer it depends on agrees.
+          // Uncommitted revenue is only a risk in proportion to who owes it.
+          if (f.when && !f.when.every(function (pair) { return condMet(ans, pair); })) return;
           var id = typeof f === "string" ? f : f.id;
           var sev = typeof f === "string" ? 75 : f.sev;
           raw[id] = Math.max(raw[id] || 0, sev);
@@ -119,26 +122,11 @@
     var worst = selected(ans, byId("q58"));
     if (worst.length && worst[0].boost) raw[worst[0].boost] = 100;
     if (counts.no_data) raw.no_data = Math.max(raw.no_data, Math.min(100, 40 + 15 * counts.no_data));
-    if (notSure >= T("NOT_SURE_DATA_FLAG")) raw.no_data = Math.max(raw.no_data || 0, 80);
+    // Not looking at the numbers is the same blindness as not being able to answer,
+    // so it counts toward the provisional framing rather than printing as a risk.
+    var q47 = selected(ans, byId("q47"));
+    if (q47.length && ["c", "d"].indexOf(q47[0].id) !== -1) notSure += 4;
     return { sev: raw, counts: counts, notSureCount: notSure };
-  }
-  /* ---------- risk families ---------- */
-  function scoreFamilies(flagSev) {
-    var fams = {}, defs = cfg().flags;
-    Object.keys(cfg().riskFamilies).forEach(function (fid) { fams[fid] = { id: fid, flags: [], max: 0, raised: 0, total: 0 }; });
-    Object.keys(defs).forEach(function (id) {
-      var f = fams[defs[id].family]; f.total++;
-      var sev = flagSev[id] || 0;
-      if (sev > 0) f.flags.push({ id: id, name: defs[id].name, sev: sev });
-      f.max = Math.max(f.max, sev);
-      if (sev >= T("FLAG_PRINT")) f.raised++;
-    });
-    Object.keys(fams).forEach(function (fid) {
-      var f = fams[fid];
-      f.score = Math.round(0.6 * f.max + 0.4 * (100 * f.raised / f.total));
-      f.flags.sort(function (a, b) { return b.sev - a.sev; });
-    });
-    return fams;
   }
   /* ---------- suppression, transitive ---------- */
   function suppressedBy(cid) {
@@ -321,19 +309,13 @@
     var d = derived(ans, primaryId);
     d_cache = d;
     // Risk. Families first, individual flags second.
-    var fams = scoreFamilies(flags.sev);
-    var ranked = Object.keys(fams).map(function (k) { return fams[k]; })
-      .sort(function (a, b) { return b.score - a.score; });
-    var primaryFam = ranked[0] && ranked[0].score >= T("RISK_FAMILY_PRINT") ? ranked[0] : null;
-    var minorFam = ranked[1] && ranked[1].score >= T("MINOR_RISK_PRINT") ? ranked[1] : null;
-    // One list, loudest first, regardless of family. Families still decide the
-    // internal ordering weight, they just no longer split the section in two.
-    var shown = [];
-    Object.keys(fams).forEach(function (fid) {
-      fams[fid].flags.forEach(function (f) { if (f.sev >= T("FLAG_PRINT")) shown.push(f); });
-    });
-    shown.sort(function (a, b) { return b.sev - a.sev || a.id.localeCompare(b.id); });
-    shown = shown.slice(0, T("MAX_FLAGS_SHOWN"));
+    // One list, loudest first. Fragility was a symptom of the other risks rather
+    // than a family of its own, and once it went the family layer scored nothing.
+    var shown = Object.keys(cfg().flags)
+      .filter(function (id) { return (flags.sev[id] || 0) >= T("FLAG_PRINT"); })
+      .map(function (id) { return { id: id, name: cfg().flags[id].name, sev: flags.sev[id] }; })
+      .sort(function (a, b) { return b.sev - a.sev || a.id.localeCompare(b.id); })
+      .slice(0, T("MAX_FLAGS_SHOWN"));
     return {
       opening: tooUnsure ? B.opening.tooUnsure : wellRun ? B.opening.wellRun : noneSevere ? B.opening.noneSevere : B.opening.normal,
       primary: {
@@ -368,7 +350,7 @@
         // explains why a loud downstream constraint is not the finding.
         suppressed: suppressedBy(primaryId),
         flagSev: flags.sev, notSureCount: flags.notSureCount,
-        families: ranked.map(function (f) { return { id: f.id, score: f.score, max: f.max, raised: f.raised, total: f.total }; })
+        risksRaised: Object.keys(flags.sev).sort(function (a, b) { return flags.sev[b] - flags.sev[a]; })
       }
     };
   }

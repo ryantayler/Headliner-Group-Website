@@ -232,8 +232,7 @@
     L.push("Thresholds  fail " + D.thresholds.PRIMARY_FAIL + ", floor " + D.thresholds.FALLBACK_FLOOR + ", risk print " + D.thresholds.FLAG_PRINT);
     L.push("Downstream of the finding, so never the finding itself  " + (d.suppressed.join(", ") || "nothing"));
     L.push("");
-    L.push("Risk families, which weight the ordering. Risks print as one list.");
-    d.families.forEach(function (f) { L.push("  " + f.id.padEnd(15) + String(f.score).padStart(3) + "   top flag " + f.max + ", " + f.raised + " of " + f.total + " raised"); });
+    L.push("Risks, loudest first. The top " + D.thresholds.MAX_FLAGS_SHOWN + " above " + D.thresholds.FLAG_PRINT + " print.");
     L.push("");
     L.push("Flags raised");
     Object.keys(d.flagSev).sort(function (a, b) { return d.flagSev[b] - d.flagSev[a]; })
