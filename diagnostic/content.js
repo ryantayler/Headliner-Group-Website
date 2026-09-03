@@ -2060,7 +2060,7 @@ window.DIAG ={
           "flags": [
             {
               "id": "key_client",
-              "sev": 65
+              "sev": 45
             }
           ]
         },
@@ -2247,7 +2247,7 @@ window.DIAG ={
           "text": "One key piece of equipment, or one vehicle",
           "flags": [
             {
-              "id": "key_supplier",
+              "id": "key_asset",
               "sev": 75
             }
           ]
@@ -2318,7 +2318,7 @@ window.DIAG ={
         {
           "id": "d",
           "text": "One key piece of equipment, or one vehicle",
-          "boost": "key_supplier"
+          "boost": "key_asset"
         },
         {
           "id": "e",
@@ -2774,6 +2774,10 @@ window.DIAG ={
     }
   ],
   "flags": {
+    "key_asset": {
+      "name": "Key asset",
+      "group": "Concentration"
+    },
     "key_channel": {
       "name": "Key lead source",
       "group": "Concentration"
@@ -2911,7 +2915,10 @@ window.DIAG ={
       "offer": {
         "title": "You are {c} constrained",
         "titleLoose": "The tightest thing is {c}",
-        "open": "Enquiries arrive and they don't convert.",
+        "open": [
+          "Enquiries arrive and they don't convert.",
+          "That isn't a sales technique problem, it's what's on the table. Either the value in the offer doesn't justify the price you're asking, or there's something in the way of somebody saying yes."
+        ],
         "evidence": [
           {
             "banded": "your close rate sits {q26.band}",
@@ -2927,7 +2934,7 @@ window.DIAG ={
             "banded": "they find out what you charge {q30.band}"
           }
         ],
-        "close": "This isn't a sales technique problem. When the thing on the table is clearly priced and it fits what the buyer came in for, an average salesperson closes it. Right now yours needs you in the room to make sense of it."
+        "close": "You don't fix this by dropping the price. You fix it by putting things into the offer that cost you very little and are worth real money to the buyer, and by removing whatever a prospect has to get over before they can say yes."
       },
       "demand": {
         "title": "You are {c} constrained",
@@ -2972,7 +2979,7 @@ window.DIAG ={
     },
     "constraintFix": {
       "cashflow": {
-        "lead": "The job is to shorten the gap between doing the work and getting paid for it. Nothing else moves until that does.",
+        "lead": "You need to close the gap between doing the work and getting paid for it. Every other fix in the business is waiting on this one.",
         "actions": [
           {
             "text": "You take nothing upfront, which is this whole problem in one answer. Change that before anything else on this list.",
@@ -3025,7 +3032,7 @@ window.DIAG ={
         ]
       },
       "talent": {
-        "lead": "One role, hired with the authority to actually run what you hand over.",
+        "lead": "You need one role hired with the authority to actually run what you hand over, rather than another pair of hands underneath you.",
         "actions": [
           {
             "text": "Every layer sits with you. Hire the one that would free the most of your week first, not the one that's easiest to fill.",
@@ -3065,7 +3072,7 @@ window.DIAG ={
         ]
       },
       "fulfilment": {
-        "lead": "More output from what you already have, before you buy any more of anything.",
+        "lead": "You need more output from what you already have, or more capacity, before you go and win any more work.",
         "actions": [
           {
             "text": "Find the one step everything queues behind, then put your next hour into that step and nothing else."
@@ -3107,7 +3114,7 @@ window.DIAG ={
         ]
       },
       "value": {
-        "lead": "Find out why they leave or why they shrink, then fix the thing they tell you about.",
+        "lead": "You need to find out why customers leave or shrink, and fix that, before you spend another dollar finding new ones.",
         "actions": [
           {
             "text": "Ring ten customers who stopped buying or cut back, and ask them straight. Not a survey. A phone call."
@@ -3137,28 +3144,16 @@ window.DIAG ={
         ]
       },
       "offer": {
-        "lead": "Make the thing you sell understandable without you standing next to it.",
+        "lead": "You need more value in the offer than the price is asking for, and the hurdles taken out of the way of somebody saying yes.",
         "actions": [
           {
-            "text": "Write the offer on one page. What it is, what it costs, what the buyer gets, who it isn't for."
+            "text": "List everything you already do for a customer that you never charge for and never mention. That is value sitting in the offer that nobody can see."
           },
           {
-            "text": "Price it publicly, or at least in a range. Every quote you build from scratch is a delay you're funding.",
-            "when": [
-              [
-                "q30",
-                [
-                  "c",
-                  "d"
-                ]
-              ]
-            ]
+            "text": "Add two things that cost you close to nothing and are worth real money to the buyer. A guarantee, or something they would otherwise have to go and source themselves."
           },
           {
-            "text": "Sort your last twenty losses by reason and count them. The pattern is usually one thing."
-          },
-          {
-            "text": "Rewrite the quote so it answers what's included and why it costs that, before they have to ask.",
+            "text": "Write down every question a prospect asks after they get the quote, then answer all of them inside the quote itself.",
             "when": [
               [
                 "q28",
@@ -3170,15 +3165,27 @@ window.DIAG ={
             ]
           },
           {
-            "text": "Cut the options. Fewer, clearer choices close more often than a menu does."
+            "text": "Put a price or a range where they can see it. Making somebody wait for a number is a hurdle before they have even decided.",
+            "when": [
+              [
+                "q30",
+                [
+                  "c",
+                  "d"
+                ]
+              ]
+            ]
           },
           {
-            "text": "Test the new version on the next ten enquiries before you change anything else."
+            "text": "Sort your last twenty losses by reason and count them. If price keeps coming up, the value isn't visible enough, it isn't too high."
+          },
+          {
+            "text": "Test the new offer on the next ten enquiries before you change anything else."
           }
         ]
       },
       "demand": {
-        "lead": "Turn the tap on deliberately. One channel run properly, before you touch a second.",
+        "lead": "You need one lead source running properly and consistently before you go anywhere near a second.",
         "actions": [
           {
             "text": "Nothing is running right now, so start with the one thing you can do every week without fail.",
@@ -3218,7 +3225,7 @@ window.DIAG ={
         ]
       },
       "margin": {
-        "lead": "Price first, then cost. Price moves faster and costs nothing to change.",
+        "lead": "You need to know what each job actually earns you before you change anything. A price rise can cost you customers as easily as it can fix the margin.",
         "actions": [
           {
             "text": "Raise prices on new work now. Ten percent across the board, and watch what actually happens.",
@@ -3271,7 +3278,7 @@ window.DIAG ={
         "alt": "You weren't sure where your customers actually come from, which usually means one source is doing more of the work than you think. A lead source can change without asking you first, and one referrer going quiet can halve your enquiries inside a month."
       },
       "key_supplier": {
-        "banded": "There's one supplier, or one piece of gear, with no ready replacement. Their price rise is your price rise, and a breakdown or a bad year at their end stops revenue you have already sold."
+        "banded": "There's one supplier with no ready replacement. Their price rise is your price rise, and their bad year is your bad year."
       },
       "no_succession": {
         "banded": "There's {q50.band} for what happens if you stop or sell. Every business has an exit, planned or not. The unplanned version is the one where somebody else sets the price.",
@@ -3304,6 +3311,9 @@ window.DIAG ={
             "text": "The business can't run without one person, and what they know isn't written down anywhere else. If they go, whether that's illness or a resignation, the knowledge goes with them and you'll be rebuilding it while still trying to deliver."
           }
         ]
+      },
+      "key_asset": {
+        "banded": "One piece of equipment or one vehicle is doing work you have no backup for. A breakdown or a long repair stops revenue you have already sold, and hire rates at short notice are set by people who know you're stuck."
       }
     },
     "riskFix": {
@@ -3322,8 +3332,7 @@ window.DIAG ={
       ],
       "key_supplier": [
         "Qualify a second supplier and give them ten percent of your volume. A backup you've never bought from isn't a backup.",
-        "Find out today what a replacement costs at short notice, and who actually has one.",
-        "Put anything you own on a service schedule and hold to it. Most failures give some warning."
+        "Get lead times and pricing from your current one in writing, so a change is a conversation rather than a surprise."
       ],
       "key_licence": [
         "Put every renewal date in a calendar with a ninety day warning on it.",
@@ -3345,6 +3354,10 @@ window.DIAG ={
         "Write down what that person holds, then move one piece of it to somebody else this month.",
         "Name who would run it, tell them, and give them a budget they can act inside. A deputy who can't decide anything is a job title.",
         "Book a month off twelve months out and work backwards from it. That's the deadline that makes it real."
+      ],
+      "key_asset": [
+        "Find out today what a replacement costs at short notice, and who actually has one.",
+        "Put it on a service schedule and hold to it. Most failures give some warning."
       ]
     },
     "dontDoYet": {
@@ -3428,7 +3441,7 @@ window.DIAG ={
     "looseBody": "Nothing in here is failing, so there's no evidence to walk you through. What you've got is {d.primaryShort} sitting as the tightest of the seven right now, which makes it the likeliest place the next bit of growth comes from. The actions below are worth doing and none of them are urgent.",
     "unsureBody": "There isn't enough here to point at one thing with any confidence. On what you did answer, {d.primaryShort} is the tightest of the seven, so read the actions below as a starting point rather than a diagnosis.\n\nThe risk section is the part of this report to take seriously. Not being able to answer the questions is the finding, and it's the one worth acting on first.",
     "titleUnsure": "There isn't enough here to call it",
-    "riskLead": "These are the things that would hurt most if they went wrong. They sit behind the constraint above in the order, not in front of it."
+    "riskLead": "These are the things that would hurt most if something went wrong. They aren't capping the business the way the constraint above is, but they're major risks."
   },
   "hardTriggers": {
     "cashflow": [

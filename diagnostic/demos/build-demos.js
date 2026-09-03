@@ -14,24 +14,22 @@ const para = t => String(t).split('\n\n').map(p => `<p>${esc(p)}</p>`).join('');
 
 function report(r) {
   let h = '', n = 0;
-  const label = t => `<h3 class="display d3 sec__h">${esc(t)}</h3>`; void n;
+  const label = t => `<h3 class="hl-face d3 sec__h">${esc(t)}</h3>`; void n;
   const title = `${esc(r.primary.title.before)}<em>${esc(r.primary.title.phrase)}</em>${esc(r.primary.title.after)}`;
 
-  h += `<div class="rep__head"><p class="eyebrow">Your diagnosis</p>
-        <h2 class="display d2">${title}</h2></div>`;
-  h += `<div class="sec">${para(r.opening)}
+  h += `<div class="rep__lead"><p class="eyebrow">Your diagnosis</p>${para(r.opening)}
         <p class="privacy">We do not use <u>any</u> AI in this tool, and <u>none</u> of your data is sent or stored offsite.</p></div>`;
-  h += `<div class="sec">
+  h += `<div class="sec" style="padding-top:0">
         <div class="verdict"><div class="glow"></div>
-        <h4 class="display d3">${title}</h4>${para(r.primary.body)}</div></div>`;
+        <h2 class="hl-face display">${title}</h2>${para(r.primary.body)}</div></div>`;
   h += `<div class="sec">${label('How to fix it')}<p>${esc(r.primary.fix.lead)}</p>
         <ol class="acts">${r.primary.fix.actions.map(a => `<li>${esc(a)}</li>`).join('')}</ol></div>`;
   h += `<div class="sec">${label('Your risks, and what to do about them')}<p>${esc(r.risk.lead)}</p>` +
        r.risk.flags.map(f => `<div class="risk">
-         <div class="risk__head"><div class="glow"></div><span>You have ${article(f.name)}</span><h4 class="display d3">${esc(f.name)}</h4><span>risk</span></div>
+         <div class="risk__head"><div class="glow"></div><span>You have ${article(f.name)}</span><h4 class="hl-face d3">${esc(f.name)}</h4><span>risk</span></div>
          <div class="risk__body"><p>${esc(f.body)}</p>
          <ol class="acts acts--risk">${f.fix.map(a => `<li>${esc(a)}</li>`).join('')}</ol></div></div>`).join('') + '</div>';
-  if (r.dontDo) h += `<div class="sec sec--dont"><h3 class="display d2 dont__h">Don’t do this yet</h3>
+  if (r.dontDo) h += `<div class="sec sec--dont"><h3 class="hl-face d2 dont__h">Don’t do this yet</h3>
         <p>${esc(r.dontDo.lead)}</p>
         <ol class="acts dont">${r.dontDo.items.map(a => `<li>${esc(a)}</li>`).join('')}</ol></div>`;
   h += `<div class="sec">${para(r.closing.text)}

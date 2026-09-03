@@ -174,7 +174,11 @@ a{color:var(--tx-accent)}
 .ftr{background:var(--panel);border-top:1px solid var(--rim);padding:clamp(40px,5vw,60px) 0 32px;color:var(--ink);position:relative;overflow:hidden}
 .ftr p{color:var(--sub);font-size:14px;margin:14px 0 0;max-width:44ch}
 
-/* ---------- type ---------- */
+/* ---------- type ----------
+   Ryan's call: the logo face carries the report headings too. That widens the
+   rule in CLAUDE.md, which currently says Archivo Black is the logo face and
+   nothing else, so the rule needs updating to match. */
+.hl-face{font-family:'Archivo Black',Impact,Haettenschweiler,sans-serif;font-weight:400;letter-spacing:-.01em}
 .display{font-weight:600;letter-spacing:-.028em;line-height:1.04;margin:0;text-wrap:balance}
 .d1{font-size:clamp(36px,5.8vw,68px);letter-spacing:-.034em;line-height:1}
 .d2{font-size:clamp(26px,3.4vw,42px);letter-spacing:-.03em;line-height:1.06}
@@ -251,11 +255,15 @@ p{margin:0 0 16px;max-width:66ch}
 .nav{display:flex;justify-content:space-between;gap:16px;align-items:center;margin-top:40px;padding-top:28px;border-top:1px solid var(--line)}
 .nav__warn{font-size:13px;color:var(--warn);margin:0;flex:1;font-weight:500}
 
-/* ---------- report ---------- */
-.rep__head{padding-bottom:32px;border-bottom:1px solid var(--line);margin-bottom:8px}
+/* ---------- report ----------
+   The preamble sits above the finding and reads as fine print, so the first thing
+   at full size is the finding itself rather than a heading that repeats it. */
+.rep__lead{padding-bottom:26px;margin-bottom:26px;border-bottom:1px solid var(--line)}
+.rep__lead p{font-size:13.5px;line-height:1.62;color:var(--tx-mute);max-width:74ch;margin:0 0 10px}
+.rep__lead .privacy{margin-top:14px;font-size:12.5px}
 .sec{padding:38px 0;border-bottom:1px solid var(--line)}
 .sec:last-child{border-bottom:0}
-.sec__h{margin:0 0 18px}
+.sec__h{margin:0 0 18px;text-transform:uppercase}
 .sec p{font-size:16.5px}
 
 /* The constraint statement. An aqua fill reads on either ground, and the
@@ -267,9 +275,9 @@ p{margin:0 0 16px;max-width:66ch}
 .verdict .glow{position:absolute;inset:0;pointer-events:none;z-index:0;
   box-shadow:inset 0 0 calc(var(--cw)*.25) calc(var(--cw)*.015) rgba(0,0,0,.22)}
 .verdict>*{position:relative;z-index:1}
-.verdict .display{color:#0A0A0A;font-weight:500}
-.verdict em{font-style:normal;font-weight:700}
-.verdict p{margin:16px 0 0;max-width:58ch;font-size:16px;font-weight:500;color:#0A0A0A}
+.verdict .display{color:#0A0A0A;font-size:clamp(30px,5vw,54px);line-height:1.02;letter-spacing:-.02em;text-transform:uppercase}
+.verdict em{font-style:normal}
+.verdict p{margin:20px 0 0;max-width:58ch;font-size:16px;font-weight:500;color:#0A0A0A}
 .rep__head em{font-style:normal;color:var(--tx-accent)}
 
 .acts{list-style:none;counter-reset:a;margin:20px 0 0;padding:0}
@@ -387,7 +395,7 @@ body.has-dev{padding-bottom:56px}
     <p class="def">That's a timing problem rather than a rate problem. Every job you win right now costs you money before it pays you, which is why winning more of them is currently the worst move available to you.</p>
     <dl class="meta">
       <div><dt>Why it sits here</dt><dd>First, because nothing else can be actioned without money to fund it.</dd></div>
-      <div><dt>The fix opens with</dt><dd>The job is to shorten the gap between doing the work and getting paid for it. Nothing else moves until that does.</dd></div>
+      <div><dt>The fix opens with</dt><dd>You need to close the gap between doing the work and getting paid for it. Every other fix in the business is waiting on this one.</dd></div>
       <div><dt>Actions</dt><dd>4 always, 3 that only print when an answer makes them true, capped at 5</dd></div>
       <div><dt>Don’t do this yet</dt><dd>Until the cash timing is fixed, leave these alone. 5 items.</dd></div>
       <div><dt>Fed by</dt><dd>7 questions, Q7 to Q13</dd></div>
@@ -398,7 +406,7 @@ body.has-dev{padding-bottom:56px}
     <p class="def">Hiring another pair of hands underneath you doesn't touch this. What's missing is a whole role that doesn't exist yet, and until it does, everything you add lands on the same desk.</p>
     <dl class="meta">
       <div><dt>Why it sits here</dt><dd>Above fulfilment, because capacity added under a missing layer just loads the layer.</dd></div>
-      <div><dt>The fix opens with</dt><dd>One role, hired with the authority to actually run what you hand over.</dd></div>
+      <div><dt>The fix opens with</dt><dd>You need one role hired with the authority to actually run what you hand over, rather than another pair of hands underneath you.</dd></div>
       <div><dt>Actions</dt><dd>4 always, 2 that only print when an answer makes them true, capped at 5</dd></div>
       <div><dt>Don’t do this yet</dt><dd>Until the layer exists, leave these alone. 5 items.</dd></div>
       <div><dt>Fed by</dt><dd>6 questions, Q14 to Q19</dd></div>
@@ -409,7 +417,7 @@ body.has-dev{padding-bottom:56px}
     <p class="def">Nothing at the front of the business needs attention until the back of it can breathe. Anything you do to bring in more work right now gets paid for by the customers you already have.</p>
     <dl class="meta">
       <div><dt>Why it sits here</dt><dd>Above demand, because adding demand to a business that can't deliver accelerates the damage.</dd></div>
-      <div><dt>The fix opens with</dt><dd>More output from what you already have, before you buy any more of anything.</dd></div>
+      <div><dt>The fix opens with</dt><dd>You need more output from what you already have, or more capacity, before you go and win any more work.</dd></div>
       <div><dt>Actions</dt><dd>4 always, 2 that only print when an answer makes them true, capped at 5</dd></div>
       <div><dt>Don’t do this yet</dt><dd>Until you can deliver what you've already sold, leave these alone. 5 items.</dd></div>
       <div><dt>Fed by</dt><dd>5 questions, Q20 to Q24</dd></div>
@@ -420,18 +428,18 @@ body.has-dev{padding-bottom:56px}
     <p class="def">You're filling a leaky bucket. Every dollar going into finding new customers is currently paying to replace the ones walking out the other side, which is why the business feels busy and stays the same size.</p>
     <dl class="meta">
       <div><dt>Why it sits here</dt><dd>Above offer, because winning more customers into a leaky bucket wastes the win.</dd></div>
-      <div><dt>The fix opens with</dt><dd>Find out why they leave or why they shrink, then fix the thing they tell you about.</dd></div>
+      <div><dt>The fix opens with</dt><dd>You need to find out why customers leave or shrink, and fix that, before you spend another dollar finding new ones.</dd></div>
       <div><dt>Actions</dt><dd>4 always, 1 that only print when an answer makes them true, capped at 5</dd></div>
       <div><dt>Don’t do this yet</dt><dd>Until customers stay, leave these alone. 5 items.</dd></div>
       <div><dt>Fed by</dt><dd>6 questions, Q25 to Q30</dd></div>
     </dl></article><article class="item">
     <div class="item__h"><span class="num">5</span>
       <h3 class="display d3">You are <em>offer</em> constrained</h3></div>
-    <p class="def">Enquiries arrive and they don't convert.</p>
-    <p class="def">This isn't a sales technique problem. When the thing on the table is clearly priced and it fits what the buyer came in for, an average salesperson closes it. Right now yours needs you in the room to make sense of it.</p>
+    <p class="def">Enquiries arrive and they don't convert. That isn't a sales technique problem, it's what's on the table. Either the value in the offer doesn't justify the price you're asking, or there's something in the way of somebody saying yes.</p>
+    <p class="def">You don't fix this by dropping the price. You fix it by putting things into the offer that cost you very little and are worth real money to the buyer, and by removing whatever a prospect has to get over before they can say yes.</p>
     <dl class="meta">
       <div><dt>Why it sits here</dt><dd>Above demand, because more enquiries against an offer that doesn't land changes nothing.</dd></div>
-      <div><dt>The fix opens with</dt><dd>Make the thing you sell understandable without you standing next to it.</dd></div>
+      <div><dt>The fix opens with</dt><dd>You need more value in the offer than the price is asking for, and the hurdles taken out of the way of somebody saying yes.</dd></div>
       <div><dt>Actions</dt><dd>4 always, 2 that only print when an answer makes them true, capped at 5</dd></div>
       <div><dt>Don’t do this yet</dt><dd>Until the offer lands, leave these alone. 5 items.</dd></div>
       <div><dt>Fed by</dt><dd>5 questions, Q31 to Q35</dd></div>
@@ -442,7 +450,7 @@ body.has-dev{padding-bottom:56px}
     <p class="def">You could take on more work tomorrow, which is what separates this from a delivery problem. Nothing downstream is broken. The business just isn't being fed, and it won't start feeding itself.</p>
     <dl class="meta">
       <div><dt>Why it sits here</dt><dd>Second last. Real, but only once everything above it can absorb the work.</dd></div>
-      <div><dt>The fix opens with</dt><dd>Turn the tap on deliberately. One channel run properly, before you touch a second.</dd></div>
+      <div><dt>The fix opens with</dt><dd>You need one lead source running properly and consistently before you go anywhere near a second.</dd></div>
       <div><dt>Actions</dt><dd>4 always, 2 that only print when an answer makes them true, capped at 5</dd></div>
       <div><dt>Don’t do this yet</dt><dd>Until enquiries lift, leave these alone. 5 items.</dd></div>
       <div><dt>Fed by</dt><dd>5 questions, Q36 to Q40</dd></div>
@@ -453,7 +461,7 @@ body.has-dev{padding-bottom:56px}
     <p class="def">Volume won't rescue this. At the margin you're running, more work gets you more of the same result and it arrives faster.</p>
     <dl class="meta">
       <div><dt>Why it sits here</dt><dd>Last, because it is usually a symptom of something above it rather than a constraint of its own.</dd></div>
-      <div><dt>The fix opens with</dt><dd>Price first, then cost. Price moves faster and costs nothing to change.</dd></div>
+      <div><dt>The fix opens with</dt><dd>You need to know what each job actually earns you before you change anything. A price rise can cost you customers as easily as it can fix the margin.</dd></div>
       <div><dt>Actions</dt><dd>3 always, 2 that only print when an answer makes them true, capped at 5</dd></div>
       <div><dt>Don’t do this yet</dt><dd>Until the margin moves, leave these alone. 5 items.</dd></div>
       <div><dt>Fed by</dt><dd>5 questions, Q41 to Q45</dd></div>
@@ -465,6 +473,16 @@ body.has-dev{padding-bottom:56px}
     <p class="def" style="margin-top:22px">A risk has to fire on an answer that is genuinely unusual, never on the answer most small businesses would give. That is why fragility was removed and why some answers below add weight without ever printing on their own.</p>
     <h3 class="lbl" style="margin-top:26px">One of something that should be several</h3>
     <article class="item">
+    <div class="item__h"><h3 class="display d3">You have a <em>Key asset</em> risk</h3>
+      <span class="tag">Concentration</span></div>
+    <p class="def">One piece of equipment or one vehicle is doing work you have no backup for. A breakdown or a long repair stops revenue you have already sold, and hire rates at short notice are set by people who know you're stuck.</p>
+    
+    <p class="lbl">Prints when they answer</p>
+    <ul class="fires"><li><b>100</b> Q50 &ldquo;named as the one that would hurt most&rdquo;</li><li><b>75</b> Q49 &ldquo;One key piece of equipment, or one vehicle&rdquo;</li></ul>
+    
+    <p class="lbl">What to do</p>
+    <ol class="acts"><li>Find out today what a replacement costs at short notice, and who actually has one.</li><li>Put it on a service schedule and hold to it. Most failures give some warning.</li></ol>
+  </article><article class="item">
     <div class="item__h"><h3 class="display d3">You have a <em>Key lead source</em> risk</h3>
       <span class="tag">Concentration</span></div>
     <p class="def">Your customers arrive <b class="slot">answer to Q48</b>. A lead source changes without asking you first, and an algorithm shift or one referrer going quiet can halve your enquiries inside a month.</p>
@@ -481,9 +499,9 @@ body.has-dev{padding-bottom:56px}
     <p class="def">One customer carries <b class="slot">answer to Q46</b> of your revenue. That customer can leave, or get bought by someone who already has their own suppliers, and neither is something you get a say in.</p>
     
     <p class="lbl">Prints when they answer</p>
-    <ul class="fires"><li><b>100</b> Q46 &ldquo;More than 50%&rdquo;</li><li><b>90</b> Q46 &ldquo;30% to 50%&rdquo;</li><li><b>90</b> Q51 &ldquo;Handshake and email&rdquo; <i>only when Q46 is c or d or e</i></li><li><b>70</b> Q51 &ldquo;Month to month, cancellable anytime&rdquo; <i>only when Q46 is c or d or e</i></li><li><b>65</b> Q46 &ldquo;20% to 30%&rdquo;</li><li><b>60</b> Q51 &ldquo;Not sure&rdquo; <i>only when Q46 is c or d or e</i></li></ul>
+    <ul class="fires"><li><b>100</b> Q46 &ldquo;More than 50%&rdquo;</li><li><b>90</b> Q46 &ldquo;30% to 50%&rdquo;</li><li><b>90</b> Q51 &ldquo;Handshake and email&rdquo; <i>only when Q46 is c or d or e</i></li><li><b>70</b> Q51 &ldquo;Month to month, cancellable anytime&rdquo; <i>only when Q46 is c or d or e</i></li><li><b>60</b> Q51 &ldquo;Not sure&rdquo; <i>only when Q46 is c or d or e</i></li></ul>
     <p class="lbl">Adds weight but never prints on its own</p>
-      <ul class="fires fires--quiet"><li><b>35</b> Q46 &ldquo;10% to 20%&rdquo;</li></ul>
+      <ul class="fires fires--quiet"><li><b>45</b> Q46 &ldquo;20% to 30%&rdquo;</li><li><b>35</b> Q46 &ldquo;10% to 20%&rdquo;</li></ul>
     <p class="lbl">What to do</p>
     <ol class="acts"><li>Set a ceiling, say twenty percent of revenue from any one customer, and treat crossing it as the trigger to go and win two more.</li><li>Get them onto a term agreement with a notice period, so a decision to leave gives you time to react.</li><li>If the work is committed on a handshake, that is the first conversation to have, before the ceiling.</li></ol>
   </article><article class="item">
@@ -521,13 +539,13 @@ body.has-dev{padding-bottom:56px}
   </article><article class="item">
     <div class="item__h"><h3 class="display d3">You have a <em>Key supplier</em> risk</h3>
       <span class="tag">Concentration</span></div>
-    <p class="def">There's one supplier, or one piece of gear, with no ready replacement. Their price rise is your price rise, and a breakdown or a bad year at their end stops revenue you have already sold.</p>
+    <p class="def">There's one supplier with no ready replacement. Their price rise is your price rise, and their bad year is your bad year.</p>
     
     <p class="lbl">Prints when they answer</p>
-    <ul class="fires"><li><b>100</b> Q50 &ldquo;named as the one that would hurt most&rdquo;</li><li><b>100</b> Q50 &ldquo;named as the one that would hurt most&rdquo;</li><li><b>80</b> Q49 &ldquo;Your main supplier&rdquo;</li><li><b>75</b> Q49 &ldquo;One key piece of equipment, or one vehicle&rdquo;</li></ul>
+    <ul class="fires"><li><b>100</b> Q50 &ldquo;named as the one that would hurt most&rdquo;</li><li><b>80</b> Q49 &ldquo;Your main supplier&rdquo;</li></ul>
     
     <p class="lbl">What to do</p>
-    <ol class="acts"><li>Qualify a second supplier and give them ten percent of your volume. A backup you've never bought from isn't a backup.</li><li>Find out today what a replacement costs at short notice, and who actually has one.</li><li>Put anything you own on a service schedule and hold to it. Most failures give some warning.</li></ol>
+    <ol class="acts"><li>Qualify a second supplier and give them ten percent of your volume. A backup you've never bought from isn't a backup.</li><li>Get lead times and pricing from your current one in writing, so a change is a conversation rather than a surprise.</li></ol>
   </article>
     <h3 class="lbl" style="margin-top:34px">The business owns you</h3>
     <article class="item">

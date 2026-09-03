@@ -173,19 +173,17 @@
     // fixed number would leave a gap the moment one of them did not fire.
     // Plain headings, not numbered labels. The order is the sequence, the numbers
     // were decoration on top of it.
-    var label = function (t) { return '<h2 class="display d3 sec__h">' + esc(t) + "</h2>"; };
+    var label = function (t) { return '<h2 class="hl-face d3 sec__h">' + esc(t) + "</h2>"; };
     void n;
-    h += '<div class="rep__head">' +
-      '<p class="eyebrow">Your diagnosis</p>' +
-      '<h1 class="display d2">' + esc(r.primary.title.before) +
-        '<em>' + esc(r.primary.title.phrase) + '</em>' + esc(r.primary.title.after) + '</h1>' +
-      '</div>';
-    h += '<div class="sec">' + para(r.opening) +
+    // Preamble first and small, then the finding at full size. It used to announce
+    // the constraint, explain itself, then announce the constraint again.
+    h += '<div class="rep__lead">' +
+      '<p class="eyebrow">Your diagnosis</p>' + para(r.opening) +
       '<p class="privacy">We do not use <u>any</u> AI in this tool, and <u>none</u> of your data is sent or stored offsite.</p></div>';
-    h += '<div class="sec">' +
+    h += '<div class="sec" style="padding-top:0">' +
       '<div class="verdict"><div class="glow"></div>' +
-      '<h2 class="display d3">' + esc(r.primary.title.before) +
-        '<em>' + esc(r.primary.title.phrase) + '</em>' + esc(r.primary.title.after) + '</h2>' +
+      '<h1 class="hl-face display">' + esc(r.primary.title.before) +
+        '<em>' + esc(r.primary.title.phrase) + '</em>' + esc(r.primary.title.after) + '</h1>' +
       para(r.primary.body) + '</div></div>';
     h += '<div class="sec">' + label("How to fix it") +
       "<p>" + esc(r.primary.fix.lead) + "</p>" +
@@ -195,7 +193,7 @@
       r.risk.flags.map(function (f) {
         return '<div class="risk">' +
           '<div class="risk__head"><div class="glow"></div>' +
-            '<span>You have ' + article(f.name) + '</span><h3 class="display d3">' + esc(f.name) + "</h3><span>risk</span></div>" +
+            '<span>You have ' + article(f.name) + '</span><h3 class="hl-face d3">' + esc(f.name) + "</h3><span>risk</span></div>" +
           '<div class="risk__body"><p>' + esc(f.body) + "</p>" +
             '<ol class="acts acts--risk">' +
               f.fix.map(function (a) { return "<li>" + esc(a) + "</li>"; }).join("") +
@@ -203,7 +201,7 @@
       }).join("") + "</div>";
     if (r.dontDo) {
       h += '<div class="sec sec--dont">' +
-        '<h2 class="display d2 dont__h">Don\u2019t do this yet</h2>' +
+        '<h2 class="hl-face d2 dont__h">Don\u2019t do this yet</h2>' +
         "<p>" + esc(r.dontDo.lead) + "</p>" +
         '<ol class="acts dont">' + r.dontDo.items.map(function (a) { return "<li>" + esc(a) + "</li>"; }).join("") + "</ol></div>";
     }

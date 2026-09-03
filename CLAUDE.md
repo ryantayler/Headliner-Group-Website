@@ -73,8 +73,9 @@ Ryan's ruling, September 2026. Permanent.
 
 - **Tools are Headliner Group.** Anything somebody uses, a calculator, a diagnostic,
   a form, a dashboard, a web app. Headliner's system: aqua accent, coral for actions,
-  Inter for every heading and every line of body copy, Archivo Black as the logo face
-  and nothing else.
+  Inter for body copy, and Archivo Black for the logo and for report and section
+  headings. Ryan widened this in September 2026 from logo only, after seeing the
+  diagnostic report set in Inter throughout. Body copy is still Inter, always.
 - **Content and IP are Ryan Tayler.** Anything he authored, frameworks, posts,
   models, points of view. His system: pink accent, Anton headers, Caveat once,
   and the signature as the sign off.
