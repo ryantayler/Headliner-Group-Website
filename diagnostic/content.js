@@ -2994,13 +2994,13 @@ window.DIAG ={
             ]
           },
           {
-            "text": "Take a deposit on every job. Fifty percent thirty days out and the balance the week before, so the money is in before your costs go out."
+            "text": "Move to a deposit on every job. Fifty percent thirty days out and the balance the week before, so the money is in before your costs go out."
           },
           {
             "text": "Line the deposit up to land before your cost of goods does. On jobs where the number moves on the day, charge the balance afterwards and refund the difference."
           },
           {
-            "text": "Invoice within twenty four hours of the job finishing, rather than at the end of the month."
+            "text": "Invoice within twenty four hours of the job finishing. Whatever the gap is between finishing and invoicing, that gap is yours to close."
           },
           {
             "text": "Collect what's already overdue before you chase anything new. It's the cheapest money available to you.",
@@ -3027,7 +3027,15 @@ window.DIAG ={
             ]
           },
           {
-            "text": "Get a facility in place while you're still profitable. Banks lend to businesses that don't look like they need it."
+            "text": "Get a facility in place while the business is still profitable on paper. Banks lend to businesses that don't look like they need it.",
+            "when": [
+              [
+                "q10",
+                [
+                  "a"
+                ]
+              ]
+            ]
           }
         ]
       },
@@ -3067,7 +3075,7 @@ window.DIAG ={
             "text": "Hand over one whole area with the decisions attached. Half a handover leaves you doing the work and them carrying the confusion."
           },
           {
-            "text": "Give it ninety days before you judge it, and stop being the escalation point for what you handed over."
+            "text": "Give it ninety days before you judge it, and don't let yourself become the escalation point for what you handed over."
           }
         ]
       },
@@ -3091,7 +3099,7 @@ window.DIAG ={
             ]
           },
           {
-            "text": "Pull the work that doesn't need your best people off your best people."
+            "text": "Look at what your best people actually spent last week on. Anything that didn't need them is capacity you already have."
           },
           {
             "text": "Quote the lead time you actually deliver rather than the one you hope for. A blown promise costs a customer you'd already won.",
@@ -3106,10 +3114,10 @@ window.DIAG ={
             ]
           },
           {
-            "text": "Stop selling the jobs that eat the most capacity for the least return, at least until the queue clears."
+            "text": "Work out which jobs eat the most capacity for the least return, and stop taking those until the queue clears."
           },
           {
-            "text": "Add capacity last. Hiring into a broken process gets you a bigger broken process."
+            "text": "Add capacity last, once the steps above have been worked. Hiring multiplies whatever the process already does."
           }
         ]
       },
@@ -3133,13 +3141,13 @@ window.DIAG ={
             ]
           },
           {
-            "text": "Look hard at the first thirty days after somebody buys. That's where most of the leaving gets decided."
+            "text": "Look hard at what happens in the first thirty days after somebody buys. That's the part of the experience you control most tightly."
           },
           {
-            "text": "Give them a reason to come back that you initiate. Waiting to be remembered isn't a retention plan."
+            "text": "Build one reason to come back that you initiate. A check in, or the next step offered before they go looking."
           },
           {
-            "text": "Measure it monthly. You can't run a business on a number you find out about once a year."
+            "text": "Measure retention monthly, so a drop shows up while you can still do something about it."
           }
         ]
       },
@@ -3147,7 +3155,7 @@ window.DIAG ={
         "lead": "You need more value in the offer than the price is asking for, and the hurdles taken out of the way of somebody saying yes.",
         "actions": [
           {
-            "text": "List everything you already do for a customer that you never charge for and never mention. That is value sitting in the offer that nobody can see."
+            "text": "List everything you already do for a customer that isn't written into the offer. That's value nobody can see."
           },
           {
             "text": "Add two things that cost you close to nothing and are worth real money to the buyer. A guarantee, or something they would otherwise have to go and source themselves."
@@ -3177,7 +3185,7 @@ window.DIAG ={
             ]
           },
           {
-            "text": "Sort your last twenty losses by reason and count them. If price keeps coming up, the value isn't visible enough, it isn't too high."
+            "text": "Sort your last twenty losses by reason and count them. If price keeps coming up, look at the value in the offer before you look at the number."
           },
           {
             "text": "Test the new offer on the next ten enquiries before you change anything else."
@@ -3188,7 +3196,7 @@ window.DIAG ={
         "lead": "You need one lead source running properly and consistently before you go anywhere near a second.",
         "actions": [
           {
-            "text": "Nothing is running right now, so start with the one thing you can do every week without fail.",
+            "text": "Whatever you're doing to generate enquiries isn't running consistently. Start with the one thing you can do every week without fail.",
             "when": [
               [
                 "q35",
@@ -3200,13 +3208,13 @@ window.DIAG ={
             ]
           },
           {
-            "text": "Pick the channel that already brings your best customers and put real weight behind it."
+            "text": "Pick the lead source that already brings your best customers and put real weight behind it."
           },
           {
             "text": "Go and ask for work. Outbound to the twenty businesses you'd most like to work with beats waiting on referrals."
           },
           {
-            "text": "Everything arrives through one channel. Stand up a second before that one changes.",
+            "text": "Everything arrives through one lead source. Stand up a second before that one changes.",
             "when": [
               [
                 "q43",
@@ -3220,7 +3228,7 @@ window.DIAG ={
             "text": "Ask every happy customer for one introduction."
           },
           {
-            "text": "Give a channel ninety days before you judge it. Anything shorter is guesswork."
+            "text": "Give a lead source ninety days before you judge it. Anything shorter is guesswork."
           }
         ]
       },
@@ -3259,7 +3267,7 @@ window.DIAG ={
             "text": "Find your worst three customers by margin, then reprice them or let them go."
           },
           {
-            "text": "Stop discounting to win. A discount is the fastest way to buy work you'll resent delivering."
+            "text": "Don't discount to win. A discount is the fastest way to buy work you'll resent delivering."
           }
         ]
       }
@@ -3332,7 +3340,7 @@ window.DIAG ={
       ],
       "key_supplier": [
         "Qualify a second supplier and give them ten percent of your volume. A backup you've never bought from isn't a backup.",
-        "Get lead times and pricing from your current one in writing, so a change is a conversation rather than a surprise."
+        "Get their lead times and pricing in writing, so a change becomes a conversation rather than a surprise."
       ],
       "key_licence": [
         "Put every renewal date in a calendar with a ninety day warning on it.",
@@ -3344,7 +3352,7 @@ window.DIAG ={
       ],
       "personal_guarantee": [
         "List every guarantee you've signed and put a date against each one to renegotiate or release it.",
-        "Most get renewed on autopilot, because nobody asks."
+        "They're easy to leave in place, because a renewal rarely asks you anything."
       ],
       "model_misfit": [
         "Write down what you actually wanted out of this, then hold your week up against it.",
@@ -3357,7 +3365,7 @@ window.DIAG ={
       ],
       "key_asset": [
         "Find out today what a replacement costs at short notice, and who actually has one.",
-        "Put it on a service schedule and hold to it. Most failures give some warning."
+        "Put it on a service schedule and hold to it."
       ]
     },
     "dontDoYet": {

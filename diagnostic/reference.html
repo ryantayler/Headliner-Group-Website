@@ -1,4 +1,4 @@
-<title>Findings Reference</title>
+<title>Solutions Reference</title>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700&display=swap">
 <style>/* =========================================================================
@@ -276,6 +276,8 @@ p{margin:0 0 16px;max-width:66ch}
   box-shadow:inset 0 0 calc(var(--cw)*.25) calc(var(--cw)*.015) rgba(0,0,0,.22)}
 .verdict>*{position:relative;z-index:1}
 .verdict .display{color:#0A0A0A;font-size:clamp(30px,5vw,54px);line-height:1.02;letter-spacing:-.02em;text-transform:uppercase}
+/* Archivo Black has one weight, so nothing can be lifted out of a headline set
+   in it. At this size the whole line is the statement, which is the point. */
 .verdict em{font-style:normal}
 .verdict p{margin:20px 0 0;max-width:58ch;font-size:16px;font-weight:500;color:#0A0A0A}
 .rep__head em{font-style:normal;color:var(--tx-accent)}
@@ -350,237 +352,435 @@ body.has-dev{padding-bottom:56px}
 
 .hero{padding:clamp(40px,6vw,72px) 0 clamp(28px,4vw,44px);background:var(--base);color:var(--ink)}
 .wrap{padding:clamp(40px,6vw,64px) 0 80px}
+.key{display:grid;gap:0;margin:26px 0 0;border:1px solid var(--rim);border-radius:14px;overflow:hidden}
+.key div{display:grid;grid-template-columns:210px 1fr;gap:18px;padding:14px 18px;border-top:1px solid var(--rim);background:var(--panel)}
+.key div:first-child{border-top:0}
+.key p{margin:0;font-size:14px;color:var(--sub);max-width:none}
 .grp{margin-top:clamp(44px,6vw,64px)}
 .grp:first-child{margin-top:0}
-.grp__h{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;padding-bottom:12px;border-bottom:1px solid var(--line)}
-.grp__h .count{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--tx-mute)}
-.item{padding:26px 0;border-bottom:1px solid var(--line)}
-.item__h{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.grp__h{padding-bottom:12px;border-bottom:1px solid var(--line)}
+.item{padding:30px 0;border-bottom:1px solid var(--line)}
+.item__h{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:6px}
 .item__h em{font-style:normal;color:var(--tx-accent)}
+.item__h h3{text-transform:uppercase}
 .num{font-weight:700;font-size:13px;color:var(--tx-accent);font-variant-numeric:tabular-nums}
-.tag{font-size:10.5px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;padding:3px 10px;border-radius:100px;border:1px solid var(--line);color:var(--tx-mute)}
-.def{font-size:16px;color:var(--tx);max-width:70ch;margin:0 0 12px}
-.def--alt{color:var(--tx-mute);font-size:15px}
-.def--alt b{color:var(--tx)}
-.slot{font-weight:600;color:var(--tx-accent);background:rgba(45,226,195,.14);padding:1px 6px;border-radius:5px}
-.lbl{font-size:10.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--tx-mute);margin:18px 0 8px}
+.lbl{font-size:10.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--tx-mute);margin:22px 0 8px}
+.lbl i{font-style:normal;letter-spacing:0;text-transform:none;font-weight:400;font-size:12px}
+.sub{font-size:15.5px;color:var(--tx);margin:0 0 4px;max-width:72ch}
+.lines{list-style:none;margin:0;padding:0;counter-reset:l}
+.lines li{position:relative;padding:11px 0 11px 0;border-top:1px solid var(--line);font-size:15.5px;color:var(--tx);max-width:none}
+.lines--n li,.lines--x li{counter-increment:l;padding-left:34px}
+.lines--n li::before{content:counter(l);position:absolute;left:0;top:11px;font-weight:700;font-size:13px;color:var(--tx-accent);font-variant-numeric:tabular-nums}
+.lines--x li::before{content:"\00d7";position:absolute;left:0;top:11px;font-weight:700;font-size:15px;color:var(--cta-deep)}
+.slot{font-weight:600;color:var(--tx-accent);background:rgba(45,226,195,.16);padding:1px 6px;border-radius:5px}
+.t{display:inline-block;margin-left:8px;font-size:10.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:2px 9px;border-radius:100px;white-space:normal;vertical-align:1px}
+.t--f{border:1px solid var(--line);color:var(--tx-mute)}
+.t--s{border:1px solid var(--tx-accent);color:var(--tx-accent)}
+.t--c{border:1px solid var(--cta-deep);color:var(--cta-deep)}
 .fires{list-style:none;margin:0;padding:0}
-.fires li{font-size:14.5px;color:var(--tx);padding:5px 0;border-top:1px solid var(--line)}
+.fires li{font-size:14.5px;color:var(--tx);padding:6px 0;border-top:1px solid var(--line)}
 .fires b{display:inline-block;min-width:34px;color:var(--tx-accent);font-variant-numeric:tabular-nums}
 .fires i{color:var(--tx-mute);font-style:normal}
 .fires--quiet li,.fires--quiet b{color:var(--tx-mute)}
-.meta{margin:16px 0 0;display:grid;gap:0}
-.meta div{display:grid;grid-template-columns:170px 1fr;gap:16px;padding:9px 0;border-top:1px solid var(--line)}
-.meta dt{font-size:11px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--tx-mute)}
-.meta dd{margin:0;font-size:15px;color:var(--tx)}
-@media (max-width:620px){.meta div{grid-template-columns:1fr;gap:3px}}
 </style>
 
-<header class="hdr"><div class="shell hdr__in"><a class="hl-link" href="https://headlinergroup.com.au" aria-label="Headliner Group, home"><div class="hl-stage"><div class="hl-logo"><div class="hl-beam"></div><span class="hl-word">Headliner</span><div class="hl-group">Group</div></div></div></a><p class="hdr__tag">Findings reference</p></div></header>
+<header class="hdr"><div class="shell hdr__in"><a class="hl-link" href="https://headlinergroup.com.au" aria-label="Headliner Group, home"><div class="hl-stage"><div class="hl-logo"><div class="hl-beam"></div><span class="hl-word">Headliner</span><div class="hl-group">Group</div></div></div></a><p class="hdr__tag">Solutions reference</p></div></header>
 
 <section class="hero"><div class="shell">
   <p class="eyebrow">Business diagnostic</p>
-  <h1 class="display d1">Every finding<br>the tool can make</h1>
-  <p class="lede" style="margin-top:20px">Seven constraints and twelve risks. Generated from the tool itself, so it cannot go stale against it. The highlighted parts are filled in from their answers.</p>
+  <h1 class="hl-face d1" style="text-transform:uppercase">Every solution<br>the tool can give</h1>
+  <p class="lede" style="margin-top:20px">Seven constraints and ten risks, with every line each one can print. Generated from the tool, so it cannot go stale against it.</p>
+  <div class="key">
+    <div><span class="t t--f">Same for everyone</span><p>The same words for every business that gets this finding.</p></div>
+    <div><span class="t t--s">Their answer dropped in</span><p>The same sentence, with their own answer or figure dropped into it.</p></div>
+    <div><span class="t t--c">Only if</span><p>The whole line only appears when they answered a particular way. Everyone else never sees it.</p></div>
+  </div>
 </div></section>
 
 <main class="on-light"><div class="shell wrap">
-  <section class="grp">
-    <div class="grp__h"><h2 class="display d2">The seven constraints</h2>
-      <span class="count">Checked in this order, first to fail is called</span></div>
-    <article class="item">
+  <section class="grp"><div class="grp__h"><h2 class="hl-face d2" style="text-transform:uppercase">The seven constraints</h2></div><article class="item">
     <div class="item__h"><span class="num">1</span>
-      <h3 class="display d3">You are <em>cash flow</em> constrained</h3></div>
-    <p class="def">You're profitable on paper and short of cash in practice. The work is sold and the money hasn't landed, so there's nothing sitting there to fund the next job.</p>
-    <p class="def">That's a timing problem rather than a rate problem. Every job you win right now costs you money before it pays you, which is why winning more of them is currently the worst move available to you.</p>
-    <dl class="meta">
-      <div><dt>Why it sits here</dt><dd>First, because nothing else can be actioned without money to fund it.</dd></div>
-      <div><dt>The fix opens with</dt><dd>You need to close the gap between doing the work and getting paid for it. Every other fix in the business is waiting on this one.</dd></div>
-      <div><dt>Actions</dt><dd>4 always, 3 that only print when an answer makes them true, capped at 5</dd></div>
-      <div><dt>Don’t do this yet</dt><dd>Until the cash timing is fixed, leave these alone. 5 items.</dd></div>
-      <div><dt>Fed by</dt><dd>7 questions, Q7 to Q13</dd></div>
-    </dl></article><article class="item">
+      <h3 class="hl-face d3">You are <em>cash flow</em> constrained</h3></div>
+
+    <p class="lbl">What it says</p>
+    <ul class="lines"><li>You're profitable on paper and short of cash in practice. The work is sold and the money hasn't landed, so there's nothing sitting there to fund the next job.
+  <span class="t t--f">Same for everyone</span></li>
+      <li>you get paid <b class="slot">their Q7 answer</b>
+  <span class="t t--s">Their answer dropped in</span></li><li>the balance lands <b class="slot">their Q9 answer</b>
+  <span class="t t--s">Their answer dropped in</span></li><li>you're owed <b class="slot">their Q13 answer</b> past its due date
+  <span class="t t--s">Their answer dropped in</span></li><li><b class="slot">their Q8 answer</b>
+  <span class="t t--s">Their answer dropped in</span></li><li>you're holding <b class="slot">their Q10 answer</b>
+  <span class="t t--s">Their answer dropped in</span></li>
+      <li>That's a timing problem rather than a rate problem. Every job you win right now costs you money before it pays you, which is why winning more of them is currently the worst move available to you.
+  <span class="t t--f">Same for everyone</span></li></ul>
+
+    <p class="lbl">How to fix it &nbsp;<i>7 written, 4 conditional, at most 5 ever print</i></p>
+    <p class="sub">You need to close the gap between doing the work and getting paid for it. Every other fix in the business is waiting on this one.</p>
+    <ol class="lines lines--n"><li>You take nothing upfront, which is this whole problem in one answer. Change that before anything else on this list.
+  <span class="t t--c">Only if Q7 is &ldquo;Nothing upfront, invoiced on completion&rdquo; or &ldquo;Nothing upfront, invoiced on terms after&rdquo;</span></li><li>Move to a deposit on every job. Fifty percent thirty days out and the balance the week before, so the money is in before your costs go out.
+  <span class="t t--f">Same for everyone</span></li><li>Line the deposit up to land before your cost of goods does. On jobs where the number moves on the day, charge the balance afterwards and refund the difference.
+  <span class="t t--f">Same for everyone</span></li><li>Invoice within twenty four hours of the job finishing. Whatever the gap is between finishing and invoicing, that gap is yours to close.
+  <span class="t t--f">Same for everyone</span></li><li>Collect what's already overdue before you chase anything new. It's the cheapest money available to you.
+  <span class="t t--c">Only if Q13 is &ldquo;One to four weeks' revenue&rdquo; or &ldquo;More than a month's revenue&rdquo;</span></li><li>Put terms in writing before the next job starts, and chase on day one past due.
+  <span class="t t--c">Only if Q51 is &ldquo;Month to month, cancellable anytime&rdquo; or &ldquo;Handshake and email&rdquo;</span></li><li>Get a facility in place while the business is still profitable on paper. Banks lend to businesses that don't look like they need it.
+  <span class="t t--c">Only if Q12 is &ldquo;Yes, clearly&rdquo;</span></li></ol>
+
+    <p class="lbl">Don’t do this yet</p>
+    <p class="sub">Until the cash timing is fixed, leave these alone.</p>
+    <ol class="lines lines--x"><li>Don't chase bigger jobs. Bigger jobs mean bigger upfront costs and longer payment cycles.
+  <span class="t t--f">Same for everyone</span></li><li>Don't hire. Wages are the least flexible cost you can add to a cash problem.
+  <span class="t t--f">Same for everyone</span></li><li>Don't buy equipment outright. Finance it, even if the interest annoys you.
+  <span class="t t--f">Same for everyone</span></li><li>Don't discount to get paid faster. That's borrowing at a rate you'd never accept from a bank.
+  <span class="t t--f">Same for everyone</span></li><li>Don't increase marketing spend. More demand you can't fund makes the hole deeper.
+  <span class="t t--f">Same for everyone</span></li></ol>
+  </article><article class="item">
     <div class="item__h"><span class="num">2</span>
-      <h3 class="display d3">You are <em>talent</em> constrained</h3></div>
-    <p class="def">Talent here means a missing layer, not missing hands. <b class="slot">from their answers</b> Most of last week went to <b class="slot">from their answers</b>.</p>
-    <p class="def">Hiring another pair of hands underneath you doesn't touch this. What's missing is a whole role that doesn't exist yet, and until it does, everything you add lands on the same desk.</p>
-    <dl class="meta">
-      <div><dt>Why it sits here</dt><dd>Above fulfilment, because capacity added under a missing layer just loads the layer.</dd></div>
-      <div><dt>The fix opens with</dt><dd>You need one role hired with the authority to actually run what you hand over, rather than another pair of hands underneath you.</dd></div>
-      <div><dt>Actions</dt><dd>4 always, 2 that only print when an answer makes them true, capped at 5</dd></div>
-      <div><dt>Don’t do this yet</dt><dd>Until the layer exists, leave these alone. 5 items.</dd></div>
-      <div><dt>Fed by</dt><dd>6 questions, Q14 to Q19</dd></div>
-    </dl></article><article class="item">
+      <h3 class="hl-face d3">You are <em>talent</em> constrained</h3></div>
+
+    <p class="lbl">What it says</p>
+    <ul class="lines"><li>Talent here means a missing layer, not missing hands.
+  <span class="t t--f">Same for everyone</span></li><li><b class="slot">worked out from their answers</b>
+  <span class="t t--s">Their answer dropped in</span></li><li>Most of last week went to <b class="slot">worked out from their answers</b>.
+  <span class="t t--s">Their answer dropped in</span></li>
+      <li>the work that actually moves the business forward got <b class="slot">their Q17 answer</b>
+  <span class="t t--s">Their answer dropped in</span></li><li>if you went dark for a month the business <b class="slot">their Q15 answer</b>
+  <span class="t t--s">Their answer dropped in</span></li><li><b class="slot">their Q18 answer</b>
+  <span class="t t--s">Their answer dropped in</span></li>
+      <li>Hiring another pair of hands underneath you doesn't touch this. What's missing is a whole role that doesn't exist yet, and until it does, everything you add lands on the same desk.
+  <span class="t t--f">Same for everyone</span></li></ul>
+
+    <p class="lbl">How to fix it &nbsp;<i>6 written, 2 conditional, at most 5 ever print</i></p>
+    <p class="sub">You need one role hired with the authority to actually run what you hand over, rather than another pair of hands underneath you.</p>
+    <ol class="lines lines--n"><li>Every layer sits with you. Hire the one that would free the most of your week first, not the one that's easiest to fill.
+  <span class="t t--c">Only if Q14 is &ldquo;None of these, they all sit with me&rdquo;</span></li><li>List every task you touched last week. Against each one, write the name of the person who'd do it if you were away for a month. Any task with no name against it is the hire.
+  <span class="t t--f">Same for everyone</span></li><li>Hire the layer rather than the hands. Another delivery person gives you more capacity. A person who runs delivery gives you your week back.
+  <span class="t t--f">Same for everyone</span></li><li>You've got more direct reports than one person can run properly. The hire that fixes this sits between you and most of them.
+  <span class="t t--c">Only if Q19 is &ldquo;8 to 12&rdquo; or &ldquo;More than 12&rdquo;</span></li><li>Hand over one whole area with the decisions attached. Half a handover leaves you doing the work and them carrying the confusion.
+  <span class="t t--f">Same for everyone</span></li><li>Give it ninety days before you judge it, and don't let yourself become the escalation point for what you handed over.
+  <span class="t t--f">Same for everyone</span></li></ol>
+
+    <p class="lbl">Don’t do this yet</p>
+    <p class="sub">Until the layer exists, leave these alone.</p>
+    <ol class="lines lines--x"><li>Don't hire another doer. Every one you add reports to you, and you're the bottleneck.
+  <span class="t t--f">Same for everyone</span></li><li>Don't take on a new market or a new location. Both land on your desk.
+  <span class="t t--f">Same for everyone</span></li><li>Don't start anything that needs your attention for six months.
+  <span class="t t--f">Same for everyone</span></li><li>Don't increase lead generation. The work you win still has to route through you.
+  <span class="t t--f">Same for everyone</span></li><li>Don't redraw the org chart. What's missing is a person who doesn't exist, not a diagram.
+  <span class="t t--f">Same for everyone</span></li></ol>
+  </article><article class="item">
     <div class="item__h"><span class="num">3</span>
-      <h3 class="display d3">You are <em>fulfilment</em> constrained</h3></div>
-    <p class="def">This is capacity, not capability. You know how to do the work and you can't get enough hours of it out the door.</p>
-    <p class="def">Nothing at the front of the business needs attention until the back of it can breathe. Anything you do to bring in more work right now gets paid for by the customers you already have.</p>
-    <dl class="meta">
-      <div><dt>Why it sits here</dt><dd>Above demand, because adding demand to a business that can't deliver accelerates the damage.</dd></div>
-      <div><dt>The fix opens with</dt><dd>You need more output from what you already have, or more capacity, before you go and win any more work.</dd></div>
-      <div><dt>Actions</dt><dd>4 always, 2 that only print when an answer makes them true, capped at 5</dd></div>
-      <div><dt>Don’t do this yet</dt><dd>Until you can deliver what you've already sold, leave these alone. 5 items.</dd></div>
-      <div><dt>Fed by</dt><dd>5 questions, Q20 to Q24</dd></div>
-    </dl></article><article class="item">
+      <h3 class="hl-face d3">You are <em>fulfilment</em> constrained</h3></div>
+
+    <p class="lbl">What it says</p>
+    <ul class="lines"><li>This is capacity, not capability. You know how to do the work and you can't get enough hours of it out the door.
+  <span class="t t--f">Same for everyone</span></li>
+      <li>you're running <b class="slot">their Q20 answer</b>
+  <span class="t t--s">Their answer dropped in</span></li><li><b class="slot">their Q21 answer</b>
+  <span class="t t--s">Their answer dropped in</span></li><li>lead times have <b class="slot">their Q22 answer</b>
+  <span class="t t--s">Their answer dropped in</span></li><li>a typical job is ready <b class="slot">their Q23 answer</b>
+  <span class="t t--s">Their answer dropped in</span></li>
+      <li>Nothing at the front of the business needs attention until the back of it can breathe. Anything you do to bring in more work right now gets paid for by the customers you already have.
+  <span class="t t--f">Same for everyone</span></li></ul>
+
+    <p class="lbl">How to fix it &nbsp;<i>6 written, 2 conditional, at most 5 ever print</i></p>
+    <p class="sub">You need more output from what you already have, or more capacity, before you go and win any more work.</p>
+    <ol class="lines lines--n"><li>Find the one step everything queues behind, then put your next hour into that step and nothing else.
+  <span class="t t--f">Same for everyone</span></li><li>Write the five things that go wrong most often into one page checklists. Undocumented work is slow work.
+  <span class="t t--c">Only if Q52 is &ldquo;About half&rdquo; or &ldquo;Almost none, it lives in people's heads&rdquo; or &ldquo;Not sure&rdquo;</span></li><li>Look at what your best people actually spent last week on. Anything that didn't need them is capacity you already have.
+  <span class="t t--f">Same for everyone</span></li><li>Quote the lead time you actually deliver rather than the one you hope for. A blown promise costs a customer you'd already won.
+  <span class="t t--c">Only if Q23 is &ldquo;The day before&rdquo; or &ldquo;We're finishing it as it starts&rdquo;</span></li><li>Work out which jobs eat the most capacity for the least return, and stop taking those until the queue clears.
+  <span class="t t--f">Same for everyone</span></li><li>Add capacity last, once the steps above have been worked. Hiring multiplies whatever the process already does.
+  <span class="t t--f">Same for everyone</span></li></ol>
+
+    <p class="lbl">Don’t do this yet</p>
+    <p class="sub">Until you can deliver what you've already sold, leave these alone.</p>
+    <ol class="lines lines--x"><li>Don't chase new customers. You'd be damaging the ones you have to serve the ones you win.
+  <span class="t t--f">Same for everyone</span></li><li>Don't increase marketing spend. Adding demand to a full pipeline is the classic accelerant.
+  <span class="t t--f">Same for everyone</span></li><li>Don't launch a new service line. New work is slow work while the process is still being learned.
+  <span class="t t--f">Same for everyone</span></li><li>Don't drop your prices. You've got more demand than capacity, which is the one time raising them is easy.
+  <span class="t t--f">Same for everyone</span></li><li>Don't promise a shorter lead time to win a job. That's where the quality problem starts.
+  <span class="t t--f">Same for everyone</span></li></ol>
+  </article><article class="item">
     <div class="item__h"><span class="num">4</span>
-      <h3 class="display d3">You are <em>value</em> constrained</h3></div>
-    <p class="def">Value here means what the customer perceives, and it has nothing to do with your pricing or your margin. They buy, then they either stop or start giving most of the work to somebody else.</p>
-    <p class="def">You're filling a leaky bucket. Every dollar going into finding new customers is currently paying to replace the ones walking out the other side, which is why the business feels busy and stays the same size.</p>
-    <dl class="meta">
-      <div><dt>Why it sits here</dt><dd>Above offer, because winning more customers into a leaky bucket wastes the win.</dd></div>
-      <div><dt>The fix opens with</dt><dd>You need to find out why customers leave or shrink, and fix that, before you spend another dollar finding new ones.</dd></div>
-      <div><dt>Actions</dt><dd>4 always, 1 that only print when an answer makes them true, capped at 5</dd></div>
-      <div><dt>Don’t do this yet</dt><dd>Until customers stay, leave these alone. 5 items.</dd></div>
-      <div><dt>Fed by</dt><dd>6 questions, Q25 to Q30</dd></div>
-    </dl></article><article class="item">
+      <h3 class="hl-face d3">You are <em>value</em> constrained</h3></div>
+
+    <p class="lbl">What it says</p>
+    <ul class="lines"><li>Value here means what the customer perceives, and it has nothing to do with your pricing or your margin. They buy, then they either stop or start giving most of the work to somebody else.
+  <span class="t t--f">Same for everyone</span></li>
+      <li>of the customers you had a year ago, <b class="slot">their Q25 answer</b> still buy from you
+  <span class="t t--s">Their answer dropped in</span></li><li>you get <b class="slot">their Q26 answer</b> of the work they put out
+  <span class="t t--s">Their answer dropped in</span></li><li>they come back unprompted <b class="slot">their Q27 answer</b>
+  <span class="t t--s">Their answer dropped in</span></li><li>referrals bring in <b class="slot">their Q28 answer</b> of your new customers
+  <span class="t t--s">Their answer dropped in</span></li>
+      <li>You're filling a leaky bucket. Every dollar going into finding new customers is currently paying to replace the ones walking out the other side, which is why the business feels busy and stays the same size.
+  <span class="t t--f">Same for everyone</span></li></ul>
+
+    <p class="lbl">How to fix it &nbsp;<i>5 written, 1 conditional, at most 5 ever print</i></p>
+    <p class="sub">You need to find out why customers leave or shrink, and fix that, before you spend another dollar finding new ones.</p>
+    <ol class="lines lines--n"><li>Ring ten customers who stopped buying or cut back, and ask them straight. Not a survey. A phone call.
+  <span class="t t--f">Same for everyone</span></li><li>Ask your biggest customers what they give to somebody else, and why. That work already exists, you're just not getting it.
+  <span class="t t--c">Only if Q26 is &ldquo;About half&rdquo; or &ldquo;Less than half&rdquo; or &ldquo;A small slice, they spread it around&rdquo;</span></li><li>Look hard at what happens in the first thirty days after somebody buys. That's the part of the experience you control most tightly.
+  <span class="t t--f">Same for everyone</span></li><li>Build one reason to come back that you initiate. A check in, or the next step offered before they go looking.
+  <span class="t t--f">Same for everyone</span></li><li>Measure retention monthly, so a drop shows up while you can still do something about it.
+  <span class="t t--f">Same for everyone</span></li></ol>
+
+    <p class="lbl">Don’t do this yet</p>
+    <p class="sub">Until customers stay, leave these alone.</p>
+    <ol class="lines lines--x"><li>Don't spend more on acquisition. You'd be paying to fill a bucket with a hole in it.
+  <span class="t t--f">Same for everyone</span></li><li>Don't raise prices. Value perception is already the problem.
+  <span class="t t--f">Same for everyone</span></li><li>Don't add a new product for existing customers who aren't buying the current one.
+  <span class="t t--f">Same for everyone</span></li><li>Don't expand into a new market. You'd take the retention problem with you.
+  <span class="t t--f">Same for everyone</span></li><li>Don't run a loyalty programme. A discount doesn't fix a value gap, it confirms one.
+  <span class="t t--f">Same for everyone</span></li></ol>
+  </article><article class="item">
     <div class="item__h"><span class="num">5</span>
-      <h3 class="display d3">You are <em>offer</em> constrained</h3></div>
-    <p class="def">Enquiries arrive and they don't convert. That isn't a sales technique problem, it's what's on the table. Either the value in the offer doesn't justify the price you're asking, or there's something in the way of somebody saying yes.</p>
-    <p class="def">You don't fix this by dropping the price. You fix it by putting things into the offer that cost you very little and are worth real money to the buyer, and by removing whatever a prospect has to get over before they can say yes.</p>
-    <dl class="meta">
-      <div><dt>Why it sits here</dt><dd>Above demand, because more enquiries against an offer that doesn't land changes nothing.</dd></div>
-      <div><dt>The fix opens with</dt><dd>You need more value in the offer than the price is asking for, and the hurdles taken out of the way of somebody saying yes.</dd></div>
-      <div><dt>Actions</dt><dd>4 always, 2 that only print when an answer makes them true, capped at 5</dd></div>
-      <div><dt>Don’t do this yet</dt><dd>Until the offer lands, leave these alone. 5 items.</dd></div>
-      <div><dt>Fed by</dt><dd>5 questions, Q31 to Q35</dd></div>
-    </dl></article><article class="item">
+      <h3 class="hl-face d3">You are <em>offer</em> constrained</h3></div>
+
+    <p class="lbl">What it says</p>
+    <ul class="lines"><li>Enquiries arrive and they don't convert.
+  <span class="t t--f">Same for everyone</span></li><li>That isn't a sales technique problem, it's what's on the table. Either the value in the offer doesn't justify the price you're asking, or there's something in the way of somebody saying yes.
+  <span class="t t--f">Same for everyone</span></li>
+      <li>your close rate sits <b class="slot">their Q31 answer</b>
+  <span class="t t--s">Their answer dropped in</span></li><li>the most common reason you lose is <b class="slot">their Q32 answer</b>
+  <span class="t t--s">Their answer dropped in</span></li><li>prospects come back on your quote asking what's included <b class="slot">their Q33 answer</b>
+  <span class="t t--s">Their answer dropped in</span></li><li>they find out what you charge <b class="slot">their Q35 answer</b>
+  <span class="t t--s">Their answer dropped in</span></li>
+      <li>You don't fix this by dropping the price. You fix it by putting things into the offer that cost you very little and are worth real money to the buyer, and by removing whatever a prospect has to get over before they can say yes.
+  <span class="t t--f">Same for everyone</span></li></ul>
+
+    <p class="lbl">How to fix it &nbsp;<i>6 written, 2 conditional, at most 5 ever print</i></p>
+    <p class="sub">You need more value in the offer than the price is asking for, and the hurdles taken out of the way of somebody saying yes.</p>
+    <ol class="lines lines--n"><li>List everything you already do for a customer that isn't written into the offer. That's value nobody can see.
+  <span class="t t--f">Same for everyone</span></li><li>Add two things that cost you close to nothing and are worth real money to the buyer. A guarantee, or something they would otherwise have to go and source themselves.
+  <span class="t t--f">Same for everyone</span></li><li>Write down every question a prospect asks after they get the quote, then answer all of them inside the quote itself.
+  <span class="t t--c">Only if Q33 is &ldquo;Often&rdquo; or &ldquo;On most quotes&rdquo;</span></li><li>Put a price or a range where they can see it. Making somebody wait for a number is a hurdle before they have even decided.
+  <span class="t t--c">Only if Q35 is &ldquo;Every job gets quoted from scratch&rdquo; or &ldquo;It depends who's asking&rdquo;</span></li><li>Sort your last twenty losses by reason and count them. If price keeps coming up, look at the value in the offer before you look at the number.
+  <span class="t t--f">Same for everyone</span></li><li>Test the new offer on the next ten enquiries before you change anything else.
+  <span class="t t--f">Same for everyone</span></li></ol>
+
+    <p class="lbl">Don’t do this yet</p>
+    <p class="sub">Until the offer lands, leave these alone.</p>
+    <ol class="lines lines--x"><li>Don't buy more leads. You'd pay more money for the same conversion rate.
+  <span class="t t--f">Same for everyone</span></li><li>Don't hire a salesperson. They'd fail against the same offer you're failing against.
+  <span class="t t--f">Same for everyone</span></li><li>Don't cut your price. Price is rarely the real reason, and you can't test it while the offer is unclear.
+  <span class="t t--f">Same for everyone</span></li><li>Don't add more options. More choice is part of why these deals are stalling.
+  <span class="t t--f">Same for everyone</span></li><li>Don't rebrand. The words are the problem, not the logo.
+  <span class="t t--f">Same for everyone</span></li></ol>
+  </article><article class="item">
     <div class="item__h"><span class="num">6</span>
-      <h3 class="display d3">You are <em>demand</em> constrained</h3></div>
-    <p class="def">You've got capacity sitting idle and not enough people asking.</p>
-    <p class="def">You could take on more work tomorrow, which is what separates this from a delivery problem. Nothing downstream is broken. The business just isn't being fed, and it won't start feeding itself.</p>
-    <dl class="meta">
-      <div><dt>Why it sits here</dt><dd>Second last. Real, but only once everything above it can absorb the work.</dd></div>
-      <div><dt>The fix opens with</dt><dd>You need one lead source running properly and consistently before you go anywhere near a second.</dd></div>
-      <div><dt>Actions</dt><dd>4 always, 2 that only print when an answer makes them true, capped at 5</dd></div>
-      <div><dt>Don’t do this yet</dt><dd>Until enquiries lift, leave these alone. 5 items.</dd></div>
-      <div><dt>Fed by</dt><dd>5 questions, Q36 to Q40</dd></div>
-    </dl></article><article class="item">
+      <h3 class="hl-face d3">You are <em>demand</em> constrained</h3></div>
+
+    <p class="lbl">What it says</p>
+    <ul class="lines"><li>You've got capacity sitting idle and not enough people asking.
+  <span class="t t--f">Same for everyone</span></li>
+      <li>enquiries run <b class="slot">their Q36 answer</b>
+  <span class="t t--s">Their answer dropped in</span></li><li>volume has <b class="slot">their Q38 answer</b> over the last year
+  <span class="t t--s">Their answer dropped in</span></li><li><b class="slot">their Q40 answer</b>
+  <span class="t t--s">Their answer dropped in</span></li>
+      <li>You could take on more work tomorrow, which is what separates this from a delivery problem. Nothing downstream is broken. The business just isn't being fed, and it won't start feeding itself.
+  <span class="t t--f">Same for everyone</span></li></ul>
+
+    <p class="lbl">How to fix it &nbsp;<i>6 written, 2 conditional, at most 5 ever print</i></p>
+    <p class="sub">You need one lead source running properly and consistently before you go anywhere near a second.</p>
+    <ol class="lines lines--n"><li>Whatever you're doing to generate enquiries isn't running consistently. Start with the one thing you can do every week without fail.
+  <span class="t t--c">Only if Q40 is &ldquo;On and off&rdquo; or &ldquo;No, it all comes to us&rdquo;</span></li><li>Pick the lead source that already brings your best customers and put real weight behind it.
+  <span class="t t--f">Same for everyone</span></li><li>Go and ask for work. Outbound to the twenty businesses you'd most like to work with beats waiting on referrals.
+  <span class="t t--f">Same for everyone</span></li><li>Everything arrives through one lead source. Stand up a second before that one changes.
+  <span class="t t--c">Only if Q48 is &ldquo;One channel is nearly all of it&rdquo;</span></li><li>Ask every happy customer for one introduction.
+  <span class="t t--f">Same for everyone</span></li><li>Give a lead source ninety days before you judge it. Anything shorter is guesswork.
+  <span class="t t--f">Same for everyone</span></li></ol>
+
+    <p class="lbl">Don’t do this yet</p>
+    <p class="sub">Until enquiries lift, leave these alone.</p>
+    <ol class="lines lines--x"><li>Don't hire. You'd be adding capacity to capacity you already can't fill.
+  <span class="t t--f">Same for everyone</span></li><li>Don't build a new product. The one you have hasn't been shown to enough people.
+  <span class="t t--f">Same for everyone</span></li><li>Don't cut prices to stimulate demand. It rarely moves volume, and it permanently resets what customers expect to pay.
+  <span class="t t--f">Same for everyone</span></li><li>Don't spread across five channels at once. One channel run properly beats five run badly.
+  <span class="t t--f">Same for everyone</span></li><li>Don't wait for referrals to pick back up. Referral volume follows the number of customers you have, and that's the number that's short.
+  <span class="t t--f">Same for everyone</span></li></ol>
+  </article><article class="item">
     <div class="item__h"><span class="num">7</span>
-      <h3 class="display d3">You are <em>margin</em> constrained</h3></div>
-    <p class="def">You're full and busy, and there's nothing left at the end of it.</p>
-    <p class="def">Volume won't rescue this. At the margin you're running, more work gets you more of the same result and it arrives faster.</p>
-    <dl class="meta">
-      <div><dt>Why it sits here</dt><dd>Last, because it is usually a symptom of something above it rather than a constraint of its own.</dd></div>
-      <div><dt>The fix opens with</dt><dd>You need to know what each job actually earns you before you change anything. A price rise can cost you customers as easily as it can fix the margin.</dd></div>
-      <div><dt>Actions</dt><dd>3 always, 2 that only print when an answer makes them true, capped at 5</dd></div>
-      <div><dt>Don’t do this yet</dt><dd>Until the margin moves, leave these alone. 5 items.</dd></div>
-      <div><dt>Fed by</dt><dd>5 questions, Q41 to Q45</dd></div>
-    </dl></article>
-  </section>
-  <section class="grp">
-    <div class="grp__h"><h2 class="display d2">The twelve risks</h2>
-      <span class="count">Loudest first, top 4 print, bar is 55</span></div>
-    <p class="def" style="margin-top:22px">A risk has to fire on an answer that is genuinely unusual, never on the answer most small businesses would give. That is why fragility was removed and why some answers below add weight without ever printing on their own.</p>
-    <h3 class="lbl" style="margin-top:26px">One of something that should be several</h3>
+      <h3 class="hl-face d3">You are <em>margin</em> constrained</h3></div>
+
+    <p class="lbl">What it says</p>
+    <ul class="lines"><li>You're full and busy, and there's nothing left at the end of it.
+  <span class="t t--f">Same for everyone</span></li>
+      <li>what's left after direct costs sits <b class="slot">their Q41 answer</b>
+  <span class="t t--s">Their answer dropped in</span></li><li>after everything it's <b class="slot">their Q42 answer</b>
+  <span class="t t--s">Their answer dropped in</span></li><li><b class="slot">their Q43 answer</b>
+  <span class="t t--s">Their answer dropped in</span></li><li>jobs run over what you quoted <b class="slot">their Q44 answer</b>
+  <span class="t t--s">Their answer dropped in</span></li>
+      <li>Volume won't rescue this. At the margin you're running, more work gets you more of the same result and it arrives faster.
+  <span class="t t--f">Same for everyone</span></li></ul>
+
+    <p class="lbl">How to fix it &nbsp;<i>5 written, 2 conditional, at most 5 ever print</i></p>
+    <p class="sub">You need to know what each job actually earns you before you change anything. A price rise can cost you customers as easily as it can fix the margin.</p>
+    <ol class="lines lines--n"><li>Raise prices on new work now. Ten percent across the board, and watch what actually happens.
+  <span class="t t--c">Only if Q43 is &ldquo;1 to 2 years ago&rdquo; or &ldquo;More than 2 years ago&rdquo; or &ldquo;Never&rdquo;</span></li><li>Work out what each job really costs, your own time included, then rank your last twenty by what was left.
+  <span class="t t--f">Same for everyone</span></li><li>Quote a contingency into the jobs that historically run over. You already know which ones they are.
+  <span class="t t--c">Only if Q44 is &ldquo;Often&rdquo; or &ldquo;On most jobs&rdquo;</span></li><li>Find your worst three customers by margin, then reprice them or let them go.
+  <span class="t t--f">Same for everyone</span></li><li>Don't discount to win. A discount is the fastest way to buy work you'll resent delivering.
+  <span class="t t--f">Same for everyone</span></li></ol>
+
+    <p class="lbl">Don’t do this yet</p>
+    <p class="sub">Until the margin moves, leave these alone.</p>
+    <ol class="lines lines--x"><li>Don't chase volume. More work at this margin is more risk for the same money.
+  <span class="t t--f">Same for everyone</span></li><li>Don't hire. Every head you add at this margin needs a lot of revenue standing behind it.
+  <span class="t t--f">Same for everyone</span></li><li>Don't take the big thin job because it's good for the brand. Reputation doesn't pay wages.
+  <span class="t t--f">Same for everyone</span></li><li>Don't discount anything. There's nothing left to give away.
+  <span class="t t--f">Same for everyone</span></li><li>Don't invest in growth. Growing an unprofitable model makes it unprofitable faster.
+  <span class="t t--f">Same for everyone</span></li></ol>
+  </article></section>
+  <section class="grp"><div class="grp__h"><h2 class="hl-face d2" style="text-transform:uppercase">The ten risks</h2></div>
     <article class="item">
-    <div class="item__h"><h3 class="display d3">You have a <em>Key asset</em> risk</h3>
-      <span class="tag">Concentration</span></div>
-    <p class="def">One piece of equipment or one vehicle is doing work you have no backup for. A breakdown or a long repair stops revenue you have already sold, and hire rates at short notice are set by people who know you're stuck.</p>
-    
+    <div class="item__h"><h3 class="hl-face d3">You have a <em>Key asset</em> risk</h3></div>
+    <p class="lbl">What it says</p>
+    <ul class="lines"><li>One piece of equipment or one vehicle is doing work you have no backup for. A breakdown or a long repair stops revenue you have already sold, and hire rates at short notice are set by people who know you're stuck.
+  <span class="t t--f">Same for everyone</span></li>
+      
+      </ul>
     <p class="lbl">Prints when they answer</p>
     <ul class="fires"><li><b>100</b> Q50 &ldquo;named as the one that would hurt most&rdquo;</li><li><b>75</b> Q49 &ldquo;One key piece of equipment, or one vehicle&rdquo;</li></ul>
     
     <p class="lbl">What to do</p>
-    <ol class="acts"><li>Find out today what a replacement costs at short notice, and who actually has one.</li><li>Put it on a service schedule and hold to it. Most failures give some warning.</li></ol>
+    <ol class="lines lines--n"><li>Find out today what a replacement costs at short notice, and who actually has one.
+  <span class="t t--f">Same for everyone</span></li><li>Put it on a service schedule and hold to it.
+  <span class="t t--f">Same for everyone</span></li></ol>
   </article><article class="item">
-    <div class="item__h"><h3 class="display d3">You have a <em>Key lead source</em> risk</h3>
-      <span class="tag">Concentration</span></div>
-    <p class="def">Your customers arrive <b class="slot">answer to Q48</b>. A lead source changes without asking you first, and an algorithm shift or one referrer going quiet can halve your enquiries inside a month.</p>
-    <p class="def def--alt"><b>If they answered Not sure.</b> You weren't sure where your customers actually come from, which usually means one source is doing more of the work than you think. A lead source can change without asking you first, and one referrer going quiet can halve your enquiries inside a month.</p>
+    <div class="item__h"><h3 class="hl-face d3">You have a <em>Key lead source</em> risk</h3></div>
+    <p class="lbl">What it says</p>
+    <ul class="lines"><li>Your customers arrive <b class="slot">their Q48 answer</b>. A lead source changes without asking you first, and an algorithm shift or one referrer going quiet can halve your enquiries inside a month.
+  <span class="t t--s">Their answer dropped in</span></li>
+      
+      <li>You weren't sure where your customers actually come from, which usually means one source is doing more of the work than you think. A lead source can change without asking you first, and one referrer going quiet can halve your enquiries inside a month.<span class="t t--c">Only if they answered Not sure</span></li></ul>
     <p class="lbl">Prints when they answer</p>
     <ul class="fires"><li><b>95</b> Q48 &ldquo;One channel is nearly all of it&rdquo;</li></ul>
-    <p class="lbl">Adds weight but never prints on its own</p>
+    <p class="lbl">Adds weight, never prints alone</p>
       <ul class="fires fires--quiet"><li><b>50</b> Q48 &ldquo;Two channels carry it&rdquo;</li><li><b>50</b> Q48 &ldquo;Not sure&rdquo;</li></ul>
     <p class="lbl">What to do</p>
-    <ol class="acts"><li>Stand up a second lead source before you need it, and give it ninety days before you judge it.</li><li>Write down what you'd do if the current one halved tomorrow. That plan is worth having on paper before you need it.</li></ol>
+    <ol class="lines lines--n"><li>Stand up a second lead source before you need it, and give it ninety days before you judge it.
+  <span class="t t--f">Same for everyone</span></li><li>Write down what you'd do if the current one halved tomorrow. That plan is worth having on paper before you need it.
+  <span class="t t--f">Same for everyone</span></li></ol>
   </article><article class="item">
-    <div class="item__h"><h3 class="display d3">You have a <em>Key client</em> risk</h3>
-      <span class="tag">Concentration</span></div>
-    <p class="def">One customer carries <b class="slot">answer to Q46</b> of your revenue. That customer can leave, or get bought by someone who already has their own suppliers, and neither is something you get a say in.</p>
-    
+    <div class="item__h"><h3 class="hl-face d3">You have a <em>Key client</em> risk</h3></div>
+    <p class="lbl">What it says</p>
+    <ul class="lines"><li>One customer carries <b class="slot">their Q46 answer</b> of your revenue. That customer can leave, or get bought by someone who already has their own suppliers, and neither is something you get a say in.
+  <span class="t t--s">Their answer dropped in</span></li>
+      
+      </ul>
     <p class="lbl">Prints when they answer</p>
-    <ul class="fires"><li><b>100</b> Q46 &ldquo;More than 50%&rdquo;</li><li><b>90</b> Q46 &ldquo;30% to 50%&rdquo;</li><li><b>90</b> Q51 &ldquo;Handshake and email&rdquo; <i>only when Q46 is c or d or e</i></li><li><b>70</b> Q51 &ldquo;Month to month, cancellable anytime&rdquo; <i>only when Q46 is c or d or e</i></li><li><b>60</b> Q51 &ldquo;Not sure&rdquo; <i>only when Q46 is c or d or e</i></li></ul>
-    <p class="lbl">Adds weight but never prints on its own</p>
+    <ul class="fires"><li><b>100</b> Q46 &ldquo;More than 50%&rdquo;</li><li><b>90</b> Q46 &ldquo;30% to 50%&rdquo;</li><li><b>90</b> Q51 &ldquo;Handshake and email&rdquo; <i>and only when Q46 is over 30%</i></li><li><b>70</b> Q51 &ldquo;Month to month, cancellable anytime&rdquo; <i>and only when Q46 is over 30%</i></li><li><b>60</b> Q51 &ldquo;Not sure&rdquo; <i>and only when Q46 is over 30%</i></li></ul>
+    <p class="lbl">Adds weight, never prints alone</p>
       <ul class="fires fires--quiet"><li><b>45</b> Q46 &ldquo;20% to 30%&rdquo;</li><li><b>35</b> Q46 &ldquo;10% to 20%&rdquo;</li></ul>
     <p class="lbl">What to do</p>
-    <ol class="acts"><li>Set a ceiling, say twenty percent of revenue from any one customer, and treat crossing it as the trigger to go and win two more.</li><li>Get them onto a term agreement with a notice period, so a decision to leave gives you time to react.</li><li>If the work is committed on a handshake, that is the first conversation to have, before the ceiling.</li></ol>
+    <ol class="lines lines--n"><li>Set a ceiling, say twenty percent of revenue from any one customer, and treat crossing it as the trigger to go and win two more.
+  <span class="t t--f">Same for everyone</span></li><li>Get them onto a term agreement with a notice period, so a decision to leave gives you time to react.
+  <span class="t t--f">Same for everyone</span></li><li>If the work is committed on a handshake, that is the first conversation to have, before the ceiling.
+  <span class="t t--f">Same for everyone</span></li></ol>
   </article><article class="item">
-    <div class="item__h"><h3 class="display d3">You have a <em>Key licence</em> risk</h3>
-      <span class="tag">Concentration</span></div>
-    <p class="def">One licence or accreditation is the thing that lets you trade at all. Let it lapse and the business stops completely rather than slows down.</p>
-    
+    <div class="item__h"><h3 class="hl-face d3">You have a <em>Key licence</em> risk</h3></div>
+    <p class="lbl">What it says</p>
+    <ul class="lines"><li>One licence or accreditation is the thing that lets you trade at all. Let it lapse and the business stops completely rather than slows down.
+  <span class="t t--f">Same for everyone</span></li>
+      
+      </ul>
     <p class="lbl">Prints when they answer</p>
     <ul class="fires"><li><b>100</b> Q50 &ldquo;named as the one that would hurt most&rdquo;</li><li><b>85</b> Q49 &ldquo;One licence, accreditation or insurance the business runs on&rdquo;</li></ul>
     
     <p class="lbl">What to do</p>
-    <ol class="acts"><li>Put every renewal date in a calendar with a ninety day warning on it.</li><li>Make sure a second person can hold or renew it, so a lapse can't come down to one person's inbox.</li></ol>
+    <ol class="lines lines--n"><li>Put every renewal date in a calendar with a ninety day warning on it.
+  <span class="t t--f">Same for everyone</span></li><li>Make sure a second person can hold or renew it, so a lapse can't come down to one person's inbox.
+  <span class="t t--f">Same for everyone</span></li></ol>
   </article><article class="item">
-    <div class="item__h"><h3 class="display d3">You have a <em>Key person</em> risk</h3>
-      <span class="tag">Concentration</span></div>
-    <p class="def">The business can't run without one person. Sold tomorrow, <b class="slot">answer to Q55</b>, and there's nobody who could run it if you stepped out. That caps the business at the size of one person's week.</p>
-    <p class="def def--alt"><b>If they answered Not sure.</b> The business can't run without one person, and nobody has put a number on what that would cost. Until somebody else can run it, this is a job that owns you rather than an asset you own.</p>
+    <div class="item__h"><h3 class="hl-face d3">You have a <em>Key person</em> risk</h3></div>
+    <p class="lbl">What it says</p>
+    <ul class="lines"><li>The business can't run without one person. Sold tomorrow, <b class="slot">their Q55 answer</b>, and there's nobody who could run it if you stepped out. That caps the business at the size of one person's week.
+  <span class="t t--s">Their answer dropped in</span></li>
+      <li>The business can't run without one person, and what they know isn't written down anywhere else. If they go, whether that's illness or a resignation, the knowledge goes with them and you'll be rebuilding it while still trying to deliver.<span class="t t--c">Only if Q49 ticks the person who knows how the work gets done</span></li>
+      <li>The business can't run without one person, and nobody has put a number on what that would cost. Until somebody else can run it, this is a job that owns you rather than an asset you own.<span class="t t--c">Only if they answered Not sure</span></li></ul>
     <p class="lbl">Prints when they answer</p>
     <ul class="fires"><li><b>100</b> Q54 &ldquo;Nobody&rdquo;</li><li><b>100</b> Q55 &ldquo;Years, or it doesn't work without me&rdquo;</li><li><b>100</b> Q50 &ldquo;named as the one that would hurt most&rdquo;</li><li><b>100</b> Q50 &ldquo;named as the one that would hurt most&rdquo;</li><li><b>100</b> Q50 &ldquo;named as the one that would hurt most&rdquo;</li><li><b>85</b> Q49 &ldquo;The person who knows how the work actually gets done&rdquo;</li><li><b>85</b> Q49 &ldquo;Your own name and reputation&rdquo;</li><li><b>85</b> Q52 &ldquo;Almost none, it lives in people's heads&rdquo;</li><li><b>80</b> Q49 &ldquo;The person who wins the work&rdquo;</li><li><b>80</b> Q54 &ldquo;Not sure&rdquo;</li><li><b>80</b> Q55 &ldquo;Six to twelve months&rdquo;</li><li><b>75</b> Q14 &ldquo;None of these, they all sit with me&rdquo;</li><li><b>75</b> Q15 &ldquo;It degrades quickly&rdquo;</li><li><b>75</b> Q15 &ldquo;It stops&rdquo;</li><li><b>70</b> Q55 &ldquo;Never thought about it&rdquo;</li></ul>
-    <p class="lbl">Adds weight but never prints on its own</p>
+    <p class="lbl">Adds weight, never prints alone</p>
       <ul class="fires fires--quiet"><li><b>50</b> Q52 &ldquo;Not sure&rdquo;</li><li><b>45</b> Q52 &ldquo;About half&rdquo;</li><li><b>45</b> Q54 &ldquo;Someone would step up, but they'd struggle&rdquo;</li><li><b>35</b> Q55 &ldquo;A few weeks of handover&rdquo;</li></ul>
     <p class="lbl">What to do</p>
-    <ol class="acts"><li>Write down what that person holds, then move one piece of it to somebody else this month.</li><li>Name who would run it, tell them, and give them a budget they can act inside. A deputy who can't decide anything is a job title.</li><li>Book a month off twelve months out and work backwards from it. That's the deadline that makes it real.</li></ol>
+    <ol class="lines lines--n"><li>Write down what that person holds, then move one piece of it to somebody else this month.
+  <span class="t t--f">Same for everyone</span></li><li>Name who would run it, tell them, and give them a budget they can act inside. A deputy who can't decide anything is a job title.
+  <span class="t t--f">Same for everyone</span></li><li>Book a month off twelve months out and work backwards from it. That's the deadline that makes it real.
+  <span class="t t--f">Same for everyone</span></li></ol>
   </article><article class="item">
-    <div class="item__h"><h3 class="display d3">You have a <em>Key product</em> risk</h3>
-      <span class="tag">Concentration</span></div>
-    <p class="def"><b class="slot">answer to Q47</b> of your revenue comes from one product or service line. That's fine while the market wants it, and it's a single point of failure the day the market moves or a competitor undercuts it.</p>
-    
+    <div class="item__h"><h3 class="hl-face d3">You have a <em>Key product</em> risk</h3></div>
+    <p class="lbl">What it says</p>
+    <ul class="lines"><li><b class="slot">their Q47 answer</b> of your revenue comes from one product or service line. That's fine while the market wants it, and it's a single point of failure the day the market moves or a competitor undercuts it.
+  <span class="t t--s">Their answer dropped in</span></li>
+      
+      </ul>
     <p class="lbl">Prints when they answer</p>
     <ul class="fires"><li><b>95</b> Q47 &ldquo;More than 75%&rdquo;</li><li><b>75</b> Q47 &ldquo;50% to 75%&rdquo;</li></ul>
-    <p class="lbl">Adds weight but never prints on its own</p>
+    <p class="lbl">Adds weight, never prints alone</p>
       <ul class="fires fires--quiet"><li><b>40</b> Q47 &ldquo;25% to 50%&rdquo;</li></ul>
     <p class="lbl">What to do</p>
-    <ol class="acts"><li>Build a second line and sell it to the customers you already have.</li><li>Set a target for what share of revenue it should carry in twelve months, and check it quarterly.</li></ol>
+    <ol class="lines lines--n"><li>Build a second line and sell it to the customers you already have.
+  <span class="t t--f">Same for everyone</span></li><li>Set a target for what share of revenue it should carry in twelve months, and check it quarterly.
+  <span class="t t--f">Same for everyone</span></li></ol>
   </article><article class="item">
-    <div class="item__h"><h3 class="display d3">You have a <em>Key supplier</em> risk</h3>
-      <span class="tag">Concentration</span></div>
-    <p class="def">There's one supplier with no ready replacement. Their price rise is your price rise, and their bad year is your bad year.</p>
-    
+    <div class="item__h"><h3 class="hl-face d3">You have a <em>Key supplier</em> risk</h3></div>
+    <p class="lbl">What it says</p>
+    <ul class="lines"><li>There's one supplier with no ready replacement. Their price rise is your price rise, and their bad year is your bad year.
+  <span class="t t--f">Same for everyone</span></li>
+      
+      </ul>
     <p class="lbl">Prints when they answer</p>
     <ul class="fires"><li><b>100</b> Q50 &ldquo;named as the one that would hurt most&rdquo;</li><li><b>80</b> Q49 &ldquo;Your main supplier&rdquo;</li></ul>
     
     <p class="lbl">What to do</p>
-    <ol class="acts"><li>Qualify a second supplier and give them ten percent of your volume. A backup you've never bought from isn't a backup.</li><li>Get lead times and pricing from your current one in writing, so a change is a conversation rather than a surprise.</li></ol>
-  </article>
-    <h3 class="lbl" style="margin-top:34px">The business owns you</h3>
-    <article class="item">
-    <div class="item__h"><h3 class="display d3">You have a <em>Model misfit</em> risk</h3>
-      <span class="tag">Owner</span></div>
-    <p class="def">The way you spend your week is <b class="slot">answer to Q58</b>. It decides how long you'll keep doing this, and a business rarely outlives the owner's appetite for running it.</p>
-    <p class="def def--alt"><b>If they answered Not sure.</b> You weren't sure whether the way you spend your week matches what you wanted out of this. That question decides how long you'll keep doing it, and a business rarely outlives the owner's appetite for running it.</p>
+    <ol class="lines lines--n"><li>Qualify a second supplier and give them ten percent of your volume. A backup you've never bought from isn't a backup.
+  <span class="t t--f">Same for everyone</span></li><li>Get their lead times and pricing in writing, so a change becomes a conversation rather than a surprise.
+  <span class="t t--f">Same for everyone</span></li></ol>
+  </article><article class="item">
+    <div class="item__h"><h3 class="hl-face d3">You have a <em>Model misfit</em> risk</h3></div>
+    <p class="lbl">What it says</p>
+    <ul class="lines"><li>The way you spend your week is <b class="slot">their Q58 answer</b>. It decides how long you'll keep doing this, and a business rarely outlives the owner's appetite for running it.
+  <span class="t t--s">Their answer dropped in</span></li>
+      
+      <li>You weren't sure whether the way you spend your week matches what you wanted out of this. That question decides how long you'll keep doing it, and a business rarely outlives the owner's appetite for running it.<span class="t t--c">Only if they answered Not sure</span></li></ul>
     <p class="lbl">Prints when they answer</p>
     <ul class="fires"><li><b>95</b> Q58 &ldquo;Not at all, I'm doing the opposite of what I wanted&rdquo;</li></ul>
-    <p class="lbl">Adds weight but never prints on its own</p>
+    <p class="lbl">Adds weight, never prints alone</p>
       <ul class="fires fires--quiet"><li><b>50</b> Q58 &ldquo;Partly&rdquo;</li><li><b>45</b> Q58 &ldquo;Not sure&rdquo;</li></ul>
     <p class="lbl">What to do</p>
-    <ol class="acts"><li>Write down what you actually wanted out of this, then hold your week up against it.</li><li>The gap between those two is the brief for the next twelve months.</li></ol>
+    <ol class="lines lines--n"><li>Write down what you actually wanted out of this, then hold your week up against it.
+  <span class="t t--f">Same for everyone</span></li><li>The gap between those two is the brief for the next twelve months.
+  <span class="t t--f">Same for everyone</span></li></ol>
   </article><article class="item">
-    <div class="item__h"><h3 class="display d3">You have a <em>Succession gap</em> risk</h3>
-      <span class="tag">Owner</span></div>
-    <p class="def">There's <b class="slot">answer to Q56</b> for what happens if you stop or sell. Every business has an exit, planned or not. The unplanned version is the one where somebody else sets the price.</p>
-    <p class="def def--alt"><b>If they answered Not sure.</b> You weren't sure what happens to the business if you stop or sell. Every business has an exit, planned or not. The unplanned version is the one where somebody else sets the price.</p>
+    <div class="item__h"><h3 class="hl-face d3">You have a <em>Succession gap</em> risk</h3></div>
+    <p class="lbl">What it says</p>
+    <ul class="lines"><li>There's <b class="slot">their Q56 answer</b> for what happens if you stop or sell. Every business has an exit, planned or not. The unplanned version is the one where somebody else sets the price.
+  <span class="t t--s">Their answer dropped in</span></li>
+      
+      <li>You weren't sure what happens to the business if you stop or sell. Every business has an exit, planned or not. The unplanned version is the one where somebody else sets the price.<span class="t t--c">Only if they answered Not sure</span></li></ul>
     <p class="lbl">Prints when they answer</p>
     <ul class="fires"><li><b>95</b> Q56 &ldquo;No&rdquo;</li><li><b>80</b> Q56 &ldquo;Not sure&rdquo;</li><li><b>70</b> Q55 &ldquo;Never thought about it&rdquo;</li></ul>
-    <p class="lbl">Adds weight but never prints on its own</p>
+    <p class="lbl">Adds weight, never prints alone</p>
       <ul class="fires fires--quiet"><li><b>40</b> Q56 &ldquo;A rough idea in my head&rdquo;</li></ul>
     <p class="lbl">What to do</p>
-    <ol class="acts"><li>Write the one page version. Who runs it, and what happens to the customers.</li><li>It doesn't need to be right, it needs to exist.</li></ol>
+    <ol class="lines lines--n"><li>Write the one page version. Who runs it, and what happens to the customers.
+  <span class="t t--f">Same for everyone</span></li><li>It doesn't need to be right, it needs to exist.
+  <span class="t t--f">Same for everyone</span></li></ol>
   </article><article class="item">
-    <div class="item__h"><h3 class="display d3">You have a <em>Personal guarantee</em> risk</h3>
-      <span class="tag">Owner</span></div>
-    <p class="def">You've personally guaranteed <b class="slot">answer to Q57</b> of the business's obligations. The wall between business risk and personal risk isn't up, so a bad year in the business reaches your house.</p>
-    <p class="def def--alt"><b>If they answered Not sure.</b> You weren't sure what you've personally guaranteed, and that's worth finding out this week. Where the wall between business risk and personal risk isn't up, a bad year in the business reaches your house.</p>
+    <div class="item__h"><h3 class="hl-face d3">You have a <em>Personal guarantee</em> risk</h3></div>
+    <p class="lbl">What it says</p>
+    <ul class="lines"><li>You've personally guaranteed <b class="slot">their Q57 answer</b> of the business's obligations. The wall between business risk and personal risk isn't up, so a bad year in the business reaches your house.
+  <span class="t t--s">Their answer dropped in</span></li>
+      
+      <li>You weren't sure what you've personally guaranteed, and that's worth finding out this week. Where the wall between business risk and personal risk isn't up, a bad year in the business reaches your house.<span class="t t--c">Only if they answered Not sure</span></li></ul>
     <p class="lbl">Prints when they answer</p>
     <ul class="fires"><li><b>95</b> Q57 &ldquo;Yes, significant&rdquo;</li><li><b>75</b> Q57 &ldquo;Not sure&rdquo;</li></ul>
-    <p class="lbl">Adds weight but never prints on its own</p>
+    <p class="lbl">Adds weight, never prints alone</p>
       <ul class="fires fires--quiet"><li><b>45</b> Q57 &ldquo;Yes, a small amount&rdquo;</li></ul>
     <p class="lbl">What to do</p>
-    <ol class="acts"><li>List every guarantee you've signed and put a date against each one to renegotiate or release it.</li><li>Most get renewed on autopilot, because nobody asks.</li></ol>
+    <ol class="lines lines--n"><li>List every guarantee you've signed and put a date against each one to renegotiate or release it.
+  <span class="t t--f">Same for everyone</span></li><li>They're easy to leave in place, because a renewal rarely asks you anything.
+  <span class="t t--f">Same for everyone</span></li></ol>
   </article>
   </section>
 </div></main>
