@@ -64,62 +64,65 @@ let css = fs.readFileSync('/home/user/Headliner-Group-Website/diagnostic/diagnos
 
 const EXTRA = `
 /* ---- demo page only ---- */
-.hero{padding:clamp(40px,6vw,72px) 0 0}
+.hero{padding:clamp(40px,6vw,72px) 0 clamp(24px,4vw,40px);background:var(--base);color:var(--ink)}
 .hero .lede{margin-top:20px;max-width:60ch}
-.tabs{position:sticky;top:0;z-index:30;background:var(--base);border-bottom:1px solid var(--rim);
-  margin-top:34px;padding:12px 0 0}
+.tabs{position:sticky;top:0;z-index:30;background:var(--base);border-bottom:1px solid var(--rim);padding:12px 0 0}
 .tabs__row{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;padding-bottom:1px}
 .tabs__row::-webkit-scrollbar{display:none}
 .tab{flex:0 0 auto;font:inherit;font-size:13.5px;font-weight:500;cursor:pointer;
-  background:none;border:0;border-bottom:2px solid transparent;color:var(--mute);
+  background:none;border:0;border-bottom:2px solid transparent;color:var(--tx-mute);
   padding:11px 15px 12px;white-space:nowrap;transition:color .18s var(--ease),border-color .18s var(--ease)}
 .tab:hover{color:var(--ink)}
 .tab[aria-selected="true"]{color:var(--accent);border-bottom-color:var(--accent)}
+.tab b{color:inherit}
 .tab:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
 .tab b{display:block;font-weight:600;font-size:14px;color:inherit}
 .tab span{display:block;font-size:11px;letter-spacing:.11em;text-transform:uppercase;opacity:.72;margin-top:2px}
 .panel{display:none;padding-top:8px}
 .panel.is-on{display:block}
-.biz{border:1px solid var(--rim);border-radius:18px;background:var(--panel);
+.biz{border:1px solid var(--line);border-radius:18px;background:var(--surface);
   padding:clamp(22px,3vw,32px);margin:34px 0 8px}
 .biz h2{margin:0 0 4px}
-.biz__meta{font-size:12px;letter-spacing:.11em;text-transform:uppercase;color:var(--accent);margin:0 0 14px}
-.biz p{margin:0;color:var(--ink)}
-.biz__facts{display:flex;flex-wrap:wrap;gap:0 26px;margin:16px 0 0;padding-top:16px;border-top:1px solid var(--hair)}
-.biz__facts div{font-size:13px;color:var(--mute);padding:3px 0}
-.biz__facts b{color:var(--ink);font-weight:500}
-.why{margin:34px 0 0;border:1px solid var(--rim);border-radius:14px;background:var(--panel);overflow:hidden}
+.biz__meta{font-size:12px;letter-spacing:.11em;text-transform:uppercase;color:var(--tx-accent);margin:0 0 14px}
+.biz p{margin:0;color:var(--tx)}
+.biz__facts{display:flex;flex-wrap:wrap;gap:0 26px;margin:16px 0 0;padding-top:16px;border-top:1px solid var(--line)}
+.biz__facts div{font-size:13px;color:var(--tx-mute);padding:3px 0}
+.biz__facts b{color:var(--tx);font-weight:500}
+.why{margin:34px 0 0;border:1px solid var(--line);border-radius:14px;background:var(--surface);overflow:hidden}
 .why__in{padding:0 18px 18px}
-.why__lede{font-size:13px;color:var(--mute);margin:0 0 14px;max-width:none}
+.why__lede{font-size:13px;color:var(--tx-mute);margin:0 0 14px;max-width:none}
 .scores{border-collapse:collapse;width:100%;max-width:460px;margin:0 0 16px;font-size:13px}
 .scores th{text-align:left;font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;
-  color:var(--mute);font-weight:600;padding:0 12px 7px 0;border-bottom:1px solid var(--hair)}
-.scores td{padding:7px 12px 7px 0;border-bottom:1px solid var(--hair);color:var(--mute)}
+  color:var(--tx-mute);font-weight:600;padding:0 12px 7px 0;border-bottom:1px solid var(--line)}
+.scores td{padding:7px 12px 7px 0;border-bottom:1px solid var(--line);color:var(--tx-mute)}
 .scores .num{text-align:right;font-variant-numeric:tabular-nums;padding-right:18px}
-.scores tr.is-it td{color:var(--accent);font-weight:600}
-.note{font-size:13.5px;color:var(--mute);max-width:66ch}
-@media print{ .tabs,.why{display:none!important} .panel{display:block!important;break-before:page} .panel:first-of-type{break-before:auto} }
+.scores tr.is-it td{color:var(--tx-accent);font-weight:600}
+.note{font-size:13.5px;color:var(--tx-mute);max-width:66ch}
+@media print{ .tabs,.why,.hdr,.ftr,.hero{display:none!important} .panel{display:block!important;break-before:page} .panel:first-of-type{break-before:auto} }
 `;
 
 const reports = DEMOS.map(d => ({ d, r: E.diagnose(build(d)) }));
+const LOGO = `<a class="hl-link" href="https://headlinergroup.com.au" aria-label="Headliner Group, home"><div class="hl-stage"><div class="hl-logo"><div class="hl-beam"></div><span class="hl-word">Headliner</span><div class="hl-group">Group</div></div></div></a>`;
 const page = `<title>Five Demo Diagnostics</title>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700&display=swap">
 <style>${css}${EXTRA}</style>
 
-<header class="shell hero">
+<header class="hdr"><div class="shell hdr__in">${LOGO}<p class="hdr__tag">Business Diagnostic</p></div></header>
+
+<section class="hero"><div class="shell">
   <p class="eyebrow">Sample output, five made up businesses</p>
   <h1 class="display d1">Five Demo<br>Diagnostics</h1>
   <p class="lede">Five businesses that don't exist, each filled out end to end, each run through the live engine. Nothing on this page is written by hand. Every finding, every risk and every line of prose came out of the answers above it, the same way it will for a real one.</p>
   <p class="hand" style="margin-top:22px">Five different constraints, so you can see how the shape of the report changes.</p>
-</header>
+</div></section>
 
 <nav class="tabs"><div class="shell"><div class="tabs__row" role="tablist">
 ${reports.map(({d,r},i) => `<button class="tab" role="tab" id="t-${d.id}" aria-controls="p-${d.id}" aria-selected="${i===0}">
   <b>${esc(d.name)}</b><span>${esc(D.constraints[r.primary.id].short)}</span></button>`).join('\n')}
 </div></div></nav>
 
-<main class="shell">
+<main class="on-light"><div class="shell">
 ${reports.map(({d,r},i) => `<section class="panel${i===0?' is-on':''}" id="p-${d.id}" role="tabpanel" aria-labelledby="t-${d.id}">
   <div class="biz">
     <p class="biz__meta">${esc(d.trade)}</p>
@@ -135,8 +138,8 @@ ${reports.map(({d,r},i) => `<section class="panel${i===0?' is-on':''}" id="p-${d
 </section>`).join('\n')}
   <p class="note" style="margin:48px 0 0;padding-top:28px;border-top:1px solid var(--rim)">
     These five are fabricated to show the range. The businesses aren't real, the answers were written to land on five different constraints, and everything after that is the engine's.</p>
-</main>
-<footer class="shell" style="padding:40px 0 80px"></footer>
+</div></main>
+<footer class="ftr"><div class="shell">${LOGO}<p>Helping founders in live events &amp; production grow through partnerships.</p></div></footer>
 
 <script>
 (function(){

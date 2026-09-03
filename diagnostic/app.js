@@ -209,7 +209,7 @@
     }
     h += '<div class="sec">' + para(r.closing.text) +
       (r.closing.cta ? "<p>" + esc(r.closing.cta) + "</p>" : "") +
-      '<div class="sign"><span class="wordmark">HEADLINER <span>Group</span></span></div></div>';
+      "</div>";
     h += '<div class="rep__actions" style="display:flex;gap:12px;flex-wrap:wrap;margin-top:34px">' +
       '<button class="btn btn--fill" onclick="window.print()">Save as PDF</button>' +
       '<button class="btn btn--ghost" id="again">Change my answers</button></div>';
