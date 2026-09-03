@@ -195,6 +195,13 @@
 
   var SLOT = /\{(q\d+)\.(band|exact)\}|\{d\.(\w+)\}/g;
 
+  // A slot can sit at the start of a sentence, and a band phrase is written lower case
+  // so it reads mid sentence. Case is fixed after filling rather than by hand in the
+  // copy, so a reworded block cannot reintroduce a lower case sentence opening.
+  function sentenceCase(s) {
+    return s.replace(/(^|[.!?]\s+|\n\n)([a-z])/g, function (m, pre, ch) { return pre + ch.toUpperCase(); });
+  }
+
   function fill(text, ans, d) {
     if (!text) return "";
     return text.replace(SLOT, function (m, qid, kind, dkey) {
@@ -224,10 +231,10 @@
   }
   function pick(block, ans, d) {
     if (!block) return "";
-    if (block.precise && resolvable(block.precise, ans) && bandsResolve(block.precise, ans)) return fill(block.precise, ans, d);
+    if (block.precise && resolvable(block.precise, ans) && bandsResolve(block.precise, ans)) return sentenceCase(fill(block.precise, ans, d));
     var banded = block.banded || block.text || "";
-    if (block.alt && !bandsResolve(banded, ans)) return fill(block.alt, ans, d);
-    return fill(banded, ans, d);
+    if (block.alt && !bandsResolve(banded, ans)) return sentenceCase(fill(block.alt, ans, d));
+    return sentenceCase(fill(banded, ans, d));
   }
 
   // open + whichever evidence clauses actually resolved + close.
@@ -245,7 +252,7 @@
     }
     if (open) parts.push(open);
     if (def.close) parts.push(fill(def.close, ans, d));
-    return parts.join("\n\n");
+    return sentenceCase(parts.join("\n\n"));
   }
 
   /* ---------- the diagnosis ---------- */
@@ -315,7 +322,7 @@
     }).sort(function (a, b) {
       return a.priority - b.priority || (flags.sev[b.flag] - flags.sev[a.flag]);
     });
-    if (matches.length) compound = { key: matches[0].constraint + " + " + matches[0].flag, text: fill(matches[0].text, ans, d) };
+    if (matches.length) compound = { key: matches[0].constraint + " + " + matches[0].flag, text: sentenceCase(fill(matches[0].text, ans, d)) };
 
     return {
       opening: tooUnsure ? B.opening.tooUnsure : wellRun ? B.opening.wellRun : noneSevere ? B.opening.noneSevere : B.opening.normal,
@@ -326,13 +333,13 @@
         // neither of them has been shown to be constrained by anything.
         name: confident ? cfg().constraints[primaryId].name : cfg().constraints[primaryId].loose,
         title: confident ? B.constraintDef[primaryId].title : B.constraintDef[primaryId].titleLoose,
-        body: tooUnsure ? fill(B.unsureBody, ans, d)
-            : wellRun ? fill(B.looseBody, ans, d)
+        body: tooUnsure ? sentenceCase(fill(B.unsureBody, ans, d))
+            : wellRun ? sentenceCase(fill(B.looseBody, ans, d))
             : buildDef(B.constraintDef[primaryId], ans, d),
         fix: B.constraintFix[primaryId],
         confident: confident
       },
-      minor: minorId ? { id: minorId, line: fill(B.minorConstraint[minorId], ans, d) } : null,
+      minor: minorId ? { id: minorId, line: sentenceCase(fill(B.minorConstraint[minorId], ans, d)) } : null,
       compound: compound,
       risk: primaryFam ? {
         family: primaryFam.id,

@@ -2147,13 +2147,13 @@ window.DIAG ={
         {
           "id": "a",
           "text": "Most of it",
-          "band": "most of it",
+          "band": "Most",
           "flags": []
         },
         {
           "id": "b",
           "text": "Some of it",
-          "band": "some of it",
+          "band": "Some",
           "flags": [
             {
               "id": "no_process",
@@ -2164,7 +2164,7 @@ window.DIAG ={
         {
           "id": "c",
           "text": "Almost none, it lives in people's heads",
-          "band": "almost none of it",
+          "band": "Almost none",
           "flags": [
             {
               "id": "no_process",
@@ -2228,7 +2228,7 @@ window.DIAG ={
         {
           "id": "d",
           "text": "We don't really",
-          "band": "not at all",
+          "band": "next to never",
           "flags": [
             {
               "id": "no_data",
@@ -2313,13 +2313,13 @@ window.DIAG ={
         {
           "id": "a",
           "text": "Almost none, it runs without me",
-          "band": "almost none of it",
+          "band": "almost none",
           "flags": []
         },
         {
           "id": "b",
           "text": "Some of it",
-          "band": "some of it",
+          "band": "some",
           "flags": [
             {
               "id": "owner_trapped",
@@ -2330,7 +2330,7 @@ window.DIAG ={
         {
           "id": "c",
           "text": "Most of it",
-          "band": "most of it",
+          "band": "most",
           "flags": [
             {
               "id": "owner_trapped",
@@ -2341,7 +2341,7 @@ window.DIAG ={
         {
           "id": "d",
           "text": "All of it, I am the business",
-          "band": "all of it",
+          "band": "all",
           "flags": [
             {
               "id": "owner_trapped",
@@ -2377,7 +2377,7 @@ window.DIAG ={
         {
           "id": "a",
           "text": "Yes, written down",
-          "band": "written down",
+          "band": "a written plan",
           "flags": []
         },
         {
@@ -2426,7 +2426,7 @@ window.DIAG ={
         {
           "id": "a",
           "text": "No",
-          "band": "nothing",
+          "band": "none",
           "flags": []
         },
         {
@@ -2485,7 +2485,7 @@ window.DIAG ={
         {
           "id": "b",
           "text": "Partly",
-          "band": "partly",
+          "band": "only partly a match for what you wanted",
           "flags": [
             {
               "id": "model_misfit",
@@ -2848,7 +2848,7 @@ window.DIAG ={
         "alt": "You weren't sure how your work is actually committed by the customer. Revenue you can't describe the terms of isn't revenue you can plan against, hire against or borrow against."
       },
       "no_process": {
-        "banded": "You've got {q46.band} of how the work gets done written down. Every new hire takes longer than it should, quality moves depending on who's on the job, and nothing can be handed over cleanly.",
+        "banded": "{q46.band} of how the work gets done is written down. Every new hire takes longer than it should, quality moves depending on who's on the job, and nothing can be handed over cleanly.",
         "alt": "You weren't sure how much of the work is documented, which almost always means less than you'd hope. Every new hire takes longer than it should, quality moves depending on who's on the job, and nothing can be handed over cleanly."
       },
       "no_data": {
