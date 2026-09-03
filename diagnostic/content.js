@@ -677,7 +677,7 @@ window.DIAG ={
           "exclusive": true,
           "flags": [
             {
-              "id": "owner_dependency",
+              "id": "key_person",
               "sev": 75
             }
           ]
@@ -712,7 +712,7 @@ window.DIAG ={
           "w": 85,
           "flags": [
             {
-              "id": "owner_dependency",
+              "id": "key_person",
               "sev": 75
             }
           ]
@@ -724,7 +724,7 @@ window.DIAG ={
           "w": 100,
           "flags": [
             {
-              "id": "owner_dependency",
+              "id": "key_person",
               "sev": 75
             }
           ]
@@ -2227,7 +2227,7 @@ window.DIAG ={
           "text": "The person who wins the work",
           "flags": [
             {
-              "id": "owner_dependency",
+              "id": "key_person",
               "sev": 80
             }
           ]
@@ -2237,7 +2237,7 @@ window.DIAG ={
           "text": "The person who knows how the work actually gets done",
           "flags": [
             {
-              "id": "key_employee",
+              "id": "key_person",
               "sev": 85
             }
           ]
@@ -2247,7 +2247,7 @@ window.DIAG ={
           "text": "One key piece of equipment, or one vehicle",
           "flags": [
             {
-              "id": "key_asset",
+              "id": "key_supplier",
               "sev": 75
             }
           ]
@@ -2255,12 +2255,7 @@ window.DIAG ={
         {
           "id": "e",
           "text": "The city or region you sell into",
-          "flags": [
-            {
-              "id": "key_geography",
-              "sev": 70
-            }
-          ]
+          "flags": []
         },
         {
           "id": "f",
@@ -2277,7 +2272,7 @@ window.DIAG ={
           "text": "Your own name and reputation",
           "flags": [
             {
-              "id": "owner_dependency",
+              "id": "key_person",
               "sev": 85
             }
           ]
@@ -2313,17 +2308,17 @@ window.DIAG ={
         {
           "id": "b",
           "text": "The person who wins the work",
-          "boost": "owner_dependency"
+          "boost": "key_person"
         },
         {
           "id": "c",
           "text": "The person who knows how the work actually gets done",
-          "boost": "key_employee"
+          "boost": "key_person"
         },
         {
           "id": "d",
           "text": "One key piece of equipment, or one vehicle",
-          "boost": "key_asset"
+          "boost": "key_supplier"
         },
         {
           "id": "e",
@@ -2338,7 +2333,7 @@ window.DIAG ={
         {
           "id": "g",
           "text": "Your own name and reputation",
-          "boost": "owner_dependency"
+          "boost": "key_person"
         }
       ]
     },
@@ -2447,7 +2442,7 @@ window.DIAG ={
           "band": "About half",
           "flags": [
             {
-              "id": "key_employee",
+              "id": "key_person",
               "sev": 45
             }
           ]
@@ -2458,7 +2453,7 @@ window.DIAG ={
           "band": "Almost none",
           "flags": [
             {
-              "id": "key_employee",
+              "id": "key_person",
               "sev": 85
             }
           ]
@@ -2469,7 +2464,7 @@ window.DIAG ={
           "notSure": true,
           "flags": [
             {
-              "id": "key_employee",
+              "id": "key_person",
               "sev": 50
             }
           ]
@@ -2536,7 +2531,7 @@ window.DIAG ={
           "band": "someone who'd struggle",
           "flags": [
             {
-              "id": "owner_dependency",
+              "id": "key_person",
               "sev": 45
             }
           ]
@@ -2547,7 +2542,7 @@ window.DIAG ={
           "band": "nobody",
           "flags": [
             {
-              "id": "owner_dependency",
+              "id": "key_person",
               "sev": 100
             }
           ]
@@ -2558,7 +2553,7 @@ window.DIAG ={
           "notSure": true,
           "flags": [
             {
-              "id": "owner_dependency",
+              "id": "key_person",
               "sev": 80
             }
           ]
@@ -2585,7 +2580,7 @@ window.DIAG ={
           "band": "a buyer would need you for a few weeks of handover",
           "flags": [
             {
-              "id": "owner_dependency",
+              "id": "key_person",
               "sev": 35
             }
           ]
@@ -2596,7 +2591,7 @@ window.DIAG ={
           "band": "a buyer would need you for the best part of a year",
           "flags": [
             {
-              "id": "owner_dependency",
+              "id": "key_person",
               "sev": 80
             }
           ]
@@ -2607,7 +2602,7 @@ window.DIAG ={
           "band": "a buyer would need you for years, if it works without you at all",
           "flags": [
             {
-              "id": "owner_dependency",
+              "id": "key_person",
               "sev": 100
             }
           ]
@@ -2618,7 +2613,7 @@ window.DIAG ={
           "notSure": true,
           "flags": [
             {
-              "id": "owner_dependency",
+              "id": "key_person",
               "sev": 70
             },
             {
@@ -2779,28 +2774,20 @@ window.DIAG ={
     }
   ],
   "flags": {
-    "key_asset": {
-      "name": "Key asset",
-      "group": "Concentration"
-    },
     "key_channel": {
-      "name": "Key channel",
+      "name": "Key lead source",
       "group": "Concentration"
     },
     "key_client": {
       "name": "Key client",
       "group": "Concentration"
     },
-    "key_employee": {
-      "name": "Key employee",
-      "group": "Concentration"
-    },
-    "key_geography": {
-      "name": "Key geography",
-      "group": "Concentration"
-    },
     "key_licence": {
       "name": "Key licence",
+      "group": "Concentration"
+    },
+    "key_person": {
+      "name": "Key person",
       "group": "Concentration"
     },
     "key_product": {
@@ -2817,10 +2804,6 @@ window.DIAG ={
     },
     "no_succession": {
       "name": "Succession gap",
-      "group": "Owner"
-    },
-    "owner_dependency": {
-      "name": "Owner dependency",
       "group": "Owner"
     },
     "personal_guarantee": {
@@ -3284,17 +3267,11 @@ window.DIAG ={
         "precise": "{q42.exact}% of your revenue comes from one product or service line. That's fine while the market wants it, and it's a single point of failure the day the market moves or a competitor undercuts it."
       },
       "key_channel": {
-        "banded": "Your customers arrive {q43.band}. Channels change without asking you first, and an algorithm shift or one referrer going quiet can halve your enquiries inside a month.",
-        "alt": "You weren't sure where your customers actually come from, which usually means one channel is doing more of the work than you think. A channel can change without asking you first, and one referrer going quiet can halve your enquiries inside a month."
+        "banded": "Your customers arrive {q43.band}. A lead source changes without asking you first, and an algorithm shift or one referrer going quiet can halve your enquiries inside a month.",
+        "alt": "You weren't sure where your customers actually come from, which usually means one source is doing more of the work than you think. A lead source can change without asking you first, and one referrer going quiet can halve your enquiries inside a month."
       },
       "key_supplier": {
-        "banded": "You've got one supplier with no ready replacement. Their price rise is your price rise, and their bad year is your bad year."
-      },
-      "key_employee": {
-        "banded": "One person knows how the work actually gets done, and very little of it is written down anywhere else. If they leave, the knowledge goes with them, and you'll be rebuilding it from scratch while still trying to deliver."
-      },
-      "key_geography": {
-        "banded": "The business sells into one city or region. A local downturn or a big competitor arriving hits all of your revenue at once rather than part of it."
+        "banded": "There's one supplier, or one piece of gear, with no ready replacement. Their price rise is your price rise, and a breakdown or a bad year at their end stops revenue you have already sold."
       },
       "no_succession": {
         "banded": "There's {q50.band} for what happens if you stop or sell. Every business has an exit, planned or not. The unplanned version is the one where somebody else sets the price.",
@@ -3308,15 +3285,25 @@ window.DIAG ={
         "banded": "The way you spend your week is {q52.band}. It decides how long you'll keep doing this, and a business rarely outlives the owner's appetite for running it.",
         "alt": "You weren't sure whether the way you spend your week matches what you wanted out of this. That question decides how long you'll keep doing it, and a business rarely outlives the owner's appetite for running it."
       },
-      "key_asset": {
-        "banded": "One piece of equipment or one vehicle is doing work you have no backup for. A breakdown or a long repair stops revenue you've already sold, and hire rates at short notice are set by people who know you're stuck."
-      },
       "key_licence": {
         "banded": "One licence or accreditation is the thing that lets you trade at all. Let it lapse and the business stops completely rather than slows down."
       },
-      "owner_dependency": {
-        "banded": "The business runs on you. Sold tomorrow a buyer would need you to stay {q49.band}, and there's nobody who could run it if you stepped out. That caps the business at the size of your week and it's what makes it hard to sell.",
-        "alt": "The business runs on you, and you haven't put a number on how long a buyer would need you to stay. Until somebody else can run it, this is a job that owns you rather than an asset you own."
+      "key_person": {
+        "banded": "The business can't run without one person. Sold tomorrow, {q49.band}, and there's nobody who could run it if you stepped out. That caps the business at the size of one person's week.",
+        "alt": "The business can't run without one person, and nobody has put a number on what that would cost. Until somebody else can run it, this is a job that owns you rather than an asset you own.",
+        "variants": [
+          {
+            "when": [
+              [
+                "q44",
+                [
+                  "c"
+                ]
+              ]
+            ],
+            "text": "The business can't run without one person, and what they know isn't written down anywhere else. If they go, whether that's illness or a resignation, the knowledge goes with them and you'll be rebuilding it while still trying to deliver."
+          }
+        ]
       }
     },
     "riskFix": {
@@ -3330,25 +3317,13 @@ window.DIAG ={
         "Set a target for what share of revenue it should carry in twelve months, and check it quarterly."
       ],
       "key_channel": [
-        "Stand up a second channel before you need it, and give it ninety days before you judge it.",
+        "Stand up a second lead source before you need it, and give it ninety days before you judge it.",
         "Write down what you'd do if the current one halved tomorrow. That plan is worth having on paper before you need it."
       ],
       "key_supplier": [
         "Qualify a second supplier and give them ten percent of your volume. A backup you've never bought from isn't a backup.",
-        "Get lead times and pricing from your current one in writing, so a change is a conversation rather than a surprise."
-      ],
-      "key_employee": [
-        "Have them document the work while they're still here, and pay them properly to do it.",
-        "Put a second person alongside them on the next three jobs, doing rather than watching.",
-        "Record the five things that go wrong most often as one page checklists. People use checklists, they don't use manuals."
-      ],
-      "key_geography": [
-        "Take one thing you do well and sell it somewhere else, even at a small scale.",
-        "Track what share of revenue comes from outside the home patch, and set a target for it."
-      ],
-      "key_asset": [
         "Find out today what a replacement costs at short notice, and who actually has one.",
-        "Put it on a service schedule and hold to it. Most failures give some warning."
+        "Put anything you own on a service schedule and hold to it. Most failures give some warning."
       ],
       "key_licence": [
         "Put every renewal date in a calendar with a ninety day warning on it.",
@@ -3366,9 +3341,9 @@ window.DIAG ={
         "Write down what you actually wanted out of this, then hold your week up against it.",
         "The gap between those two is the brief for the next twelve months."
       ],
-      "owner_dependency": [
-        "Name the person who'd run it, tell them, and hand over one area at a time with the decisions attached.",
-        "Give them a budget they can act inside. A deputy who can't decide anything is a job title.",
+      "key_person": [
+        "Write down what that person holds, then move one piece of it to somebody else this month.",
+        "Name who would run it, tell them, and give them a budget they can act inside. A deputy who can't decide anything is a job title.",
         "Book a month off twelve months out and work backwards from it. That's the deadline that makes it real."
       ]
     },

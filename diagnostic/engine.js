@@ -221,6 +221,12 @@
   }
   function pick(block, ans, d) {
     if (!block) return "";
+    // The person the business cannot run without is not always the owner, so the
+    // definition follows whichever answer raised it.
+    var v = (block.variants || []).filter(function (x) {
+      return (x.when || []).every(function (pair) { return condMet(ans, pair); });
+    })[0];
+    if (v && bandsResolve(v.text, ans)) return sentenceCase(fill(v.text, ans, d));
     if (block.precise && resolvable(block.precise, ans) && bandsResolve(block.precise, ans)) return sentenceCase(fill(block.precise, ans, d));
     var banded = block.banded || block.text || "";
     if (!bandsResolve(banded, ans)) {
