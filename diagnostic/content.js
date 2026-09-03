@@ -13,7 +13,6 @@ window.DIAG ={
   },
   "thresholds": {
     "PRIMARY_FAIL": 60,
-    "MINOR_PRINT": 65,
     "FALLBACK_FLOOR": 35,
     "FLAG_PRINT": 55,
     "MAX_FLAGS_SHOWN": 4,
@@ -514,7 +513,10 @@ window.DIAG ={
           "band": "two to four weeks of cover",
           "w": 70,
           "flags": [
-            "no_buffer"
+            {
+              "id": "no_buffer",
+              "sev": 75
+            }
           ]
         },
         {
@@ -523,7 +525,10 @@ window.DIAG ={
           "band": "under a fortnight of cover",
           "w": 100,
           "flags": [
-            "no_buffer"
+            {
+              "id": "no_buffer",
+              "sev": 75
+            }
           ]
         },
         {
@@ -532,7 +537,10 @@ window.DIAG ={
           "notSure": true,
           "w": 0,
           "flags": [
-            "no_buffer"
+            {
+              "id": "no_buffer",
+              "sev": 75
+            }
           ]
         }
       ]
@@ -702,7 +710,10 @@ window.DIAG ={
           "w": 100,
           "exclusive": true,
           "flags": [
-            "no_2ic"
+            {
+              "id": "owner_dependency",
+              "sev": 75
+            }
           ]
         }
       ],
@@ -734,7 +745,10 @@ window.DIAG ={
           "band": "degrades quickly without you",
           "w": 85,
           "flags": [
-            "key_person"
+            {
+              "id": "owner_dependency",
+              "sev": 75
+            }
           ]
         },
         {
@@ -743,7 +757,10 @@ window.DIAG ={
           "band": "stops without you",
           "w": 100,
           "flags": [
-            "key_person"
+            {
+              "id": "owner_dependency",
+              "sev": 75
+            }
           ]
         },
         {
@@ -1392,7 +1409,10 @@ window.DIAG ={
           "band": "no idea",
           "w": 100,
           "flags": [
-            "no_data"
+            {
+              "id": "no_data",
+              "sev": 75
+            }
           ]
         },
         {
@@ -1401,7 +1421,10 @@ window.DIAG ={
           "notSure": true,
           "w": 0,
           "flags": [
-            "no_data"
+            {
+              "id": "no_data",
+              "sev": 75
+            }
           ]
         }
       ]
@@ -1448,7 +1471,10 @@ window.DIAG ={
           "notSure": true,
           "w": 0,
           "flags": [
-            "no_data"
+            {
+              "id": "no_data",
+              "sev": 75
+            }
           ]
         }
       ]
@@ -1491,7 +1517,10 @@ window.DIAG ={
           "band": "something you can't put your finger on",
           "w": 90,
           "flags": [
-            "no_data"
+            {
+              "id": "no_data",
+              "sev": 75
+            }
           ]
         },
         {
@@ -1500,7 +1529,10 @@ window.DIAG ={
           "notSure": true,
           "w": 0,
           "flags": [
-            "no_data"
+            {
+              "id": "no_data",
+              "sev": 75
+            }
           ]
         }
       ]
@@ -1583,7 +1615,10 @@ window.DIAG ={
           "notSure": true,
           "w": 0,
           "flags": [
-            "no_data"
+            {
+              "id": "no_data",
+              "sev": 75
+            }
           ]
         }
       ]
@@ -1677,7 +1712,10 @@ window.DIAG ={
           "notSure": true,
           "w": 0,
           "flags": [
-            "no_data"
+            {
+              "id": "no_data",
+              "sev": 75
+            }
           ]
         }
       ]
@@ -1733,7 +1771,10 @@ window.DIAG ={
           "w": 100,
           "exclusive": true,
           "flags": [
-            "no_data"
+            {
+              "id": "no_data",
+              "sev": 75
+            }
           ]
         }
       ],
@@ -1777,7 +1818,10 @@ window.DIAG ={
           "notSure": true,
           "w": 0,
           "flags": [
-            "no_data"
+            {
+              "id": "no_data",
+              "sev": 75
+            }
           ]
         }
       ]
@@ -1894,7 +1938,10 @@ window.DIAG ={
           "notSure": true,
           "w": 0,
           "flags": [
-            "no_data"
+            {
+              "id": "no_data",
+              "sev": 75
+            }
           ]
         }
       ]
@@ -1941,7 +1988,10 @@ window.DIAG ={
           "notSure": true,
           "w": 0,
           "flags": [
-            "no_data"
+            {
+              "id": "no_data",
+              "sev": 75
+            }
           ]
         }
       ]
@@ -2058,7 +2108,10 @@ window.DIAG ={
           "band": "not at all",
           "w": 100,
           "flags": [
-            "no_data"
+            {
+              "id": "no_data",
+              "sev": 75
+            }
           ]
         },
         {
@@ -2067,7 +2120,10 @@ window.DIAG ={
           "notSure": true,
           "w": 0,
           "flags": [
-            "no_data"
+            {
+              "id": "no_data",
+              "sev": 75
+            }
           ]
         }
       ]
@@ -2289,7 +2345,7 @@ window.DIAG ={
           "text": "The person who wins the work",
           "flags": [
             {
-              "id": "key_person",
+              "id": "owner_dependency",
               "sev": 80
             }
           ]
@@ -2339,12 +2395,8 @@ window.DIAG ={
           "text": "Your own name and reputation",
           "flags": [
             {
-              "id": "key_person",
+              "id": "owner_dependency",
               "sev": 85
-            },
-            {
-              "id": "owner_trapped",
-              "sev": 60
             }
           ]
         },
@@ -2379,7 +2431,7 @@ window.DIAG ={
         {
           "id": "b",
           "text": "The person who wins the work",
-          "boost": "key_person"
+          "boost": "owner_dependency"
         },
         {
           "id": "c",
@@ -2404,7 +2456,7 @@ window.DIAG ={
         {
           "id": "g",
           "text": "Your own name and reputation",
-          "boost": "key_person"
+          "boost": "owner_dependency"
         }
       ]
     },
@@ -2605,7 +2657,7 @@ window.DIAG ={
           "band": "someone who'd struggle",
           "flags": [
             {
-              "id": "no_2ic",
+              "id": "owner_dependency",
               "sev": 65
             }
           ]
@@ -2616,12 +2668,8 @@ window.DIAG ={
           "band": "nobody",
           "flags": [
             {
-              "id": "no_2ic",
+              "id": "owner_dependency",
               "sev": 100
-            },
-            {
-              "id": "key_person",
-              "sev": 90
             }
           ]
         },
@@ -2631,7 +2679,7 @@ window.DIAG ={
           "notSure": true,
           "flags": [
             {
-              "id": "no_2ic",
+              "id": "owner_dependency",
               "sev": 80
             }
           ]
@@ -2658,7 +2706,7 @@ window.DIAG ={
           "band": "a buyer would need you for a few weeks of handover",
           "flags": [
             {
-              "id": "owner_trapped",
+              "id": "owner_dependency",
               "sev": 35
             }
           ]
@@ -2669,7 +2717,7 @@ window.DIAG ={
           "band": "a buyer would need you for the best part of a year",
           "flags": [
             {
-              "id": "owner_trapped",
+              "id": "owner_dependency",
               "sev": 80
             }
           ]
@@ -2680,12 +2728,8 @@ window.DIAG ={
           "band": "a buyer would need you for years, if it works without you at all",
           "flags": [
             {
-              "id": "owner_trapped",
+              "id": "owner_dependency",
               "sev": 100
-            },
-            {
-              "id": "key_person",
-              "sev": 90
             }
           ]
         },
@@ -2695,7 +2739,7 @@ window.DIAG ={
           "notSure": true,
           "flags": [
             {
-              "id": "owner_trapped",
+              "id": "owner_dependency",
               "sev": 70
             },
             {
@@ -2884,10 +2928,6 @@ window.DIAG ={
       "family": "concentration",
       "name": "Key licence"
     },
-    "key_person": {
-      "family": "concentration",
-      "name": "Key person"
-    },
     "key_product": {
       "family": "concentration",
       "name": "Key product"
@@ -2896,25 +2936,21 @@ window.DIAG ={
       "family": "concentration",
       "name": "Key supplier"
     },
-    "no_2ic": {
-      "family": "fragility",
-      "name": "No second in command"
-    },
     "no_buffer": {
       "family": "fragility",
-      "name": "No cash buffer"
+      "name": "Thin cash buffer"
     },
     "no_contracts": {
       "family": "fragility",
-      "name": "No contracts"
+      "name": "Uncommitted revenue"
     },
     "no_data": {
       "family": "fragility",
-      "name": "No data"
+      "name": "Blind spot"
     },
     "no_process": {
       "family": "fragility",
-      "name": "No documented process"
+      "name": "Undocumented delivery"
     },
     "model_misfit": {
       "family": "owner",
@@ -2922,15 +2958,15 @@ window.DIAG ={
     },
     "no_succession": {
       "family": "owner",
-      "name": "No succession"
+      "name": "Succession gap"
     },
-    "owner_trapped": {
+    "owner_dependency": {
       "family": "owner",
-      "name": "Owner trapped"
+      "name": "Owner dependency"
     },
     "personal_guarantee": {
       "family": "owner",
-      "name": "Personally guaranteed"
+      "name": "Personal guarantee"
     }
   },
   "blocks": {
@@ -2945,7 +2981,7 @@ window.DIAG ={
       "cashflow": {
         "title": "You are {c} constrained",
         "titleLoose": "The tightest thing is {c}",
-        "open": "You're profitable on paper and short of cash in practice. The work is sold, the money hasn't landed, and there's nothing sitting there to fund the next job.",
+        "open": "You're profitable on paper and short of cash in practice. The work is sold and the money hasn't landed, so there's nothing sitting there to fund the next job.",
         "evidence": [
           {
             "banded": "you get paid {q54.band}"
@@ -3011,7 +3047,7 @@ window.DIAG ={
       "value": {
         "title": "You are {c} constrained",
         "titleLoose": "The tightest thing is {c}",
-        "open": "Value here means what the customer perceives, and it has nothing to do with your pricing or your margin. They buy, and then they stop, or they stay and give most of the work to somebody else.",
+        "open": "Value here means what the customer perceives, and it has nothing to do with your pricing or your margin. They buy, then they either stop or start giving most of the work to somebody else.",
         "evidence": [
           {
             "banded": "of the customers you had a year ago, {q21.band} still buy from you",
@@ -3049,7 +3085,7 @@ window.DIAG ={
             "banded": "they find out what you charge {q30.band}"
           }
         ],
-        "close": "This isn't a sales technique problem. When the thing on the table is clear, priced, and it fits what the buyer came in for, an average salesperson closes it. Right now yours needs you in the room to make sense of it."
+        "close": "This isn't a sales technique problem. When the thing on the table is clearly priced and it fits what the buyer came in for, an average salesperson closes it. Right now yours needs you in the room to make sense of it."
       },
       "demand": {
         "title": "You are {c} constrained",
@@ -3072,7 +3108,7 @@ window.DIAG ={
       "margin": {
         "title": "You are {c} constrained",
         "titleLoose": "The tightest thing is {c}",
-        "open": "You're busy, you're full, and there's nothing left at the end of it.",
+        "open": "You're full and busy, and there's nothing left at the end of it.",
         "evidence": [
           {
             "banded": "what's left after direct costs sits {q36.band}",
@@ -3147,7 +3183,7 @@ window.DIAG ={
         ]
       },
       "talent": {
-        "lead": "One role. Named, hired, and given the authority to actually run what you hand over.",
+        "lead": "One role, hired with the authority to actually run what you hand over.",
         "actions": [
           {
             "text": "Every layer sits with you. Hire the one that would free the most of your week first, not the one that's easiest to fill.",
@@ -3161,7 +3197,7 @@ window.DIAG ={
             ]
           },
           {
-            "text": "Write down everything you did last week, then mark what only you could have done. What's left is the job description."
+            "text": "List every task you touched last week. Against each one, write the name of the person who'd do it if you were away for a month. Any task with no name against it is the hire."
           },
           {
             "text": "Hire the layer rather than the hands. Another delivery person gives you more capacity. A person who runs delivery gives you your week back."
@@ -3232,7 +3268,7 @@ window.DIAG ={
         "lead": "Find out why they leave or why they shrink, then fix the thing they tell you about.",
         "actions": [
           {
-            "text": "Ring ten customers who stopped buying, or who cut back, and ask them straight. Not a survey. A phone call."
+            "text": "Ring ten customers who stopped buying or cut back, and ask them straight. Not a survey. A phone call."
           },
           {
             "text": "Ask your biggest customers what they give to somebody else, and why. That work already exists, you're just not getting it.",
@@ -3300,7 +3336,7 @@ window.DIAG ={
         ]
       },
       "demand": {
-        "lead": "Turn the tap on deliberately. One channel, run properly, before you touch a second.",
+        "lead": "Turn the tap on deliberately. One channel run properly, before you touch a second.",
         "actions": [
           {
             "text": "Nothing is running right now, so start with the one thing you can do every week without fail.",
@@ -3379,66 +3415,47 @@ window.DIAG ={
         ]
       }
     },
-    "minorConstraint": {
-      "cashflow": "There's cash flow strain in your answers too. It sits downstream of the {d.primaryShort} problem and it should ease as that one moves.",
-      "talent": "A talent gap shows up in your answers as well. It's downstream of the {d.primaryShort} problem, so it isn't the thing to work on first.",
-      "fulfilment": "You'll see fulfilment strain in here as well. That's downstream of the {d.primaryShort} problem, and it should settle once the layer above it is in place.",
-      "value": "Retention looks soft too. That's downstream of the {d.primaryShort} problem rather than a separate finding.",
-      "offer": "The offer looks weak in places as well. Downstream of the {d.primaryShort} problem, and not worth touching yet.",
-      "demand": "Demand reads thin too. It's downstream of the {d.primaryShort} problem, so leave it where it is.",
-      "margin": "Margin looks tight as well. That's downstream of the {d.primaryShort} problem and it'll move when that does."
-    },
     "riskDef": {
       "key_client": {
-        "banded": "One customer carries {q41.band} of your revenue. That customer can leave, go quiet, or get bought by someone who already has their own suppliers, and none of those are things you get a say in.",
-        "precise": "One customer carries {q41.exact}% of your revenue. That customer can leave, go quiet, or get bought by someone who already has their own suppliers, and none of those are things you get a say in."
+        "banded": "One customer carries {q41.band} of your revenue. That customer can leave, or get bought by someone who already has their own suppliers, and neither is something you get a say in.",
+        "precise": "One customer carries {q41.exact}% of your revenue. That customer can leave, or get bought by someone who already has their own suppliers, and neither is something you get a say in."
       },
       "key_product": {
         "banded": "{q42.band} of your revenue comes from one product or service line. That's fine while the market wants it, and it's a single point of failure the day the market moves or a competitor undercuts it.",
         "precise": "{q42.exact}% of your revenue comes from one product or service line. That's fine while the market wants it, and it's a single point of failure the day the market moves or a competitor undercuts it."
       },
       "key_channel": {
-        "banded": "Your customers arrive {q43.band}. Channels change without asking you first, and an algorithm shift, a search update or one referrer going quiet can halve your enquiries inside a month.",
-        "alt": "You weren't sure where your customers actually come from, which usually means one channel is doing more of the work than you think. A channel can change without asking you first, and an algorithm shift, a search update or one referrer going quiet can halve your enquiries inside a month."
+        "banded": "Your customers arrive {q43.band}. Channels change without asking you first, and an algorithm shift or one referrer going quiet can halve your enquiries inside a month.",
+        "alt": "You weren't sure where your customers actually come from, which usually means one channel is doing more of the work than you think. A channel can change without asking you first, and one referrer going quiet can halve your enquiries inside a month."
       },
       "key_supplier": {
-        "banded": "You've got one supplier with no ready replacement. Their price rise is your price rise, their delay is your delay, and their bad year is your bad year."
-      },
-      "key_person": {
-        "banded": "The business leans heavily on one person, and going by your answers that person is probably you. Illness, a resignation or a fortnight offline stops things that shouldn't be stoppable."
+        "banded": "You've got one supplier with no ready replacement. Their price rise is your price rise, and their bad year is your bad year."
       },
       "key_employee": {
         "banded": "One person knows how the work actually gets done and it isn't written down anywhere else. If they leave, the knowledge goes with them, and you'll be rebuilding it from scratch while still trying to deliver."
       },
       "key_geography": {
-        "banded": "The business sells into one city or region. A local downturn, a big competitor arriving, or a regulatory change hits all of your revenue at once rather than part of it."
+        "banded": "The business sells into one city or region. A local downturn or a big competitor arriving hits all of your revenue at once rather than part of it."
       },
       "no_buffer": {
         "banded": "You're holding {q8.band}. Every business runs into a bad month. Without a buffer, a bad month turns into a decision about who you can't pay.",
         "alt": "You couldn't put a number on how long the business would last with no revenue, which is its own answer. Every business runs into a bad month, and without a buffer a bad month turns into a decision about who you can't pay."
       },
       "no_contracts": {
-        "banded": "Your work is committed by {q45.band}. Revenue that can be cancelled in a phone call isn't revenue you can plan against, hire against or borrow against.",
-        "alt": "You weren't sure how your work is actually committed by the customer. Revenue you can't describe the terms of isn't revenue you can plan against, hire against or borrow against."
+        "banded": "Your work is committed by {q45.band}. Revenue that can be cancelled in a phone call isn't revenue you can plan against or borrow against.",
+        "alt": "You weren't sure how your work is actually committed by the customer. Revenue you can't describe the terms of isn't revenue you can plan against or borrow against."
       },
       "no_process": {
-        "banded": "{q46.band} of the work is documented well enough that somebody else could pick it up and finish it. Every new hire takes longer than it should, quality moves depending on who's on the job, and nothing can be handed over cleanly.",
-        "alt": "You weren't sure how much of the work is documented, which almost always means less than you'd hope. Every new hire takes longer than it should, quality moves depending on who's on the job, and nothing can be handed over cleanly."
+        "banded": "{q46.band} of the work is documented well enough that somebody else could pick it up and finish it. Every new hire takes longer than it should, and nothing can be handed over cleanly.",
+        "alt": "You weren't sure how much of the work is documented, which almost always means less than you'd hope. Every new hire takes longer than it should, and nothing can be handed over cleanly."
       },
       "no_data": {
         "banded": "You look at the numbers {q47.band}, and there were questions in here you couldn't answer. Running on feel works while the business is small enough to hold in your head. Past that, you're making decisions on a version of the business that's a few months out of date.",
         "alt": "There were questions in here you couldn't answer, and that's the finding. Running on feel works while the business is small enough to hold in your head. Past that, you're making decisions on a version of the business that's a few months out of date."
       },
-      "no_2ic": {
-        "banded": "There's nobody who could run this if you stepped out. Every decision routes through you, which caps the business at the size of your week."
-      },
-      "owner_trapped": {
-        "banded": "Sold tomorrow, {q49.band}. How long that handover runs is what decides whether the business is worth anything to anyone but you, and it's the same thing that decides whether you can ever step back.",
-        "alt": "You haven't thought about how long a buyer would need you to stay on, which is its own answer. Until somebody else can run it, the business is a job that owns you rather than an asset you own."
-      },
       "no_succession": {
-        "banded": "There's {q50.band} for what happens if you stop, sell or step back. Every business has an exit, planned or otherwise. The unplanned version is the one where somebody else sets the price.",
-        "alt": "You weren't sure what happens to the business if you stop, sell or step back. Every business has an exit, planned or otherwise. The unplanned version is the one where somebody else sets the price."
+        "banded": "There's {q50.band} for what happens if you stop or sell. Every business has an exit, planned or not. The unplanned version is the one where somebody else sets the price.",
+        "alt": "You weren't sure what happens to the business if you stop or sell. Every business has an exit, planned or not. The unplanned version is the one where somebody else sets the price."
       },
       "personal_guarantee": {
         "banded": "You've personally guaranteed {q51.band} of the business's obligations. The wall between business risk and personal risk isn't up, so a bad year in the business reaches your house.",
@@ -3449,10 +3466,14 @@ window.DIAG ={
         "alt": "You weren't sure whether the way you spend your week matches what you wanted out of this. That question decides how long you'll keep doing it, and a business rarely outlives the owner's appetite for running it."
       },
       "key_asset": {
-        "banded": "One piece of equipment or one vehicle is doing work you have no backup for. A breakdown, a theft or a long repair stops revenue you've already sold, and hire rates at short notice are set by people who know you're stuck."
+        "banded": "One piece of equipment or one vehicle is doing work you have no backup for. A breakdown or a long repair stops revenue you've already sold, and hire rates at short notice are set by people who know you're stuck."
       },
       "key_licence": {
-        "banded": "One licence, accreditation or policy is the thing that lets you trade at all. Lose it, let it lapse, or fail an audit, and the business stops completely rather than slows down."
+        "banded": "One licence or accreditation is the thing that lets you trade at all. Let it lapse and the business stops completely rather than slows down."
+      },
+      "owner_dependency": {
+        "banded": "The business runs on you. Sold tomorrow a buyer would need you to stay {q49.band}, and there's nobody who could run it if you stepped out. That caps the business at the size of your week and it's what makes it hard to sell.",
+        "alt": "The business runs on you, and you haven't put a number on how long a buyer would need you to stay. Until somebody else can run it, this is a job that owns you rather than an asset you own."
       }
     },
     "riskFix": {
@@ -3471,10 +3492,6 @@ window.DIAG ={
       "key_supplier": [
         "Qualify a second supplier and give them ten percent of your volume. A backup you've never bought from isn't a backup.",
         "Get lead times and pricing from your current one in writing, so a change is a conversation rather than a surprise."
-      ],
-      "key_person": [
-        "Write down what they hold, then move one piece of it to somebody else this month.",
-        "Repeat until nothing sits in one head, and test it by having them take a week off."
       ],
       "key_employee": [
         "Have them document the work while they're still here, and pay them properly to do it.",
@@ -3497,7 +3514,7 @@ window.DIAG ={
         "Move a fixed percentage of every payment across automatically, so it isn't a decision you make each time."
       ],
       "no_contracts": [
-        "Put a written agreement behind every piece of work, with terms, scope and a notice period.",
+        "Put a written agreement behind every piece of work, with a scope and a notice period.",
         "Start with your largest customers, because that's where the exposure actually sits."
       ],
       "no_process": [
@@ -3505,19 +3522,11 @@ window.DIAG ={
         "Checklists beat manuals, because people actually use them."
       ],
       "no_data": [
-        "Pick five numbers and look at them weekly. Cash in the bank, enquiries, close rate, jobs delivered, and margin on the last ten jobs.",
+        "Pick five numbers and look at them weekly. Start with cash in the bank and margin on the last ten jobs.",
         "One page, same day every week. The habit matters more than the tool you keep it in."
       ],
-      "no_2ic": [
-        "Name the person, tell them, and start handing over one area at a time with the decisions attached.",
-        "Give them a budget and a limit they can act inside. A deputy who can't decide anything is a job title."
-      ],
-      "owner_trapped": [
-        "Work out what only you can do, then start moving everything else.",
-        "Book a month off twelve months out and work backwards from it. That's the deadline that makes it real."
-      ],
       "no_succession": [
-        "Write the one page version. Who runs it, what happens to the customers, what it's worth and who'd buy it.",
+        "Write the one page version. Who runs it, and what happens to the customers.",
         "It doesn't need to be right, it needs to exist."
       ],
       "personal_guarantee": [
@@ -3527,6 +3536,11 @@ window.DIAG ={
       "model_misfit": [
         "Write down what you actually wanted out of this, then hold your week up against it.",
         "The gap between those two is the brief for the next twelve months."
+      ],
+      "owner_dependency": [
+        "Name the person who'd run it, tell them, and hand over one area at a time with the decisions attached.",
+        "Give them a budget they can act inside. A deputy who can't decide anything is a job title.",
+        "Book a month off twelve months out and work backwards from it. That's the deadline that makes it real."
       ]
     },
     "dontDoYet": {
@@ -3544,7 +3558,7 @@ window.DIAG ={
         "lead": "Until the layer exists, leave these alone.",
         "items": [
           "Don't hire another doer. Every one you add reports to you, and you're the bottleneck.",
-          "Don't take on a new market, product or location. All three land on your desk.",
+          "Don't take on a new market or a new location. Both land on your desk.",
           "Don't start anything that needs your attention for six months.",
           "Don't increase lead generation. The work you win still has to route through you.",
           "Don't redraw the org chart. What's missing is a person who doesn't exist, not a diagram."
@@ -3602,7 +3616,7 @@ window.DIAG ={
       }
     },
     "closing": {
-      "text": "That's the diagnosis. One constraint, the risks sitting around it, and the things to leave alone while you fix it.\n\nWork the constraint and check back in ninety days. That's long enough for it to move and short enough that you'll still remember what you changed.",
+      "text": "That's the diagnosis. One constraint, and the things to leave alone while you fix it.\n\nWork the constraint and check back in ninety days. That's long enough for it to move and short enough that you'll still remember what you changed.",
       "cta": "",
       "loose": "That's the read. One thing to push on, and nothing in the way of it.\n\nRun this again in ninety days, or whenever something material changes. The constraint moves as the business grows, and the answer you get next time probably won't be this one.",
       "unsure": "That's as far as your answers go. One provisional reading, and a clear picture of what the business can't currently tell you.\n\nGet the numbers visible, then run this again. The second time through it will be worth something."

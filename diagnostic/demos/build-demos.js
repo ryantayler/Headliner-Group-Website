@@ -8,34 +8,34 @@ const fs = require('fs');
 const { DEMOS, build } = require('./demos.js');
 const D = DIAG, E = window.DiagEngine;
 
+const article = n => /^[aeiou]/i.test(n) ? 'an' : 'a';
 const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 const para = t => String(t).split('\n\n').map(p => `<p>${esc(p)}</p>`).join('');
 
 function report(r) {
   let h = '', n = 0;
-  const label = t => { n++; return `<p class="sec__label">${n < 10 ? '0' : ''}${n}, ${esc(t)}</p>`; };
+  const label = t => `<h3 class="display d3 sec__h">${esc(t)}</h3>`; void n;
   const title = `${esc(r.primary.title.before)}<em>${esc(r.primary.title.phrase)}</em>${esc(r.primary.title.after)}`;
 
   h += `<div class="rep__head"><p class="eyebrow">Your diagnosis</p>
         <h2 class="display d2">${title}</h2></div>`;
   h += `<div class="sec">${para(r.opening)}
         <p class="privacy">We do not use <u>any</u> AI in this tool, and <u>none</u> of your data is sent or stored offsite.</p></div>`;
-  h += `<div class="sec">${label('The constraint')}
-        <div class="verdict"><div class="glow"></div><p class="eyebrow">What is capping the business</p>
-        <h3 class="display d3">${title}</h3>${para(r.primary.body)}</div></div>`;
+  h += `<div class="sec">
+        <div class="verdict"><div class="glow"></div>
+        <h4 class="display d3">${title}</h4>${para(r.primary.body)}</div></div>`;
   h += `<div class="sec">${label('How to fix it')}<p>${esc(r.primary.fix.lead)}</p>
         <ol class="acts">${r.primary.fix.actions.map(a => `<li>${esc(a)}</li>`).join('')}</ol></div>`;
-  if (r.minor) h += `<div class="sec">${label('Also showing, and deliberately not the job')}
-        <div class="aside"><p>${esc(r.minor.line)}</p></div></div>`;
   h += `<div class="sec">${label('Your risks, and what to do about them')}<p>${esc(r.risk.lead)}</p>` +
        r.risk.flags.map(f => `<div class="risk">
-         <div class="risk__head"><div class="glow"></div><span>You have a</span><h4 class="display d3">${esc(f.name)}</h4><span>risk</span></div>
+         <div class="risk__head"><div class="glow"></div><span>You have ${article(f.name)}</span><h4 class="display d3">${esc(f.name)}</h4><span>risk</span></div>
          <div class="risk__body"><p>${esc(f.body)}</p>
          <ol class="acts acts--risk">${f.fix.map(a => `<li>${esc(a)}</li>`).join('')}</ol></div></div>`).join('') + '</div>';
   if (r.dontDo) h += `<div class="sec sec--dont"><h3 class="display d2 dont__h">Don’t do this yet</h3>
         <p>${esc(r.dontDo.lead)}</p>
         <ol class="acts dont">${r.dontDo.items.map(a => `<li>${esc(a)}</li>`).join('')}</ol></div>`;
-  h += `<div class="sec">${para(r.closing.text)}<div class="sign">${SIG}</div></div>`;
+  h += `<div class="sec">${para(r.closing.text)}
+        <div class="sign"><span class="wordmark">HEADLINER <span>Group</span></span></div></div>`;
   return h;
 }
 
@@ -56,11 +56,10 @@ function working(r) {
     </div></details>`;
 }
 
-const SIG = fs.readFileSync('/home/user/Headliner-Group-Website/assets/img/signature.svg','utf8').replace(/\s+/g,' ').trim();
 let css = fs.readFileSync('/home/user/Headliner-Group-Website/diagnostic/diagnostic.css','utf8')
   .replace('@import url("../assets/fonts/fonts.css");\n','')
   .replace('.sign img{width:132px;height:auto;filter:brightness(0) invert(1);opacity:.9}',
-           '.sign svg{width:132px;height:auto;color:var(--ink);opacity:.9}')
+           '.sign svg{display:none}')
   .replace('.sign img{filter:none;opacity:1}','.sign svg{color:#1A1A1A;opacity:1}');
 
 const EXTRA = `
@@ -75,8 +74,8 @@ const EXTRA = `
   background:none;border:0;border-bottom:2px solid transparent;color:var(--mute);
   padding:11px 15px 12px;white-space:nowrap;transition:color .18s var(--ease),border-color .18s var(--ease)}
 .tab:hover{color:var(--ink)}
-.tab[aria-selected="true"]{color:var(--pink);border-bottom-color:var(--pink)}
-.tab:focus-visible{outline:2px solid var(--pink);outline-offset:-2px}
+.tab[aria-selected="true"]{color:var(--accent);border-bottom-color:var(--accent)}
+.tab:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
 .tab b{display:block;font-weight:600;font-size:14px;color:inherit}
 .tab span{display:block;font-size:11px;letter-spacing:.11em;text-transform:uppercase;opacity:.72;margin-top:2px}
 .panel{display:none;padding-top:8px}
@@ -84,7 +83,7 @@ const EXTRA = `
 .biz{border:1px solid var(--rim);border-radius:18px;background:var(--panel);
   padding:clamp(22px,3vw,32px);margin:34px 0 8px}
 .biz h2{margin:0 0 4px}
-.biz__meta{font-size:12px;letter-spacing:.11em;text-transform:uppercase;color:var(--pink-ink);margin:0 0 14px}
+.biz__meta{font-size:12px;letter-spacing:.11em;text-transform:uppercase;color:var(--accent);margin:0 0 14px}
 .biz p{margin:0;color:var(--ink)}
 .biz__facts{display:flex;flex-wrap:wrap;gap:0 26px;margin:16px 0 0;padding-top:16px;border-top:1px solid var(--hair)}
 .biz__facts div{font-size:13px;color:var(--mute);padding:3px 0}
@@ -97,7 +96,7 @@ const EXTRA = `
   color:var(--mute);font-weight:600;padding:0 12px 7px 0;border-bottom:1px solid var(--hair)}
 .scores td{padding:7px 12px 7px 0;border-bottom:1px solid var(--hair);color:var(--mute)}
 .scores .num{text-align:right;font-variant-numeric:tabular-nums;padding-right:18px}
-.scores tr.is-it td{color:var(--pink);font-weight:600}
+.scores tr.is-it td{color:var(--accent);font-weight:600}
 .note{font-size:13.5px;color:var(--mute);max-width:66ch}
 @media print{ .tabs,.why{display:none!important} .panel{display:block!important;break-before:page} .panel:first-of-type{break-before:auto} }
 `;
@@ -105,7 +104,7 @@ const EXTRA = `
 const reports = DEMOS.map(d => ({ d, r: E.diagnose(build(d)) }));
 const page = `<title>Five Demo Diagnostics</title>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600&family=Caveat:wght@400..700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700&display=swap">
 <style>${css}${EXTRA}</style>
 
 <header class="shell hero">

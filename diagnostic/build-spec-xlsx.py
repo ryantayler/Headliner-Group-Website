@@ -112,7 +112,6 @@ readme = [
     ["Answer options", "Every option under every question. This is where the bands live, and the band phrase is what gets quoted in the report."],
     ["Constraints and order", "The seven constraints, the fixed order they are checked in, and what suppresses what."],
     ["Report, constraint", "The constraint blocks. Opening line, evidence clauses, closing line, and the fix actions."],
-    ["Report, minor", "The one line that prints when a second constraint is loud but downstream."],
     ["Report, risk flags", "All 16 risk flags. Definition, the version used when the answer was Not sure, and the fix."],
     ["Report, risk section", "The line that opens the risk section."],
     ["Report, don't do yet", "The closing section. What not to touch until the constraint is fixed."],
@@ -228,12 +227,6 @@ sheet("Report, constraint",
       edit_cols=(3, 4), lock_cols=(1, 2, 5), wrap_cols=(3, 4, 5),
       note="Evidence clauses are joined into one sentence with commas and a final \"and\". Write each one lower case and without a full stop. A clause whose data came back Not sure is dropped from the sentence rather than printed empty, which is why they are separate rows.")
 
-# ------------------------------------------------------- 6. Report, minor
-rows = [[cid, D["constraints"][cid]["name"], D["blocks"]["minorConstraint"][cid], slots_in(D["blocks"]["minorConstraint"][cid])] for cid in D["chain"]]
-sheet("Report, minor", ["id", "Constraint", "The one line printed when this is a loud but downstream second finding", "Variables in this row"],
-      rows, [13, 24, 100, 24], edit_cols=(3,), lock_cols=(1, 4), wrap_cols=(3, 4),
-      note="One line only, no fix and no detail. Naming it proves the tool knows the difference between a cause and a shadow, and a full fix section would undo that. {d.primaryShort} resolves to the primary constraint's short name.")
-
 # --------------------------------------------------- 7. Report, risk flags
 rows = []
 for fid, meta in D["flags"].items():
@@ -288,7 +281,6 @@ sheet("Report, open and close", ["Section", "Variant", "When it is used", "Wordi
 # ------------------------------------------------------- 12. Thresholds
 TH = {
  "PRIMARY_FAIL": "A constraint fails, and gets called, at or above this score. Raise it and fewer businesses get a hard finding. Lower it and the first thing in the chain wins too easily.",
- "MINOR_PRINT": "A second constraint has to reach this before it prints as a minor. Deliberately higher than PRIMARY_FAIL, so a minor has to be louder than the bar that would have made it a primary in its own right.",
  "FALLBACK_FLOOR": "When nothing failed, anything under this counts as a well run business and the report switches to the softer wording. Above it, the report says nothing is failing but here is the tightest thing.",
  "FLAG_PRINT": "An individual flag has to reach this before it is named. Below it the flag still counts toward its family score.",
  "MAX_FLAGS_SHOWN": "Hard cap on how many risks get named, across all three families. Four keeps the report short and certain.",

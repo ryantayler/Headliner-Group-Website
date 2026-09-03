@@ -1,18 +1,21 @@
 /* =========================================================================
    BUSINESS DIAGNOSTIC
-   Ryan Tayler's system, not Headliner's. Dark first, pink as the only accent,
-   Anton for headers, Inter for everything readable, Caveat once per view.
-   Self contained on purpose, so nothing here can reach the five live pages.
-   The print sheet flips to paper, because a report printed on black is a
-   report nobody prints. Pink deepens to --pink-ink to carry text on paper.
+   Headliner Group's system, not Ryan's. This is a tool, and tools wear
+   Headliner: dark only, aqua as the single accent, coral for actions, Inter
+   carrying every heading and every line of body copy. Archivo Black is the
+   logo face and nothing else. No Anton, no Caveat, no signature, because a
+   tool is not signed by a person.
+   The print sheet flips to paper. Aqua deepens to --accent-deep before it
+   carries text on white.
    ========================================================================= */
 @import url("../assets/fonts/fonts.css");
 
 :root{
   --base:#0A0A0A; --panel:#111111; --hair:#1c1c1c; --rim:#2E2E2E;
-  --ink:#ECE8E0;  --mute:#8A8A8A; --dim:#7A7A7A;
-  --pink:#FF2D6B; --pink-ink:#FF2D6B; --ol-pink:rgba(255,45,107,.45);
-  --ok:#22C55E; --warn:#F5B027;
+  --ink:#ECE8E0; --sub:#ADA9A3; --mute:#8A8A8A; --dim:#7A7A7A;
+  --accent:#2DE2C3; --accent-rgb:45,226,195; --accent-deep:#0A7261;
+  --cta:#FF5A36; --cta-hover:#FF7455; --cta-ink:#0A0A0A;
+  --warn:#F5B027;
   --gutter:clamp(20px,5vw,56px); --shell:820px;
   --ease:cubic-bezier(.22,.61,.36,1);
 }
@@ -21,25 +24,27 @@
 html{-webkit-text-size-adjust:100%}
 body{
   margin:0;background:var(--base);color:var(--ink);
-  font-family:'Inter',system-ui,sans-serif;font-size:16px;line-height:1.6;
+  font-family:'Inter',system-ui,-apple-system,sans-serif;font-size:16px;line-height:1.6;
   -webkit-font-smoothing:antialiased;
 }
 .shell{max-width:var(--shell);margin:0 auto;padding:0 var(--gutter)}
 
-.display{font-family:'Anton',Impact,sans-serif;font-weight:400;text-transform:uppercase;letter-spacing:0;line-height:.92;margin:0}
-.d1{font-size:clamp(38px,7vw,72px);line-height:.9}
-.d2{font-size:clamp(26px,4.2vw,44px);line-height:.94}
-.d3{font-size:clamp(19px,2.4vw,26px);line-height:1.02}
-.d4{font-size:clamp(15px,1.5vw,17px);line-height:1.1}
-.hand{font-family:'Caveat',cursive;font-size:clamp(20px,2.4vw,26px);color:var(--pink);line-height:1.25}
+/* Inter carries every heading. Weight and tracking do the work Anton used to. */
+.display{font-family:inherit;font-weight:600;letter-spacing:-.028em;line-height:1.04;margin:0;text-wrap:balance}
+.d1{font-size:clamp(36px,5.8vw,68px);letter-spacing:-.034em;line-height:1}
+.d2{font-size:clamp(26px,3.4vw,42px);letter-spacing:-.03em;line-height:1.06}
+.d3{font-size:clamp(19px,2.1vw,25px);letter-spacing:-.022em;line-height:1.18}
+.d4{font-size:clamp(16px,1.4vw,18px);letter-spacing:-.018em;line-height:1.25}
+.wordmark{font-family:'Archivo Black',Impact,sans-serif;font-size:15px;letter-spacing:.02em;color:var(--ink)}
+.wordmark span{color:var(--sub);font-weight:400;font-family:'Inter',sans-serif}
 
-.eyebrow{font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--pink-ink);margin:0 0 14px}
+.eyebrow{font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin:0 0 14px}
 .lede{font-size:clamp(16px,1.7vw,18.5px);color:var(--ink)}
 .mute{color:var(--mute)}
 p{margin:0 0 16px;max-width:66ch}
-a{color:var(--pink-ink)}
+a{color:var(--accent)}
 
-/* ---------- buttons ---------- */
+/* ---------- buttons. Coral is the action colour, so aqua stays the accent. ---------- */
 .btn{
   display:inline-flex;align-items:center;gap:9px;
   font:inherit;font-weight:600;font-size:15px;
@@ -47,29 +52,28 @@ a{color:var(--pink-ink)}
   cursor:pointer;transition:background .2s var(--ease),border-color .2s var(--ease),color .2s var(--ease),transform .2s var(--ease);
 }
 .btn:hover{transform:translateY(-2px)}
-.btn:focus-visible{outline:2px solid var(--pink);outline-offset:3px}
-.btn--fill{background:var(--pink);color:#0A0A0A;border-color:var(--pink)}
-.btn--fill:hover{background:#FF5586;border-color:#FF5586}
+.btn:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.btn--fill{background:var(--cta);color:var(--cta-ink);border-color:var(--cta)}
+.btn--fill:hover{background:var(--cta-hover);border-color:var(--cta-hover)}
 .btn--ghost{background:transparent;color:var(--ink);border-color:var(--rim)}
-.btn--ghost:hover{border-color:var(--pink);color:var(--pink-ink)}
+.btn--ghost:hover{border-color:var(--accent);color:var(--accent)}
 .btn[disabled]{opacity:.35;cursor:not-allowed;transform:none}
 
 /* ---------- screens ---------- */
 .screen{display:none;padding:clamp(48px,8vw,88px) 0 96px}
 .screen.is-on{display:block}
 
-/* intro */
 .intro__rules{list-style:none;margin:28px 0 0;padding:0;border-top:1px solid var(--hair)}
 .intro__rules li{padding:15px 0;border-bottom:1px solid var(--hair);display:flex;gap:14px;align-items:baseline;max-width:62ch}
-.intro__rules b{font-family:'Anton',Impact,sans-serif;font-weight:400;font-size:15px;color:var(--pink-ink);min-width:26px;letter-spacing:.04em}
+.intro__rules b{font-weight:600;font-size:13px;color:var(--accent);min-width:26px;letter-spacing:.04em;font-variant-numeric:tabular-nums}
 
 /* ---------- progress ---------- */
 .prog{position:sticky;top:0;z-index:20;background:var(--base);border-bottom:1px solid var(--hair);padding:14px 0 12px}
 .prog__row{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-bottom:9px}
 .prog__step{font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--mute)}
-.prog__step b{color:var(--pink-ink);font-weight:600}
+.prog__step b{color:var(--accent);font-weight:600}
 .prog__bar{height:3px;background:var(--hair);border-radius:100px;overflow:hidden}
-.prog__fill{height:100%;background:var(--pink);width:0;transition:width .35s var(--ease)}
+.prog__fill{height:100%;background:var(--accent);width:0;transition:width .35s var(--ease)}
 
 /* ---------- questions ---------- */
 .group__title{margin:38px 0 6px}
@@ -79,7 +83,6 @@ a{color:var(--pink-ink)}
 .q__n{font-size:11px;font-weight:600;letter-spacing:.18em;color:var(--mute);display:block;margin-bottom:9px}
 .q__t{font-size:17px;font-weight:600;line-height:1.42;margin:0 0 6px;max-width:60ch}
 .q__help{font-size:13.5px;color:var(--mute);margin:0 0 16px;max-width:60ch}
-.q__help:last-of-type{margin-bottom:16px}
 
 .opts{display:grid;gap:8px;margin-top:14px}
 .opt{
@@ -96,21 +99,18 @@ a{color:var(--pink-ink)}
 }
 .opt input[type=radio]{border-radius:50%}
 .opt input[type=checkbox]{border-radius:5px}
-.opt input:checked{border-color:var(--pink);background:var(--pink);box-shadow:inset 0 0 0 3px var(--panel)}
+.opt input:checked{border-color:var(--accent);background:var(--accent);box-shadow:inset 0 0 0 3px var(--panel)}
 .opt input[type=checkbox]:checked{box-shadow:inset 0 0 0 2.5px var(--panel)}
-.opt input:focus-visible{outline:2px solid var(--pink);outline-offset:2px}
+.opt input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .opt span{font-size:15px;line-height:1.45}
-.opt:has(input:checked){border-color:var(--pink);background:rgba(255,45,107,.06)}
+.opt:has(input:checked){border-color:var(--accent);background:rgba(45,226,195,.07)}
 .opt--unsure span{color:var(--mute)}
 
 .exact{margin:12px 0 0;padding:13px 16px;border:1px dashed var(--rim);border-radius:12px;display:none}
 .exact.is-on{display:block}
 .exact label{display:block;font-size:13px;color:var(--mute);margin-bottom:8px}
-.exact input{
-  font:inherit;font-size:15px;width:150px;padding:9px 12px;
-  background:var(--base);border:1px solid var(--rim);border-radius:8px;color:var(--ink);
-}
-.exact input:focus{outline:none;border-color:var(--pink)}
+.exact input{font:inherit;font-size:15px;width:150px;padding:9px 12px;background:var(--base);border:1px solid var(--rim);border-radius:8px;color:var(--ink)}
+.exact input:focus{outline:none;border-color:var(--accent)}
 .exact small{display:block;margin-top:8px;font-size:12px;color:var(--mute)}
 
 .nav{display:flex;justify-content:space-between;gap:16px;align-items:center;margin-top:40px;padding-top:28px;border-top:1px solid var(--hair)}
@@ -120,112 +120,98 @@ a{color:var(--pink-ink)}
 .rep__head{padding-bottom:32px;border-bottom:1px solid var(--hair);margin-bottom:8px}
 .sec{padding:38px 0;border-bottom:1px solid var(--hair)}
 .sec:last-child{border-bottom:0}
-.sec__label{font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--mute);margin:0 0 16px}
+.sec__h{margin:0 0 18px}
 .sec p{font-size:16.5px}
 
+/* The constraint statement. Aqua fill, black text, and the constraint itself
+   carries the weight while the words around it stay full strength. */
 .verdict{
-  background:var(--pink);color:#0A0A0A;border-radius:20px;
-  padding:clamp(26px,4vw,40px);margin:8px 0 6px;position:relative;overflow:hidden;--cw:760px;
+  background:var(--accent);color:#0A0A0A;border-radius:20px;
+  padding:clamp(26px,4vw,40px);margin:0 0 6px;position:relative;overflow:hidden;--cw:760px;
 }
 .verdict .glow{position:absolute;inset:0;pointer-events:none;z-index:0;
-  box-shadow:inset 0 0 calc(var(--cw)*.25) calc(var(--cw)*.015) rgba(0,0,0,.38)}
+  box-shadow:inset 0 0 calc(var(--cw)*.25) calc(var(--cw)*.015) rgba(0,0,0,.22)}
 .verdict>*{position:relative;z-index:1}
-.verdict .eyebrow{color:#0A0A0A;opacity:.66}
-.verdict p{margin:14px 0 0;max-width:58ch;font-size:16px;font-weight:500}
-/* The constraint itself lifts out of the sentence around it. On the pink fill the
-   surrounding words drop back rather than the accent changing, because pink on
-   pink has nowhere to go. */
-.rep__head em,.verdict em{font-style:normal}
-.rep__head em{color:var(--pink-ink)}
-.verdict .display{color:rgba(10,10,10,.55)}
-.verdict em{color:#0A0A0A}
+.verdict .display{color:#0A0A0A;font-weight:500}
+.verdict em{font-style:normal;font-weight:700}
+.verdict p{margin:16px 0 0;max-width:58ch;font-size:16px;font-weight:500;color:#0A0A0A}
+.rep__head em{font-style:normal;color:var(--accent)}
 
 .acts{list-style:none;counter-reset:a;margin:20px 0 0;padding:0}
 .acts li{counter-increment:a;position:relative;padding:14px 0 14px 44px;border-top:1px solid var(--hair);max-width:64ch;font-size:16px}
 .acts li::before{
   content:counter(a);position:absolute;left:0;top:14px;
-  font-family:'Anton',Impact,sans-serif;font-size:15px;color:var(--pink-ink);
+  font-weight:600;font-size:14px;color:var(--accent);font-variant-numeric:tabular-nums;
 }
-.dont li::before{content:"\00d7";font-family:'Inter',system-ui,sans-serif;font-weight:600;font-size:17px;line-height:1.35}
+.dont li::before{content:"\00d7";font-weight:600;font-size:17px;line-height:1.35;color:var(--cta)}
 
-.aside{border-left:2px solid var(--pink);padding:2px 0 2px 18px;margin:0 0 4px}
-.aside p{margin:0;color:var(--mute);font-size:15.5px}
-
-
-/* The constraint and each risk carry the same pink treatment, so a risk reads as
-   a finding rather than a footnote. Only the name sits on the pink, which keeps
-   four pink blocks on a page from becoming four pink slabs. */
+/* Each risk gets the constraint's treatment, so a risk reads as a finding. */
 .risk{border:1px solid var(--rim);border-radius:16px;overflow:hidden;margin:18px 0 0}
 .risk__head{
-  background:var(--pink);color:#0A0A0A;padding:15px 22px 14px;
+  background:var(--accent);color:#0A0A0A;padding:15px 22px 14px;
   position:relative;overflow:hidden;--cw:640px;
   display:flex;align-items:baseline;gap:9px;flex-wrap:wrap;
 }
 .risk__head .glow{position:absolute;inset:0;z-index:0;pointer-events:none;
-  box-shadow:inset 0 0 calc(var(--cw)*.25) calc(var(--cw)*.015) rgba(0,0,0,.3)}
+  box-shadow:inset 0 0 calc(var(--cw)*.25) calc(var(--cw)*.015) rgba(0,0,0,.18)}
 .risk__head>*{position:relative;z-index:1}
-.risk__head h3{color:#0A0A0A;margin:0}
-.risk__head span{font-size:12.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;opacity:.6}
+.risk__head h3,.risk__head h4{color:#0A0A0A;margin:0;font-weight:700}
+.risk__head span{font-size:13px;font-weight:600;letter-spacing:.02em;color:#0A0A0A}
 .risk__body{padding:20px 22px 8px;background:var(--panel)}
 .risk__body p{margin:0 0 4px;color:var(--ink);font-size:16px}
 .acts--risk{margin-top:14px}
 .acts--risk li{border-top:1px solid var(--hair);color:var(--ink)}
 
-/* Nothing to hold off on is the loudest instruction in the report, so it gets
-   a real heading rather than another numbered label. */
 .sec--dont{padding-top:44px}
-.dont__h{margin:0 0 14px;color:var(--pink-ink)}
+.dont__h{margin:0 0 14px;color:var(--cta)}
 
 .privacy{font-size:13px;color:var(--dim);margin-top:22px;max-width:62ch}
 .privacy u{text-decoration:underline;text-underline-offset:2px}
 
-.sign{display:flex;align-items:center;gap:20px;margin-top:40px}
-.sign img{width:132px;height:auto;filter:brightness(0) invert(1);opacity:.9}
+.sign{display:flex;align-items:center;gap:14px;margin-top:40px;padding-top:24px;border-top:1px solid var(--hair)}
 
-/* ---------- dev bar and why panel, screen only ---------- */
+/* ---------- dev bar and working out, screen only ---------- */
 .dev{
   position:fixed;left:0;right:0;bottom:0;z-index:60;
   background:#141414;border-top:1px solid var(--rim);
   padding:9px var(--gutter);display:flex;gap:7px;flex-wrap:wrap;align-items:center;
 }
 .dev b{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--mute);font-weight:600;margin-right:5px}
-.dev button{
-  font:inherit;font-size:12px;font-weight:500;padding:5px 11px;border-radius:100px;
-  background:transparent;color:var(--mute);border:1px solid var(--rim);cursor:pointer;
-}
-.dev button:hover{color:var(--pink-ink);border-color:var(--pink)}
+.dev button{font:inherit;font-size:12px;font-weight:500;padding:5px 11px;border-radius:100px;background:transparent;color:var(--mute);border:1px solid var(--rim);cursor:pointer}
+.dev button:hover{color:var(--accent);border-color:var(--accent)}
 body.has-dev{padding-bottom:56px}
 
 .why{margin-top:40px;border:1px solid var(--rim);border-radius:14px;background:var(--panel);overflow:hidden}
 .why summary{padding:14px 18px;cursor:pointer;font-size:13px;font-weight:600;letter-spacing:.06em;color:var(--mute)}
-.why summary::marker{color:var(--pink)}
+.why summary::marker{color:var(--accent)}
 .why pre{margin:0;padding:0 18px 18px;font-size:11.5px;line-height:1.6;white-space:pre-wrap;color:var(--mute);font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
 
 [hidden]{display:none!important}
 
 /* =========================================================================
-   PRINT. Paper, ink, and pink deepened so it can carry text at 5.2 to 1.
+   PRINT. Paper, ink, and aqua deepened so it can carry text.
    ========================================================================= */
 @media print{
   @page{margin:16mm 15mm}
-  :root{--base:#FFFFFF;--panel:#FFFFFF;--hair:#DCE0E7;--rim:#DCE0E7;
-        --ink:#1A1A1A;--mute:#54585F;--dim:#5E6268;--pink:#FF2D6B;--pink-ink:#C4174F}
-  body{background:#fff;color:#1A1A1A;font-size:11pt;padding-bottom:0}
+  :root{--base:#FFFFFF;--panel:#FFFFFF;--hair:#D7DDDA;--rim:#D7DDDA;
+        --ink:#111614;--sub:#3F4744;--mute:#5B6360;--dim:#5B6360;
+        --accent:#0A7261;--cta:#C4360F}
+  body{background:#fff;color:#111614;font-size:11pt;padding-bottom:0}
   .prog,.dev,.nav,.why,.rep__actions,.screen:not(.is-on){display:none!important}
   .screen{padding:0}
   .shell{max-width:none;padding:0}
   .sec{padding:16pt 0;break-inside:avoid}
-  .verdict{background:#fff;color:#1A1A1A;border:1.5pt solid #C4174F;border-radius:10pt;padding:14pt;break-inside:avoid}
+  .verdict{background:#fff;color:#111614;border:1.5pt solid #0A7261;border-radius:10pt;padding:14pt;break-inside:avoid}
   .verdict .glow{display:none}
-  .verdict .eyebrow{color:#C4174F;opacity:1}
-  .acts li,.risk{break-inside:avoid}
-  .risk{border:1pt solid #DCE0E7}
-  .risk__head{background:#fff;color:#C4174F;border-bottom:1pt solid #DCE0E7;padding:10pt 12pt 8pt}
-  .risk__head h3,.risk__head h4{color:#C4174F} .risk__head span{opacity:.75}
+  .verdict .display,.verdict p{color:#111614}
+  .verdict em{color:#0A7261}
+  .risk{border:1pt solid #D7DDDA}
+  .risk__head{background:#fff;color:#0A7261;border-bottom:1pt solid #D7DDDA;padding:10pt 12pt 8pt}
+  .risk__head h3,.risk__head h4,.risk__head span{color:#0A7261}
   .risk__head .glow{display:none}
   .risk__body{background:#fff;padding:10pt 12pt 4pt}
-  .dont__h{color:#C4174F}
-  .sign img{filter:none;opacity:1}
+  .dont__h{color:#C4360F}
+  .acts li,.risk{break-inside:avoid}
   p,li{max-width:none}
   h1,h2,h3{break-after:avoid}
 }

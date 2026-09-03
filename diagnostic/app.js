@@ -5,7 +5,6 @@
 (function () {
   "use strict";
   var D = window.DIAG, E = window.DiagEngine;
-
   /* Group labels are deliberately neutral. They describe what is being asked
      about, never what the answers might mean, so nobody games the result. */
   var GROUPS = [
@@ -20,11 +19,9 @@
     { title: "What the business leans on",  sub: "The things there is only one of.",                                                       from: 46, to: 52 },
     { title: "You and the business",        sub: "The last six. These are the ones owners skip, so take them slowly.",                     from: 53, to: 58 }
   ];
-
   var answers = {}, step = 0;
   var $ = function (id) { return document.getElementById(id); };
   var qsOf = function (g) { return D.questions.filter(function (q) { return q.n >= g.from && q.n <= g.to; }); };
-
   // A question with showIf only appears once its trigger has been answered a
   // certain way. Hidden questions are never required and never scored.
   function visible(q) {
@@ -36,7 +33,6 @@
     if (q.showIf.notOnly) return picked.some(function (v) { return q.showIf.notOnly.indexOf(v) === -1; });
     return picked.some(function (v) { return (q.showIf.anyOf || []).indexOf(v) !== -1; });
   }
-
   // optionsFrom narrows a follow up to what they actually ticked on the question
   // before it, so nobody is asked to rank something they never flagged.
   function optionsOf(q) {
@@ -46,13 +42,12 @@
     var narrowed = q.options.filter(function (o) { return picked.indexOf(o.id) !== -1; });
     return narrowed.length ? narrowed : q.options;
   }
+  var article = function (n) { return /^[aeiou]/i.test(n) ? "an" : "a"; };
   var esc = function (s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); };
-
   /* ---------- storage. Per browser, never leaves the device. ---------- */
   var KEY = "diag.answers.v1";
   function save() { try { localStorage.setItem(KEY, JSON.stringify(answers)); } catch (e) {} }
   function load() { try { var v = localStorage.getItem(KEY); if (v) answers = JSON.parse(v) || {}; } catch (e) { answers = {}; } }
-
   /* ---------- rendering ---------- */
   function optionRow(q, o) {
     var a = answers[q.id] || {};
@@ -62,7 +57,6 @@
       '<input type="' + (multi ? "checkbox" : "radio") + '" name="' + q.id + '" value="' + o.id + '"' + (on ? " checked" : "") + '>' +
       '<span>' + esc(o.text) + '</span></label>';
   }
-
   function questionBlock(q) {
     var h = '<fieldset class="q" data-q="' + q.id + '" style="border:0;padding:0;margin:0">' +
       '<span class="q__n">Question ' + q.n + '</span>' +
@@ -80,7 +74,6 @@
     }
     return h + "</fieldset>";
   }
-
   function renderStep() {
     var g = GROUPS[step];
     $("g-title").textContent = g.title;
@@ -95,7 +88,6 @@
     updateProgress();
     window.scrollTo(0, 0);
   }
-
   function toggleExact(q) {
     var box = document.querySelector('[data-exact="' + q.id + '"]');
     if (!box) return;
@@ -103,7 +95,6 @@
     box.classList.toggle("is-on", !!(o && !o.notSure));
   }
   function optOf(q, id) { for (var i = 0; i < q.options.length; i++) if (q.options[i].id === id) return q.options[i]; return null; }
-
   function answeredCount() {
     return D.questions.filter(visible).filter(function (q) {
       var a = answers[q.id];
@@ -116,7 +107,6 @@
     $("p-count").textContent = n + " of " + total + " answered";
     $("p-fill").style.width = (100 * n / total) + "%";
   }
-
   /* ---------- answering ---------- */
   $("g-form").addEventListener("change", function (e) {
     var t = e.target;
@@ -151,7 +141,6 @@
     }
     updateProgress();
   });
-
   /* ---------- navigation ---------- */
   $("start").addEventListener("click", function () { show("s-quiz"); renderStep(); });
   $("prev").addEventListener("click", function () {
@@ -172,86 +161,67 @@
     if (step === GROUPS.length - 1) { runReport(); return; }
     step++; renderStep();
   });
-
   function show(id) {
     ["s-intro", "s-quiz", "s-report"].forEach(function (s) { $(s).classList.toggle("is-on", s === id); });
   }
-
   /* ---------- the report ---------- */
   function para(t) { return String(t).split("\n\n").map(function (p) { return "<p>" + esc(p) + "</p>"; }).join(""); }
-
   function runReport() {
     var r = E.diagnose(answers);
     var h = "", n = 0;
     // Sections number themselves as they print. Optional blocks come and go, and a
     // fixed number would leave a gap the moment one of them did not fire.
-    var label = function (t) { n++; return '<p class="sec__label">' + (n < 10 ? "0" : "") + n + ", " + t + "</p>"; };
-    void label;
-
+    // Plain headings, not numbered labels. The order is the sequence, the numbers
+    // were decoration on top of it.
+    var label = function (t) { return '<h2 class="display d3 sec__h">' + esc(t) + "</h2>"; };
+    void n;
     h += '<div class="rep__head">' +
       '<p class="eyebrow">Your diagnosis</p>' +
       '<h1 class="display d2">' + esc(r.primary.title.before) +
         '<em>' + esc(r.primary.title.phrase) + '</em>' + esc(r.primary.title.after) + '</h1>' +
       '</div>';
-
     h += '<div class="sec">' + para(r.opening) +
       '<p class="privacy">We do not use <u>any</u> AI in this tool, and <u>none</u> of your data is sent or stored offsite.</p></div>';
-
-    h += '<div class="sec">' + label("The constraint") +
+    h += '<div class="sec">' +
       '<div class="verdict"><div class="glow"></div>' +
-      '<p class="eyebrow">What is capping the business</p>' +
       '<h2 class="display d3">' + esc(r.primary.title.before) +
         '<em>' + esc(r.primary.title.phrase) + '</em>' + esc(r.primary.title.after) + '</h2>' +
       para(r.primary.body) + '</div></div>';
-
     h += '<div class="sec">' + label("How to fix it") +
       "<p>" + esc(r.primary.fix.lead) + "</p>" +
       '<ol class="acts">' + r.primary.fix.actions.map(function (a) { return "<li>" + esc(a) + "</li>"; }).join("") + "</ol></div>";
-
-    if (r.minor) {
-      h += '<div class="sec">' + label("Also showing, and deliberately not the job") +
-        '<div class="aside"><p>' + esc(r.minor.line) + "</p></div></div>";
-    }
-
     h += '<div class="sec">' + label("Your risks, and what to do about them") +
       "<p>" + esc(r.risk.lead) + "</p>" +
       r.risk.flags.map(function (f) {
         return '<div class="risk">' +
           '<div class="risk__head"><div class="glow"></div>' +
-            '<span>You have a</span><h3 class="display d3">' + esc(f.name) + "</h3><span>risk</span></div>" +
+            '<span>You have ' + article(f.name) + '</span><h3 class="display d3">' + esc(f.name) + "</h3><span>risk</span></div>" +
           '<div class="risk__body"><p>' + esc(f.body) + "</p>" +
             '<ol class="acts acts--risk">' +
               f.fix.map(function (a) { return "<li>" + esc(a) + "</li>"; }).join("") +
             "</ol></div></div>";
       }).join("") + "</div>";
-
     if (r.dontDo) {
       h += '<div class="sec sec--dont">' +
         '<h2 class="display d2 dont__h">Don\u2019t do this yet</h2>' +
         "<p>" + esc(r.dontDo.lead) + "</p>" +
         '<ol class="acts dont">' + r.dontDo.items.map(function (a) { return "<li>" + esc(a) + "</li>"; }).join("") + "</ol></div>";
     }
-
     h += '<div class="sec">' + para(r.closing.text) +
       (r.closing.cta ? "<p>" + esc(r.closing.cta) + "</p>" : "") +
-      '<div class="sign"><img src="../assets/img/signature.svg" alt="Ryan Tayler"></div></div>';
-
+      '<div class="sign"><span class="wordmark">HEADLINER <span>Group</span></span></div></div>';
     h += '<div class="rep__actions" style="display:flex;gap:12px;flex-wrap:wrap;margin-top:34px">' +
       '<button class="btn btn--fill" onclick="window.print()">Save as PDF</button>' +
       '<button class="btn btn--ghost" id="again">Change my answers</button></div>';
-
     h += '<details class="why"><summary>Why this fired, working out</summary><pre>' + esc(explain(r)) + "</pre></details>";
-
     $("report").innerHTML = h;
     $("again").addEventListener("click", function () { show("s-quiz"); renderStep(); });
     show("s-report");
     window.scrollTo(0, 0);
   }
-
   function explain(r) {
     var d = r.debug, L = [];
     L.push("PRIMARY   " + r.primary.id + "   (" + d.how + ")");
-    L.push("MINOR     " + (r.minor ? r.minor.id : "none printed"));
     L.push("");
     L.push("Constraint scores, checked in chain order. First one to fail is called.");
     D.chain.forEach(function (c) {
@@ -259,11 +229,10 @@
       L.push("  " + c.padEnd(12) + String(s.score).padStart(3) + mark);
     });
     L.push("");
-    L.push("Thresholds  fail " + D.thresholds.PRIMARY_FAIL + ", minor " + D.thresholds.MINOR_PRINT + ", floor " + D.thresholds.FALLBACK_FLOOR);
-    L.push("Suppressed by primary (transitive)  " + (d.suppressed.join(", ") || "nothing"));
-    if (d.minorRejected.length) L.push("Minor candidates rejected  " + d.minorRejected.map(function (m) { return m.id + " (" + m.why + ")"; }).join(", "));
+    L.push("Thresholds  fail " + D.thresholds.PRIMARY_FAIL + ", floor " + D.thresholds.FALLBACK_FLOOR + ", risk print " + D.thresholds.FLAG_PRINT);
+    L.push("Downstream of the finding, so never the finding itself  " + (d.suppressed.join(", ") || "nothing"));
     L.push("");
-    L.push("Risk families");
+    L.push("Risk families, which weight the ordering. Risks print as one list.");
     d.families.forEach(function (f) { L.push("  " + f.id.padEnd(15) + String(f.score).padStart(3) + "   top flag " + f.max + ", " + f.raised + " of " + f.total + " raised"); });
     L.push("");
     L.push("Flags raised");
@@ -271,10 +240,8 @@
       .forEach(function (k) { L.push("  " + k.padEnd(20) + String(d.flagSev[k]).padStart(3)); });
     L.push("");
     L.push('"Not sure" answers  ' + d.notSureCount + (d.tooUnsure ? "   (over the limit, report framed as provisional)" : ""));
-    L.push("Compound block  " + (r.compound ? r.compound.key : "no match"));
     return L.join("\n");
   }
-
   /* ---------- test presets ---------- */
   var PRESETS = {
     healthy: {},
@@ -307,7 +274,6 @@
     q41:"a", q42:"a", q43:"a", q44:["n"], q45:"a", q46:"a",
     q47:"a", q48:"a", q49:"a", q50:"a", q51:"a", q52:"a"
   };
-
   function applyPreset(name) {
     if (name === "clear") { answers = {}; save(); step = 0; show("s-intro"); return; }
     if (name === "unsure") {
@@ -330,7 +296,6 @@
     var b = e.target.closest("button[data-p]");
     if (b) applyPreset(b.dataset.p);
   });
-
   /* ---------- boot ---------- */
   load();
   document.body.classList.add("has-dev");

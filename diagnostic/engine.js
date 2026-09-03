@@ -171,24 +171,28 @@
     d.primaryShort = primaryId ? cfg().constraints[primaryId].short.toLowerCase() : "";
     d.primaryName = primaryId ? cfg().constraints[primaryId].name.toLowerCase() : "";
     var q11 = byId("q11"), sel = selected(ans, q11);
+    // Naming four layers builds a three item list, which is banned. Past two, count them.
+    var LAYER_TOTAL = Object.keys(LAYER_NAMES).length;
     if (sel.some(function (o) { return o.exclusive; })) {
-      d.unownedLayers = "Operations, sales, marketing, the numbers and managing delivery all sit with you rather than with somebody whose job it is.";
+      d.unownedLayers = "Every layer sits with you rather than with somebody whose job it is.";
     } else {
       var owned = sel.map(function (o) { return o.id; });
       var missing = Object.keys(LAYER_NAMES).filter(function (k) { return owned.indexOf(k) === -1; }).map(function (k) { return LAYER_NAMES[k]; });
+      var WORD = ["", "One", "Two", "Three", "Four", "Five"];
       if (!missing.length) d.unownedLayers = "";
+      else if (missing.length === LAYER_TOTAL) d.unownedLayers = "Every layer sits with you rather than with somebody whose job it is.";
       else if (missing.length === 1) d.unownedLayers = cap(missing[0]) + " sits with you rather than with somebody whose job it is.";
-      else d.unownedLayers = cap(missing.slice(0, -1).join(", ") + " and " + missing[missing.length - 1]) + " sit with you rather than with somebody whose job it is.";
+      else if (missing.length === 2) d.unownedLayers = cap(missing[0] + " and " + missing[1]) + " sit with you rather than with somebody whose job it is.";
+      else d.unownedLayers = WORD[missing.length] + " of the five layers sit with you rather than with somebody whose job it is.";
     }
     var q13 = byId("q13"), t = selected(ans, q13)
       .filter(function (o) { return !o.exclusive; })     // the opt out is not a task
       .map(function (o) { return o.text.toLowerCase(); });
     // A serial comma when an item carries its own "and", so "chasing invoices and
     // doing the books, and fixing things that went wrong" does not run together.
-    var joiner = t.some(function (x) { return / and /.test(x); }) ? ", and " : " and ";
-    d.ownerTasks = t.length === 0 ? ""
-      : t.length === 1 ? t[0]
-      : t.slice(0, -1).join(", ") + joiner + t[t.length - 1];
+    // The heaviest one only. Naming two builds a list, naming three builds the shape
+    // Ryan banned, and the point of the sentence is made by the first one anyway.
+    d.ownerTasks = t.length ? t[0] : "";
     return d;
   }
   function cap(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
@@ -251,11 +255,11 @@
       return t && bandsResolve(t, ans);
     }).map(function (t) { return fill(t, ans, d).trim(); }).filter(Boolean);
     var open = opens.join(" ");
-    // Four or five clauses in one sentence is a comma pile up, so they break into
-    // sentences of at most three.
+    // Three items in a row is the shape Ryan banned, so evidence pairs up rather
+    // than stacking. Two clauses a sentence, however many resolved.
     var sentences = [];
-    for (var i = 0; i < clauses.length; i += 3) {
-      var part = clauses.slice(i, i + 3);
+    for (var i = 0; i < clauses.length; i += 2) {
+      var part = clauses.slice(i, i + 2);
       sentences.push(cap(part.length === 1 ? part[0]
         : part.slice(0, -1).join(", ") + " and " + part[part.length - 1]) + ".");
     }
@@ -314,15 +318,6 @@
     // A confident finding is one that actually failed a gate. Everything else is a
     // reading, and the report has to say so rather than dress it up as a diagnosis.
     var confident = !wellRun && !tooUnsure;
-    // Minor constraint. Higher bar than the primary, then suppression.
-    var supp = suppressedBy(primaryId);
-    var minorId = null, minorRejected = [];
-    cfg().chain.forEach(function (cid) {
-      if (cid === primaryId || dq[cid]) return;
-      if (scores[cid].score < T("MINOR_PRINT")) return;
-      if (supp.indexOf(cid) !== -1) { minorRejected.push({ id: cid, why: "suppressed by " + primaryId }); return; }
-      if (!minorId || scores[cid].score > scores[minorId].score) minorId = cid;
-    });
     var d = derived(ans, primaryId);
     d_cache = d;
     // Risk. Families first, individual flags second.
@@ -357,7 +352,6 @@
         fix: { lead: B.constraintFix[primaryId].lead, actions: actionsFor(B.constraintFix[primaryId], ans) },
         confident: confident
       },
-      minor: minorId ? { id: minorId, line: sentenceCase(fill(B.minorConstraint[minorId], ans, d)) } : null,
       risk: {
         lead: B.riskLead,
         flags: shown.map(function (f) {
@@ -369,7 +363,10 @@
       closing: { text: tooUnsure ? B.closing.unsure : wellRun ? B.closing.loose : B.closing.text, cta: B.closing.cta },
       debug: {
         scores: scores, disqualified: dq, how: how, noneSevere: noneSevere, wellRun: wellRun, tooUnsure: tooUnsure, confident: confident,
-        suppressed: supp, minorRejected: minorRejected,
+        // Suppression no longer removes anything from the report, because the minor
+        // constraint section it fed is gone. Kept in the working out because it still
+        // explains why a loud downstream constraint is not the finding.
+        suppressed: suppressedBy(primaryId),
         flagSev: flags.sev, notSureCount: flags.notSureCount,
         families: ranked.map(function (f) { return { id: f.id, score: f.score, max: f.max, raised: f.raised, total: f.total }; })
       }

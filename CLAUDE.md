@@ -65,6 +65,25 @@ would lose no information, it is one of the three above.
 
 ---
 
+---
+
+## Which brand a thing wears
+
+Ryan's ruling, September 2026. Permanent.
+
+- **Tools are Headliner Group.** Anything somebody uses, a calculator, a diagnostic,
+  a form, a dashboard, a web app. Headliner's system: aqua accent, coral for actions,
+  Inter for every heading and every line of body copy, Archivo Black as the logo face
+  and nothing else.
+- **Content and IP are Ryan Tayler.** Anything he authored, frameworks, posts,
+  models, points of view. His system: pink accent, Anton headers, Caveat once,
+  and the signature as the sign off.
+
+The four pillars of partnership are content, so they wear Ryan. The business
+diagnostic is a tool, so it wears Headliner. His signature, Caveat and Anton never
+appear on a tool, because a tool is not signed by a person.
+
+
 ## Build and verification
 
 Playwright scripts live in the session scratchpad, not in the repo. The ones that matter:
