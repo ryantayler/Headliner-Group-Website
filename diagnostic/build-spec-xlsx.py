@@ -32,6 +32,28 @@ PINK = "C4174F"
 THIN = Side(style="thin", color="D5D5D5")
 BORDER = Border(left=THIN, right=THIN, top=THIN, bottom=THIN)
 
+SLOT_RE = re.compile(r"\{(q\d+)\.(band|exact)\}|\{d\.(\w+)\}")
+DERIVED_NOTE = {"primaryShort": "the primary constraint's short name",
+                "primaryName": "the primary constraint's full name",
+                "unownedLayers": "the sentence listing which layers sit with the owner"}
+
+
+def slots_in(*texts):
+    """Every variable used in these cells, written so somebody editing can see what
+    they have to work with. Blank when the copy carries no data."""
+    found = []
+    for t in texts:
+        for m in SLOT_RE.finditer(t or ""):
+            if m.group(3):
+                tag = "{d." + m.group(3) + "}"
+            else:
+                tag = "{" + m.group(1) + "." + m.group(2) + "}"
+            if tag not in found:
+                found.append(tag)
+    return ", ".join(found)
+
+
+
 wb = Workbook()
 wb.remove(wb.active)
 
@@ -76,7 +98,8 @@ readme = [
     ["What this is", "The full content and logic of the diagnostic tool, laid out so you can rewrite the wording. Every question, every answer option, every line of the report."],
     ["How to use it", "Edit the yellow cells. Leave the grey ones alone. Hand the file back and the tool gets rebuilt from it."],
     ["Yellow cells", "Wording that reaches the reader. Rewrite freely."],
-    ["Grey cells", "Ids the engine matches on. Changing one breaks the link between a question, its answer and the report line that quotes it."],
+    ["Grey cells", "Ids the engine matches on, and columns it works out for you. Changing one breaks the link between a question, its answer and the report line that quotes it."],
+    ["Variables", "Anything in {curly braces} is filled in from the answers. Write band phrases lower case, because sentence case is applied after a variable is filled in, so one landing at the start of a sentence gets capitalised for you."],
     ["White cells", "Numbers and settings. Safe to change, and the Thresholds tab explains what each one does."],
     ["", ""],
     ["The one rule", "The report names one constraint. Not a list. If an edit starts adding a second finding, it is working against the tool."],
@@ -96,7 +119,7 @@ readme = [
     ["Report, open and close", "The opening and closing of the report, including the three opening variants."],
     ["Thresholds", "Every tunable number, and what moving it does."],
     ["Logic", "How the engine picks the primary, the minor, and the risks. Read this before changing a threshold."],
-    ["Data slots", "Which questions can be quoted in the report, and how."],
+    ["Data slots", "Every variable, every phrase it can print, and which report blocks quote it. Check here before changing a band phrase, because it shows you the sentences that band lands in."],
 ]
 ws = sheet("Read me", ["", ""], readme, [26, 118], edit_cols=(), wrap_cols=(2,))
 for row in ws.iter_rows(min_row=2, max_row=ws.max_row, min_col=1, max_col=1):
@@ -184,36 +207,36 @@ rows = []
 for cid in D["chain"]:
     b = D["blocks"]["constraintDef"][cid]
     f = D["blocks"]["constraintFix"][cid]
-    rows.append([cid, "Title", b["title"], ""])
-    rows.append([cid, "Title, nothing failing", b["titleLoose"], ""])
-    rows.append([cid, "Opening", b["open"], ""])
+    rows.append([cid, "Title", b["title"], "", ""])
+    rows.append([cid, "Title, nothing failing", b["titleLoose"], "", ""])
+    rows.append([cid, "Opening", b["open"], "", slots_in(b["open"])])
     for n, e in enumerate(b.get("evidence", []), 1):
-        rows.append([cid, f"Evidence clause {n}", e["banded"], e.get("precise", "")])
-    rows.append([cid, "Closing", b["close"], ""])
-    rows.append([cid, "Fix, lead line", f["lead"], ""])
+        rows.append([cid, f"Evidence clause {n}", e["banded"], e.get("precise", ""), slots_in(e["banded"], e.get("precise"))])
+    rows.append([cid, "Closing", b["close"], "", slots_in(b["close"])])
+    rows.append([cid, "Fix, lead line", f["lead"], "", ""])
     for n, a in enumerate(f["actions"], 1):
-        rows.append([cid, f"Fix action {n}", a, ""])
+        rows.append([cid, f"Fix action {n}", a, "", ""])
 sheet("Report, constraint",
-      ["Constraint", "Part", "Banded version, always used", "Precise version, used only when they typed the figure"],
-      rows, [13, 22, 92, 78],
-      edit_cols=(3, 4), lock_cols=(1, 2), wrap_cols=(3, 4),
+      ["Constraint", "Part", "Banded version, always used", "Precise version, used only when they typed the figure", "Variables in this row"],
+      rows, [13, 22, 82, 68, 26],
+      edit_cols=(3, 4), lock_cols=(1, 2, 5), wrap_cols=(3, 4, 5),
       note="Evidence clauses are joined into one sentence with commas and a final \"and\". Write each one lower case and without a full stop. A clause whose data came back Not sure is dropped from the sentence rather than printed empty, which is why they are separate rows.")
 
 # ------------------------------------------------------- 6. Report, minor
-rows = [[cid, D["constraints"][cid]["name"], D["blocks"]["minorConstraint"][cid]] for cid in D["chain"]]
-sheet("Report, minor", ["id", "Constraint", "The one line printed when this is a loud but downstream second finding"],
-      rows, [13, 24, 110], edit_cols=(3,), lock_cols=(1,), wrap_cols=(3,),
+rows = [[cid, D["constraints"][cid]["name"], D["blocks"]["minorConstraint"][cid], slots_in(D["blocks"]["minorConstraint"][cid])] for cid in D["chain"]]
+sheet("Report, minor", ["id", "Constraint", "The one line printed when this is a loud but downstream second finding", "Variables in this row"],
+      rows, [13, 24, 100, 24], edit_cols=(3,), lock_cols=(1, 4), wrap_cols=(3, 4),
       note="One line only, no fix and no detail. Naming it proves the tool knows the difference between a cause and a shadow, and a full fix section would undo that. {d.primaryShort} resolves to the primary constraint's short name.")
 
 # --------------------------------------------------- 7. Report, risk flags
 rows = []
 for fid, meta in D["flags"].items():
     rd = D["blocks"]["riskDef"][fid]
-    rows.append([meta["family"], fid, meta["name"], rd.get("banded", ""), rd.get("precise", ""), rd.get("alt", ""), D["blocks"]["riskFix"][fid]])
+    rows.append([meta["family"], fid, meta["name"], rd.get("banded", ""), rd.get("precise", ""), rd.get("alt", ""), D["blocks"]["riskFix"][fid], slots_in(rd.get("banded"), rd.get("precise"))])
 sheet("Report, risk flags",
-      ["Family", "id", "Name", "Definition", "Precise version", "Version used when the answer was Not sure", "What to do"],
-      rows, [15, 19, 22, 78, 62, 78, 72],
-      edit_cols=(3, 4, 5, 6, 7), lock_cols=(2,), wrap_cols=(4, 5, 6, 7),
+      ["Family", "id", "Name", "Definition", "Precise version", "Version used when the answer was Not sure", "What to do", "Variables in this row"],
+      rows, [15, 19, 22, 72, 56, 72, 66, 24],
+      edit_cols=(3, 4, 5, 6, 7), lock_cols=(2, 8), wrap_cols=(4, 5, 6, 7, 8),
       note="At most three flags print, from the top scoring family only. A flag has to clear the print threshold on the Thresholds tab to be named at all.")
 
 # ------------------------------------------------- 8. Report, risk framing
@@ -228,10 +251,10 @@ sheet("Report, risk framing",
       note="Scoring is by family, never by listing sixteen individual flags at somebody. Key person, no second in command, no documented process and owner trapped are usually one disease showing up in four places.")
 
 # ---------------------------------------------------- 9. Report, compound
-rows = [[c["constraint"], c["flag"], c["priority"], c["text"]] for c in D["blocks"]["compound"]]
+rows = [[c["constraint"], c["flag"], c["priority"], c["text"], slots_in(c["text"])] for c in D["blocks"]["compound"]]
 rows.sort(key=lambda r: (r[0], r[2]))
-sheet("Report, compound", ["Constraint", "Risk flag", "Priority", "Block. Prints when both are present"],
-      rows, [13, 20, 8, 122], edit_cols=(4,), lock_cols=(1, 2), wrap_cols=(4,),
+sheet("Report, compound", ["Constraint", "Risk flag", "Priority", "Block. Prints when both are present", "Variables in this row"],
+      rows, [13, 20, 8, 112, 24], edit_cols=(4,), lock_cols=(1, 2, 5), wrap_cols=(4, 5),
       note="One compound block prints at most, the lowest priority number that matches. These are the blocks that make the report read as written rather than assembled, so they are worth the most editing attention.")
 
 # ------------------------------------------------ 10. Report, don't do yet
@@ -258,8 +281,9 @@ rows = [
     ["Closing", "unsure", "Close used when there were too many Not sure answers", D["blocks"]["closing"].get("unsure", "")],
     ["Closing", "cta", "Call to action. Deliberately empty, still an open question", D["blocks"]["closing"]["cta"]],
 ]
-sheet("Report, open and close", ["Section", "Variant", "When it is used", "Wording"],
-      rows, [11, 13, 52, 108], edit_cols=(4,), lock_cols=(2,), wrap_cols=(3, 4),
+rows = [r + [slots_in(r[3])] for r in rows]
+sheet("Report, open and close", ["Section", "Variant", "When it is used", "Wording", "Variables in this row"],
+      rows, [11, 13, 48, 98, 24], edit_cols=(4,), lock_cols=(2, 5), wrap_cols=(3, 4, 5),
       note="Blank line between paragraphs is written as two newlines in the source. Keep paragraphs short.")
 
 # ------------------------------------------------------- 12. Thresholds
@@ -297,28 +321,49 @@ logic = [
 sheet("Logic", ["", "How it works"], logic, [24, 128], wrap_cols=(2,))
 
 # ---------------------------------------------------------- 14. Data slots
+# Where each variable is quoted, and every phrase it can print. Change a band on the
+# Answer options tab and this is the list of sentences it lands in.
+def block_paths(node, path=""):
+    if isinstance(node, dict):
+        for k, v in node.items():
+            yield from block_paths(v, f"{path} / {k}" if path else k)
+    elif isinstance(node, list):
+        for n, v in enumerate(node, 1):
+            yield from block_paths(v, f"{path} [{n}]")
+    elif isinstance(node, str):
+        yield path, node
+
+USES = {}
+for path, text in block_paths(D["blocks"]):
+    for m in SLOT_RE.finditer(text):
+        tag = "{d." + m.group(3) + "}" if m.group(3) else "{" + m.group(1) + "." + m.group(2) + "}"
+        USES.setdefault(tag, []).append(path)
+
 rows = []
 for q in D["questions"]:
-    used = []
-    def walk(o, path=""):
-        if isinstance(o, dict):
-            for k, v in o.items(): walk(v, k)
-        elif isinstance(o, list):
-            for v in o: walk(v, path)
-        elif isinstance(o, str):
-            for m in re.finditer(r"\{(q\d+)\.(band|exact)\}", o):
-                if m.group(1) == q["id"]: used.append(m.group(2))
-    walk(D["blocks"])
-    if used or q.get("exact"):
-        rows.append([q["n"], q["id"], q["text"][:70], "yes" if "band" in used else "no",
-                     "yes" if q.get("exact") else "no",
-                     "yes" if "exact" in used else "no",
-                     q["exact"]["unit"] if q.get("exact") else ""])
+    band_tag, exact_tag = "{" + q["id"] + ".band}", "{" + q["id"] + ".exact}"
+    if band_tag in USES:
+        phrases = [o.get("band", "") for o in q["options"] if o.get("band")]
+        blanks = [o["text"] for o in q["options"] if not o.get("band")]
+        rows.append([band_tag, q["n"], q["text"], " | ".join(phrases),
+                     "clause is dropped on: " + ", ".join(blanks) if blanks else "always resolves",
+                     "  ".join(sorted(set(USES[band_tag])))])
+    if q.get("exact"):
+        rows.append([exact_tag, q["n"], q["text"],
+                     f"the number they typed, in {q['exact']['unit']}",
+                     "optional, so the precise wording only prints when it was filled in",
+                     "  ".join(sorted(set(USES.get(exact_tag, [])))) or "OFFERED BUT NEVER QUOTED, so remove the prompt or use it"])
+for tag, note in [("{d.primaryShort}", "the primary constraint's short name, lower case"),
+                  ("{d.primaryName}", "the primary constraint's full name, lower case"),
+                  ("{d.unownedLayers}", "a sentence naming which layers sit with the owner")]:
+    if tag in USES:
+        rows.append([tag, "", "derived, not a question", note, "always resolves", "  ".join(sorted(set(USES[tag])))])
+
 sheet("Data slots",
-      ["Q#", "q id", "Question", "Band quoted in the report", "Offers an exact figure", "Exact figure quoted", "Unit"],
-      rows, [5, 7, 66, 15, 15, 14, 10],
-      lock_cols=(2,), wrap_cols=(3,),
-      note="An exact figure is only offered on questions whose answer actually reaches the report prose, not on all fifty two. Asking for a number the report never uses is friction for nothing.")
+      ["Variable", "Q#", "Question it comes from", "Every phrase it can print", "When it does not resolve", "Report blocks that quote it"],
+      rows, [17, 5, 54, 70, 52, 60],
+      lock_cols=(1,), wrap_cols=(3, 4, 5, 6),
+      note="An exact figure is only offered on questions whose answer actually reaches the report prose, not on all fifty two. Asking for a number the report never uses is friction for nothing. Sentence case is applied after a variable is filled in, so write band phrases lower case and let the engine capitalise the ones that land at the start of a sentence.")
 
 wb.save(OUT)
 print(f"wrote {OUT.name}  ({len(wb.sheetnames)} tabs)")
