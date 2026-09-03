@@ -2852,7 +2852,7 @@ window.DIAG ={
         "title": "You are {c} constrained",
         "titleLoose": "The tightest thing is {c}",
         "open": [
-          "Talent here means a missing layer, not missing hands.",
+          "Being talent constrained means you're missing a layer in the business, not missing extra hands.",
           "{d.unownedLayers}",
           "Most of last week went to {d.ownerTasks}."
         ],
@@ -2872,7 +2872,7 @@ window.DIAG ={
       "fulfilment": {
         "title": "You are {c} constrained",
         "titleLoose": "The tightest thing is {c}",
-        "open": "This is capacity, not capability. You know how to do the work and you can't get enough hours of it out the door.",
+        "open": "This is capacity, not capability. You know how to do the work, but you can't do enough of it.",
         "evidence": [
           {
             "banded": "you're running {q16.band}",
@@ -3040,50 +3040,30 @@ window.DIAG ={
         ]
       },
       "talent": {
-        "lead": "You need one role hired with the authority to actually run what you hand over, rather than another pair of hands underneath you.",
+        "lead": "Hire one role that owns a layer of the business, with the authority to run it. Not another pair of hands underneath you.",
         "actions": [
           {
-            "text": "Every layer sits with you. Hire the one that would free the most of your week first, not the one that's easiest to fill.",
-            "when": [
-              [
-                "q11",
-                [
-                  "n"
-                ]
-              ]
-            ]
+            "text": "Write down every task you did last week."
           },
           {
-            "text": "List every task you touched last week. Against each one, write the name of the person who'd do it if you were away for a month. Any task with no name against it is the hire."
+            "text": "Against each one, write the role that should own it. A role, not a person already in the business."
           },
           {
-            "text": "Hire the layer rather than the hands. Another delivery person gives you more capacity. A person who runs delivery gives you your week back."
+            "text": "Whichever role has the most tasks against it, or the most hours, hire that role first."
           },
           {
-            "text": "You've got more direct reports than one person can run properly. The hire that fixes this sits between you and most of them.",
-            "when": [
-              [
-                "q15",
-                [
-                  "d",
-                  "e"
-                ]
-              ]
-            ]
+            "text": "Give them responsibility and the authority to go with it. One without the other doesn't work."
           },
           {
-            "text": "Hand over one whole area with the decisions attached. Half a handover leaves you doing the work and them carrying the confusion."
-          },
-          {
-            "text": "Give it ninety days before you judge it, and don't let yourself become the escalation point for what you handed over."
+            "text": "Train them yourself, then give them ninety days to prove they're the one."
           }
         ]
       },
       "fulfilment": {
-        "lead": "You need more output from what you already have, or more capacity, before you go and win any more work.",
+        "lead": "Make what you already have work properly, cut what isn't earning its capacity, then hire. In that order.",
         "actions": [
           {
-            "text": "Find the one step everything queues behind, then put your next hour into that step and nothing else."
+            "text": "Find the one step everything stalls at, and put the next day into streamlining that one step."
           },
           {
             "text": "Write the five things that go wrong most often into one page checklists. Undocumented work is slow work.",
@@ -3102,22 +3082,10 @@ window.DIAG ={
             "text": "Look at what your best people actually spent last week on. Anything that didn't need them is capacity you already have."
           },
           {
-            "text": "Quote the lead time you actually deliver rather than the one you hope for. A blown promise costs a customer you'd already won.",
-            "when": [
-              [
-                "q19",
-                [
-                  "c",
-                  "d"
-                ]
-              ]
-            ]
+            "text": "Cut the jobs that eat the most capacity for the least return."
           },
           {
-            "text": "Work out which jobs eat the most capacity for the least return, and stop taking those until the queue clears."
-          },
-          {
-            "text": "Add capacity last, once the steps above have been worked. Hiring multiplies whatever the process already does."
+            "text": "Then hire more capacity into the roles that need it."
           }
         ]
       },
@@ -3385,18 +3353,16 @@ window.DIAG ={
           "Don't hire another doer. Every one you add reports to you, and you're the bottleneck.",
           "Don't take on a new market or a new location. Both land on your desk.",
           "Don't start anything that needs your attention for six months.",
-          "Don't increase lead generation. The work you win still has to route through you.",
-          "Don't redraw the org chart. What's missing is a person who doesn't exist, not a diagram."
+          "Don't increase lead generation. The work you win still has to route through you."
         ]
       },
       "fulfilment": {
-        "lead": "Until you can deliver what you've already sold, leave these alone.",
+        "lead": "Until you've done the above, leave these alone.",
         "items": [
-          "Don't chase new customers. You'd be damaging the ones you have to serve the ones you win.",
-          "Don't increase marketing spend. Adding demand to a full pipeline is the classic accelerant.",
-          "Don't launch a new service line. New work is slow work while the process is still being learned.",
-          "Don't drop your prices. You've got more demand than capacity, which is the one time raising them is easy.",
-          "Don't promise a shorter lead time to win a job. That's where the quality problem starts."
+          "Don't take on new customers until you've done the above.",
+          "Don't start something new.",
+          "Don't drop your prices.",
+          "Don't promise a shorter lead time to win a job."
         ]
       },
       "value": {
