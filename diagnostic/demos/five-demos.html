@@ -12,7 +12,7 @@
 
 :root{
   --base:#0A0A0A; --panel:#111111; --hair:#1c1c1c; --rim:#2E2E2E;
-  --ink:#ECE8E0;  --mute:#8A8A8A; --dim:#6E6E6E;
+  --ink:#ECE8E0;  --mute:#8A8A8A; --dim:#7A7A7A;
   --pink:#FF2D6B; --pink-ink:#FF2D6B; --ol-pink:rgba(255,45,107,.45);
   --ok:#22C55E; --warn:#F5B027;
   --gutter:clamp(20px,5vw,56px); --shell:820px;
@@ -178,7 +178,7 @@ a{color:var(--pink-ink)}
 .sec--dont{padding-top:44px}
 .dont__h{margin:0 0 14px;color:var(--pink-ink)}
 
-.privacy{font-size:13px;color:var(--dim,#6E6E6E);margin-top:22px;max-width:62ch}
+.privacy{font-size:13px;color:var(--dim);margin-top:22px;max-width:62ch}
 .privacy u{text-decoration:underline;text-underline-offset:2px}
 
 .sign{display:flex;align-items:center;gap:20px;margin-top:40px}
@@ -211,7 +211,7 @@ body.has-dev{padding-bottom:56px}
 @media print{
   @page{margin:16mm 15mm}
   :root{--base:#FFFFFF;--panel:#FFFFFF;--hair:#DCE0E7;--rim:#DCE0E7;
-        --ink:#1A1A1A;--mute:#54585F;--pink:#FF2D6B;--pink-ink:#C4174F}
+        --ink:#1A1A1A;--mute:#54585F;--dim:#5E6268;--pink:#FF2D6B;--pink-ink:#C4174F}
   body{background:#fff;color:#1A1A1A;font-size:11pt;padding-bottom:0}
   .prog,.dev,.nav,.why,.rep__actions,.screen:not(.is-on){display:none!important}
   .screen{padding:0}
