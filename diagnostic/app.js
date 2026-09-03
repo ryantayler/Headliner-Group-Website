@@ -186,17 +186,23 @@
     // Sections number themselves as they print. Optional blocks come and go, and a
     // fixed number would leave a gap the moment one of them did not fire.
     var label = function (t) { n++; return '<p class="sec__label">' + (n < 10 ? "0" : "") + n + ", " + t + "</p>"; };
+    void label;
 
     h += '<div class="rep__head">' +
       '<p class="eyebrow">Your diagnosis</p>' +
-      '<h1 class="display d2">' + esc(r.primary.title) + '</h1>' +
+      '<h1 class="display d2">' + esc(r.primary.title.before) +
+        '<em>' + esc(r.primary.title.phrase) + '</em>' + esc(r.primary.title.after) + '</h1>' +
       '</div>';
 
-    h += '<div class="sec">' + para(r.opening) + "</div>";
+    h += '<div class="sec">' + para(r.opening) +
+      '<p class="privacy">We do not use <u>any</u> AI in this tool, and <u>none</u> of your data is sent or stored offsite.</p></div>';
 
     h += '<div class="sec">' + label("The constraint") +
-      '<div class="verdict"><div class="glow"></div><p class="eyebrow">What is capping the business</p>' +
-      '<h2 class="display d3">' + esc(r.primary.name) + "</h2>" + para(r.primary.body) + "</div></div>";
+      '<div class="verdict"><div class="glow"></div>' +
+      '<p class="eyebrow">What is capping the business</p>' +
+      '<h2 class="display d3">' + esc(r.primary.title.before) +
+        '<em>' + esc(r.primary.title.phrase) + '</em>' + esc(r.primary.title.after) + '</h2>' +
+      para(r.primary.body) + '</div></div>';
 
     h += '<div class="sec">' + label("How to fix it") +
       "<p>" + esc(r.primary.fix.lead) + "</p>" +
@@ -208,32 +214,20 @@
     }
 
     h += '<div class="sec">' + label("Your risks, and what to do about them") +
-      "<p>" + esc(r.risk.framing) + "</p>";
-    if (r.risk.flags.length) {
-      h += r.risk.flags.map(function (f) {
-        return '<div class="flag"><h3 class="display d4 flag__n">' + esc(f.name) + "</h3>" +
-          "<p>" + esc(f.body) + "</p>" +
-          '<p class="flag__fix"><b>What to do.</b> ' + esc(f.fix) + "</p></div>";
-      }).join("");
-    }
-    h += "</div>";
-
-    if (r.minorRisk) {
-      h += '<div class="sec">' + label("One more risk, behind the above") +
-        "<p>" + esc(r.minorRisk.framing) + "</p>" +
-        '<div class="flag"><h3 class="display d4 flag__n">' + esc(r.minorRisk.name) + "</h3>" +
-        '<p class="flag__fix">' + esc(r.minorRisk.line) + "</p></div></div>";
-    }
-
-    // The compound block closes the pair. It names a risk from the section above,
-    // so it only makes sense once the reader has actually met that risk.
-    if (r.compound) {
-      h += '<div class="sec">' + label("The same problem, twice") +
-        '<div class="compound"><p>' + esc(r.compound.text) + "</p></div></div>";
-    }
+      "<p>" + esc(r.risk.lead) + "</p>" +
+      r.risk.flags.map(function (f) {
+        return '<div class="risk">' +
+          '<div class="risk__head"><div class="glow"></div>' +
+            '<span>You have a</span><h3 class="display d3">' + esc(f.name) + "</h3><span>risk</span></div>" +
+          '<div class="risk__body"><p>' + esc(f.body) + "</p>" +
+            '<ol class="acts acts--risk">' +
+              f.fix.map(function (a) { return "<li>" + esc(a) + "</li>"; }).join("") +
+            "</ol></div></div>";
+      }).join("") + "</div>";
 
     if (r.dontDo) {
-      h += '<div class="sec">' + label("Don\u2019t do this yet") +
+      h += '<div class="sec sec--dont">' +
+        '<h2 class="display d2 dont__h">Don\u2019t do this yet</h2>' +
         "<p>" + esc(r.dontDo.lead) + "</p>" +
         '<ol class="acts dont">' + r.dontDo.items.map(function (a) { return "<li>" + esc(a) + "</li>"; }).join("") + "</ol></div>";
     }

@@ -15,11 +15,10 @@ window.DIAG ={
     "PRIMARY_FAIL": 60,
     "MINOR_PRINT": 65,
     "FALLBACK_FLOOR": 35,
-    "RISK_FAMILY_PRINT": 45,
-    "MINOR_RISK_PRINT": 60,
     "FLAG_PRINT": 55,
-    "MAX_FLAGS_SHOWN": 3,
-    "NOT_SURE_DATA_FLAG": 4
+    "MAX_FLAGS_SHOWN": 4,
+    "NOT_SURE_DATA_FLAG": 4,
+    "MAX_ACTIONS": 5
   },
   "chain": [
     "cashflow",
@@ -34,37 +33,44 @@ window.DIAG ={
     "cashflow": {
       "name": "Cash flow constrained",
       "short": "Cash flow",
-      "loose": "Cash flow"
+      "loose": "Cash flow",
+      "phrase": "cash flow"
     },
     "talent": {
       "name": "Talent constrained",
       "short": "Talent",
-      "loose": "Talent"
+      "loose": "Talent",
+      "phrase": "talent"
     },
     "fulfilment": {
       "name": "Fulfilment constrained",
       "short": "Fulfilment",
-      "loose": "Fulfilment"
+      "loose": "Fulfilment",
+      "phrase": "fulfilment"
     },
     "value": {
       "name": "Value constrained",
       "short": "Value",
-      "loose": "Value"
+      "loose": "Value",
+      "phrase": "value"
     },
     "offer": {
       "name": "Offer constrained",
       "short": "Offer",
-      "loose": "Offer"
+      "loose": "Offer",
+      "phrase": "offer"
     },
     "demand": {
       "name": "Demand constrained",
       "short": "Demand",
-      "loose": "Demand"
+      "loose": "Demand",
+      "phrase": "demand"
     },
     "margin": {
       "name": "Margin constrained",
       "short": "Margin",
-      "loose": "Margin"
+      "loose": "Margin",
+      "phrase": "margin"
     }
   },
   "suppresses": {
@@ -226,7 +232,7 @@ window.DIAG ={
           "text": "Software or subscriptions"
         }
       ],
-      "help": "Tick everything that applies. Most businesses are more than one of these.",
+      "help": "Tick everything that applies.",
       "max": 7
     },
     {
@@ -2929,15 +2935,16 @@ window.DIAG ={
   },
   "blocks": {
     "opening": {
-      "normal": "Everything below comes out of your answers and nothing else. It's a guide rather than a custom diagnostic, so read the benchmarks as a rough shape of what good looks like at your size, not as a measurement of you against your industry.\n\nIt names one constraint. There'll be other things wrong, there always are. They're not in here because the order you fix them in matters more than the list.",
-      "wellRun": "Nothing in your answers is close to failing. That's a real result and it's rarer than you'd think.\n\nWhat follows is the tightest thing in the business rather than a problem. Treat it as where the next bit of growth will come from, not something to fix.",
-      "tooUnsure": "There were a lot of questions in here you couldn't answer, so read what follows as provisional.\n\nThe finding below is the best available reading of what you did tell us. The bigger issue is that the business isn't visible to you, and that's covered in the risk section. Come back and run this again once you can answer the numbers.",
-      "noneSevere": "Nothing in your answers is screaming. That's worth knowing on its own, and it's rarer than you'd think.\n\nWhat follows is the tightest thing in the business right now rather than something that's failing outright. Treat it as the next thing to work on, not an emergency."
+      "normal": "Everything below is calculated on your answers. It's a guide rather than a custom diagnostic, so read the report as a rough shape of what your current challenges are and what solutions may look like.\n\nIt names your biggest single constraint. There is likely more, and there may be other things wrong, there always are. They're not listed in here because the order you fix things in matters. Fix the constraints and risks in your business, then come back and get an updated report.",
+      "wellRun": "Everything below is calculated on your answers. Nothing in them is close to failing, which is a real result and rarer than you'd think.\n\nWhat follows is the tightest thing in the business rather than a problem. Treat it as where the next bit of growth comes from, not something to fix.",
+      "tooUnsure": "Everything below is calculated on your answers, and there were a lot of them you couldn't answer, so read it as provisional.\n\nThe finding below is the best available reading of what you did tell us. The bigger issue is that the business isn't visible to you, and that's covered in the risks. Come back and run it again once you can answer the numbers.",
+      "noneSevere": "Everything below is calculated on your answers. Nothing in them is screaming, which is worth knowing on its own.\n\nWhat follows is the tightest thing in the business rather than something that's failing outright. It's the next thing to work on, not an emergency.",
+      "privacy": "We do not use any AI in this tool, and none of your data is sent or stored offsite."
     },
     "constraintDef": {
       "cashflow": {
-        "title": "Your constraint is cash flow",
-        "titleLoose": "The tightest thing is cash flow",
+        "title": "You are {c} constrained",
+        "titleLoose": "The tightest thing is {c}",
         "open": "You're profitable on paper and short of cash in practice. The work is sold, the money hasn't landed, and there's nothing sitting there to fund the next job.",
         "evidence": [
           {
@@ -2960,8 +2967,8 @@ window.DIAG ={
         "close": "That's a timing problem rather than a rate problem. Every job you win right now costs you money before it pays you, which is why winning more of them is currently the worst move available to you."
       },
       "talent": {
-        "title": "Your constraint is talent",
-        "titleLoose": "The tightest thing is talent",
+        "title": "You are {c} constrained",
+        "titleLoose": "The tightest thing is {c}",
         "open": [
           "Talent here means a missing layer, not missing hands.",
           "{d.unownedLayers}",
@@ -2981,8 +2988,8 @@ window.DIAG ={
         "close": "Hiring another pair of hands underneath you doesn't touch this. What's missing is a whole role that doesn't exist yet, and until it does, everything you add lands on the same desk."
       },
       "fulfilment": {
-        "title": "Your constraint is fulfilment",
-        "titleLoose": "The tightest thing is fulfilment",
+        "title": "You are {c} constrained",
+        "titleLoose": "The tightest thing is {c}",
         "open": "This is capacity, not capability. You know how to do the work and you can't get enough hours of it out the door.",
         "evidence": [
           {
@@ -3002,8 +3009,8 @@ window.DIAG ={
         "close": "Nothing at the front of the business needs attention until the back of it can breathe. Anything you do to bring in more work right now gets paid for by the customers you already have."
       },
       "value": {
-        "title": "Your constraint is value",
-        "titleLoose": "The tightest thing is value",
+        "title": "You are {c} constrained",
+        "titleLoose": "The tightest thing is {c}",
         "open": "Value here means what the customer perceives, and it has nothing to do with your pricing or your margin. They buy, and then they stop, or they stay and give most of the work to somebody else.",
         "evidence": [
           {
@@ -3024,8 +3031,8 @@ window.DIAG ={
         "close": "You're filling a leaky bucket. Every dollar going into finding new customers is currently paying to replace the ones walking out the other side, which is why the business feels busy and stays the same size."
       },
       "offer": {
-        "title": "Your constraint is the offer",
-        "titleLoose": "The tightest thing is the offer",
+        "title": "You are {c} constrained",
+        "titleLoose": "The tightest thing is {c}",
         "open": "Enquiries arrive and they don't convert.",
         "evidence": [
           {
@@ -3045,8 +3052,8 @@ window.DIAG ={
         "close": "This isn't a sales technique problem. When the thing on the table is clear, priced, and it fits what the buyer came in for, an average salesperson closes it. Right now yours needs you in the room to make sense of it."
       },
       "demand": {
-        "title": "Your constraint is demand",
-        "titleLoose": "The tightest thing is demand",
+        "title": "You are {c} constrained",
+        "titleLoose": "The tightest thing is {c}",
         "open": "You've got capacity sitting idle and not enough people asking.",
         "evidence": [
           {
@@ -3063,8 +3070,8 @@ window.DIAG ={
         "close": "You could take on more work tomorrow, which is what separates this from a delivery problem. Nothing downstream is broken. The business just isn't being fed, and it won't start feeding itself."
       },
       "margin": {
-        "title": "Your constraint is margin",
-        "titleLoose": "The tightest thing is margin",
+        "title": "You are {c} constrained",
+        "titleLoose": "The tightest thing is {c}",
         "open": "You're busy, you're full, and there's nothing left at the end of it.",
         "evidence": [
           {
@@ -3089,71 +3096,286 @@ window.DIAG ={
       "cashflow": {
         "lead": "The job is to shorten the gap between doing the work and getting paid for it. Nothing else moves until that does.",
         "actions": [
-          "Take a deposit on every job. Half where you can get it, something where you can't. A deposit is the cheapest funding you'll ever raise.",
-          "Invoice the day the work is finished rather than at the end of the month. Most of the wait is yours, not theirs.",
-          "Put terms in writing before the job starts, and chase on day one past due. Not week two.",
-          "Get an overdraft or a facility in place while you're still profitable. Banks lend to businesses that don't look like they need it.",
-          "Find out which of your top five customers pays slowest, then reprice or re term that one."
+          {
+            "text": "You take nothing upfront, which is this whole problem in one answer. Change that before anything else on this list.",
+            "when": [
+              [
+                "q54",
+                [
+                  "e",
+                  "f"
+                ]
+              ]
+            ]
+          },
+          {
+            "text": "Take a deposit on every job. Fifty percent thirty days out and the balance the week before, so the money is in before your costs go out."
+          },
+          {
+            "text": "Line the deposit up to land before your cost of goods does. On jobs where the number moves on the day, charge the balance afterwards and refund the difference."
+          },
+          {
+            "text": "Invoice within twenty four hours of the job finishing, rather than at the end of the month."
+          },
+          {
+            "text": "Collect what's already overdue before you chase anything new. It's the cheapest money available to you.",
+            "when": [
+              [
+                "q55",
+                [
+                  "c",
+                  "d"
+                ]
+              ]
+            ]
+          },
+          {
+            "text": "Put terms in writing before the next job starts, and chase on day one past due.",
+            "when": [
+              [
+                "q45",
+                [
+                  "c",
+                  "d"
+                ]
+              ]
+            ]
+          },
+          {
+            "text": "Get a facility in place while you're still profitable. Banks lend to businesses that don't look like they need it."
+          }
         ]
       },
       "talent": {
         "lead": "One role. Named, hired, and given the authority to actually run what you hand over.",
         "actions": [
-          "Write down everything you did last week, then mark what only you could have done. What's left is the job description.",
-          "Hire the layer rather than the hands. Another delivery person gives you more capacity, a person who runs delivery gives you your week back.",
-          "Hand over one whole area with the decisions attached. Half a handover is worse than none, because you keep the work and they get the confusion.",
-          "Give it ninety days before you judge it. The first month of any handover looks like a mistake.",
-          "Stop being the escalation point for the area you handed over. Send it back to them, in front of the team."
+          {
+            "text": "Every layer sits with you. Hire the one that would free the most of your week first, not the one that's easiest to fill.",
+            "when": [
+              [
+                "q11",
+                [
+                  "n"
+                ]
+              ]
+            ]
+          },
+          {
+            "text": "Write down everything you did last week, then mark what only you could have done. What's left is the job description."
+          },
+          {
+            "text": "Hire the layer rather than the hands. Another delivery person gives you more capacity. A person who runs delivery gives you your week back."
+          },
+          {
+            "text": "You've got more direct reports than one person can run properly. The hire that fixes this sits between you and most of them.",
+            "when": [
+              [
+                "q15",
+                [
+                  "d",
+                  "e"
+                ]
+              ]
+            ]
+          },
+          {
+            "text": "Hand over one whole area with the decisions attached. Half a handover leaves you doing the work and them carrying the confusion."
+          },
+          {
+            "text": "Give it ninety days before you judge it, and stop being the escalation point for what you handed over."
+          }
         ]
       },
       "fulfilment": {
         "lead": "More output from what you already have, before you buy any more of anything.",
         "actions": [
-          "Find the one step everything queues behind. There's always one, and it's rarely the one people complain about.",
-          "Pull the work that doesn't need your best people off your best people. Most delivery teams lose a third of their week to things a junior could do.",
-          "Stop selling the jobs that eat the most capacity for the least return, at least until the queue clears.",
-          "Quote your real lead time rather than your hopeful one. A blown promise costs you a customer you'd already won.",
-          "Add capacity last. Hiring into a broken process gets you a bigger broken process."
+          {
+            "text": "Find the one step everything queues behind, then put your next hour into that step and nothing else."
+          },
+          {
+            "text": "Write the five things that go wrong most often into one page checklists. Undocumented work is slow work.",
+            "when": [
+              [
+                "q46",
+                [
+                  "b",
+                  "c",
+                  "z"
+                ]
+              ]
+            ]
+          },
+          {
+            "text": "Pull the work that doesn't need your best people off your best people."
+          },
+          {
+            "text": "Quote the lead time you actually deliver rather than the one you hope for. A blown promise costs a customer you'd already won.",
+            "when": [
+              [
+                "q19",
+                [
+                  "c",
+                  "d"
+                ]
+              ]
+            ]
+          },
+          {
+            "text": "Stop selling the jobs that eat the most capacity for the least return, at least until the queue clears."
+          },
+          {
+            "text": "Add capacity last. Hiring into a broken process gets you a bigger broken process."
+          }
         ]
       },
       "value": {
-        "lead": "Find out why they leave, then fix the thing they tell you about. It's almost always smaller than you'd expect.",
+        "lead": "Find out why they leave or why they shrink, then fix the thing they tell you about.",
         "actions": [
-          "Ring ten customers who stopped buying and ask them straight. Not a survey. A phone call.",
-          "Look hard at the first thirty days after someone buys. That's where most of the leaving gets decided.",
-          "Give them a reason to come back that you initiate. Waiting to be remembered isn't a retention plan.",
-          "Close the gap between what you sell and what they actually get. Value is the size of that gap.",
-          "Measure it monthly. You can't run a business on a retention number you find out about once a year."
+          {
+            "text": "Ring ten customers who stopped buying, or who cut back, and ask them straight. Not a survey. A phone call."
+          },
+          {
+            "text": "Ask your biggest customers what they give to somebody else, and why. That work already exists, you're just not getting it.",
+            "when": [
+              [
+                "q57",
+                [
+                  "c",
+                  "d",
+                  "e"
+                ]
+              ]
+            ]
+          },
+          {
+            "text": "Look hard at the first thirty days after somebody buys. That's where most of the leaving gets decided."
+          },
+          {
+            "text": "Give them a reason to come back that you initiate. Waiting to be remembered isn't a retention plan."
+          },
+          {
+            "text": "Measure it monthly. You can't run a business on a number you find out about once a year."
+          }
         ]
       },
       "offer": {
         "lead": "Make the thing you sell understandable without you standing next to it.",
         "actions": [
-          "Write the offer on one page. What it is, what it costs, what the buyer gets, who it isn't for.",
-          "Price it publicly, or at least in a range. Every quote you build from scratch is a delay you're funding.",
-          "Sort your last twenty losses by reason. The pattern is usually one thing, not five.",
-          "Cut the options. A buyer choosing between three clear things buys. A buyer choosing between eleven goes away to think about it.",
-          "Test the new version on the next ten enquiries before you change anything else."
+          {
+            "text": "Write the offer on one page. What it is, what it costs, what the buyer gets, who it isn't for."
+          },
+          {
+            "text": "Price it publicly, or at least in a range. Every quote you build from scratch is a delay you're funding.",
+            "when": [
+              [
+                "q30",
+                [
+                  "c",
+                  "d"
+                ]
+              ]
+            ]
+          },
+          {
+            "text": "Sort your last twenty losses by reason and count them. The pattern is usually one thing."
+          },
+          {
+            "text": "Rewrite the quote so it answers what's included and why it costs that, before they have to ask.",
+            "when": [
+              [
+                "q28",
+                [
+                  "c",
+                  "d"
+                ]
+              ]
+            ]
+          },
+          {
+            "text": "Cut the options. Fewer, clearer choices close more often than a menu does."
+          },
+          {
+            "text": "Test the new version on the next ten enquiries before you change anything else."
+          }
         ]
       },
       "demand": {
         "lead": "Turn the tap on deliberately. One channel, run properly, before you touch a second.",
         "actions": [
-          "Pick the channel that already brings your best customers and put real weight behind it.",
-          "Go and ask for work. Outbound to the twenty businesses you'd most like to work with beats waiting on referrals.",
-          "Make it obvious what you do and who you do it for, everywhere you appear. Most quiet businesses are quiet because nobody can tell.",
-          "Ask every happy customer for one introduction. It's the cheapest demand you'll ever generate.",
-          "Give a channel ninety days before you judge it. Anything shorter is guesswork."
+          {
+            "text": "Nothing is running right now, so start with the one thing you can do every week without fail.",
+            "when": [
+              [
+                "q35",
+                [
+                  "b",
+                  "c"
+                ]
+              ]
+            ]
+          },
+          {
+            "text": "Pick the channel that already brings your best customers and put real weight behind it."
+          },
+          {
+            "text": "Go and ask for work. Outbound to the twenty businesses you'd most like to work with beats waiting on referrals."
+          },
+          {
+            "text": "Everything arrives through one channel. Stand up a second before that one changes.",
+            "when": [
+              [
+                "q43",
+                [
+                  "c"
+                ]
+              ]
+            ]
+          },
+          {
+            "text": "Ask every happy customer for one introduction."
+          },
+          {
+            "text": "Give a channel ninety days before you judge it. Anything shorter is guesswork."
+          }
         ]
       },
       "margin": {
         "lead": "Price first, then cost. Price moves faster and costs nothing to change.",
         "actions": [
-          "Raise prices on new work now. Ten percent, across the board, and watch what actually happens.",
-          "Work out what each job really costs, your own time included. Half the jobs you're proud of are losing money.",
-          "Find your worst three customers by margin, then reprice them or let them go.",
-          "Quote a contingency into every job that historically runs over. You already know which ones they are.",
-          "Stop discounting to win. A discount is the fastest way to buy work you'll resent delivering."
+          {
+            "text": "Raise prices on new work now. Ten percent across the board, and watch what actually happens.",
+            "when": [
+              [
+                "q38",
+                [
+                  "c",
+                  "d",
+                  "e"
+                ]
+              ]
+            ]
+          },
+          {
+            "text": "Work out what each job really costs, your own time included, then rank your last twenty by what was left."
+          },
+          {
+            "text": "Quote a contingency into the jobs that historically run over. You already know which ones they are.",
+            "when": [
+              [
+                "q39",
+                [
+                  "c",
+                  "d"
+                ]
+              ]
+            ]
+          },
+          {
+            "text": "Find your worst three customers by margin, then reprice them or let them go."
+          },
+          {
+            "text": "Stop discounting to win. A discount is the fastest way to buy work you'll resent delivering."
+          }
         ]
       }
     },
@@ -3165,12 +3387,6 @@ window.DIAG ={
       "offer": "The offer looks weak in places as well. Downstream of the {d.primaryShort} problem, and not worth touching yet.",
       "demand": "Demand reads thin too. It's downstream of the {d.primaryShort} problem, so leave it where it is.",
       "margin": "Margin looks tight as well. That's downstream of the {d.primaryShort} problem and it'll move when that does."
-    },
-    "riskFamilyFraming": {
-      "none": "Nothing in your risk answers is loud enough to put in front of you. Come back to this as the business changes, because the risks that matter change with it.",
-      "concentration": "Your risk sits in concentration. There's one of something that ought to be several. It costs nothing to carry while it holds, and the cost of it not holding is a year of revenue.",
-      "fragility": "Your risk sits in fragility. The business runs well enough while nothing goes wrong, and there's very little underneath it if something does. Fragility is what turns an ordinary bad month into a hole you spend two years climbing out of.",
-      "owner": "Your risk sits with you. The business owns you rather than the other way around, and that shows up in what you're personally on the hook for, what the business is worth, and what happens if you stop. It's the risk owners notice last, because it feels like commitment rather than exposure."
     },
     "riskDef": {
       "key_client": {
@@ -3229,8 +3445,8 @@ window.DIAG ={
         "alt": "You weren't sure what you've personally guaranteed, and that's worth finding out this week. Where the wall between business risk and personal risk isn't up, a bad year in the business reaches your house."
       },
       "model_misfit": {
-        "banded": "The way you spend your week is {q52.band}. It decides how long you'll keep doing this, and most businesses that fail slowly fail because the owner ran out of want.",
-        "alt": "You weren't sure whether the way you spend your week matches what you wanted out of this. That question decides how long you'll keep doing it, and most businesses that fail slowly fail because the owner ran out of want."
+        "banded": "The way you spend your week is {q52.band}. It decides how long you'll keep doing this, and a business rarely outlives the owner's appetite for running it.",
+        "alt": "You weren't sure whether the way you spend your week matches what you wanted out of this. That question decides how long you'll keep doing it, and a business rarely outlives the owner's appetite for running it."
       },
       "key_asset": {
         "banded": "One piece of equipment or one vehicle is doing work you have no backup for. A breakdown, a theft or a long repair stops revenue you've already sold, and hire rates at short notice are set by people who know you're stuck."
@@ -3240,150 +3456,79 @@ window.DIAG ={
       }
     },
     "riskFix": {
-      "key_client": "Set a ceiling, say twenty percent of revenue from any one customer, and treat crossing it as the trigger to go and win two more. Get them onto a term agreement in the meantime.",
-      "key_product": "Build a second line and sell it to the customers you already have. It's cheaper than finding new customers for the line you've got.",
-      "key_channel": "Stand up a second channel before you need it, and give it ninety days before you judge it. One channel is a decision somebody else gets to make on your behalf.",
-      "key_supplier": "Qualify a second supplier and give them ten percent of your volume. A backup you've never actually bought from isn't a backup.",
-      "key_person": "Write down what they hold, then move one piece of it to somebody else this month. Repeat until nothing sits in one head.",
-      "key_employee": "Have them document the work while they're still here, and pay them properly to do it. It's the cheapest insurance available to you.",
-      "key_geography": "Take one thing you do well and sell it somewhere else, even at a small scale. Proving it travels is the whole exercise.",
-      "no_buffer": "Build to one month of fixed costs in a separate account, then three. Move a fixed percentage of every payment that comes in, automatically, so it isn't a decision you make each time.",
-      "no_contracts": "Put a written agreement behind every piece of work, with terms, scope and a notice period. Start with your largest customers.",
-      "no_process": "Record yourself doing the five things that go wrong most often, then turn each one into a one page checklist. Checklists beat manuals, because people actually use them.",
-      "no_data": "Pick five numbers and look at them weekly. Cash in the bank, enquiries, close rate, jobs delivered, and margin on the last ten jobs. One page, same day every week.",
-      "no_2ic": "Name the person, tell them, and start handing over one area at a time with the decisions attached. A deputy who can't decide anything is a job title.",
-      "owner_trapped": "Work out what only you can do, then start moving everything else. The test is whether the business survives you taking a month off, so book the month and find out.",
-      "no_succession": "Write the one page version. Who runs it, what happens to the customers, what it's worth and who'd buy it. It doesn't need to be right, it needs to exist.",
-      "personal_guarantee": "List every guarantee you've signed and put a date against each one to renegotiate or release it. Most get renewed on autopilot because nobody asks.",
-      "model_misfit": "Write down what you actually wanted out of this, then hold your week up against it. The gap is the brief for the next twelve months.",
-      "key_asset": "Find out today what it costs to hire a replacement at short notice, and who has one. A relationship you already have beats a phone number you find on the day.",
-      "key_licence": "Put every renewal date in a calendar with a ninety day warning, and make sure a second person can hold or renew it. A lapse is nearly always an admin failure rather than a real one."
+      "key_client": [
+        "Set a ceiling, say twenty percent of revenue from any one customer, and treat crossing it as the trigger to go and win two more.",
+        "Get them onto a term agreement with a notice period, so a decision to leave gives you time to react."
+      ],
+      "key_product": [
+        "Build a second line and sell it to the customers you already have.",
+        "Set a target for what share of revenue it should carry in twelve months, and check it quarterly."
+      ],
+      "key_channel": [
+        "Stand up a second channel before you need it, and give it ninety days before you judge it.",
+        "Write down what you'd do if the current one halved tomorrow. That plan is worth having on paper before you need it."
+      ],
+      "key_supplier": [
+        "Qualify a second supplier and give them ten percent of your volume. A backup you've never bought from isn't a backup.",
+        "Get lead times and pricing from your current one in writing, so a change is a conversation rather than a surprise."
+      ],
+      "key_person": [
+        "Write down what they hold, then move one piece of it to somebody else this month.",
+        "Repeat until nothing sits in one head, and test it by having them take a week off."
+      ],
+      "key_employee": [
+        "Have them document the work while they're still here, and pay them properly to do it.",
+        "Put a second person alongside them on the next three jobs, doing rather than watching."
+      ],
+      "key_geography": [
+        "Take one thing you do well and sell it somewhere else, even at a small scale.",
+        "Track what share of revenue comes from outside the home patch, and set a target for it."
+      ],
+      "key_asset": [
+        "Find out today what a replacement costs at short notice, and who actually has one.",
+        "Put it on a service schedule and hold to it. Most failures give some warning."
+      ],
+      "key_licence": [
+        "Put every renewal date in a calendar with a ninety day warning on it.",
+        "Make sure a second person can hold or renew it, so a lapse can't come down to one person's inbox."
+      ],
+      "no_buffer": [
+        "Build to one month of fixed costs in a separate account, then three.",
+        "Move a fixed percentage of every payment across automatically, so it isn't a decision you make each time."
+      ],
+      "no_contracts": [
+        "Put a written agreement behind every piece of work, with terms, scope and a notice period.",
+        "Start with your largest customers, because that's where the exposure actually sits."
+      ],
+      "no_process": [
+        "Record yourself doing the five things that go wrong most often, then turn each one into a one page checklist.",
+        "Checklists beat manuals, because people actually use them."
+      ],
+      "no_data": [
+        "Pick five numbers and look at them weekly. Cash in the bank, enquiries, close rate, jobs delivered, and margin on the last ten jobs.",
+        "One page, same day every week. The habit matters more than the tool you keep it in."
+      ],
+      "no_2ic": [
+        "Name the person, tell them, and start handing over one area at a time with the decisions attached.",
+        "Give them a budget and a limit they can act inside. A deputy who can't decide anything is a job title."
+      ],
+      "owner_trapped": [
+        "Work out what only you can do, then start moving everything else.",
+        "Book a month off twelve months out and work backwards from it. That's the deadline that makes it real."
+      ],
+      "no_succession": [
+        "Write the one page version. Who runs it, what happens to the customers, what it's worth and who'd buy it.",
+        "It doesn't need to be right, it needs to exist."
+      ],
+      "personal_guarantee": [
+        "List every guarantee you've signed and put a date against each one to renegotiate or release it.",
+        "Most get renewed on autopilot, because nobody asks."
+      ],
+      "model_misfit": [
+        "Write down what you actually wanted out of this, then hold your week up against it.",
+        "The gap between those two is the brief for the next twelve months."
+      ]
     },
-    "minorRisk": {
-      "framing": "One more, from a different family to the risks above. It's behind them in the order, not in front of them.",
-      "key_client": "One customer carries enough of your revenue that losing them is a bad year rather than a bad month.",
-      "key_product": "One product or service line carries most of what you sell.",
-      "key_channel": "Nearly all your customers arrive through one channel you don't control.",
-      "key_supplier": "One supplier with no ready replacement is setting your prices and your timelines.",
-      "key_person": "The business depends on one person to function, and going by your answers that person is probably you.",
-      "key_employee": "One person holds how the work actually gets done, and it isn't written down anywhere else.",
-      "key_geography": "All of your revenue comes out of one city or region.",
-      "key_asset": "One piece of equipment or one vehicle is doing work you have no backup for.",
-      "key_licence": "One licence or accreditation is the thing that lets you trade at all.",
-      "no_buffer": "There isn't enough cash behind the business to absorb an ordinary bad month.",
-      "no_contracts": "Your work isn't committed in writing, so the revenue can leave on a phone call.",
-      "no_process": "Almost nothing is documented well enough for somebody else to pick up.",
-      "no_data": "You aren't looking at the numbers often enough to see something coming.",
-      "no_2ic": "There's nobody who could run this if you stepped out.",
-      "owner_trapped": "A buyer would need you to stay on for a long time, which is what makes the business hard to sell and hard to leave.",
-      "no_succession": "There's no plan for what happens if you stop, sell or step back.",
-      "personal_guarantee": "You've personally guaranteed obligations the business took on.",
-      "model_misfit": "The way you spend your week isn't what you wanted out of this."
-    },
-    "compound": [
-      {
-        "constraint": "talent",
-        "flag": "key_person",
-        "priority": 1,
-        "text": "Your constraint is talent and your key person risk is the same thing seen from the other side. The layer that doesn't exist is the reason everything routes through one person, so hiring the role deals with both. Treat it as one job rather than two."
-      },
-      {
-        "constraint": "talent",
-        "flag": "owner_trapped",
-        "priority": 1,
-        "text": "You're talent constrained and the business is close to unsellable, and both of those come from the same fact. The business runs on you. The role you haven't hired is also the thing standing between you and owning something a buyer would want."
-      },
-      {
-        "constraint": "talent",
-        "flag": "no_2ic",
-        "priority": 2,
-        "text": "The missing layer and the missing second in command are one problem with two names. You don't need a succession plan and a hire. You need the hire, and the succession plan writes itself afterwards."
-      },
-      {
-        "constraint": "talent",
-        "flag": "key_client",
-        "priority": 3,
-        "text": "You're carrying a talent gap and a single customer worth {q41.band} of revenue. Building the layer while one customer can end your year is the sequencing error we'd flag hardest. Get that customer onto a term agreement before you take on the salary."
-      },
-      {
-        "constraint": "cashflow",
-        "flag": "key_client",
-        "priority": 1,
-        "text": "Cash flow is your constraint and one customer carries {q41.band} of your revenue. That customer is also setting your payment terms, which means they're setting your cash position. Fixing terms with them is worth more than everything else on the list."
-      },
-      {
-        "constraint": "cashflow",
-        "flag": "personal_guarantee",
-        "priority": 2,
-        "text": "You're cash constrained and personally guaranteeing the business's obligations. That's the combination that follows people home. Get the buffer built before you take on another dollar of guaranteed debt."
-      },
-      {
-        "constraint": "cashflow",
-        "flag": "no_contracts",
-        "priority": 2,
-        "text": "Cash flow is your constraint and your work isn't contracted. You're funding jobs upfront for customers who can walk without penalty. Deposits and written terms deal with both at once."
-      },
-      {
-        "constraint": "cashflow",
-        "flag": "no_data",
-        "priority": 3,
-        "text": "You're cash constrained and you're not looking at the numbers often enough to see it coming. A thirteen week cash forecast, updated weekly, is the highest value hour in your month right now."
-      },
-      {
-        "constraint": "fulfilment",
-        "flag": "no_process",
-        "priority": 1,
-        "text": "You're fulfilment constrained and almost nothing is written down. Those aren't two findings. Undocumented work is slow work, and it's why adding people hasn't given you the output you expected."
-      },
-      {
-        "constraint": "fulfilment",
-        "flag": "key_employee",
-        "priority": 1,
-        "text": "You're at capacity and one person holds how the work actually gets done. Every hire you make is rate limited by the one person who has to train them. Getting that knowledge out of one head is what unlocks the capacity."
-      },
-      {
-        "constraint": "fulfilment",
-        "flag": "key_person",
-        "priority": 2,
-        "text": "You're at capacity and the business depends on one person to function. Adding work to that arrangement adds it to them. The capacity you're missing is currently locked in one diary."
-      },
-      {
-        "constraint": "value",
-        "flag": "no_data",
-        "priority": 1,
-        "text": "Retention is your constraint and you don't know why customers leave. Those are the same sentence. Ten phone calls this week would find the leak, and nothing you do before those calls is anything but a guess."
-      },
-      {
-        "constraint": "offer",
-        "flag": "key_channel",
-        "priority": 2,
-        "text": "The offer is your constraint and nearly all your enquiries come through one channel. That's why this feels like a demand problem. The channel is working. The thing it's delivering people to isn't."
-      },
-      {
-        "constraint": "demand",
-        "flag": "key_channel",
-        "priority": 1,
-        "text": "You're demand constrained and the one channel you have isn't producing. A second channel is the fix and it's also the risk mitigation. Same move, two problems."
-      },
-      {
-        "constraint": "demand",
-        "flag": "key_client",
-        "priority": 2,
-        "text": "You're quiet and one customer carries {q41.band} of your revenue. Together those mean the business is one phone call from a crisis. New demand is urgent here for reasons that have nothing to do with growth."
-      },
-      {
-        "constraint": "margin",
-        "flag": "no_data",
-        "priority": 1,
-        "text": "Margin is your constraint and you don't know which work makes money. You're almost certainly subsidising some customers with others, and until you can see which, every pricing decision you make is a guess."
-      },
-      {
-        "constraint": "margin",
-        "flag": "key_client",
-        "priority": 2,
-        "text": "Margin is tight and one customer carries {q41.band} of your revenue. Big customers get big customer pricing, and yours is probably the one holding the margin down. Repricing them is the fastest lever you have, and it's the scariest, which is why it hasn't happened."
-      }
-    ],
     "dontDoYet": {
       "cashflow": {
         "lead": "Until the cash timing is fixed, leave these alone.",
@@ -3463,7 +3608,9 @@ window.DIAG ={
       "unsure": "That's as far as your answers go. One provisional reading, and a clear picture of what the business can't currently tell you.\n\nGet the numbers visible, then run this again. The second time through it will be worth something."
     },
     "looseBody": "Nothing in here is failing, so there's no evidence to walk you through. What you've got is {d.primaryShort} sitting as the tightest of the seven right now, which makes it the likeliest place the next bit of growth comes from. The actions below are worth doing and none of them are urgent.",
-    "unsureBody": "There isn't enough here to point at one thing with any confidence. On what you did answer, {d.primaryShort} is the tightest of the seven, so read the actions below as a starting point rather than a diagnosis.\n\nThe risk section is the part of this report to take seriously. Not being able to answer the questions is the finding, and it's the one worth acting on first."
+    "unsureBody": "There isn't enough here to point at one thing with any confidence. On what you did answer, {d.primaryShort} is the tightest of the seven, so read the actions below as a starting point rather than a diagnosis.\n\nThe risk section is the part of this report to take seriously. Not being able to answer the questions is the finding, and it's the one worth acting on first.",
+    "titleUnsure": "There isn't enough here to call it",
+    "riskLead": "These are the things that would hurt most if they went wrong. They sit behind the constraint above in the order, not in front of it."
   },
   "hardTriggers": {
     "cashflow": [

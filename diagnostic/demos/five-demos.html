@@ -1,0 +1,581 @@
+<title>Five Demo Diagnostics</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600&family=Caveat:wght@400..700&display=swap">
+<style>/* =========================================================================
+   BUSINESS DIAGNOSTIC
+   Ryan Tayler's system, not Headliner's. Dark first, pink as the only accent,
+   Anton for headers, Inter for everything readable, Caveat once per view.
+   Self contained on purpose, so nothing here can reach the five live pages.
+   The print sheet flips to paper, because a report printed on black is a
+   report nobody prints. Pink deepens to --pink-ink to carry text on paper.
+   ========================================================================= */
+
+:root{
+  --base:#0A0A0A; --panel:#111111; --hair:#1c1c1c; --rim:#2E2E2E;
+  --ink:#ECE8E0;  --mute:#8A8A8A; --dim:#6E6E6E;
+  --pink:#FF2D6B; --pink-ink:#FF2D6B; --ol-pink:rgba(255,45,107,.45);
+  --ok:#22C55E; --warn:#F5B027;
+  --gutter:clamp(20px,5vw,56px); --shell:820px;
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--base);color:var(--ink);
+  font-family:'Inter',system-ui,sans-serif;font-size:16px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+.shell{max-width:var(--shell);margin:0 auto;padding:0 var(--gutter)}
+
+.display{font-family:'Anton',Impact,sans-serif;font-weight:400;text-transform:uppercase;letter-spacing:0;line-height:.92;margin:0}
+.d1{font-size:clamp(38px,7vw,72px);line-height:.9}
+.d2{font-size:clamp(26px,4.2vw,44px);line-height:.94}
+.d3{font-size:clamp(19px,2.4vw,26px);line-height:1.02}
+.d4{font-size:clamp(15px,1.5vw,17px);line-height:1.1}
+.hand{font-family:'Caveat',cursive;font-size:clamp(20px,2.4vw,26px);color:var(--pink);line-height:1.25}
+
+.eyebrow{font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--pink-ink);margin:0 0 14px}
+.lede{font-size:clamp(16px,1.7vw,18.5px);color:var(--ink)}
+.mute{color:var(--mute)}
+p{margin:0 0 16px;max-width:66ch}
+a{color:var(--pink-ink)}
+
+/* ---------- buttons ---------- */
+.btn{
+  display:inline-flex;align-items:center;gap:9px;
+  font:inherit;font-weight:600;font-size:15px;
+  padding:13px 24px;border-radius:100px;border:1px solid transparent;
+  cursor:pointer;transition:background .2s var(--ease),border-color .2s var(--ease),color .2s var(--ease),transform .2s var(--ease);
+}
+.btn:hover{transform:translateY(-2px)}
+.btn:focus-visible{outline:2px solid var(--pink);outline-offset:3px}
+.btn--fill{background:var(--pink);color:#0A0A0A;border-color:var(--pink)}
+.btn--fill:hover{background:#FF5586;border-color:#FF5586}
+.btn--ghost{background:transparent;color:var(--ink);border-color:var(--rim)}
+.btn--ghost:hover{border-color:var(--pink);color:var(--pink-ink)}
+.btn[disabled]{opacity:.35;cursor:not-allowed;transform:none}
+
+/* ---------- screens ---------- */
+.screen{display:none;padding:clamp(48px,8vw,88px) 0 96px}
+.screen.is-on{display:block}
+
+/* intro */
+.intro__rules{list-style:none;margin:28px 0 0;padding:0;border-top:1px solid var(--hair)}
+.intro__rules li{padding:15px 0;border-bottom:1px solid var(--hair);display:flex;gap:14px;align-items:baseline;max-width:62ch}
+.intro__rules b{font-family:'Anton',Impact,sans-serif;font-weight:400;font-size:15px;color:var(--pink-ink);min-width:26px;letter-spacing:.04em}
+
+/* ---------- progress ---------- */
+.prog{position:sticky;top:0;z-index:20;background:var(--base);border-bottom:1px solid var(--hair);padding:14px 0 12px}
+.prog__row{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-bottom:9px}
+.prog__step{font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--mute)}
+.prog__step b{color:var(--pink-ink);font-weight:600}
+.prog__bar{height:3px;background:var(--hair);border-radius:100px;overflow:hidden}
+.prog__fill{height:100%;background:var(--pink);width:0;transition:width .35s var(--ease)}
+
+/* ---------- questions ---------- */
+.group__title{margin:38px 0 6px}
+.group__sub{color:var(--mute);font-size:14px;margin:0 0 34px}
+.q{padding:26px 0;border-top:1px solid var(--hair)}
+.q:first-of-type{border-top:0;padding-top:6px}
+.q__n{font-size:11px;font-weight:600;letter-spacing:.18em;color:var(--mute);display:block;margin-bottom:9px}
+.q__t{font-size:17px;font-weight:600;line-height:1.42;margin:0 0 6px;max-width:60ch}
+.q__help{font-size:13.5px;color:var(--mute);margin:0 0 16px;max-width:60ch}
+.q__help:last-of-type{margin-bottom:16px}
+
+.opts{display:grid;gap:8px;margin-top:14px}
+.opt{
+  display:flex;align-items:flex-start;gap:12px;
+  padding:13px 16px;border:1px solid var(--rim);border-radius:12px;
+  background:var(--panel);cursor:pointer;
+  transition:border-color .18s var(--ease),background .18s var(--ease);
+}
+.opt:hover{border-color:#4a4a4a}
+.opt input{
+  appearance:none;-webkit-appearance:none;margin:3px 0 0;flex:0 0 auto;
+  width:17px;height:17px;border:1.5px solid var(--rim);background:transparent;cursor:pointer;
+  transition:border-color .18s var(--ease),background .18s var(--ease);
+}
+.opt input[type=radio]{border-radius:50%}
+.opt input[type=checkbox]{border-radius:5px}
+.opt input:checked{border-color:var(--pink);background:var(--pink);box-shadow:inset 0 0 0 3px var(--panel)}
+.opt input[type=checkbox]:checked{box-shadow:inset 0 0 0 2.5px var(--panel)}
+.opt input:focus-visible{outline:2px solid var(--pink);outline-offset:2px}
+.opt span{font-size:15px;line-height:1.45}
+.opt:has(input:checked){border-color:var(--pink);background:rgba(255,45,107,.06)}
+.opt--unsure span{color:var(--mute)}
+
+.exact{margin:12px 0 0;padding:13px 16px;border:1px dashed var(--rim);border-radius:12px;display:none}
+.exact.is-on{display:block}
+.exact label{display:block;font-size:13px;color:var(--mute);margin-bottom:8px}
+.exact input{
+  font:inherit;font-size:15px;width:150px;padding:9px 12px;
+  background:var(--base);border:1px solid var(--rim);border-radius:8px;color:var(--ink);
+}
+.exact input:focus{outline:none;border-color:var(--pink)}
+.exact small{display:block;margin-top:8px;font-size:12px;color:var(--mute)}
+
+.nav{display:flex;justify-content:space-between;gap:16px;align-items:center;margin-top:40px;padding-top:28px;border-top:1px solid var(--hair)}
+.nav__warn{font-size:13px;color:var(--warn);margin:0;flex:1}
+
+/* ---------- report ---------- */
+.rep__head{padding-bottom:32px;border-bottom:1px solid var(--hair);margin-bottom:8px}
+.sec{padding:38px 0;border-bottom:1px solid var(--hair)}
+.sec:last-child{border-bottom:0}
+.sec__label{font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--mute);margin:0 0 16px}
+.sec p{font-size:16.5px}
+
+.verdict{
+  background:var(--pink);color:#0A0A0A;border-radius:20px;
+  padding:clamp(26px,4vw,40px);margin:8px 0 6px;position:relative;overflow:hidden;--cw:760px;
+}
+.verdict .glow{position:absolute;inset:0;pointer-events:none;z-index:0;
+  box-shadow:inset 0 0 calc(var(--cw)*.25) calc(var(--cw)*.015) rgba(0,0,0,.38)}
+.verdict>*{position:relative;z-index:1}
+.verdict .eyebrow{color:#0A0A0A;opacity:.66}
+.verdict p{margin:14px 0 0;max-width:58ch;font-size:16px;font-weight:500}
+/* The constraint itself lifts out of the sentence around it. On the pink fill the
+   surrounding words drop back rather than the accent changing, because pink on
+   pink has nowhere to go. */
+.rep__head em,.verdict em{font-style:normal}
+.rep__head em{color:var(--pink-ink)}
+.verdict .display{color:rgba(10,10,10,.55)}
+.verdict em{color:#0A0A0A}
+
+.acts{list-style:none;counter-reset:a;margin:20px 0 0;padding:0}
+.acts li{counter-increment:a;position:relative;padding:14px 0 14px 44px;border-top:1px solid var(--hair);max-width:64ch;font-size:16px}
+.acts li::before{
+  content:counter(a);position:absolute;left:0;top:14px;
+  font-family:'Anton',Impact,sans-serif;font-size:15px;color:var(--pink-ink);
+}
+.dont li::before{content:"\00d7";font-family:'Inter',system-ui,sans-serif;font-weight:600;font-size:17px;line-height:1.35}
+
+.aside{border-left:2px solid var(--pink);padding:2px 0 2px 18px;margin:0 0 4px}
+.aside p{margin:0;color:var(--mute);font-size:15.5px}
+
+
+/* The constraint and each risk carry the same pink treatment, so a risk reads as
+   a finding rather than a footnote. Only the name sits on the pink, which keeps
+   four pink blocks on a page from becoming four pink slabs. */
+.risk{border:1px solid var(--rim);border-radius:16px;overflow:hidden;margin:18px 0 0}
+.risk__head{
+  background:var(--pink);color:#0A0A0A;padding:15px 22px 14px;
+  position:relative;overflow:hidden;--cw:640px;
+  display:flex;align-items:baseline;gap:9px;flex-wrap:wrap;
+}
+.risk__head .glow{position:absolute;inset:0;z-index:0;pointer-events:none;
+  box-shadow:inset 0 0 calc(var(--cw)*.25) calc(var(--cw)*.015) rgba(0,0,0,.3)}
+.risk__head>*{position:relative;z-index:1}
+.risk__head h3{color:#0A0A0A;margin:0}
+.risk__head span{font-size:12.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;opacity:.6}
+.risk__body{padding:20px 22px 8px;background:var(--panel)}
+.risk__body p{margin:0 0 4px;color:var(--ink);font-size:16px}
+.acts--risk{margin-top:14px}
+.acts--risk li{border-top:1px solid var(--hair);color:var(--ink)}
+
+/* Nothing to hold off on is the loudest instruction in the report, so it gets
+   a real heading rather than another numbered label. */
+.sec--dont{padding-top:44px}
+.dont__h{margin:0 0 14px;color:var(--pink-ink)}
+
+.privacy{font-size:13px;color:var(--dim,#6E6E6E);margin-top:22px;max-width:62ch}
+.privacy u{text-decoration:underline;text-underline-offset:2px}
+
+.sign{display:flex;align-items:center;gap:20px;margin-top:40px}
+.sign svg{width:132px;height:auto;color:var(--ink);opacity:.9}
+
+/* ---------- dev bar and why panel, screen only ---------- */
+.dev{
+  position:fixed;left:0;right:0;bottom:0;z-index:60;
+  background:#141414;border-top:1px solid var(--rim);
+  padding:9px var(--gutter);display:flex;gap:7px;flex-wrap:wrap;align-items:center;
+}
+.dev b{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--mute);font-weight:600;margin-right:5px}
+.dev button{
+  font:inherit;font-size:12px;font-weight:500;padding:5px 11px;border-radius:100px;
+  background:transparent;color:var(--mute);border:1px solid var(--rim);cursor:pointer;
+}
+.dev button:hover{color:var(--pink-ink);border-color:var(--pink)}
+body.has-dev{padding-bottom:56px}
+
+.why{margin-top:40px;border:1px solid var(--rim);border-radius:14px;background:var(--panel);overflow:hidden}
+.why summary{padding:14px 18px;cursor:pointer;font-size:13px;font-weight:600;letter-spacing:.06em;color:var(--mute)}
+.why summary::marker{color:var(--pink)}
+.why pre{margin:0;padding:0 18px 18px;font-size:11.5px;line-height:1.6;white-space:pre-wrap;color:var(--mute);font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+
+[hidden]{display:none!important}
+
+/* =========================================================================
+   PRINT. Paper, ink, and pink deepened so it can carry text at 5.2 to 1.
+   ========================================================================= */
+@media print{
+  @page{margin:16mm 15mm}
+  :root{--base:#FFFFFF;--panel:#FFFFFF;--hair:#DCE0E7;--rim:#DCE0E7;
+        --ink:#1A1A1A;--mute:#54585F;--pink:#FF2D6B;--pink-ink:#C4174F}
+  body{background:#fff;color:#1A1A1A;font-size:11pt;padding-bottom:0}
+  .prog,.dev,.nav,.why,.rep__actions,.screen:not(.is-on){display:none!important}
+  .screen{padding:0}
+  .shell{max-width:none;padding:0}
+  .sec{padding:16pt 0;break-inside:avoid}
+  .verdict{background:#fff;color:#1A1A1A;border:1.5pt solid #C4174F;border-radius:10pt;padding:14pt;break-inside:avoid}
+  .verdict .glow{display:none}
+  .verdict .eyebrow{color:#C4174F;opacity:1}
+  .acts li,.risk{break-inside:avoid}
+  .risk{border:1pt solid #DCE0E7}
+  .risk__head{background:#fff;color:#C4174F;border-bottom:1pt solid #DCE0E7;padding:10pt 12pt 8pt}
+  .risk__head h3,.risk__head h4{color:#C4174F} .risk__head span{opacity:.75}
+  .risk__head .glow{display:none}
+  .risk__body{background:#fff;padding:10pt 12pt 4pt}
+  .dont__h{color:#C4174F}
+  .sign svg{color:#1A1A1A;opacity:1}
+  p,li{max-width:none}
+  h1,h2,h3{break-after:avoid}
+}
+
+/* ---- demo page only ---- */
+.hero{padding:clamp(40px,6vw,72px) 0 0}
+.hero .lede{margin-top:20px;max-width:60ch}
+.tabs{position:sticky;top:0;z-index:30;background:var(--base);border-bottom:1px solid var(--rim);
+  margin-top:34px;padding:12px 0 0}
+.tabs__row{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;padding-bottom:1px}
+.tabs__row::-webkit-scrollbar{display:none}
+.tab{flex:0 0 auto;font:inherit;font-size:13.5px;font-weight:500;cursor:pointer;
+  background:none;border:0;border-bottom:2px solid transparent;color:var(--mute);
+  padding:11px 15px 12px;white-space:nowrap;transition:color .18s var(--ease),border-color .18s var(--ease)}
+.tab:hover{color:var(--ink)}
+.tab[aria-selected="true"]{color:var(--pink);border-bottom-color:var(--pink)}
+.tab:focus-visible{outline:2px solid var(--pink);outline-offset:-2px}
+.tab b{display:block;font-weight:600;font-size:14px;color:inherit}
+.tab span{display:block;font-size:11px;letter-spacing:.11em;text-transform:uppercase;opacity:.72;margin-top:2px}
+.panel{display:none;padding-top:8px}
+.panel.is-on{display:block}
+.biz{border:1px solid var(--rim);border-radius:18px;background:var(--panel);
+  padding:clamp(22px,3vw,32px);margin:34px 0 8px}
+.biz h2{margin:0 0 4px}
+.biz__meta{font-size:12px;letter-spacing:.11em;text-transform:uppercase;color:var(--pink-ink);margin:0 0 14px}
+.biz p{margin:0;color:var(--ink)}
+.biz__facts{display:flex;flex-wrap:wrap;gap:0 26px;margin:16px 0 0;padding-top:16px;border-top:1px solid var(--hair)}
+.biz__facts div{font-size:13px;color:var(--mute);padding:3px 0}
+.biz__facts b{color:var(--ink);font-weight:500}
+.why{margin:34px 0 0;border:1px solid var(--rim);border-radius:14px;background:var(--panel);overflow:hidden}
+.why__in{padding:0 18px 18px}
+.why__lede{font-size:13px;color:var(--mute);margin:0 0 14px;max-width:none}
+.scores{border-collapse:collapse;width:100%;max-width:460px;margin:0 0 16px;font-size:13px}
+.scores th{text-align:left;font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--mute);font-weight:600;padding:0 12px 7px 0;border-bottom:1px solid var(--hair)}
+.scores td{padding:7px 12px 7px 0;border-bottom:1px solid var(--hair);color:var(--mute)}
+.scores .num{text-align:right;font-variant-numeric:tabular-nums;padding-right:18px}
+.scores tr.is-it td{color:var(--pink);font-weight:600}
+.note{font-size:13.5px;color:var(--mute);max-width:66ch}
+@media print{ .tabs,.why{display:none!important} .panel{display:block!important;break-before:page} .panel:first-of-type{break-before:auto} }
+</style>
+
+<header class="shell hero">
+  <p class="eyebrow">Sample output, five made up businesses</p>
+  <h1 class="display d1">Five Demo<br>Diagnostics</h1>
+  <p class="lede">Five businesses that don't exist, each filled out end to end, each run through the live engine. Nothing on this page is written by hand. Every finding, every risk and every line of prose came out of the answers above it, the same way it will for a real one.</p>
+  <p class="hand" style="margin-top:22px">Five different constraints, so you can see how the shape of the report changes.</p>
+</header>
+
+<nav class="tabs"><div class="shell"><div class="tabs__row" role="tablist">
+<button class="tab" role="tab" id="t-northline" aria-controls="p-northline" aria-selected="true">
+  <b>Northline AV</b><span>Cash flow</span></button>
+<button class="tab" role="tab" id="t-fold" aria-controls="p-fold" aria-selected="false">
+  <b>Fold Event Co</b><span>Talent</span></button>
+<button class="tab" role="tab" id="t-kerrick" aria-controls="p-kerrick" aria-selected="false">
+  <b>Kerrick Staging</b><span>Fulfilment</span></button>
+<button class="tab" role="tab" id="t-halcyon" aria-controls="p-halcyon" aria-selected="false">
+  <b>Halcyon Studio</b><span>Offer</span></button>
+<button class="tab" role="tab" id="t-tallow" aria-controls="p-tallow" aria-selected="false">
+  <b>Tallow Crew</b><span>Margin</span></button>
+</div></div></nav>
+
+<main class="shell">
+<section class="panel is-on" id="p-northline" role="tabpanel" aria-labelledby="t-northline">
+  <div class="biz">
+    <p class="biz__meta">Audio visual hire and event production</p>
+    <h2 class="display d3">Northline AV</h2>
+    <p>Busy, profitable on paper, and never has any money. Hires in gear and pays crew the week of the job, then waits two months on a venue group that pays when it feels like it.</p>
+    <div class="biz__facts">
+      <div><b>Melbourne</b></div><div><b>$1m to $3m, eleven staff</b></div><div><b>Nine years trading</b></div>
+      <div>Answered <b>58 of 58</b></div>
+    </div>
+  </div>
+  <div class="rep__head"><p class="eyebrow">Your diagnosis</p>
+        <h2 class="display d2">You are <em>cash flow</em> constrained</h2></div><div class="sec"><p>Everything below is calculated on your answers. It's a guide rather than a custom diagnostic, so read the report as a rough shape of what your current challenges are and what solutions may look like.</p><p>It names your biggest single constraint. There is likely more, and there may be other things wrong, there always are. They're not listed in here because the order you fix things in matters. Fix the constraints and risks in your business, then come back and get an updated report.</p>
+        <p class="privacy">We do not use <u>any</u> AI in this tool, and <u>none</u> of your data is sent or stored offsite.</p></div><div class="sec"><p class="sec__label">01, The constraint</p>
+        <div class="verdict"><div class="glow"></div><p class="eyebrow">What is capping the business</p>
+        <h3 class="display d3">You are <em>cash flow</em> constrained</h3><p>You're profitable on paper and short of cash in practice. The work is sold, the money hasn't landed, and there's nothing sitting there to fund the next job. You get paid with nothing upfront, the balance lands 52 days later and you're owed more than a month of revenue past its due date. You've been delaying payments most months and you're holding two to four weeks of cover.</p><p>That's a timing problem rather than a rate problem. Every job you win right now costs you money before it pays you, which is why winning more of them is currently the worst move available to you.</p></div></div><div class="sec"><p class="sec__label">02, How to fix it</p><p>The job is to shorten the gap between doing the work and getting paid for it. Nothing else moves until that does.</p>
+        <ol class="acts"><li>You take nothing upfront, which is this whole problem in one answer. Change that before anything else on this list.</li><li>Take a deposit on every job. Fifty percent thirty days out and the balance the week before, so the money is in before your costs go out.</li><li>Line the deposit up to land before your cost of goods does. On jobs where the number moves on the day, charge the balance afterwards and refund the difference.</li><li>Invoice within twenty four hours of the job finishing, rather than at the end of the month.</li><li>Collect what's already overdue before you chase anything new. It's the cheapest money available to you.</li></ol></div><div class="sec"><p class="sec__label">03, Your risks, and what to do about them</p><p>These are the things that would hurt most if they went wrong. They sit behind the constraint above in the order, not in front of it.</p><div class="risk">
+         <div class="risk__head"><div class="glow"></div><span>You have a</span><h4 class="display d3">Key client</h4><span>risk</span></div>
+         <div class="risk__body"><p>One customer carries 54% of your revenue. That customer can leave, go quiet, or get bought by someone who already has their own suppliers, and none of those are things you get a say in.</p>
+         <ol class="acts acts--risk"><li>Set a ceiling, say twenty percent of revenue from any one customer, and treat crossing it as the trigger to go and win two more.</li><li>Get them onto a term agreement with a notice period, so a decision to leave gives you time to react.</li></ol></div></div><div class="risk">
+         <div class="risk__head"><div class="glow"></div><span>You have a</span><h4 class="display d3">Key supplier</h4><span>risk</span></div>
+         <div class="risk__body"><p>You've got one supplier with no ready replacement. Their price rise is your price rise, their delay is your delay, and their bad year is your bad year.</p>
+         <ol class="acts acts--risk"><li>Qualify a second supplier and give them ten percent of your volume. A backup you've never bought from isn't a backup.</li><li>Get lead times and pricing from your current one in writing, so a change is a conversation rather than a surprise.</li></ol></div></div><div class="risk">
+         <div class="risk__head"><div class="glow"></div><span>You have a</span><h4 class="display d3">No cash buffer</h4><span>risk</span></div>
+         <div class="risk__body"><p>You're holding two to four weeks of cover. Every business runs into a bad month. Without a buffer, a bad month turns into a decision about who you can't pay.</p>
+         <ol class="acts acts--risk"><li>Build to one month of fixed costs in a separate account, then three.</li><li>Move a fixed percentage of every payment across automatically, so it isn't a decision you make each time.</li></ol></div></div><div class="risk">
+         <div class="risk__head"><div class="glow"></div><span>You have a</span><h4 class="display d3">No succession</h4><span>risk</span></div>
+         <div class="risk__body"><p>There's a rough idea for what happens if you stop, sell or step back. Every business has an exit, planned or otherwise. The unplanned version is the one where somebody else sets the price.</p>
+         <ol class="acts acts--risk"><li>Write the one page version. Who runs it, what happens to the customers, what it's worth and who'd buy it.</li><li>It doesn't need to be right, it needs to exist.</li></ol></div></div></div><div class="sec sec--dont"><h3 class="display d2 dont__h">Don’t do this yet</h3>
+        <p>Until the cash timing is fixed, leave these alone.</p>
+        <ol class="acts dont"><li>Don't chase bigger jobs. Bigger jobs mean bigger upfront costs and longer payment cycles.</li><li>Don't hire. Wages are the least flexible cost you can add to a cash problem.</li><li>Don't buy equipment outright. Finance it, even if the interest annoys you.</li><li>Don't discount to get paid faster. That's borrowing at a rate you'd never accept from a bank.</li><li>Don't increase marketing spend. More demand you can't fund makes the hole deeper.</li></ol></div><div class="sec"><p>That's the diagnosis. One constraint, the risks sitting around it, and the things to leave alone while you fix it.</p><p>Work the constraint and check back in ninety days. That's long enough for it to move and short enough that you'll still remember what you changed.</p><div class="sign"><svg viewBox="0 0 601.04 273.69" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-label="Ryan Tayler signature"> <path d="M394.25,46.02c32.82.56,65.41,1.12,97.93,1.68.55-2.98,1-5.46,1.47-8.05,6.11,1.13,6.02,5.62,6.52,10.1,4.97,0,9.74.2,14.49-.05,5.58-.29,9.47,2.55,12.68,6.47,1.02,1.25,1.33,3.37,1.35,5.1.04,2.69-1.29,4.69-3.79,1.98-6.56-7.09-15.54-4.8-23.51-6.34-1.04-.2-3.15,1.45-3.63,2.68-6.12,15.73-11.35,31.84-18.19,47.24-6.12,13.79-13.8,26.92-21.18,40.12-1.1,1.98-4.36,2.75-6.62,4.08l-1.19-1.02c.64-2.21.8-4.73,2.01-6.57,8.7-13.24,16.1-27.13,21.86-41.91,5.65-14.52,11.38-29,17.56-44.72-6.9-.81-12.64-2.02-18.38-2.06-28.76-.19-57.52-.14-86.28.11-2.12.02-5.25,1.81-6.18,3.65-12.6,25.01-25.31,49.98-37.1,75.37-7.93,17.06-14.45,34.78-21.23,51.29-2.73-.29-4.63-.49-7.51-.8.2-2.64.47-6.06.72-9.49.31-4.31,1.14-8.65.82-12.91-1.41-19-6.87-36.27-22.12-49.15-10.1-8.53-21.47-14.71-33.84-19.23-9.74-3.56-19.52-7.05-29.13-10.93-2.19-.88-5.35-3.28-5.3-4.89.08-2.58,2.03-5.53,4.01-7.5,1.75-1.74,4.53-2.74,7.03-3.38,12.55-3.19,25.11-6.41,37.77-9.12,10.92-2.34,21.95-4.18,32.99-5.9,5.93-.93,11.98-1.13,17.97-1.69,9.24-.86,18.46-1.92,27.71-2.53,5.34-.35,10.73-.1,16.09.13,5.91.26,10.39-1.93,14.01-6.6,1.22-1.58,3.98-3.6,5.21-3.15,1.89.69,3.12,3.29,4.48,5.19.4.56.3,1.5.51,2.78ZM373.24,55.73c-46.61,1.06-92.54,8.58-137.92,20.46.71.88,1.4,1.22,2.12,1.47,23.34,8.13,46.84,15.94,65.22,33.68,9.73,9.39,16.05,20.68,19.22,33.73,1.13,4.64,1.8,9.38,2.68,14.12,16.33-34.71,32.45-68.96,48.68-103.46Z"/> <path d="M131.29,176.82c11.1-14.62,21.78-28.67,32.73-43.1-5.7-1.03-10.34-3.16-10.78-9.02-.48-6.44-1.27-13.29,5.13-17.99,2.81,2.95,5.86,5.35,2.89,10.05-1.12,1.78-.49,4.66-.71,7.71,12.73-3.86,19.39-14.44,28.61-21.48,4.99,3.58,5,5.85,1.1,10.86-17.49,22.41-34.87,44.91-52.65,67.85,7.33,5.22,14.52,10.12,21.47,15.33,19.32,14.48,38.54,29.1,57.83,43.62,4.6,3.46,9.47,6.56,13.94,10.16,1.37,1.11,1.84,3.33,2.72,5.04-2.2-.04-4.99.78-6.5-.26-8.31-5.69-16.24-11.93-24.42-17.81-21.05-15.11-42.42-29.78-63.17-45.29-16.3-12.18-31.92-25.29-47.72-38.13-2.53-2.06-4.65-4.74-6.54-7.42-6.27-8.88-4.43-16.06,5.8-20.42,6.73-2.87,14.18-4.08,20.92-6.93,15.29-6.46,31.26-11.74,44.39-22.4,3.27-2.66,6.49-5.91,8.43-9.58,5-9.46-.5-17.61-12.67-21.06-15.93-4.51-31.67-2.62-47.66-.52-15.85,2.09-29.86,8.08-42.29,17.69-4.19,3.25-7.61,7.79-10.53,12.29-3.12,4.81-1.59,8.85,3.11,12.37,2.66,1.98,5.14,4.25,7.41,6.66.64.68.79,2.71.24,3.37-.55.67-2.37.84-3.4.51-14.91-4.79-17.55-23.64-9.8-32.39,8.14-9.18,17.15-16.8,29.39-20.18,6.87-1.9,13.24-5.82,20.16-7.23,8.77-1.79,17.91-1.72,26.82-2.9,9.51-1.27,18.7.22,27.79,2.56,10.84,2.79,21.33,12.69,19.57,23.26-.68,4.1-3.03,8.23-5.55,11.65-13.77,18.68-34.49,26.22-55.19,33.74-6.19,2.25-12.38,4.49-18.48,6.96-5.5,2.22-6.34,5.1-1.98,9.05,10.77,9.74,21.88,19.1,32.91,28.55,1.98,1.69,4.22,3.08,6.68,4.86Z"/> <path d="M431.94,124.6c12.34-4.7,19.77-14.08,28.36-21.8,4.93,3.56,5.41,5.22,1.97,9.7-14.59,19.01-29.29,37.93-43.97,56.88-3.95,5.1-8.03,10.1-11.92,15.25-1.35,1.78-2.35,4.1-4.91,1.79-2.1-1.9-3.34-4.06-1.12-6.91,5.48-7.04,10.83-14.18,16.23-21.28,6.09-8.01,12.17-16.01,18.32-24.09-12.21-4.63-15.04-18.99-5.62-27.23,3.38,2.84,6.09,5.6,2.81,10.51-.97,1.45-.15,4.1-.15,7.2Z"/> <path d="M219.18,130.17c-1.39.94-2.82,1.83-4.18,2.83-5.77,4.23-11.35,8.73-17.32,12.65-3.56,2.34-8.8,3.7-11.36.19-1.62-2.22-.61-7.89,1.19-10.78,7.77-12.47,17.54-23.11,31.58-28.91,1.22-.5,2.38-1.22,3.64-1.52,2.07-.48,5.8-1.45,6.05-.91,1.5,3.19,4.9,4.66,4.82,9.71-.17,10.81-6.25,18.88-9.71,28.14-.34.92-.61,2.19-1.32,2.59-2.23,1.26-4.65,2.19-6.99,3.24-.13-2.14-.87-4.47-.26-6.38,1.11-3.5,3.02-6.74,4.59-10.09-.25-.25-.49-.51-.74-.76ZM196.05,135.61l1.06,1.17c9.47-7.07,18.97-14.1,28.37-21.27.92-.7,1.2-2.22,1.78-3.37l-1.25-1.01c-11.1,6.78-22.83,12.77-29.95,24.48Z"/> <path d="M382.41,136.72c8.58-6.36,17.53-12.29,25.59-19.26,4.02-3.47,6.05.83,9.03.5.08,2.2.9,4.71.12,6.53-2.79,6.47-5.83,12.88-9.42,18.93-1.28,2.16-4.42,3.21-6.72,4.76-.66-.48-1.31-.95-1.97-1.43,1.88-5.34,3.75-10.67,6.12-17.4-2.61,1.88-4.14,2.96-5.64,4.07-5.74,4.26-11.47,8.55-17.23,12.78-.51.37-1.26.63-1.87.59-3.15-.24-6.84.24-9.21-1.28-1.18-.76-.74-5.63.34-8.02,4.31-9.54,11.61-16.89,19.69-23.19,5.22-4.07,11.49-6.84,17.44-9.92,1.56-.81,5.04-1.23,5.26-.75,1.4,3.09,7.09,4.44,3.78,10.07-8.03-5.24-13.18,1.27-18.71,5.27-5.55,4.01-10.47,8.91-15.58,13.51-.89.8-1.37,2.07-2.04,3.12l1.03,1.11Z"/> <path d="M105.43,76.5c3.34,4.73,2.94,8.07.12,12.3-17.26,25.79-34.13,51.83-51.22,77.73-.76,1.16-2.37,1.76-3.58,2.62-.33-1.94-1.55-4.34-.83-5.74,3-5.85,6.46-11.48,9.99-17.04,13.62-21.4,27.33-42.75,41.04-64.09,1.22-1.89,2.76-3.57,4.48-5.79Z"/> <path d="M480.33,125.74c.43-.37,1.35-1.85,2.36-1.91,8.73-.52,12.99-7.61,18.89-12.34,4.35-3.49,8.89-7.02,13.91-9.29,1.92-.86,5.71,1.33,8,3.02.77.56.2,4.4-.93,5.82-5.91,7.45-14.35,11.38-22.71,15.35-.45.21-1.02.22-1.39.5-1.96,1.47-6.32.64-5.21,5.04.92,3.66,6.06,6,9.97,4.85,2.99-.88,5.97-2.06,9.02-2.35,1.7-.17,3.55,1.2,5.34,1.87-.86,1.52-1.34,3.77-2.64,4.43-5.6,2.88-11.82,4.06-17.65,1.48-3.39-1.5-6.01-4.86-8.78-7.58-2.66-2.62-5.08-5.49-8.19-8.9Z"/> <path d="M239.68,138.14c-.65-7.2,8.02-27.88,13.23-32.48,5.41,2.44,4.48,6.28,2.61,11.09,1.94-.99,3.85-2.03,5.81-2.95,7.94-3.73,14.38.27,13.54,9-.59,6.14-2.65,12.12-3.95,18.2-.75,3.5-1.01,7.14-2.07,10.53-.61,1.95-2.37,4.95-3.67,4.98-2.74.06-5.02-2.21-4.25-5.41,1.87-7.78,4.04-15.5,6.12-23.23.62-2.29,1.35-4.55,2.22-7.48-7.63-.43-12.1,4.1-16.94,7.4-3.26,2.22-5.92,5.28-8.93,7.88-1.02.89-2.27,1.52-3.71,2.46Z"/> <path d="M527.69,144.84c-3.08-1.21-4.62-3.9-3.22-7.44,4.02-10.2,8.33-20.3,12.56-30.42.17-.41.72-.66,1.64-1.47,1.58,2.81,3.06,5.46,4.8,8.55,2.45-1.21,5.76-2.78,9-4.46,4.33-2.24,7.89-.88,10.89,2.39.71.77,1.24,2.65.79,3.33-.77,1.18-2.61,2.78-3.57,2.53-8.9-2.31-13.91,3.76-18.84,8.97-5.04,5.34-9.12,11.58-14.06,18.01Z"/> </svg></div></div>
+  <details class="why"><summary>Why this one fired</summary><div class="why__in">
+    <p class="why__lede">Checked in chain order. The first one to fail is called, never the highest score.</p>
+    <table class="scores"><thead><tr><th>Constraint</th><th class="num">Score</th><th></th></tr></thead>
+    <tbody><tr class="is-it"><td>Cash flow</td>
+      <td class="num">83</td>
+      <td>called</td></tr><tr><td>Talent</td>
+      <td class="num">46</td>
+      <td></td></tr><tr><td>Fulfilment</td>
+      <td class="num">43</td>
+      <td></td></tr><tr><td>Value</td>
+      <td class="num">30</td>
+      <td></td></tr><tr><td>Offer</td>
+      <td class="num">37</td>
+      <td></td></tr><tr><td>Demand</td>
+      <td class="num">45</td>
+      <td></td></tr><tr><td>Margin</td>
+      <td class="num">35</td>
+      <td></td></tr></tbody></table>
+    <p class="why__lede">Bar is 60. Suppressed by the finding above: margin.
+    Risks are listed loudest first across all three families, capped at 4.</p>
+    </div></details>
+</section>
+<section class="panel" id="p-fold" role="tabpanel" aria-labelledby="t-fold">
+  <div class="biz">
+    <p class="biz__meta">End to end event management</p>
+    <h2 class="display d3">Fold Event Co</h2>
+    <p>Grew from six people to twenty six and the founder is still the general manager, the head of sales and the final say on every quote.</p>
+    <div class="biz__facts">
+      <div><b>Sydney</b></div><div><b>$3m to $10m, twenty six staff</b></div><div><b>Twelve years trading</b></div>
+      <div>Answered <b>58 of 58</b></div>
+    </div>
+  </div>
+  <div class="rep__head"><p class="eyebrow">Your diagnosis</p>
+        <h2 class="display d2">You are <em>talent</em> constrained</h2></div><div class="sec"><p>Everything below is calculated on your answers. It's a guide rather than a custom diagnostic, so read the report as a rough shape of what your current challenges are and what solutions may look like.</p><p>It names your biggest single constraint. There is likely more, and there may be other things wrong, there always are. They're not listed in here because the order you fix things in matters. Fix the constraints and risks in your business, then come back and get an updated report.</p>
+        <p class="privacy">We do not use <u>any</u> AI in this tool, and <u>none</u> of your data is sent or stored offsite.</p></div><div class="sec"><p class="sec__label">01, The constraint</p>
+        <div class="verdict"><div class="glow"></div><p class="eyebrow">What is capping the business</p>
+        <h3 class="display d3">You are <em>talent</em> constrained</h3><p>Talent here means a missing layer, not missing hands. Day to day operations, sales, marketing and the numbers sit with you rather than with somebody whose job it is. Most of last week went to quoting and pricing jobs, selling and chasing leads, and answering questions your team could answer. The work that actually moves the business forward got none of it, if you went dark for a month the business stops without you and things stall for want of anyone to hand them to as a matter of routine.</p><p>Hiring another pair of hands underneath you doesn't touch this. What's missing is a whole role that doesn't exist yet, and until it does, everything you add lands on the same desk.</p></div></div><div class="sec"><p class="sec__label">02, How to fix it</p><p>One role. Named, hired, and given the authority to actually run what you hand over.</p>
+        <ol class="acts"><li>Write down everything you did last week, then mark what only you could have done. What's left is the job description.</li><li>Hire the layer rather than the hands. Another delivery person gives you more capacity. A person who runs delivery gives you your week back.</li><li>You've got more direct reports than one person can run properly. The hire that fixes this sits between you and most of them.</li><li>Hand over one whole area with the decisions attached. Half a handover leaves you doing the work and them carrying the confusion.</li><li>Give it ninety days before you judge it, and stop being the escalation point for what you handed over.</li></ol></div><div class="sec"><p class="sec__label">03, Also showing, and deliberately not the job</p>
+        <div class="aside"><p>Margin looks tight as well. That's downstream of the talent problem and it'll move when that does.</p></div></div><div class="sec"><p class="sec__label">04, Your risks, and what to do about them</p><p>These are the things that would hurt most if they went wrong. They sit behind the constraint above in the order, not in front of it.</p><div class="risk">
+         <div class="risk__head"><div class="glow"></div><span>You have a</span><h4 class="display d3">Key person</h4><span>risk</span></div>
+         <div class="risk__body"><p>The business leans heavily on one person, and going by your answers that person is probably you. Illness, a resignation or a fortnight offline stops things that shouldn't be stoppable.</p>
+         <ol class="acts acts--risk"><li>Write down what they hold, then move one piece of it to somebody else this month.</li><li>Repeat until nothing sits in one head, and test it by having them take a week off.</li></ol></div></div><div class="risk">
+         <div class="risk__head"><div class="glow"></div><span>You have a</span><h4 class="display d3">No second in command</h4><span>risk</span></div>
+         <div class="risk__body"><p>There's nobody who could run this if you stepped out. Every decision routes through you, which caps the business at the size of your week.</p>
+         <ol class="acts acts--risk"><li>Name the person, tell them, and start handing over one area at a time with the decisions attached.</li><li>Give them a budget and a limit they can act inside. A deputy who can't decide anything is a job title.</li></ol></div></div><div class="risk">
+         <div class="risk__head"><div class="glow"></div><span>You have a</span><h4 class="display d3">Owner trapped</h4><span>risk</span></div>
+         <div class="risk__body"><p>Sold tomorrow, a buyer would need you for years, if it works without you at all. How long that handover runs is what decides whether the business is worth anything to anyone but you, and it's the same thing that decides whether you can ever step back.</p>
+         <ol class="acts acts--risk"><li>Work out what only you can do, then start moving everything else.</li><li>Book a month off twelve months out and work backwards from it. That's the deadline that makes it real.</li></ol></div></div><div class="risk">
+         <div class="risk__head"><div class="glow"></div><span>You have a</span><h4 class="display d3">Model misfit</h4><span>risk</span></div>
+         <div class="risk__body"><p>The way you spend your week is the opposite of what you wanted. It decides how long you'll keep doing this, and a business rarely outlives the owner's appetite for running it.</p>
+         <ol class="acts acts--risk"><li>Write down what you actually wanted out of this, then hold your week up against it.</li><li>The gap between those two is the brief for the next twelve months.</li></ol></div></div></div><div class="sec sec--dont"><h3 class="display d2 dont__h">Don’t do this yet</h3>
+        <p>Until the layer exists, leave these alone.</p>
+        <ol class="acts dont"><li>Don't hire another doer. Every one you add reports to you, and you're the bottleneck.</li><li>Don't take on a new market, product or location. All three land on your desk.</li><li>Don't start anything that needs your attention for six months.</li><li>Don't increase lead generation. The work you win still has to route through you.</li><li>Don't redraw the org chart. What's missing is a person who doesn't exist, not a diagram.</li></ol></div><div class="sec"><p>That's the diagnosis. One constraint, the risks sitting around it, and the things to leave alone while you fix it.</p><p>Work the constraint and check back in ninety days. That's long enough for it to move and short enough that you'll still remember what you changed.</p><div class="sign"><svg viewBox="0 0 601.04 273.69" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-label="Ryan Tayler signature"> <path d="M394.25,46.02c32.82.56,65.41,1.12,97.93,1.68.55-2.98,1-5.46,1.47-8.05,6.11,1.13,6.02,5.62,6.52,10.1,4.97,0,9.74.2,14.49-.05,5.58-.29,9.47,2.55,12.68,6.47,1.02,1.25,1.33,3.37,1.35,5.1.04,2.69-1.29,4.69-3.79,1.98-6.56-7.09-15.54-4.8-23.51-6.34-1.04-.2-3.15,1.45-3.63,2.68-6.12,15.73-11.35,31.84-18.19,47.24-6.12,13.79-13.8,26.92-21.18,40.12-1.1,1.98-4.36,2.75-6.62,4.08l-1.19-1.02c.64-2.21.8-4.73,2.01-6.57,8.7-13.24,16.1-27.13,21.86-41.91,5.65-14.52,11.38-29,17.56-44.72-6.9-.81-12.64-2.02-18.38-2.06-28.76-.19-57.52-.14-86.28.11-2.12.02-5.25,1.81-6.18,3.65-12.6,25.01-25.31,49.98-37.1,75.37-7.93,17.06-14.45,34.78-21.23,51.29-2.73-.29-4.63-.49-7.51-.8.2-2.64.47-6.06.72-9.49.31-4.31,1.14-8.65.82-12.91-1.41-19-6.87-36.27-22.12-49.15-10.1-8.53-21.47-14.71-33.84-19.23-9.74-3.56-19.52-7.05-29.13-10.93-2.19-.88-5.35-3.28-5.3-4.89.08-2.58,2.03-5.53,4.01-7.5,1.75-1.74,4.53-2.74,7.03-3.38,12.55-3.19,25.11-6.41,37.77-9.12,10.92-2.34,21.95-4.18,32.99-5.9,5.93-.93,11.98-1.13,17.97-1.69,9.24-.86,18.46-1.92,27.71-2.53,5.34-.35,10.73-.1,16.09.13,5.91.26,10.39-1.93,14.01-6.6,1.22-1.58,3.98-3.6,5.21-3.15,1.89.69,3.12,3.29,4.48,5.19.4.56.3,1.5.51,2.78ZM373.24,55.73c-46.61,1.06-92.54,8.58-137.92,20.46.71.88,1.4,1.22,2.12,1.47,23.34,8.13,46.84,15.94,65.22,33.68,9.73,9.39,16.05,20.68,19.22,33.73,1.13,4.64,1.8,9.38,2.68,14.12,16.33-34.71,32.45-68.96,48.68-103.46Z"/> <path d="M131.29,176.82c11.1-14.62,21.78-28.67,32.73-43.1-5.7-1.03-10.34-3.16-10.78-9.02-.48-6.44-1.27-13.29,5.13-17.99,2.81,2.95,5.86,5.35,2.89,10.05-1.12,1.78-.49,4.66-.71,7.71,12.73-3.86,19.39-14.44,28.61-21.48,4.99,3.58,5,5.85,1.1,10.86-17.49,22.41-34.87,44.91-52.65,67.85,7.33,5.22,14.52,10.12,21.47,15.33,19.32,14.48,38.54,29.1,57.83,43.62,4.6,3.46,9.47,6.56,13.94,10.16,1.37,1.11,1.84,3.33,2.72,5.04-2.2-.04-4.99.78-6.5-.26-8.31-5.69-16.24-11.93-24.42-17.81-21.05-15.11-42.42-29.78-63.17-45.29-16.3-12.18-31.92-25.29-47.72-38.13-2.53-2.06-4.65-4.74-6.54-7.42-6.27-8.88-4.43-16.06,5.8-20.42,6.73-2.87,14.18-4.08,20.92-6.93,15.29-6.46,31.26-11.74,44.39-22.4,3.27-2.66,6.49-5.91,8.43-9.58,5-9.46-.5-17.61-12.67-21.06-15.93-4.51-31.67-2.62-47.66-.52-15.85,2.09-29.86,8.08-42.29,17.69-4.19,3.25-7.61,7.79-10.53,12.29-3.12,4.81-1.59,8.85,3.11,12.37,2.66,1.98,5.14,4.25,7.41,6.66.64.68.79,2.71.24,3.37-.55.67-2.37.84-3.4.51-14.91-4.79-17.55-23.64-9.8-32.39,8.14-9.18,17.15-16.8,29.39-20.18,6.87-1.9,13.24-5.82,20.16-7.23,8.77-1.79,17.91-1.72,26.82-2.9,9.51-1.27,18.7.22,27.79,2.56,10.84,2.79,21.33,12.69,19.57,23.26-.68,4.1-3.03,8.23-5.55,11.65-13.77,18.68-34.49,26.22-55.19,33.74-6.19,2.25-12.38,4.49-18.48,6.96-5.5,2.22-6.34,5.1-1.98,9.05,10.77,9.74,21.88,19.1,32.91,28.55,1.98,1.69,4.22,3.08,6.68,4.86Z"/> <path d="M431.94,124.6c12.34-4.7,19.77-14.08,28.36-21.8,4.93,3.56,5.41,5.22,1.97,9.7-14.59,19.01-29.29,37.93-43.97,56.88-3.95,5.1-8.03,10.1-11.92,15.25-1.35,1.78-2.35,4.1-4.91,1.79-2.1-1.9-3.34-4.06-1.12-6.91,5.48-7.04,10.83-14.18,16.23-21.28,6.09-8.01,12.17-16.01,18.32-24.09-12.21-4.63-15.04-18.99-5.62-27.23,3.38,2.84,6.09,5.6,2.81,10.51-.97,1.45-.15,4.1-.15,7.2Z"/> <path d="M219.18,130.17c-1.39.94-2.82,1.83-4.18,2.83-5.77,4.23-11.35,8.73-17.32,12.65-3.56,2.34-8.8,3.7-11.36.19-1.62-2.22-.61-7.89,1.19-10.78,7.77-12.47,17.54-23.11,31.58-28.91,1.22-.5,2.38-1.22,3.64-1.52,2.07-.48,5.8-1.45,6.05-.91,1.5,3.19,4.9,4.66,4.82,9.71-.17,10.81-6.25,18.88-9.71,28.14-.34.92-.61,2.19-1.32,2.59-2.23,1.26-4.65,2.19-6.99,3.24-.13-2.14-.87-4.47-.26-6.38,1.11-3.5,3.02-6.74,4.59-10.09-.25-.25-.49-.51-.74-.76ZM196.05,135.61l1.06,1.17c9.47-7.07,18.97-14.1,28.37-21.27.92-.7,1.2-2.22,1.78-3.37l-1.25-1.01c-11.1,6.78-22.83,12.77-29.95,24.48Z"/> <path d="M382.41,136.72c8.58-6.36,17.53-12.29,25.59-19.26,4.02-3.47,6.05.83,9.03.5.08,2.2.9,4.71.12,6.53-2.79,6.47-5.83,12.88-9.42,18.93-1.28,2.16-4.42,3.21-6.72,4.76-.66-.48-1.31-.95-1.97-1.43,1.88-5.34,3.75-10.67,6.12-17.4-2.61,1.88-4.14,2.96-5.64,4.07-5.74,4.26-11.47,8.55-17.23,12.78-.51.37-1.26.63-1.87.59-3.15-.24-6.84.24-9.21-1.28-1.18-.76-.74-5.63.34-8.02,4.31-9.54,11.61-16.89,19.69-23.19,5.22-4.07,11.49-6.84,17.44-9.92,1.56-.81,5.04-1.23,5.26-.75,1.4,3.09,7.09,4.44,3.78,10.07-8.03-5.24-13.18,1.27-18.71,5.27-5.55,4.01-10.47,8.91-15.58,13.51-.89.8-1.37,2.07-2.04,3.12l1.03,1.11Z"/> <path d="M105.43,76.5c3.34,4.73,2.94,8.07.12,12.3-17.26,25.79-34.13,51.83-51.22,77.73-.76,1.16-2.37,1.76-3.58,2.62-.33-1.94-1.55-4.34-.83-5.74,3-5.85,6.46-11.48,9.99-17.04,13.62-21.4,27.33-42.75,41.04-64.09,1.22-1.89,2.76-3.57,4.48-5.79Z"/> <path d="M480.33,125.74c.43-.37,1.35-1.85,2.36-1.91,8.73-.52,12.99-7.61,18.89-12.34,4.35-3.49,8.89-7.02,13.91-9.29,1.92-.86,5.71,1.33,8,3.02.77.56.2,4.4-.93,5.82-5.91,7.45-14.35,11.38-22.71,15.35-.45.21-1.02.22-1.39.5-1.96,1.47-6.32.64-5.21,5.04.92,3.66,6.06,6,9.97,4.85,2.99-.88,5.97-2.06,9.02-2.35,1.7-.17,3.55,1.2,5.34,1.87-.86,1.52-1.34,3.77-2.64,4.43-5.6,2.88-11.82,4.06-17.65,1.48-3.39-1.5-6.01-4.86-8.78-7.58-2.66-2.62-5.08-5.49-8.19-8.9Z"/> <path d="M239.68,138.14c-.65-7.2,8.02-27.88,13.23-32.48,5.41,2.44,4.48,6.28,2.61,11.09,1.94-.99,3.85-2.03,5.81-2.95,7.94-3.73,14.38.27,13.54,9-.59,6.14-2.65,12.12-3.95,18.2-.75,3.5-1.01,7.14-2.07,10.53-.61,1.95-2.37,4.95-3.67,4.98-2.74.06-5.02-2.21-4.25-5.41,1.87-7.78,4.04-15.5,6.12-23.23.62-2.29,1.35-4.55,2.22-7.48-7.63-.43-12.1,4.1-16.94,7.4-3.26,2.22-5.92,5.28-8.93,7.88-1.02.89-2.27,1.52-3.71,2.46Z"/> <path d="M527.69,144.84c-3.08-1.21-4.62-3.9-3.22-7.44,4.02-10.2,8.33-20.3,12.56-30.42.17-.41.72-.66,1.64-1.47,1.58,2.81,3.06,5.46,4.8,8.55,2.45-1.21,5.76-2.78,9-4.46,4.33-2.24,7.89-.88,10.89,2.39.71.77,1.24,2.65.79,3.33-.77,1.18-2.61,2.78-3.57,2.53-8.9-2.31-13.91,3.76-18.84,8.97-5.04,5.34-9.12,11.58-14.06,18.01Z"/> </svg></div></div>
+  <details class="why"><summary>Why this one fired</summary><div class="why__in">
+    <p class="why__lede">Checked in chain order. The first one to fail is called, never the highest score.</p>
+    <table class="scores"><thead><tr><th>Constraint</th><th class="num">Score</th><th></th></tr></thead>
+    <tbody><tr><td>Cash flow</td>
+      <td class="num">24</td>
+      <td></td></tr><tr class="is-it"><td>Talent</td>
+      <td class="num">95</td>
+      <td>called</td></tr><tr><td>Fulfilment</td>
+      <td class="num">60</td>
+      <td>over the bar, but downstream</td></tr><tr><td>Value</td>
+      <td class="num">18</td>
+      <td></td></tr><tr><td>Offer</td>
+      <td class="num">35</td>
+      <td></td></tr><tr><td>Demand</td>
+      <td class="num">49</td>
+      <td></td></tr><tr><td>Margin</td>
+      <td class="num">86</td>
+      <td>over the bar, but downstream</td></tr></tbody></table>
+    <p class="why__lede">Bar is 60. Suppressed by the finding above: fulfilment, value.
+    Risks are listed loudest first across all three families, capped at 4.</p>
+    </div></details>
+</section>
+<section class="panel" id="p-kerrick" role="tabpanel" aria-labelledby="t-kerrick">
+  <div class="biz">
+    <p class="biz__meta">Staging, rigging and custom fabrication</p>
+    <h2 class="display d3">Kerrick Staging</h2>
+    <p>Turning work away most months. One fabricator holds every drawing and every supplier relationship in his head.</p>
+    <div class="biz__facts">
+      <div><b>Brisbane</b></div><div><b>$1m to $3m, fourteen staff</b></div><div><b>Seven years trading</b></div>
+      <div>Answered <b>58 of 58</b></div>
+    </div>
+  </div>
+  <div class="rep__head"><p class="eyebrow">Your diagnosis</p>
+        <h2 class="display d2">You are <em>fulfilment</em> constrained</h2></div><div class="sec"><p>Everything below is calculated on your answers. It's a guide rather than a custom diagnostic, so read the report as a rough shape of what your current challenges are and what solutions may look like.</p><p>It names your biggest single constraint. There is likely more, and there may be other things wrong, there always are. They're not listed in here because the order you fix things in matters. Fix the constraints and risks in your business, then come back and get an updated report.</p>
+        <p class="privacy">We do not use <u>any</u> AI in this tool, and <u>none</u> of your data is sent or stored offsite.</p></div><div class="sec"><p class="sec__label">01, The constraint</p>
+        <div class="verdict"><div class="glow"></div><p class="eyebrow">What is capping the business</p>
+        <h3 class="display d3">You are <em>fulfilment</em> constrained</h3><p>This is capacity, not capability. You know how to do the work and you can't get enough hours of it out the door. You're running at 118% booked, you're turning work away constantly and lead times have blown out. A typical job is ready only as it starts.</p><p>Nothing at the front of the business needs attention until the back of it can breathe. Anything you do to bring in more work right now gets paid for by the customers you already have.</p></div></div><div class="sec"><p class="sec__label">02, How to fix it</p><p>More output from what you already have, before you buy any more of anything.</p>
+        <ol class="acts"><li>Find the one step everything queues behind, then put your next hour into that step and nothing else.</li><li>Write the five things that go wrong most often into one page checklists. Undocumented work is slow work.</li><li>Pull the work that doesn't need your best people off your best people.</li><li>Quote the lead time you actually deliver rather than the one you hope for. A blown promise costs a customer you'd already won.</li><li>Stop selling the jobs that eat the most capacity for the least return, at least until the queue clears.</li></ol></div><div class="sec"><p class="sec__label">03, Your risks, and what to do about them</p><p>These are the things that would hurt most if they went wrong. They sit behind the constraint above in the order, not in front of it.</p><div class="risk">
+         <div class="risk__head"><div class="glow"></div><span>You have a</span><h4 class="display d3">Key employee</h4><span>risk</span></div>
+         <div class="risk__body"><p>One person knows how the work actually gets done and it isn't written down anywhere else. If they leave, the knowledge goes with them, and you'll be rebuilding it from scratch while still trying to deliver.</p>
+         <ol class="acts acts--risk"><li>Have them document the work while they're still here, and pay them properly to do it.</li><li>Put a second person alongside them on the next three jobs, doing rather than watching.</li></ol></div></div><div class="risk">
+         <div class="risk__head"><div class="glow"></div><span>You have a</span><h4 class="display d3">No documented process</h4><span>risk</span></div>
+         <div class="risk__body"><p>Almost none of the work is documented well enough that somebody else could pick it up and finish it. Every new hire takes longer than it should, quality moves depending on who's on the job, and nothing can be handed over cleanly.</p>
+         <ol class="acts acts--risk"><li>Record yourself doing the five things that go wrong most often, then turn each one into a one page checklist.</li><li>Checklists beat manuals, because people actually use them.</li></ol></div></div><div class="risk">
+         <div class="risk__head"><div class="glow"></div><span>You have a</span><h4 class="display d3">No data</h4><span>risk</span></div>
+         <div class="risk__body"><p>You look at the numbers once a year at tax time, and there were questions in here you couldn't answer. Running on feel works while the business is small enough to hold in your head. Past that, you're making decisions on a version of the business that's a few months out of date.</p>
+         <ol class="acts acts--risk"><li>Pick five numbers and look at them weekly. Cash in the bank, enquiries, close rate, jobs delivered, and margin on the last ten jobs.</li><li>One page, same day every week. The habit matters more than the tool you keep it in.</li></ol></div></div><div class="risk">
+         <div class="risk__head"><div class="glow"></div><span>You have a</span><h4 class="display d3">Owner trapped</h4><span>risk</span></div>
+         <div class="risk__body"><p>Sold tomorrow, a buyer would need you for the best part of a year. How long that handover runs is what decides whether the business is worth anything to anyone but you, and it's the same thing that decides whether you can ever step back.</p>
+         <ol class="acts acts--risk"><li>Work out what only you can do, then start moving everything else.</li><li>Book a month off twelve months out and work backwards from it. That's the deadline that makes it real.</li></ol></div></div></div><div class="sec sec--dont"><h3 class="display d2 dont__h">Don’t do this yet</h3>
+        <p>Until you can deliver what you've already sold, leave these alone.</p>
+        <ol class="acts dont"><li>Don't chase new customers. You'd be damaging the ones you have to serve the ones you win.</li><li>Don't increase marketing spend. Adding demand to a full pipeline is the classic accelerant.</li><li>Don't launch a new service line. New work is slow work while the process is still being learned.</li><li>Don't drop your prices. You've got more demand than capacity, which is the one time raising them is easy.</li><li>Don't promise a shorter lead time to win a job. That's where the quality problem starts.</li></ol></div><div class="sec"><p>That's the diagnosis. One constraint, the risks sitting around it, and the things to leave alone while you fix it.</p><p>Work the constraint and check back in ninety days. That's long enough for it to move and short enough that you'll still remember what you changed.</p><div class="sign"><svg viewBox="0 0 601.04 273.69" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-label="Ryan Tayler signature"> <path d="M394.25,46.02c32.82.56,65.41,1.12,97.93,1.68.55-2.98,1-5.46,1.47-8.05,6.11,1.13,6.02,5.62,6.52,10.1,4.97,0,9.74.2,14.49-.05,5.58-.29,9.47,2.55,12.68,6.47,1.02,1.25,1.33,3.37,1.35,5.1.04,2.69-1.29,4.69-3.79,1.98-6.56-7.09-15.54-4.8-23.51-6.34-1.04-.2-3.15,1.45-3.63,2.68-6.12,15.73-11.35,31.84-18.19,47.24-6.12,13.79-13.8,26.92-21.18,40.12-1.1,1.98-4.36,2.75-6.62,4.08l-1.19-1.02c.64-2.21.8-4.73,2.01-6.57,8.7-13.24,16.1-27.13,21.86-41.91,5.65-14.52,11.38-29,17.56-44.72-6.9-.81-12.64-2.02-18.38-2.06-28.76-.19-57.52-.14-86.28.11-2.12.02-5.25,1.81-6.18,3.65-12.6,25.01-25.31,49.98-37.1,75.37-7.93,17.06-14.45,34.78-21.23,51.29-2.73-.29-4.63-.49-7.51-.8.2-2.64.47-6.06.72-9.49.31-4.31,1.14-8.65.82-12.91-1.41-19-6.87-36.27-22.12-49.15-10.1-8.53-21.47-14.71-33.84-19.23-9.74-3.56-19.52-7.05-29.13-10.93-2.19-.88-5.35-3.28-5.3-4.89.08-2.58,2.03-5.53,4.01-7.5,1.75-1.74,4.53-2.74,7.03-3.38,12.55-3.19,25.11-6.41,37.77-9.12,10.92-2.34,21.95-4.18,32.99-5.9,5.93-.93,11.98-1.13,17.97-1.69,9.24-.86,18.46-1.92,27.71-2.53,5.34-.35,10.73-.1,16.09.13,5.91.26,10.39-1.93,14.01-6.6,1.22-1.58,3.98-3.6,5.21-3.15,1.89.69,3.12,3.29,4.48,5.19.4.56.3,1.5.51,2.78ZM373.24,55.73c-46.61,1.06-92.54,8.58-137.92,20.46.71.88,1.4,1.22,2.12,1.47,23.34,8.13,46.84,15.94,65.22,33.68,9.73,9.39,16.05,20.68,19.22,33.73,1.13,4.64,1.8,9.38,2.68,14.12,16.33-34.71,32.45-68.96,48.68-103.46Z"/> <path d="M131.29,176.82c11.1-14.62,21.78-28.67,32.73-43.1-5.7-1.03-10.34-3.16-10.78-9.02-.48-6.44-1.27-13.29,5.13-17.99,2.81,2.95,5.86,5.35,2.89,10.05-1.12,1.78-.49,4.66-.71,7.71,12.73-3.86,19.39-14.44,28.61-21.48,4.99,3.58,5,5.85,1.1,10.86-17.49,22.41-34.87,44.91-52.65,67.85,7.33,5.22,14.52,10.12,21.47,15.33,19.32,14.48,38.54,29.1,57.83,43.62,4.6,3.46,9.47,6.56,13.94,10.16,1.37,1.11,1.84,3.33,2.72,5.04-2.2-.04-4.99.78-6.5-.26-8.31-5.69-16.24-11.93-24.42-17.81-21.05-15.11-42.42-29.78-63.17-45.29-16.3-12.18-31.92-25.29-47.72-38.13-2.53-2.06-4.65-4.74-6.54-7.42-6.27-8.88-4.43-16.06,5.8-20.42,6.73-2.87,14.18-4.08,20.92-6.93,15.29-6.46,31.26-11.74,44.39-22.4,3.27-2.66,6.49-5.91,8.43-9.58,5-9.46-.5-17.61-12.67-21.06-15.93-4.51-31.67-2.62-47.66-.52-15.85,2.09-29.86,8.08-42.29,17.69-4.19,3.25-7.61,7.79-10.53,12.29-3.12,4.81-1.59,8.85,3.11,12.37,2.66,1.98,5.14,4.25,7.41,6.66.64.68.79,2.71.24,3.37-.55.67-2.37.84-3.4.51-14.91-4.79-17.55-23.64-9.8-32.39,8.14-9.18,17.15-16.8,29.39-20.18,6.87-1.9,13.24-5.82,20.16-7.23,8.77-1.79,17.91-1.72,26.82-2.9,9.51-1.27,18.7.22,27.79,2.56,10.84,2.79,21.33,12.69,19.57,23.26-.68,4.1-3.03,8.23-5.55,11.65-13.77,18.68-34.49,26.22-55.19,33.74-6.19,2.25-12.38,4.49-18.48,6.96-5.5,2.22-6.34,5.1-1.98,9.05,10.77,9.74,21.88,19.1,32.91,28.55,1.98,1.69,4.22,3.08,6.68,4.86Z"/> <path d="M431.94,124.6c12.34-4.7,19.77-14.08,28.36-21.8,4.93,3.56,5.41,5.22,1.97,9.7-14.59,19.01-29.29,37.93-43.97,56.88-3.95,5.1-8.03,10.1-11.92,15.25-1.35,1.78-2.35,4.1-4.91,1.79-2.1-1.9-3.34-4.06-1.12-6.91,5.48-7.04,10.83-14.18,16.23-21.28,6.09-8.01,12.17-16.01,18.32-24.09-12.21-4.63-15.04-18.99-5.62-27.23,3.38,2.84,6.09,5.6,2.81,10.51-.97,1.45-.15,4.1-.15,7.2Z"/> <path d="M219.18,130.17c-1.39.94-2.82,1.83-4.18,2.83-5.77,4.23-11.35,8.73-17.32,12.65-3.56,2.34-8.8,3.7-11.36.19-1.62-2.22-.61-7.89,1.19-10.78,7.77-12.47,17.54-23.11,31.58-28.91,1.22-.5,2.38-1.22,3.64-1.52,2.07-.48,5.8-1.45,6.05-.91,1.5,3.19,4.9,4.66,4.82,9.71-.17,10.81-6.25,18.88-9.71,28.14-.34.92-.61,2.19-1.32,2.59-2.23,1.26-4.65,2.19-6.99,3.24-.13-2.14-.87-4.47-.26-6.38,1.11-3.5,3.02-6.74,4.59-10.09-.25-.25-.49-.51-.74-.76ZM196.05,135.61l1.06,1.17c9.47-7.07,18.97-14.1,28.37-21.27.92-.7,1.2-2.22,1.78-3.37l-1.25-1.01c-11.1,6.78-22.83,12.77-29.95,24.48Z"/> <path d="M382.41,136.72c8.58-6.36,17.53-12.29,25.59-19.26,4.02-3.47,6.05.83,9.03.5.08,2.2.9,4.71.12,6.53-2.79,6.47-5.83,12.88-9.42,18.93-1.28,2.16-4.42,3.21-6.72,4.76-.66-.48-1.31-.95-1.97-1.43,1.88-5.34,3.75-10.67,6.12-17.4-2.61,1.88-4.14,2.96-5.64,4.07-5.74,4.26-11.47,8.55-17.23,12.78-.51.37-1.26.63-1.87.59-3.15-.24-6.84.24-9.21-1.28-1.18-.76-.74-5.63.34-8.02,4.31-9.54,11.61-16.89,19.69-23.19,5.22-4.07,11.49-6.84,17.44-9.92,1.56-.81,5.04-1.23,5.26-.75,1.4,3.09,7.09,4.44,3.78,10.07-8.03-5.24-13.18,1.27-18.71,5.27-5.55,4.01-10.47,8.91-15.58,13.51-.89.8-1.37,2.07-2.04,3.12l1.03,1.11Z"/> <path d="M105.43,76.5c3.34,4.73,2.94,8.07.12,12.3-17.26,25.79-34.13,51.83-51.22,77.73-.76,1.16-2.37,1.76-3.58,2.62-.33-1.94-1.55-4.34-.83-5.74,3-5.85,6.46-11.48,9.99-17.04,13.62-21.4,27.33-42.75,41.04-64.09,1.22-1.89,2.76-3.57,4.48-5.79Z"/> <path d="M480.33,125.74c.43-.37,1.35-1.85,2.36-1.91,8.73-.52,12.99-7.61,18.89-12.34,4.35-3.49,8.89-7.02,13.91-9.29,1.92-.86,5.71,1.33,8,3.02.77.56.2,4.4-.93,5.82-5.91,7.45-14.35,11.38-22.71,15.35-.45.21-1.02.22-1.39.5-1.96,1.47-6.32.64-5.21,5.04.92,3.66,6.06,6,9.97,4.85,2.99-.88,5.97-2.06,9.02-2.35,1.7-.17,3.55,1.2,5.34,1.87-.86,1.52-1.34,3.77-2.64,4.43-5.6,2.88-11.82,4.06-17.65,1.48-3.39-1.5-6.01-4.86-8.78-7.58-2.66-2.62-5.08-5.49-8.19-8.9Z"/> <path d="M239.68,138.14c-.65-7.2,8.02-27.88,13.23-32.48,5.41,2.44,4.48,6.28,2.61,11.09,1.94-.99,3.85-2.03,5.81-2.95,7.94-3.73,14.38.27,13.54,9-.59,6.14-2.65,12.12-3.95,18.2-.75,3.5-1.01,7.14-2.07,10.53-.61,1.95-2.37,4.95-3.67,4.98-2.74.06-5.02-2.21-4.25-5.41,1.87-7.78,4.04-15.5,6.12-23.23.62-2.29,1.35-4.55,2.22-7.48-7.63-.43-12.1,4.1-16.94,7.4-3.26,2.22-5.92,5.28-8.93,7.88-1.02.89-2.27,1.52-3.71,2.46Z"/> <path d="M527.69,144.84c-3.08-1.21-4.62-3.9-3.22-7.44,4.02-10.2,8.33-20.3,12.56-30.42.17-.41.72-.66,1.64-1.47,1.58,2.81,3.06,5.46,4.8,8.55,2.45-1.21,5.76-2.78,9-4.46,4.33-2.24,7.89-.88,10.89,2.39.71.77,1.24,2.65.79,3.33-.77,1.18-2.61,2.78-3.57,2.53-8.9-2.31-13.91,3.76-18.84,8.97-5.04,5.34-9.12,11.58-14.06,18.01Z"/> </svg></div></div>
+  <details class="why"><summary>Why this one fired</summary><div class="why__in">
+    <p class="why__lede">Checked in chain order. The first one to fail is called, never the highest score.</p>
+    <table class="scores"><thead><tr><th>Constraint</th><th class="num">Score</th><th></th></tr></thead>
+    <tbody><tr><td>Cash flow</td>
+      <td class="num">30</td>
+      <td></td></tr><tr><td>Talent</td>
+      <td class="num">42</td>
+      <td></td></tr><tr class="is-it"><td>Fulfilment</td>
+      <td class="num">98</td>
+      <td>called</td></tr><tr><td>Value</td>
+      <td class="num">18</td>
+      <td></td></tr><tr><td>Offer</td>
+      <td class="num">29</td>
+      <td></td></tr><tr><td>Demand</td>
+      <td class="num">&mdash;</td>
+      <td>ruled out by q34</td></tr><tr><td>Margin</td>
+      <td class="num">43</td>
+      <td></td></tr></tbody></table>
+    <p class="why__lede">Bar is 60. Suppressed by the finding above: value.
+    Risks are listed loudest first across all three families, capped at 4.</p>
+    </div></details>
+</section>
+<section class="panel" id="p-halcyon" role="tabpanel" aria-labelledby="t-halcyon">
+  <div class="biz">
+    <p class="biz__meta">Brand films and content production</p>
+    <h2 class="display d3">Halcyon Studio</h2>
+    <p>Plenty of enquiries off the back of good work. Every job gets scoped and priced from scratch, and most of them quietly go nowhere.</p>
+    <div class="biz__facts">
+      <div><b>Melbourne</b></div><div><b>$250k to $1m, four staff</b></div><div><b>Three years trading</b></div>
+      <div>Answered <b>58 of 58</b></div>
+    </div>
+  </div>
+  <div class="rep__head"><p class="eyebrow">Your diagnosis</p>
+        <h2 class="display d2">You are <em>offer</em> constrained</h2></div><div class="sec"><p>Everything below is calculated on your answers. It's a guide rather than a custom diagnostic, so read the report as a rough shape of what your current challenges are and what solutions may look like.</p><p>It names your biggest single constraint. There is likely more, and there may be other things wrong, there always are. They're not listed in here because the order you fix things in matters. Fix the constraints and risks in your business, then come back and get an updated report.</p>
+        <p class="privacy">We do not use <u>any</u> AI in this tool, and <u>none</u> of your data is sent or stored offsite.</p></div><div class="sec"><p class="sec__label">01, The constraint</p>
+        <div class="verdict"><div class="glow"></div><p class="eyebrow">What is capping the business</p>
+        <h3 class="display d3">You are <em>offer</em> constrained</h3><p>Enquiries arrive and they don't convert. Your close rate sits at 9%, the most common reason you lose is inaction and prospects come back on your quote asking what's included on most quotes. They find out what you charge from a quote built from scratch every time.</p><p>This isn't a sales technique problem. When the thing on the table is clear, priced, and it fits what the buyer came in for, an average salesperson closes it. Right now yours needs you in the room to make sense of it.</p></div></div><div class="sec"><p class="sec__label">02, How to fix it</p><p>Make the thing you sell understandable without you standing next to it.</p>
+        <ol class="acts"><li>Write the offer on one page. What it is, what it costs, what the buyer gets, who it isn't for.</li><li>Price it publicly, or at least in a range. Every quote you build from scratch is a delay you're funding.</li><li>Sort your last twenty losses by reason and count them. The pattern is usually one thing.</li><li>Rewrite the quote so it answers what's included and why it costs that, before they have to ask.</li><li>Cut the options. Fewer, clearer choices close more often than a menu does.</li></ol></div><div class="sec"><p class="sec__label">03, Your risks, and what to do about them</p><p>These are the things that would hurt most if they went wrong. They sit behind the constraint above in the order, not in front of it.</p><div class="risk">
+         <div class="risk__head"><div class="glow"></div><span>You have a</span><h4 class="display d3">Key person</h4><span>risk</span></div>
+         <div class="risk__body"><p>The business leans heavily on one person, and going by your answers that person is probably you. Illness, a resignation or a fortnight offline stops things that shouldn't be stoppable.</p>
+         <ol class="acts acts--risk"><li>Write down what they hold, then move one piece of it to somebody else this month.</li><li>Repeat until nothing sits in one head, and test it by having them take a week off.</li></ol></div></div><div class="risk">
+         <div class="risk__head"><div class="glow"></div><span>You have a</span><h4 class="display d3">Key channel</h4><span>risk</span></div>
+         <div class="risk__body"><p>Your customers arrive almost entirely through one channel. Channels change without asking you first, and an algorithm shift, a search update or one referrer going quiet can halve your enquiries inside a month.</p>
+         <ol class="acts acts--risk"><li>Stand up a second channel before you need it, and give it ninety days before you judge it.</li><li>Write down what you'd do if the current one halved tomorrow. That plan is worth having on paper before you need it.</li></ol></div></div><div class="risk">
+         <div class="risk__head"><div class="glow"></div><span>You have a</span><h4 class="display d3">No succession</h4><span>risk</span></div>
+         <div class="risk__body"><p>There's nothing for what happens if you stop, sell or step back. Every business has an exit, planned or otherwise. The unplanned version is the one where somebody else sets the price.</p>
+         <ol class="acts acts--risk"><li>Write the one page version. Who runs it, what happens to the customers, what it's worth and who'd buy it.</li><li>It doesn't need to be right, it needs to exist.</li></ol></div></div><div class="risk">
+         <div class="risk__head"><div class="glow"></div><span>You have a</span><h4 class="display d3">Owner trapped</h4><span>risk</span></div>
+         <div class="risk__body"><p>Sold tomorrow, a buyer would need you for the best part of a year. How long that handover runs is what decides whether the business is worth anything to anyone but you, and it's the same thing that decides whether you can ever step back.</p>
+         <ol class="acts acts--risk"><li>Work out what only you can do, then start moving everything else.</li><li>Book a month off twelve months out and work backwards from it. That's the deadline that makes it real.</li></ol></div></div></div><div class="sec sec--dont"><h3 class="display d2 dont__h">Don’t do this yet</h3>
+        <p>Until the offer lands, leave these alone.</p>
+        <ol class="acts dont"><li>Don't buy more leads. You'd pay more money for the same conversion rate.</li><li>Don't hire a salesperson. They'd fail against the same offer you're failing against.</li><li>Don't cut your price. Price is rarely the real reason, and you can't test it while the offer is unclear.</li><li>Don't add more options. More choice is part of why these deals are stalling.</li><li>Don't rebrand. The words are the problem, not the logo.</li></ol></div><div class="sec"><p>That's the diagnosis. One constraint, the risks sitting around it, and the things to leave alone while you fix it.</p><p>Work the constraint and check back in ninety days. That's long enough for it to move and short enough that you'll still remember what you changed.</p><div class="sign"><svg viewBox="0 0 601.04 273.69" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-label="Ryan Tayler signature"> <path d="M394.25,46.02c32.82.56,65.41,1.12,97.93,1.68.55-2.98,1-5.46,1.47-8.05,6.11,1.13,6.02,5.62,6.52,10.1,4.97,0,9.74.2,14.49-.05,5.58-.29,9.47,2.55,12.68,6.47,1.02,1.25,1.33,3.37,1.35,5.1.04,2.69-1.29,4.69-3.79,1.98-6.56-7.09-15.54-4.8-23.51-6.34-1.04-.2-3.15,1.45-3.63,2.68-6.12,15.73-11.35,31.84-18.19,47.24-6.12,13.79-13.8,26.92-21.18,40.12-1.1,1.98-4.36,2.75-6.62,4.08l-1.19-1.02c.64-2.21.8-4.73,2.01-6.57,8.7-13.24,16.1-27.13,21.86-41.91,5.65-14.52,11.38-29,17.56-44.72-6.9-.81-12.64-2.02-18.38-2.06-28.76-.19-57.52-.14-86.28.11-2.12.02-5.25,1.81-6.18,3.65-12.6,25.01-25.31,49.98-37.1,75.37-7.93,17.06-14.45,34.78-21.23,51.29-2.73-.29-4.63-.49-7.51-.8.2-2.64.47-6.06.72-9.49.31-4.31,1.14-8.65.82-12.91-1.41-19-6.87-36.27-22.12-49.15-10.1-8.53-21.47-14.71-33.84-19.23-9.74-3.56-19.52-7.05-29.13-10.93-2.19-.88-5.35-3.28-5.3-4.89.08-2.58,2.03-5.53,4.01-7.5,1.75-1.74,4.53-2.74,7.03-3.38,12.55-3.19,25.11-6.41,37.77-9.12,10.92-2.34,21.95-4.18,32.99-5.9,5.93-.93,11.98-1.13,17.97-1.69,9.24-.86,18.46-1.92,27.71-2.53,5.34-.35,10.73-.1,16.09.13,5.91.26,10.39-1.93,14.01-6.6,1.22-1.58,3.98-3.6,5.21-3.15,1.89.69,3.12,3.29,4.48,5.19.4.56.3,1.5.51,2.78ZM373.24,55.73c-46.61,1.06-92.54,8.58-137.92,20.46.71.88,1.4,1.22,2.12,1.47,23.34,8.13,46.84,15.94,65.22,33.68,9.73,9.39,16.05,20.68,19.22,33.73,1.13,4.64,1.8,9.38,2.68,14.12,16.33-34.71,32.45-68.96,48.68-103.46Z"/> <path d="M131.29,176.82c11.1-14.62,21.78-28.67,32.73-43.1-5.7-1.03-10.34-3.16-10.78-9.02-.48-6.44-1.27-13.29,5.13-17.99,2.81,2.95,5.86,5.35,2.89,10.05-1.12,1.78-.49,4.66-.71,7.71,12.73-3.86,19.39-14.44,28.61-21.48,4.99,3.58,5,5.85,1.1,10.86-17.49,22.41-34.87,44.91-52.65,67.85,7.33,5.22,14.52,10.12,21.47,15.33,19.32,14.48,38.54,29.1,57.83,43.62,4.6,3.46,9.47,6.56,13.94,10.16,1.37,1.11,1.84,3.33,2.72,5.04-2.2-.04-4.99.78-6.5-.26-8.31-5.69-16.24-11.93-24.42-17.81-21.05-15.11-42.42-29.78-63.17-45.29-16.3-12.18-31.92-25.29-47.72-38.13-2.53-2.06-4.65-4.74-6.54-7.42-6.27-8.88-4.43-16.06,5.8-20.42,6.73-2.87,14.18-4.08,20.92-6.93,15.29-6.46,31.26-11.74,44.39-22.4,3.27-2.66,6.49-5.91,8.43-9.58,5-9.46-.5-17.61-12.67-21.06-15.93-4.51-31.67-2.62-47.66-.52-15.85,2.09-29.86,8.08-42.29,17.69-4.19,3.25-7.61,7.79-10.53,12.29-3.12,4.81-1.59,8.85,3.11,12.37,2.66,1.98,5.14,4.25,7.41,6.66.64.68.79,2.71.24,3.37-.55.67-2.37.84-3.4.51-14.91-4.79-17.55-23.64-9.8-32.39,8.14-9.18,17.15-16.8,29.39-20.18,6.87-1.9,13.24-5.82,20.16-7.23,8.77-1.79,17.91-1.72,26.82-2.9,9.51-1.27,18.7.22,27.79,2.56,10.84,2.79,21.33,12.69,19.57,23.26-.68,4.1-3.03,8.23-5.55,11.65-13.77,18.68-34.49,26.22-55.19,33.74-6.19,2.25-12.38,4.49-18.48,6.96-5.5,2.22-6.34,5.1-1.98,9.05,10.77,9.74,21.88,19.1,32.91,28.55,1.98,1.69,4.22,3.08,6.68,4.86Z"/> <path d="M431.94,124.6c12.34-4.7,19.77-14.08,28.36-21.8,4.93,3.56,5.41,5.22,1.97,9.7-14.59,19.01-29.29,37.93-43.97,56.88-3.95,5.1-8.03,10.1-11.92,15.25-1.35,1.78-2.35,4.1-4.91,1.79-2.1-1.9-3.34-4.06-1.12-6.91,5.48-7.04,10.83-14.18,16.23-21.28,6.09-8.01,12.17-16.01,18.32-24.09-12.21-4.63-15.04-18.99-5.62-27.23,3.38,2.84,6.09,5.6,2.81,10.51-.97,1.45-.15,4.1-.15,7.2Z"/> <path d="M219.18,130.17c-1.39.94-2.82,1.83-4.18,2.83-5.77,4.23-11.35,8.73-17.32,12.65-3.56,2.34-8.8,3.7-11.36.19-1.62-2.22-.61-7.89,1.19-10.78,7.77-12.47,17.54-23.11,31.58-28.91,1.22-.5,2.38-1.22,3.64-1.52,2.07-.48,5.8-1.45,6.05-.91,1.5,3.19,4.9,4.66,4.82,9.71-.17,10.81-6.25,18.88-9.71,28.14-.34.92-.61,2.19-1.32,2.59-2.23,1.26-4.65,2.19-6.99,3.24-.13-2.14-.87-4.47-.26-6.38,1.11-3.5,3.02-6.74,4.59-10.09-.25-.25-.49-.51-.74-.76ZM196.05,135.61l1.06,1.17c9.47-7.07,18.97-14.1,28.37-21.27.92-.7,1.2-2.22,1.78-3.37l-1.25-1.01c-11.1,6.78-22.83,12.77-29.95,24.48Z"/> <path d="M382.41,136.72c8.58-6.36,17.53-12.29,25.59-19.26,4.02-3.47,6.05.83,9.03.5.08,2.2.9,4.71.12,6.53-2.79,6.47-5.83,12.88-9.42,18.93-1.28,2.16-4.42,3.21-6.72,4.76-.66-.48-1.31-.95-1.97-1.43,1.88-5.34,3.75-10.67,6.12-17.4-2.61,1.88-4.14,2.96-5.64,4.07-5.74,4.26-11.47,8.55-17.23,12.78-.51.37-1.26.63-1.87.59-3.15-.24-6.84.24-9.21-1.28-1.18-.76-.74-5.63.34-8.02,4.31-9.54,11.61-16.89,19.69-23.19,5.22-4.07,11.49-6.84,17.44-9.92,1.56-.81,5.04-1.23,5.26-.75,1.4,3.09,7.09,4.44,3.78,10.07-8.03-5.24-13.18,1.27-18.71,5.27-5.55,4.01-10.47,8.91-15.58,13.51-.89.8-1.37,2.07-2.04,3.12l1.03,1.11Z"/> <path d="M105.43,76.5c3.34,4.73,2.94,8.07.12,12.3-17.26,25.79-34.13,51.83-51.22,77.73-.76,1.16-2.37,1.76-3.58,2.62-.33-1.94-1.55-4.34-.83-5.74,3-5.85,6.46-11.48,9.99-17.04,13.62-21.4,27.33-42.75,41.04-64.09,1.22-1.89,2.76-3.57,4.48-5.79Z"/> <path d="M480.33,125.74c.43-.37,1.35-1.85,2.36-1.91,8.73-.52,12.99-7.61,18.89-12.34,4.35-3.49,8.89-7.02,13.91-9.29,1.92-.86,5.71,1.33,8,3.02.77.56.2,4.4-.93,5.82-5.91,7.45-14.35,11.38-22.71,15.35-.45.21-1.02.22-1.39.5-1.96,1.47-6.32.64-5.21,5.04.92,3.66,6.06,6,9.97,4.85,2.99-.88,5.97-2.06,9.02-2.35,1.7-.17,3.55,1.2,5.34,1.87-.86,1.52-1.34,3.77-2.64,4.43-5.6,2.88-11.82,4.06-17.65,1.48-3.39-1.5-6.01-4.86-8.78-7.58-2.66-2.62-5.08-5.49-8.19-8.9Z"/> <path d="M239.68,138.14c-.65-7.2,8.02-27.88,13.23-32.48,5.41,2.44,4.48,6.28,2.61,11.09,1.94-.99,3.85-2.03,5.81-2.95,7.94-3.73,14.38.27,13.54,9-.59,6.14-2.65,12.12-3.95,18.2-.75,3.5-1.01,7.14-2.07,10.53-.61,1.95-2.37,4.95-3.67,4.98-2.74.06-5.02-2.21-4.25-5.41,1.87-7.78,4.04-15.5,6.12-23.23.62-2.29,1.35-4.55,2.22-7.48-7.63-.43-12.1,4.1-16.94,7.4-3.26,2.22-5.92,5.28-8.93,7.88-1.02.89-2.27,1.52-3.71,2.46Z"/> <path d="M527.69,144.84c-3.08-1.21-4.62-3.9-3.22-7.44,4.02-10.2,8.33-20.3,12.56-30.42.17-.41.72-.66,1.64-1.47,1.58,2.81,3.06,5.46,4.8,8.55,2.45-1.21,5.76-2.78,9-4.46,4.33-2.24,7.89-.88,10.89,2.39.71.77,1.24,2.65.79,3.33-.77,1.18-2.61,2.78-3.57,2.53-8.9-2.31-13.91,3.76-18.84,8.97-5.04,5.34-9.12,11.58-14.06,18.01Z"/> </svg></div></div>
+  <details class="why"><summary>Why this one fired</summary><div class="why__in">
+    <p class="why__lede">Checked in chain order. The first one to fail is called, never the highest score.</p>
+    <table class="scores"><thead><tr><th>Constraint</th><th class="num">Score</th><th></th></tr></thead>
+    <tbody><tr><td>Cash flow</td>
+      <td class="num">15</td>
+      <td></td></tr><tr><td>Talent</td>
+      <td class="num">45</td>
+      <td></td></tr><tr><td>Fulfilment</td>
+      <td class="num">23</td>
+      <td></td></tr><tr><td>Value</td>
+      <td class="num">45</td>
+      <td></td></tr><tr class="is-it"><td>Offer</td>
+      <td class="num">94</td>
+      <td>called</td></tr><tr><td>Demand</td>
+      <td class="num">51</td>
+      <td></td></tr><tr><td>Margin</td>
+      <td class="num">64</td>
+      <td>over the bar, but downstream</td></tr></tbody></table>
+    <p class="why__lede">Bar is 60. Suppressed by the finding above: demand.
+    Risks are listed loudest first across all three families, capped at 4.</p>
+    </div></details>
+</section>
+<section class="panel" id="p-tallow" role="tabpanel" aria-labelledby="t-tallow">
+  <div class="biz">
+    <p class="biz__meta">Event labour hire and crewing</p>
+    <h2 class="display d3">Tallow Crew</h2>
+    <p>Full order book, growing headcount, and less left at the end of each year than five years ago. Nobody has repriced anything since before the wage rises.</p>
+    <div class="biz__facts">
+      <div><b>Perth</b></div><div><b>$3m to $10m, sixty on the books</b></div><div><b>Fifteen years trading</b></div>
+      <div>Answered <b>57 of 58</b></div>
+    </div>
+  </div>
+  <div class="rep__head"><p class="eyebrow">Your diagnosis</p>
+        <h2 class="display d2">You are <em>margin</em> constrained</h2></div><div class="sec"><p>Everything below is calculated on your answers. It's a guide rather than a custom diagnostic, so read the report as a rough shape of what your current challenges are and what solutions may look like.</p><p>It names your biggest single constraint. There is likely more, and there may be other things wrong, there always are. They're not listed in here because the order you fix things in matters. Fix the constraints and risks in your business, then come back and get an updated report.</p>
+        <p class="privacy">We do not use <u>any</u> AI in this tool, and <u>none</u> of your data is sent or stored offsite.</p></div><div class="sec"><p class="sec__label">01, The constraint</p>
+        <div class="verdict"><div class="glow"></div><p class="eyebrow">What is capping the business</p>
+        <h3 class="display d3">You are <em>margin</em> constrained</h3><p>You're busy, you're full, and there's nothing left at the end of it. What's left after direct costs sits at 11%, after everything it's 0% and you've never raised your prices. Jobs run over what you quoted on most jobs.</p><p>Volume won't rescue this. At the margin you're running, more work gets you more of the same result and it arrives faster.</p></div></div><div class="sec"><p class="sec__label">02, How to fix it</p><p>Price first, then cost. Price moves faster and costs nothing to change.</p>
+        <ol class="acts"><li>Raise prices on new work now. Ten percent across the board, and watch what actually happens.</li><li>Work out what each job really costs, your own time included, then rank your last twenty by what was left.</li><li>Quote a contingency into the jobs that historically run over. You already know which ones they are.</li><li>Find your worst three customers by margin, then reprice them or let them go.</li><li>Stop discounting to win. A discount is the fastest way to buy work you'll resent delivering.</li></ol></div><div class="sec"><p class="sec__label">03, Your risks, and what to do about them</p><p>These are the things that would hurt most if they went wrong. They sit behind the constraint above in the order, not in front of it.</p><div class="risk">
+         <div class="risk__head"><div class="glow"></div><span>You have a</span><h4 class="display d3">No data</h4><span>risk</span></div>
+         <div class="risk__body"><p>You look at the numbers once a year at tax time, and there were questions in here you couldn't answer. Running on feel works while the business is small enough to hold in your head. Past that, you're making decisions on a version of the business that's a few months out of date.</p>
+         <ol class="acts acts--risk"><li>Pick five numbers and look at them weekly. Cash in the bank, enquiries, close rate, jobs delivered, and margin on the last ten jobs.</li><li>One page, same day every week. The habit matters more than the tool you keep it in.</li></ol></div></div><div class="risk">
+         <div class="risk__head"><div class="glow"></div><span>You have a</span><h4 class="display d3">Key product</h4><span>risk</span></div>
+         <div class="risk__body"><p>Half to three quarters of your revenue comes from one product or service line. That's fine while the market wants it, and it's a single point of failure the day the market moves or a competitor undercuts it.</p>
+         <ol class="acts acts--risk"><li>Build a second line and sell it to the customers you already have.</li><li>Set a target for what share of revenue it should carry in twelve months, and check it quarterly.</li></ol></div></div><div class="risk">
+         <div class="risk__head"><div class="glow"></div><span>You have a</span><h4 class="display d3">Key client</h4><span>risk</span></div>
+         <div class="risk__body"><p>One customer carries between 20 and 30% of your revenue. That customer can leave, go quiet, or get bought by someone who already has their own suppliers, and none of those are things you get a say in.</p>
+         <ol class="acts acts--risk"><li>Set a ceiling, say twenty percent of revenue from any one customer, and treat crossing it as the trigger to go and win two more.</li><li>Get them onto a term agreement with a notice period, so a decision to leave gives you time to react.</li></ol></div></div><div class="risk">
+         <div class="risk__head"><div class="glow"></div><span>You have a</span><h4 class="display d3">No second in command</h4><span>risk</span></div>
+         <div class="risk__body"><p>There's nobody who could run this if you stepped out. Every decision routes through you, which caps the business at the size of your week.</p>
+         <ol class="acts acts--risk"><li>Name the person, tell them, and start handing over one area at a time with the decisions attached.</li><li>Give them a budget and a limit they can act inside. A deputy who can't decide anything is a job title.</li></ol></div></div></div><div class="sec sec--dont"><h3 class="display d2 dont__h">Don’t do this yet</h3>
+        <p>Until the margin moves, leave these alone.</p>
+        <ol class="acts dont"><li>Don't chase volume. More work at this margin is more risk for the same money.</li><li>Don't hire. Every head you add at this margin needs a lot of revenue standing behind it.</li><li>Don't take the big thin job because it's good for the brand. Reputation doesn't pay wages.</li><li>Don't discount anything. There's nothing left to give away.</li><li>Don't invest in growth. Growing an unprofitable model makes it unprofitable faster.</li></ol></div><div class="sec"><p>That's the diagnosis. One constraint, the risks sitting around it, and the things to leave alone while you fix it.</p><p>Work the constraint and check back in ninety days. That's long enough for it to move and short enough that you'll still remember what you changed.</p><div class="sign"><svg viewBox="0 0 601.04 273.69" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-label="Ryan Tayler signature"> <path d="M394.25,46.02c32.82.56,65.41,1.12,97.93,1.68.55-2.98,1-5.46,1.47-8.05,6.11,1.13,6.02,5.62,6.52,10.1,4.97,0,9.74.2,14.49-.05,5.58-.29,9.47,2.55,12.68,6.47,1.02,1.25,1.33,3.37,1.35,5.1.04,2.69-1.29,4.69-3.79,1.98-6.56-7.09-15.54-4.8-23.51-6.34-1.04-.2-3.15,1.45-3.63,2.68-6.12,15.73-11.35,31.84-18.19,47.24-6.12,13.79-13.8,26.92-21.18,40.12-1.1,1.98-4.36,2.75-6.62,4.08l-1.19-1.02c.64-2.21.8-4.73,2.01-6.57,8.7-13.24,16.1-27.13,21.86-41.91,5.65-14.52,11.38-29,17.56-44.72-6.9-.81-12.64-2.02-18.38-2.06-28.76-.19-57.52-.14-86.28.11-2.12.02-5.25,1.81-6.18,3.65-12.6,25.01-25.31,49.98-37.1,75.37-7.93,17.06-14.45,34.78-21.23,51.29-2.73-.29-4.63-.49-7.51-.8.2-2.64.47-6.06.72-9.49.31-4.31,1.14-8.65.82-12.91-1.41-19-6.87-36.27-22.12-49.15-10.1-8.53-21.47-14.71-33.84-19.23-9.74-3.56-19.52-7.05-29.13-10.93-2.19-.88-5.35-3.28-5.3-4.89.08-2.58,2.03-5.53,4.01-7.5,1.75-1.74,4.53-2.74,7.03-3.38,12.55-3.19,25.11-6.41,37.77-9.12,10.92-2.34,21.95-4.18,32.99-5.9,5.93-.93,11.98-1.13,17.97-1.69,9.24-.86,18.46-1.92,27.71-2.53,5.34-.35,10.73-.1,16.09.13,5.91.26,10.39-1.93,14.01-6.6,1.22-1.58,3.98-3.6,5.21-3.15,1.89.69,3.12,3.29,4.48,5.19.4.56.3,1.5.51,2.78ZM373.24,55.73c-46.61,1.06-92.54,8.58-137.92,20.46.71.88,1.4,1.22,2.12,1.47,23.34,8.13,46.84,15.94,65.22,33.68,9.73,9.39,16.05,20.68,19.22,33.73,1.13,4.64,1.8,9.38,2.68,14.12,16.33-34.71,32.45-68.96,48.68-103.46Z"/> <path d="M131.29,176.82c11.1-14.62,21.78-28.67,32.73-43.1-5.7-1.03-10.34-3.16-10.78-9.02-.48-6.44-1.27-13.29,5.13-17.99,2.81,2.95,5.86,5.35,2.89,10.05-1.12,1.78-.49,4.66-.71,7.71,12.73-3.86,19.39-14.44,28.61-21.48,4.99,3.58,5,5.85,1.1,10.86-17.49,22.41-34.87,44.91-52.65,67.85,7.33,5.22,14.52,10.12,21.47,15.33,19.32,14.48,38.54,29.1,57.83,43.62,4.6,3.46,9.47,6.56,13.94,10.16,1.37,1.11,1.84,3.33,2.72,5.04-2.2-.04-4.99.78-6.5-.26-8.31-5.69-16.24-11.93-24.42-17.81-21.05-15.11-42.42-29.78-63.17-45.29-16.3-12.18-31.92-25.29-47.72-38.13-2.53-2.06-4.65-4.74-6.54-7.42-6.27-8.88-4.43-16.06,5.8-20.42,6.73-2.87,14.18-4.08,20.92-6.93,15.29-6.46,31.26-11.74,44.39-22.4,3.27-2.66,6.49-5.91,8.43-9.58,5-9.46-.5-17.61-12.67-21.06-15.93-4.51-31.67-2.62-47.66-.52-15.85,2.09-29.86,8.08-42.29,17.69-4.19,3.25-7.61,7.79-10.53,12.29-3.12,4.81-1.59,8.85,3.11,12.37,2.66,1.98,5.14,4.25,7.41,6.66.64.68.79,2.71.24,3.37-.55.67-2.37.84-3.4.51-14.91-4.79-17.55-23.64-9.8-32.39,8.14-9.18,17.15-16.8,29.39-20.18,6.87-1.9,13.24-5.82,20.16-7.23,8.77-1.79,17.91-1.72,26.82-2.9,9.51-1.27,18.7.22,27.79,2.56,10.84,2.79,21.33,12.69,19.57,23.26-.68,4.1-3.03,8.23-5.55,11.65-13.77,18.68-34.49,26.22-55.19,33.74-6.19,2.25-12.38,4.49-18.48,6.96-5.5,2.22-6.34,5.1-1.98,9.05,10.77,9.74,21.88,19.1,32.91,28.55,1.98,1.69,4.22,3.08,6.68,4.86Z"/> <path d="M431.94,124.6c12.34-4.7,19.77-14.08,28.36-21.8,4.93,3.56,5.41,5.22,1.97,9.7-14.59,19.01-29.29,37.93-43.97,56.88-3.95,5.1-8.03,10.1-11.92,15.25-1.35,1.78-2.35,4.1-4.91,1.79-2.1-1.9-3.34-4.06-1.12-6.91,5.48-7.04,10.83-14.18,16.23-21.28,6.09-8.01,12.17-16.01,18.32-24.09-12.21-4.63-15.04-18.99-5.62-27.23,3.38,2.84,6.09,5.6,2.81,10.51-.97,1.45-.15,4.1-.15,7.2Z"/> <path d="M219.18,130.17c-1.39.94-2.82,1.83-4.18,2.83-5.77,4.23-11.35,8.73-17.32,12.65-3.56,2.34-8.8,3.7-11.36.19-1.62-2.22-.61-7.89,1.19-10.78,7.77-12.47,17.54-23.11,31.58-28.91,1.22-.5,2.38-1.22,3.64-1.52,2.07-.48,5.8-1.45,6.05-.91,1.5,3.19,4.9,4.66,4.82,9.71-.17,10.81-6.25,18.88-9.71,28.14-.34.92-.61,2.19-1.32,2.59-2.23,1.26-4.65,2.19-6.99,3.24-.13-2.14-.87-4.47-.26-6.38,1.11-3.5,3.02-6.74,4.59-10.09-.25-.25-.49-.51-.74-.76ZM196.05,135.61l1.06,1.17c9.47-7.07,18.97-14.1,28.37-21.27.92-.7,1.2-2.22,1.78-3.37l-1.25-1.01c-11.1,6.78-22.83,12.77-29.95,24.48Z"/> <path d="M382.41,136.72c8.58-6.36,17.53-12.29,25.59-19.26,4.02-3.47,6.05.83,9.03.5.08,2.2.9,4.71.12,6.53-2.79,6.47-5.83,12.88-9.42,18.93-1.28,2.16-4.42,3.21-6.72,4.76-.66-.48-1.31-.95-1.97-1.43,1.88-5.34,3.75-10.67,6.12-17.4-2.61,1.88-4.14,2.96-5.64,4.07-5.74,4.26-11.47,8.55-17.23,12.78-.51.37-1.26.63-1.87.59-3.15-.24-6.84.24-9.21-1.28-1.18-.76-.74-5.63.34-8.02,4.31-9.54,11.61-16.89,19.69-23.19,5.22-4.07,11.49-6.84,17.44-9.92,1.56-.81,5.04-1.23,5.26-.75,1.4,3.09,7.09,4.44,3.78,10.07-8.03-5.24-13.18,1.27-18.71,5.27-5.55,4.01-10.47,8.91-15.58,13.51-.89.8-1.37,2.07-2.04,3.12l1.03,1.11Z"/> <path d="M105.43,76.5c3.34,4.73,2.94,8.07.12,12.3-17.26,25.79-34.13,51.83-51.22,77.73-.76,1.16-2.37,1.76-3.58,2.62-.33-1.94-1.55-4.34-.83-5.74,3-5.85,6.46-11.48,9.99-17.04,13.62-21.4,27.33-42.75,41.04-64.09,1.22-1.89,2.76-3.57,4.48-5.79Z"/> <path d="M480.33,125.74c.43-.37,1.35-1.85,2.36-1.91,8.73-.52,12.99-7.61,18.89-12.34,4.35-3.49,8.89-7.02,13.91-9.29,1.92-.86,5.71,1.33,8,3.02.77.56.2,4.4-.93,5.82-5.91,7.45-14.35,11.38-22.71,15.35-.45.21-1.02.22-1.39.5-1.96,1.47-6.32.64-5.21,5.04.92,3.66,6.06,6,9.97,4.85,2.99-.88,5.97-2.06,9.02-2.35,1.7-.17,3.55,1.2,5.34,1.87-.86,1.52-1.34,3.77-2.64,4.43-5.6,2.88-11.82,4.06-17.65,1.48-3.39-1.5-6.01-4.86-8.78-7.58-2.66-2.62-5.08-5.49-8.19-8.9Z"/> <path d="M239.68,138.14c-.65-7.2,8.02-27.88,13.23-32.48,5.41,2.44,4.48,6.28,2.61,11.09,1.94-.99,3.85-2.03,5.81-2.95,7.94-3.73,14.38.27,13.54,9-.59,6.14-2.65,12.12-3.95,18.2-.75,3.5-1.01,7.14-2.07,10.53-.61,1.95-2.37,4.95-3.67,4.98-2.74.06-5.02-2.21-4.25-5.41,1.87-7.78,4.04-15.5,6.12-23.23.62-2.29,1.35-4.55,2.22-7.48-7.63-.43-12.1,4.1-16.94,7.4-3.26,2.22-5.92,5.28-8.93,7.88-1.02.89-2.27,1.52-3.71,2.46Z"/> <path d="M527.69,144.84c-3.08-1.21-4.62-3.9-3.22-7.44,4.02-10.2,8.33-20.3,12.56-30.42.17-.41.72-.66,1.64-1.47,1.58,2.81,3.06,5.46,4.8,8.55,2.45-1.21,5.76-2.78,9-4.46,4.33-2.24,7.89-.88,10.89,2.39.71.77,1.24,2.65.79,3.33-.77,1.18-2.61,2.78-3.57,2.53-8.9-2.31-13.91,3.76-18.84,8.97-5.04,5.34-9.12,11.58-14.06,18.01Z"/> </svg></div></div>
+  <details class="why"><summary>Why this one fired</summary><div class="why__in">
+    <p class="why__lede">Checked in chain order. The first one to fail is called, never the highest score.</p>
+    <table class="scores"><thead><tr><th>Constraint</th><th class="num">Score</th><th></th></tr></thead>
+    <tbody><tr><td>Cash flow</td>
+      <td class="num">&mdash;</td>
+      <td>ruled out by q10</td></tr><tr><td>Talent</td>
+      <td class="num">28</td>
+      <td></td></tr><tr><td>Fulfilment</td>
+      <td class="num">43</td>
+      <td></td></tr><tr><td>Value</td>
+      <td class="num">18</td>
+      <td></td></tr><tr><td>Offer</td>
+      <td class="num">37</td>
+      <td></td></tr><tr><td>Demand</td>
+      <td class="num">28</td>
+      <td></td></tr><tr class="is-it"><td>Margin</td>
+      <td class="num">100</td>
+      <td>called</td></tr></tbody></table>
+    <p class="why__lede">Bar is 60. Suppressed by the finding above: nothing.
+    Risks are listed loudest first across all three families, capped at 4.</p>
+    </div></details>
+</section>
+  <p class="note" style="margin:48px 0 0;padding-top:28px;border-top:1px solid var(--rim)">
+    These five are fabricated to show the range. The businesses aren't real, the answers were written to land on five different constraints, and everything after that is the engine's.</p>
+</main>
+<footer class="shell" style="padding:40px 0 80px"></footer>
+
+<script>
+(function(){
+  var tabs = [].slice.call(document.querySelectorAll('.tab'));
+  function show(i){
+    tabs.forEach(function(t,n){
+      t.setAttribute('aria-selected', n===i);
+      document.getElementById(t.getAttribute('aria-controls')).classList.toggle('is-on', n===i);
+    });
+    window.scrollTo(0,0);
+  }
+  tabs.forEach(function(t,i){
+    t.addEventListener('click', function(){ show(i); });
+    t.addEventListener('keydown', function(e){
+      var d = e.key==='ArrowRight' ? 1 : e.key==='ArrowLeft' ? -1 : 0;
+      if(!d) return;
+      e.preventDefault();
+      var n = (i+d+tabs.length)%tabs.length;
+      tabs[n].focus(); show(n);
+    });
+  });
+})();
+</script>

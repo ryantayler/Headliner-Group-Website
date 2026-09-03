@@ -114,9 +114,7 @@ readme = [
     ["Report, constraint", "The constraint blocks. Opening line, evidence clauses, closing line, and the fix actions."],
     ["Report, minor", "The one line that prints when a second constraint is loud but downstream."],
     ["Report, risk flags", "All 16 risk flags. Definition, the version used when the answer was Not sure, and the fix."],
-    ["Report, risk framing", "The three family blocks that open the risk section."],
-    ["Report, minor risk", "One line per risk, printed when it is the second family's loudest finding."],
-    ["Report, compound", "The blocks that fire when a risk and the constraint are the same problem seen twice."],
+    ["Report, risk section", "The line that opens the risk section."],
     ["Report, don't do yet", "The closing section. What not to touch until the constraint is fixed."],
     ["Report, open and close", "The opening and closing of the report, including the three opening variants."],
     ["Thresholds", "Every tunable number, and what moving it does."],
@@ -222,9 +220,10 @@ for cid in D["chain"]:
     rows.append([cid, "Closing", b["close"], "", slots_in(b["close"])])
     rows.append([cid, "Fix, lead line", f["lead"], "", ""])
     for n, a in enumerate(f["actions"], 1):
-        rows.append([cid, f"Fix action {n}", a, "", ""])
+        cond = "  ".join(f"{p[0]} is {'/'.join(p[1])}" for p in a.get("when", []))
+        rows.append([cid, f"Fix action {n}", a["text"], "", cond or "always prints"])
 sheet("Report, constraint",
-      ["Constraint", "Part", "Banded version, always used", "Precise version, used only when they typed the figure", "Variables in this row"],
+      ["Constraint", "Part", "Banded version, always used", "Precise version, used only when they typed the figure", "Variables, or when a fix action prints"],
       rows, [13, 22, 82, 68, 26],
       edit_cols=(3, 4), lock_cols=(1, 2, 5), wrap_cols=(3, 4, 5),
       note="Evidence clauses are joined into one sentence with commas and a final \"and\". Write each one lower case and without a full stop. A clause whose data came back Not sure is dropped from the sentence rather than printed empty, which is why they are separate rows.")
@@ -239,38 +238,21 @@ sheet("Report, minor", ["id", "Constraint", "The one line printed when this is a
 rows = []
 for fid, meta in D["flags"].items():
     rd = D["blocks"]["riskDef"][fid]
-    rows.append([meta["family"], fid, meta["name"], rd.get("banded", ""), rd.get("precise", ""), rd.get("alt", ""), D["blocks"]["riskFix"][fid], slots_in(rd.get("banded"), rd.get("precise"))])
+    fixes = D["blocks"]["riskFix"].get(fid, [])
+    rows.append([meta["family"], fid, meta["name"], rd.get("banded", ""), rd.get("precise", ""), rd.get("alt", ""),
+                 fixes[0] if len(fixes) > 0 else "", fixes[1] if len(fixes) > 1 else "",
+                 slots_in(rd.get("banded"), rd.get("precise"))])
 sheet("Report, risk flags",
       ["Family", "id", "Name", "Definition", "Precise version", "Version used when the answer was Not sure", "What to do", "Variables in this row"],
       rows, [15, 19, 22, 72, 56, 72, 66, 24],
       edit_cols=(3, 4, 5, 6, 7), lock_cols=(2, 8), wrap_cols=(4, 5, 6, 7, 8),
       note="At most three flags print, from the top scoring family only. A flag has to clear the print threshold on the Thresholds tab to be named at all.")
 
-# ------------------------------------------------- 8. Report, risk framing
-rows = []
-for fid, meta in D["riskFamilies"].items():
-    rows.append([fid, meta["name"], meta["line"], D["blocks"]["riskFamilyFraming"][fid]])
-rows.append(["none", "Nothing loud enough", "", D["blocks"]["riskFamilyFraming"]["none"]])
-sheet("Report, risk framing",
-      ["id", "Family", "One line definition", "Framing block, opens the risk section"],
-      rows, [15, 17, 46, 96],
-      edit_cols=(3, 4), lock_cols=(1,), wrap_cols=(3, 4),
-      note="Scoring is by family, never by listing sixteen individual flags at somebody. Key person, no second in command, no documented process and owner trapped are usually one disease showing up in four places.")
-
-# ------------------------------------------------- 8b. Report, minor risk
-rows = [["", "Section framing, printed once above the line below", D["blocks"]["minorRisk"]["framing"]]]
-for fid, meta in D["flags"].items():
-    rows.append([fid, meta["name"], D["blocks"]["minorRisk"].get(fid, "")])
-sheet("Report, minor risk", ["id", "Risk", "The one line printed when this is the second family's loudest flag"],
-      rows, [19, 22, 100], edit_cols=(3,), lock_cols=(1,), wrap_cols=(3,),
-      note="This prints one specific finding from the second risk family, never the family itself. Naming a family and nothing else is the failure this replaced. The flag has to clear the print threshold and must not already appear in the main risk section.")
-
-# ---------------------------------------------------- 9. Report, compound
-rows = [[c["constraint"], c["flag"], c["priority"], c["text"], slots_in(c["text"])] for c in D["blocks"]["compound"]]
-rows.sort(key=lambda r: (r[0], r[2]))
-sheet("Report, compound", ["Constraint", "Risk flag", "Priority", "Block. Prints when both are present", "Variables in this row"],
-      rows, [13, 20, 8, 112, 24], edit_cols=(4,), lock_cols=(1, 2, 5), wrap_cols=(4, 5),
-      note="One compound block prints at most, the lowest priority number that matches. These are the blocks that make the report read as written rather than assembled, so they are worth the most editing attention.")
+# ------------------------------------------------- 8. Report, risk section
+rows = [["Section lead, printed once above the risks", D["blocks"]["riskLead"]]]
+sheet("Report, risk section", ["Part", "Wording"], rows, [42, 108],
+      edit_cols=(2,), wrap_cols=(2,),
+      note="Risks print as one list, loudest first, regardless of which family they came from. Families still weight the internal ordering, they no longer split the section. The old family framing block, the separate minor risk section and the compound blocks were all removed after they read as filler in testing.")
 
 # ------------------------------------------------ 10. Report, don't do yet
 rows = []
@@ -289,6 +271,8 @@ rows = [
     ["Opening", "wellRun", "Nothing cleared the floor. Nothing is failing", D["blocks"]["opening"]["wellRun"]],
     ["Opening", "noneSevere", "Nothing failed outright but something is tight", D["blocks"]["opening"]["noneSevere"]],
     ["Opening", "tooUnsure", "Too many Not sure answers to stand behind a diagnosis", D["blocks"]["opening"]["tooUnsure"]],
+    ["Opening", "privacy", "Small print under the opening, on every report", D["blocks"]["opening"]["privacy"]],
+    ["Heading", "titleUnsure", "Replaces the constraint heading when there is not enough to call it", D["blocks"]["titleUnsure"]],
     ["Body", "looseBody", "Replaces the constraint block when nothing is failing", D["blocks"]["looseBody"]],
     ["Body", "unsureBody", "Replaces the constraint block when there were too many Not sure answers", D["blocks"]["unsureBody"]],
     ["Closing", "text", "Normal close", D["blocks"]["closing"]["text"]],
@@ -306,10 +290,9 @@ TH = {
  "PRIMARY_FAIL": "A constraint fails, and gets called, at or above this score. Raise it and fewer businesses get a hard finding. Lower it and the first thing in the chain wins too easily.",
  "MINOR_PRINT": "A second constraint has to reach this before it prints as a minor. Deliberately higher than PRIMARY_FAIL, so a minor has to be louder than the bar that would have made it a primary in its own right.",
  "FALLBACK_FLOOR": "When nothing failed, anything under this counts as a well run business and the report switches to the softer wording. Above it, the report says nothing is failing but here is the tightest thing.",
- "RISK_FAMILY_PRINT": "A risk family has to reach this before its section prints at all.",
- "MINOR_RISK_PRINT": "The second family has to reach this before one line about it prints.",
  "FLAG_PRINT": "An individual flag has to reach this before it is named. Below it the flag still counts toward its family score.",
- "MAX_FLAGS_SHOWN": "Hard cap on how many individual risks get named. Three keeps the report short and certain.",
+ "MAX_FLAGS_SHOWN": "Hard cap on how many risks get named, across all three families. Four keeps the report short and certain.",
+ "MAX_ACTIONS": "Hard cap on how many fix actions print for the constraint. Conditional actions that did not fire never count toward it.",
  "NOT_SURE_DATA_FLAG": "This many Not sure answers raises data blindness on its own, regardless of which questions they were.",
 }
 rows = [[k, D["thresholds"][k], TH[k]] for k in D["thresholds"]]

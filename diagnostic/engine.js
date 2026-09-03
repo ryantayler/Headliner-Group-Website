@@ -1,13 +1,11 @@
 /* Business Diagnostic Tool, engine.
    Pure logic. Reads window.DIAG, takes an answer set, returns a report object.
    Deterministic. Same answers in, same report out.
-
    Answer shape:
      { q6:{opt:"c"}, q11:{opts:["a","b"]}, q7:{opt:"d", exact:45} }
 */
 (function (global) {
   "use strict";
-
   var D = null;
   function cfg() { return D || (D = global.DIAG); }
   function T(k) { return cfg().thresholds[k]; }
@@ -26,7 +24,6 @@
     if (q.type === "multi") return (a.opts || []).map(function (id) { return optOf(q, id); }).filter(Boolean);
     return a.opt ? [optOf(q, a.opt)].filter(Boolean) : [];
   }
-
   /* ---------- per question severity ---------- */
   function questionSeverity(ans, q) {
     var sel = selected(ans, q);
@@ -49,7 +46,6 @@
     var o = sel[0];
     return typeof o.w === "number" ? o.w : 0;
   }
-
   /* ---------- constraint block scores ---------- */
   function scoreConstraints(ans) {
     var out = {};
@@ -78,12 +74,10 @@
     });
     return out;
   }
-
   function isOneOff(ans) {
     var sel = selected(ans, byId("q53"));
     return !!(sel.length && sel[0].oneoff);
   }
-
   /* ---------- disqualifiers and hard triggers ---------- */
   function disqualified(ans) {
     var out = {};
@@ -94,20 +88,17 @@
     });
     return out;
   }
-
   function condMet(ans, pair) {
     var q = byId(pair[0]); if (!q) return false;
     var want = pair[1], sel = selected(ans, q);
     return sel.some(function (o) { return want.indexOf(o.id) !== -1; });
   }
-
   function hardTriggered(ans, cid) {
     var rules = (cfg().hardTriggers || {})[cid] || [];
     return rules.some(function (r) {
       return (r.all || []).every(function (pair) { return condMet(ans, pair); });
     });
   }
-
   /* ---------- flags ---------- */
   function collectFlags(ans) {
     var raw = {}, counts = {}, notSure = 0;
@@ -131,7 +122,6 @@
     if (notSure >= T("NOT_SURE_DATA_FLAG")) raw.no_data = Math.max(raw.no_data || 0, 80);
     return { sev: raw, counts: counts, notSureCount: notSure };
   }
-
   /* ---------- risk families ---------- */
   function scoreFamilies(flagSev) {
     var fams = {}, defs = cfg().flags;
@@ -150,7 +140,6 @@
     });
     return fams;
   }
-
   /* ---------- suppression, transitive ---------- */
   function suppressedBy(cid) {
     var map = cfg().suppresses, seen = {}, stack = (map[cid] || []).slice();
@@ -162,7 +151,6 @@
     }
     return Object.keys(seen);
   }
-
   /* ---------- slot resolution ---------- */
   function bandOf(ans, qid) {
     var q = byId(qid); if (!q) return "";
@@ -177,9 +165,7 @@
     if (!a || a.exact === null || a.exact === undefined || a.exact === "") return null;
     return a.exact;
   }
-
   var LAYER_NAMES = { a: "day to day operations", b: "sales", c: "marketing", d: "the numbers", e: "managing the delivery team" };
-
   function derived(ans, primaryId) {
     var d = {};
     d.primaryShort = primaryId ? cfg().constraints[primaryId].short.toLowerCase() : "";
@@ -206,16 +192,13 @@
     return d;
   }
   function cap(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
-
   var SLOT = /\{(q\d+)\.(band|exact)\}|\{d\.(\w+)\}/g;
-
   // A slot can sit at the start of a sentence, and a band phrase is written lower case
   // so it reads mid sentence. Case is fixed after filling rather than by hand in the
   // copy, so a reworded block cannot reintroduce a lower case sentence opening.
   function sentenceCase(s) {
     return s.replace(/(^|[.!?]\s+|\n\n)([a-z])/g, function (m, pre, ch) { return pre + ch.toUpperCase(); });
   }
-
   function fill(text, ans, d) {
     if (!text) return "";
     return text.replace(SLOT, function (m, qid, kind, dkey) {
@@ -223,7 +206,6 @@
       return kind === "band" ? bandOf(ans, qid) : (exactOf(ans, qid) === null ? "" : String(exactOf(ans, qid)));
     });
   }
-
   // A precise variant only prints when every exact slot it names actually has a number.
   function resolvable(text, ans) {
     var ok = true, m;
@@ -256,7 +238,6 @@
     }
     return sentenceCase(fill(banded, ans, d));
   }
-
   // open + whichever evidence clauses actually resolved + close.
   function buildDef(def, ans, d) {
     var parts = [], clauses = [];
@@ -283,14 +264,27 @@
     if (def.close) parts.push(fill(def.close, ans, d));
     return sentenceCase(parts.join("\n\n"));
   }
-
+  // A fix action either always applies, or names the answers that make it apply.
+  // Conditional actions keep the advice honest without making it unpredictable.
+  function actionsFor(fix, ans) {
+    return (fix.actions || []).filter(function (a) {
+      return !a.when || a.when.every(function (pair) { return condMet(ans, pair); });
+    }).map(function (a) { return a.text; }).slice(0, T("MAX_ACTIONS") || 5);
+  }
+  // "You are cash flow constrained", split so the constraint itself can be lifted.
+  function titleParts(tpl, phrase) {
+    var t = String(tpl);
+    // A heading that never names the constraint carries no phrase to lift out of it.
+    if (t.indexOf("{c}") === -1) return { before: t, phrase: "", after: "" };
+    var bits = t.split("{c}");
+    return { before: bits[0] || "", phrase: phrase, after: bits[1] || "" };
+  }
   /* ---------- the diagnosis ---------- */
   function diagnose(ans) {
     var B = cfg().blocks;
     var scores = scoreConstraints(ans);
     var dq = disqualified(ans);
     var flags = collectFlags(ans);
-
     // Primary. Walk the chain in order and call the first one that fails.
     // Order is fixed on purpose. A downstream constraint never overtakes an
     // upstream one on score, because fixing downstream first makes it worse.
@@ -320,7 +314,6 @@
     // A confident finding is one that actually failed a gate. Everything else is a
     // reading, and the report has to say so rather than dress it up as a diagnosis.
     var confident = !wellRun && !tooUnsure;
-
     // Minor constraint. Higher bar than the primary, then suppression.
     var supp = suppressedBy(primaryId);
     var minorId = null, minorRejected = [];
@@ -330,50 +323,22 @@
       if (supp.indexOf(cid) !== -1) { minorRejected.push({ id: cid, why: "suppressed by " + primaryId }); return; }
       if (!minorId || scores[cid].score > scores[minorId].score) minorId = cid;
     });
-
     var d = derived(ans, primaryId);
     d_cache = d;
-
     // Risk. Families first, individual flags second.
     var fams = scoreFamilies(flags.sev);
     var ranked = Object.keys(fams).map(function (k) { return fams[k]; })
       .sort(function (a, b) { return b.score - a.score; });
     var primaryFam = ranked[0] && ranked[0].score >= T("RISK_FAMILY_PRINT") ? ranked[0] : null;
     var minorFam = ranked[1] && ranked[1].score >= T("MINOR_RISK_PRINT") ? ranked[1] : null;
-
-    var shown = primaryFam
-      ? primaryFam.flags.filter(function (f) { return f.sev >= T("FLAG_PRINT"); }).slice(0, T("MAX_FLAGS_SHOWN"))
-      : [];
-
-    // Minor risk. Names one specific flag from the second family rather than the
-    // family itself, because "there is also fragility here" tells nobody anything.
-    var minorRisk = null;
-    if (minorFam) {
-      var top = minorFam.flags.filter(function (f) {
-        return f.sev >= T("FLAG_PRINT") && shown.indexOf(f) === -1;
-      })[0];
-      if (top && B.minorRisk[top.id]) {
-        minorRisk = { family: minorFam.id, id: top.id, name: top.name,
-                      framing: B.minorRisk.framing, line: B.minorRisk[top.id] };
-      }
-    }
-
-    // Compound. One block only, the highest priority match on the primary constraint.
-    var compound = null;
-    var shownIds = shown.map(function (f) { return f.id; });
-    var matches = B.compound.filter(function (c) {
-      // Naming a risk the reader has not been shown reads as a non sequitur, so a
-      // compound block only fires on a flag that actually printed above it.
-      return c.constraint === primaryId && shownIds.indexOf(c.flag) !== -1;
-    }).sort(function (a, b) {
-      return a.priority - b.priority || (flags.sev[b.flag] - flags.sev[a.flag]);
+    // One list, loudest first, regardless of family. Families still decide the
+    // internal ordering weight, they just no longer split the section in two.
+    var shown = [];
+    Object.keys(fams).forEach(function (fid) {
+      fams[fid].flags.forEach(function (f) { if (f.sev >= T("FLAG_PRINT")) shown.push(f); });
     });
-    for (var mi = 0; mi < matches.length && !compound; mi++) {
-      if (!bandsResolve(matches[mi].text, ans)) continue;
-      compound = { key: matches[mi].constraint + " + " + matches[mi].flag,
-                   text: sentenceCase(fill(matches[mi].text, ans, d)) };
-    }
-
+    shown.sort(function (a, b) { return b.sev - a.sev || a.id.localeCompare(b.id); });
+    shown = shown.slice(0, T("MAX_FLAGS_SHOWN"));
     return {
       opening: tooUnsure ? B.opening.tooUnsure : wellRun ? B.opening.wellRun : noneSevere ? B.opening.noneSevere : B.opening.normal,
       primary: {
@@ -382,24 +347,24 @@
         // respondent who could not answer enough both get the softer label, because
         // neither of them has been shown to be constrained by anything.
         name: confident ? cfg().constraints[primaryId].name : cfg().constraints[primaryId].loose,
-        title: confident ? B.constraintDef[primaryId].title : B.constraintDef[primaryId].titleLoose,
+        title: titleParts(tooUnsure ? B.titleUnsure
+                        : confident ? B.constraintDef[primaryId].title
+                        : B.constraintDef[primaryId].titleLoose,
+                        cfg().constraints[primaryId].phrase),
         body: tooUnsure ? sentenceCase(fill(B.unsureBody, ans, d))
             : wellRun ? sentenceCase(fill(B.looseBody, ans, d))
             : buildDef(B.constraintDef[primaryId], ans, d),
-        fix: B.constraintFix[primaryId],
+        fix: { lead: B.constraintFix[primaryId].lead, actions: actionsFor(B.constraintFix[primaryId], ans) },
         confident: confident
       },
       minor: minorId ? { id: minorId, line: sentenceCase(fill(B.minorConstraint[minorId], ans, d)) } : null,
-      compound: compound,
-      risk: primaryFam ? {
-        family: primaryFam.id,
-        name: cfg().riskFamilies[primaryFam.id].name,
-        framing: B.riskFamilyFraming[primaryFam.id],
+      risk: {
+        lead: B.riskLead,
         flags: shown.map(function (f) {
-          return { id: f.id, name: f.name, sev: f.sev, body: pick(B.riskDef[f.id], ans, d), fix: B.riskFix[f.id] };
+          return { id: f.id, name: f.name, sev: f.sev,
+                   body: pick(B.riskDef[f.id], ans, d), fix: B.riskFix[f.id] || [] };
         }).filter(function (f) { return f.body; })
-      } : { family: null, framing: B.riskFamilyFraming.none, flags: [] },
-      minorRisk: minorRisk,
+      },
       dontDo: confident ? B.dontDoYet[primaryId] : null,
       closing: { text: tooUnsure ? B.closing.unsure : wellRun ? B.closing.loose : B.closing.text, cta: B.closing.cta },
       debug: {
@@ -410,7 +375,6 @@
       }
     };
   }
-
   global.DiagEngine = {
     diagnose: diagnose, scoreConstraints: scoreConstraints, suppressedBy: suppressedBy,
     // exposed so the grammar sweep can assemble a block for any answer set, without

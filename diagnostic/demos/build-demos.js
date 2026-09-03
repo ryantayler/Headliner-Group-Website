@@ -14,30 +14,28 @@ const para = t => String(t).split('\n\n').map(p => `<p>${esc(p)}</p>`).join('');
 function report(r) {
   let h = '', n = 0;
   const label = t => { n++; return `<p class="sec__label">${n < 10 ? '0' : ''}${n}, ${esc(t)}</p>`; };
+  const title = `${esc(r.primary.title.before)}<em>${esc(r.primary.title.phrase)}</em>${esc(r.primary.title.after)}`;
 
   h += `<div class="rep__head"><p class="eyebrow">Your diagnosis</p>
-        <h2 class="display d2">${esc(r.primary.title)}</h2></div>`;
-  h += `<div class="sec">${para(r.opening)}</div>`;
+        <h2 class="display d2">${title}</h2></div>`;
+  h += `<div class="sec">${para(r.opening)}
+        <p class="privacy">We do not use <u>any</u> AI in this tool, and <u>none</u> of your data is sent or stored offsite.</p></div>`;
   h += `<div class="sec">${label('The constraint')}
         <div class="verdict"><div class="glow"></div><p class="eyebrow">What is capping the business</p>
-        <h3 class="display d3">${esc(r.primary.name)}</h3>${para(r.primary.body)}</div></div>`;
+        <h3 class="display d3">${title}</h3>${para(r.primary.body)}</div></div>`;
   h += `<div class="sec">${label('How to fix it')}<p>${esc(r.primary.fix.lead)}</p>
         <ol class="acts">${r.primary.fix.actions.map(a => `<li>${esc(a)}</li>`).join('')}</ol></div>`;
   if (r.minor) h += `<div class="sec">${label('Also showing, and deliberately not the job')}
         <div class="aside"><p>${esc(r.minor.line)}</p></div></div>`;
-  h += `<div class="sec">${label('Your risks, and what to do about them')}<p>${esc(r.risk.framing)}</p>` +
-       r.risk.flags.map(f => `<div class="flag"><h4 class="display d4 flag__n">${esc(f.name)}</h4>
-        <p>${esc(f.body)}</p><p class="flag__fix"><b>What to do.</b> ${esc(f.fix)}</p></div>`).join('') + '</div>';
-  if (r.minorRisk) h += `<div class="sec">${label('One more risk, behind the above')}
-        <p>${esc(r.minorRisk.framing)}</p>
-        <div class="flag"><h4 class="display d4 flag__n">${esc(r.minorRisk.name)}</h4>
-        <p class="flag__fix">${esc(r.minorRisk.line)}</p></div></div>`;
-  if (r.compound) h += `<div class="sec">${label('The same problem, twice')}
-        <div class="compound"><p>${esc(r.compound.text)}</p></div></div>`;
-  if (r.dontDo) h += `<div class="sec">${label('Don’t do this yet')}<p>${esc(r.dontDo.lead)}</p>
+  h += `<div class="sec">${label('Your risks, and what to do about them')}<p>${esc(r.risk.lead)}</p>` +
+       r.risk.flags.map(f => `<div class="risk">
+         <div class="risk__head"><div class="glow"></div><span>You have a</span><h4 class="display d3">${esc(f.name)}</h4><span>risk</span></div>
+         <div class="risk__body"><p>${esc(f.body)}</p>
+         <ol class="acts acts--risk">${f.fix.map(a => `<li>${esc(a)}</li>`).join('')}</ol></div></div>`).join('') + '</div>';
+  if (r.dontDo) h += `<div class="sec sec--dont"><h3 class="display d2 dont__h">Don’t do this yet</h3>
+        <p>${esc(r.dontDo.lead)}</p>
         <ol class="acts dont">${r.dontDo.items.map(a => `<li>${esc(a)}</li>`).join('')}</ol></div>`;
-  h += `<div class="sec">${para(r.closing.text)}
-        <div class="sign">${SIG}</div></div>`;
+  h += `<div class="sec">${para(r.closing.text)}<div class="sign">${SIG}</div></div>`;
   return h;
 }
 
@@ -54,7 +52,7 @@ function working(r) {
     <table class="scores"><thead><tr><th>Constraint</th><th class="num">Score</th><th></th></tr></thead>
     <tbody>${rows}</tbody></table>
     <p class="why__lede">Bar is ${D.thresholds.PRIMARY_FAIL}. Suppressed by the finding above: ${esc(r.debug.suppressed.join(', ') || 'nothing')}.
-    Risk families scored ${r.debug.families.map(f => esc(f.id) + ' ' + f.score).join(', ')}.</p>
+    Risks are listed loudest first across all three families, capped at ${D.thresholds.MAX_FLAGS_SHOWN}.</p>
     </div></details>`;
 }
 
@@ -166,4 +164,4 @@ ${reports.map(({d,r},i) => `<section class="panel${i===0?' is-on':''}" id="p-${d
 `;
 fs.writeFileSync('five-demos.html', page);
 console.log('wrote five-demos.html,', page.length, 'bytes');
-reports.forEach(({d,r}) => console.log(`  ${d.name.padEnd(16)} ${r.primary.id.padEnd(11)} risk:${(r.risk.family||'none').padEnd(14)} minor:${r.minor?r.minor.id:'-'}  minorRisk:${r.minorRisk?r.minorRisk.id:'-'}  compound:${r.compound?'yes':'-'}`));
+reports.forEach(({d,r}) => console.log(`  ${d.name.padEnd(16)} ${r.primary.id.padEnd(11)} minor:${(r.minor?r.minor.id:'-').padEnd(8)} ${r.primary.fix.actions.length} actions  risks: ${r.risk.flags.map(f=>f.name).join(', ')}`));
