@@ -365,7 +365,8 @@ body.has-dev{padding-bottom:56px}
 .hero{padding:clamp(40px,6vw,72px) 0 clamp(28px,4vw,44px);background:var(--base);color:var(--ink)}
 .wrap{padding:clamp(40px,6vw,64px) 0 80px}
 .key{display:grid;gap:0;margin:26px 0 0;border:1px solid var(--rim);border-radius:14px;overflow:hidden}
-.key div{display:grid;grid-template-columns:210px 1fr;gap:18px;padding:14px 18px;border-top:1px solid var(--rim);background:var(--panel)}
+.key div{display:grid;grid-template-columns:210px 1fr;gap:18px;padding:14px 18px;border-top:1px solid var(--rim);background:var(--panel);align-items:start}
+.key .who{margin:0}
 .key div:first-child{border-top:0}
 .key p{margin:0;font-size:14px;color:var(--sub);max-width:none}
 .grp{margin-top:clamp(44px,6vw,64px)}
@@ -383,12 +384,26 @@ body.has-dev{padding-bottom:56px}
 .lines li{position:relative;padding:11px 0 11px 0;border-top:1px solid var(--line);font-size:15.5px;color:var(--tx);max-width:none}
 .lines--n li,.lines--x li{counter-increment:l;padding-left:34px}
 .lines--n li::before{content:counter(l);position:absolute;left:0;top:11px;font-weight:700;font-size:13px;color:var(--tx-accent);font-variant-numeric:tabular-nums}
-.lines--x li::before{content:"\00d7";position:absolute;left:0;top:11px;font-weight:700;font-size:15px;color:var(--cta-deep)}
-.slot{font-weight:600;color:var(--tx-accent);background:rgba(45,226,195,.16);padding:1px 6px;border-radius:5px}
+/* The don't do list used a cross as its bullet. The provenance mark is a cross too,
+   so the bullet goes and the heading carries the meaning instead. */
+.lines--x li{padding-left:0}
+.lines--x li::before{content:none}
+.slot{font-weight:600;color:#08594C;background:#DCEFEB;padding:1px 6px;border-radius:5px}
 .t{display:inline-block;margin-left:8px;font-size:10.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:2px 9px;border-radius:100px;white-space:normal;vertical-align:1px}
 .t--f{border:1px solid var(--line);color:var(--tx-mute)}
+.who{display:inline-block;width:19px;height:19px;line-height:19px;text-align:center;border-radius:50%;
+  font-size:11px;font-weight:700;margin-right:10px;vertical-align:1px;flex:0 0 auto}
+/* Solid, not rgba. A translucent chip reads fine and audits as 1.00, because the
+   sampler sees the solid channel behind the alpha. Solid keeps the two honest. */
+.who--y{background:#DCEFEB;color:#08594C}
+.who--n{background:#FAE6E0;color:#A32C0C}
+.key .who--y,.key .who--n{background:#2A2A2A}
+.key .who--y{color:#5FD8C2}
+.key .who--n{color:#FF8A66}
 .t--s{border:1px solid var(--tx-accent);color:var(--tx-accent)}
-.t--c{border:1px solid var(--cta-deep);color:var(--cta-deep)}
+.t--c{border:1px solid #A32C0C;color:#A32C0C;background:var(--surface)}
+/* the key sits on the dark panel, where the deep coral cannot carry text */
+.key .t--c{border-color:#FF8A66;color:#FF8A66;background:transparent}
 .fires{list-style:none;margin:0;padding:0}
 .fires li{font-size:14.5px;color:var(--tx);padding:6px 0;border-top:1px solid var(--line)}
 .fires b{display:inline-block;min-width:34px;color:var(--tx-accent);font-variant-numeric:tabular-nums}
@@ -406,232 +421,234 @@ body.has-dev{padding-bottom:56px}
     <div><span class="t t--f">Same for everyone</span><p>The same words for every business that gets this finding.</p></div>
     <div><span class="t t--s">Their answer dropped in</span><p>The same sentence, with their own answer or figure dropped into it.</p></div>
     <div><span class="t t--c">Only if</span><p>The whole line only appears when they answered a particular way. Everyone else never sees it.</p></div>
+    <div><span class="who who--y">&#10003;</span><p><b>79 lines.</b> Ryan wrote this or dictated it in a message. Some have had their wording changed to meet the no dashes rule, the banned sentence shapes, or the ruling that no copy may assume a delivery model, a sales process or a pricing method. The line is still his.</p></div>
+    <div><span class="who who--n">&#10005;</span><p><b>81 lines.</b> Claude wrote it and Ryan has not signed it off. Anything uncertain is marked this way on purpose, because claiming he approved something he did not is the worse of the two errors.</p></div>
   </div>
 </div></section>
 
 <main class="on-light"><div class="shell wrap">
-  <section class="grp"><div class="grp__h"><h2 class="hl-face d2" style="text-transform:uppercase">The seven constraints</h2></div><article class="item">
+  <section class="grp"><div class="grp__h"><h2 class="hl-face d2" style="text-transform:uppercase">The six constraints</h2></div><article class="item">
     <div class="item__h"><span class="num">1</span>
       <h3 class="hl-face d3">You are <em>talent</em> constrained</h3></div>
 
     <p class="lbl">What it says</p>
-    <ul class="lines"><li>Double your customers tomorrow and you'd struggle to deliver, because there's a layer of talent missing from the business.
-  <span class="t t--f">Same for everyone</span></li><li>Being talent constrained means you're missing a layer, not missing extra hands.
-  <span class="t t--f">Same for everyone</span></li><li><b class="slot">worked out from their answers</b>
-  <span class="t t--s">Their answer dropped in</span></li><li>Most of last week went to <b class="slot">worked out from their answers</b>.
+    <ul class="lines"><li><span class="who who--y" title="Ryan wrote this">✓</span>Double your customers tomorrow and you'd struggle to deliver, because there's a layer of talent missing from the business.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--y" title="Ryan wrote this">✓</span>Being talent constrained means you're missing a layer, not missing extra hands.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--y" title="Ryan wrote this">✓</span><b class="slot">worked out from their answers</b>
+  <span class="t t--s">Their answer dropped in</span></li><li><span class="who who--y" title="Ryan wrote this">✓</span>Most of last week went to <b class="slot">worked out from their answers</b>.
   <span class="t t--s">Their answer dropped in</span></li>
-      <li>the work that actually moves the business forward got <b class="slot">their Q17 answer</b>
-  <span class="t t--s">Their answer dropped in</span></li><li>if you went dark for a month the business <b class="slot">their Q15 answer</b>
-  <span class="t t--s">Their answer dropped in</span></li><li><b class="slot">their Q18 answer</b>
+      <li><span class="who who--y" title="Ryan wrote this">✓</span>the work that actually moves the business forward got <b class="slot">their Q17 answer</b>
+  <span class="t t--s">Their answer dropped in</span></li><li><span class="who who--y" title="Ryan wrote this">✓</span>if you went dark for a month the business <b class="slot">their Q15 answer</b>
+  <span class="t t--s">Their answer dropped in</span></li><li><span class="who who--y" title="Ryan wrote this">✓</span><b class="slot">their Q18 answer</b>
   <span class="t t--s">Their answer dropped in</span></li>
-      <li>Hiring another pair of hands underneath you doesn't fix this. What's missing is a whole role that doesn't exist yet, and adding it is what unblocks the business.
+      <li><span class="who who--y" title="Ryan wrote this">✓</span>Hiring another pair of hands underneath you doesn't fix this. What's missing is a whole role that doesn't exist yet, and adding it is what unblocks the business.
   <span class="t t--f">Same for everyone</span></li></ul>
 
     <p class="lbl">How to fix it &nbsp;<i>8 written, 0 conditional, at most 9 ever print</i></p>
     <p class="sub"></p>
-    <ol class="lines lines--n"><li>Write down every task you do, in fifteen minute blocks, for a full week.
-  <span class="t t--f">Same for everyone</span></li><li>Against each task, write the role that should own it in an ideal world.
-  <span class="t t--f">Same for everyone</span></li><li>Take whichever role has the most tasks against it, or the most hours in the week.
-  <span class="t t--f">Same for everyone</span></li><li>Hire that role.
-  <span class="t t--f">Same for everyone</span></li><li>Train them yourself.
-  <span class="t t--f">Same for everyone</span></li><li>Give them the responsibility and the authority to run it. One without the other doesn't work.
-  <span class="t t--f">Same for everyone</span></li><li>Give them ninety days to prove they're the one.
-  <span class="t t--f">Same for everyone</span></li><li>If they don't work out, hire again and run it the same way. If they do, come back here and find out what's capping you now.
+    <ol class="lines lines--n"><li><span class="who who--y" title="Ryan wrote this">✓</span>Write down every task you do, in fifteen minute blocks, for a full week.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--y" title="Ryan wrote this">✓</span>Against each task, write the role that should own it in an ideal world.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--y" title="Ryan wrote this">✓</span>Take whichever role has the most tasks against it, or the most hours in the week.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--y" title="Ryan wrote this">✓</span>Hire that role.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--y" title="Ryan wrote this">✓</span>Train them yourself.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--y" title="Ryan wrote this">✓</span>Give them the responsibility and the authority to run it. One without the other doesn't work.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--y" title="Ryan wrote this">✓</span>Give them ninety days to prove they're the one.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--y" title="Ryan wrote this">✓</span>If they don't work out, hire again and run it the same way. If they do, come back here and find out what's capping you now.
   <span class="t t--f">Same for everyone</span></li></ol>
 
     <p class="lbl">Don’t do this yet</p>
     <p class="sub">Until the layer exists, leave these alone.</p>
-    <ol class="lines lines--x"><li>Don't hire another doer. Every one you add reports to you, and you're the bottleneck.
-  <span class="t t--f">Same for everyone</span></li><li>Don't take on a new market or a new location. Both land on your desk.
-  <span class="t t--f">Same for everyone</span></li><li>Don't start anything that needs your attention for six months.
-  <span class="t t--f">Same for everyone</span></li><li>Don't increase lead generation. The work you win still has to route through you.
+    <ol class="lines lines--x"><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>Don't hire another doer. Every one you add reports to you, and you're the bottleneck.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>Don't take on a new market or a new location. Both land on your desk.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>Don't start anything that needs your attention for six months.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>Don't increase lead generation. The work you win still has to route through you.
   <span class="t t--f">Same for everyone</span></li></ol>
   </article><article class="item">
     <div class="item__h"><span class="num">2</span>
       <h3 class="hl-face d3">You are <em>fulfilment</em> constrained</h3></div>
 
     <p class="lbl">What it says</p>
-    <ul class="lines"><li>Double your customers tomorrow and you couldn't deliver, because there isn't enough capacity in the business.
-  <span class="t t--f">Same for everyone</span></li><li>This is capacity, not capability. You know how to do the work and you can't do enough of it.
+    <ul class="lines"><li><span class="who who--y" title="Ryan wrote this">✓</span>Double your customers tomorrow and you couldn't deliver, because there isn't enough capacity in the business.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--y" title="Ryan wrote this">✓</span>This is capacity, not capability. You know how to do the work and you can't do enough of it.
   <span class="t t--f">Same for everyone</span></li>
-      <li>you're running <b class="slot">their Q20 answer</b>
-  <span class="t t--s">Their answer dropped in</span></li><li><b class="slot">their Q21 answer</b>
-  <span class="t t--s">Their answer dropped in</span></li><li>lead times have <b class="slot">their Q22 answer</b>
-  <span class="t t--s">Their answer dropped in</span></li><li>the work is typically ready <b class="slot">their Q23 answer</b>
+      <li><span class="who who--y" title="Ryan wrote this">✓</span>you're running <b class="slot">their Q20 answer</b>
+  <span class="t t--s">Their answer dropped in</span></li><li><span class="who who--y" title="Ryan wrote this">✓</span><b class="slot">their Q21 answer</b>
+  <span class="t t--s">Their answer dropped in</span></li><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>lead times have <b class="slot">their Q22 answer</b>
+  <span class="t t--s">Their answer dropped in</span></li><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>the work is typically ready <b class="slot">their Q23 answer</b>
   <span class="t t--s">Their answer dropped in</span></li>
-      <li>Nothing at the front of the business needs attention until the back of it can breathe. More capacity is what fixes this, and there's work to do before you buy it.
+      <li><span class="who who--y" title="Ryan wrote this">✓</span>Nothing at the front of the business needs attention until the back of it can breathe. More capacity is what fixes this, and there's work to do before you buy it.
   <span class="t t--f">Same for everyone</span></li></ul>
 
     <p class="lbl">How to fix it &nbsp;<i>9 written, 0 conditional, at most 9 ever print</i></p>
     <p class="sub"></p>
-    <ol class="lines lines--n"><li>Write down exactly how what you sell gets delivered, one step at a time.
-  <span class="t t--f">Same for everyone</span></li><li>Write down every other task your delivery people do that isn't that.
-  <span class="t t--f">Same for everyone</span></li><li>Find the three things across those two lists that slow delivery down the most.
-  <span class="t t--f">Same for everyone</span></li><li>Spend one week streamlining those three things and nothing else.
-  <span class="t t--f">Same for everyone</span></li><li>Rewrite the first list with what changed, and make it the way it's done from now on.
-  <span class="t t--f">Same for everyone</span></li><li>Cut the bottom ten percent of customers, the ones taking the most time for the least return.
-  <span class="t t--f">Same for everyone</span></li><li>Now hire more capacity into the roles that need it.
-  <span class="t t--f">Same for everyone</span></li><li>Run it that way for ninety days.
-  <span class="t t--f">Same for everyone</span></li><li>If delivery still can't keep up, work the list again. If it can, come back here and find out what's capping you now.
+    <ol class="lines lines--n"><li><span class="who who--y" title="Ryan wrote this">✓</span>Write down exactly how what you sell gets delivered, one step at a time.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--y" title="Ryan wrote this">✓</span>Write down every other task your delivery people do that isn't that.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--y" title="Ryan wrote this">✓</span>Find the three things across those two lists that slow delivery down the most.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--y" title="Ryan wrote this">✓</span>Spend one week streamlining those three things and nothing else.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--y" title="Ryan wrote this">✓</span>Rewrite the first list with what changed, and make it the way it's done from now on.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--y" title="Ryan wrote this">✓</span>Cut the bottom ten percent of customers, the ones taking the most time for the least return.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--y" title="Ryan wrote this">✓</span>Now hire more capacity into the roles that need it.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--y" title="Ryan wrote this">✓</span>Run it that way for ninety days.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--y" title="Ryan wrote this">✓</span>If delivery still can't keep up, work the list again. If it can, come back here and find out what's capping you now.
   <span class="t t--f">Same for everyone</span></li></ol>
 
     <p class="lbl">Don’t do this yet</p>
     <p class="sub">Until you've done the above, leave these alone.</p>
-    <ol class="lines lines--x"><li>Don't take on new customers until you've done the above.
-  <span class="t t--f">Same for everyone</span></li><li>Don't start something new.
-  <span class="t t--f">Same for everyone</span></li><li>Don't drop your prices.
-  <span class="t t--f">Same for everyone</span></li><li>Don't promise a shorter lead time to win something.
+    <ol class="lines lines--x"><li><span class="who who--y" title="Ryan wrote this">✓</span>Don't take on new customers until you've done the above.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--y" title="Ryan wrote this">✓</span>Don't start something new.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>Don't drop your prices.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>Don't promise a shorter lead time to win something.
   <span class="t t--f">Same for everyone</span></li></ol>
   </article><article class="item">
     <div class="item__h"><span class="num">3</span>
       <h3 class="hl-face d3">You are <em>margin</em> constrained</h3></div>
 
     <p class="lbl">What it says</p>
-    <ul class="lines"><li>Double your customers tomorrow and it wouldn't help, because there isn't enough margin in what you're already doing.
-  <span class="t t--f">Same for everyone</span></li><li>You're busy, and there's nothing left at the end of it.
+    <ul class="lines"><li><span class="who who--y" title="Ryan wrote this">✓</span>Double your customers tomorrow and it wouldn't help, because there isn't enough margin in what you're already doing.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--y" title="Ryan wrote this">✓</span>You're busy, and there's nothing left at the end of it.
   <span class="t t--f">Same for everyone</span></li>
-      <li>what's left after direct costs sits <b class="slot">their Q41 answer</b>
-  <span class="t t--s">Their answer dropped in</span></li><li>after everything it's <b class="slot">their Q42 answer</b>
-  <span class="t t--s">Their answer dropped in</span></li><li><b class="slot">their Q43 answer</b>
-  <span class="t t--s">Their answer dropped in</span></li><li>the work runs over what you priced it at <b class="slot">their Q44 answer</b>
+      <li><span class="who who--y" title="Ryan wrote this">✓</span>what's left after direct costs sits <b class="slot">their Q41 answer</b>
+  <span class="t t--s">Their answer dropped in</span></li><li><span class="who who--y" title="Ryan wrote this">✓</span>after everything it's <b class="slot">their Q42 answer</b>
+  <span class="t t--s">Their answer dropped in</span></li><li><span class="who who--y" title="Ryan wrote this">✓</span><b class="slot">their Q43 answer</b>
+  <span class="t t--s">Their answer dropped in</span></li><li><span class="who who--y" title="Ryan wrote this">✓</span>the work runs over what you priced it at <b class="slot">their Q44 answer</b>
   <span class="t t--s">Their answer dropped in</span></li>
-      <li>More volume won't solve this. You need to make more on the work you're already doing, without adding a single customer.
+      <li><span class="who who--y" title="Ryan wrote this">✓</span>More volume won't solve this. You need to make more on the work you're already doing, without adding a single customer.
   <span class="t t--f">Same for everyone</span></li></ul>
 
     <p class="lbl">How to fix it &nbsp;<i>8 written, 1 conditional, at most 9 ever print</i></p>
     <p class="sub"></p>
-    <ol class="lines lines--n"><li>Work out what each piece of work really costs you, your own time included, and rank the last twenty by what was left.
-  <span class="t t--f">Same for everyone</span></li><li>Take the bottom five. For each one, write down what it was that ate the money.
-  <span class="t t--f">Same for everyone</span></li><li>Whatever shows up on more than one of them, that's the leak. Fix that before you touch anything else.
-  <span class="t t--f">Same for everyone</span></li><li>Put your prices up on everything new. If nobody flinches, they were too low.
-  <span class="t t--c">Only if Q43 is &ldquo;1 to 2 years ago&rdquo; or &ldquo;More than 2 years ago, or never&rdquo;</span></li><li>Build the thing that historically runs over into the price, so you stop absorbing it.
-  <span class="t t--f">Same for everyone</span></li><li>Reprice your three worst customers by what's left, or let them go.
-  <span class="t t--f">Same for everyone</span></li><li>Hold the new prices for ninety days without discounting to win anything.
-  <span class="t t--f">Same for everyone</span></li><li>If there's still nothing left at the end, work the list again. If there is, come back here and find out what's capping you now.
+    <ol class="lines lines--n"><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>Work out what each piece of work really costs you, your own time included, and rank the last twenty by what was left.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>Take the bottom five. For each one, write down what it was that ate the money.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>Whatever shows up on more than one of them, that's the leak. Fix that before you touch anything else.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>Put your prices up on everything new. If nobody flinches, they were too low.
+  <span class="t t--c">Only if Q43 is &ldquo;1 to 2 years ago&rdquo; or &ldquo;More than 2 years ago, or never&rdquo;</span></li><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>Build the thing that historically runs over into the price, so you stop absorbing it.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>Reprice your three worst customers by what's left, or let them go.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>Hold the new prices for ninety days without discounting to win anything.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>If there's still nothing left at the end, work the list again. If there is, come back here and find out what's capping you now.
   <span class="t t--f">Same for everyone</span></li></ol>
 
     <p class="lbl">Don’t do this yet</p>
     <p class="sub">Until the margin moves, leave these alone.</p>
-    <ol class="lines lines--x"><li>Don't chase volume. More work at this margin is more risk for the same money.
-  <span class="t t--f">Same for everyone</span></li><li>Don't hire. Every head you add at this margin needs a lot of revenue standing behind it.
-  <span class="t t--f">Same for everyone</span></li><li>Don't take the big thin one because it's good for the brand. Reputation doesn't pay wages.
-  <span class="t t--f">Same for everyone</span></li><li>Don't discount anything. There's nothing left to give away.
-  <span class="t t--f">Same for everyone</span></li><li>Don't invest in growth. Growing an unprofitable model makes it unprofitable faster.
+    <ol class="lines lines--x"><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>Don't chase volume. More work at this margin is more risk for the same money.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>Don't hire. Every head you add at this margin needs a lot of revenue standing behind it.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>Don't take the big thin one because it's good for the brand. Reputation doesn't pay wages.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>Don't discount anything. There's nothing left to give away.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>Don't invest in growth. Growing an unprofitable model makes it unprofitable faster.
   <span class="t t--f">Same for everyone</span></li></ol>
   </article><article class="item">
     <div class="item__h"><span class="num">4</span>
       <h3 class="hl-face d3">You are <em>value</em> constrained</h3></div>
 
     <p class="lbl">What it says</p>
-    <ul class="lines"><li>Double your customers tomorrow and you'd have no trouble delivering, and you can't keep enough of them to fill what you've got.
-  <span class="t t--f">Same for everyone</span></li><li>They buy, then they either stop or start giving most of the work to somebody else.
+    <ul class="lines"><li><span class="who who--y" title="Ryan wrote this">✓</span>Double your customers tomorrow and you'd have no trouble delivering, and you can't keep enough of them to fill what you've got.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--y" title="Ryan wrote this">✓</span>They buy, then they either stop or start giving most of the work to somebody else.
   <span class="t t--f">Same for everyone</span></li>
-      <li>of the customers you had a year ago, <b class="slot">their Q25 answer</b> still buy from you
-  <span class="t t--s">Their answer dropped in</span></li><li>you get <b class="slot">their Q26 answer</b> of the work they put out
-  <span class="t t--s">Their answer dropped in</span></li><li>they come back unprompted <b class="slot">their Q27 answer</b>
-  <span class="t t--s">Their answer dropped in</span></li><li>referrals bring in <b class="slot">their Q28 answer</b> of your new customers
+      <li><span class="who who--y" title="Ryan wrote this">✓</span>of the customers you had a year ago, <b class="slot">their Q25 answer</b> still buy from you
+  <span class="t t--s">Their answer dropped in</span></li><li><span class="who who--y" title="Ryan wrote this">✓</span>you get <b class="slot">their Q26 answer</b> of the work they put out
+  <span class="t t--s">Their answer dropped in</span></li><li><span class="who who--y" title="Ryan wrote this">✓</span>they come back unprompted <b class="slot">their Q27 answer</b>
+  <span class="t t--s">Their answer dropped in</span></li><li><span class="who who--y" title="Ryan wrote this">✓</span>referrals bring in <b class="slot">their Q28 answer</b> of your new customers
   <span class="t t--s">Their answer dropped in</span></li>
-      <li>You're filling a leaky bucket. Every dollar going into finding new customers is paying to replace the ones walking out the other side, which is why the business feels busy and stays the same size. Selling to somebody who has already bought is far easier than finding somebody new.
+      <li><span class="who who--y" title="Ryan wrote this">✓</span>You're filling a leaky bucket. Every dollar going into finding new customers is paying to replace the ones walking out the other side, which is why the business feels busy and stays the same size. Selling to somebody who has already bought is far easier than finding somebody new.
   <span class="t t--f">Same for everyone</span></li></ul>
 
     <p class="lbl">How to fix it &nbsp;<i>9 written, 1 conditional, at most 9 ever print</i></p>
     <p class="sub"></p>
-    <ol class="lines lines--n"><li>Write down every point of contact a customer has with you, from the moment they buy through to six months later.
-  <span class="t t--f">Same for everyone</span></li><li>Put as much as you can into the first ninety days. Surprise them. That's the window where they decide what you're worth.
-  <span class="t t--f">Same for everyone</span></li><li>Find the longest silence on that list and put something in it.
-  <span class="t t--f">Same for everyone</span></li><li>Ring ten customers who stopped or cut back and ask them straight why. Not a survey.
-  <span class="t t--f">Same for everyone</span></li><li>Whatever more than one of them says, fix that.
-  <span class="t t--f">Same for everyone</span></li><li>Build one reason to come back that you start, rather than waiting to be asked.
-  <span class="t t--f">Same for everyone</span></li><li>Ask your biggest customers what they give to somebody else, and why.
-  <span class="t t--c">Only if Q26 is &ldquo;About half or less&rdquo; or &ldquo;A small slice, they spread it around&rdquo;</span></li><li>Run all of that for ninety days and measure who came back.
-  <span class="t t--f">Same for everyone</span></li><li>If they're still leaving, work the list again. If they're staying, come back here and find out what's capping you now.
+    <ol class="lines lines--n"><li><span class="who who--y" title="Ryan wrote this">✓</span>Write down every point of contact a customer has with you, from the moment they buy through to six months later.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--y" title="Ryan wrote this">✓</span>Put as much as you can into the first ninety days. Surprise them. That's the window where they decide what you're worth.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>Find the longest silence on that list and put something in it.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>Ring ten customers who stopped or cut back and ask them straight why. Not a survey.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>Whatever more than one of them says, fix that.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>Build one reason to come back that you start, rather than waiting to be asked.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>Ask your biggest customers what they give to somebody else, and why.
+  <span class="t t--c">Only if Q26 is &ldquo;About half or less&rdquo; or &ldquo;A small slice, they spread it around&rdquo;</span></li><li><span class="who who--y" title="Ryan wrote this">✓</span>Run all of that for ninety days and measure who came back.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--y" title="Ryan wrote this">✓</span>If they're still leaving, work the list again. If they're staying, come back here and find out what's capping you now.
   <span class="t t--f">Same for everyone</span></li></ol>
 
     <p class="lbl">Don’t do this yet</p>
     <p class="sub">Until customers stay, leave these alone.</p>
-    <ol class="lines lines--x"><li>Don't spend more on acquisition. You'd be paying to fill a bucket with a hole in it.
-  <span class="t t--f">Same for everyone</span></li><li>Don't raise prices. Value perception is already the problem.
-  <span class="t t--f">Same for everyone</span></li><li>Don't add a new product for existing customers who aren't buying the current one.
-  <span class="t t--f">Same for everyone</span></li><li>Don't expand into a new market. You'd take the retention problem with you.
-  <span class="t t--f">Same for everyone</span></li><li>Don't run a loyalty programme. A discount doesn't fix a value gap, it confirms one.
+    <ol class="lines lines--x"><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>Don't spend more on acquisition. You'd be paying to fill a bucket with a hole in it.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>Don't raise prices. Value perception is already the problem.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>Don't add a new product for existing customers who aren't buying the current one.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>Don't expand into a new market. You'd take the retention problem with you.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>Don't run a loyalty programme. A discount doesn't fix a value gap, it confirms one.
   <span class="t t--f">Same for everyone</span></li></ol>
   </article><article class="item">
     <div class="item__h"><span class="num">5</span>
       <h3 class="hl-face d3">You are <em>offer</em> constrained</h3></div>
 
     <p class="lbl">What it says</p>
-    <ul class="lines"><li>Double your customers tomorrow and you'd have no trouble delivering, and you can't close enough of them to fill what you've got.
-  <span class="t t--f">Same for everyone</span></li><li>People come to you and they don't buy. It's the offer. Either the value in it doesn't justify what you're asking, or there's something in the way of somebody saying yes.
+    <ul class="lines"><li><span class="who who--y" title="Ryan wrote this">✓</span>Double your customers tomorrow and you'd have no trouble delivering, and you can't close enough of them to fill what you've got.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--y" title="Ryan wrote this">✓</span>People come to you and they don't buy. It's the offer. Either the value in it doesn't justify what you're asking, or there's something in the way of somebody saying yes.
   <span class="t t--f">Same for everyone</span></li>
-      <li>your close rate sits <b class="slot">their Q31 answer</b>
-  <span class="t t--s">Their answer dropped in</span></li><li>the most common reason you lose is <b class="slot">their Q32 answer</b>
-  <span class="t t--s">Their answer dropped in</span></li><li>people come back asking what's included <b class="slot">their Q33 answer</b>
-  <span class="t t--s">Their answer dropped in</span></li><li>they find out what you charge <b class="slot">their Q35 answer</b>
+      <li><span class="who who--y" title="Ryan wrote this">✓</span>your close rate sits <b class="slot">their Q31 answer</b>
+  <span class="t t--s">Their answer dropped in</span></li><li><span class="who who--y" title="Ryan wrote this">✓</span>the most common reason you lose is <b class="slot">their Q32 answer</b>
+  <span class="t t--s">Their answer dropped in</span></li><li><span class="who who--y" title="Ryan wrote this">✓</span>people come back asking what's included <b class="slot">their Q33 answer</b>
+  <span class="t t--s">Their answer dropped in</span></li><li><span class="who who--y" title="Ryan wrote this">✓</span>they find out what you charge <b class="slot">their Q35 answer</b>
   <span class="t t--s">Their answer dropped in</span></li>
-      <li>You don't fix this by dropping the price. You fix it by putting things into the offer that cost you very little and are worth real money to the buyer, and by clearing whatever somebody has to get over before they can say yes.
+      <li><span class="who who--y" title="Ryan wrote this">✓</span>You don't fix this by dropping the price. You fix it by putting things into the offer that cost you very little and are worth real money to the buyer, and by clearing whatever somebody has to get over before they can say yes.
   <span class="t t--f">Same for everyone</span></li></ul>
 
     <p class="lbl">How to fix it &nbsp;<i>8 written, 0 conditional, at most 9 ever print</i></p>
     <p class="sub"></p>
-    <ol class="lines lines--n"><li>List everything you already do for a customer that isn't written into the offer, and write it in.
-  <span class="t t--f">Same for everyone</span></li><li>Add two or three things that cost you close to nothing and are worth real money to the buyer. A guarantee, or something they'd otherwise have to go and source themselves.
-  <span class="t t--f">Same for everyone</span></li><li>Write down every question somebody asks you after they've seen the price.
-  <span class="t t--f">Same for everyone</span></li><li>Answer all of them inside the offer, before anybody has to ask.
-  <span class="t t--f">Same for everyone</span></li><li>Shorten the time between somebody making contact and somebody getting a number.
-  <span class="t t--f">Same for everyone</span></li><li>Make the price and what's in it easier to see.
-  <span class="t t--f">Same for everyone</span></li><li>Run the new offer for one month.
-  <span class="t t--f">Same for everyone</span></li><li>If the close rate hasn't moved, put more value in and go again. If it has, come back here and find out what's capping you now.
+    <ol class="lines lines--n"><li><span class="who who--y" title="Ryan wrote this">✓</span>List everything you already do for a customer that isn't written into the offer, and write it in.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--y" title="Ryan wrote this">✓</span>Add two or three things that cost you close to nothing and are worth real money to the buyer. A guarantee, or something they'd otherwise have to go and source themselves.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--y" title="Ryan wrote this">✓</span>Write down every question somebody asks you after they've seen the price.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--y" title="Ryan wrote this">✓</span>Answer all of them inside the offer, before anybody has to ask.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--y" title="Ryan wrote this">✓</span>Shorten the time between somebody making contact and somebody getting a number.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--y" title="Ryan wrote this">✓</span>Make the price and what's in it easier to see.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--y" title="Ryan wrote this">✓</span>Run the new offer for one month.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--y" title="Ryan wrote this">✓</span>If the close rate hasn't moved, put more value in and go again. If it has, come back here and find out what's capping you now.
   <span class="t t--f">Same for everyone</span></li></ol>
 
     <p class="lbl">Don’t do this yet</p>
     <p class="sub">Until the offer lands, leave these alone.</p>
-    <ol class="lines lines--x"><li>Don't buy more leads. You'd pay more money for the same conversion rate.
-  <span class="t t--f">Same for everyone</span></li><li>Don't hire a salesperson. They'd fail against the same offer you're failing against.
-  <span class="t t--f">Same for everyone</span></li><li>Don't cut your price. Price is rarely the real reason, and you can't test it while the offer is unclear.
-  <span class="t t--f">Same for everyone</span></li><li>Don't add more options. More choice is part of why these deals are stalling.
-  <span class="t t--f">Same for everyone</span></li><li>Don't rebrand. The words are the problem, not the logo.
+    <ol class="lines lines--x"><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>Don't buy more leads. You'd pay more money for the same conversion rate.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>Don't hire a salesperson. They'd fail against the same offer you're failing against.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>Don't cut your price. Price is rarely the real reason, and you can't test it while the offer is unclear.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>Don't add more options. More choice is part of why these deals are stalling.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>Don't rebrand. The words are the problem, not the logo.
   <span class="t t--f">Same for everyone</span></li></ol>
   </article><article class="item">
     <div class="item__h"><span class="num">6</span>
       <h3 class="hl-face d3">You are <em>demand</em> constrained</h3></div>
 
     <p class="lbl">What it says</p>
-    <ul class="lines"><li>Double your customers tomorrow and you'd have no trouble delivering, and you can't find enough of them to fill what you've got.
-  <span class="t t--f">Same for everyone</span></li><li>You've got capacity sitting idle and not enough people asking.
+    <ul class="lines"><li><span class="who who--y" title="Ryan wrote this">✓</span>Double your customers tomorrow and you'd have no trouble delivering, and you can't find enough of them to fill what you've got.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--y" title="Ryan wrote this">✓</span>You've got capacity sitting idle and not enough people asking.
   <span class="t t--f">Same for everyone</span></li>
-      <li>enquiries run <b class="slot">their Q36 answer</b>
-  <span class="t t--s">Their answer dropped in</span></li><li>volume has <b class="slot">their Q38 answer</b> over the last year
-  <span class="t t--s">Their answer dropped in</span></li><li><b class="slot">their Q40 answer</b>
+      <li><span class="who who--y" title="Ryan wrote this">✓</span>enquiries run <b class="slot">their Q36 answer</b>
+  <span class="t t--s">Their answer dropped in</span></li><li><span class="who who--y" title="Ryan wrote this">✓</span>volume has <b class="slot">their Q38 answer</b> over the last year
+  <span class="t t--s">Their answer dropped in</span></li><li><span class="who who--y" title="Ryan wrote this">✓</span><b class="slot">their Q40 answer</b>
   <span class="t t--s">Their answer dropped in</span></li>
-      <li>Nothing downstream is broken. The business needs more people coming in the top, and it won't start feeding itself.
+      <li><span class="who who--y" title="Ryan wrote this">✓</span>Nothing downstream is broken. The business needs more people coming in the top, and it won't start feeding itself.
   <span class="t t--f">Same for everyone</span></li></ul>
 
     <p class="lbl">How to fix it &nbsp;<i>8 written, 0 conditional, at most 9 ever print</i></p>
     <p class="sub"></p>
-    <ol class="lines lines--n"><li>Ask your happiest customers for something in writing or on camera. Pay for it, or give them something for it.
-  <span class="t t--f">Same for everyone</span></li><li>Put that where somebody deciding on you will actually see it.
-  <span class="t t--f">Same for everyone</span></li><li>Take the source that already brings your best customers and put two or three times the effort into it.
-  <span class="t t--f">Same for everyone</span></li><li>Stand up a second source that doesn't rely on being found. Going out and asking directly is the usual one.
-  <span class="t t--f">Same for everyone</span></li><li>Set up a referral programme with something real in it for the customer who refers.
-  <span class="t t--f">Same for everyone</span></li><li>Launch it by asking every customer, one at a time, for a single introduction.
-  <span class="t t--f">Same for everyone</span></li><li>Run all of that for ninety days without adding anything else.
-  <span class="t t--f">Same for everyone</span></li><li>If enquiries haven't moved, work the list again. If they have, come back here and find out what's capping you now.
+    <ol class="lines lines--n"><li><span class="who who--y" title="Ryan wrote this">✓</span>Ask your happiest customers for something in writing or on camera. Pay for it, or give them something for it.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--y" title="Ryan wrote this">✓</span>Put that where somebody deciding on you will actually see it.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--y" title="Ryan wrote this">✓</span>Take the source that already brings your best customers and put two or three times the effort into it.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--y" title="Ryan wrote this">✓</span>Stand up a second source that doesn't rely on being found. Going out and asking directly is the usual one.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--y" title="Ryan wrote this">✓</span>Set up a referral programme with something real in it for the customer who refers.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--y" title="Ryan wrote this">✓</span>Launch it by asking every customer, one at a time, for a single introduction.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--y" title="Ryan wrote this">✓</span>Run all of that for ninety days without adding anything else.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--y" title="Ryan wrote this">✓</span>If enquiries haven't moved, work the list again. If they have, come back here and find out what's capping you now.
   <span class="t t--f">Same for everyone</span></li></ol>
 
     <p class="lbl">Don’t do this yet</p>
     <p class="sub">Until enquiries lift, leave these alone.</p>
-    <ol class="lines lines--x"><li>Don't hire. You'd be adding capacity to capacity you already can't fill.
-  <span class="t t--f">Same for everyone</span></li><li>Don't build a new product. The one you have hasn't been shown to enough people.
-  <span class="t t--f">Same for everyone</span></li><li>Don't cut prices to stimulate demand. It rarely moves volume, and it permanently resets what customers expect to pay.
-  <span class="t t--f">Same for everyone</span></li><li>Don't spread across five channels at once. One channel run properly beats five run badly.
-  <span class="t t--f">Same for everyone</span></li><li>Don't wait for referrals to pick back up. Referral volume follows the number of customers you have, and that's the number that's short.
+    <ol class="lines lines--x"><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>Don't hire. You'd be adding capacity to capacity you already can't fill.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>Don't build a new product. The one you have hasn't been shown to enough people.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>Don't cut prices to stimulate demand. It rarely moves volume, and it permanently resets what customers expect to pay.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>Don't spread across five channels at once. One channel run properly beats five run badly.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>Don't wait for referrals to pick back up. Referral volume follows the number of customers you have, and that's the number that's short.
   <span class="t t--f">Same for everyone</span></li></ol>
   </article></section>
-  <section class="grp"><div class="grp__h"><h2 class="hl-face d2" style="text-transform:uppercase">The ten risks</h2></div>
+  <section class="grp"><div class="grp__h"><h2 class="hl-face d2" style="text-transform:uppercase">The eleven risks</h2></div>
     <article class="item">
     <div class="item__h"><h3 class="hl-face d3">You have a <em>Key asset</em> risk</h3></div>
     <p class="lbl">What it says</p>
-    <ul class="lines"><li>One piece of equipment or one vehicle is doing work you have no backup for. A breakdown or a long repair stops revenue you have already sold, and hire rates at short notice are set by people who know you're stuck.
+    <ul class="lines"><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>One piece of equipment or one vehicle is doing work you have no backup for. A breakdown or a long repair stops revenue you have already sold, and hire rates at short notice are set by people who know you're stuck.
   <span class="t t--f">Same for everyone</span></li>
       
       </ul>
@@ -639,13 +656,13 @@ body.has-dev{padding-bottom:56px}
     <ul class="fires"><li><b>100</b> Q50 &ldquo;named as the one that would hurt most&rdquo;</li><li><b>75</b> Q49 &ldquo;One key piece of equipment, or one vehicle&rdquo;</li></ul>
     
     <p class="lbl">What to do</p>
-    <ol class="lines lines--n"><li>Find out today what a replacement costs at short notice, and who actually has one.
-  <span class="t t--f">Same for everyone</span></li><li>Put it on a service schedule and hold to it.
+    <ol class="lines lines--n"><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>Find out today what a replacement costs at short notice, and who actually has one.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>Put it on a service schedule and hold to it.
   <span class="t t--f">Same for everyone</span></li></ol>
   </article><article class="item">
     <div class="item__h"><h3 class="hl-face d3">You have a <em>Key lead source</em> risk</h3></div>
     <p class="lbl">What it says</p>
-    <ul class="lines"><li>Your customers arrive <b class="slot">their Q48 answer</b>. A lead source changes without asking you first, and an algorithm shift or one referrer going quiet can halve your enquiries inside a month.
+    <ul class="lines"><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>Your customers arrive <b class="slot">their Q48 answer</b>. A lead source changes without asking you first, and an algorithm shift or one referrer going quiet can halve your enquiries inside a month.
   <span class="t t--s">Their answer dropped in</span></li>
       
       <li>You weren't sure where your customers actually come from, which usually means one source is doing more of the work than you think. A lead source can change without asking you first, and one referrer going quiet can halve your enquiries inside a month.<span class="t t--c">Only if they answered Not sure</span></li></ul>
@@ -654,13 +671,13 @@ body.has-dev{padding-bottom:56px}
     <p class="lbl">Adds weight, never prints alone</p>
       <ul class="fires fires--quiet"><li><b>50</b> Q48 &ldquo;Two channels carry it&rdquo;</li></ul>
     <p class="lbl">What to do</p>
-    <ol class="lines lines--n"><li>Stand up a second lead source before you need it, and give it ninety days before you judge it.
-  <span class="t t--f">Same for everyone</span></li><li>Write down what you'd do if the current one halved tomorrow. That plan is worth having on paper before you need it.
+    <ol class="lines lines--n"><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>Stand up a second lead source before you need it, and give it ninety days before you judge it.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>Write down what you'd do if the current one halved tomorrow. That plan is worth having on paper before you need it.
   <span class="t t--f">Same for everyone</span></li></ol>
   </article><article class="item">
     <div class="item__h"><h3 class="hl-face d3">You have a <em>Key client</em> risk</h3></div>
     <p class="lbl">What it says</p>
-    <ul class="lines"><li>One customer carries <b class="slot">their Q46 answer</b> of your revenue. That customer can leave, or get bought by someone who already has their own suppliers, and neither is something you get a say in.
+    <ul class="lines"><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>One customer carries <b class="slot">their Q46 answer</b> of your revenue. That customer can leave, or get bought by someone who already has their own suppliers, and neither is something you get a say in.
   <span class="t t--s">Their answer dropped in</span></li>
       
       </ul>
@@ -669,14 +686,14 @@ body.has-dev{padding-bottom:56px}
     <p class="lbl">Adds weight, never prints alone</p>
       <ul class="fires fires--quiet"><li><b>45</b> Q46 &ldquo;20% to 30%&rdquo;</li><li><b>35</b> Q46 &ldquo;10% to 20%&rdquo;</li></ul>
     <p class="lbl">What to do</p>
-    <ol class="lines lines--n"><li>Set a ceiling, say twenty percent of revenue from any one customer, and treat crossing it as the trigger to go and win two more.
-  <span class="t t--f">Same for everyone</span></li><li>Get them onto a term agreement with a notice period, so a decision to leave gives you time to react.
-  <span class="t t--f">Same for everyone</span></li><li>If the work is committed on a handshake, that is the first conversation to have, before the ceiling.
+    <ol class="lines lines--n"><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>Set a ceiling, say twenty percent of revenue from any one customer, and treat crossing it as the trigger to go and win two more.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>Get them onto a term agreement with a notice period, so a decision to leave gives you time to react.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>If the work is committed on a handshake, that is the first conversation to have, before the ceiling.
   <span class="t t--f">Same for everyone</span></li></ol>
   </article><article class="item">
     <div class="item__h"><h3 class="hl-face d3">You have a <em>Key licence</em> risk</h3></div>
     <p class="lbl">What it says</p>
-    <ul class="lines"><li>One licence or accreditation is the thing that lets you trade at all. Let it lapse and the business stops completely rather than slows down.
+    <ul class="lines"><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>One licence or accreditation is the thing that lets you trade at all. Let it lapse and the business stops completely rather than slows down.
   <span class="t t--f">Same for everyone</span></li>
       
       </ul>
@@ -684,13 +701,13 @@ body.has-dev{padding-bottom:56px}
     <ul class="fires"><li><b>100</b> Q50 &ldquo;named as the one that would hurt most&rdquo;</li><li><b>85</b> Q49 &ldquo;One licence, accreditation or insurance the business runs on&rdquo;</li></ul>
     
     <p class="lbl">What to do</p>
-    <ol class="lines lines--n"><li>Put every renewal date in a calendar with a ninety day warning on it.
-  <span class="t t--f">Same for everyone</span></li><li>Make sure a second person can hold or renew it, so a lapse can't come down to one person's inbox.
+    <ol class="lines lines--n"><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>Put every renewal date in a calendar with a ninety day warning on it.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>Make sure a second person can hold or renew it, so a lapse can't come down to one person's inbox.
   <span class="t t--f">Same for everyone</span></li></ol>
   </article><article class="item">
     <div class="item__h"><h3 class="hl-face d3">You have a <em>Key person</em> risk</h3></div>
     <p class="lbl">What it says</p>
-    <ul class="lines"><li>The business can't run without one person. Sold tomorrow, <b class="slot">their Q55 answer</b>, and there's nobody who could run it if you stepped out. That caps the business at the size of one person's week.
+    <ul class="lines"><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>The business can't run without one person. Sold tomorrow, <b class="slot">their Q55 answer</b>, and there's nobody who could run it if you stepped out. That caps the business at the size of one person's week.
   <span class="t t--s">Their answer dropped in</span></li>
       <li>The business can't run without one person, and what they know isn't written down anywhere else. If they go, whether that's illness or a resignation, the knowledge goes with them and you'll be rebuilding it while still trying to deliver.<span class="t t--c">Only if Q49 ticks the person who knows how the work gets done</span></li>
       <li>The business can't run without one person, and nobody has put a number on what that would cost. Until somebody else can run it, this is a job that owns you rather than an asset you own.<span class="t t--c">Only if they answered Not sure</span></li></ul>
@@ -699,14 +716,14 @@ body.has-dev{padding-bottom:56px}
     <p class="lbl">Adds weight, never prints alone</p>
       <ul class="fires fires--quiet"><li><b>45</b> Q52 &ldquo;About half&rdquo;</li><li><b>45</b> Q54 &ldquo;Someone would step up, but they'd struggle&rdquo;</li><li><b>35</b> Q55 &ldquo;A few weeks of handover&rdquo;</li></ul>
     <p class="lbl">What to do</p>
-    <ol class="lines lines--n"><li>Write down what that person holds, then move one piece of it to somebody else this month.
-  <span class="t t--f">Same for everyone</span></li><li>Name who would run it, tell them, and give them a budget they can act inside. A deputy who can't decide anything is a job title.
-  <span class="t t--f">Same for everyone</span></li><li>Book a month off twelve months out and work backwards from it. That's the deadline that makes it real.
+    <ol class="lines lines--n"><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>Write down what that person holds, then move one piece of it to somebody else this month.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>Name who would run it, tell them, and give them a budget they can act inside. A deputy who can't decide anything is a job title.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>Book a month off twelve months out and work backwards from it. That's the deadline that makes it real.
   <span class="t t--f">Same for everyone</span></li></ol>
   </article><article class="item">
     <div class="item__h"><h3 class="hl-face d3">You have a <em>Key product</em> risk</h3></div>
     <p class="lbl">What it says</p>
-    <ul class="lines"><li><b class="slot">their Q47 answer</b> of your revenue comes from one product or service line. That's fine while the market wants it, and it's a single point of failure the day the market moves or a competitor undercuts it.
+    <ul class="lines"><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span><b class="slot">their Q47 answer</b> of your revenue comes from one product or service line. That's fine while the market wants it, and it's a single point of failure the day the market moves or a competitor undercuts it.
   <span class="t t--s">Their answer dropped in</span></li>
       
       </ul>
@@ -715,13 +732,13 @@ body.has-dev{padding-bottom:56px}
     <p class="lbl">Adds weight, never prints alone</p>
       <ul class="fires fires--quiet"><li><b>40</b> Q47 &ldquo;25% to 50%&rdquo;</li></ul>
     <p class="lbl">What to do</p>
-    <ol class="lines lines--n"><li>Build a second line and sell it to the customers you already have.
-  <span class="t t--f">Same for everyone</span></li><li>Set a target for what share of revenue it should carry in twelve months, and check it quarterly.
+    <ol class="lines lines--n"><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>Build a second line and sell it to the customers you already have.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>Set a target for what share of revenue it should carry in twelve months, and check it quarterly.
   <span class="t t--f">Same for everyone</span></li></ol>
   </article><article class="item">
     <div class="item__h"><h3 class="hl-face d3">You have a <em>Key supplier</em> risk</h3></div>
     <p class="lbl">What it says</p>
-    <ul class="lines"><li>There's one supplier with no ready replacement. Their price rise is your price rise, and their bad year is your bad year.
+    <ul class="lines"><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>There's one supplier with no ready replacement. Their price rise is your price rise, and their bad year is your bad year.
   <span class="t t--f">Same for everyone</span></li>
       
       </ul>
@@ -729,13 +746,13 @@ body.has-dev{padding-bottom:56px}
     <ul class="fires"><li><b>100</b> Q50 &ldquo;named as the one that would hurt most&rdquo;</li><li><b>80</b> Q49 &ldquo;Your main supplier&rdquo;</li></ul>
     
     <p class="lbl">What to do</p>
-    <ol class="lines lines--n"><li>Qualify a second supplier and give them ten percent of your volume. A backup you've never bought from isn't a backup.
-  <span class="t t--f">Same for everyone</span></li><li>Get their lead times and pricing in writing, so a change becomes a conversation rather than a surprise.
+    <ol class="lines lines--n"><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>Qualify a second supplier and give them ten percent of your volume. A backup you've never bought from isn't a backup.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>Get their lead times and pricing in writing, so a change becomes a conversation rather than a surprise.
   <span class="t t--f">Same for everyone</span></li></ol>
   </article><article class="item">
     <div class="item__h"><h3 class="hl-face d3">You have a <em>Model misfit</em> risk</h3></div>
     <p class="lbl">What it says</p>
-    <ul class="lines"><li>The way you spend your week is <b class="slot">their Q58 answer</b>. It decides how long you'll keep doing this, and a business rarely outlives the owner's appetite for running it.
+    <ul class="lines"><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>The way you spend your week is <b class="slot">their Q58 answer</b>. It decides how long you'll keep doing this, and a business rarely outlives the owner's appetite for running it.
   <span class="t t--s">Their answer dropped in</span></li>
       
       <li>You weren't sure whether the way you spend your week matches what you wanted out of this. That question decides how long you'll keep doing it, and a business rarely outlives the owner's appetite for running it.<span class="t t--c">Only if they answered Not sure</span></li></ul>
@@ -744,13 +761,13 @@ body.has-dev{padding-bottom:56px}
     <p class="lbl">Adds weight, never prints alone</p>
       <ul class="fires fires--quiet"><li><b>50</b> Q58 &ldquo;Partly&rdquo;</li></ul>
     <p class="lbl">What to do</p>
-    <ol class="lines lines--n"><li>Write down what you actually wanted out of this, then hold your week up against it.
-  <span class="t t--f">Same for everyone</span></li><li>The gap between those two is the brief for the next twelve months.
+    <ol class="lines lines--n"><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>Write down what you actually wanted out of this, then hold your week up against it.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>The gap between those two is the brief for the next twelve months.
   <span class="t t--f">Same for everyone</span></li></ol>
   </article><article class="item">
     <div class="item__h"><h3 class="hl-face d3">You have a <em>Succession gap</em> risk</h3></div>
     <p class="lbl">What it says</p>
-    <ul class="lines"><li>There's <b class="slot">their Q56 answer</b> for what happens if you stop or sell. Every business has an exit, planned or not. The unplanned version is the one where somebody else sets the price.
+    <ul class="lines"><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>There's <b class="slot">their Q56 answer</b> for what happens if you stop or sell. Every business has an exit, planned or not. The unplanned version is the one where somebody else sets the price.
   <span class="t t--s">Their answer dropped in</span></li>
       
       <li>You weren't sure what happens to the business if you stop or sell. Every business has an exit, planned or not. The unplanned version is the one where somebody else sets the price.<span class="t t--c">Only if they answered Not sure</span></li></ul>
@@ -759,13 +776,13 @@ body.has-dev{padding-bottom:56px}
     <p class="lbl">Adds weight, never prints alone</p>
       <ul class="fires fires--quiet"><li><b>40</b> Q56 &ldquo;A rough idea in my head&rdquo;</li></ul>
     <p class="lbl">What to do</p>
-    <ol class="lines lines--n"><li>Write the one page version. Who runs it, and what happens to the customers.
-  <span class="t t--f">Same for everyone</span></li><li>It doesn't need to be right, it needs to exist.
+    <ol class="lines lines--n"><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>Write the one page version. Who runs it, and what happens to the customers.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>It doesn't need to be right, it needs to exist.
   <span class="t t--f">Same for everyone</span></li></ol>
   </article><article class="item">
     <div class="item__h"><h3 class="hl-face d3">You have a <em>Personal guarantee</em> risk</h3></div>
     <p class="lbl">What it says</p>
-    <ul class="lines"><li>You've personally guaranteed <b class="slot">their Q57 answer</b> of the business's obligations. The wall between business risk and personal risk isn't up, so a bad year in the business reaches your house.
+    <ul class="lines"><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>You've personally guaranteed <b class="slot">their Q57 answer</b> of the business's obligations. The wall between business risk and personal risk isn't up, so a bad year in the business reaches your house.
   <span class="t t--s">Their answer dropped in</span></li>
       
       <li>You weren't sure what you've personally guaranteed, and that's worth finding out this week. Where the wall between business risk and personal risk isn't up, a bad year in the business reaches your house.<span class="t t--c">Only if they answered Not sure</span></li></ul>
@@ -774,28 +791,28 @@ body.has-dev{padding-bottom:56px}
     <p class="lbl">Adds weight, never prints alone</p>
       <ul class="fires fires--quiet"><li><b>45</b> Q57 &ldquo;Yes, a small amount&rdquo;</li></ul>
     <p class="lbl">What to do</p>
-    <ol class="lines lines--n"><li>List every guarantee you've signed and put a date against each one to renegotiate or release it.
-  <span class="t t--f">Same for everyone</span></li><li>They're easy to leave in place, because a renewal rarely asks you anything.
+    <ol class="lines lines--n"><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>List every guarantee you've signed and put a date against each one to renegotiate or release it.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>They're easy to leave in place, because a renewal rarely asks you anything.
   <span class="t t--f">Same for everyone</span></li></ol>
   </article><article class="item">
     <div class="item__h"><h3 class="hl-face d3">You have a <em>Cash flow</em> risk</h3></div>
     <p class="lbl">What it says</p>
-    <ul class="lines"><li>undefined
-  <span class="t t--f">Same for everyone</span></li>
+    <ul class="lines"><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>You're profitable on paper and short of cash in practice. The work is sold and the money hasn't landed, so there's nothing sitting there to fund the next job. you get paid <b class="slot">their Q7 answer</b> the balance lands <b class="slot">their Q9 answer</b> you're owed <b class="slot">their Q13 answer</b> past its due date <b class="slot">their Q8 answer</b> you're holding <b class="slot">their Q10 answer</b> That's a timing problem rather than a rate problem. Every customer you win right now costs you money before they pay you.
+  <span class="t t--s">Their answer dropped in</span></li>
       
       </ul>
     <p class="lbl">Prints when they answer</p>
     <ul class="fires"></ul>
     
     <p class="lbl">What to do</p>
-    <ol class="lines lines--n"><li>[object Object]
-  <span class="t t--f">Same for everyone</span></li><li>[object Object]
-  <span class="t t--f">Same for everyone</span></li><li>[object Object]
-  <span class="t t--f">Same for everyone</span></li><li>[object Object]
-  <span class="t t--f">Same for everyone</span></li><li>[object Object]
-  <span class="t t--f">Same for everyone</span></li><li>[object Object]
-  <span class="t t--f">Same for everyone</span></li><li>[object Object]
-  <span class="t t--f">Same for everyone</span></li></ol>
+    <ol class="lines lines--n"><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>You take nothing upfront, which is this whole problem in one answer. Change that before anything else on this list.
+  <span class="t t--c">Only if Q7 is &ldquo;Nothing upfront, paid when it's done&rdquo; or &ldquo;Nothing upfront, paid on terms after&rdquo;</span></li><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>Take money upfront on everything. Half of it well before you start and the rest before you deliver, so it's in the account before your own costs go out.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>Line the upfront money up to land before your own costs do. Where the final number can't be known in advance, take the balance afterwards and refund the difference.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>Ask for the money within twenty four hours of finishing. Whatever the gap is between finishing and asking, that gap is yours to close.
+  <span class="t t--f">Same for everyone</span></li><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>Collect what's already overdue before you chase anything new. It's the cheapest money available to you.
+  <span class="t t--c">Only if Q13 is &ldquo;One to four weeks' revenue&rdquo; or &ldquo;More than a month's revenue&rdquo;</span></li><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>Put your terms in writing before the next piece of work starts, and chase on day one past due.
+  <span class="t t--c">Only if Q51 is &ldquo;Month to month, cancellable anytime&rdquo; or &ldquo;Handshake and email&rdquo;</span></li><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>Get a facility in place while the business is still profitable on paper. Banks lend to businesses that don't look like they need it.
+  <span class="t t--c">Only if Q12 is &ldquo;Yes, clearly&rdquo;</span></li></ol>
   </article>
   </section>
 </div></main>
