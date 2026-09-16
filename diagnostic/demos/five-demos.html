@@ -386,6 +386,29 @@ body.has-dev{padding-bottom:56px}
 .scores tr.is-it td{color:var(--tx-accent);font-weight:600}
 .note{font-size:13.5px;color:var(--tx-mute);max-width:66ch}
 @media print{ .tabs,.why,.hdr,.ftr,.hero{display:none!important} .panel{display:block!important;break-before:page} .panel:first-of-type{break-before:auto} }
+
+/* ---- the map panel, internal reference only ---- */
+/* the reading column is 820. The map needs the width, so it breaks out of it. */
+.map{width:min(1180px,calc(100vw - 2*var(--gutter)));margin-left:50%;transform:translateX(-50%)}
+.map__grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:8px}
+@media(max-width:860px){.map__grid{grid-template-columns:1fr}}
+.mcard{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:clamp(26px,3vw,40px) clamp(24px,2.6vw,36px) clamp(22px,2.4vw,32px);position:relative;overflow:hidden}
+.mcard::before{content:"";position:absolute;inset:0 0 auto 0;height:3px;background:var(--accent-deep)}
+.mcard__k{font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--tx-accent);margin:0 0 10px}
+.mcard h3{margin:0 0 14px;text-transform:uppercase}
+.mcard__test{margin:0 0 24px;padding:18px 20px;background:var(--ground);border-radius:12px;
+  font-size:16px;line-height:1.55;color:var(--tx-sub)}
+.mcard__test b{color:var(--tx);font-weight:600}
+.mrow{display:flex;gap:18px;padding:16px 0;border-top:1px solid var(--line)}
+.mrow__n{flex:0 0 118px;font-weight:700;font-size:16px;color:var(--tx)}
+.mrow__d{font-size:15.5px;line-height:1.55;color:var(--tx-sub);margin:0}
+.mrow--flag .mrow__n::after{content:"?";display:inline-block;margin-left:5px;color:var(--cta-deep);font-weight:700}
+.mout{margin-top:24px;background:var(--paper-2);border:1px dashed var(--line);border-radius:16px;padding:clamp(24px,2.6vw,36px)}
+.mout h3{margin:0 0 10px;text-transform:uppercase}
+.mout p{margin:0 0 12px;font-size:16px;line-height:1.6;color:var(--tx-sub);max-width:74ch}
+.mout p:last-child{margin-bottom:0}
+.mnote{margin-top:22px;font-size:13.5px;line-height:1.6;color:var(--tx-mute);max-width:74ch}
+.mnote b{color:var(--tx-sub)}
 </style>
 
 <header class="hdr"><div class="shell hdr__in"><a class="hl-link" href="https://headlinergroup.com.au" aria-label="Headliner Group, home"><div class="hl-stage"><div class="hl-logo"><div class="hl-beam"></div><span class="hl-word">Headliner</span><div class="hl-group">Group</div></div></div></a><p class="hdr__tag">Business Diagnostic</p></div></header>
@@ -408,6 +431,7 @@ body.has-dev{padding-bottom:56px}
   <b>Halcyon Studio</b><span>Offer</span></button>
 <button class="tab" role="tab" id="t-tallow" aria-controls="p-tallow" aria-selected="false">
   <b>Tallow Crew</b><span>Margin</span></button>
+<button class="tab" role="tab" id="t-map" aria-controls="p-map" aria-selected="false"><b>The map</b><span>Reference</span></button>
 </div></div></nav>
 
 <main class="on-light"><div class="shell">
@@ -646,6 +670,57 @@ body.has-dev{padding-bottom:56px}
     <p class="why__lede">Bar is 60. Suppressed by the finding above: nothing.
     Risks are listed loudest first across all three families, capped at 4.</p>
     </div></details>
+</section>
+<section class="panel" id="p-map" role="tabpanel" aria-labelledby="t-map">
+<div class="map">
+  <p class="eyebrow">Internal reference, not part of the tool</p>
+  <h2 class="hl-face d1" style="margin:0 0 12px">Supply and demand map</h2>
+  <p style="max-width:64ch;margin:0 0 26px">Where the seven constraints sit if you split them by the one question. The engine doesn’t use this split. It’s here so the shape is visible.</p>
+
+  <div class="map__grid">
+    <div class="mcard">
+      <p class="mcard__k">Group one</p>
+      <h3 class="hl-face d2">Supply constrained</h3>
+      <p class="mcard__test">Double the clients tomorrow and <b>you couldn’t handle it</b>. The customers are there. Getting the work out the door is what’s capping you.</p>
+      <div class="mrow">
+  <div class="mrow__n">Talent</div><p class="mrow__d">A missing layer, not missing hands. The work routes through the owner because nobody owns a part of it.</p></div><div class="mrow">
+  <div class="mrow__n">Fulfilment</div><p class="mrow__d">Capacity, not capability. They know how to do the work, they just can’t do enough of it.</p></div><div class="mrow mrow--flag">
+  <div class="mrow__n">Margin</div><p class="mrow__d">Full, and still not making money. Only binds once the calendar is full, which is why it sits here.</p></div>
+    </div>
+    <div class="mcard">
+      <p class="mcard__k">Group two</p>
+      <h3 class="hl-face d2">Demand constrained</h3>
+      <p class="mcard__test">Double the clients tomorrow and <b>you could handle it</b>. The capacity is there. Filling it is what’s capping you.</p>
+      <div class="mrow">
+  <div class="mrow__n">Demand</div><p class="mrow__d">Not enough people asking. The calendar has room and nothing is filling it.</p></div><div class="mrow">
+  <div class="mrow__n">Offer</div><p class="mrow__d">They ask, and they don’t buy. Enquiries arrive and stall at the quote.</p></div><div class="mrow">
+  <div class="mrow__n">Value</div><p class="mrow__d">They buy once, then shrink or leave. Capacity keeps opening back up.</p></div>
+    </div>
+  </div>
+
+  <div class="mout">
+    <h3 class="hl-face d3">Neither</h3>
+    <p><b>Cash flow.</b> It isn’t a supply problem or a demand problem. A full business can run out of money and so can an empty one, and when it happens it outranks whichever group you’re in.</p>
+    <p>That’s why it stays first in the chain and why it can’t be sorted into either card.</p>
+  </div>
+
+  <p class="mnote"><b>Margin is the one to rule on.</b> It’s under supply on the argument that it only binds when the calendar is full. If you’re empty and unprofitable, being empty is the problem. Move it if you disagree.</p>
+  <p class="mnote"><b>q34 already asks the question.</b> “If twice as many enquiries landed next month, could you deliver the work?” That’s the split, in fact form, already in the questionnaire.</p>
+
+  <details class="why" style="margin-top:26px"><summary>How often each one actually gets called</summary><div class="why__in">
+    <p class="why__lede">20,000 answer sets, every question answered at random. This measures the engine’s own shape, not the real world, because real owners don’t answer uniformly.</p>
+    <table class="scores"><thead><tr><th>Constraint</th><th class="num">Fails</th><th class="num">Called</th></tr></thead><tbody>
+      <tr><td>Talent</td><td class="num">34.1%</td><td class="num">32.2%</td></tr>
+      <tr><td>Cash flow</td><td class="num">11.8%</td><td class="num">20.5%</td></tr>
+      <tr><td>Fulfilment</td><td class="num">21.8%</td><td class="num">15.2%</td></tr>
+      <tr><td>Value</td><td class="num">18.7%</td><td class="num">14.3%</td></tr>
+      <tr><td>Offer</td><td class="num">25.4%</td><td class="num">9.4%</td></tr>
+      <tr><td>Margin</td><td class="num">19.2%</td><td class="num">4.7%</td></tr>
+      <tr><td>Demand</td><td class="num">16.7%</td><td class="num">3.7%</td></tr>
+    </tbody></table>
+    <p class="why__lede">Fails means it was over the bar on its own. Called means chain order picked it. Cash flow gets called more often than it fails because hard triggers fire it regardless of score. Demand and margin sit late in the chain, so most of the time something upstream gets there first.</p>
+  </div></details>
+</div>
 </section>
   <p class="note" style="margin:48px 0 0;padding-top:28px;border-top:1px solid var(--rim)">
     These five are fabricated to show the range. The businesses aren't real, the answers were written to land on five different constraints, and everything after that is the engine's.</p>
