@@ -409,6 +409,23 @@ body.has-dev{padding-bottom:56px}
 .mout p:last-child{margin-bottom:0}
 .mnote{margin-top:22px;font-size:13.5px;line-height:1.6;color:var(--tx-mute);max-width:74ch}
 .mnote b{color:var(--tx-sub)}
+.mexp{margin-top:44px;padding-top:30px;border-top:1px solid var(--line)}
+.mexp__grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:22px}
+@media(max-width:860px){.mexp__grid{grid-template-columns:1fr}}
+.exp{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px 22px}
+.exp__h{display:flex;align-items:baseline;gap:10px;margin:0 0 6px}
+.exp__h h4{margin:0;font-size:17px;font-weight:700;color:var(--tx)}
+.exp__g{font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--tx-accent);border:1px solid var(--line);border-radius:99px;padding:3px 8px}
+.exp__d{margin:0 0 14px;font-size:14.5px;line-height:1.55;color:var(--tx-sub)}
+.exp__k{margin:0 0 8px;font-size:10.5px;font-weight:600;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--tx-mute)}
+.qa{margin:0;padding:10px 0 0;border-top:1px solid var(--line)}
+.qa dt{font-size:13.5px;line-height:1.45;color:var(--tx-mute);margin:0}
+.qa dd{margin:3px 0 12px;font-size:14.5px;line-height:1.45;font-weight:600;color:var(--tx)}
+.qa dd::before{content:"→ ";color:var(--tx-accent);font-weight:700}
+.qa dd:last-child{margin-bottom:2px}
+
 </style>
 
 <header class="hdr"><div class="shell hdr__in"><a class="hl-link" href="https://headlinergroup.com.au" aria-label="Headliner Group, home"><div class="hl-stage"><div class="hl-logo"><div class="hl-beam"></div><span class="hl-word">Headliner</span><div class="hl-group">Group</div></div></div></a><p class="hdr__tag">Business Diagnostic</p></div></header>
@@ -720,6 +737,48 @@ body.has-dev{padding-bottom:56px}
     </tbody></table>
     <p class="why__lede">Fails means it was over the bar on its own. Called means chain order picked it. Cash flow gets called more often than it fails because hard triggers fire it regardless of score. Demand and margin sit late in the chain, so most of the time something upstream gets there first.</p>
   </div></details>
+  <section class="mexp">
+  <h3 class="hl-face d3" style="margin:0 0 8px">What counts towards each one</h3>
+  <p style="max-width:70ch;margin:0;color:var(--tx-sub)">The heaviest questions in each block, with the answer that scores worst. Pulled straight out of the content file, so this list moves when the questions do.</p>
+  <div class="mexp__grid">
+  <div class="exp">
+    <div class="exp__h"><h4>Talent</h4><span class="exp__g">Supply</span></div>
+    <p class="exp__d">A missing layer. The work routes through the owner because nobody else owns a part of it.</p>
+    <p class="exp__k">Answers that count towards it</p>
+    <dl class="qa"><dt>Which of these are somebody's actual job, not something you pick up when you get a minute?</dt><dd>None of these, they all sit with me</dd><dt>If you were uncontactable for a month, what happens to the business?</dt><dd>It stops</dd><dt>In the last 12 months, has a new product, a new location, a new market or an idea you've been sitting on stalled because you had nobody to give it to and no time to do it yourself?</dt><dd>That's the normal state</dd></dl>
+  </div><div class="exp">
+    <div class="exp__h"><h4>Fulfilment</h4><span class="exp__g">Supply</span></div>
+    <p class="exp__d">Capacity, not capability. They know how to do the work and can’t do enough of it.</p>
+    <p class="exp__k">Answers that count towards it</p>
+    <dl class="qa"><dt>How booked is your delivery capacity for the next 30 days?</dt><dd>Over capacity, we're behind</dd><dt>In the last 6 months, have you turned work away or pushed out a start date because you couldn't fit it in?</dt><dd>Constantly</dd><dt>How far ahead is a typical job actually ready?</dt><dd>We're finishing it as it starts</dd></dl>
+  </div><div class="exp">
+    <div class="exp__h"><h4>Margin</h4><span class="exp__g">Supply</span></div>
+    <p class="exp__d">Busy, full, and nothing left at the end of it.</p>
+    <p class="exp__k">Answers that count towards it</p>
+    <dl class="qa"><dt>On a typical job or sale, what's left after the direct cost of delivering it?</dt><dd>Under 15%</dd><dt>After everything, including paying yourself properly, what's left at the end of a year?</dt><dd>Nothing, or a loss</dd><dt>How often does a job end up costing more to deliver than you quoted?</dt><dd>On most jobs</dd></dl>
+  </div><div class="exp">
+    <div class="exp__h"><h4>Demand</h4><span class="exp__g">Demand</span></div>
+    <p class="exp__d">The calendar has room and not enough people are asking.</p>
+    <p class="exp__k">Answers that count towards it</p>
+    <dl class="qa"><dt>How many new enquiries does the business get in a typical month?</dt><dd>0 to 2</dd><dt>Has enquiry volume changed in the last 12 months?</dt><dd>Down sharply</dd><dt>Are you doing anything right now to generate new enquiries?</dt><dd>No, it all comes to us</dd></dl>
+  </div><div class="exp">
+    <div class="exp__h"><h4>Offer</h4><span class="exp__g">Demand</span></div>
+    <p class="exp__d">Enquiries arrive and stall at the quote.</p>
+    <p class="exp__k">Answers that count towards it</p>
+    <dl class="qa"><dt>Of the people who enquire and get a quote or a proposal, how many go ahead?</dt><dd>Under 10%</dd><dt>When you lose a deal, what's the most common reason?</dt><dd>They did nothing at all</dd><dt>Has the proportion of quotes that turn into work changed in the last 12 months?</dt><dd>Dropped sharply</dd></dl>
+  </div><div class="exp">
+    <div class="exp__h"><h4>Value</h4><span class="exp__g">Demand</span></div>
+    <p class="exp__d">Customers buy once, then shrink or leave, so capacity keeps opening back up.</p>
+    <p class="exp__k">Answers that count towards it</p>
+    <dl class="qa"><dt>Of the work your existing customers put out, how much of it comes to you?</dt><dd>A small slice, they spread it around</dd><dt>Of the customers who bought from you a year ago, roughly how many still buy from you?</dt><dd>Almost none</dd><dt>How many of your new customers arrive through a referral from an existing one?</dt><dd>Almost none</dd></dl>
+  </div><div class="exp">
+    <div class="exp__h"><h4>Cash flow</h4><span class="exp__g">Neither</span></div>
+    <p class="exp__d">The work is there. The money to do it isn’t in the account when it’s needed.</p>
+    <p class="exp__k">Answers that count towards it</p>
+    <dl class="qa"><dt>How do you get paid on a typical job?</dt><dd>Nothing upfront, invoiced on terms after</dd><dt>If revenue stopped tomorrow, how long could you cover wages and fixed costs from the cash you have?</dt><dd>Under 2 weeks</dd><dt>In the last 6 months, how often have you delayed paying a supplier, a bill or yourself because the money hadn't landed yet?</dt><dd>Every month</dd></dl>
+  </div>
+  </div>
+</section>
 </div>
 </section>
   <p class="note" style="margin:48px 0 0;padding-top:28px;border-top:1px solid var(--rim)">

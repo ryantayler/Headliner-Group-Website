@@ -120,6 +120,23 @@ const EXTRA = `
 .mout p:last-child{margin-bottom:0}
 .mnote{margin-top:22px;font-size:13.5px;line-height:1.6;color:var(--tx-mute);max-width:74ch}
 .mnote b{color:var(--tx-sub)}
+.mexp{margin-top:44px;padding-top:30px;border-top:1px solid var(--line)}
+.mexp__grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:22px}
+@media(max-width:860px){.mexp__grid{grid-template-columns:1fr}}
+.exp{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px 22px}
+.exp__h{display:flex;align-items:baseline;gap:10px;margin:0 0 6px}
+.exp__h h4{margin:0;font-size:17px;font-weight:700;color:var(--tx)}
+.exp__g{font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--tx-accent);border:1px solid var(--line);border-radius:99px;padding:3px 8px}
+.exp__d{margin:0 0 14px;font-size:14.5px;line-height:1.55;color:var(--tx-sub)}
+.exp__k{margin:0 0 8px;font-size:10.5px;font-weight:600;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--tx-mute)}
+.qa{margin:0;padding:10px 0 0;border-top:1px solid var(--line)}
+.qa dt{font-size:13.5px;line-height:1.45;color:var(--tx-mute);margin:0}
+.qa dd{margin:3px 0 12px;font-size:14.5px;line-height:1.45;font-weight:600;color:var(--tx)}
+.qa dd::before{content:"→ ";color:var(--tx-accent);font-weight:700}
+.qa dd:last-child{margin-bottom:2px}
+
 `;
 
 
@@ -135,6 +152,47 @@ const DEMAND = [
 ];
 const mrow = ([n, d], flag) => `<div class="mrow${flag?' mrow--flag':''}">
   <div class="mrow__n">${esc(n)}</div><p class="mrow__d">${esc(d)}</p></div>`;
+
+
+// The example answers are generated off the real content, never written by hand, so this
+// page can't drift from what the engine actually scores. Top weighted questions in each
+// block, each shown with the option that scores worst.
+const GROUP = { cashflow:'Neither', talent:'Supply', fulfilment:'Supply', margin:'Supply',
+                demand:'Demand', offer:'Demand', value:'Demand' };
+const BLURB = {
+  cashflow:  'The work is there. The money to do it isn’t in the account when it’s needed.',
+  talent:    'A missing layer. The work routes through the owner because nobody else owns a part of it.',
+  fulfilment:'Capacity, not capability. They know how to do the work and can’t do enough of it.',
+  margin:    'Busy, full, and nothing left at the end of it.',
+  demand:    'The calendar has room and not enough people are asking.',
+  offer:     'Enquiries arrive and stall at the quote.',
+  value:     'Customers buy once, then shrink or leave, so capacity keeps opening back up.',
+};
+const ORDER = ['talent','fulfilment','margin','demand','offer','value','cashflow'];
+
+function examples(cid, n) {
+  return D.questions
+    .filter(q => q.section === cid && q.weight > 0)
+    .map(q => ({ q, worst: (q.options||[]).filter(o => typeof o.w === 'number')
+                                          .sort((a,b) => b.w - a.w)[0] }))
+    .filter(x => x.worst && x.worst.w >= 80)
+    .sort((a,b) => b.q.weight - a.q.weight)
+    .slice(0, n);
+}
+
+const EXPLAIN = `<section class="mexp">
+  <h3 class="hl-face d3" style="margin:0 0 8px">What counts towards each one</h3>
+  <p style="max-width:70ch;margin:0;color:var(--tx-sub)">The heaviest questions in each block, with the answer that scores worst. Pulled straight out of the content file, so this list moves when the questions do.</p>
+  <div class="mexp__grid">
+  ${ORDER.map(cid => `<div class="exp">
+    <div class="exp__h"><h4>${esc(D.constraints[cid].short)}</h4><span class="exp__g">${GROUP[cid]}</span></div>
+    <p class="exp__d">${esc(BLURB[cid])}</p>
+    <p class="exp__k">Answers that count towards it</p>
+    <dl class="qa">${examples(cid, 3).map(x =>
+      `<dt>${esc(x.q.text)}</dt><dd>${esc(x.worst.text)}</dd>`).join('')}</dl>
+  </div>`).join('')}
+  </div>
+</section>`;
 
 const MAP = `<section class="panel" id="p-map" role="tabpanel" aria-labelledby="t-map">
 <div class="map">
@@ -179,6 +237,7 @@ const MAP = `<section class="panel" id="p-map" role="tabpanel" aria-labelledby="
     </tbody></table>
     <p class="why__lede">Fails means it was over the bar on its own. Called means chain order picked it. Cash flow gets called more often than it fails because hard triggers fire it regardless of score. Demand and margin sit late in the chain, so most of the time something upstream gets there first.</p>
   </div></details>
+  ${EXPLAIN}
 </div>
 </section>`;
 
