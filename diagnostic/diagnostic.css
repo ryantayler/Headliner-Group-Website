@@ -347,3 +347,10 @@ body.has-dev{padding-bottom:56px}
   p,li{max-width:none}
   h1,h2,h3{break-after:avoid}
 }
+
+/* The verdict is two lines now. The major is the claim, the constraint is the cause. */
+.verdict .due{margin:10px 0 0;font-family:'Archivo Black',Impact,sans-serif;
+  font-size:clamp(17px,2.4vw,26px);line-height:1.1;color:#0A0A0A;text-transform:uppercase;
+  letter-spacing:-.01em;opacity:.62}
+.verdict .major-test{margin:16px 0 0;font-size:15.5px;line-height:1.55;color:#2B322F;max-width:60ch}
+@media print{.verdict .due{color:var(--ink-l)}.verdict .major-test{color:var(--sub-l)}}

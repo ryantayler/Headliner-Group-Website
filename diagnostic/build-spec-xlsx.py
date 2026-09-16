@@ -175,7 +175,7 @@ sheet("Answer options",
 # ------------------------------------------------- 4. Constraints and order
 rows = []
 DEFN = {
- "cashflow":"Profitable but illiquid. The work is sold, the money hasn't landed, and there's nothing to fund wages, stock or gear. A timing problem, not a rate problem.",
+ "cashflow":"A risk, not a constraint. Profitable but illiquid. The work is sold, the money hasn't landed, and there's nothing to fund wages, stock or gear. A timing problem, not a rate problem.",
  "talent":"A missing layer, not missing hands. The role that should exist doesn't, and the owner is absorbing it. Hiring another doer doesn't fix it.",
  "fulfilment":"Capacity, not capability. They know how to do the work and need more hours of it. Blown lead times, waitlists, turning jobs away, quality slipping.",
  "value":"They buy, they don't perceive enough value to stay. Filling a leaky bucket. The customer's perception, nothing to do with pricing or margin.",
@@ -183,7 +183,7 @@ DEFN = {
  "demand":"Spare capacity sitting idle. Could take on more tomorrow, nobody's asking.",
  "margin":"Busy, full, growing, nothing left at the end. Profit per unit is short."}
 WHY = {
- "cashflow":"First, because nothing else can be actioned without money to fund it.",
+ "cashflow":"Not in the chain. Scored as before, but what comes out of it raises a pinned risk instead of a verdict.",
  "talent":"Above fulfilment, because capacity added under a missing layer just loads the layer.",
  "fulfilment":"Above demand, because adding demand to a business that can't deliver accelerates the damage.",
  "value":"Above offer, because winning more customers into a leaky bucket wastes the win.",
@@ -231,7 +231,10 @@ sheet("Report, constraint",
 rows = []
 for fid, meta in D["flags"].items():
     rd = D["blocks"]["riskDef"][fid]
-    fixes = D["blocks"]["riskFix"].get(fid, [])
+    # cash flow came over from the constraint side, so its actions are objects
+    # that can carry a condition rather than plain strings.
+    fixes = [f if isinstance(f, str) else f["text"]
+             for f in D["blocks"]["riskFix"].get(fid, [])]
     rows.append([meta["group"], fid, meta["name"], rd.get("banded", ""), rd.get("precise", ""), rd.get("alt", ""),
                  fixes[0] if len(fixes) > 0 else "", fixes[1] if len(fixes) > 1 else "", fixes[2] if len(fixes) > 2 else "",
                  slots_in(rd.get("banded"), rd.get("precise"))])
@@ -263,11 +266,8 @@ rows = [
     ["Opening", "normal", "Used whenever a constraint actually failed", D["blocks"]["opening"]["normal"]],
     ["Opening", "wellRun", "Nothing cleared the floor. Nothing is failing", D["blocks"]["opening"]["wellRun"]],
     ["Opening", "noneSevere", "Nothing failed outright but something is tight", D["blocks"]["opening"]["noneSevere"]],
-    ["Opening", "tooUnsure", "Too many Not sure answers to stand behind a diagnosis", D["blocks"]["opening"]["tooUnsure"]],
     ["Opening", "privacy", "Small print under the opening, on every report", D["blocks"]["opening"]["privacy"]],
-    ["Heading", "titleUnsure", "Replaces the constraint heading when there is not enough to call it", D["blocks"]["titleUnsure"]],
     ["Body", "looseBody", "Replaces the constraint block when nothing is failing", D["blocks"]["looseBody"]],
-    ["Body", "unsureBody", "Replaces the constraint block when there were too many Not sure answers", D["blocks"]["unsureBody"]],
     ["Closing", "text", "Normal close", D["blocks"]["closing"]["text"]],
     ["Closing", "loose", "Close used when nothing is failing", D["blocks"]["closing"].get("loose", "")],
     ["Closing", "unsure", "Close used when there were too many Not sure answers", D["blocks"]["closing"].get("unsure", "")],
@@ -284,8 +284,8 @@ TH = {
  "FALLBACK_FLOOR": "When nothing failed, anything under this counts as a well run business and the report switches to the softer wording. Above it, the report says nothing is failing but here is the tightest thing.",
  "FLAG_PRINT": "An individual flag has to reach this before it is named. Below it the flag still counts toward its family score.",
  "MAX_FLAGS_SHOWN": "Hard cap on how many risks get named, across all three families. Four keeps the report short and certain.",
+ "TIE_GAP": "Two constraints inside this many points count as a tie, and the family order decides instead of the score.",
  "MAX_ACTIONS": "Hard cap on how many fix actions print for the constraint. Conditional actions that did not fire never count toward it.",
- "NOT_SURE_DATA_FLAG": "This many Not sure answers raises data blindness on its own, regardless of which questions they were.",
 }
 rows = [[k, D["thresholds"][k], TH[k]] for k in D["thresholds"]]
 sheet("Thresholds", ["Setting", "Value", "What moving it does"], rows, [24, 9, 118],
@@ -303,7 +303,6 @@ logic = [
  ["Picking the minor", "Every constraint other than the primary that reaches MINOR_PRINT is a candidate. Suppression then removes the ones explained by the primary, running through the chain, so talent removes fulfilment and value underneath it. The highest scoring survivor prints, capped at one."],
  ["", "Anything surviving suppression is always downstream of the primary, which is why the single line printed about it can always say so honestly."],
  ["Risk families", "Family score is 60 percent of the loudest single flag plus 40 percent of the proportion of that family's flags that cleared FLAG_PRINT. One severe flag alone is enough to print a family. Several moderate ones also lift it."],
- ["Not sure", "Every Not sure answer counts. Some raise data blindness directly. Repeated blindness compounds, and NOT_SURE_DATA_FLAG unanswerable questions raises the flag on its own. Fifteen or more switches the report opening to the provisional version."],
  ["Compound blocks", "A compound block prints when the primary constraint and a named risk flag are both present. At most one prints, the lowest priority number that matches."],
  ["The exact figure", "When somebody types a precise number it only changes the wording, never the finding. The logic already fired on the band. This keeps the engine simple and stops a typo flipping the verdict."],
  ["What the report never does", "No score, no grade, no dollar projection, no timeframe. None of those can be defended from banded inputs, and one indefensible number discredits everything around it."],

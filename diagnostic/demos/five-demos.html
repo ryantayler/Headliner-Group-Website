@@ -350,6 +350,13 @@ body.has-dev{padding-bottom:56px}
   h1,h2,h3{break-after:avoid}
 }
 
+/* The verdict is two lines now. The major is the claim, the constraint is the cause. */
+.verdict .due{margin:10px 0 0;font-family:'Archivo Black',Impact,sans-serif;
+  font-size:clamp(17px,2.4vw,26px);line-height:1.1;color:#0A0A0A;text-transform:uppercase;
+  letter-spacing:-.01em;opacity:.62}
+.verdict .major-test{margin:16px 0 0;font-size:15.5px;line-height:1.55;color:#2B322F;max-width:60ch}
+@media print{.verdict .due{color:var(--ink-l)}.verdict .major-test{color:var(--sub-l)}}
+
 /* ---- demo page only ---- */
 .hero{padding:clamp(40px,6vw,72px) 0 clamp(24px,4vw,40px);background:var(--base);color:var(--ink)}
 .hero .lede{margin-top:20px;max-width:60ch}
@@ -439,15 +446,15 @@ body.has-dev{padding-bottom:56px}
 
 <nav class="tabs"><div class="shell"><div class="tabs__row" role="tablist">
 <button class="tab" role="tab" id="t-northline" aria-controls="p-northline" aria-selected="true">
-  <b>Northline AV</b><span>Cash flow</span></button>
+  <b>Northline AV</b><span>Fulfilment</span></button>
 <button class="tab" role="tab" id="t-fold" aria-controls="p-fold" aria-selected="false">
   <b>Fold Event Co</b><span>Talent</span></button>
 <button class="tab" role="tab" id="t-kerrick" aria-controls="p-kerrick" aria-selected="false">
-  <b>Kerrick Staging</b><span>Fulfilment</span></button>
+  <b>Kerrick Staging</b><span>Margin</span></button>
 <button class="tab" role="tab" id="t-halcyon" aria-controls="p-halcyon" aria-selected="false">
   <b>Halcyon Studio</b><span>Offer</span></button>
 <button class="tab" role="tab" id="t-tallow" aria-controls="p-tallow" aria-selected="false">
-  <b>Tallow Crew</b><span>Margin</span></button>
+  <b>Tallow Crew</b><span>Demand</span></button>
 <button class="tab" role="tab" id="t-map" aria-controls="p-map" aria-selected="false"><b>The map</b><span>Reference</span></button>
 </div></div></nav>
 
@@ -459,42 +466,45 @@ body.has-dev{padding-bottom:56px}
     <p>Busy, profitable on paper, and never has any money. Hires in gear and pays crew the week of the job, then waits two months on a venue group that pays when it feels like it.</p>
     <div class="biz__facts">
       <div><b>Melbourne</b></div><div><b>$1m to $3m, eleven staff</b></div><div><b>Nine years trading</b></div>
-      <div>Answered <b>58 of 58</b></div>
+      <div>Answered <b>59 of 59</b></div>
     </div>
   </div>
   <div class="rep__lead"><p class="eyebrow">Your diagnosis</p><p>Everything below is calculated on your answers. It's a guide rather than a custom diagnostic, so read the report as a rough shape of what your current challenges are and what solutions may look like.</p><p>It names your biggest single constraint. There is likely more, and there may be other things wrong, there always are. They're not listed in here because the order you fix things in matters. Fix the constraints and risks in your business, then come back and get an updated report.</p>
         <p class="privacy">We do not use <u>any</u> AI in this tool, and <u>none</u> of your data is sent or stored offsite.</p></div><div class="sec" style="padding-top:0">
         <div class="verdict"><div class="glow"></div>
-        <h2 class="hl-face display">You are <em>cash flow</em> constrained</h2><p>You're profitable on paper and short of cash in practice. The work is sold and the money hasn't landed, so there's nothing sitting there to fund the next job. You get paid with nothing upfront and the balance lands 52 days later. You're owed more than a month of revenue past its due date and you've been delaying payments most months. You're holding two to four weeks of cover.</p><p>That's a timing problem rather than a rate problem. Every job you win right now costs you money before it pays you, which is why winning more of them is currently the worst move available to you.</p></div></div><div class="sec"><h3 class="hl-face d3 sec__h">How to fix it</h3><p>You need to close the gap between doing the work and getting paid for it. Every other fix in the business is waiting on this one.</p>
-        <ol class="acts"><li>You take nothing upfront, which is this whole problem in one answer. Change that before anything else on this list.</li><li>Move to a deposit on every job. Fifty percent thirty days out and the balance the week before, so the money is in before your costs go out.</li><li>Line the deposit up to land before your cost of goods does. On jobs where the number moves on the day, charge the balance afterwards and refund the difference.</li><li>Invoice within twenty four hours of the job finishing. Whatever the gap is between finishing and invoicing, that gap is yours to close.</li><li>Collect what's already overdue before you chase anything new. It's the cheapest money available to you.</li></ol></div><div class="sec"><h3 class="hl-face d3 sec__h">Your risks, and what to do about them</h3><p>These are the things that would hurt most if something went wrong. They aren't capping the business the way the constraint above is, but they're major risks.</p><div class="risk">
+        <h2 class="hl-face display">You are <em>supply</em> constrained</h2><p>This is capacity, not capability. You know how to do the work, but you can't do enough of it. You're running over capacity and behind and you're turning work away or pushing start dates most months. Lead times have stretched out and a typical job is ready the day before.</p><p>Nothing at the front of the business needs attention until the back of it can breathe. Anything you do to bring in more work right now gets paid for by the customers you already have.</p></div></div><div class="sec"><h3 class="hl-face d3 sec__h">How to fix it</h3><p>Make what you already have work properly, cut what isn't earning its capacity, then hire. In that order.</p>
+        <ol class="acts"><li>Find the one step everything stalls at, and put the next day into streamlining that one step.</li><li>Write the five things that go wrong most often into one page checklists. Undocumented work is slow work.</li><li>Look at what your best people actually spent last week on. Anything that didn't need them is capacity you already have.</li><li>Cut the jobs that eat the most capacity for the least return.</li><li>Then hire more capacity into the roles that need it.</li></ol></div><div class="sec"><h3 class="hl-face d3 sec__h">Your risks, and what to do about them</h3><p>These are the things that would hurt most if something went wrong. They aren't capping the business the way the constraint above is, but they're major risks.</p><div class="risk">
+         <div class="risk__head"><div class="glow"></div><span>You have a</span><h4 class="hl-face d3">Cash flow</h4><span>risk</span></div>
+         <div class="risk__body"><p>You're profitable on paper and short of cash in practice. The work is sold and the money hasn't landed, so there's nothing sitting there to fund the next job. You get paid with nothing upfront and the balance lands 52 days later. You're owed more than a month of revenue past its due date and you've been delaying payments most months. You're holding two to four weeks of cover.
+
+That's a timing problem rather than a rate problem. Every job you win right now costs you money before it pays you, which is why winning more of them is currently the worst move available to you.</p>
+         <ol class="acts acts--risk"><li>You take nothing upfront, which is this whole problem in one answer. Change that before anything else on this list.</li><li>Move to a deposit on every job. Fifty percent thirty days out and the balance the week before, so the money is in before your costs go out.</li><li>Line the deposit up to land before your cost of goods does. On jobs where the number moves on the day, charge the balance afterwards and refund the difference.</li><li>Invoice within twenty four hours of the job finishing. Whatever the gap is between finishing and invoicing, that gap is yours to close.</li><li>Collect what's already overdue before you chase anything new. It's the cheapest money available to you.</li><li>Get a facility in place while the business is still profitable on paper. Banks lend to businesses that don't look like they need it.</li></ol></div></div><div class="risk">
          <div class="risk__head"><div class="glow"></div><span>You have a</span><h4 class="hl-face d3">Key client</h4><span>risk</span></div>
          <div class="risk__body"><p>One customer carries 54% of your revenue. That customer can leave, or get bought by someone who already has their own suppliers, and neither is something you get a say in.</p>
          <ol class="acts acts--risk"><li>Set a ceiling, say twenty percent of revenue from any one customer, and treat crossing it as the trigger to go and win two more.</li><li>Get them onto a term agreement with a notice period, so a decision to leave gives you time to react.</li><li>If the work is committed on a handshake, that is the first conversation to have, before the ceiling.</li></ol></div></div><div class="risk">
          <div class="risk__head"><div class="glow"></div><span>You have a</span><h4 class="hl-face d3">Key supplier</h4><span>risk</span></div>
          <div class="risk__body"><p>There's one supplier with no ready replacement. Their price rise is your price rise, and their bad year is your bad year.</p>
          <ol class="acts acts--risk"><li>Qualify a second supplier and give them ten percent of your volume. A backup you've never bought from isn't a backup.</li><li>Get their lead times and pricing in writing, so a change becomes a conversation rather than a surprise.</li></ol></div></div></div><div class="sec sec--dont"><h3 class="hl-face d2 dont__h">Don’t do this yet</h3>
-        <p>Until the cash timing is fixed, leave these alone.</p>
-        <ol class="acts dont"><li>Don't chase bigger jobs. Bigger jobs mean bigger upfront costs and longer payment cycles.</li><li>Don't hire. Wages are the least flexible cost you can add to a cash problem.</li><li>Don't buy equipment outright. Finance it, even if the interest annoys you.</li><li>Don't discount to get paid faster. That's borrowing at a rate you'd never accept from a bank.</li><li>Don't increase marketing spend. More demand you can't fund makes the hole deeper.</li></ol></div><div class="sec"><p>That's the diagnosis. One constraint, and the things to leave alone while you fix it.</p><p>Work the constraint and check back in ninety days. That's long enough for it to move and short enough that you'll still remember what you changed.</p>
+        <p>Until you've done the above, leave these alone.</p>
+        <ol class="acts dont"><li>Don't take on new customers until you've done the above.</li><li>Don't start something new.</li><li>Don't drop your prices.</li><li>Don't promise a shorter lead time to win a job.</li></ol></div><div class="sec"><p>That's the diagnosis. One constraint, and the things to leave alone while you fix it.</p><p>Work the constraint and check back in ninety days. That's long enough for it to move and short enough that you'll still remember what you changed.</p>
         <div class="sign"><span class="wordmark">HEADLINER <span>Group</span></span></div></div>
   <details class="why"><summary>Why this one fired</summary><div class="why__in">
     <p class="why__lede">Checked in chain order. The first one to fail is called, never the highest score.</p>
     <table class="scores"><thead><tr><th>Constraint</th><th class="num">Score</th><th></th></tr></thead>
-    <tbody><tr class="is-it"><td>Cash flow</td>
-      <td class="num">83</td>
-      <td>called</td></tr><tr><td>Talent</td>
-      <td class="num">46</td>
-      <td></td></tr><tr><td>Fulfilment</td>
-      <td class="num">43</td>
-      <td></td></tr><tr><td>Value</td>
-      <td class="num">30</td>
-      <td></td></tr><tr><td>Offer</td>
+    <tbody><tr><td>Talent</td>
       <td class="num">37</td>
+      <td></td></tr><tr class="is-it"><td>Fulfilment</td>
+      <td class="num">75</td>
+      <td>called</td></tr><tr><td>Margin</td>
+      <td class="num">33</td>
+      <td></td></tr><tr><td>Value</td>
+      <td class="num">27</td>
+      <td></td></tr><tr><td>Offer</td>
+      <td class="num">27</td>
       <td></td></tr><tr><td>Demand</td>
-      <td class="num">45</td>
-      <td></td></tr><tr><td>Margin</td>
-      <td class="num">35</td>
+      <td class="num">29</td>
       <td></td></tr></tbody></table>
-    <p class="why__lede">Bar is 60. Suppressed by the finding above: margin.
+    <p class="why__lede">Bar is 60. Suppressed by the finding above: value.
     Risks are listed loudest first across all three families, capped at 4.</p>
     </div></details>
 </section>
@@ -505,13 +515,13 @@ body.has-dev{padding-bottom:56px}
     <p>Grew from six people to twenty six and the founder is still the general manager, the head of sales and the final say on every quote.</p>
     <div class="biz__facts">
       <div><b>Sydney</b></div><div><b>$3m to $10m, twenty six staff</b></div><div><b>Twelve years trading</b></div>
-      <div>Answered <b>58 of 58</b></div>
+      <div>Answered <b>59 of 59</b></div>
     </div>
   </div>
   <div class="rep__lead"><p class="eyebrow">Your diagnosis</p><p>Everything below is calculated on your answers. It's a guide rather than a custom diagnostic, so read the report as a rough shape of what your current challenges are and what solutions may look like.</p><p>It names your biggest single constraint. There is likely more, and there may be other things wrong, there always are. They're not listed in here because the order you fix things in matters. Fix the constraints and risks in your business, then come back and get an updated report.</p>
         <p class="privacy">We do not use <u>any</u> AI in this tool, and <u>none</u> of your data is sent or stored offsite.</p></div><div class="sec" style="padding-top:0">
         <div class="verdict"><div class="glow"></div>
-        <h2 class="hl-face display">You are <em>talent</em> constrained</h2><p>Being talent constrained means you're missing a layer in the business, not missing extra hands. Four of the five layers sit with you rather than with somebody whose job it is. Most of last week went to quoting and pricing jobs. The work that actually moves the business forward got none of it and if you went dark for a month the business stops without you. Things stall for want of anyone to hand them to as a matter of routine.</p><p>Hiring another pair of hands underneath you doesn't touch this. What's missing is a whole role that doesn't exist yet, and until it does, everything you add lands on the same desk.</p></div></div><div class="sec"><h3 class="hl-face d3 sec__h">How to fix it</h3><p>Hire one role that owns a layer of the business, with the authority to run it. Not another pair of hands underneath you.</p>
+        <h2 class="hl-face display">You are <em>supply</em> constrained</h2><p>Being talent constrained means you're missing a layer in the business, not missing extra hands. Four of the five layers sit with you rather than with somebody whose job it is. Most of last week went to quoting and pricing jobs. The work that actually moves the business forward got none of it and if you went dark for a month the business stops without you. Things stall for want of anyone to hand them to as a matter of routine.</p><p>Hiring another pair of hands underneath you doesn't touch this. What's missing is a whole role that doesn't exist yet, and until it does, everything you add lands on the same desk.</p></div></div><div class="sec"><h3 class="hl-face d3 sec__h">How to fix it</h3><p>Hire one role that owns a layer of the business, with the authority to run it. Not another pair of hands underneath you.</p>
         <ol class="acts"><li>Write down every task you did last week.</li><li>Against each one, write the role that should own it. A role, not a person already in the business.</li><li>Whichever role has the most tasks against it, or the most hours, hire that role first.</li><li>Give them responsibility and the authority to go with it. One without the other doesn't work.</li><li>Train them yourself, then give them ninety days to prove they're the one.</li></ol></div><div class="sec"><h3 class="hl-face d3 sec__h">Your risks, and what to do about them</h3><p>These are the things that would hurt most if something went wrong. They aren't capping the business the way the constraint above is, but they're major risks.</p><div class="risk">
          <div class="risk__head"><div class="glow"></div><span>You have a</span><h4 class="hl-face d3">Key person</h4><span>risk</span></div>
          <div class="risk__body"><p>The business can't run without one person. Sold tomorrow, a buyer would need you for years, if it works without you at all, and there's nobody who could run it if you stepped out. That caps the business at the size of one person's week.</p>
@@ -528,21 +538,19 @@ body.has-dev{padding-bottom:56px}
   <details class="why"><summary>Why this one fired</summary><div class="why__in">
     <p class="why__lede">Checked in chain order. The first one to fail is called, never the highest score.</p>
     <table class="scores"><thead><tr><th>Constraint</th><th class="num">Score</th><th></th></tr></thead>
-    <tbody><tr><td>Cash flow</td>
-      <td class="num">24</td>
-      <td></td></tr><tr class="is-it"><td>Talent</td>
-      <td class="num">95</td>
+    <tbody><tr class="is-it"><td>Talent</td>
+      <td class="num">82</td>
       <td>called</td></tr><tr><td>Fulfilment</td>
-      <td class="num">60</td>
-      <td>over the bar, but downstream</td></tr><tr><td>Value</td>
-      <td class="num">18</td>
-      <td></td></tr><tr><td>Offer</td>
-      <td class="num">35</td>
-      <td></td></tr><tr><td>Demand</td>
-      <td class="num">49</td>
+      <td class="num">27</td>
       <td></td></tr><tr><td>Margin</td>
-      <td class="num">86</td>
-      <td>over the bar, but downstream</td></tr></tbody></table>
+      <td class="num">73</td>
+      <td>over the bar, but downstream</td></tr><tr><td>Value</td>
+      <td class="num">16</td>
+      <td></td></tr><tr><td>Offer</td>
+      <td class="num">33</td>
+      <td></td></tr><tr><td>Demand</td>
+      <td class="num">44</td>
+      <td></td></tr></tbody></table>
     <p class="why__lede">Bar is 60. Suppressed by the finding above: fulfilment, value.
     Risks are listed loudest first across all three families, capped at 4.</p>
     </div></details>
@@ -554,42 +562,40 @@ body.has-dev{padding-bottom:56px}
     <p>Turning work away most months. One fabricator holds every drawing and every supplier relationship in his head.</p>
     <div class="biz__facts">
       <div><b>Brisbane</b></div><div><b>$1m to $3m, fourteen staff</b></div><div><b>Seven years trading</b></div>
-      <div>Answered <b>58 of 58</b></div>
+      <div>Answered <b>59 of 59</b></div>
     </div>
   </div>
   <div class="rep__lead"><p class="eyebrow">Your diagnosis</p><p>Everything below is calculated on your answers. It's a guide rather than a custom diagnostic, so read the report as a rough shape of what your current challenges are and what solutions may look like.</p><p>It names your biggest single constraint. There is likely more, and there may be other things wrong, there always are. They're not listed in here because the order you fix things in matters. Fix the constraints and risks in your business, then come back and get an updated report.</p>
         <p class="privacy">We do not use <u>any</u> AI in this tool, and <u>none</u> of your data is sent or stored offsite.</p></div><div class="sec" style="padding-top:0">
         <div class="verdict"><div class="glow"></div>
-        <h2 class="hl-face display">You are <em>fulfilment</em> constrained</h2><p>This is capacity, not capability. You know how to do the work, but you can't do enough of it. You're running at 118% booked and you're turning work away constantly. Lead times have blown out and a typical job is ready only as it starts.</p><p>Nothing at the front of the business needs attention until the back of it can breathe. Anything you do to bring in more work right now gets paid for by the customers you already have.</p></div></div><div class="sec"><h3 class="hl-face d3 sec__h">How to fix it</h3><p>Make what you already have work properly, cut what isn't earning its capacity, then hire. In that order.</p>
-        <ol class="acts"><li>Find the one step everything stalls at, and put the next day into streamlining that one step.</li><li>Write the five things that go wrong most often into one page checklists. Undocumented work is slow work.</li><li>Look at what your best people actually spent last week on. Anything that didn't need them is capacity you already have.</li><li>Cut the jobs that eat the most capacity for the least return.</li><li>Then hire more capacity into the roles that need it.</li></ol></div><div class="sec"><h3 class="hl-face d3 sec__h">Your risks, and what to do about them</h3><p>These are the things that would hurt most if something went wrong. They aren't capping the business the way the constraint above is, but they're major risks.</p><div class="risk">
+        <h2 class="hl-face display">You are <em>supply</em> constrained</h2><p>You're full and busy, and there's nothing left at the end of it. What's left after direct costs sits under 15% and after everything it's nothing, or a loss. You last raised prices more than two years ago, if ever and jobs run over what you quoted on most jobs.</p><p>Volume won't rescue this. At the margin you're running, more work gets you more of the same result and it arrives faster.</p></div></div><div class="sec"><h3 class="hl-face d3 sec__h">How to fix it</h3><p>You need to know what each job actually earns you before you change anything. A price rise can cost you customers as easily as it can fix the margin.</p>
+        <ol class="acts"><li>Raise prices on new work now. Ten percent across the board, and watch what actually happens.</li><li>Work out what each job really costs, your own time included, then rank your last twenty by what was left.</li><li>Quote a contingency into the jobs that historically run over. You already know which ones they are.</li><li>Find your worst three customers by margin, then reprice them or let them go.</li><li>Don't discount to win. A discount is the fastest way to buy work you'll resent delivering.</li></ol></div><div class="sec"><h3 class="hl-face d3 sec__h">Your risks, and what to do about them</h3><p>These are the things that would hurt most if something went wrong. They aren't capping the business the way the constraint above is, but they're major risks.</p><div class="risk">
          <div class="risk__head"><div class="glow"></div><span>You have a</span><h4 class="hl-face d3">Key person</h4><span>risk</span></div>
          <div class="risk__body"><p>The business can't run without one person, and what they know isn't written down anywhere else. If they go, whether that's illness or a resignation, the knowledge goes with them and you'll be rebuilding it while still trying to deliver.</p>
          <ol class="acts acts--risk"><li>Write down what that person holds, then move one piece of it to somebody else this month.</li><li>Name who would run it, tell them, and give them a budget they can act inside. A deputy who can't decide anything is a job title.</li><li>Book a month off twelve months out and work backwards from it. That's the deadline that makes it real.</li></ol></div></div><div class="risk">
          <div class="risk__head"><div class="glow"></div><span>You have a</span><h4 class="hl-face d3">Key asset</h4><span>risk</span></div>
          <div class="risk__body"><p>One piece of equipment or one vehicle is doing work you have no backup for. A breakdown or a long repair stops revenue you have already sold, and hire rates at short notice are set by people who know you're stuck.</p>
          <ol class="acts acts--risk"><li>Find out today what a replacement costs at short notice, and who actually has one.</li><li>Put it on a service schedule and hold to it.</li></ol></div></div></div><div class="sec sec--dont"><h3 class="hl-face d2 dont__h">Don’t do this yet</h3>
-        <p>Until you've done the above, leave these alone.</p>
-        <ol class="acts dont"><li>Don't take on new customers until you've done the above.</li><li>Don't start something new.</li><li>Don't drop your prices.</li><li>Don't promise a shorter lead time to win a job.</li></ol></div><div class="sec"><p>That's the diagnosis. One constraint, and the things to leave alone while you fix it.</p><p>Work the constraint and check back in ninety days. That's long enough for it to move and short enough that you'll still remember what you changed.</p>
+        <p>Until the margin moves, leave these alone.</p>
+        <ol class="acts dont"><li>Don't chase volume. More work at this margin is more risk for the same money.</li><li>Don't hire. Every head you add at this margin needs a lot of revenue standing behind it.</li><li>Don't take the big thin job because it's good for the brand. Reputation doesn't pay wages.</li><li>Don't discount anything. There's nothing left to give away.</li><li>Don't invest in growth. Growing an unprofitable model makes it unprofitable faster.</li></ol></div><div class="sec"><p>That's the diagnosis. One constraint, and the things to leave alone while you fix it.</p><p>Work the constraint and check back in ninety days. That's long enough for it to move and short enough that you'll still remember what you changed.</p>
         <div class="sign"><span class="wordmark">HEADLINER <span>Group</span></span></div></div>
   <details class="why"><summary>Why this one fired</summary><div class="why__in">
     <p class="why__lede">Checked in chain order. The first one to fail is called, never the highest score.</p>
     <table class="scores"><thead><tr><th>Constraint</th><th class="num">Score</th><th></th></tr></thead>
-    <tbody><tr><td>Cash flow</td>
-      <td class="num">30</td>
-      <td></td></tr><tr><td>Talent</td>
-      <td class="num">42</td>
-      <td></td></tr><tr class="is-it"><td>Fulfilment</td>
-      <td class="num">98</td>
+    <tbody><tr><td>Talent</td>
+      <td class="num">37</td>
+      <td></td></tr><tr><td>Fulfilment</td>
+      <td class="num">49</td>
+      <td></td></tr><tr class="is-it"><td>Margin</td>
+      <td class="num">100</td>
       <td>called</td></tr><tr><td>Value</td>
-      <td class="num">18</td>
+      <td class="num">16</td>
       <td></td></tr><tr><td>Offer</td>
-      <td class="num">29</td>
+      <td class="num">25</td>
       <td></td></tr><tr><td>Demand</td>
-      <td class="num">&mdash;</td>
-      <td>ruled out by q34</td></tr><tr><td>Margin</td>
-      <td class="num">43</td>
+      <td class="num">41</td>
       <td></td></tr></tbody></table>
-    <p class="why__lede">Bar is 60. Suppressed by the finding above: value.
+    <p class="why__lede">Bar is 60. Suppressed by the finding above: nothing.
     Risks are listed loudest first across all three families, capped at 4.</p>
     </div></details>
 </section>
@@ -600,13 +606,13 @@ body.has-dev{padding-bottom:56px}
     <p>Plenty of enquiries off the back of good work. Every job gets scoped and priced from scratch, and most of them quietly go nowhere.</p>
     <div class="biz__facts">
       <div><b>Melbourne</b></div><div><b>$250k to $1m, four staff</b></div><div><b>Three years trading</b></div>
-      <div>Answered <b>58 of 58</b></div>
+      <div>Answered <b>59 of 59</b></div>
     </div>
   </div>
   <div class="rep__lead"><p class="eyebrow">Your diagnosis</p><p>Everything below is calculated on your answers. It's a guide rather than a custom diagnostic, so read the report as a rough shape of what your current challenges are and what solutions may look like.</p><p>It names your biggest single constraint. There is likely more, and there may be other things wrong, there always are. They're not listed in here because the order you fix things in matters. Fix the constraints and risks in your business, then come back and get an updated report.</p>
         <p class="privacy">We do not use <u>any</u> AI in this tool, and <u>none</u> of your data is sent or stored offsite.</p></div><div class="sec" style="padding-top:0">
         <div class="verdict"><div class="glow"></div>
-        <h2 class="hl-face display">You are <em>offer</em> constrained</h2><p>Enquiries arrive and they don't convert. That isn't a sales technique problem, it's what's on the table. Either the value in the offer doesn't justify the price you're asking, or there's something in the way of somebody saying yes. Your close rate sits at 9% and the most common reason you lose is inaction. Prospects come back on your quote asking what's included on most quotes and they find out what you charge from a quote built from scratch every time.</p><p>You don't fix this by dropping the price. You fix it by putting things into the offer that cost you very little and are worth real money to the buyer, and by removing whatever a prospect has to get over before they can say yes.</p></div></div><div class="sec"><h3 class="hl-face d3 sec__h">How to fix it</h3><p>You need more value in the offer than the price is asking for, and the hurdles taken out of the way of somebody saying yes.</p>
+        <h2 class="hl-face display">You are <em>demand</em> constrained</h2><p>Enquiries arrive and they don't convert. That isn't a sales technique problem, it's what's on the table. Either the value in the offer doesn't justify the price you're asking, or there's something in the way of somebody saying yes. Your close rate sits at 9% and the most common reason you lose is a competitor. Prospects come back on your quote asking what's included on most quotes and they find out what you charge from a quote built from scratch every time.</p><p>You don't fix this by dropping the price. You fix it by putting things into the offer that cost you very little and are worth real money to the buyer, and by removing whatever a prospect has to get over before they can say yes.</p></div></div><div class="sec"><h3 class="hl-face d3 sec__h">How to fix it</h3><p>You need more value in the offer than the price is asking for, and the hurdles taken out of the way of somebody saying yes.</p>
         <ol class="acts"><li>List everything you already do for a customer that isn't written into the offer. That's value nobody can see.</li><li>Add two things that cost you close to nothing and are worth real money to the buyer. A guarantee, or something they would otherwise have to go and source themselves.</li><li>Write down every question a prospect asks after they get the quote, then answer all of them inside the quote itself.</li><li>Put a price or a range where they can see it. Making somebody wait for a number is a hurdle before they have even decided.</li><li>Sort your last twenty losses by reason and count them. If price keeps coming up, look at the value in the offer before you look at the number.</li></ol></div><div class="sec"><h3 class="hl-face d3 sec__h">Your risks, and what to do about them</h3><p>These are the things that would hurt most if something went wrong. They aren't capping the business the way the constraint above is, but they're major risks.</p><div class="risk">
          <div class="risk__head"><div class="glow"></div><span>You have a</span><h4 class="hl-face d3">Key person</h4><span>risk</span></div>
          <div class="risk__body"><p>The business can't run without one person. Sold tomorrow, a buyer would need you for the best part of a year, and there's nobody who could run it if you stepped out. That caps the business at the size of one person's week.</p>
@@ -626,21 +632,19 @@ body.has-dev{padding-bottom:56px}
   <details class="why"><summary>Why this one fired</summary><div class="why__in">
     <p class="why__lede">Checked in chain order. The first one to fail is called, never the highest score.</p>
     <table class="scores"><thead><tr><th>Constraint</th><th class="num">Score</th><th></th></tr></thead>
-    <tbody><tr><td>Cash flow</td>
-      <td class="num">15</td>
-      <td></td></tr><tr><td>Talent</td>
-      <td class="num">45</td>
+    <tbody><tr><td>Talent</td>
+      <td class="num">40</td>
       <td></td></tr><tr><td>Fulfilment</td>
-      <td class="num">23</td>
-      <td></td></tr><tr><td>Value</td>
-      <td class="num">45</td>
-      <td></td></tr><tr class="is-it"><td>Offer</td>
-      <td class="num">94</td>
-      <td>called</td></tr><tr><td>Demand</td>
-      <td class="num">51</td>
+      <td class="num">18</td>
       <td></td></tr><tr><td>Margin</td>
-      <td class="num">64</td>
-      <td>over the bar, but downstream</td></tr></tbody></table>
+      <td class="num">33</td>
+      <td></td></tr><tr><td>Value</td>
+      <td class="num">40</td>
+      <td></td></tr><tr class="is-it"><td>Offer</td>
+      <td class="num">88</td>
+      <td>called</td></tr><tr><td>Demand</td>
+      <td class="num">56</td>
+      <td></td></tr></tbody></table>
     <p class="why__lede">Bar is 60. Suppressed by the finding above: demand.
     Risks are listed loudest first across all three families, capped at 4.</p>
     </div></details>
@@ -652,39 +656,37 @@ body.has-dev{padding-bottom:56px}
     <p>Full order book, growing headcount, and less left at the end of each year than five years ago. Nobody has repriced anything since before the wage rises.</p>
     <div class="biz__facts">
       <div><b>Perth</b></div><div><b>$3m to $10m, sixty on the books</b></div><div><b>Fifteen years trading</b></div>
-      <div>Answered <b>57 of 58</b></div>
+      <div>Answered <b>58 of 59</b></div>
     </div>
   </div>
   <div class="rep__lead"><p class="eyebrow">Your diagnosis</p><p>Everything below is calculated on your answers. It's a guide rather than a custom diagnostic, so read the report as a rough shape of what your current challenges are and what solutions may look like.</p><p>It names your biggest single constraint. There is likely more, and there may be other things wrong, there always are. They're not listed in here because the order you fix things in matters. Fix the constraints and risks in your business, then come back and get an updated report.</p>
         <p class="privacy">We do not use <u>any</u> AI in this tool, and <u>none</u> of your data is sent or stored offsite.</p></div><div class="sec" style="padding-top:0">
         <div class="verdict"><div class="glow"></div>
-        <h2 class="hl-face display">You are <em>margin</em> constrained</h2><p>You're full and busy, and there's nothing left at the end of it. What's left after direct costs sits at 11% and after everything it's 0%. You've never raised your prices and jobs run over what you quoted on most jobs.</p><p>Volume won't rescue this. At the margin you're running, more work gets you more of the same result and it arrives faster.</p></div></div><div class="sec"><h3 class="hl-face d3 sec__h">How to fix it</h3><p>You need to know what each job actually earns you before you change anything. A price rise can cost you customers as easily as it can fix the margin.</p>
-        <ol class="acts"><li>Raise prices on new work now. Ten percent across the board, and watch what actually happens.</li><li>Work out what each job really costs, your own time included, then rank your last twenty by what was left.</li><li>Quote a contingency into the jobs that historically run over. You already know which ones they are.</li><li>Find your worst three customers by margin, then reprice them or let them go.</li><li>Don't discount to win. A discount is the fastest way to buy work you'll resent delivering.</li></ol></div><div class="sec"><h3 class="hl-face d3 sec__h">Your risks, and what to do about them</h3><p>These are the things that would hurt most if something went wrong. They aren't capping the business the way the constraint above is, but they're major risks.</p><div class="risk">
+        <h2 class="hl-face display">You are <em>demand</em> constrained</h2><p>You've got capacity sitting idle and not enough people asking. Enquiries run a handful at most and volume has fallen sharply over the last year. You're doing nothing to generate enquiries, it all comes to you.</p><p>You could take on more work tomorrow, which is what separates this from a delivery problem. Nothing downstream is broken. The business just isn't being fed, and it won't start feeding itself.</p></div></div><div class="sec"><h3 class="hl-face d3 sec__h">How to fix it</h3><p>You need one lead source running properly and consistently before you go anywhere near a second.</p>
+        <ol class="acts"><li>Pick the lead source that already brings your best customers and put real weight behind it.</li><li>Go and ask for work. Outbound to the twenty businesses you'd most like to work with beats waiting on referrals.</li><li>Ask every happy customer for one introduction.</li><li>Give a lead source ninety days before you judge it. Anything shorter is guesswork.</li></ol></div><div class="sec"><h3 class="hl-face d3 sec__h">Your risks, and what to do about them</h3><p>These are the things that would hurt most if something went wrong. They aren't capping the business the way the constraint above is, but they're major risks.</p><div class="risk">
          <div class="risk__head"><div class="glow"></div><span>You have a</span><h4 class="hl-face d3">Key product</h4><span>risk</span></div>
          <div class="risk__body"><p>Half to three quarters of your revenue comes from one product or service line. That's fine while the market wants it, and it's a single point of failure the day the market moves or a competitor undercuts it.</p>
          <ol class="acts acts--risk"><li>Build a second line and sell it to the customers you already have.</li><li>Set a target for what share of revenue it should carry in twelve months, and check it quarterly.</li></ol></div></div></div><div class="sec sec--dont"><h3 class="hl-face d2 dont__h">Don’t do this yet</h3>
-        <p>Until the margin moves, leave these alone.</p>
-        <ol class="acts dont"><li>Don't chase volume. More work at this margin is more risk for the same money.</li><li>Don't hire. Every head you add at this margin needs a lot of revenue standing behind it.</li><li>Don't take the big thin job because it's good for the brand. Reputation doesn't pay wages.</li><li>Don't discount anything. There's nothing left to give away.</li><li>Don't invest in growth. Growing an unprofitable model makes it unprofitable faster.</li></ol></div><div class="sec"><p>That's the diagnosis. One constraint, and the things to leave alone while you fix it.</p><p>Work the constraint and check back in ninety days. That's long enough for it to move and short enough that you'll still remember what you changed.</p>
+        <p>Until enquiries lift, leave these alone.</p>
+        <ol class="acts dont"><li>Don't hire. You'd be adding capacity to capacity you already can't fill.</li><li>Don't build a new product. The one you have hasn't been shown to enough people.</li><li>Don't cut prices to stimulate demand. It rarely moves volume, and it permanently resets what customers expect to pay.</li><li>Don't spread across five channels at once. One channel run properly beats five run badly.</li><li>Don't wait for referrals to pick back up. Referral volume follows the number of customers you have, and that's the number that's short.</li></ol></div><div class="sec"><p>That's the diagnosis. One constraint, and the things to leave alone while you fix it.</p><p>Work the constraint and check back in ninety days. That's long enough for it to move and short enough that you'll still remember what you changed.</p>
         <div class="sign"><span class="wordmark">HEADLINER <span>Group</span></span></div></div>
   <details class="why"><summary>Why this one fired</summary><div class="why__in">
     <p class="why__lede">Checked in chain order. The first one to fail is called, never the highest score.</p>
     <table class="scores"><thead><tr><th>Constraint</th><th class="num">Score</th><th></th></tr></thead>
-    <tbody><tr><td>Cash flow</td>
-      <td class="num">&mdash;</td>
-      <td>ruled out by q10</td></tr><tr><td>Talent</td>
-      <td class="num">28</td>
+    <tbody><tr><td>Talent</td>
+      <td class="num">26</td>
       <td></td></tr><tr><td>Fulfilment</td>
-      <td class="num">43</td>
-      <td></td></tr><tr><td>Value</td>
       <td class="num">18</td>
+      <td></td></tr><tr><td>Margin</td>
+      <td class="num">33</td>
+      <td></td></tr><tr><td>Value</td>
+      <td class="num">16</td>
       <td></td></tr><tr><td>Offer</td>
-      <td class="num">37</td>
-      <td></td></tr><tr><td>Demand</td>
-      <td class="num">28</td>
-      <td></td></tr><tr class="is-it"><td>Margin</td>
+      <td class="num">27</td>
+      <td></td></tr><tr class="is-it"><td>Demand</td>
       <td class="num">100</td>
       <td>called</td></tr></tbody></table>
-    <p class="why__lede">Bar is 60. Suppressed by the finding above: nothing.
+    <p class="why__lede">Bar is 60. Suppressed by the finding above: offer.
     Risks are listed loudest first across all three families, capped at 4.</p>
     </div></details>
 </section>
@@ -698,7 +700,7 @@ body.has-dev{padding-bottom:56px}
     <div class="mcard">
       <p class="mcard__k">Group one</p>
       <h3 class="hl-face d2">Supply constrained</h3>
-      <p class="mcard__test">Double the clients tomorrow and <b>you couldn’t handle it</b>. The customers are there. Getting the work out the door is what’s capping you.</p>
+      <p class="mcard__test">Double the clients tomorrow and <b>it wouldn’t help you</b>. Either you can’t deliver them, or delivering them doesn’t pay.</p>
       <div class="mrow">
   <div class="mrow__n">Talent</div><p class="mrow__d">A missing layer, not missing hands. The work routes through the owner because nobody owns a part of it.</p></div><div class="mrow">
   <div class="mrow__n">Fulfilment</div><p class="mrow__d">Capacity, not capability. They know how to do the work, they just can’t do enough of it.</p></div><div class="mrow mrow--flag">
@@ -707,7 +709,7 @@ body.has-dev{padding-bottom:56px}
     <div class="mcard">
       <p class="mcard__k">Group two</p>
       <h3 class="hl-face d2">Demand constrained</h3>
-      <p class="mcard__test">Double the clients tomorrow and <b>you could handle it</b>. The capacity is there. Filling it is what’s capping you.</p>
+      <p class="mcard__test">Double the clients tomorrow and <b>you could handle it</b>. The capacity is there and filling it is what caps you.</p>
       <div class="mrow">
   <div class="mrow__n">Demand</div><p class="mrow__d">Not enough people asking. The calendar has room and nothing is filling it.</p></div><div class="mrow">
   <div class="mrow__n">Offer</div><p class="mrow__d">They ask, and they don’t buy. Enquiries arrive and stall at the quote.</p></div><div class="mrow">
@@ -716,26 +718,24 @@ body.has-dev{padding-bottom:56px}
   </div>
 
   <div class="mout">
-    <h3 class="hl-face d3">Neither</h3>
-    <p><b>Cash flow.</b> It isn’t a supply problem or a demand problem. A full business can run out of money and so can an empty one, and when it happens it outranks whichever group you’re in.</p>
-    <p>That’s why it stays first in the chain and why it can’t be sorted into either card.</p>
+    <h3 class="hl-face d3">Not a constraint any more</h3>
+    <p><b>Cash flow is a risk.</b> It isn’t a supply problem or a demand problem, and forcing it into either card made the verdict read as two facts instead of one cause. It keeps its questions, its scoring and all seven of its actions, and it pins to the top of the risk list whenever it fires.</p>
   </div>
 
-  <p class="mnote"><b>Margin is the one to rule on.</b> It’s under supply on the argument that it only binds when the calendar is full. If you’re empty and unprofitable, being empty is the problem. Move it if you disagree.</p>
-  <p class="mnote"><b>q34 already asks the question.</b> “If twice as many enquiries landed next month, could you deliver the work?” That’s the split, in fact form, already in the questionnaire.</p>
+  <p class="mnote"><b>The major is decided before anything is scored.</b> q34 asks it. “If twice as many enquiries landed next month, could you deliver the work?” q16, q17 and q18 carry it when q34 isn’t decisive, and a tie breaks to supply.</p>
+  <p class="mnote"><b>Then highest score wins inside that family.</b> Not position. Anything inside five points falls back to the order above, so a near tie isn’t decided by noise. The three on the other side are unreachable, which is what stops the report telling an owner with an empty diary to go and hire.</p>
 
   <details class="why" style="margin-top:26px"><summary>How often each one actually gets called</summary><div class="why__in">
-    <p class="why__lede">20,000 answer sets, every question answered at random. This measures the engine’s own shape, not the real world, because real owners don’t answer uniformly.</p>
-    <table class="scores"><thead><tr><th>Constraint</th><th class="num">Fails</th><th class="num">Called</th></tr></thead><tbody>
-      <tr><td>Talent</td><td class="num">34.1%</td><td class="num">32.2%</td></tr>
-      <tr><td>Cash flow</td><td class="num">11.8%</td><td class="num">20.5%</td></tr>
-      <tr><td>Fulfilment</td><td class="num">21.8%</td><td class="num">15.2%</td></tr>
-      <tr><td>Value</td><td class="num">18.7%</td><td class="num">14.3%</td></tr>
-      <tr><td>Offer</td><td class="num">25.4%</td><td class="num">9.4%</td></tr>
-      <tr><td>Margin</td><td class="num">19.2%</td><td class="num">4.7%</td></tr>
-      <tr><td>Demand</td><td class="num">16.7%</td><td class="num">3.7%</td></tr>
+    <p class="why__lede">20,000 answer sets, every question answered at random, after the four option rebuild.</p>
+    <table class="scores"><thead><tr><th>Constraint</th><th class="num">Mean</th><th class="num">Fails</th><th class="num">Called</th></tr></thead><tbody>
+      <tr><td>Fulfilment</td><td class="num">50.1</td><td class="num">29.7%</td><td class="num">25.8%</td></tr>
+      <tr><td>Value</td><td class="num">50.0</td><td class="num">28.4%</td><td class="num">18.3%</td></tr>
+      <tr><td>Talent</td><td class="num">48.2</td><td class="num">20.0%</td><td class="num">17.2%</td></tr>
+      <tr><td>Margin</td><td class="num">50.0</td><td class="num">29.3%</td><td class="num">14.3%</td></tr>
+      <tr><td>Demand</td><td class="num">50.4</td><td class="num">31.0%</td><td class="num">12.7%</td></tr>
+      <tr><td>Offer</td><td class="num">50.0</td><td class="num">29.8%</td><td class="num">11.7%</td></tr>
     </tbody></table>
-    <p class="why__lede">Fails means it was over the bar on its own. Called means chain order picked it. Cash flow gets called more often than it fails because hard triggers fire it regardless of score. Demand and margin sit late in the chain, so most of the time something upstream gets there first.</p>
+    <p class="why__lede">Supply comes out 57.3% and demand 42.7%, the lean coming from ties breaking to supply. Means sit between 48.2 and 50.4, which is what four options at 0, 33, 67 and 100 buys you. Talent still runs about two points cold because its two multi selects don’t distribute like a single select does.</p>
   </div></details>
   <section class="mexp">
   <h3 class="hl-face d3" style="margin:0 0 8px">What counts towards each one</h3>
@@ -757,25 +757,20 @@ body.has-dev{padding-bottom:56px}
     <p class="exp__k">Answers that count towards it</p>
     <dl class="qa"><dt>On a typical job or sale, what's left after the direct cost of delivering it?</dt><dd>Under 15%</dd><dt>After everything, including paying yourself properly, what's left at the end of a year?</dt><dd>Nothing, or a loss</dd><dt>How often does a job end up costing more to deliver than you quoted?</dt><dd>On most jobs</dd></dl>
   </div><div class="exp">
-    <div class="exp__h"><h4>Demand</h4><span class="exp__g">Demand</span></div>
-    <p class="exp__d">The calendar has room and not enough people are asking.</p>
-    <p class="exp__k">Answers that count towards it</p>
-    <dl class="qa"><dt>How many new enquiries does the business get in a typical month?</dt><dd>0 to 2</dd><dt>Has enquiry volume changed in the last 12 months?</dt><dd>Down sharply</dd><dt>Are you doing anything right now to generate new enquiries?</dt><dd>No, it all comes to us</dd></dl>
-  </div><div class="exp">
-    <div class="exp__h"><h4>Offer</h4><span class="exp__g">Demand</span></div>
-    <p class="exp__d">Enquiries arrive and stall at the quote.</p>
-    <p class="exp__k">Answers that count towards it</p>
-    <dl class="qa"><dt>Of the people who enquire and get a quote or a proposal, how many go ahead?</dt><dd>Under 10%</dd><dt>When you lose a deal, what's the most common reason?</dt><dd>They did nothing at all</dd><dt>Has the proportion of quotes that turn into work changed in the last 12 months?</dt><dd>Dropped sharply</dd></dl>
-  </div><div class="exp">
     <div class="exp__h"><h4>Value</h4><span class="exp__g">Demand</span></div>
     <p class="exp__d">Customers buy once, then shrink or leave, so capacity keeps opening back up.</p>
     <p class="exp__k">Answers that count towards it</p>
     <dl class="qa"><dt>Of the work your existing customers put out, how much of it comes to you?</dt><dd>A small slice, they spread it around</dd><dt>Of the customers who bought from you a year ago, roughly how many still buy from you?</dt><dd>Almost none</dd><dt>How many of your new customers arrive through a referral from an existing one?</dt><dd>Almost none</dd></dl>
   </div><div class="exp">
-    <div class="exp__h"><h4>Cash flow</h4><span class="exp__g">Neither</span></div>
-    <p class="exp__d">The work is there. The money to do it isn’t in the account when it’s needed.</p>
+    <div class="exp__h"><h4>Offer</h4><span class="exp__g">Demand</span></div>
+    <p class="exp__d">Enquiries arrive and stall at the quote.</p>
     <p class="exp__k">Answers that count towards it</p>
-    <dl class="qa"><dt>How do you get paid on a typical job?</dt><dd>Nothing upfront, invoiced on terms after</dd><dt>If revenue stopped tomorrow, how long could you cover wages and fixed costs from the cash you have?</dt><dd>Under 2 weeks</dd><dt>In the last 6 months, how often have you delayed paying a supplier, a bill or yourself because the money hadn't landed yet?</dt><dd>Every month</dd></dl>
+    <dl class="qa"><dt>Of the people who enquire and get a quote or a proposal, how many go ahead?</dt><dd>Under 10%</dd><dt>When you lose a deal, what's the most common reason?</dt><dd>They did nothing at all, or we don't know</dd><dt>Has the proportion of quotes that turn into work changed in the last 12 months?</dt><dd>Dropped sharply</dd></dl>
+  </div><div class="exp">
+    <div class="exp__h"><h4>Demand</h4><span class="exp__g">Demand</span></div>
+    <p class="exp__d">The calendar has room and not enough people are asking.</p>
+    <p class="exp__k">Answers that count towards it</p>
+    <dl class="qa"><dt>How many new enquiries does the business get in a typical month?</dt><dd>0 to 2</dd><dt>Has enquiry volume changed in the last 12 months?</dt><dd>Down sharply</dd><dt>Are you doing anything right now to generate new enquiries?</dt><dd>No, it all comes to us</dd></dl>
   </div>
   </div>
 </section>

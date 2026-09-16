@@ -157,10 +157,9 @@ const mrow = ([n, d], flag) => `<div class="mrow${flag?' mrow--flag':''}">
 // The example answers are generated off the real content, never written by hand, so this
 // page can't drift from what the engine actually scores. Top weighted questions in each
 // block, each shown with the option that scores worst.
-const GROUP = { cashflow:'Neither', talent:'Supply', fulfilment:'Supply', margin:'Supply',
+const GROUP = { talent:'Supply', fulfilment:'Supply', margin:'Supply',
                 demand:'Demand', offer:'Demand', value:'Demand' };
 const BLURB = {
-  cashflow:  'The work is there. The money to do it isn’t in the account when it’s needed.',
   talent:    'A missing layer. The work routes through the owner because nobody else owns a part of it.',
   fulfilment:'Capacity, not capability. They know how to do the work and can’t do enough of it.',
   margin:    'Busy, full, and nothing left at the end of it.',
@@ -168,7 +167,7 @@ const BLURB = {
   offer:     'Enquiries arrive and stall at the quote.',
   value:     'Customers buy once, then shrink or leave, so capacity keeps opening back up.',
 };
-const ORDER = ['talent','fulfilment','margin','demand','offer','value','cashflow'];
+const ORDER = ['talent','fulfilment','margin','value','offer','demand'];
 
 function examples(cid, n) {
   return D.questions
@@ -204,38 +203,36 @@ const MAP = `<section class="panel" id="p-map" role="tabpanel" aria-labelledby="
     <div class="mcard">
       <p class="mcard__k">Group one</p>
       <h3 class="hl-face d2">Supply constrained</h3>
-      <p class="mcard__test">Double the clients tomorrow and <b>you couldn’t handle it</b>. The customers are there. Getting the work out the door is what’s capping you.</p>
+      <p class="mcard__test">Double the clients tomorrow and <b>it wouldn’t help you</b>. Either you can’t deliver them, or delivering them doesn’t pay.</p>
       ${SUPPLY.map((r,i) => mrow(r, i===2)).join('')}
     </div>
     <div class="mcard">
       <p class="mcard__k">Group two</p>
       <h3 class="hl-face d2">Demand constrained</h3>
-      <p class="mcard__test">Double the clients tomorrow and <b>you could handle it</b>. The capacity is there. Filling it is what’s capping you.</p>
+      <p class="mcard__test">Double the clients tomorrow and <b>you could handle it</b>. The capacity is there and filling it is what caps you.</p>
       ${DEMAND.map(r => mrow(r)).join('')}
     </div>
   </div>
 
   <div class="mout">
-    <h3 class="hl-face d3">Neither</h3>
-    <p><b>Cash flow.</b> It isn’t a supply problem or a demand problem. A full business can run out of money and so can an empty one, and when it happens it outranks whichever group you’re in.</p>
-    <p>That’s why it stays first in the chain and why it can’t be sorted into either card.</p>
+    <h3 class="hl-face d3">Not a constraint any more</h3>
+    <p><b>Cash flow is a risk.</b> It isn’t a supply problem or a demand problem, and forcing it into either card made the verdict read as two facts instead of one cause. It keeps its questions, its scoring and all seven of its actions, and it pins to the top of the risk list whenever it fires.</p>
   </div>
 
-  <p class="mnote"><b>Margin is the one to rule on.</b> It’s under supply on the argument that it only binds when the calendar is full. If you’re empty and unprofitable, being empty is the problem. Move it if you disagree.</p>
-  <p class="mnote"><b>q34 already asks the question.</b> “If twice as many enquiries landed next month, could you deliver the work?” That’s the split, in fact form, already in the questionnaire.</p>
+  <p class="mnote"><b>The major is decided before anything is scored.</b> q34 asks it. “If twice as many enquiries landed next month, could you deliver the work?” q16, q17 and q18 carry it when q34 isn’t decisive, and a tie breaks to supply.</p>
+  <p class="mnote"><b>Then highest score wins inside that family.</b> Not position. Anything inside five points falls back to the order above, so a near tie isn’t decided by noise. The three on the other side are unreachable, which is what stops the report telling an owner with an empty diary to go and hire.</p>
 
   <details class="why" style="margin-top:26px"><summary>How often each one actually gets called</summary><div class="why__in">
-    <p class="why__lede">20,000 answer sets, every question answered at random. This measures the engine’s own shape, not the real world, because real owners don’t answer uniformly.</p>
-    <table class="scores"><thead><tr><th>Constraint</th><th class="num">Fails</th><th class="num">Called</th></tr></thead><tbody>
-      <tr><td>Talent</td><td class="num">34.1%</td><td class="num">32.2%</td></tr>
-      <tr><td>Cash flow</td><td class="num">11.8%</td><td class="num">20.5%</td></tr>
-      <tr><td>Fulfilment</td><td class="num">21.8%</td><td class="num">15.2%</td></tr>
-      <tr><td>Value</td><td class="num">18.7%</td><td class="num">14.3%</td></tr>
-      <tr><td>Offer</td><td class="num">25.4%</td><td class="num">9.4%</td></tr>
-      <tr><td>Margin</td><td class="num">19.2%</td><td class="num">4.7%</td></tr>
-      <tr><td>Demand</td><td class="num">16.7%</td><td class="num">3.7%</td></tr>
+    <p class="why__lede">20,000 answer sets, every question answered at random, after the four option rebuild.</p>
+    <table class="scores"><thead><tr><th>Constraint</th><th class="num">Mean</th><th class="num">Fails</th><th class="num">Called</th></tr></thead><tbody>
+      <tr><td>Fulfilment</td><td class="num">50.1</td><td class="num">29.7%</td><td class="num">25.8%</td></tr>
+      <tr><td>Value</td><td class="num">50.0</td><td class="num">28.4%</td><td class="num">18.3%</td></tr>
+      <tr><td>Talent</td><td class="num">48.2</td><td class="num">20.0%</td><td class="num">17.2%</td></tr>
+      <tr><td>Margin</td><td class="num">50.0</td><td class="num">29.3%</td><td class="num">14.3%</td></tr>
+      <tr><td>Demand</td><td class="num">50.4</td><td class="num">31.0%</td><td class="num">12.7%</td></tr>
+      <tr><td>Offer</td><td class="num">50.0</td><td class="num">29.8%</td><td class="num">11.7%</td></tr>
     </tbody></table>
-    <p class="why__lede">Fails means it was over the bar on its own. Called means chain order picked it. Cash flow gets called more often than it fails because hard triggers fire it regardless of score. Demand and margin sit late in the chain, so most of the time something upstream gets there first.</p>
+    <p class="why__lede">Supply comes out 57.3% and demand 42.7%, the lean coming from ties breaking to supply. Means sit between 48.2 and 50.4, which is what four options at 0, 33, 67 and 100 buys you. Talent still runs about two points cold because its two multi selects don’t distribute like a single select does.</p>
   </div></details>
   ${EXPLAIN}
 </div>

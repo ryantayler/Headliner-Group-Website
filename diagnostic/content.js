@@ -16,25 +16,18 @@ window.DIAG ={
     "FALLBACK_FLOOR": 35,
     "FLAG_PRINT": 55,
     "MAX_FLAGS_SHOWN": 4,
-    "NOT_SURE_DATA_FLAG": 4,
-    "MAX_ACTIONS": 5
+    "MAX_ACTIONS": 5,
+    "TIE_GAP": 5
   },
   "chain": [
-    "cashflow",
     "talent",
     "fulfilment",
+    "margin",
     "value",
     "offer",
-    "demand",
-    "margin"
+    "demand"
   ],
   "constraints": {
-    "cashflow": {
-      "name": "Cash flow constrained",
-      "short": "Cash flow",
-      "loose": "Cash flow",
-      "phrase": "cash flow"
-    },
     "talent": {
       "name": "Talent constrained",
       "short": "Talent",
@@ -130,12 +123,6 @@ window.DIAG ={
           "text": "Over $10m",
           "band": "over $10m",
           "size": 5
-        },
-        {
-          "id": "z",
-          "text": "Not sure",
-          "notSure": true,
-          "size": 2
         }
       ]
     },
@@ -374,12 +361,6 @@ window.DIAG ={
           "text": "Nothing upfront, invoiced on terms after",
           "band": "with nothing upfront and the rest on terms",
           "w": 100
-        },
-        {
-          "id": "z",
-          "text": "Not sure",
-          "notSure": true,
-          "w": 0
         }
       ]
     },
@@ -414,12 +395,6 @@ window.DIAG ={
           "text": "Every month",
           "band": "you've been delaying payments every month",
           "w": 100
-        },
-        {
-          "id": "z",
-          "text": "Not sure",
-          "notSure": true,
-          "w": 0
         }
       ]
     },
@@ -464,12 +439,6 @@ window.DIAG ={
           "text": "More than 60 days",
           "band": "beyond 60 days",
           "w": 100
-        },
-        {
-          "id": "z",
-          "text": "Not sure",
-          "notSure": true,
-          "w": 0
         }
       ]
     },
@@ -506,13 +475,6 @@ window.DIAG ={
           "band": "under a fortnight of cover",
           "w": 100,
           "flags": []
-        },
-        {
-          "id": "z",
-          "text": "Not sure",
-          "notSure": true,
-          "w": 0,
-          "flags": []
         }
       ]
     },
@@ -548,12 +510,6 @@ window.DIAG ={
           "text": "Regularly",
           "band": "regularly",
           "w": 100
-        },
-        {
-          "id": "z",
-          "text": "Not sure",
-          "notSure": true,
-          "w": 0
         }
       ]
     },
@@ -584,12 +540,6 @@ window.DIAG ={
           "band": "losing money",
           "w": 0,
           "disqualify": "cashflow"
-        },
-        {
-          "id": "z",
-          "text": "Not sure",
-          "notSure": true,
-          "w": 30
         }
       ]
     },
@@ -625,13 +575,6 @@ window.DIAG ={
           "text": "More than a month's revenue",
           "band": "more than a month of revenue",
           "w": 100
-        },
-        {
-          "id": "z",
-          "text": "I don't know",
-          "notSure": true,
-          "w": 0,
-          "flags": []
         }
       ]
     },
@@ -703,13 +646,13 @@ window.DIAG ={
           "id": "b",
           "text": "It runs, but decisions pile up waiting for me",
           "band": "runs, but the decisions wait for you",
-          "w": 45
+          "w": 33
         },
         {
           "id": "c",
           "text": "It degrades quickly",
           "band": "degrades quickly without you",
-          "w": 85,
+          "w": 67,
           "flags": [
             {
               "id": "key_person",
@@ -728,12 +671,6 @@ window.DIAG ={
               "sev": 75
             }
           ]
-        },
-        {
-          "id": "z",
-          "text": "Not sure",
-          "notSure": true,
-          "w": 0
         }
       ]
     },
@@ -806,25 +743,19 @@ window.DIAG ={
           "id": "b",
           "text": "Half a day",
           "band": "about half a day a week",
-          "w": 35
+          "w": 33
         },
         {
           "id": "c",
           "text": "An hour or two",
           "band": "an hour or two",
-          "w": 80
+          "w": 67
         },
         {
           "id": "d",
           "text": "None of it",
           "band": "none of it",
           "w": 100
-        },
-        {
-          "id": "z",
-          "text": "Not sure",
-          "notSure": true,
-          "w": 0
         }
       ]
     },
@@ -846,25 +777,19 @@ window.DIAG ={
           "id": "b",
           "text": "Once",
           "band": "something you wanted to grow has stalled once for want of anyone to hand it to",
-          "w": 40
+          "w": 33
         },
         {
           "id": "c",
           "text": "A few times",
           "band": "a few things have stalled for want of anyone to hand them to",
-          "w": 80
+          "w": 67
         },
         {
           "id": "d",
           "text": "That's the normal state",
           "band": "things stall for want of anyone to hand them to as a matter of routine",
           "w": 100
-        },
-        {
-          "id": "z",
-          "text": "Not sure",
-          "notSure": true,
-          "w": 0
         }
       ]
     },
@@ -878,39 +803,27 @@ window.DIAG ={
       "options": [
         {
           "id": "a",
-          "text": "Nobody",
-          "band": "nobody reporting to you",
+          "text": "Two or fewer",
+          "band": "two or fewer direct reports",
           "w": 0
         },
         {
           "id": "b",
-          "text": "1 to 3",
-          "band": "one to three direct reports",
-          "w": 10
+          "text": "Three to six",
+          "band": "three to six direct reports",
+          "w": 33
         },
         {
           "id": "c",
-          "text": "4 to 7",
-          "band": "four to seven direct reports",
-          "w": 45
+          "text": "Seven to twelve",
+          "band": "seven to twelve direct reports",
+          "w": 67
         },
         {
           "id": "d",
-          "text": "8 to 12",
-          "band": "eight to twelve direct reports",
-          "w": 90
-        },
-        {
-          "id": "e",
-          "text": "More than 12",
+          "text": "More than twelve",
           "band": "more than twelve direct reports",
           "w": 100
-        },
-        {
-          "id": "z",
-          "text": "Not sure",
-          "notSure": true,
-          "w": 0
         }
       ]
     },
@@ -937,31 +850,19 @@ window.DIAG ={
           "id": "b",
           "text": "About two thirds",
           "band": "around two thirds full",
-          "w": 25
+          "w": 33
         },
         {
           "id": "c",
-          "text": "Near full",
+          "text": "Full, or close to it",
           "band": "at or near full",
-          "w": 70
+          "w": 67
         },
         {
           "id": "d",
-          "text": "Full, with a waitlist",
-          "band": "full, with people waiting",
-          "w": 95
-        },
-        {
-          "id": "e",
           "text": "Over capacity, we're behind",
           "band": "over capacity and behind",
           "w": 100
-        },
-        {
-          "id": "z",
-          "text": "Not sure",
-          "notSure": true,
-          "w": 0
         }
       ]
     },
@@ -983,25 +884,19 @@ window.DIAG ={
           "id": "b",
           "text": "Once or twice",
           "band": "you've turned work away or pushed a start date once or twice",
-          "w": 40
+          "w": 33
         },
         {
           "id": "c",
           "text": "Most months",
           "band": "you're turning work away or pushing start dates most months",
-          "w": 85
+          "w": 67
         },
         {
           "id": "d",
           "text": "Constantly",
           "band": "you're turning work away constantly",
           "w": 100
-        },
-        {
-          "id": "z",
-          "text": "Not sure",
-          "notSure": true,
-          "w": 0
         }
       ]
     },
@@ -1024,25 +919,19 @@ window.DIAG ={
           "id": "b",
           "text": "About the same",
           "band": "held steady",
-          "w": 25
+          "w": 33
         },
         {
           "id": "c",
           "text": "Longer",
           "band": "stretched out",
-          "w": 75
+          "w": 67
         },
         {
           "id": "d",
           "text": "Much longer",
           "band": "blown out",
           "w": 100
-        },
-        {
-          "id": "z",
-          "text": "Not sure",
-          "notSure": true,
-          "w": 0
         }
       ]
     },
@@ -1064,25 +953,19 @@ window.DIAG ={
           "id": "b",
           "text": "A few days ahead",
           "band": "a few days ahead",
-          "w": 40
+          "w": 33
         },
         {
           "id": "c",
           "text": "The day before",
           "band": "the day before",
-          "w": 85
+          "w": 67
         },
         {
           "id": "d",
           "text": "We're finishing it as it starts",
           "band": "only as it starts",
           "w": 100
-        },
-        {
-          "id": "z",
-          "text": "Not sure",
-          "notSure": true,
-          "w": 0
         }
       ],
       "help": "Ready meaning done, not still being finished off."
@@ -1105,25 +988,19 @@ window.DIAG ={
           "id": "b",
           "text": "Occasionally",
           "band": "occasionally",
-          "w": 30
+          "w": 33
         },
         {
           "id": "c",
           "text": "Most weeks",
           "band": "most weeks",
-          "w": 85
+          "w": 67
         },
         {
           "id": "d",
           "text": "Constantly",
           "band": "constantly",
           "w": 100
-        },
-        {
-          "id": "z",
-          "text": "Not sure",
-          "notSure": true,
-          "w": 0
         }
       ],
       "help": "Long hours on an event day or a job site are the job. This is about the weeks in between."
@@ -1150,25 +1027,19 @@ window.DIAG ={
           "id": "b",
           "text": "About half",
           "band": "around half",
-          "w": 45
+          "w": 33
         },
         {
           "id": "c",
           "text": "Under a third",
           "band": "under a third",
-          "w": 85
+          "w": 67
         },
         {
           "id": "d",
           "text": "Almost none",
           "band": "close to none",
           "w": 100
-        },
-        {
-          "id": "z",
-          "text": "Not sure",
-          "notSure": true,
-          "w": 0
         }
       ]
     },
@@ -1195,32 +1066,19 @@ window.DIAG ={
           "id": "b",
           "text": "More than half",
           "band": "more than half",
-          "w": 25
+          "w": 33
         },
         {
           "id": "c",
-          "text": "About half",
-          "band": "about half",
-          "w": 60
+          "text": "About half or less",
+          "band": "about half or less",
+          "w": 67
         },
         {
           "id": "d",
-          "text": "Less than half",
-          "band": "less than half",
-          "w": 85
-        },
-        {
-          "id": "e",
           "text": "A small slice, they spread it around",
           "band": "only a small slice",
           "w": 100
-        },
-        {
-          "id": "z",
-          "text": "Not sure",
-          "notSure": true,
-          "w": 0,
-          "flags": []
         }
       ]
     },
@@ -1242,25 +1100,19 @@ window.DIAG ={
           "id": "b",
           "text": "Sometimes",
           "band": "sometimes",
-          "w": 40
+          "w": 33
         },
         {
           "id": "c",
           "text": "Rarely",
           "band": "rarely",
-          "w": 85
+          "w": 67
         },
         {
           "id": "d",
           "text": "Never",
           "band": "never",
           "w": 100
-        },
-        {
-          "id": "z",
-          "text": "Not sure",
-          "notSure": true,
-          "w": 0
         }
       ]
     },
@@ -1282,25 +1134,19 @@ window.DIAG ={
           "id": "b",
           "text": "About half",
           "band": "about half",
-          "w": 30
+          "w": 33
         },
         {
           "id": "c",
           "text": "A few",
           "band": "a few",
-          "w": 75
+          "w": 67
         },
         {
           "id": "d",
           "text": "Almost none",
           "band": "almost none",
           "w": 100
-        },
-        {
-          "id": "z",
-          "text": "Not sure",
-          "notSure": true,
-          "w": 0
         }
       ]
     },
@@ -1322,25 +1168,19 @@ window.DIAG ={
           "id": "b",
           "text": "A handful",
           "band": "a handful",
-          "w": 40
+          "w": 33
         },
         {
           "id": "c",
           "text": "A steady stream",
           "band": "a steady stream",
-          "w": 85
+          "w": 67
         },
         {
           "id": "d",
           "text": "Most of them",
           "band": "most of them",
           "w": 100
-        },
-        {
-          "id": "z",
-          "text": "Not sure",
-          "notSure": true,
-          "w": 0
         }
       ]
     },
@@ -1354,29 +1194,27 @@ window.DIAG ={
       "options": [
         {
           "id": "a",
-          "text": "Yes, we ask them and we know",
-          "band": "you ask them and you know",
+          "text": "Yes, we ask every one and we know",
+          "band": "you ask every one and you know",
           "w": 0
         },
         {
           "id": "b",
-          "text": "We have a theory",
-          "band": "you have a theory",
-          "w": 55
+          "text": "We ask sometimes, so we know for some",
+          "band": "you ask sometimes, so you know for some",
+          "w": 33
         },
         {
           "id": "c",
-          "text": "No idea",
-          "band": "no idea",
-          "w": 100,
-          "flags": []
+          "text": "We've got a theory, we've never asked",
+          "band": "you've got a theory and you've never asked",
+          "w": 67
         },
         {
-          "id": "z",
-          "text": "Not sure",
-          "notSure": true,
-          "w": 0,
-          "flags": []
+          "id": "d",
+          "text": "No idea",
+          "band": "no idea",
+          "w": 100
         }
       ]
     },
@@ -1402,26 +1240,19 @@ window.DIAG ={
           "id": "b",
           "text": "25% to 50%",
           "band": "in the 25 to 50% range",
-          "w": 25
+          "w": 33
         },
         {
           "id": "c",
           "text": "10% to 25%",
           "band": "in the 10 to 25% range",
-          "w": 80
+          "w": 67
         },
         {
           "id": "d",
           "text": "Under 10%",
           "band": "under 10%",
           "w": 100
-        },
-        {
-          "id": "z",
-          "text": "Not sure",
-          "notSure": true,
-          "w": 0,
-          "flags": []
         }
       ]
     },
@@ -1435,41 +1266,27 @@ window.DIAG ={
       "options": [
         {
           "id": "a",
-          "text": "Price, we were too expensive",
-          "band": "price",
-          "w": 55
+          "text": "Timing, they weren't ready",
+          "band": "timing",
+          "w": 0
         },
         {
           "id": "b",
-          "text": "Timing, they weren't ready",
-          "band": "timing",
-          "w": 45
+          "text": "Price, we were too expensive",
+          "band": "price",
+          "w": 33
         },
         {
           "id": "c",
           "text": "They went with someone else",
           "band": "a competitor",
-          "w": 85
+          "w": 67
         },
         {
           "id": "d",
-          "text": "They did nothing at all",
-          "band": "inaction",
+          "text": "They did nothing at all, or we don't know",
+          "band": "inaction, or something you cannot put your finger on",
           "w": 100
-        },
-        {
-          "id": "e",
-          "text": "We don't know",
-          "band": "something you can't put your finger on",
-          "w": 90,
-          "flags": []
-        },
-        {
-          "id": "z",
-          "text": "Not sure",
-          "notSure": true,
-          "w": 0,
-          "flags": []
         }
       ]
     },
@@ -1491,25 +1308,19 @@ window.DIAG ={
           "id": "b",
           "text": "Sometimes",
           "band": "sometimes",
-          "w": 40
+          "w": 33
         },
         {
           "id": "c",
           "text": "Often",
           "band": "often",
-          "w": 85
+          "w": 67
         },
         {
           "id": "d",
           "text": "On most quotes",
           "band": "on most quotes",
           "w": 100
-        },
-        {
-          "id": "z",
-          "text": "Not sure",
-          "notSure": true,
-          "w": 0
         }
       ]
     },
@@ -1531,26 +1342,19 @@ window.DIAG ={
           "id": "b",
           "text": "About the same",
           "band": "held steady",
-          "w": 30
+          "w": 33
         },
         {
           "id": "c",
           "text": "Dropped",
           "band": "dropped",
-          "w": 80
+          "w": 67
         },
         {
           "id": "d",
           "text": "Dropped sharply",
           "band": "fallen off a cliff",
           "w": 100
-        },
-        {
-          "id": "z",
-          "text": "Not sure",
-          "notSure": true,
-          "w": 0,
-          "flags": []
         }
       ]
     },
@@ -1572,25 +1376,19 @@ window.DIAG ={
           "id": "b",
           "text": "Standard pricing, but we walk them through it",
           "band": "from standard pricing you walk them through",
-          "w": 40
+          "w": 33
         },
         {
           "id": "c",
           "text": "Every job gets quoted from scratch",
           "band": "from a quote built from scratch every time",
-          "w": 90
+          "w": 67
         },
         {
           "id": "d",
           "text": "It depends who's asking",
           "band": "from a number that depends who's asking",
           "w": 100
-        },
-        {
-          "id": "z",
-          "text": "Not sure",
-          "notSure": true,
-          "w": 0
         }
       ]
     },
@@ -1609,40 +1407,27 @@ window.DIAG ={
       "options": [
         {
           "id": "a",
-          "text": "0 to 2",
-          "band": "a handful at most",
-          "w": 100
-        },
-        {
-          "id": "b",
-          "text": "3 to 10",
-          "band": "in the 3 to 10 range",
-          "w": 75
-        },
-        {
-          "id": "c",
-          "text": "11 to 30",
-          "band": "in the 11 to 30 range",
-          "w": 35
-        },
-        {
-          "id": "d",
-          "text": "31 to 100",
-          "band": "in the 31 to 100 range",
-          "w": 10
-        },
-        {
-          "id": "e",
-          "text": "More than 100",
-          "band": "above 100",
+          "text": "More than 30",
+          "band": "above 30",
           "w": 0
         },
         {
-          "id": "z",
-          "text": "Not sure",
-          "notSure": true,
-          "w": 0,
-          "flags": []
+          "id": "b",
+          "text": "11 to 30",
+          "band": "in the 11 to 30 range",
+          "w": 33
+        },
+        {
+          "id": "c",
+          "text": "3 to 10",
+          "band": "in the 3 to 10 range",
+          "w": 67
+        },
+        {
+          "id": "d",
+          "text": "0 to 2",
+          "band": "a handful at most",
+          "w": 100
         }
       ]
     },
@@ -1719,26 +1504,19 @@ window.DIAG ={
           "id": "b",
           "text": "Flat",
           "band": "stayed flat",
-          "w": 45
+          "w": 33
         },
         {
           "id": "c",
           "text": "Down",
           "band": "fallen",
-          "w": 85
+          "w": 67
         },
         {
           "id": "d",
           "text": "Down sharply",
           "band": "fallen sharply",
           "w": 100
-        },
-        {
-          "id": "z",
-          "text": "Not sure",
-          "notSure": true,
-          "w": 0,
-          "flags": []
         }
       ]
     },
@@ -1752,28 +1530,27 @@ window.DIAG ={
       "options": [
         {
           "id": "a",
-          "text": "Yes, easily",
-          "band": "comfortably",
-          "w": 55
+          "text": "No, we'd be well over capacity",
+          "band": "not a chance",
+          "w": 0
         },
         {
           "id": "b",
-          "text": "Yes, with a stretch",
-          "band": "with a stretch",
-          "w": 35
+          "text": "Yes, with a real stretch",
+          "band": "with a real stretch",
+          "w": 33
         },
         {
           "id": "c",
-          "text": "No, we'd be well over capacity",
-          "band": "not a chance",
-          "w": 0,
-          "disqualify": "demand"
+          "text": "Yes, with a bit of room to spare",
+          "band": "with a bit of room to spare",
+          "w": 67
         },
         {
-          "id": "z",
-          "text": "Not sure",
-          "notSure": true,
-          "w": 0
+          "id": "d",
+          "text": "Yes, easily, we've got the space now",
+          "band": "comfortably, with the space sitting there",
+          "w": 100
         }
       ]
     },
@@ -1787,27 +1564,27 @@ window.DIAG ={
       "options": [
         {
           "id": "a",
-          "text": "Yes, consistently",
-          "band": "you're generating enquiries consistently",
+          "text": "Yes, the same things every week",
+          "band": "you're generating enquiries the same way every week",
           "w": 0
         },
         {
           "id": "b",
-          "text": "On and off",
-          "band": "you're generating enquiries on and off",
-          "w": 60
+          "text": "Yes, but it fits around the work",
+          "band": "you're generating enquiries when the work allows",
+          "w": 33
         },
         {
           "id": "c",
+          "text": "On and off, when it goes quiet",
+          "band": "you're generating enquiries on and off",
+          "w": 67
+        },
+        {
+          "id": "d",
           "text": "No, it all comes to us",
           "band": "you're doing nothing to generate enquiries, it all comes to you",
           "w": 100
-        },
-        {
-          "id": "z",
-          "text": "Not sure",
-          "notSure": true,
-          "w": 0
         }
       ]
     },
@@ -1834,26 +1611,19 @@ window.DIAG ={
           "id": "b",
           "text": "30% to 50%",
           "band": "in the 30 to 50% range",
-          "w": 30
+          "w": 33
         },
         {
           "id": "c",
           "text": "15% to 30%",
           "band": "in the 15 to 30% range",
-          "w": 75
+          "w": 67
         },
         {
           "id": "d",
           "text": "Under 15%",
           "band": "under 15%",
           "w": 100
-        },
-        {
-          "id": "z",
-          "text": "Not sure",
-          "notSure": true,
-          "w": 0,
-          "flags": []
         }
       ]
     },
@@ -1879,26 +1649,19 @@ window.DIAG ={
           "id": "b",
           "text": "10% to 20%",
           "band": "in the 10 to 20% range",
-          "w": 25
+          "w": 33
         },
         {
           "id": "c",
           "text": "1% to 10%",
           "band": "in the 1 to 10% range",
-          "w": 80
+          "w": 67
         },
         {
           "id": "d",
           "text": "Nothing, or a loss",
           "band": "nothing, or a loss",
           "w": 100
-        },
-        {
-          "id": "z",
-          "text": "Not sure",
-          "notSure": true,
-          "w": 0,
-          "flags": []
         }
       ]
     },
@@ -1920,31 +1683,19 @@ window.DIAG ={
           "id": "b",
           "text": "6 to 12 months ago",
           "band": "you last raised prices in the last year",
-          "w": 30
+          "w": 33
         },
         {
           "id": "c",
           "text": "1 to 2 years ago",
           "band": "you last raised prices one to two years ago",
-          "w": 75
+          "w": 67
         },
         {
           "id": "d",
-          "text": "More than 2 years ago",
-          "band": "you last raised prices more than two years ago",
-          "w": 95
-        },
-        {
-          "id": "e",
-          "text": "Never",
-          "band": "you've never raised your prices",
+          "text": "More than 2 years ago, or never",
+          "band": "you last raised prices more than two years ago, if ever",
           "w": 100
-        },
-        {
-          "id": "z",
-          "text": "Not sure",
-          "notSure": true,
-          "w": 0
         }
       ]
     },
@@ -1966,25 +1717,19 @@ window.DIAG ={
           "id": "b",
           "text": "Sometimes",
           "band": "sometimes",
-          "w": 40
+          "w": 33
         },
         {
           "id": "c",
           "text": "Often",
           "band": "often",
-          "w": 85
+          "w": 67
         },
         {
           "id": "d",
           "text": "On most jobs",
           "band": "on most jobs",
           "w": 100
-        },
-        {
-          "id": "z",
-          "text": "Not sure",
-          "notSure": true,
-          "w": 0
         }
       ]
     },
@@ -1998,29 +1743,69 @@ window.DIAG ={
       "options": [
         {
           "id": "a",
-          "text": "Yes, job by job or line by line",
+          "text": "Yes, job by job",
           "band": "job by job",
           "w": 0
         },
         {
           "id": "b",
-          "text": "Roughly",
-          "band": "roughly",
-          "w": 55
+          "text": "Yes by category, not job by job",
+          "band": "by category rather than job by job",
+          "w": 33
         },
         {
           "id": "c",
-          "text": "No",
-          "band": "not at all",
-          "w": 100,
-          "flags": []
+          "text": "Roughly, it's a feel",
+          "band": "roughly, on feel",
+          "w": 67
         },
         {
-          "id": "z",
-          "text": "Not sure",
-          "notSure": true,
-          "w": 0,
-          "flags": []
+          "id": "d",
+          "text": "No",
+          "band": "not at all",
+          "w": 100
+        }
+      ]
+    },
+    {
+      "id": "q59",
+      "section": "risk",
+      "n": 45,
+      "weight": 0,
+      "type": "multi",
+      "max": 6,
+      "text": "Which of these does the business actually measure, rather than estimate?",
+      "options": [
+        {
+          "id": "a",
+          "text": "What each job makes after its direct costs"
+        },
+        {
+          "id": "b",
+          "text": "How many quotes turn into work"
+        },
+        {
+          "id": "c",
+          "text": "Where each enquiry came from"
+        },
+        {
+          "id": "d",
+          "text": "How much each customer spent this year against last"
+        },
+        {
+          "id": "e",
+          "text": "What is owed to you and how overdue it is"
+        },
+        {
+          "id": "n",
+          "text": "None of these",
+          "exclusive": true,
+          "flags": [
+            {
+              "id": "no_data",
+              "sev": 95
+            }
+          ]
         }
       ]
     },
@@ -2085,12 +1870,6 @@ window.DIAG ={
               "sev": 100
             }
           ]
-        },
-        {
-          "id": "z",
-          "text": "Not sure",
-          "notSure": true,
-          "flags": []
         }
       ]
     },
@@ -2144,12 +1923,6 @@ window.DIAG ={
               "sev": 95
             }
           ]
-        },
-        {
-          "id": "z",
-          "text": "Not sure",
-          "notSure": true,
-          "flags": []
         }
       ]
     },
@@ -2186,17 +1959,6 @@ window.DIAG ={
             {
               "id": "key_channel",
               "sev": 95
-            }
-          ]
-        },
-        {
-          "id": "z",
-          "text": "Not sure",
-          "notSure": true,
-          "flags": [
-            {
-              "id": "key_channel",
-              "sev": 50
             }
           ]
         }
@@ -2398,27 +2160,6 @@ window.DIAG ={
               ]
             }
           ]
-        },
-        {
-          "id": "z",
-          "text": "Not sure",
-          "notSure": true,
-          "flags": [
-            {
-              "id": "key_client",
-              "sev": 60,
-              "when": [
-                [
-                  "q41",
-                  [
-                    "c",
-                    "d",
-                    "e"
-                  ]
-                ]
-              ]
-            }
-          ]
         }
       ]
     },
@@ -2457,17 +2198,6 @@ window.DIAG ={
               "sev": 85
             }
           ]
-        },
-        {
-          "id": "z",
-          "text": "Not sure",
-          "notSure": true,
-          "flags": [
-            {
-              "id": "key_person",
-              "sev": 50
-            }
-          ]
         }
       ]
     },
@@ -2501,12 +2231,6 @@ window.DIAG ={
           "id": "d",
           "text": "We don't really",
           "band": "next to never",
-          "flags": []
-        },
-        {
-          "id": "z",
-          "text": "Not sure",
-          "notSure": true,
           "flags": []
         }
       ]
@@ -2544,17 +2268,6 @@ window.DIAG ={
             {
               "id": "key_person",
               "sev": 100
-            }
-          ]
-        },
-        {
-          "id": "z",
-          "text": "Not sure",
-          "notSure": true,
-          "flags": [
-            {
-              "id": "key_person",
-              "sev": 80
             }
           ]
         }
@@ -2606,21 +2319,6 @@ window.DIAG ={
               "sev": 100
             }
           ]
-        },
-        {
-          "id": "z",
-          "text": "Never thought about it",
-          "notSure": true,
-          "flags": [
-            {
-              "id": "key_person",
-              "sev": 70
-            },
-            {
-              "id": "no_succession",
-              "sev": 70
-            }
-          ]
         }
       ],
       "help": "Not what it's worth. How long before they could run it without you."
@@ -2658,17 +2356,6 @@ window.DIAG ={
             {
               "id": "no_succession",
               "sev": 95
-            }
-          ]
-        },
-        {
-          "id": "z",
-          "text": "Not sure",
-          "notSure": true,
-          "flags": [
-            {
-              "id": "no_succession",
-              "sev": 80
             }
           ]
         }
@@ -2709,17 +2396,6 @@ window.DIAG ={
               "sev": 95
             }
           ]
-        },
-        {
-          "id": "z",
-          "text": "Not sure",
-          "notSure": true,
-          "flags": [
-            {
-              "id": "personal_guarantee",
-              "sev": 75
-            }
-          ]
         }
       ]
     },
@@ -2756,17 +2432,6 @@ window.DIAG ={
             {
               "id": "model_misfit",
               "sev": 95
-            }
-          ]
-        },
-        {
-          "id": "z",
-          "text": "Not sure",
-          "notSure": true,
-          "flags": [
-            {
-              "id": "model_misfit",
-              "sev": 45
             }
           ]
         }
@@ -2813,41 +2478,21 @@ window.DIAG ={
     "personal_guarantee": {
       "name": "Personal guarantee",
       "group": "Owner"
+    },
+    "cash_flow": {
+      "name": "Cash flow",
+      "group": "Money",
+      "pinned": true
     }
   },
   "blocks": {
     "opening": {
       "normal": "Everything below is calculated on your answers. It's a guide rather than a custom diagnostic, so read the report as a rough shape of what your current challenges are and what solutions may look like.\n\nIt names your biggest single constraint. There is likely more, and there may be other things wrong, there always are. They're not listed in here because the order you fix things in matters. Fix the constraints and risks in your business, then come back and get an updated report.",
       "wellRun": "Everything below is calculated on your answers. Nothing in them is close to failing, which is a real result and rarer than you'd think.\n\nWhat follows is the tightest thing in the business rather than a problem. Treat it as where the next bit of growth comes from, not something to fix.",
-      "tooUnsure": "Everything below is calculated on your answers, and there were a lot of them you couldn't answer, so read it as provisional.\n\nThe finding below is the best available reading of what you did tell us. The bigger issue is that the business isn't visible to you, and that's covered in the risks. Come back and run it again once you can answer the numbers.",
       "noneSevere": "Everything below is calculated on your answers. Nothing in them is screaming, which is worth knowing on its own.\n\nWhat follows is the tightest thing in the business rather than something that's failing outright. It's the next thing to work on, not an emergency.",
       "privacy": "We do not use any AI in this tool, and none of your data is sent or stored offsite."
     },
     "constraintDef": {
-      "cashflow": {
-        "title": "You are {c} constrained",
-        "titleLoose": "The tightest thing is {c}",
-        "open": "You're profitable on paper and short of cash in practice. The work is sold and the money hasn't landed, so there's nothing sitting there to fund the next job.",
-        "evidence": [
-          {
-            "banded": "you get paid {q54.band}"
-          },
-          {
-            "banded": "the balance lands {q7.band}",
-            "precise": "the balance lands {q7.exact} days later"
-          },
-          {
-            "banded": "you're owed {q55.band} past its due date"
-          },
-          {
-            "banded": "{q6.band}"
-          },
-          {
-            "banded": "you're holding {q8.band}"
-          }
-        ],
-        "close": "That's a timing problem rather than a rate problem. Every job you win right now costs you money before it pays you, which is why winning more of them is currently the worst move available to you."
-      },
       "talent": {
         "title": "You are {c} constrained",
         "titleLoose": "The tightest thing is {c}",
@@ -2978,67 +2623,6 @@ window.DIAG ={
       }
     },
     "constraintFix": {
-      "cashflow": {
-        "lead": "You need to close the gap between doing the work and getting paid for it. Every other fix in the business is waiting on this one.",
-        "actions": [
-          {
-            "text": "You take nothing upfront, which is this whole problem in one answer. Change that before anything else on this list.",
-            "when": [
-              [
-                "q54",
-                [
-                  "e",
-                  "f"
-                ]
-              ]
-            ]
-          },
-          {
-            "text": "Move to a deposit on every job. Fifty percent thirty days out and the balance the week before, so the money is in before your costs go out."
-          },
-          {
-            "text": "Line the deposit up to land before your cost of goods does. On jobs where the number moves on the day, charge the balance afterwards and refund the difference."
-          },
-          {
-            "text": "Invoice within twenty four hours of the job finishing. Whatever the gap is between finishing and invoicing, that gap is yours to close."
-          },
-          {
-            "text": "Collect what's already overdue before you chase anything new. It's the cheapest money available to you.",
-            "when": [
-              [
-                "q55",
-                [
-                  "c",
-                  "d"
-                ]
-              ]
-            ]
-          },
-          {
-            "text": "Put terms in writing before the next job starts, and chase on day one past due.",
-            "when": [
-              [
-                "q45",
-                [
-                  "c",
-                  "d"
-                ]
-              ]
-            ]
-          },
-          {
-            "text": "Get a facility in place while the business is still profitable on paper. Banks lend to businesses that don't look like they need it.",
-            "when": [
-              [
-                "q10",
-                [
-                  "a"
-                ]
-              ]
-            ]
-          }
-        ]
-      },
       "talent": {
         "lead": "Hire one role that owns a layer of the business, with the authority to run it. Not another pair of hands underneath you.",
         "actions": [
@@ -3072,8 +2656,7 @@ window.DIAG ={
                 "q46",
                 [
                   "b",
-                  "c",
-                  "z"
+                  "c"
                 ]
               ]
             ]
@@ -3102,8 +2685,7 @@ window.DIAG ={
                 "q57",
                 [
                   "c",
-                  "d",
-                  "e"
+                  "d"
                 ]
               ]
             ]
@@ -3210,8 +2792,7 @@ window.DIAG ={
                 "q38",
                 [
                   "c",
-                  "d",
-                  "e"
+                  "d"
                 ]
               ]
             ]
@@ -3290,6 +2871,28 @@ window.DIAG ={
       },
       "key_asset": {
         "banded": "One piece of equipment or one vehicle is doing work you have no backup for. A breakdown or a long repair stops revenue you have already sold, and hire rates at short notice are set by people who know you're stuck."
+      },
+      "cash_flow": {
+        "open": "You're profitable on paper and short of cash in practice. The work is sold and the money hasn't landed, so there's nothing sitting there to fund the next job.",
+        "evidence": [
+          {
+            "banded": "you get paid {q54.band}"
+          },
+          {
+            "banded": "the balance lands {q7.band}",
+            "precise": "the balance lands {q7.exact} days later"
+          },
+          {
+            "banded": "you're owed {q55.band} past its due date"
+          },
+          {
+            "banded": "{q6.band}"
+          },
+          {
+            "banded": "you're holding {q8.band}"
+          }
+        ],
+        "close": "That's a timing problem rather than a rate problem. Every job you win right now costs you money before it pays you, which is why winning more of them is currently the worst move available to you."
       }
     },
     "riskFix": {
@@ -3334,19 +2937,67 @@ window.DIAG ={
       "key_asset": [
         "Find out today what a replacement costs at short notice, and who actually has one.",
         "Put it on a service schedule and hold to it."
+      ],
+      "cash_flow": [
+        {
+          "text": "You take nothing upfront, which is this whole problem in one answer. Change that before anything else on this list.",
+          "when": [
+            [
+              "q54",
+              [
+                "e",
+                "f"
+              ]
+            ]
+          ]
+        },
+        {
+          "text": "Move to a deposit on every job. Fifty percent thirty days out and the balance the week before, so the money is in before your costs go out."
+        },
+        {
+          "text": "Line the deposit up to land before your cost of goods does. On jobs where the number moves on the day, charge the balance afterwards and refund the difference."
+        },
+        {
+          "text": "Invoice within twenty four hours of the job finishing. Whatever the gap is between finishing and invoicing, that gap is yours to close."
+        },
+        {
+          "text": "Collect what's already overdue before you chase anything new. It's the cheapest money available to you.",
+          "when": [
+            [
+              "q55",
+              [
+                "c",
+                "d"
+              ]
+            ]
+          ]
+        },
+        {
+          "text": "Put terms in writing before the next job starts, and chase on day one past due.",
+          "when": [
+            [
+              "q45",
+              [
+                "c",
+                "d"
+              ]
+            ]
+          ]
+        },
+        {
+          "text": "Get a facility in place while the business is still profitable on paper. Banks lend to businesses that don't look like they need it.",
+          "when": [
+            [
+              "q10",
+              [
+                "a"
+              ]
+            ]
+          ]
+        }
       ]
     },
     "dontDoYet": {
-      "cashflow": {
-        "lead": "Until the cash timing is fixed, leave these alone.",
-        "items": [
-          "Don't chase bigger jobs. Bigger jobs mean bigger upfront costs and longer payment cycles.",
-          "Don't hire. Wages are the least flexible cost you can add to a cash problem.",
-          "Don't buy equipment outright. Finance it, even if the interest annoys you.",
-          "Don't discount to get paid faster. That's borrowing at a rate you'd never accept from a bank.",
-          "Don't increase marketing spend. More demand you can't fund makes the hole deeper."
-        ]
-      },
       "talent": {
         "lead": "Until the layer exists, leave these alone.",
         "items": [
@@ -3409,52 +3060,12 @@ window.DIAG ={
     "closing": {
       "text": "That's the diagnosis. One constraint, and the things to leave alone while you fix it.\n\nWork the constraint and check back in ninety days. That's long enough for it to move and short enough that you'll still remember what you changed.",
       "cta": "",
-      "loose": "That's the read. One thing to push on, and nothing in the way of it.\n\nRun this again in ninety days, or whenever something material changes. The constraint moves as the business grows, and the answer you get next time probably won't be this one.",
-      "unsure": "That's as far as your answers go. One provisional reading, and a clear picture of what the business can't currently tell you.\n\nGet the numbers visible, then run this again. The second time through it will be worth something."
+      "loose": "That's the read. One thing to push on, and nothing in the way of it.\n\nRun this again in ninety days, or whenever something material changes. The constraint moves as the business grows, and the answer you get next time probably won't be this one."
     },
     "looseBody": "Nothing in here is failing, so there's no evidence to walk you through. What you've got is {d.primaryShort} sitting as the tightest of the seven right now, which makes it the likeliest place the next bit of growth comes from. The actions below are worth doing and none of them are urgent.",
-    "unsureBody": "There isn't enough here to point at one thing with any confidence. On what you did answer, {d.primaryShort} is the tightest of the seven, so read the actions below as a starting point rather than a diagnosis.\n\nThe risk section is the part of this report to take seriously. Not being able to answer the questions is the finding, and it's the one worth acting on first.",
-    "titleUnsure": "There isn't enough here to call it",
     "riskLead": "These are the things that would hurt most if something went wrong. They aren't capping the business the way the constraint above is, but they're major risks."
   },
   "hardTriggers": {
-    "cashflow": [
-      {
-        "all": [
-          [
-            "q8",
-            [
-              "c",
-              "d"
-            ]
-          ],
-          [
-            "q6",
-            [
-              "c",
-              "d"
-            ]
-          ]
-        ]
-      },
-      {
-        "all": [
-          [
-            "q55",
-            [
-              "d"
-            ]
-          ],
-          [
-            "q8",
-            [
-              "c",
-              "d"
-            ]
-          ]
-        ]
-      }
-    ],
     "talent": [
       {
         "all": [
@@ -3480,8 +3091,8 @@ window.DIAG ={
           [
             "q16",
             [
-              "d",
-              "e"
+              "c",
+              "d"
             ]
           ],
           [
@@ -3518,8 +3129,8 @@ window.DIAG ={
           [
             "q57",
             [
-              "d",
-              "e"
+              "c",
+              "d"
             ]
           ],
           [
@@ -3558,15 +3169,15 @@ window.DIAG ={
           [
             "q31",
             [
-              "a",
-              "b"
+              "c",
+              "d"
             ]
           ],
           [
             "q34",
             [
-              "a",
-              "b"
+              "c",
+              "d"
             ]
           ],
           [
@@ -3598,5 +3209,37 @@ window.DIAG ={
         ]
       }
     ]
+  },
+  "families": {
+    "supply": [
+      "talent",
+      "fulfilment",
+      "margin"
+    ],
+    "demand": [
+      "value",
+      "offer",
+      "demand"
+    ]
+  },
+  "cashflowRisk": {
+    "block": "cashflow",
+    "raiseAt": 45
+  },
+  "majors": {
+    "supply": {
+      "name": "supply",
+      "title": "You are {c} constrained",
+      "titleLoose": "You lean {c} constrained",
+      "test": "Double your clients tomorrow and it wouldn't help you. Either you can't deliver them, or delivering them doesn't pay.",
+      "due": "Due to"
+    },
+    "demand": {
+      "name": "demand",
+      "title": "You are {c} constrained",
+      "titleLoose": "You lean {c} constrained",
+      "test": "Double your clients tomorrow and you could handle it. The capacity is there and filling it is what caps you.",
+      "due": "Due to"
+    }
   }
 };

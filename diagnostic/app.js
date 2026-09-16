@@ -53,7 +53,7 @@
     var a = answers[q.id] || {};
     var multi = q.type === "multi";
     var on = multi ? (a.opts || []).indexOf(o.id) !== -1 : a.opt === o.id;
-    return '<label class="opt' + (o.notSure ? " opt--unsure" : "") + '">' +
+    return '<label class="opt">' +
       '<input type="' + (multi ? "checkbox" : "radio") + '" name="' + q.id + '" value="' + o.id + '"' + (on ? " checked" : "") + '>' +
       '<span>' + esc(o.text) + '</span></label>';
   }
@@ -92,7 +92,7 @@
     var box = document.querySelector('[data-exact="' + q.id + '"]');
     if (!box) return;
     var a = answers[q.id] || {}, o = a.opt ? optOf(q, a.opt) : null;
-    box.classList.toggle("is-on", !!(o && !o.notSure));
+    box.classList.toggle("is-on", !!o);
   }
   function optOf(q, id) { for (var i = 0; i < q.options.length; i++) if (q.options[i].id === id) return q.options[i]; return null; }
   function answeredCount() {
@@ -130,7 +130,6 @@
     } else {
       answers[q.id] = Object.assign({}, answers[q.id], { opt: t.value });
       var o = optOf(q, t.value);
-      if (o && o.notSure) delete answers[q.id].exact;
       toggleExact(q);
     }
     save();
@@ -184,6 +183,8 @@
       '<div class="verdict"><div class="glow"></div>' +
       '<h1 class="hl-face display">' + esc(r.primary.title.before) +
         '<em>' + esc(r.primary.title.phrase) + '</em>' + esc(r.primary.title.after) + '</h1>' +
+      '<p class="due">' + esc(r.primary.due) + '</p>' +
+      '<p class="major-test">' + esc(r.primary.majorTest) + '</p>' +
       para(r.primary.body) + '</div></div>';
     h += '<div class="sec">' + label("How to fix it") +
       "<p>" + esc(r.primary.fix.lead) + "</p>" +
@@ -236,47 +237,63 @@
     Object.keys(d.flagSev).sort(function (a, b) { return d.flagSev[b] - d.flagSev[a]; })
       .forEach(function (k) { L.push("  " + k.padEnd(20) + String(d.flagSev[k]).padStart(3)); });
     L.push("");
-    L.push('"Not sure" answers  ' + d.notSureCount + (d.tooUnsure ? "   (over the limit, report framed as provisional)" : ""));
+    L.push("Major  " + d.major + "   (" + d.majorWhy.join("; ") + ")");
+    L.push("Ranked in family  " + d.ranked.map(function (c) { return c + " " + d.scores[c].score; }).join("   "));
+    L.push("Cash flow block  " + d.scores.cashflow.score);
     return L.join("\n");
   }
-  /* ---------- test presets ---------- */
+  /* ---------- test presets ----------
+     Rebuilt for the four option set. Note q34 and q31 inverted when they were
+     re-banded, so a is now the worst answer on q34 and the best on q31. */
   var PRESETS = {
     healthy: {},
-    cashflow:   { q54:"f", q7:"e", q55:"d", q6:"d", q8:"d", q9:"c", q10:"a", q41:"d", q45:"d" },
-    talent:     { q11:["n"], q12:"d", q13:["a","c","g"], q56:"d", q14:"d", q15:"e",
-                  q48:"c", q49:"d", q50:"c" },
-    fulfilment: { q16:"e", q17:"d", q18:"d", q19:"d", q20:"d", q34:"c",
+    // supply side
+    talent:     { q34:"a", q16:"c", q17:"c", q11:["n"], q12:"d", q13:["a","c","g"], q56:"d",
+                  q14:"d", q15:"d", q48:"c", q49:"d", q50:"c" },
+    fulfilment: { q34:"a", q16:"d", q17:"d", q18:"d", q19:"d", q20:"d",
                   q44:["c"], q58:"c", q46:"c" },
-    value:      { q21:"c", q57:"e", q22:"c", q23:"d", q24:"c", q25:"c", q47:"c", q42:"d" },
-    offer:      { q26:"d", q27:"c", q28:"d", q29:"d", q30:"c", q43:"c" },
-    demand:     { q16:"a", q31:"a", q32:["a"], q33:"d", q34:"a", q35:"c", q43:"c", q41:"d" },
-    margin:     { q10:"c", q36:"d", q37:"d", q38:"e", q39:"d", q40:"c", q47:"c", q41:"d" },
-    talent_suppressed: { q11:["n"], q12:"d", q13:["a","c","g"], q56:"d", q14:"d", q15:"e",
-                         q16:"e", q17:"d", q18:"d", q19:"d", q20:"d",
-                         q21:"c", q57:"d", q22:"c", q23:"c", q24:"c", q25:"c", q34:"c", q49:"d" },
-    // Customers still buying, and most of their work going somewhere else. The case
-    // the old question set scored as healthy retention.
-    wallet:     { q21:"a", q57:"e", q22:"b", q23:"c", q24:"c", q25:"c",
-                  q42:"d", q43:"c", q46:"c", q49:"c" }
+    margin:     { q34:"a", q16:"c", q17:"c", q10:"c", q36:"d", q37:"d", q38:"d", q39:"d",
+                  q40:"d", q47:"c", q41:"d" },
+    // demand side
+    demand:     { q34:"d", q16:"a", q17:"a", q31:"d", q32:["a"], q33:"d", q35:"d",
+                  q43:"c", q41:"d" },
+    offer:      { q34:"d", q16:"a", q17:"a", q26:"d", q27:"c", q28:"d", q29:"d", q30:"c", q43:"c" },
+    value:      { q34:"d", q16:"a", q17:"a", q21:"c", q57:"d", q22:"c", q23:"d", q24:"c",
+                  q25:"d", q47:"c", q42:"d" },
+    // cash flow is a risk now, so this one lands on a supply constraint with the
+    // money risk pinned above everything else in the risk list
+    cashflow:   { q34:"a", q16:"b", q17:"b", q54:"f", q7:"e", q55:"d", q6:"d", q8:"d",
+                  q9:"c", q10:"a", q41:"d", q45:"d" },
+    // both sides loud. The capacity answers decide which half is even reachable.
+    both:       { q34:"a", q16:"d", q17:"d", q18:"d", q19:"d", q20:"d",
+                  q31:"d", q33:"d", q35:"d", q26:"d", q29:"d" },
+    // a near tie inside the supply family, to exercise the gap rule
+    tie:        { q34:"a", q16:"b", q17:"b", q12:"c", q14:"c", q15:"c", q56:"c",
+                  q18:"c", q19:"c", q20:"c" },
+    // customers still buying, and most of their work going somewhere else
+    wallet:     { q34:"d", q16:"a", q17:"a", q21:"a", q57:"d", q22:"b", q23:"c", q24:"c",
+                  q25:"d", q42:"d", q43:"c", q46:"c", q49:"c" },
+    // every question on its worst answer
+    allbad:     null
   };
   var BASE = {
     q1:"c", q2:"c", q3:["b"], q53:"b", q4:"c", q5:"b",
     q54:"a", q6:"a", q7:"a", q8:"a", q9:"a", q10:"a", q55:"a",
-    q11:["a","b","c","d","e"], q12:"a", q13:["n"], q56:"a", q14:"a", q15:"b",
+    q11:["a","b","c","d","e"], q12:"a", q13:["n"], q56:"a", q14:"a", q15:"a",
     q16:"b", q17:"a", q18:"b", q19:"a", q20:"a",
     q21:"a", q57:"a", q22:"a", q23:"a", q24:"a", q25:"a",
     q26:"a", q27:"b", q28:"a", q29:"a", q30:"a",
-    q31:"d", q32:["a","c","d"], q33:"a", q34:"a", q35:"a",
-    q36:"a", q37:"a", q38:"a", q39:"a", q40:"a",
+    q31:"a", q32:["a","c","d"], q33:"a", q34:"c", q35:"a",
+    q36:"a", q37:"a", q38:"a", q39:"a", q40:"a", q59:["a","b","c","d","e"],
     q41:"a", q42:"a", q43:"a", q44:["n"], q45:"a", q46:"a",
     q47:"a", q48:"a", q49:"a", q50:"a", q51:"a", q52:"a"
   };
   function applyPreset(name) {
     if (name === "clear") { answers = {}; save(); step = 0; show("s-intro"); return; }
-    if (name === "unsure") {
+    if (name === "allbad") {
       answers = {};
       D.questions.forEach(function (q) {
-        var z = q.options.filter(function (o) { return o.notSure; })[0] || q.options.filter(function (o) { return o.exclusive; })[0] || q.options[0];
+        var z = q.options[q.options.length - 1];
         answers[q.id] = q.type === "multi" ? { opts: [z.id] } : { opt: z.id };
       });
       save(); runReport(); return;

@@ -28,20 +28,24 @@
   function questionSeverity(ans, q) {
     var sel = selected(ans, q);
     if (!sel.length) return null;                     // unanswered, excluded from the average
+    // Every single select now scores 0, 33, 67 or 100, so a multi select has to land
+    // on the same four rungs or it runs hot against them. That is what made talent
+    // score eleven points above demand on identical random input.
+    function rung(frac) { return [0, 33, 67, 100][Math.min(3, Math.max(0, Math.round(frac * 3)))]; }
     if (q.scoreRule === "unowned_layers") {
       if (sel.some(function (o) { return o.exclusive; })) return 100;
       var layers = q.options.filter(function (o) { return !o.exclusive; }).length;
       var owned = sel.filter(function (o) { return !o.exclusive; }).length;
-      return Math.round(((layers - owned) / layers) * 100);
+      return rung((layers - owned) / layers);
     }
     if (q.scoreRule === "owner_task_load") {
       if (sel.some(function (o) { return o.exclusive; })) return 0;
-      return Math.min(100, sel.length * 34);
+      var pool = q.options.filter(function (o) { return !o.exclusive; }).length || 1;
+      return rung(sel.length / pool);
     }
     if (q.scoreRule === "channel_count") {
       if (sel.some(function (o) { return o.exclusive; })) return 100;
-      var n = sel.length;
-      return Math.max(0, Math.min(100, 100 - (n - 1) * 25));
+      return rung(Math.max(0, 4 - sel.length) / 3);
     }
     var o = sel[0];
     return typeof o.w === "number" ? o.w : 0;
@@ -49,7 +53,10 @@
   /* ---------- constraint block scores ---------- */
   function scoreConstraints(ans) {
     var out = {};
-    cfg().chain.forEach(function (cid) {
+    // The cash flow block is scored the same way it always was. It just is not in
+    // the chain any more, so what comes out of it raises a risk instead of a verdict.
+    var blocks = cfg().chain.concat([cfg().cashflowRisk.block]);
+    blocks.forEach(function (cid) {
       var qs = cfg().questions.filter(function (q) { return q.section === cid && q.weight > 0; });
       var num = 0, den = 0, unanswered = 0, detail = [];
       qs.forEach(function (q) {
@@ -101,10 +108,9 @@
   }
   /* ---------- flags ---------- */
   function collectFlags(ans) {
-    var raw = {}, counts = {}, notSure = 0;
+    var raw = {}, counts = {};
     cfg().questions.forEach(function (q) {
       selected(ans, q).forEach(function (o) {
-        if (o.notSure) notSure++;
         (o.flags || []).forEach(function (f) {
           // A conditional flag only fires when the answer it depends on agrees.
           // Uncommitted revenue is only a risk in proportion to who owes it.
@@ -121,12 +127,20 @@
     // "Of the ones you ticked, which would hurt most" promotes that one flag.
     var worst = selected(ans, byId("q58"));
     if (worst.length && worst[0].boost) raw[worst[0].boost] = 100;
-    if (counts.no_data) raw.no_data = Math.max(raw.no_data, Math.min(100, 40 + 15 * counts.no_data));
+    // Blindness is asked directly now rather than inferred from ducked questions.
+    // The fewer things the business measures, the louder it gets.
+    var meas = selected(ans, byId("q59"));
+    if (meas.length) {
+      var real = meas.filter(function (o) { return !o.exclusive; }).length;
+      var pool = byId("q59").options.filter(function (o) { return !o.exclusive; }).length;
+      var sev = Math.round((pool - real) / pool * 100);
+      if (sev >= 60) raw.no_data = Math.max(raw.no_data || 0, sev);
+    }
+    if (counts.no_data) raw.no_data = Math.max(raw.no_data || 0, 95);
     // Not looking at the numbers is the same blindness as not being able to answer,
     // so it counts toward the provisional framing rather than printing as a risk.
     var q47 = selected(ans, byId("q47"));
-    if (q47.length && ["c", "d"].indexOf(q47[0].id) !== -1) notSure += 4;
-    return { sev: raw, counts: counts, notSureCount: notSure };
+    return { sev: raw, counts: counts };
   }
   /* ---------- suppression, transitive ---------- */
   function suppressedBy(cid) {
@@ -143,9 +157,7 @@
   function bandOf(ans, qid) {
     var q = byId(qid); if (!q) return "";
     var sel = selected(ans, q); if (!sel.length) return "";
-    // A Not sure answer has no band by design. Returning empty is what lets the
-    // clause holding it drop out of the sentence instead of printing "not sure".
-    if (sel[0].notSure) return "";
+    // Unanswered still drops the clause. Not sure no longer exists as an answer.
     return sel[0].band || sel[0].text.toLowerCase();
   }
   function exactOf(ans, qid) {
@@ -264,10 +276,14 @@
   }
   // A fix action either always applies, or names the answers that make it apply.
   // Conditional actions keep the advice honest without making it unpredictable.
+  // Risk fixes are plain strings, constraint fixes are objects that can carry a
+  // condition. Both go through here so cash flow keeps its conditional actions.
   function actionsFor(fix, ans) {
-    return (fix.actions || []).filter(function (a) {
+    return (fix.actions || []).map(function (a) {
+      return typeof a === "string" ? { text: a } : a;
+    }).filter(function (a) {
       return !a.when || a.when.every(function (pair) { return condMet(ans, pair); });
-    }).map(function (a) { return a.text; }).slice(0, T("MAX_ACTIONS") || 5);
+    }).map(function (a) { return a.text; }).slice(0, fix.max || T("MAX_ACTIONS") || 5);
   }
   // "You are cash flow constrained", split so the constraint itself can be lifted.
   function titleParts(tpl, phrase) {
@@ -277,41 +293,85 @@
     var bits = t.split("{c}");
     return { before: bits[0] || "", phrase: phrase, after: bits[1] || "" };
   }
+  /* ---------- supply or demand ----------
+     Decided from facts before anything is scored, so the heading can never claim
+     something the answers do not support. q34 is the question, could you deliver
+     twice the enquiries. q16, q17 and q18 carry it when q34 is not decisive.
+     Supply means more customers will not help you. Demand means more customers is
+     exactly what you need. */
+  function majorOf(ans) {
+    function g(id) { var a = ans[id]; return a && a.opt; }
+    var why = [];
+    var q34 = g("q34");
+    if (q34 === "a") { why.push("q34 could not deliver twice the work"); return { id: "supply", why: why }; }
+    if (q34 === "d") { why.push("q34 could deliver twice the work easily"); return { id: "demand", why: why }; }
+    var sup = 0, dem = 0;
+    if (q34 === "b") { sup += 2; why.push("q34 only with a real stretch"); }
+    if (q34 === "c") { dem += 2; why.push("q34 with room to spare"); }
+    if (["c", "d"].indexOf(g("q16")) !== -1) { sup++; why.push("q16 at or over capacity"); }
+    if (g("q16") === "a") { dem++; why.push("q16 under half full"); }
+    if (["c", "d"].indexOf(g("q17")) !== -1) { sup++; why.push("q17 turning work away"); }
+    if (g("q17") === "a") { dem++; why.push("q17 never turned work away"); }
+    if (["c", "d"].indexOf(g("q18")) !== -1) { sup++; why.push("q18 lead time out"); }
+    if (g("q18") === "a") { dem++; why.push("q18 lead time shorter"); }
+    if (dem > sup) return { id: "demand", why: why };
+    // Ties break to supply. Delivering badly loses customers you already have, and
+    // that costs more than a slow month does.
+    if (sup === dem) why.push("tied, broken to supply");
+    return { id: "supply", why: why };
+  }
+  function familyOf(cid) {
+    var f = cfg().families;
+    return f.supply.indexOf(cid) !== -1 ? "supply" : "demand";
+  }
   /* ---------- the diagnosis ---------- */
   function diagnose(ans) {
     var B = cfg().blocks;
     var scores = scoreConstraints(ans);
     var dq = disqualified(ans);
     var flags = collectFlags(ans);
+    // Running out of money is the one finding that cannot wait behind another, so
+    // when the block clears its bar the risk is raised at that severity and pinned.
+    var cfScore = scores[cfg().cashflowRisk.block].score;
+    if (cfScore >= cfg().cashflowRisk.raiseAt) {
+      flags.sev.cash_flow = Math.max(flags.sev.cash_flow || 0, cfScore);
+    }
     // Primary. Walk the chain in order and call the first one that fails.
     // Order is fixed on purpose. A downstream constraint never overtakes an
     // upstream one on score, because fixing downstream first makes it worse.
+    var major = majorOf(ans);
+    var M = cfg().majors[major.id];
+    // Only the three constraints on the right side of the business can be called.
+    // The other three are not reachable, which is what stops the report telling an
+    // owner with an empty diary to go and hire.
+    var pool = cfg().families[major.id].filter(function (cid) { return !dq[cid]; });
+    // Highest score wins, not position. Anything inside the gap falls back to the
+    // old order, so a near tie is not decided by noise.
+    var ranked = pool.slice().sort(function (a, b) {
+      var d = scores[b].score - scores[a].score;
+      if (Math.abs(d) >= T("TIE_GAP")) return d;
+      return cfg().families[major.id].indexOf(a) - cfg().families[major.id].indexOf(b);
+    });
+    var hard = pool.filter(function (cid) { return hardTriggered(ans, cid); });
     var primaryId = null, how = null;
-    for (var i = 0; i < cfg().chain.length; i++) {
-      var cid = cfg().chain[i];
-      if (dq[cid]) continue;
-      if (hardTriggered(ans, cid)) { primaryId = cid; how = "hard trigger"; break; }
-      if (scores[cid].score >= T("PRIMARY_FAIL")) { primaryId = cid; how = "score " + scores[cid].score + " over " + T("PRIMARY_FAIL"); break; }
+    if (hard.length) {
+      primaryId = ranked.filter(function (c) { return hard.indexOf(c) !== -1; })[0];
+      how = "hard trigger";
+    } else if (ranked.length && scores[ranked[0]].score >= T("PRIMARY_FAIL")) {
+      primaryId = ranked[0];
+      how = "highest in " + major.id + ", score " + scores[primaryId].score + " over " + T("PRIMARY_FAIL");
     }
     var noneSevere = false, wellRun = false;
     if (!primaryId) {
-      // Nothing failed outright. Name the tightest thing, chain order breaking ties.
       noneSevere = true;
-      var best = null;
-      cfg().chain.forEach(function (cid) {
-        if (dq[cid]) return;
-        if (!best || scores[cid].score > scores[best].score) best = cid;
-      });
-      primaryId = best || cfg().chain[0];
+      primaryId = ranked[0] || cfg().families[major.id][0];
       wellRun = scores[primaryId].score < T("FALLBACK_FLOOR");
-      how = "fallback, nothing cleared " + T("PRIMARY_FAIL") + (wellRun ? ", and nothing cleared the floor either" : "");
+      how = "fallback in " + major.id + ", nothing cleared " + T("PRIMARY_FAIL") +
+            (wellRun ? ", and nothing cleared the floor either" : "");
     }
-    // Too much of the questionnaire came back Not sure to stand behind a diagnosis.
-    // The finding still prints, framed as provisional, and data blindness carries the report.
-    var tooUnsure = flags.notSureCount >= 15;
     // A confident finding is one that actually failed a gate. Everything else is a
     // reading, and the report has to say so rather than dress it up as a diagnosis.
-    var confident = !wellRun && !tooUnsure;
+    var confident = !wellRun;
     var d = derived(ans, primaryId);
     d_cache = d;
     // Risk. Families first, individual flags second.
@@ -320,22 +380,26 @@
     var shown = Object.keys(cfg().flags)
       .filter(function (id) { return (flags.sev[id] || 0) >= T("FLAG_PRINT"); })
       .map(function (id) { return { id: id, name: cfg().flags[id].name, sev: flags.sev[id] }; })
-      .sort(function (a, b) { return b.sev - a.sev || a.id.localeCompare(b.id); })
+      .sort(function (a, b) {
+        var pa = cfg().flags[a.id].pinned ? 1 : 0, pb = cfg().flags[b.id].pinned ? 1 : 0;
+        return (pb - pa) || (b.sev - a.sev) || a.id.localeCompare(b.id);
+      })
       .slice(0, T("MAX_FLAGS_SHOWN"));
     return {
-      opening: tooUnsure ? B.opening.tooUnsure : wellRun ? B.opening.wellRun : noneSevere ? B.opening.noneSevere : B.opening.normal,
+      opening: wellRun ? B.opening.wellRun : noneSevere ? B.opening.noneSevere : B.opening.normal,
       primary: {
         id: primaryId,
         // Only a real failure gets called "constrained". A well run business and a
         // respondent who could not answer enough both get the softer label, because
         // neither of them has been shown to be constrained by anything.
         name: confident ? cfg().constraints[primaryId].name : cfg().constraints[primaryId].loose,
-        title: titleParts(tooUnsure ? B.titleUnsure
-                        : confident ? B.constraintDef[primaryId].title
-                        : B.constraintDef[primaryId].titleLoose,
-                        cfg().constraints[primaryId].phrase),
-        body: tooUnsure ? sentenceCase(fill(B.unsureBody, ans, d))
-            : wellRun ? sentenceCase(fill(B.looseBody, ans, d))
+        // The heading is the major, because that is the claim the capacity answers
+        // established. The constraint it resolves to sits under it as the cause.
+        title: titleParts(confident ? M.title : M.titleLoose, M.name),
+        due: M.due + " " + cfg().constraints[primaryId].short.toLowerCase(),
+        major: major.id,
+        majorTest: M.test,
+        body: wellRun ? sentenceCase(fill(B.looseBody, ans, d))
             : buildDef(B.constraintDef[primaryId], ans, d),
         fix: { lead: B.constraintFix[primaryId].lead, actions: actionsFor(B.constraintFix[primaryId], ans) },
         confident: confident
@@ -344,18 +408,24 @@
         lead: B.riskLead,
         flags: shown.map(function (f) {
           return { id: f.id, name: f.name, sev: f.sev,
-                   body: pick(B.riskDef[f.id], ans, d), fix: B.riskFix[f.id] || [] };
+                   // Cash flow arrived from the constraint side, so its definition is
+                   // an opening plus evidence clauses rather than a single banded line.
+                   body: (B.riskDef[f.id] && B.riskDef[f.id].evidence)
+                         ? buildDef(B.riskDef[f.id], ans, d)
+                         : pick(B.riskDef[f.id], ans, d),
+                   fix: actionsFor({ actions: B.riskFix[f.id] || [], max: 8 }, ans) };
         }).filter(function (f) { return f.body; })
       },
       dontDo: confident ? B.dontDoYet[primaryId] : null,
-      closing: { text: tooUnsure ? B.closing.unsure : wellRun ? B.closing.loose : B.closing.text, cta: B.closing.cta },
+      closing: { text: wellRun ? B.closing.loose : B.closing.text, cta: B.closing.cta },
       debug: {
-        scores: scores, disqualified: dq, how: how, noneSevere: noneSevere, wellRun: wellRun, tooUnsure: tooUnsure, confident: confident,
+        scores: scores, disqualified: dq, how: how, noneSevere: noneSevere, wellRun: wellRun, confident: confident,
+        major: major.id, majorWhy: major.why, ranked: ranked,
         // Suppression no longer removes anything from the report, because the minor
         // constraint section it fed is gone. Kept in the working out because it still
         // explains why a loud downstream constraint is not the finding.
         suppressed: suppressedBy(primaryId),
-        flagSev: flags.sev, notSureCount: flags.notSureCount,
+        flagSev: flags.sev,
         risksRaised: Object.keys(flags.sev).sort(function (a, b) { return flags.sev[b] - flags.sev[a]; })
       }
     };
