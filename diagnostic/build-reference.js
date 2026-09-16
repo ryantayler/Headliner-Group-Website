@@ -46,7 +46,6 @@ const constraints = D.chain.map((c, i) => {
       ${line(cd.close, null, `constraintDef.${c}.close`)}</ul>
 
     <p class="lbl">How to fix it &nbsp;<i>${f.actions.length} written, ${cond} conditional, at most ${D.thresholds.MAX_ACTIONS} ever print</i></p>
-    <p class="sub">${esc(f.lead)}</p>
     <ol class="lines lines--n">${f.actions.map((a, n) => line(a.text, a.when, `constraintFix.${c}.actions[${n}]`)).join('')}</ol>
 
     <p class="lbl">Don${String.fromCharCode(8217)}t do this yet</p>
@@ -119,6 +118,22 @@ fs.writeFileSync('reference.html', `<title>Solutions Reference</title>
 .key{display:grid;gap:0;margin:26px 0 0;border:1px solid var(--rim);border-radius:14px;overflow:hidden}
 .key div{display:grid;grid-template-columns:210px 1fr;gap:18px;padding:14px 18px;border-top:1px solid var(--rim);background:var(--panel);align-items:start}
 .key .who{margin:0}
+.onlymine{display:inline-flex;align-items:center;gap:11px;margin:22px 0 0;padding:12px 18px;
+  border:1px solid var(--rim);border-radius:100px;background:var(--panel);cursor:pointer;
+  font-size:14px;font-weight:500;color:var(--ink);user-select:none}
+.onlymine:hover{border-color:var(--sub)}
+.onlymine input{appearance:none;-webkit-appearance:none;margin:0;width:17px;height:17px;border-radius:5px;
+  border:1.5px solid var(--sub);background:transparent;cursor:pointer;flex:0 0 auto}
+.onlymine input:checked{border-color:var(--accent);background:var(--accent);box-shadow:inset 0 0 0 3px var(--panel)}
+.onlymine input:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.onlymine__n{margin:14px 0 0;font-size:13.5px;color:var(--sub)}
+.is-hidden{display:none}
+/* With the approved lines out, a card whose copy is all Ryan's leaves nothing but
+   its heading, so the heading goes too rather than sitting there empty. */
+body.only-mine .lines li:not(.mine),
+body.only-mine .item.all-approved,
+body.only-mine .lbl.empty-after,
+body.only-mine .sub.empty-after{display:none}
 .key div:first-child{border-top:0}
 .key p{margin:0;font-size:14px;color:var(--sub);max-width:none}
 .grp{margin-top:clamp(44px,6vw,64px)}
@@ -176,6 +191,9 @@ fs.writeFileSync('reference.html', `<title>Solutions Reference</title>
     <div><span class="who who--y">&#10003;</span><p><b>${ryanN} lines.</b> Ryan wrote this or dictated it in a message. Some have had their wording changed to meet the no dashes rule, the banned sentence shapes, or the ruling that no copy may assume a delivery model, a sales process or a pricing method. The line is still his.</p></div>
     <div><span class="who who--n">&#10005;</span><p><b>${mineN} lines.</b> Claude wrote it and Ryan has not signed it off. Anything uncertain is marked this way on purpose, because claiming he approved something he did not is the worse of the two errors.</p></div>
   </div>
+  <label class="onlymine"><input type="checkbox" id="only-mine">
+    <span>Hide the ${ryanN} lines I${String.fromCharCode(8217)}ve approved, show me what${String.fromCharCode(8217)}s left</span></label>
+  <p class="onlymine__n" id="only-mine-n" hidden></p>
 </div></section>
 
 <main class="on-light"><div class="shell wrap">
@@ -184,6 +202,42 @@ fs.writeFileSync('reference.html', `<title>Solutions Reference</title>
     ${Object.entries(D.flags).map(([id, m]) => riskCard(id, m)).join('')}
   </section>
 </div></main>
+
+<script>
+(function () {
+  var box = document.getElementById('only-mine'), note = document.getElementById('only-mine-n');
+  // Marked on the line rather than read from the tick, so the rule is one class.
+  [].forEach.call(document.querySelectorAll('.lines li'), function (li) {
+    if (li.querySelector('.who--n')) li.classList.add('mine');
+  });
+  function apply(on) {
+    document.body.classList.toggle('only-mine', on);
+    var left = 0;
+    [].forEach.call(document.querySelectorAll('.item'), function (item) {
+      var mine = item.querySelectorAll('.lines li.mine').length;
+      item.classList.toggle('all-approved', on && mine === 0);
+      if (on) left += mine;
+      // A label with nothing under it any more is noise, so it goes with its list.
+      [].forEach.call(item.querySelectorAll('.lbl'), function (lbl) {
+        var list = lbl.nextElementSibling;
+        while (list && !/^(UL|OL)$/.test(list.tagName)) list = list.nextElementSibling;
+        var none = !!list && list.querySelectorAll('li.mine').length === 0 &&
+                   list.querySelectorAll('li').length > 0 && list.classList.contains('lines');
+        lbl.classList.toggle('empty-after', on && none);
+        if (list) list.classList.toggle('is-hidden', on && none);
+      });
+    });
+    note.hidden = !on;
+    note.textContent = on ? left + ' lines still need you. Everything you have signed off is hidden.' : '';
+    try { localStorage.setItem('diag-only-mine', on ? '1' : '0'); } catch (e) {}
+  }
+  var saved = '0';
+  try { saved = localStorage.getItem('diag-only-mine') || '0'; } catch (e) {}
+  box.checked = saved === '1';
+  apply(box.checked);
+  box.addEventListener('change', function () { apply(box.checked); });
+})();
+</script>
 
 <footer class="ftr"><div class="shell">${LOGO}
 <p>Helping founders in live events &amp; production grow through partnerships.</p></div></footer>
