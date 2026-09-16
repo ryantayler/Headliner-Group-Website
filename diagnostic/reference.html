@@ -221,9 +221,14 @@ p{margin:0 0 16px;max-width:66ch}
 /* ---------- questions ---------- */
 .group__title{margin:38px 0 6px}
 .group__sub{color:var(--tx-mute);font-size:14px;margin:0 0 34px}
-.q{padding:26px 0;border-top:1px solid var(--line)}
+.q{border:0;border-top:1px solid var(--line);padding:30px 0 4px;margin:0}
 .q:first-of-type{border-top:0;padding-top:6px}
-.q__n{font-size:11px;font-weight:600;letter-spacing:.18em;color:var(--tx-mute);display:block;margin-bottom:9px}
+/* A legend is laid into the fieldset's border box, so the fieldset's padding-top
+   never pushes it down. Floating it makes it an ordinary block that respects the
+   padding, which is what puts the gap back above every question. */
+.q__t{float:left;width:100%;padding:0}
+.q .opts{clear:both}
+.q__n{font-size:11px;font-weight:600;letter-spacing:.18em;color:var(--tx-mute);display:block;margin-bottom:9px;font-weight:600}
 .q__t{font-size:17px;font-weight:600;line-height:1.42;margin:0 0 6px;max-width:60ch}
 .q__help{font-size:13.5px;color:var(--tx-mute);margin:0 0 16px;max-width:60ch}
 .opts{display:grid;gap:8px;margin-top:14px}
@@ -410,7 +415,8 @@ body.has-dev{padding-bottom:56px}
       <h3 class="hl-face d3">You are <em>talent</em> constrained</h3></div>
 
     <p class="lbl">What it says</p>
-    <ul class="lines"><li>Being talent constrained means you're missing a layer in the business, not missing extra hands.
+    <ul class="lines"><li>Double your customers tomorrow and you'd struggle to deliver, because there's a layer of talent missing from the business.
+  <span class="t t--f">Same for everyone</span></li><li>Being talent constrained means you're missing a layer, not missing extra hands.
   <span class="t t--f">Same for everyone</span></li><li><b class="slot">worked out from their answers</b>
   <span class="t t--s">Their answer dropped in</span></li><li>Most of last week went to <b class="slot">worked out from their answers</b>.
   <span class="t t--s">Their answer dropped in</span></li>
@@ -418,16 +424,19 @@ body.has-dev{padding-bottom:56px}
   <span class="t t--s">Their answer dropped in</span></li><li>if you went dark for a month the business <b class="slot">their Q15 answer</b>
   <span class="t t--s">Their answer dropped in</span></li><li><b class="slot">their Q18 answer</b>
   <span class="t t--s">Their answer dropped in</span></li>
-      <li>Hiring another pair of hands underneath you doesn't touch this. What's missing is a whole role that doesn't exist yet, and until it does, everything you add lands on the same desk.
+      <li>Hiring another pair of hands underneath you doesn't fix this. What's missing is a whole role that doesn't exist yet, and adding it is what unblocks the business.
   <span class="t t--f">Same for everyone</span></li></ul>
 
-    <p class="lbl">How to fix it &nbsp;<i>5 written, 0 conditional, at most 5 ever print</i></p>
-    <p class="sub">Hire one role that owns a layer of the business, with the authority to run it. Not another pair of hands underneath you.</p>
-    <ol class="lines lines--n"><li>Write down every task you did last week.
-  <span class="t t--f">Same for everyone</span></li><li>Against each one, write the role that should own it. A role, not a person already in the business.
-  <span class="t t--f">Same for everyone</span></li><li>Whichever role has the most tasks against it, or the most hours, hire that role first.
-  <span class="t t--f">Same for everyone</span></li><li>Give them responsibility and the authority to go with it. One without the other doesn't work.
-  <span class="t t--f">Same for everyone</span></li><li>Train them yourself, then give them ninety days to prove they're the one.
+    <p class="lbl">How to fix it &nbsp;<i>8 written, 0 conditional, at most 9 ever print</i></p>
+    <p class="sub"></p>
+    <ol class="lines lines--n"><li>Write down every task you do, in fifteen minute blocks, for a full week.
+  <span class="t t--f">Same for everyone</span></li><li>Against each task, write the role that should own it in an ideal world.
+  <span class="t t--f">Same for everyone</span></li><li>Take whichever role has the most tasks against it, or the most hours in the week.
+  <span class="t t--f">Same for everyone</span></li><li>Hire that role.
+  <span class="t t--f">Same for everyone</span></li><li>Train them yourself.
+  <span class="t t--f">Same for everyone</span></li><li>Give them the responsibility and the authority to run it. One without the other doesn't work.
+  <span class="t t--f">Same for everyone</span></li><li>Give them ninety days to prove they're the one.
+  <span class="t t--f">Same for everyone</span></li><li>If they don't work out, hire again and run it the same way. If they do, come back here and find out what's capping you now.
   <span class="t t--f">Same for everyone</span></li></ol>
 
     <p class="lbl">Don’t do this yet</p>
@@ -442,23 +451,28 @@ body.has-dev{padding-bottom:56px}
       <h3 class="hl-face d3">You are <em>fulfilment</em> constrained</h3></div>
 
     <p class="lbl">What it says</p>
-    <ul class="lines"><li>This is capacity, not capability. You know how to do the work, but you can't do enough of it.
+    <ul class="lines"><li>Double your customers tomorrow and you couldn't deliver, because there isn't enough capacity in the business.
+  <span class="t t--f">Same for everyone</span></li><li>This is capacity, not capability. You know how to do the work and you can't do enough of it.
   <span class="t t--f">Same for everyone</span></li>
       <li>you're running <b class="slot">their Q20 answer</b>
   <span class="t t--s">Their answer dropped in</span></li><li><b class="slot">their Q21 answer</b>
   <span class="t t--s">Their answer dropped in</span></li><li>lead times have <b class="slot">their Q22 answer</b>
-  <span class="t t--s">Their answer dropped in</span></li><li>a typical job is ready <b class="slot">their Q23 answer</b>
+  <span class="t t--s">Their answer dropped in</span></li><li>the work is typically ready <b class="slot">their Q23 answer</b>
   <span class="t t--s">Their answer dropped in</span></li>
-      <li>Nothing at the front of the business needs attention until the back of it can breathe. Anything you do to bring in more work right now gets paid for by the customers you already have.
+      <li>Nothing at the front of the business needs attention until the back of it can breathe. More capacity is what fixes this, and there's work to do before you buy it.
   <span class="t t--f">Same for everyone</span></li></ul>
 
-    <p class="lbl">How to fix it &nbsp;<i>5 written, 1 conditional, at most 5 ever print</i></p>
-    <p class="sub">Make what you already have work properly, cut what isn't earning its capacity, then hire. In that order.</p>
-    <ol class="lines lines--n"><li>Find the one step everything stalls at, and put the next day into streamlining that one step.
-  <span class="t t--f">Same for everyone</span></li><li>Write the five things that go wrong most often into one page checklists. Undocumented work is slow work.
-  <span class="t t--c">Only if Q52 is &ldquo;About half&rdquo; or &ldquo;Almost none, it lives in people's heads&rdquo;</span></li><li>Look at what your best people actually spent last week on. Anything that didn't need them is capacity you already have.
-  <span class="t t--f">Same for everyone</span></li><li>Cut the jobs that eat the most capacity for the least return.
-  <span class="t t--f">Same for everyone</span></li><li>Then hire more capacity into the roles that need it.
+    <p class="lbl">How to fix it &nbsp;<i>9 written, 0 conditional, at most 9 ever print</i></p>
+    <p class="sub"></p>
+    <ol class="lines lines--n"><li>Write down exactly how what you sell gets delivered, one step at a time.
+  <span class="t t--f">Same for everyone</span></li><li>Write down every other task your delivery people do that isn't that.
+  <span class="t t--f">Same for everyone</span></li><li>Find the three things across those two lists that slow delivery down the most.
+  <span class="t t--f">Same for everyone</span></li><li>Spend one week streamlining those three things and nothing else.
+  <span class="t t--f">Same for everyone</span></li><li>Rewrite the first list with what changed, and make it the way it's done from now on.
+  <span class="t t--f">Same for everyone</span></li><li>Cut the bottom ten percent of customers, the ones taking the most time for the least return.
+  <span class="t t--f">Same for everyone</span></li><li>Now hire more capacity into the roles that need it.
+  <span class="t t--f">Same for everyone</span></li><li>Run it that way for ninety days.
+  <span class="t t--f">Same for everyone</span></li><li>If delivery still can't keep up, work the list again. If it can, come back here and find out what's capping you now.
   <span class="t t--f">Same for everyone</span></li></ol>
 
     <p class="lbl">Don’t do this yet</p>
@@ -466,37 +480,41 @@ body.has-dev{padding-bottom:56px}
     <ol class="lines lines--x"><li>Don't take on new customers until you've done the above.
   <span class="t t--f">Same for everyone</span></li><li>Don't start something new.
   <span class="t t--f">Same for everyone</span></li><li>Don't drop your prices.
-  <span class="t t--f">Same for everyone</span></li><li>Don't promise a shorter lead time to win a job.
+  <span class="t t--f">Same for everyone</span></li><li>Don't promise a shorter lead time to win something.
   <span class="t t--f">Same for everyone</span></li></ol>
   </article><article class="item">
     <div class="item__h"><span class="num">3</span>
       <h3 class="hl-face d3">You are <em>margin</em> constrained</h3></div>
 
     <p class="lbl">What it says</p>
-    <ul class="lines"><li>You're full and busy, and there's nothing left at the end of it.
+    <ul class="lines"><li>Double your customers tomorrow and it wouldn't help, because there isn't enough margin in what you're already doing.
+  <span class="t t--f">Same for everyone</span></li><li>You're busy, and there's nothing left at the end of it.
   <span class="t t--f">Same for everyone</span></li>
       <li>what's left after direct costs sits <b class="slot">their Q41 answer</b>
   <span class="t t--s">Their answer dropped in</span></li><li>after everything it's <b class="slot">their Q42 answer</b>
   <span class="t t--s">Their answer dropped in</span></li><li><b class="slot">their Q43 answer</b>
-  <span class="t t--s">Their answer dropped in</span></li><li>jobs run over what you quoted <b class="slot">their Q44 answer</b>
+  <span class="t t--s">Their answer dropped in</span></li><li>the work runs over what you priced it at <b class="slot">their Q44 answer</b>
   <span class="t t--s">Their answer dropped in</span></li>
-      <li>Volume won't rescue this. At the margin you're running, more work gets you more of the same result and it arrives faster.
+      <li>More volume won't solve this. You need to make more on the work you're already doing, without adding a single customer.
   <span class="t t--f">Same for everyone</span></li></ul>
 
-    <p class="lbl">How to fix it &nbsp;<i>5 written, 2 conditional, at most 5 ever print</i></p>
-    <p class="sub">You need to know what each job actually earns you before you change anything. A price rise can cost you customers as easily as it can fix the margin.</p>
-    <ol class="lines lines--n"><li>Raise prices on new work now. Ten percent across the board, and watch what actually happens.
-  <span class="t t--c">Only if Q43 is &ldquo;1 to 2 years ago&rdquo; or &ldquo;More than 2 years ago, or never&rdquo;</span></li><li>Work out what each job really costs, your own time included, then rank your last twenty by what was left.
-  <span class="t t--f">Same for everyone</span></li><li>Quote a contingency into the jobs that historically run over. You already know which ones they are.
-  <span class="t t--c">Only if Q44 is &ldquo;Often&rdquo; or &ldquo;On most jobs&rdquo;</span></li><li>Find your worst three customers by margin, then reprice them or let them go.
-  <span class="t t--f">Same for everyone</span></li><li>Don't discount to win. A discount is the fastest way to buy work you'll resent delivering.
+    <p class="lbl">How to fix it &nbsp;<i>8 written, 1 conditional, at most 9 ever print</i></p>
+    <p class="sub"></p>
+    <ol class="lines lines--n"><li>Work out what each piece of work really costs you, your own time included, and rank the last twenty by what was left.
+  <span class="t t--f">Same for everyone</span></li><li>Take the bottom five. For each one, write down what it was that ate the money.
+  <span class="t t--f">Same for everyone</span></li><li>Whatever shows up on more than one of them, that's the leak. Fix that before you touch anything else.
+  <span class="t t--f">Same for everyone</span></li><li>Put your prices up on everything new. If nobody flinches, they were too low.
+  <span class="t t--c">Only if Q43 is &ldquo;1 to 2 years ago&rdquo; or &ldquo;More than 2 years ago, or never&rdquo;</span></li><li>Build the thing that historically runs over into the price, so you stop absorbing it.
+  <span class="t t--f">Same for everyone</span></li><li>Reprice your three worst customers by what's left, or let them go.
+  <span class="t t--f">Same for everyone</span></li><li>Hold the new prices for ninety days without discounting to win anything.
+  <span class="t t--f">Same for everyone</span></li><li>If there's still nothing left at the end, work the list again. If there is, come back here and find out what's capping you now.
   <span class="t t--f">Same for everyone</span></li></ol>
 
     <p class="lbl">Don’t do this yet</p>
     <p class="sub">Until the margin moves, leave these alone.</p>
     <ol class="lines lines--x"><li>Don't chase volume. More work at this margin is more risk for the same money.
   <span class="t t--f">Same for everyone</span></li><li>Don't hire. Every head you add at this margin needs a lot of revenue standing behind it.
-  <span class="t t--f">Same for everyone</span></li><li>Don't take the big thin job because it's good for the brand. Reputation doesn't pay wages.
+  <span class="t t--f">Same for everyone</span></li><li>Don't take the big thin one because it's good for the brand. Reputation doesn't pay wages.
   <span class="t t--f">Same for everyone</span></li><li>Don't discount anything. There's nothing left to give away.
   <span class="t t--f">Same for everyone</span></li><li>Don't invest in growth. Growing an unprofitable model makes it unprofitable faster.
   <span class="t t--f">Same for everyone</span></li></ol>
@@ -505,23 +523,28 @@ body.has-dev{padding-bottom:56px}
       <h3 class="hl-face d3">You are <em>value</em> constrained</h3></div>
 
     <p class="lbl">What it says</p>
-    <ul class="lines"><li>Value here means what the customer perceives, and it has nothing to do with your pricing or your margin. They buy, then they either stop or start giving most of the work to somebody else.
+    <ul class="lines"><li>Double your customers tomorrow and you'd have no trouble delivering, and you can't keep enough of them to fill what you've got.
+  <span class="t t--f">Same for everyone</span></li><li>They buy, then they either stop or start giving most of the work to somebody else.
   <span class="t t--f">Same for everyone</span></li>
       <li>of the customers you had a year ago, <b class="slot">their Q25 answer</b> still buy from you
   <span class="t t--s">Their answer dropped in</span></li><li>you get <b class="slot">their Q26 answer</b> of the work they put out
   <span class="t t--s">Their answer dropped in</span></li><li>they come back unprompted <b class="slot">their Q27 answer</b>
   <span class="t t--s">Their answer dropped in</span></li><li>referrals bring in <b class="slot">their Q28 answer</b> of your new customers
   <span class="t t--s">Their answer dropped in</span></li>
-      <li>You're filling a leaky bucket. Every dollar going into finding new customers is currently paying to replace the ones walking out the other side, which is why the business feels busy and stays the same size.
+      <li>You're filling a leaky bucket. Every dollar going into finding new customers is paying to replace the ones walking out the other side, which is why the business feels busy and stays the same size. Selling to somebody who has already bought is far easier than finding somebody new.
   <span class="t t--f">Same for everyone</span></li></ul>
 
-    <p class="lbl">How to fix it &nbsp;<i>5 written, 1 conditional, at most 5 ever print</i></p>
-    <p class="sub">You need to find out why customers leave or shrink, and fix that, before you spend another dollar finding new ones.</p>
-    <ol class="lines lines--n"><li>Ring ten customers who stopped buying or cut back, and ask them straight. Not a survey. A phone call.
-  <span class="t t--f">Same for everyone</span></li><li>Ask your biggest customers what they give to somebody else, and why. That work already exists, you're just not getting it.
-  <span class="t t--c">Only if Q26 is &ldquo;About half or less&rdquo; or &ldquo;A small slice, they spread it around&rdquo;</span></li><li>Look hard at what happens in the first thirty days after somebody buys. That's the part of the experience you control most tightly.
-  <span class="t t--f">Same for everyone</span></li><li>Build one reason to come back that you initiate. A check in, or the next step offered before they go looking.
-  <span class="t t--f">Same for everyone</span></li><li>Measure retention monthly, so a drop shows up while you can still do something about it.
+    <p class="lbl">How to fix it &nbsp;<i>9 written, 1 conditional, at most 9 ever print</i></p>
+    <p class="sub"></p>
+    <ol class="lines lines--n"><li>Write down every point of contact a customer has with you, from the moment they buy through to six months later.
+  <span class="t t--f">Same for everyone</span></li><li>Put as much as you can into the first ninety days. Surprise them. That's the window where they decide what you're worth.
+  <span class="t t--f">Same for everyone</span></li><li>Find the longest silence on that list and put something in it.
+  <span class="t t--f">Same for everyone</span></li><li>Ring ten customers who stopped or cut back and ask them straight why. Not a survey.
+  <span class="t t--f">Same for everyone</span></li><li>Whatever more than one of them says, fix that.
+  <span class="t t--f">Same for everyone</span></li><li>Build one reason to come back that you start, rather than waiting to be asked.
+  <span class="t t--f">Same for everyone</span></li><li>Ask your biggest customers what they give to somebody else, and why.
+  <span class="t t--c">Only if Q26 is &ldquo;About half or less&rdquo; or &ldquo;A small slice, they spread it around&rdquo;</span></li><li>Run all of that for ninety days and measure who came back.
+  <span class="t t--f">Same for everyone</span></li><li>If they're still leaving, work the list again. If they're staying, come back here and find out what's capping you now.
   <span class="t t--f">Same for everyone</span></li></ol>
 
     <p class="lbl">Don’t do this yet</p>
@@ -537,25 +560,27 @@ body.has-dev{padding-bottom:56px}
       <h3 class="hl-face d3">You are <em>offer</em> constrained</h3></div>
 
     <p class="lbl">What it says</p>
-    <ul class="lines"><li>Enquiries arrive and they don't convert.
-  <span class="t t--f">Same for everyone</span></li><li>That isn't a sales technique problem, it's what's on the table. Either the value in the offer doesn't justify the price you're asking, or there's something in the way of somebody saying yes.
+    <ul class="lines"><li>Double your customers tomorrow and you'd have no trouble delivering, and you can't close enough of them to fill what you've got.
+  <span class="t t--f">Same for everyone</span></li><li>People come to you and they don't buy. It's the offer. Either the value in it doesn't justify what you're asking, or there's something in the way of somebody saying yes.
   <span class="t t--f">Same for everyone</span></li>
       <li>your close rate sits <b class="slot">their Q31 answer</b>
   <span class="t t--s">Their answer dropped in</span></li><li>the most common reason you lose is <b class="slot">their Q32 answer</b>
-  <span class="t t--s">Their answer dropped in</span></li><li>prospects come back on your quote asking what's included <b class="slot">their Q33 answer</b>
+  <span class="t t--s">Their answer dropped in</span></li><li>people come back asking what's included <b class="slot">their Q33 answer</b>
   <span class="t t--s">Their answer dropped in</span></li><li>they find out what you charge <b class="slot">their Q35 answer</b>
   <span class="t t--s">Their answer dropped in</span></li>
-      <li>You don't fix this by dropping the price. You fix it by putting things into the offer that cost you very little and are worth real money to the buyer, and by removing whatever a prospect has to get over before they can say yes.
+      <li>You don't fix this by dropping the price. You fix it by putting things into the offer that cost you very little and are worth real money to the buyer, and by clearing whatever somebody has to get over before they can say yes.
   <span class="t t--f">Same for everyone</span></li></ul>
 
-    <p class="lbl">How to fix it &nbsp;<i>6 written, 2 conditional, at most 5 ever print</i></p>
-    <p class="sub">You need more value in the offer than the price is asking for, and the hurdles taken out of the way of somebody saying yes.</p>
-    <ol class="lines lines--n"><li>List everything you already do for a customer that isn't written into the offer. That's value nobody can see.
-  <span class="t t--f">Same for everyone</span></li><li>Add two things that cost you close to nothing and are worth real money to the buyer. A guarantee, or something they would otherwise have to go and source themselves.
-  <span class="t t--f">Same for everyone</span></li><li>Write down every question a prospect asks after they get the quote, then answer all of them inside the quote itself.
-  <span class="t t--c">Only if Q33 is &ldquo;Often&rdquo; or &ldquo;On most quotes&rdquo;</span></li><li>Put a price or a range where they can see it. Making somebody wait for a number is a hurdle before they have even decided.
-  <span class="t t--c">Only if Q35 is &ldquo;Every job gets quoted from scratch&rdquo; or &ldquo;It depends who's asking&rdquo;</span></li><li>Sort your last twenty losses by reason and count them. If price keeps coming up, look at the value in the offer before you look at the number.
-  <span class="t t--f">Same for everyone</span></li><li>Test the new offer on the next ten enquiries before you change anything else.
+    <p class="lbl">How to fix it &nbsp;<i>8 written, 0 conditional, at most 9 ever print</i></p>
+    <p class="sub"></p>
+    <ol class="lines lines--n"><li>List everything you already do for a customer that isn't written into the offer, and write it in.
+  <span class="t t--f">Same for everyone</span></li><li>Add two or three things that cost you close to nothing and are worth real money to the buyer. A guarantee, or something they'd otherwise have to go and source themselves.
+  <span class="t t--f">Same for everyone</span></li><li>Write down every question somebody asks you after they've seen the price.
+  <span class="t t--f">Same for everyone</span></li><li>Answer all of them inside the offer, before anybody has to ask.
+  <span class="t t--f">Same for everyone</span></li><li>Shorten the time between somebody making contact and somebody getting a number.
+  <span class="t t--f">Same for everyone</span></li><li>Make the price and what's in it easier to see.
+  <span class="t t--f">Same for everyone</span></li><li>Run the new offer for one month.
+  <span class="t t--f">Same for everyone</span></li><li>If the close rate hasn't moved, put more value in and go again. If it has, come back here and find out what's capping you now.
   <span class="t t--f">Same for everyone</span></li></ol>
 
     <p class="lbl">Don’t do this yet</p>
@@ -571,23 +596,26 @@ body.has-dev{padding-bottom:56px}
       <h3 class="hl-face d3">You are <em>demand</em> constrained</h3></div>
 
     <p class="lbl">What it says</p>
-    <ul class="lines"><li>You've got capacity sitting idle and not enough people asking.
+    <ul class="lines"><li>Double your customers tomorrow and you'd have no trouble delivering, and you can't find enough of them to fill what you've got.
+  <span class="t t--f">Same for everyone</span></li><li>You've got capacity sitting idle and not enough people asking.
   <span class="t t--f">Same for everyone</span></li>
       <li>enquiries run <b class="slot">their Q36 answer</b>
   <span class="t t--s">Their answer dropped in</span></li><li>volume has <b class="slot">their Q38 answer</b> over the last year
   <span class="t t--s">Their answer dropped in</span></li><li><b class="slot">their Q40 answer</b>
   <span class="t t--s">Their answer dropped in</span></li>
-      <li>You could take on more work tomorrow, which is what separates this from a delivery problem. Nothing downstream is broken. The business just isn't being fed, and it won't start feeding itself.
+      <li>Nothing downstream is broken. The business needs more people coming in the top, and it won't start feeding itself.
   <span class="t t--f">Same for everyone</span></li></ul>
 
-    <p class="lbl">How to fix it &nbsp;<i>6 written, 2 conditional, at most 5 ever print</i></p>
-    <p class="sub">You need one lead source running properly and consistently before you go anywhere near a second.</p>
-    <ol class="lines lines--n"><li>Whatever you're doing to generate enquiries isn't running consistently. Start with the one thing you can do every week without fail.
-  <span class="t t--c">Only if Q40 is &ldquo;Yes, but it fits around the work&rdquo; or &ldquo;On and off, when it goes quiet&rdquo;</span></li><li>Pick the lead source that already brings your best customers and put real weight behind it.
-  <span class="t t--f">Same for everyone</span></li><li>Go and ask for work. Outbound to the twenty businesses you'd most like to work with beats waiting on referrals.
-  <span class="t t--f">Same for everyone</span></li><li>Everything arrives through one lead source. Stand up a second before that one changes.
-  <span class="t t--c">Only if Q48 is &ldquo;One channel is nearly all of it&rdquo;</span></li><li>Ask every happy customer for one introduction.
-  <span class="t t--f">Same for everyone</span></li><li>Give a lead source ninety days before you judge it. Anything shorter is guesswork.
+    <p class="lbl">How to fix it &nbsp;<i>8 written, 0 conditional, at most 9 ever print</i></p>
+    <p class="sub"></p>
+    <ol class="lines lines--n"><li>Ask your happiest customers for something in writing or on camera. Pay for it, or give them something for it.
+  <span class="t t--f">Same for everyone</span></li><li>Put that where somebody deciding on you will actually see it.
+  <span class="t t--f">Same for everyone</span></li><li>Take the source that already brings your best customers and put two or three times the effort into it.
+  <span class="t t--f">Same for everyone</span></li><li>Stand up a second source that doesn't rely on being found. Going out and asking directly is the usual one.
+  <span class="t t--f">Same for everyone</span></li><li>Set up a referral programme with something real in it for the customer who refers.
+  <span class="t t--f">Same for everyone</span></li><li>Launch it by asking every customer, one at a time, for a single introduction.
+  <span class="t t--f">Same for everyone</span></li><li>Run all of that for ninety days without adding anything else.
+  <span class="t t--f">Same for everyone</span></li><li>If enquiries haven't moved, work the list again. If they have, come back here and find out what's capping you now.
   <span class="t t--f">Same for everyone</span></li></ol>
 
     <p class="lbl">Don’t do this yet</p>

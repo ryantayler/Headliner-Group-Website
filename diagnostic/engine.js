@@ -249,11 +249,26 @@
     return sentenceCase(fill(banded, ans, d));
   }
   // open + whichever evidence clauses actually resolved + close.
+  // A clause is evidence only if the answer behind it is one of the two bad ones.
+  // Reporting "lead times have held steady" as a symptom of a delivery problem reads
+  // as though the tool has not understood its own finding.
+  function isSymptom(tpl, ans) {
+    var ids = String(tpl).match(/\{(q\d+)\./g) || [];
+    if (!ids.length) return true;
+    return ids.every(function (m) {
+      var q = byId(m.slice(1, -1));
+      if (!q) return true;
+      var sev = questionSeverity(ans, q);
+      return sev === null || sev >= 67;
+    });
+  }
   function buildDef(def, ans, d) {
     var parts = [], clauses = [];
     (def.evidence || []).forEach(function (e) {
+      var src = e.banded || "";
+      if (!isSymptom(src, ans)) return;
       if (e.precise && resolvable(e.precise, ans) && bandsResolve(e.precise, ans)) { clauses.push(fill(e.precise, ans, d)); return; }
-      if (bandsResolve(e.banded, ans)) clauses.push(fill(e.banded, ans, d));
+      if (bandsResolve(src, ans)) clauses.push(fill(src, ans, d));
     });
     // The opening may be a list of sentences. One whose data did not resolve is
     // dropped, same as an evidence clause, so a missing answer never leaves a hole.

@@ -219,9 +219,14 @@ p{margin:0 0 16px;max-width:66ch}
 /* ---------- questions ---------- */
 .group__title{margin:38px 0 6px}
 .group__sub{color:var(--tx-mute);font-size:14px;margin:0 0 34px}
-.q{padding:26px 0;border-top:1px solid var(--line)}
+.q{border:0;border-top:1px solid var(--line);padding:30px 0 4px;margin:0}
 .q:first-of-type{border-top:0;padding-top:6px}
-.q__n{font-size:11px;font-weight:600;letter-spacing:.18em;color:var(--tx-mute);display:block;margin-bottom:9px}
+/* A legend is laid into the fieldset's border box, so the fieldset's padding-top
+   never pushes it down. Floating it makes it an ordinary block that respects the
+   padding, which is what puts the gap back above every question. */
+.q__t{float:left;width:100%;padding:0}
+.q .opts{clear:both}
+.q__n{font-size:11px;font-weight:600;letter-spacing:.18em;color:var(--tx-mute);display:block;margin-bottom:9px;font-weight:600}
 .q__t{font-size:17px;font-weight:600;line-height:1.42;margin:0 0 6px;max-width:60ch}
 .q__help{font-size:13.5px;color:var(--tx-mute);margin:0 0 16px;max-width:60ch}
 .opts{display:grid;gap:8px;margin-top:14px}

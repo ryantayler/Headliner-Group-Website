@@ -16,7 +16,7 @@ window.DIAG ={
     "FALLBACK_FLOOR": 35,
     "FLAG_PRINT": 55,
     "MAX_FLAGS_SHOWN": 4,
-    "MAX_ACTIONS": 5,
+    "MAX_ACTIONS": 9,
     "TIE_GAP": 5
   },
   "chain": [
@@ -272,7 +272,7 @@ window.DIAG ={
         {
           "id": "d",
           "text": "More than 10 years",
-          "band": "more than ten years in",
+          "band": "one piece of work at a time",
           "age": 4
         }
       ]
@@ -323,7 +323,7 @@ window.DIAG ={
       "section": "cashflow",
       "n": 7,
       "weight": 1.3,
-      "text": "How do you get paid on a typical job?",
+      "text": "How do you usually get paid?",
       "type": "single",
       "options": [
         {
@@ -334,31 +334,31 @@ window.DIAG ={
         },
         {
           "id": "b",
-          "text": "A deposit upfront, balance on completion",
-          "band": "on a deposit and a balance at the end",
+          "text": "Some upfront, the rest when it's done",
+          "band": "with some upfront and the rest at the end",
           "w": 20
         },
         {
           "id": "c",
-          "text": "Progress payments across the job",
+          "text": "Progress payments along the way",
           "band": "in progress payments",
           "w": 25
         },
         {
           "id": "d",
-          "text": "A deposit upfront, balance on terms after",
-          "band": "on a deposit, with the balance on terms",
+          "text": "Some upfront, the rest on terms after",
+          "band": "with some upfront and the rest on terms",
           "w": 50
         },
         {
           "id": "e",
-          "text": "Nothing upfront, invoiced on completion",
-          "band": "with nothing upfront",
+          "text": "Nothing upfront, paid when it's done",
+          "band": "with nothing upfront, paid at the end",
           "w": 75
         },
         {
           "id": "f",
-          "text": "Nothing upfront, invoiced on terms after",
+          "text": "Nothing upfront, paid on terms after",
           "band": "with nothing upfront and the rest on terms",
           "w": 100
         }
@@ -403,7 +403,7 @@ window.DIAG ={
       "section": "cashflow",
       "n": 9,
       "weight": 1.0,
-      "text": "Once you've invoiced the balance, how long until it's actually in the account?",
+      "text": "Once you've asked for the balance, how long until it's actually in the account?",
       "type": "single",
       "exact": {
         "label": "If you know the average, how many days?",
@@ -412,7 +412,7 @@ window.DIAG ={
       "options": [
         {
           "id": "a",
-          "text": "Straight away, we're paid before we'd invoice",
+          "text": "Straight away, we're paid before we'd even ask",
           "band": "straight away",
           "w": 0
         },
@@ -519,7 +519,7 @@ window.DIAG ={
       "n": 12,
       "weight": 0.8,
       "text": "Over the last 12 months, was the business profitable on paper?",
-      "help": "On paper, meaning the accountant's version, not what's in the bank.",
+      "help": "Materials, wages, anything you'd have to pay for before the customer pays you.",
       "type": "single",
       "options": [
         {
@@ -684,7 +684,7 @@ window.DIAG ={
       "options": [
         {
           "id": "a",
-          "text": "Quoting and pricing jobs"
+          "text": "Pricing and putting numbers together"
         },
         {
           "id": "b",
@@ -700,7 +700,7 @@ window.DIAG ={
         },
         {
           "id": "e",
-          "text": "Chasing invoices and doing the books"
+          "text": "Chasing money and doing the books"
         },
         {
           "id": "f",
@@ -833,7 +833,7 @@ window.DIAG ={
       "n": 20,
       "weight": 1.3,
       "text": "How booked is your delivery capacity for the next 30 days?",
-      "help": "Capacity meaning the hours, people or stock you'd need to actually do the work.",
+      "help": "Capacity meaning the hours, people or materials you'd need to actually do the work.",
       "type": "single",
       "exact": {
         "label": "If you track it, what percentage booked?",
@@ -940,7 +940,7 @@ window.DIAG ={
       "section": "fulfilment",
       "n": 23,
       "weight": 1.1,
-      "text": "How far ahead is a typical job actually ready?",
+      "text": "How far ahead is the work actually ready?",
       "type": "single",
       "options": [
         {
@@ -1003,7 +1003,7 @@ window.DIAG ={
           "w": 100
         }
       ],
-      "help": "Long hours on an event day or a job site are the job. This is about the weeks in between."
+      "help": "Long hours on a delivery day are the work itself. This is about the weeks in between."
     },
     {
       "id": "q21",
@@ -1223,7 +1223,7 @@ window.DIAG ={
       "section": "offer",
       "n": 31,
       "weight": 1.4,
-      "text": "Of the people who enquire and get a quote or a proposal, how many go ahead?",
+      "text": "Of the people who enquire and find out what it costs, how many go ahead?",
       "type": "single",
       "exact": {
         "label": "If you know your close rate, what is it?",
@@ -1295,7 +1295,7 @@ window.DIAG ={
       "section": "offer",
       "n": 33,
       "weight": 1.0,
-      "text": "When a prospect gets your quote, how often do they come back asking what's included, or why it costs what it does?",
+      "text": "When somebody sees your price, how often do they come back asking what's included, or why it costs what it does?",
       "type": "single",
       "options": [
         {
@@ -1318,8 +1318,8 @@ window.DIAG ={
         },
         {
           "id": "d",
-          "text": "On most quotes",
-          "band": "on most quotes",
+          "text": "Almost every time",
+          "band": "almost every time",
           "w": 100
         }
       ]
@@ -1329,7 +1329,7 @@ window.DIAG ={
       "section": "offer",
       "n": 34,
       "weight": 1.1,
-      "text": "Has the proportion of quotes that turn into work changed in the last 12 months?",
+      "text": "Has the proportion of enquiries that turn into work changed in the last 12 months?",
       "type": "single",
       "options": [
         {
@@ -1380,8 +1380,8 @@ window.DIAG ={
         },
         {
           "id": "c",
-          "text": "Every job gets quoted from scratch",
-          "band": "from a quote built from scratch every time",
+          "text": "Every price is worked out from scratch",
+          "band": "from a price worked out from scratch every time",
           "w": 67
         },
         {
@@ -1593,8 +1593,8 @@ window.DIAG ={
       "section": "margin",
       "n": 41,
       "weight": 1.4,
-      "text": "On a typical job or sale, what's left after the direct cost of delivering it?",
-      "help": "Direct cost meaning labour, materials, subcontractors, whatever that specific job consumed.",
+      "text": "On a typical sale, what's left after the direct cost of delivering it?",
+      "help": "Direct cost meaning labour, materials, subcontractors, whatever that specific piece of work consumed.",
       "type": "single",
       "exact": {
         "label": "If you know your gross margin, what is it?",
@@ -1704,7 +1704,7 @@ window.DIAG ={
       "section": "margin",
       "n": 44,
       "weight": 1.1,
-      "text": "How often does a job end up costing more to deliver than you quoted?",
+      "text": "How often does something end up costing more to deliver than you priced it at?",
       "type": "single",
       "options": [
         {
@@ -1727,8 +1727,8 @@ window.DIAG ={
         },
         {
           "id": "d",
-          "text": "On most jobs",
-          "band": "on most jobs",
+          "text": "Most of the time",
+          "band": "most of the time",
           "w": 100
         }
       ]
@@ -1738,12 +1738,12 @@ window.DIAG ={
       "section": "margin",
       "n": 45,
       "weight": 0.9,
-      "text": "Do you know which customers, jobs or product lines actually make you money?",
+      "text": "Do you know which customers, products or lines of work actually make you money?",
       "type": "single",
       "options": [
         {
           "id": "a",
-          "text": "Yes, job by job",
+          "text": "Yes, down to the individual sale",
           "band": "job by job",
           "w": 0
         },
@@ -1782,7 +1782,7 @@ window.DIAG ={
         },
         {
           "id": "b",
-          "text": "How many quotes turn into work"
+          "text": "How many enquiries turn into work"
         },
         {
           "id": "c",
@@ -2497,7 +2497,8 @@ window.DIAG ={
         "title": "You are {c} constrained",
         "titleLoose": "The tightest thing is {c}",
         "open": [
-          "Being talent constrained means you're missing a layer in the business, not missing extra hands.",
+          "Double your customers tomorrow and you'd struggle to deliver, because there's a layer of talent missing from the business.",
+          "Being talent constrained means you're missing a layer, not missing extra hands.",
           "{d.unownedLayers}",
           "Most of last week went to {d.ownerTasks}."
         ],
@@ -2512,12 +2513,15 @@ window.DIAG ={
             "banded": "{q14.band}"
           }
         ],
-        "close": "Hiring another pair of hands underneath you doesn't touch this. What's missing is a whole role that doesn't exist yet, and until it does, everything you add lands on the same desk."
+        "close": "Hiring another pair of hands underneath you doesn't fix this. What's missing is a whole role that doesn't exist yet, and adding it is what unblocks the business."
       },
       "fulfilment": {
         "title": "You are {c} constrained",
         "titleLoose": "The tightest thing is {c}",
-        "open": "This is capacity, not capability. You know how to do the work, but you can't do enough of it.",
+        "open": [
+          "Double your customers tomorrow and you couldn't deliver, because there isn't enough capacity in the business.",
+          "This is capacity, not capability. You know how to do the work and you can't do enough of it."
+        ],
         "evidence": [
           {
             "banded": "you're running {q16.band}",
@@ -2530,15 +2534,18 @@ window.DIAG ={
             "banded": "lead times have {q18.band}"
           },
           {
-            "banded": "a typical job is ready {q19.band}"
+            "banded": "the work is typically ready {q19.band}"
           }
         ],
-        "close": "Nothing at the front of the business needs attention until the back of it can breathe. Anything you do to bring in more work right now gets paid for by the customers you already have."
+        "close": "Nothing at the front of the business needs attention until the back of it can breathe. More capacity is what fixes this, and there's work to do before you buy it."
       },
       "value": {
         "title": "You are {c} constrained",
         "titleLoose": "The tightest thing is {c}",
-        "open": "Value here means what the customer perceives, and it has nothing to do with your pricing or your margin. They buy, then they either stop or start giving most of the work to somebody else.",
+        "open": [
+          "Double your customers tomorrow and you'd have no trouble delivering, and you can't keep enough of them to fill what you've got.",
+          "They buy, then they either stop or start giving most of the work to somebody else."
+        ],
         "evidence": [
           {
             "banded": "of the customers you had a year ago, {q21.band} still buy from you",
@@ -2555,14 +2562,14 @@ window.DIAG ={
             "banded": "referrals bring in {q23.band} of your new customers"
           }
         ],
-        "close": "You're filling a leaky bucket. Every dollar going into finding new customers is currently paying to replace the ones walking out the other side, which is why the business feels busy and stays the same size."
+        "close": "You're filling a leaky bucket. Every dollar going into finding new customers is paying to replace the ones walking out the other side, which is why the business feels busy and stays the same size. Selling to somebody who has already bought is far easier than finding somebody new."
       },
       "offer": {
         "title": "You are {c} constrained",
         "titleLoose": "The tightest thing is {c}",
         "open": [
-          "Enquiries arrive and they don't convert.",
-          "That isn't a sales technique problem, it's what's on the table. Either the value in the offer doesn't justify the price you're asking, or there's something in the way of somebody saying yes."
+          "Double your customers tomorrow and you'd have no trouble delivering, and you can't close enough of them to fill what you've got.",
+          "People come to you and they don't buy. It's the offer. Either the value in it doesn't justify what you're asking, or there's something in the way of somebody saying yes."
         ],
         "evidence": [
           {
@@ -2573,18 +2580,21 @@ window.DIAG ={
             "banded": "the most common reason you lose is {q27.band}"
           },
           {
-            "banded": "prospects come back on your quote asking what's included {q28.band}"
+            "banded": "people come back asking what's included {q28.band}"
           },
           {
             "banded": "they find out what you charge {q30.band}"
           }
         ],
-        "close": "You don't fix this by dropping the price. You fix it by putting things into the offer that cost you very little and are worth real money to the buyer, and by removing whatever a prospect has to get over before they can say yes."
+        "close": "You don't fix this by dropping the price. You fix it by putting things into the offer that cost you very little and are worth real money to the buyer, and by clearing whatever somebody has to get over before they can say yes."
       },
       "demand": {
         "title": "You are {c} constrained",
         "titleLoose": "The tightest thing is {c}",
-        "open": "You've got capacity sitting idle and not enough people asking.",
+        "open": [
+          "Double your customers tomorrow and you'd have no trouble delivering, and you can't find enough of them to fill what you've got.",
+          "You've got capacity sitting idle and not enough people asking."
+        ],
         "evidence": [
           {
             "banded": "enquiries run {q31.band}",
@@ -2597,12 +2607,15 @@ window.DIAG ={
             "banded": "{q35.band}"
           }
         ],
-        "close": "You could take on more work tomorrow, which is what separates this from a delivery problem. Nothing downstream is broken. The business just isn't being fed, and it won't start feeding itself."
+        "close": "Nothing downstream is broken. The business needs more people coming in the top, and it won't start feeding itself."
       },
       "margin": {
         "title": "You are {c} constrained",
         "titleLoose": "The tightest thing is {c}",
-        "open": "You're full and busy, and there's nothing left at the end of it.",
+        "open": [
+          "Double your customers tomorrow and it wouldn't help, because there isn't enough margin in what you're already doing.",
+          "You're busy, and there's nothing left at the end of it."
+        ],
         "evidence": [
           {
             "banded": "what's left after direct costs sits {q36.band}",
@@ -2616,70 +2629,97 @@ window.DIAG ={
             "banded": "{q38.band}"
           },
           {
-            "banded": "jobs run over what you quoted {q39.band}"
+            "banded": "the work runs over what you priced it at {q39.band}"
           }
         ],
-        "close": "Volume won't rescue this. At the margin you're running, more work gets you more of the same result and it arrives faster."
+        "close": "More volume won't solve this. You need to make more on the work you're already doing, without adding a single customer."
       }
     },
     "constraintFix": {
       "talent": {
-        "lead": "Hire one role that owns a layer of the business, with the authority to run it. Not another pair of hands underneath you.",
+        "lead": "",
         "actions": [
           {
-            "text": "Write down every task you did last week."
+            "text": "Write down every task you do, in fifteen minute blocks, for a full week."
           },
           {
-            "text": "Against each one, write the role that should own it. A role, not a person already in the business."
+            "text": "Against each task, write the role that should own it in an ideal world."
           },
           {
-            "text": "Whichever role has the most tasks against it, or the most hours, hire that role first."
+            "text": "Take whichever role has the most tasks against it, or the most hours in the week."
           },
           {
-            "text": "Give them responsibility and the authority to go with it. One without the other doesn't work."
+            "text": "Hire that role."
           },
           {
-            "text": "Train them yourself, then give them ninety days to prove they're the one."
+            "text": "Train them yourself."
+          },
+          {
+            "text": "Give them the responsibility and the authority to run it. One without the other doesn't work."
+          },
+          {
+            "text": "Give them ninety days to prove they're the one."
+          },
+          {
+            "text": "If they don't work out, hire again and run it the same way. If they do, come back here and find out what's capping you now."
           }
         ]
       },
       "fulfilment": {
-        "lead": "Make what you already have work properly, cut what isn't earning its capacity, then hire. In that order.",
+        "lead": "",
         "actions": [
           {
-            "text": "Find the one step everything stalls at, and put the next day into streamlining that one step."
+            "text": "Write down exactly how what you sell gets delivered, one step at a time."
           },
           {
-            "text": "Write the five things that go wrong most often into one page checklists. Undocumented work is slow work.",
-            "when": [
-              [
-                "q46",
-                [
-                  "b",
-                  "c"
-                ]
-              ]
-            ]
+            "text": "Write down every other task your delivery people do that isn't that."
           },
           {
-            "text": "Look at what your best people actually spent last week on. Anything that didn't need them is capacity you already have."
+            "text": "Find the three things across those two lists that slow delivery down the most."
           },
           {
-            "text": "Cut the jobs that eat the most capacity for the least return."
+            "text": "Spend one week streamlining those three things and nothing else."
           },
           {
-            "text": "Then hire more capacity into the roles that need it."
+            "text": "Rewrite the first list with what changed, and make it the way it's done from now on."
+          },
+          {
+            "text": "Cut the bottom ten percent of customers, the ones taking the most time for the least return."
+          },
+          {
+            "text": "Now hire more capacity into the roles that need it."
+          },
+          {
+            "text": "Run it that way for ninety days."
+          },
+          {
+            "text": "If delivery still can't keep up, work the list again. If it can, come back here and find out what's capping you now."
           }
         ]
       },
       "value": {
-        "lead": "You need to find out why customers leave or shrink, and fix that, before you spend another dollar finding new ones.",
+        "lead": "",
         "actions": [
           {
-            "text": "Ring ten customers who stopped buying or cut back, and ask them straight. Not a survey. A phone call."
+            "text": "Write down every point of contact a customer has with you, from the moment they buy through to six months later."
           },
           {
-            "text": "Ask your biggest customers what they give to somebody else, and why. That work already exists, you're just not getting it.",
+            "text": "Put as much as you can into the first ninety days. Surprise them. That's the window where they decide what you're worth."
+          },
+          {
+            "text": "Find the longest silence on that list and put something in it."
+          },
+          {
+            "text": "Ring ten customers who stopped or cut back and ask them straight why. Not a survey."
+          },
+          {
+            "text": "Whatever more than one of them says, fix that."
+          },
+          {
+            "text": "Build one reason to come back that you start, rather than waiting to be asked."
+          },
+          {
+            "text": "Ask your biggest customers what they give to somebody else, and why.",
             "when": [
               [
                 "q57",
@@ -2691,102 +2731,85 @@ window.DIAG ={
             ]
           },
           {
-            "text": "Look hard at what happens in the first thirty days after somebody buys. That's the part of the experience you control most tightly."
+            "text": "Run all of that for ninety days and measure who came back."
           },
           {
-            "text": "Build one reason to come back that you initiate. A check in, or the next step offered before they go looking."
-          },
-          {
-            "text": "Measure retention monthly, so a drop shows up while you can still do something about it."
+            "text": "If they're still leaving, work the list again. If they're staying, come back here and find out what's capping you now."
           }
         ]
       },
       "offer": {
-        "lead": "You need more value in the offer than the price is asking for, and the hurdles taken out of the way of somebody saying yes.",
+        "lead": "",
         "actions": [
           {
-            "text": "List everything you already do for a customer that isn't written into the offer. That's value nobody can see."
+            "text": "List everything you already do for a customer that isn't written into the offer, and write it in."
           },
           {
-            "text": "Add two things that cost you close to nothing and are worth real money to the buyer. A guarantee, or something they would otherwise have to go and source themselves."
+            "text": "Add two or three things that cost you close to nothing and are worth real money to the buyer. A guarantee, or something they'd otherwise have to go and source themselves."
           },
           {
-            "text": "Write down every question a prospect asks after they get the quote, then answer all of them inside the quote itself.",
-            "when": [
-              [
-                "q28",
-                [
-                  "c",
-                  "d"
-                ]
-              ]
-            ]
+            "text": "Write down every question somebody asks you after they've seen the price."
           },
           {
-            "text": "Put a price or a range where they can see it. Making somebody wait for a number is a hurdle before they have even decided.",
-            "when": [
-              [
-                "q30",
-                [
-                  "c",
-                  "d"
-                ]
-              ]
-            ]
+            "text": "Answer all of them inside the offer, before anybody has to ask."
           },
           {
-            "text": "Sort your last twenty losses by reason and count them. If price keeps coming up, look at the value in the offer before you look at the number."
+            "text": "Shorten the time between somebody making contact and somebody getting a number."
           },
           {
-            "text": "Test the new offer on the next ten enquiries before you change anything else."
+            "text": "Make the price and what's in it easier to see."
+          },
+          {
+            "text": "Run the new offer for one month."
+          },
+          {
+            "text": "If the close rate hasn't moved, put more value in and go again. If it has, come back here and find out what's capping you now."
           }
         ]
       },
       "demand": {
-        "lead": "You need one lead source running properly and consistently before you go anywhere near a second.",
+        "lead": "",
         "actions": [
           {
-            "text": "Whatever you're doing to generate enquiries isn't running consistently. Start with the one thing you can do every week without fail.",
-            "when": [
-              [
-                "q35",
-                [
-                  "b",
-                  "c"
-                ]
-              ]
-            ]
+            "text": "Ask your happiest customers for something in writing or on camera. Pay for it, or give them something for it."
           },
           {
-            "text": "Pick the lead source that already brings your best customers and put real weight behind it."
+            "text": "Put that where somebody deciding on you will actually see it."
           },
           {
-            "text": "Go and ask for work. Outbound to the twenty businesses you'd most like to work with beats waiting on referrals."
+            "text": "Take the source that already brings your best customers and put two or three times the effort into it."
           },
           {
-            "text": "Everything arrives through one lead source. Stand up a second before that one changes.",
-            "when": [
-              [
-                "q43",
-                [
-                  "c"
-                ]
-              ]
-            ]
+            "text": "Stand up a second source that doesn't rely on being found. Going out and asking directly is the usual one."
           },
           {
-            "text": "Ask every happy customer for one introduction."
+            "text": "Set up a referral programme with something real in it for the customer who refers."
           },
           {
-            "text": "Give a lead source ninety days before you judge it. Anything shorter is guesswork."
+            "text": "Launch it by asking every customer, one at a time, for a single introduction."
+          },
+          {
+            "text": "Run all of that for ninety days without adding anything else."
+          },
+          {
+            "text": "If enquiries haven't moved, work the list again. If they have, come back here and find out what's capping you now."
           }
         ]
       },
       "margin": {
-        "lead": "You need to know what each job actually earns you before you change anything. A price rise can cost you customers as easily as it can fix the margin.",
+        "lead": "",
         "actions": [
           {
-            "text": "Raise prices on new work now. Ten percent across the board, and watch what actually happens.",
+            "text": "Work out what each piece of work really costs you, your own time included, and rank the last twenty by what was left."
+          },
+          {
+            "text": "Take the bottom five. For each one, write down what it was that ate the money."
+          },
+          {
+            "text": "Whatever shows up on more than one of them, that's the leak. Fix that before you touch anything else."
+          },
+          {
+            "text": "Put your prices up on everything new. If nobody flinches, they were too low.",
             "when": [
               [
                 "q38",
@@ -2798,25 +2821,16 @@ window.DIAG ={
             ]
           },
           {
-            "text": "Work out what each job really costs, your own time included, then rank your last twenty by what was left."
+            "text": "Build the thing that historically runs over into the price, so you stop absorbing it."
           },
           {
-            "text": "Quote a contingency into the jobs that historically run over. You already know which ones they are.",
-            "when": [
-              [
-                "q39",
-                [
-                  "c",
-                  "d"
-                ]
-              ]
-            ]
+            "text": "Reprice your three worst customers by what's left, or let them go."
           },
           {
-            "text": "Find your worst three customers by margin, then reprice them or let them go."
+            "text": "Hold the new prices for ninety days without discounting to win anything."
           },
           {
-            "text": "Don't discount to win. A discount is the fastest way to buy work you'll resent delivering."
+            "text": "If there's still nothing left at the end, work the list again. If there is, come back here and find out what's capping you now."
           }
         ]
       }
@@ -2892,7 +2906,7 @@ window.DIAG ={
             "banded": "you're holding {q8.band}"
           }
         ],
-        "close": "That's a timing problem rather than a rate problem. Every job you win right now costs you money before it pays you, which is why winning more of them is currently the worst move available to you."
+        "close": "That's a timing problem rather than a rate problem. Every customer you win right now costs you money before they pay you."
       }
     },
     "riskFix": {
@@ -2952,13 +2966,13 @@ window.DIAG ={
           ]
         },
         {
-          "text": "Move to a deposit on every job. Fifty percent thirty days out and the balance the week before, so the money is in before your costs go out."
+          "text": "Take money upfront on everything. Half of it well before you start and the rest before you deliver, so it's in the account before your own costs go out."
         },
         {
-          "text": "Line the deposit up to land before your cost of goods does. On jobs where the number moves on the day, charge the balance afterwards and refund the difference."
+          "text": "Line the upfront money up to land before your own costs do. Where the final number can't be known in advance, take the balance afterwards and refund the difference."
         },
         {
-          "text": "Invoice within twenty four hours of the job finishing. Whatever the gap is between finishing and invoicing, that gap is yours to close."
+          "text": "Ask for the money within twenty four hours of finishing. Whatever the gap is between finishing and asking, that gap is yours to close."
         },
         {
           "text": "Collect what's already overdue before you chase anything new. It's the cheapest money available to you.",
@@ -2973,7 +2987,7 @@ window.DIAG ={
           ]
         },
         {
-          "text": "Put terms in writing before the next job starts, and chase on day one past due.",
+          "text": "Put your terms in writing before the next piece of work starts, and chase on day one past due.",
           "when": [
             [
               "q45",
@@ -3013,7 +3027,7 @@ window.DIAG ={
           "Don't take on new customers until you've done the above.",
           "Don't start something new.",
           "Don't drop your prices.",
-          "Don't promise a shorter lead time to win a job."
+          "Don't promise a shorter lead time to win something."
         ]
       },
       "value": {
@@ -3051,7 +3065,7 @@ window.DIAG ={
         "items": [
           "Don't chase volume. More work at this margin is more risk for the same money.",
           "Don't hire. Every head you add at this margin needs a lot of revenue standing behind it.",
-          "Don't take the big thin job because it's good for the brand. Reputation doesn't pay wages.",
+          "Don't take the big thin one because it's good for the brand. Reputation doesn't pay wages.",
           "Don't discount anything. There's nothing left to give away.",
           "Don't invest in growth. Growing an unprofitable model makes it unprofitable faster."
         ]

@@ -21,8 +21,9 @@ function report(r) {
         <p class="privacy">We do not use <u>any</u> AI in this tool, and <u>none</u> of your data is sent or stored offsite.</p></div>`;
   h += `<div class="sec" style="padding-top:0">
         <div class="verdict"><div class="glow"></div>
-        <h2 class="hl-face display">${title}</h2>${para(r.primary.body)}</div></div>`;
-  h += `<div class="sec">${label('How to fix it')}<p>${esc(r.primary.fix.lead)}</p>
+        <h2 class="hl-face display">${title}</h2>
+        <p class="due">${esc(r.primary.due)}</p>${para(r.primary.body)}</div></div>`;
+  h += `<div class="sec">${label('How to fix it')}
         <ol class="acts">${r.primary.fix.actions.map(a => `<li>${esc(a)}</li>`).join('')}</ol></div>`;
   h += `<div class="sec">${label('Your risks, and what to do about them')}<p>${esc(r.risk.lead)}</p>` +
        r.risk.flags.map(f => `<div class="risk">

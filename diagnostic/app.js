@@ -58,11 +58,15 @@
       '<span>' + esc(o.text) + '</span></label>';
   }
   function questionBlock(q) {
-    var h = '<fieldset class="q" data-q="' + q.id + '" style="border:0;padding:0;margin:0">' +
-      '<span class="q__n">Question ' + q.n + '</span>' +
-      '<legend class="q__t" style="padding:0">' + esc(q.text) + '</legend>';
+    // The number and the title both live inside the legend. A legend is pulled to the
+    // top of its fieldset whatever the DOM order, so a sibling above it renders below
+    // it, which is what put "Question 2" under its own question. Spacing is in the
+    // stylesheet, not inline, or the inline rule beats the class and the gap vanishes.
+    var h = '<fieldset class="q" data-q="' + q.id + '">' +
+      '<legend class="q__t"><span class="q__n">Question ' + q.n + '</span>' + esc(q.text) + '</legend>';
+    // Its own help replaces the generic line rather than stacking under it.
     if (q.help) h += '<p class="q__help">' + esc(q.help) + '</p>';
-    if (q.type === "multi") h += '<p class="q__help">Tick everything that applies.</p>';
+    else if (q.type === "multi") h += '<p class="q__help">Tick everything that applies.</p>';
     h += '<div class="opts">' + optionsOf(q).map(function (o) { return optionRow(q, o); }).join("") + '</div>';
     if (q.exact) {
       var a = answers[q.id] || {};
@@ -184,10 +188,8 @@
       '<h1 class="hl-face display">' + esc(r.primary.title.before) +
         '<em>' + esc(r.primary.title.phrase) + '</em>' + esc(r.primary.title.after) + '</h1>' +
       '<p class="due">' + esc(r.primary.due) + '</p>' +
-      '<p class="major-test">' + esc(r.primary.majorTest) + '</p>' +
       para(r.primary.body) + '</div></div>';
     h += '<div class="sec">' + label("How to fix it") +
-      "<p>" + esc(r.primary.fix.lead) + "</p>" +
       '<ol class="acts">' + r.primary.fix.actions.map(function (a) { return "<li>" + esc(a) + "</li>"; }).join("") + "</ol></div>";
     h += '<div class="sec">' + label("Your risks, and what to do about them") +
       "<p>" + esc(r.risk.lead) + "</p>" +
