@@ -1,0 +1,36 @@
+{
+  "q12": ["It runs fine", "It runs, but decisions pile up waiting for me", "It degrades quickly", "It stops"],
+  "q56": ["More than a day", "Half a day", "An hour or two", "None of it"],
+  "q14": ["No", "Once", "A few times", "That's the normal state"],
+  "q15": ["Two or fewer", "Three to six", "Seven to twelve", "More than twelve"],
+
+  "q16": ["Under half full", "About two thirds", "Full, or close to it", "Over capacity, we're behind"],
+  "q17": ["No", "Once or twice", "Most months", "Constantly"],
+  "q18": ["Shorter", "About the same", "Longer", "Much longer"],
+  "q19": ["Comfortably ahead", "A few days ahead", "The day before", "We're finishing it as it starts"],
+  "q20": ["No", "Occasionally", "Most weeks", "Constantly"],
+
+  "q36": ["More than 50%", "30% to 50%", "15% to 30%", "Under 15%"],
+  "q37": ["More than 20%", "10% to 20%", "1% to 10%", "Nothing, or a loss"],
+  "q38": ["In the last 6 months", "6 to 12 months ago", "1 to 2 years ago", "More than 2 years ago, or never"],
+  "q39": ["Rarely", "Sometimes", "Often", "On most jobs"],
+  "q40": ["Yes, job by job", "Yes by category, not job by job", "Roughly, it's a feel", "No"],
+
+  "q21": ["Most of them, over 70%", "About half", "Under a third", "Almost none"],
+  "q57": ["Nearly all of it", "More than half", "About half or less", "A small slice, they spread it around"],
+  "q22": ["Usually", "Sometimes", "Rarely", "Never"],
+  "q23": ["Most of them", "About half", "A few", "Almost none"],
+  "q24": ["Almost none", "A handful", "A steady stream", "Most of them"],
+  "q25": ["Yes, we ask every one and we know", "We ask sometimes, so we know for some", "We've got a theory, we've never asked", "No idea"],
+
+  "q26": ["More than half", "25% to 50%", "10% to 25%", "Under 10%"],
+  "q27": ["Timing, they weren't ready", "Price, we were too expensive", "They went with someone else", "They did nothing at all, or we don't know"],
+  "q28": ["Rarely, they just decide", "Sometimes", "Often", "On most quotes"],
+  "q29": ["Improved", "About the same", "Dropped", "Dropped sharply"],
+  "q30": ["There's a price list or packages they can see themselves", "Standard pricing, but we walk them through it", "Every job gets quoted from scratch", "It depends who's asking"],
+
+  "q31": ["More than 30", "11 to 30", "3 to 10", "0 to 2"],
+  "q33": ["Up", "Flat", "Down", "Down sharply"],
+  "q34": ["No, we'd be well over capacity", "Yes, with a real stretch", "Yes, with a bit of room to spare", "Yes, easily, we've got the space now"],
+  "q35": ["Yes, the same things every week", "Yes, but it fits around the work", "On and off, when it goes quiet", "No, it all comes to us"]
+}

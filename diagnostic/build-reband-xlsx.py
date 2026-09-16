@@ -5,6 +5,7 @@ from openpyxl import Workbook
 from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
 from openpyxl.utils import get_column_letter
 
+PROPOSED = json.load(io.open('reband-proposals.json', encoding='utf-8'))
 src = io.open('content.js', encoding='utf-8').read()
 D = json.loads(src[src.index('{'): src.rindex('}') + 1])
 
@@ -42,7 +43,7 @@ rows = [
  ('', ''),
  ('THE RULE', 'Every single select scoring question gets exactly four options. Two good, two bad. No middle, no not sure.'),
  ('SEVERITIES', 'Pre filled at 0, 33, 67 and 100 and not yours to change. They are what make the maths work, see below.'),
- ('YOUR JOB', 'Write the four option texts, in order best to worst. The line between option 2 and option 3 is the benchmark.'),
+ ('YOUR JOB', 'All 29 are drafted. Correct what is wrong in the PROPOSED column. The line between option 2 and option 3 is the benchmark.'),
  ('', ''),
  ('WHY 0/33/67/100', 'Symmetric around 50, so every question has an expected score of 50 under a random answer. Which means every'),
  ('', 'constraint does too, and all six fail at the same rate. That is the even spread you asked for, and it only'),
@@ -65,7 +66,7 @@ for k, v in rows:
 # ---------- 2. Set the bands ----------
 ws = wb.create_sheet('Set the bands')
 head(ws, ['Question','Family','Block','Weight','Question text','Today','Sev',
-          'YOUR OPTION','Sev','Good or bad'],
+          'PROPOSED, mark it up','Sev','Good or bad'],
          [11, 9, 12, 8, 62, 46, 6, 50, 6, 12])
 singles = [q for q in D['questions']
            if q.get('section') in SIX and q.get('weight', 0) > 0 and q.get('type') != 'multi']
@@ -86,8 +87,10 @@ for q in singles:
         if i < len(opts): cur = opts[i]['text']
         elif i - len(opts) < len(ns): cur = ns[i - len(opts)]['text'] + '   (to be removed)'
         sev = opts[i]['w'] if i < len(opts) else ''
+        prop = PROPOSED.get(q['id'], [])
         row = ['', '', '', '', '', cur, sev,
-               '', NEW_SEV[i] if i < 4 else '', NEW_LBL[i] if i < 4 else '']
+               prop[i] if i < len(prop) else '',
+               NEW_SEV[i] if i < 4 else '', NEW_LBL[i] if i < 4 else '']
         ws.append(row); rr = ws.max_row
         ws.cell(rr, 6).alignment = wrap; ws.cell(rr, 6).font = MUTE
         ws.cell(rr, 7).font = MUTE
