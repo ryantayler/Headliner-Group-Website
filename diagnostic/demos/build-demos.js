@@ -24,6 +24,7 @@ function report(r) {
         <h2 class="hl-face display">${title}</h2>
         <p class="due">${esc(r.primary.due)}</p>${para(r.primary.body)}</div></div>`;
   h += `<div class="sec">${label('How to fix it')}
+        ${r.primary.prompts.map(t => `<p class="prompt">${esc(t)}</p>`).join('')}
         <ol class="acts">${r.primary.fix.actions.map(a => `<li>${esc(a)}</li>`).join('')}</ol></div>`;
   h += `<div class="sec">${label('Your risks, and what to do about them')}<p>${esc(r.risk.lead)}</p>` +
        r.risk.flags.map(f => `<div class="risk">

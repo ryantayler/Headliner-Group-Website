@@ -359,3 +359,9 @@ body.has-dev{padding-bottom:56px}
   letter-spacing:-.01em;opacity:.62}
 .verdict .major-test{margin:16px 0 0;font-size:15.5px;line-height:1.55;color:#2B322F;max-width:60ch}
 @media print{.verdict .due{color:var(--ink-l)}.verdict .major-test{color:var(--sub-l)}}
+
+/* A prompt sits above the steps and belongs to an answer rather than to the
+   constraint, so it is set apart from the sequence instead of numbered into it. */
+.prompt{margin:0 0 20px;padding:15px 18px;border-left:3px solid var(--cta-deep);
+  background:var(--ground);border-radius:0 10px 10px 0;font-size:15.5px;line-height:1.55;
+  color:var(--tx);max-width:64ch}

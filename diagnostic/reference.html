@@ -362,6 +362,12 @@ body.has-dev{padding-bottom:56px}
 .verdict .major-test{margin:16px 0 0;font-size:15.5px;line-height:1.55;color:#2B322F;max-width:60ch}
 @media print{.verdict .due{color:var(--ink-l)}.verdict .major-test{color:var(--sub-l)}}
 
+/* A prompt sits above the steps and belongs to an answer rather than to the
+   constraint, so it is set apart from the sequence instead of numbered into it. */
+.prompt{margin:0 0 20px;padding:15px 18px;border-left:3px solid var(--cta-deep);
+  background:var(--ground);border-radius:0 10px 10px 0;font-size:15.5px;line-height:1.55;
+  color:var(--tx);max-width:64ch}
+
 .hero{padding:clamp(40px,6vw,72px) 0 clamp(28px,4vw,44px);background:var(--base);color:var(--ink)}
 .wrap{padding:clamp(40px,6vw,64px) 0 80px}
 .key{display:grid;gap:0;margin:26px 0 0;border:1px solid var(--rim);border-radius:14px;overflow:hidden}
@@ -437,11 +443,11 @@ body.only-mine .sub.empty-after{display:none}
     <div><span class="t t--f">Same for everyone</span><p>The same words for every business that gets this finding.</p></div>
     <div><span class="t t--s">Their answer dropped in</span><p>The same sentence, with their own answer or figure dropped into it.</p></div>
     <div><span class="t t--c">Only if</span><p>The whole line only appears when they answered a particular way. Everyone else never sees it.</p></div>
-    <div><span class="who who--y">&#10003;</span><p><b>79 lines.</b> Ryan wrote this or dictated it in a message. Some have had their wording changed to meet the no dashes rule, the banned sentence shapes, or the ruling that no copy may assume a delivery model, a sales process or a pricing method. The line is still his.</p></div>
+    <div><span class="who who--y">&#10003;</span><p><b>80 lines.</b> Ryan wrote this or dictated it in a message. Some have had their wording changed to meet the no dashes rule, the banned sentence shapes, or the ruling that no copy may assume a delivery model, a sales process or a pricing method. The line is still his.</p></div>
     <div><span class="who who--n">&#10005;</span><p><b>81 lines.</b> Claude wrote it and Ryan has not signed it off. Anything uncertain is marked this way on purpose, because claiming he approved something he did not is the worse of the two errors.</p></div>
   </div>
   <label class="onlymine"><input type="checkbox" id="only-mine">
-    <span>Hide the 79 lines I’ve approved, show me what’s left</span></label>
+    <span>Hide the 80 lines I’ve approved, show me what’s left</span></label>
   <p class="onlymine__n" id="only-mine-n" hidden></p>
 </div></section>
 
@@ -462,6 +468,10 @@ body.only-mine .sub.empty-after{display:none}
   <span class="t t--s">Their answer dropped in</span></li>
       <li><span class="who who--y" title="Ryan wrote this">✓</span>Hiring another pair of hands underneath you doesn't fix this. What's missing is a whole role that doesn't exist yet, and adding it is what unblocks the business.
   <span class="t t--f">Same for everyone</span></li></ul>
+
+    <p class="lbl">Printed above the steps, whatever the constraint is</p>
+    <ul class="lines"><li><span class="who who--y" title="Ryan wrote this">✓</span>You're closing <b class="slot">their Q31 answer</b>, which means you're too cheap. Put your prices up between five and twenty percent before you touch anything else on this list.
+  <span class="t t--c">Only if Q31 is &ldquo;More than 80%&rdquo;</span></li></ul>
 
     <p class="lbl">How to fix it &nbsp;<i>8 written, 0 conditional, at most 9 ever print</i></p>
     <ol class="lines lines--n"><li><span class="who who--y" title="Ryan wrote this">✓</span>Write down every task you do, in fifteen minute blocks, for a full week.
@@ -496,6 +506,10 @@ body.only-mine .sub.empty-after{display:none}
   <span class="t t--s">Their answer dropped in</span></li>
       <li><span class="who who--y" title="Ryan wrote this">✓</span>Nothing at the front of the business needs attention until the back of it can breathe. More capacity is what fixes this, and there's work to do before you buy it.
   <span class="t t--f">Same for everyone</span></li></ul>
+
+    <p class="lbl">Printed above the steps, whatever the constraint is</p>
+    <ul class="lines"><li><span class="who who--y" title="Ryan wrote this">✓</span>You're closing <b class="slot">their Q31 answer</b>, which means you're too cheap. Put your prices up between five and twenty percent before you touch anything else on this list.
+  <span class="t t--c">Only if Q31 is &ldquo;More than 80%&rdquo;</span></li></ul>
 
     <p class="lbl">How to fix it &nbsp;<i>9 written, 0 conditional, at most 9 ever print</i></p>
     <ol class="lines lines--n"><li><span class="who who--y" title="Ryan wrote this">✓</span>Write down exactly how what you sell gets delivered, one step at a time.
@@ -532,6 +546,10 @@ body.only-mine .sub.empty-after{display:none}
       <li><span class="who who--y" title="Ryan wrote this">✓</span>More volume won't solve this. You need to make more on the work you're already doing, without adding a single customer.
   <span class="t t--f">Same for everyone</span></li></ul>
 
+    <p class="lbl">Printed above the steps, whatever the constraint is</p>
+    <ul class="lines"><li><span class="who who--y" title="Ryan wrote this">✓</span>You're closing <b class="slot">their Q31 answer</b>, which means you're too cheap. Put your prices up between five and twenty percent before you touch anything else on this list.
+  <span class="t t--c">Only if Q31 is &ldquo;More than 80%&rdquo;</span></li></ul>
+
     <p class="lbl">How to fix it &nbsp;<i>8 written, 1 conditional, at most 9 ever print</i></p>
     <ol class="lines lines--n"><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>Work out what each piece of work really costs you, your own time included, and rank the last twenty by what was left.
   <span class="t t--f">Same for everyone</span></li><li><span class="who who--n" title="Claude wrote this, not signed off">✕</span>Take the bottom five. For each one, write down what it was that ate the money.
@@ -566,6 +584,10 @@ body.only-mine .sub.empty-after{display:none}
   <span class="t t--s">Their answer dropped in</span></li>
       <li><span class="who who--y" title="Ryan wrote this">✓</span>You're filling a leaky bucket. Every dollar going into finding new customers is paying to replace the ones walking out the other side, which is why the business feels busy and stays the same size. Selling to somebody who has already bought is far easier than finding somebody new.
   <span class="t t--f">Same for everyone</span></li></ul>
+
+    <p class="lbl">Printed above the steps, whatever the constraint is</p>
+    <ul class="lines"><li><span class="who who--y" title="Ryan wrote this">✓</span>You're closing <b class="slot">their Q31 answer</b>, which means you're too cheap. Put your prices up between five and twenty percent before you touch anything else on this list.
+  <span class="t t--c">Only if Q31 is &ldquo;More than 80%&rdquo;</span></li></ul>
 
     <p class="lbl">How to fix it &nbsp;<i>9 written, 1 conditional, at most 9 ever print</i></p>
     <ol class="lines lines--n"><li><span class="who who--y" title="Ryan wrote this">✓</span>Write down every point of contact a customer has with you, from the moment they buy through to six months later.
@@ -603,6 +625,10 @@ body.only-mine .sub.empty-after{display:none}
       <li><span class="who who--y" title="Ryan wrote this">✓</span>You don't fix this by dropping the price. You fix it by putting things into the offer that cost you very little and are worth real money to the buyer, and by clearing whatever somebody has to get over before they can say yes.
   <span class="t t--f">Same for everyone</span></li></ul>
 
+    <p class="lbl">Printed above the steps, whatever the constraint is</p>
+    <ul class="lines"><li><span class="who who--y" title="Ryan wrote this">✓</span>You're closing <b class="slot">their Q31 answer</b>, which means you're too cheap. Put your prices up between five and twenty percent before you touch anything else on this list.
+  <span class="t t--c">Only if Q31 is &ldquo;More than 80%&rdquo;</span></li></ul>
+
     <p class="lbl">How to fix it &nbsp;<i>8 written, 0 conditional, at most 9 ever print</i></p>
     <ol class="lines lines--n"><li><span class="who who--y" title="Ryan wrote this">✓</span>List everything you already do for a customer that isn't written into the offer, and write it in.
   <span class="t t--f">Same for everyone</span></li><li><span class="who who--y" title="Ryan wrote this">✓</span>Add two or three things that cost you close to nothing and are worth real money to the buyer. A guarantee, or something they'd otherwise have to go and source themselves.
@@ -636,6 +662,10 @@ body.only-mine .sub.empty-after{display:none}
   <span class="t t--s">Their answer dropped in</span></li>
       <li><span class="who who--y" title="Ryan wrote this">✓</span>Nothing downstream is broken. The business needs more people coming in the top, and it won't start feeding itself.
   <span class="t t--f">Same for everyone</span></li></ul>
+
+    <p class="lbl">Printed above the steps, whatever the constraint is</p>
+    <ul class="lines"><li><span class="who who--y" title="Ryan wrote this">✓</span>You're closing <b class="slot">their Q31 answer</b>, which means you're too cheap. Put your prices up between five and twenty percent before you touch anything else on this list.
+  <span class="t t--c">Only if Q31 is &ldquo;More than 80%&rdquo;</span></li></ul>
 
     <p class="lbl">How to fix it &nbsp;<i>8 written, 0 conditional, at most 9 ever print</i></p>
     <ol class="lines lines--n"><li><span class="who who--y" title="Ryan wrote this">✓</span>Ask your happiest customers for something in writing or on camera. Pay for it, or give them something for it.

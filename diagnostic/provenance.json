@@ -1,7 +1,6 @@
 {
   "_note": "Who wrote each line. yes means Ryan wrote it or dictated it in a message. no means Claude wrote it and Ryan has not signed it off. Anything uncertain is no, because claiming he approved something he did not is the worse error. Paths are block.constraintOrRisk.field[index].",
   "_reworded": "Lines Ryan wrote that Claude changed the words of, to meet the no dashes rule, the banned sentence shapes, or the September ruling that no copy may assume a delivery model, a sales process or a pricing method.",
-
   "constraintDef.talent.open[0]": "yes",
   "constraintDef.talent.open[1]": "yes",
   "constraintDef.talent.open[2]": "yes",
@@ -18,7 +17,6 @@
   "constraintFix.talent.actions[5]": "yes",
   "constraintFix.talent.actions[6]": "yes",
   "constraintFix.talent.actions[7]": "yes",
-
   "constraintDef.fulfilment.open[0]": "yes",
   "constraintDef.fulfilment.open[1]": "yes",
   "constraintDef.fulfilment.evidence[0]": "yes",
@@ -35,7 +33,6 @@
   "constraintFix.fulfilment.actions[6]": "yes",
   "constraintFix.fulfilment.actions[7]": "yes",
   "constraintFix.fulfilment.actions[8]": "yes",
-
   "constraintDef.margin.open[0]": "yes",
   "constraintDef.margin.open[1]": "yes",
   "constraintDef.margin.evidence[0]": "yes",
@@ -43,7 +40,6 @@
   "constraintDef.margin.evidence[2]": "yes",
   "constraintDef.margin.evidence[3]": "yes",
   "constraintDef.margin.close": "yes",
-
   "constraintDef.demand.open[0]": "yes",
   "constraintDef.demand.open[1]": "yes",
   "constraintDef.demand.evidence[0]": "yes",
@@ -58,7 +54,6 @@
   "constraintFix.demand.actions[5]": "yes",
   "constraintFix.demand.actions[6]": "yes",
   "constraintFix.demand.actions[7]": "yes",
-
   "constraintDef.offer.open[0]": "yes",
   "constraintDef.offer.open[1]": "yes",
   "constraintDef.offer.evidence[0]": "yes",
@@ -74,7 +69,6 @@
   "constraintFix.offer.actions[5]": "yes",
   "constraintFix.offer.actions[6]": "yes",
   "constraintFix.offer.actions[7]": "yes",
-
   "constraintDef.value.open[0]": "yes",
   "constraintDef.value.open[1]": "yes",
   "constraintDef.value.evidence[0]": "yes",
@@ -86,9 +80,8 @@
   "constraintFix.value.actions[1]": "yes",
   "constraintFix.value.actions[7]": "yes",
   "constraintFix.value.actions[8]": "yes",
-
   "dontDoYet.fulfilment.items[0]": "yes",
   "dontDoYet.fulfilment.items[1]": "yes",
-
-  "_everythingElse": "no"
+  "_everythingElse": "no",
+  "prompts[0]": "yes"
 }

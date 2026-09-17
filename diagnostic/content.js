@@ -1232,26 +1232,27 @@ window.DIAG ={
       "options": [
         {
           "id": "a",
-          "text": "More than half",
-          "band": "above 50%",
-          "w": 0
+          "text": "More than 80%",
+          "band": "above 80%",
+          "w": 0,
+          "disqualify": "offer"
         },
         {
           "id": "b",
-          "text": "25% to 50%",
-          "band": "in the 25 to 50% range",
+          "text": "50% to 80%",
+          "band": "in the 50 to 80% range",
           "w": 33
         },
         {
           "id": "c",
-          "text": "10% to 25%",
-          "band": "in the 10 to 25% range",
+          "text": "25% to 50%",
+          "band": "in the 25 to 50% range",
           "w": 67
         },
         {
           "id": "d",
-          "text": "Under 10%",
-          "band": "under 10%",
+          "text": "Under 25%",
+          "band": "under 25%",
           "w": 100
         }
       ]
@@ -3077,7 +3078,21 @@ window.DIAG ={
       "loose": "That's the read. One thing to push on, and nothing in the way of it.\n\nRun this again in ninety days, or whenever something material changes. The constraint moves as the business grows, and the answer you get next time probably won't be this one."
     },
     "looseBody": "Nothing in here is failing, so there's no evidence to walk you through. What you've got is {d.primaryShort} sitting as the tightest of the seven right now, which makes it the likeliest place the next bit of growth comes from. The actions below are worth doing and none of them are urgent.",
-    "riskLead": "These are the things that would hurt most if something went wrong. They aren't capping the business the way the constraint above is, but they're major risks."
+    "riskLead": "These are the things that would hurt most if something went wrong. They aren't capping the business the way the constraint above is, but they're major risks.",
+    "prompts": [
+      {
+        "id": "underpriced",
+        "text": "You're closing {q26.band}, which means you're too cheap. Put your prices up between five and twenty percent before you touch anything else on this list.",
+        "when": [
+          [
+            "q26",
+            [
+              "a"
+            ]
+          ]
+        ]
+      }
+    ]
   },
   "hardTriggers": {
     "talent": [

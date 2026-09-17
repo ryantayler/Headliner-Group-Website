@@ -45,6 +45,10 @@ const constraints = D.chain.map((c, i) => {
       ${(cd.evidence || []).map((e, n) => line(e.banded, null, `constraintDef.${c}.evidence[${n}]`)).join('')}
       ${line(cd.close, null, `constraintDef.${c}.close`)}</ul>
 
+    <p class="lbl">Printed above the steps, whatever the constraint is</p>
+    <ul class="lines">${(D.blocks.prompts || []).map((p, n) =>
+      line(p.text, p.when, `prompts[${n}]`)).join('')}</ul>
+
     <p class="lbl">How to fix it &nbsp;<i>${f.actions.length} written, ${cond} conditional, at most ${D.thresholds.MAX_ACTIONS} ever print</i></p>
     <ol class="lines lines--n">${f.actions.map((a, n) => line(a.text, a.when, `constraintFix.${c}.actions[${n}]`)).join('')}</ol>
 
@@ -100,6 +104,7 @@ let mineN = 0, ryanN = 0;
     D.blocks.constraintFix[c].actions.forEach((_, n) => bump(`constraintFix.${c}.actions[${n}]`));
     D.blocks.dontDoYet[c].items.forEach((_, n) => bump(`dontDoYet.${c}.items[${n}]`));
   }
+  (D.blocks.prompts || []).forEach((_, n) => bump(`prompts[${n}]`));
   for (const id of Object.keys(D.flags)) {
     bump(`riskDef.${id}`);
     (D.blocks.riskFix[id] || []).forEach((_, n) => bump(`riskFix.${id}[${n}]`));

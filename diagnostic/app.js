@@ -190,6 +190,9 @@
       '<p class="due">' + esc(r.primary.due) + '</p>' +
       para(r.primary.body) + '</div></div>';
     h += '<div class="sec">' + label("How to fix it") +
+      r.primary.prompts.map(function (t) {
+        return '<p class="prompt">' + esc(t) + '</p>';
+      }).join("") +
       '<ol class="acts">' + r.primary.fix.actions.map(function (a) { return "<li>" + esc(a) + "</li>"; }).join("") + "</ol></div>";
     h += '<div class="sec">' + label("Your risks, and what to do about them") +
       "<p>" + esc(r.risk.lead) + "</p>" +
@@ -275,6 +278,9 @@
     // customers still buying, and most of their work going somewhere else
     wallet:     { q34:"d", q16:"a", q17:"a", q21:"a", q57:"d", q22:"b", q23:"c", q24:"c",
                   q25:"d", q42:"d", q43:"c", q46:"c", q49:"c" },
+    // closing more than eight in ten. Offer cannot be called, and the pricing
+    // prompt prints on whatever the constraint turns out to be.
+    closer:     { q34:"d", q16:"a", q17:"a", q26:"a", q27:"c", q28:"d", q29:"d", q30:"c" },
     // every question on its worst answer
     allbad:     null
   };
@@ -284,7 +290,7 @@
     q11:["a","b","c","d","e"], q12:"a", q13:["n"], q56:"a", q14:"a", q15:"a",
     q16:"b", q17:"a", q18:"b", q19:"a", q20:"a",
     q21:"a", q57:"a", q22:"a", q23:"a", q24:"a", q25:"a",
-    q26:"a", q27:"b", q28:"a", q29:"a", q30:"a",
+    q26:"b", q27:"b", q28:"a", q29:"a", q30:"a",
     q31:"a", q32:["a","c","d"], q33:"a", q34:"c", q35:"a",
     q36:"a", q37:"a", q38:"a", q39:"a", q40:"a", q59:["a","b","c","d","e"],
     q41:"a", q42:"a", q43:"a", q44:["n"], q45:"a", q46:"a",

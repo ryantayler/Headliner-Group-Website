@@ -359,7 +359,11 @@
     // Only the three constraints on the right side of the business can be called.
     // The other three are not reachable, which is what stops the report telling an
     // owner with an empty diary to go and hire.
-    var pool = cfg().families[major.id].filter(function (cid) { return !dq[cid]; });
+    var fam = cfg().families[major.id];
+    var pool = fam.filter(function (cid) { return !dq[cid]; });
+    // A disqualifier rules a constraint out of being called. It must never rule out
+    // the whole family, or there is nothing left to name.
+    if (!pool.length) pool = fam.slice();
     // Highest score wins, not position. Anything inside the gap falls back to the
     // old order, so a near tie is not decided by noise.
     var ranked = pool.slice().sort(function (a, b) {
@@ -417,6 +421,11 @@
         body: wellRun ? sentenceCase(fill(B.looseBody, ans, d))
             : buildDef(B.constraintDef[primaryId], ans, d),
         fix: { lead: B.constraintFix[primaryId].lead, actions: actionsFor(B.constraintFix[primaryId], ans) },
+        // Printed above the steps, whatever the constraint turned out to be, because
+        // one answer can be worth acting on regardless of what else is wrong.
+        prompts: (B.prompts || []).filter(function (p) {
+          return !p.when || p.when.every(function (pair) { return condMet(ans, pair); });
+        }).map(function (p) { return sentenceCase(fill(p.text, ans, d)); }),
         confident: confident
       },
       risk: {
