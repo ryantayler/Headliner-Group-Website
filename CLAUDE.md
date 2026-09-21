@@ -88,6 +88,25 @@ attribute in front of it, and nothing outside it may be changed to serve it. The
 scripts `allspice.js`, `auditspice.js` and `fwspice.js` run the standard checks with the
 layer on; run both states before pushing anything that touches it.
 
+### Where the beam is allowed
+
+Three devices come out of the logo and each has a rule. They are rules, not preferences.
+Adding a fourth instance of any of them is a change to the system, not a tweak.
+
+**The beam rule under a heading: once per page, on the section that carries the offer.**
+`data-rule="beam"`. Home, how we do it. Partnerships, two ways we help you grow. Ryan,
+three ways to work with me. The mark appears at the point of the pitch and nowhere else.
+It was on every heading for a round and the site drowned in it. **Do not put a second one
+on a page.** A new section never inherits it; if the offer moves, the beam moves with it.
+
+**The background shaft: once per page, and never on a page without one.** Free Sh!t and
+Contact have none, because neither page makes an argument. It takes the accent token, so
+on Ryan's page it comes out pink on its own.
+
+**The centred head: a heading that opens a symmetric block.** Three cards, three facts, a
+pair of lanes. It is not a way to make a section feel important. A heading over prose
+stays on its left edge.
+
 ## Known traps
 
 - `clip-path` applies **after** `filter`. The logo beam depends on it. The section beam

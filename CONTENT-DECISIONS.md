@@ -1575,3 +1575,31 @@ over a symmetric block, three cards and three facts, which is why centring holds
 
 **Two, not every one.** Centred is a device and it stops meaning anything the moment it
 becomes the default. Every other head on the site stays on its left edge.
+
+
+## When the beam is allowed to appear
+
+It was under every heading on three pages, fifteen of them, and Ryan called it: the line
+cannot be everywhere and it cannot be anywhere either. So it has a rule.
+
+**The beam rule appears once per page, under the heading of the section that carries the
+offer.** Home, how we do it. Partnerships, two ways we help you grow. Ryan, three ways to
+work with me. The mark shows up at the point of the pitch. Free Sh!t and Contact have no
+offer section and no beam.
+
+That is the whole formula, and it is checkable. It also means the beam moves if the offer
+moves, and a new section never picks one up by being new.
+
+**The background shaft follows the same count**, one per page, on the three pages that
+make an argument. It is the quiet version of the same mark, so the two together read as
+one idea appearing twice on a page rather than a pattern.
+
+**The centred head is a separate device with its own condition:** a heading that opens a
+symmetric block. Three cards, three facts, a pair of lanes. Four on the site now, the
+three on Partnerships and Ryan's three ways to work with me, which sits over a three up
+grid and earns it. It is not a way to make a section feel important, so a heading over
+prose stays on its left edge, which is why home has none.
+
+The one on Ryan's page is the only place the site centres anything on his brand, and his
+pages are left aligned everywhere else. It is inside the spice layer, so it comes off with
+one word if that is wrong.
