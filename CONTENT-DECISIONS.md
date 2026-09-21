@@ -1187,3 +1187,8 @@ optimisation, which is the pillar order with optimisation on the end where it be
 *See how it works* is a button now rather than a text link, and it carries no arrow. The
 text links on Free Sh!t keep theirs, because there they sit inside cards and the arrow is
 what marks them as a target.
+
+**Both bands sit in the narrow shell**, so what we do and how we do it share one left and
+one right edge straight down the page. The how band used a split head, which threw the
+heading to one side of the page and the copy to the other and broke that line against the
+hard column above it.
