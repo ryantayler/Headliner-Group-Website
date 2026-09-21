@@ -1160,3 +1160,17 @@ the page is called everywhere else on the site.
 **Have a conversation.** *Tell us about your business, your challenges, and your goals,
 and we'll let you know if you're the right fit to work with us.* First person plural, not
 Ryan's I, because this page is the group's. The button text is unchanged.
+
+## The record on Ryan's page is five facts
+
+115+ live events, 56,000+ attendees, 8 figures generated from his events, 7 figures from
+optimisation and partnerships, based in Australia. The three that were already there are
+unchanged, the two money facts are new, and Australia closes it.
+
+Five across on desktop, **one column under 760**, not two. The stats row draws its rules
+as a 1px grid gap over a line coloured background, so a row that is not full shows an
+empty cell painted in the line colour. Two columns with five facts leaves one.
+
+This puts the money numbers on the page in two places, the record and the bio. The
+`ryan-voice` skill still locks the proof set at 115+ and 56,000+ and says not to mix, so
+that skill and this page now disagree. The skill is synced, so it has to change there.
