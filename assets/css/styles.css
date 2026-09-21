@@ -190,15 +190,47 @@
    because it is the thing the words are describing. */
 .engine{display:grid;gap:clamp(26px,3.2vw,48px)}
 .engine__copy{display:grid;align-content:center}
-.engine__fig{margin:0;align-self:center}
-.engine__d{display:block;width:100%;height:auto;color:var(--ink)}
-@media (min-width:900px){
-  .engine{grid-template-columns:minmax(0,1.12fr) minmax(0,1fr);align-items:center}
+/* The drawing gets the same build as a pillar card, panel fill, rim, 16px corners and the
+   inset vignette, so the two blocks carry the same weight. The pillars have four cards
+   here, this one has the engine. */
+.engine__fig{
+  position:relative;overflow:hidden;margin:0;
+  display:grid;place-items:center;
+  background:var(--panel);border:1px solid var(--rim);border-radius:16px;
+  padding:clamp(16px,2.2vw,26px) clamp(8px,1.4vw,18px);
 }
-/* On a phone the drawing takes the inset's padding back, because its labels scale with
-   its width and a narrower drawing puts them under our smallest type size. */
+/* A pink bloom under the loop, doing the job the numeral does behind a pillar card, and
+   the same inset shadow on top of it pulling the corners back down. Keep the bloom weak.
+   Pink labels sit on it and the two trade against each other the same way. */
+.engine__fig::before{
+  content:"";position:absolute;left:30%;top:56%;width:64%;aspect-ratio:1;z-index:0;
+  transform:translate(-50%,-50%);pointer-events:none;
+  background:radial-gradient(circle,rgba(255,45,107,.11) 0%,rgba(255,45,107,0) 72%);
+}
+/* softer and wider than the pillar card's, because this card is tall and a tight spread
+   leaves the shadow's own rounded edge showing as a ghost rectangle inside it */
+.engine__fig::after{
+  content:"";position:absolute;inset:0;z-index:0;pointer-events:none;border-radius:inherit;
+  box-shadow:inset 0 0 150px 30px rgba(10,10,10,.82);
+}
+.engine__d{position:relative;z-index:1;display:block;width:100%;height:auto;grid-area:1/1}
+/* Three readings in the one drawing. The loop that grows you is pink, the work at the
+   centre and the inputs feeding it are ink, and the half you lose is stepped back. */
+.engine__d .eng-loop{stroke:var(--pink);fill:var(--pink)}
+.engine__d .eng-in{stroke:var(--ink);fill:var(--ink)}
+.engine__d .eng-hub{fill:var(--ink)}
+.engine__d .eng-out{stroke:#8F8A82;fill:#8F8A82}
+/* the fills above are for the labels; the strokes are never filled */
+.engine__d path{fill:none}
+@media (min-width:900px){
+  /* the card takes the copy's full height, the way pillar cards match each other */
+  .engine{grid-template-columns:minmax(0,1.12fr) minmax(0,1fr);align-items:stretch}
+}
+/* On a phone the card takes back most of the inset's padding, because the labels scale
+   with the drawing's width. Two pixels of it stay, so the card's rim never sits on the
+   inset's own. */
 @media (max-width:620px){
-  .engine__fig{margin-inline:calc(clamp(22px,3vw,40px)*-1)}
+  .engine__fig{margin-inline:calc(clamp(22px,3vw,40px)*-1 + 8px);padding-inline:6px}
 }
 .pillars__sig{
   display:block;margin-left:auto;width:clamp(140px,16vw,180px);

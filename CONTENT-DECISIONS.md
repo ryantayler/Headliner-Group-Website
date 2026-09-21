@@ -1238,6 +1238,32 @@ fork where the other branch runs out to leave. The second one is the one that go
 back, so it reads **don't impress** here. That is what the copy beside it says.
 
 The labels scale with the drawing, so their size is set by the column. **On a phone the
-figure takes the inset's padding back** with a negative inline margin, because at the
-padded width the labels fall under our smallest type size. Checked at seven widths from
-390 to 1440. No label overlaps another and none spills the figure.
+card takes most of the inset's padding back** with a negative inline margin, because at
+the padded width the labels fall under our smallest type size. A few pixels stay, so the
+card's rim never sits on the inset's own. Checked at seven widths from 390 to 1440. No
+label overlaps another and none spills the figure.
+
+## The engine gets the pillar card build
+
+The engine block was a drawing and a wall of text next to a block that had four built
+cards. It now carries the same weight.
+
+**The drawing sits in a card.** Panel fill, rim, 16px corners, the inset vignette. Where
+the pillars have four cards, this one has the engine, and the card takes the copy's full
+height the way pillar cards match each other.
+
+**A pink bloom under the loop**, doing the job the numeral does behind a pillar card, with
+the vignette over it pulling the corners back down. The vignette is softer and wider than
+the pillar card's, because this card is tall and a tight spread leaves the shadow's own
+rounded edge showing as a ghost rectangle inside it.
+
+**Three readings in the one drawing.** The loop that grows you is pink and drawn a shade
+heavier. The work at the centre and the inputs feeding it are ink, and *do work* is set a
+size up because it is the hub. The half you lose, don't impress out to leave, is stepped
+back to a grey that still clears AA on the panel.
+
+Pink labels sit on the bloom and the two trade against each other exactly as the pillar
+copy and the numerals do. **Pixel sampled at nine widths**, worst 4.81 to 1. Do not
+strengthen the bloom without re-running that check.
+
+**Still no second signature and no second handwritten line.** One per view holds.
