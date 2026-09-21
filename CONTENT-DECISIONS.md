@@ -1365,3 +1365,41 @@ which is where it earns its place, and a third one at the bottom of a row of soc
 buttons was the weakest of the three.
 
 The four platform URLs are still placeholders pointing at each site's front page.
+
+## The record leads with money
+
+**8 figures+, 7 figures+, 115+, 56,000+.** Generated from events, from partnerships, events
+delivered, attendees. The money moved to the front because it is the part a business owner
+is weighing, and the two figure counts carry a plus like the other two.
+
+## The bio, tightened
+
+The back of house detail, the five in the morning load in and the run sheets, is replaced
+by **So I deeply understand our industry.** Ryan's call, and the paragraph above it already
+sets the scene.
+
+**Aaron Sansoni is named as Australia's #1 business mentor**, the sentence about a business
+built around a stage ends at *how a business is built*, and the closing line is now the
+climb: **In 5 short years I went from a junior to general manager of his largest company,
+and now to entrepreneur.**
+
+He dictated that middle sentence as *how a business built*. Written as *is built* here,
+which is the only reading that is a sentence.
+
+## Three ways to work with me
+
+**#1, #2, #3** rather than 01, 02, 03. The `.card__n` tracking was .2em, set for a two
+digit number, which opened a gap between the hash and the digit. Tracked normally and
+sized up a step instead.
+
+New copy on all three, and **no arrows on the links**.
+
+**The link on the pink card carries its rule all the time.** It is black on pink, the same
+as the body copy on that card, and the underline only appeared on hover, so nothing marked
+it as a link. The other two are pink on dark and read as links already.
+
+## What I teach when I teach is cut
+
+The CRAFT Method, the Momentum Formula and the Negotiation Playbook were placeholders
+carried from the first build, flagged as needing confirmation before launch. They are gone
+rather than confirmed. The named IP that is real lives on Partnerships.

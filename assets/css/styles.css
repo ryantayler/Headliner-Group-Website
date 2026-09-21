@@ -254,7 +254,12 @@
 .theme-ryan .card--pink .glow{position:absolute;inset:0;z-index:0;pointer-events:none;
   box-shadow:inset 0 0 calc(var(--cw)*.25) calc(var(--cw)*.015) rgba(0,0,0,.38)}
 .theme-ryan .card--pink p,.theme-ryan .card--pink .card__n{color:#0A0A0A}
-.theme-ryan .card--pink .tlink{color:#0A0A0A;background-image:linear-gradient(#0A0A0A,#0A0A0A)}
+/* On the pink card the link is black on pink, the same as the body copy, so it carries
+   its rule all the time rather than only on hover. Nothing else marks it as a link. */
+.theme-ryan .card--pink .tlink{
+  color:#0A0A0A;background-image:linear-gradient(#0A0A0A,#0A0A0A);background-size:100% 1.5px;
+}
+.theme-ryan .card--pink .tlink:hover{background-size:100% 3px}
 
 /* Hero. His portrait on the left, fading into the ground, signature on the
    clean right. No beam on this page at all. */
@@ -795,7 +800,9 @@ button,input,textarea,select{font:inherit;color:inherit}
 .band--panel .card{background:var(--base)}
 a.card:hover,.card--hover:hover{transform:translateY(-4px);border-color:rgba(var(--accent-rgb),.42)}
 
-.card__n{font-size:11px;font-weight:600;letter-spacing:.2em;color:var(--tx-accent)}
+/* the .2em tracking was set for 01 02 03. With #1 it opens a gap between the hash and
+   the digit, so the number is tracked normally and sized up instead. */
+.card__n{font-size:12.5px;font-weight:600;letter-spacing:.01em;color:var(--tx-accent)}
 .card p{color:var(--tx-mute);font-size:.95rem}
 .card__foot{margin-top:auto;padding-top:6px}
 .card--media{padding-top:0;padding-inline:0;overflow:hidden}
