@@ -601,6 +601,17 @@ button,input,textarea,select{font:inherit;color:inherit}
 .btn--ghost{background:transparent;color:var(--tx);border-color:var(--line)}
 .btn--ghost:hover{border-color:var(--tx-accent);color:var(--tx-accent)}
 
+/* Platform buttons wear their own brand colour. Facebook blue, YouTube red and the
+   bright end of the Instagram gradient are all too light for a white label at their
+   published values, so each is darkened only as far as AA needs. Hover is a ring rather
+   than a brightness lift, which would take the contrast straight back down. */
+.btn--plat{color:#fff;border-color:transparent}
+.btn--plat:hover{color:#fff;box-shadow:0 0 0 3px rgba(255,255,255,.16)}
+.btn--plat svg{width:17px;height:17px;flex:none;fill:currentColor}
+.btn--li{background:#0A66C2}
+.btn--ig{background:#C13584;background-image:linear-gradient(115deg,#833AB4,#C13584)}
+.btn--yt{background:#DC0000}
+.btn--fb{background:#1469D8}
 .btn--quiet{background:var(--base);color:var(--ink);border-color:var(--base)}
 /* His page is one click away and this is the button that goes there, so it wears his
    accent rather than the group's. Black on pink, 5.5 to 1, per his brand. The value is

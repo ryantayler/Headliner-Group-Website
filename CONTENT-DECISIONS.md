@@ -1343,3 +1343,25 @@ On home, the free sh!t button is just **Get it**.
 Head and the closing paragraphs centre, the three cards keep their own left aligned copy.
 The three ways read as equal options rather than a list running off a left edge, and
 centring the card bodies as well would have made them hard to read.
+
+## Follow me somewhere
+
+The social section on Ryan's page is five buttons now, **LinkedIn, Instagram, YouTube,
+Facebook and Free Sh!t**, each platform one wearing its own mark and its own brand colour
+and Free Sh!t in his pink, so his own thing sits last and reads as the one that is his.
+
+The published brand colours do not all clear AA behind a white label. **Facebook blue,
+YouTube red and the bright end of the Instagram gradient are all too light**, so each is
+darkened only as far as the label needs and no further. Hover is a white ring rather than
+a brightness lift, which would take the contrast straight back down. Pixel sampled against
+the brightest pixel inside each button, worst 5.16 to 1.
+
+The sub heading says what the buttons are for. *If you like what you see but you're not
+ready to make the commitment, follow me on your preferred platform to get some free
+content. Or just get some free sh!t right here.*
+
+**The signature comes off this section.** It now closes both IP blocks on Partnerships,
+which is where it earns its place, and a third one at the bottom of a row of social
+buttons was the weakest of the three.
+
+The four platform URLs are still placeholders pointing at each site's front page.
