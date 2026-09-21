@@ -1183,6 +1183,50 @@ body.sheet-open{overflow:hidden}
 /* a centred heading takes a centred rule, or it sits under the left edge of the block */
 [data-spice="on"] .head--center [data-rule]::after{margin-inline:auto}
 
+/* ---- three ways of using the logo beam, one example each, all independent ----
+   1. data-rule="beam", home. The rule under the heading becomes a slice of the mark,
+      a short wedge raked to the logo's 34 degrees with the same falloff. Home carries
+      it, the other pages keep the flat rule, so the two sit side by side.
+   2. .spice-beam-band, the dark band on home. One shaft raking across the section.
+      No clip-path on it: clip applies after filter, so a blurred then clipped shaft
+      comes back with a hard edge. The taper is in the gradient instead.
+   3. .spice-beam-edge, Who this is for on partnerships. A single streak crossing the
+      seam between two bands at 34 degrees. A whole tilted band edge cannot use that
+      angle, 34 degrees across 1440 is 970px of slope, so the angle lives in the streak.
+   Delete any of the three on its own: the rule here and its marker in the markup. */
+[data-spice="on"] [data-rule="beam"]::after{
+  height:11px;border-radius:2px;
+  background:linear-gradient(100deg,
+    rgba(var(--accent-rgb),.92),rgba(var(--accent-rgb),.2) 58%,rgba(var(--accent-rgb),0));
+  transform:skewX(-34deg);transform-origin:0 100%;
+  filter:blur(.6px);
+}
+[data-spice="on"] .is-in [data-rule="beam"]::after,
+[data-spice="on"] [data-rule="beam"].is-in::after{width:66px}
+
+[data-spice="on"] .spice-beam-band{position:relative;overflow:hidden}
+[data-spice="on"] .spice-beam-band::before{
+  content:"";position:absolute;z-index:0;pointer-events:none;
+  top:-55%;left:6%;width:min(26vw,360px);height:210%;
+  transform:rotate(34deg);
+  background:linear-gradient(to bottom,
+    rgba(var(--accent-rgb),.13),rgba(var(--accent-rgb),.05) 52%,rgba(var(--accent-rgb),0));
+  filter:blur(34px);
+}
+[data-spice="on"] .spice-beam-band>.shell{position:relative;z-index:1}
+
+/* band--lit clips, so the streak would lose the half that sits in the section above and
+   the crossing is the whole idea. This band carries no lit beam of its own to bleed. */
+[data-spice="on"] .spice-beam-edge{position:relative;overflow:visible}
+[data-spice="on"] .spice-beam-edge::before{
+  content:"";position:absolute;z-index:2;pointer-events:none;
+  top:0;left:9%;width:3px;height:clamp(130px,15vw,210px);
+  transform:translateY(-50%) rotate(34deg);
+  background:linear-gradient(to bottom,
+    rgba(var(--accent-rgb),0),rgba(var(--accent-rgb),.85) 46%,rgba(var(--accent-rgb),0));
+  filter:blur(1px);
+}
+
 /* The plain card is the most generic thing on the site. A wash of the accent off the
    top edge and a soft drop, and it stops looking like a default. The cards that already
    have a build of their own are left alone. */
