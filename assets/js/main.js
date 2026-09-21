@@ -84,7 +84,9 @@
         });
         var shown = 0;
         cards.forEach(function (card) {
-          var on = want === 'all' || card.dataset.cat === want;
+          /* a magnet can sit in more than one group, pipe separated */
+          var cats = (card.dataset.cat || '').split('|');
+          var on = want === 'all' || cats.indexOf(want) > -1;
           card.hidden = !on;
           if (on) shown++;
         });

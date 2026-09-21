@@ -1414,16 +1414,40 @@ page and the cards speak for themselves.
 Grow it become **Everything, Frameworks, Tools, Worksheets, Templates.** Somebody landing
 here is looking for a calculator or a template, not for a part of their business.
 
-- **Frameworks, 2.** Post event debrief pack, The first 90 days.
-- **Tools, 3.** The event margin calculator, Crew rate card builder, What the cheapest
-  quote really costs. The three things that do a sum for you.
-- **Worksheets, 4.** The load in checklist, Site survey and venue recce form, Supplier or
-  partner scorecard, Exit readiness checklist. Things you fill in.
-- **Templates, 3.** The quote that wins, Run sheet and crew call template, Event services
-  agreement. Things you copy and use.
-
-Frameworks carries two and that is honest. Padding it would mean calling a checklist a
-framework.
-
 The group name on each card and inside each detail sheet moves with it, and every chip's
 count is checked against what it actually shows.
+
+
+## The real magnets
+
+The twelve invented downloads are gone. **Seven real ones**, Ryan's list, with his
+grouping.
+
+- **The 4 pillars of partnership**, framework and worksheet
+- **The optimisation engine**, framework
+- **Team longevity plan**, framework
+- **Business data sheet**, worksheet
+- **Event managers data sheet**, worksheet
+- **Personality test**, tool
+- **Business constraint diagnosis**, tool
+
+**Templates is gone as a group**, because nothing on the list is one. Frameworks 3, Tools
+2, Worksheets 3, seven in all.
+
+**A magnet can sit in more than one group.** `data-cat` holds them pipe separated and the
+filter matches any one of them, because the four pillars is both a framework and a
+worksheet. The chip counts it twice and the chip counts add to more than seven on purpose.
+
+The group label on a card is **singular**, framework, worksheet, tool, because it names
+that one thing. The chips stay plural, because they name the group.
+
+**What is mine and needs his eye.** Ryan gave names and types and said that was all he
+could remember. The card lines, the sheet copy, the format badges and the photo briefs are
+all written here. The two he has already described on Partnerships, the pillars and the
+engine, are drawn from that copy. The other five are written from the name alone and he
+should correct them.
+
+The *What is in it* list is off every sheet rather than invented. It goes back on per
+magnet once he says what is in each.
+
+`assets/downloads/README.txt` now names the seven files the page links to.
