@@ -1495,13 +1495,18 @@ What the layer does:
   is untouched, and card headings stay sentence case, because uppercase at 18px is a
   shout. The wall magnets keep Inter too, since the display face runs a business card
   title to three lines.
-- **A real jump in heading size.** d2 goes from 46 to 72 at the top of its clamp, d3 from
-  25 to 32. Most of what reads as premium is the gap between heading and body.
-- **One dark band per page.** How we do it on home, How we partner and invest on
-  partnerships. Five near identical light bands in a row is what made the pages read flat.
-  Same tokens the header and footer already use.
-- **Section eyebrows**, with a rule that draws itself under the heading on reveal. The
-  labels come from the section names already in the HTML comments.
+- **A real jump in heading size.** d2 goes from 46 to 56 at the top of its clamp, d3 from
+  25 to 28. Most of what reads as premium is the gap between heading and body. The hero
+  stays a step above at 64. It cannot go up to widen that gap, because its lines are
+  nowrap above 760 and the longest one already fills the shell at 64.
+- **One dark band, on home only.** How we do it. Five near identical light bands in a row
+  is what made the page read flat. **Partnerships does not get one.** Dark on that page is
+  Ryan's personal brand, it is what the two IP blocks wear, and a Headliner band in black
+  beside them reads as his.
+- **A rule that draws itself under each heading** on reveal. There was a small uppercase
+  aqua label above it as well, and Ryan cut it: a kicker over every heading is the thing
+  that made the first build look the same section after section, and it reads as filler.
+  The attribute is `data-rule` now and carries no text.
 - **A wash of the accent off the top of the plain cards** and a soft drop. The cards that
   have a build of their own, the pillars, the pink card and the magnets, are left alone.
 - **More travel and a focus pull on the reveal**, with the delays opened up so a row of
