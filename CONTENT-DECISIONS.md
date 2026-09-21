@@ -1403,3 +1403,27 @@ it as a link. The other two are pink on dark and read as links already.
 The CRAFT Method, the Momentum Formula and the Negotiation Playbook were placeholders
 carried from the first build, flagged as needing confirmation before launch. They are gone
 rather than confirmed. The named IP that is real lives on Partnerships.
+
+## Free Sh!t goes straight into the wall
+
+**The whole preamble is cut.** *Built on real jobs, not written for a download page*, the
+paragraph under it and the *What a partnership involves* link. The hero already names the
+page and the cards speak for themselves.
+
+**The groups are what the thing is, not what it fixes.** Quote it, Run it, Protect it and
+Grow it become **Everything, Frameworks, Tools, Worksheets, Templates.** Somebody landing
+here is looking for a calculator or a template, not for a part of their business.
+
+- **Frameworks, 2.** Post event debrief pack, The first 90 days.
+- **Tools, 3.** The event margin calculator, Crew rate card builder, What the cheapest
+  quote really costs. The three things that do a sum for you.
+- **Worksheets, 4.** The load in checklist, Site survey and venue recce form, Supplier or
+  partner scorecard, Exit readiness checklist. Things you fill in.
+- **Templates, 3.** The quote that wins, Run sheet and crew call template, Event services
+  agreement. Things you copy and use.
+
+Frameworks carries two and that is honest. Padding it would mean calling a checklist a
+framework.
+
+The group name on each card and inside each detail sheet moves with it, and every chip's
+count is checked against what it actually shows.

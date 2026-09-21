@@ -57,147 +57,138 @@
 </section>
 
 <!-- ===== THE WALL =====
-     One heading and then the files. Twelve cards. Clicking one opens the detail sheet,
+     Filters and then the files, no preamble. Twelve cards, grouped by what the thing is
+     rather than what it fixes. Clicking one opens the detail sheet,
      built from the matching <template data-detail="..."> at the bottom of this file. To
      add a magnet, copy a card and its template, and put the real file in
      assets/downloads/. -->
 <section class="band band--paper2 band--lit">
   <div class="shell">
-    <div class="head head--split">
-      <div class="stack rv">
-        <h2 class="display d2">Built on real jobs, not written for a download page</h2>
-      </div>
-      <div class="stack rv rv-d1">
-        <p class="sub">Every one of these came out of a live business with a deadline attached. They are the public half of how we work. Sorted by the part of the business they fix. Open one, read exactly what is in it, then tell us where to send it.</p>
-        <a class="tlink" href="partnerships.html">What a partnership involves <span class="arw">&#8594;</span></a>
-      </div>
-    </div>
-
-    <div class="filters mt-m rv rv-d1" role="group" aria-label="Filter downloads by category">
+    <div class="filters rv" role="group" aria-label="Filter downloads by category">
       <button class="chip chip--f is-on" type="button" data-filter="all" aria-pressed="true">Everything <span class="chip__n">12</span></button>
-      <button class="chip chip--f" type="button" data-filter="Quote it" aria-pressed="false">Quote it <span class="chip__n">3</span></button>
-      <button class="chip chip--f" type="button" data-filter="Run it" aria-pressed="false">Run it <span class="chip__n">4</span></button>
-      <button class="chip chip--f" type="button" data-filter="Protect it" aria-pressed="false">Protect it <span class="chip__n">2</span></button>
-      <button class="chip chip--f" type="button" data-filter="Grow it" aria-pressed="false">Grow it <span class="chip__n">3</span></button>
+      <button class="chip chip--f" type="button" data-filter="Frameworks" aria-pressed="false">Frameworks <span class="chip__n">2</span></button>
+      <button class="chip chip--f" type="button" data-filter="Tools" aria-pressed="false">Tools <span class="chip__n">3</span></button>
+      <button class="chip chip--f" type="button" data-filter="Worksheets" aria-pressed="false">Worksheets <span class="chip__n">4</span></button>
+      <button class="chip chip--f" type="button" data-filter="Templates" aria-pressed="false">Templates <span class="chip__n">3</span></button>
     </div>
 
     <div class="grid g4 mt-m" id="wall">
-      <article class="card card--media magnet card--hover rv" data-cat="Quote it" data-id="margin">
+      <article class="card card--media magnet card--hover rv" data-cat="Tools" data-id="margin">
         <div class="media r-43">
           <div class="ph" data-slot="Photo &middot; 4:3"><span>The spreadsheet itself, on screen. Show the thing, never a stock laptop</span></div>
           <span class="magnet__fmt">XLSX</span>
         </div>
-        <p class="card__n">Quote it</p>
+        <p class="card__n">Tools</p>
         <h3 class="display d3"><button class="magnet__hit" type="button" data-open="margin">The event margin calculator</button></h3>
         <p>Work out what the job is worth before you quote it, not three weeks after the trucks leave.</p>
         <span class="card__foot"><span class="tlink" aria-hidden="true">Have a look <span class="arw">&#8594;</span></span></span>
       </article>
-      <article class="card card--media magnet card--hover rv rv-d1" data-cat="Quote it" data-id="ratecard">
+      <article class="card card--media magnet card--hover rv rv-d1" data-cat="Tools" data-id="ratecard">
         <div class="media r-43">
           <div class="ph" data-slot="Photo &middot; 4:3"><span>A rate card open on a laptop in a production office</span></div>
           <span class="magnet__fmt">XLSX</span>
         </div>
-        <p class="card__n">Quote it</p>
+        <p class="card__n">Tools</p>
         <h3 class="display d3"><button class="magnet__hit" type="button" data-open="ratecard">Crew rate card builder</button></h3>
         <p>What your crew actually costs you per hour, once super, penalties and travel are in it.</p>
         <span class="card__foot"><span class="tlink" aria-hidden="true">Have a look <span class="arw">&#8594;</span></span></span>
       </article>
-      <article class="card card--media magnet card--hover rv rv-d2" data-cat="Quote it" data-id="quote">
+      <article class="card card--media magnet card--hover rv rv-d2" data-cat="Templates" data-id="quote">
         <div class="media r-43">
           <div class="ph" data-slot="Photo &middot; 4:3"><span>A signed quote on a desk, pen still on it</span></div>
           <span class="magnet__fmt">DOCX</span>
         </div>
-        <p class="card__n">Quote it</p>
+        <p class="card__n">Templates</p>
         <h3 class="display d3"><button class="magnet__hit" type="button" data-open="quote">The quote that wins</button></h3>
         <p>A quote structure that gets signed faster, because it answers the questions they were going to ask anyway.</p>
         <span class="card__foot"><span class="tlink" aria-hidden="true">Have a look <span class="arw">&#8594;</span></span></span>
       </article>
-      <article class="card card--media magnet card--hover rv rv-d3" data-cat="Run it" data-id="loadin">
+      <article class="card card--media magnet card--hover rv rv-d3" data-cat="Worksheets" data-id="loadin">
         <div class="media r-43">
           <div class="ph" data-slot="Photo &middot; 4:3"><span>A laminated checklist clipped to a road case at a dock</span></div>
           <span class="magnet__fmt">PDF</span>
         </div>
-        <p class="card__n">Run it</p>
+        <p class="card__n">Worksheets</p>
         <h3 class="display d3"><button class="magnet__hit" type="button" data-open="loadin">The load in checklist</button></h3>
         <p>Everything that has to be true before the first case comes off the truck.</p>
         <span class="card__foot"><span class="tlink" aria-hidden="true">Have a look <span class="arw">&#8594;</span></span></span>
       </article>
-      <article class="card card--media magnet card--hover rv" data-cat="Run it" data-id="runsheet">
+      <article class="card card--media magnet card--hover rv" data-cat="Templates" data-id="runsheet">
         <div class="media r-43">
           <div class="ph" data-slot="Photo &middot; 4:3"><span>A run sheet on a clipboard at front of house</span></div>
           <span class="magnet__fmt">XLSX</span>
         </div>
-        <p class="card__n">Run it</p>
+        <p class="card__n">Templates</p>
         <h3 class="display d3"><button class="magnet__hit" type="button" data-open="runsheet">Run sheet and crew call template</button></h3>
         <p>The version we landed on across 115+ live events, including the change log that stops the arguments.</p>
         <span class="card__foot"><span class="tlink" aria-hidden="true">Have a look <span class="arw">&#8594;</span></span></span>
       </article>
-      <article class="card card--media magnet card--hover rv rv-d1" data-cat="Run it" data-id="recce">
+      <article class="card card--media magnet card--hover rv rv-d1" data-cat="Worksheets" data-id="recce">
         <div class="media r-43">
           <div class="ph" data-slot="Photo &middot; 4:3"><span>An empty venue mid recce, tape measure out</span></div>
           <span class="magnet__fmt">PDF</span>
         </div>
-        <p class="card__n">Run it</p>
+        <p class="card__n">Worksheets</p>
         <h3 class="display d3"><button class="magnet__hit" type="button" data-open="recce">Site survey and venue recce form</button></h3>
         <p>Walk the room once and come back with everything, instead of ringing the venue four more times.</p>
         <span class="card__foot"><span class="tlink" aria-hidden="true">Have a look <span class="arw">&#8594;</span></span></span>
       </article>
-      <article class="card card--media magnet card--hover rv rv-d2" data-cat="Run it" data-id="debrief">
+      <article class="card card--media magnet card--hover rv rv-d2" data-cat="Frameworks" data-id="debrief">
         <div class="media r-43">
           <div class="ph" data-slot="Photo &middot; 4:3"><span>A crew debrief in a loading dock after a show</span></div>
           <span class="magnet__fmt">PDF</span>
         </div>
-        <p class="card__n">Run it</p>
+        <p class="card__n">Frameworks</p>
         <h3 class="display d3"><button class="magnet__hit" type="button" data-open="debrief">Post event debrief pack</button></h3>
         <p>The half hour after the job that quietly makes the next twenty jobs better.</p>
         <span class="card__foot"><span class="tlink" aria-hidden="true">Have a look <span class="arw">&#8594;</span></span></span>
       </article>
-      <article class="card card--media magnet card--hover rv rv-d3" data-cat="Protect it" data-id="agreement">
+      <article class="card card--media magnet card--hover rv rv-d3" data-cat="Templates" data-id="agreement">
         <div class="media r-43">
           <div class="ph" data-slot="Photo &middot; 4:3"><span>A printed agreement on a desk beside a laptop</span></div>
           <span class="magnet__fmt">DOCX</span>
         </div>
-        <p class="card__n">Protect it</p>
+        <p class="card__n">Templates</p>
         <h3 class="display d3"><button class="magnet__hit" type="button" data-open="agreement">Event services agreement</button></h3>
         <p>A plain English starting contract for production work. Have your lawyer read it before you use it.</p>
         <span class="card__foot"><span class="tlink" aria-hidden="true">Have a look <span class="arw">&#8594;</span></span></span>
       </article>
-      <article class="card card--media magnet card--hover rv" data-cat="Protect it" data-id="scorecard">
+      <article class="card card--media magnet card--hover rv" data-cat="Worksheets" data-id="scorecard">
         <div class="media r-43">
           <div class="ph" data-slot="Photo &middot; 4:3"><span>A one pager on a bench in a warehouse</span></div>
           <span class="magnet__fmt">PDF</span>
         </div>
-        <p class="card__n">Protect it</p>
+        <p class="card__n">Worksheets</p>
         <h3 class="display d3"><button class="magnet__hit" type="button" data-open="scorecard">Supplier or partner scorecard</button></h3>
         <p>Ten questions that tell you which one you are dealing with, before an emergency does it for you.</p>
         <span class="card__foot"><span class="tlink" aria-hidden="true">Have a look <span class="arw">&#8594;</span></span></span>
       </article>
-      <article class="card card--media magnet card--hover rv rv-d1" data-cat="Grow it" data-id="truecost">
+      <article class="card card--media magnet card--hover rv rv-d1" data-cat="Tools" data-id="truecost">
         <div class="media r-43">
           <div class="ph" data-slot="Photo &middot; 4:3"><span>A pile of quotes on a desk, one of them circled</span></div>
           <span class="magnet__fmt">XLSX</span>
         </div>
-        <p class="card__n">Grow it</p>
+        <p class="card__n">Tools</p>
         <h3 class="display d3"><button class="magnet__hit" type="button" data-open="truecost">What the cheapest quote really costs</button></h3>
         <p>Price shopping every job looks like a saving. This works out what a year of it costs you.</p>
         <span class="card__foot"><span class="tlink" aria-hidden="true">Have a look <span class="arw">&#8594;</span></span></span>
       </article>
-      <article class="card card--media magnet card--hover rv rv-d2" data-cat="Grow it" data-id="ninety">
+      <article class="card card--media magnet card--hover rv rv-d2" data-cat="Frameworks" data-id="ninety">
         <div class="media r-43">
           <div class="ph" data-slot="Photo &middot; 4:3"><span>A whiteboard with the quarter mapped out</span></div>
           <span class="magnet__fmt">PDF</span>
         </div>
-        <p class="card__n">Grow it</p>
+        <p class="card__n">Frameworks</p>
         <h3 class="display d3"><button class="magnet__hit" type="button" data-open="ninety">The first 90 days</button></h3>
         <p>What we work through in the first quarter of a partnership, written so you can run it without us.</p>
         <span class="card__foot"><span class="tlink" aria-hidden="true">Have a look <span class="arw">&#8594;</span></span></span>
       </article>
-      <article class="card card--media magnet card--hover rv rv-d3" data-cat="Grow it" data-id="exit">
+      <article class="card card--media magnet card--hover rv rv-d3" data-cat="Worksheets" data-id="exit">
         <div class="media r-43">
           <div class="ph" data-slot="Photo &middot; 4:3"><span>A quiet office, a founder at a desk, end of day</span></div>
           <span class="magnet__fmt">PDF</span>
         </div>
-        <p class="card__n">Grow it</p>
+        <p class="card__n">Worksheets</p>
         <h3 class="display d3"><button class="magnet__hit" type="button" data-open="exit">Exit readiness checklist</button></h3>
         <p>Twenty things a buyer will ask for. Worth knowing two years out, not two weeks.</p>
         <span class="card__foot"><span class="tlink" aria-hidden="true">Have a look <span class="arw">&#8594;</span></span></span>
@@ -283,7 +274,7 @@
   </template>
 
   <template data-detail="margin">
-    <p class="card__n">Quote it</p>
+    <p class="card__n">Tools</p>
     <h2 class="display d2" id="sheet-title">The event margin calculator</h2>
     <p class="sub">Most event businesses find out what a job was really worth once the invoices have all landed. This does it at the quoting stage. Crew, gear, freight, venue, insurance, contingency and the hours nobody bills for, all in one sheet that gives you a defensible number.</p>
     <div class="chips mt-s"><span class="chip chip--on">XLSX</span><span class="chip">Excel, Numbers and Sheets</span></div>
@@ -300,7 +291,7 @@
     </div>
   </template>
   <template data-detail="ratecard">
-    <p class="card__n">Quote it</p>
+    <p class="card__n">Tools</p>
     <h2 class="display d2" id="sheet-title">Crew rate card builder</h2>
     <p class="sub">Charge out rates that were set three years ago quietly stop working. This builds them back up from the real cost of a person on site, including the parts that never make it onto the rate card.</p>
     <div class="chips mt-s"><span class="chip chip--on">XLSX</span><span class="chip">Excel, Numbers and Sheets</span></div>
@@ -316,7 +307,7 @@
     </div>
   </template>
   <template data-detail="quote">
-    <p class="card__n">Quote it</p>
+    <p class="card__n">Templates</p>
     <h2 class="display d2" id="sheet-title">The quote that wins</h2>
     <p class="sub">Clients do not compare quotes, they compare confidence. This is the structure we use, written so the scope, the assumptions and the exclusions are obvious before anyone signs.</p>
     <div class="chips mt-s"><span class="chip chip--on">DOCX</span><span class="chip">Word and Google Docs</span></div>
@@ -333,7 +324,7 @@
     </div>
   </template>
   <template data-detail="loadin">
-    <p class="card__n">Run it</p>
+    <p class="card__n">Worksheets</p>
     <h2 class="display d2" id="sheet-title">The load in checklist</h2>
     <p class="sub">Every bad load in traces back to something nobody confirmed. Two pages, laminate it, hand it to your crew chief. If the answers are not there, you do not start.</p>
     <div class="chips mt-s"><span class="chip chip--on">PDF</span><span class="chip">2 pages, print ready</span></div>
@@ -350,7 +341,7 @@
     </div>
   </template>
   <template data-detail="runsheet">
-    <p class="card__n">Run it</p>
+    <p class="card__n">Templates</p>
     <h2 class="display d2" id="sheet-title">Run sheet and crew call template</h2>
     <p class="sub">A run sheet everyone trusts is worth more than a good one nobody reads. Timings, owners, contacts and a change log, so when something moves at four in the afternoon there is one version of the truth.</p>
     <div class="chips mt-s"><span class="chip chip--on">XLSX</span><span class="chip">Excel, Numbers and Sheets</span></div>
@@ -367,7 +358,7 @@
     </div>
   </template>
   <template data-detail="recce">
-    <p class="card__n">Run it</p>
+    <p class="card__n">Worksheets</p>
     <h2 class="display d2" id="sheet-title">Site survey and venue recce form</h2>
     <p class="sub">The recce is the cheapest hour in the whole job and the one most often rushed. This is the form we walk with, ordered the way you actually move through a building.</p>
     <div class="chips mt-s"><span class="chip chip--on">PDF</span><span class="chip">4 pages, print ready</span></div>
@@ -384,7 +375,7 @@
     </div>
   </template>
   <template data-detail="debrief">
-    <p class="card__n">Run it</p>
+    <p class="card__n">Frameworks</p>
     <h2 class="display d2" id="sheet-title">Post event debrief pack</h2>
     <p class="sub">Almost nobody debriefs properly. It is the cheapest improvement available to an events business. Three pages, run it within a week while people still remember, and keep the answers where the next quote can find them.</p>
     <div class="chips mt-s"><span class="chip chip--on">PDF</span><span class="chip">3 pages</span></div>
@@ -401,7 +392,7 @@
     </div>
   </template>
   <template data-detail="agreement">
-    <p class="card__n">Protect it</p>
+    <p class="card__n">Templates</p>
     <h2 class="display d2" id="sheet-title">Event services agreement</h2>
     <p class="sub">A starting point, not legal advice. It covers the things that go wrong most often in production work, written so a client can read it without a solicitor sitting next to them.</p>
     <div class="chips mt-s"><span class="chip chip--on">DOCX</span><span class="chip">Word and Google Docs</span></div>
@@ -418,7 +409,7 @@
     </div>
   </template>
   <template data-detail="scorecard">
-    <p class="card__n">Protect it</p>
+    <p class="card__n">Worksheets</p>
     <h2 class="display d2" id="sheet-title">Supplier or partner scorecard</h2>
     <p class="sub">In an emergency a supplier says no when it&rsquo;s inconvenient and a partner says yes regardless. This is the one page we use to work out which is which, well before the night it matters.</p>
     <div class="chips mt-s"><span class="chip chip--on">PDF</span><span class="chip">1 page</span></div>
@@ -434,7 +425,7 @@
     </div>
   </template>
   <template data-detail="truecost">
-    <p class="card__n">Grow it</p>
+    <p class="card__n">Tools</p>
     <h2 class="display d2" id="sheet-title">What the cheapest quote really costs</h2>
     <p class="sub">Three quotes and take the cheapest feels like good buying. This puts a year of doing that beside a year of partnering properly, including the jobs that went sideways because nobody owed you a favour, and the hours spent briefing somebody new every single time.</p>
     <div class="chips mt-s"><span class="chip chip--on">XLSX</span><span class="chip">Excel, Numbers and Sheets</span></div>
@@ -451,7 +442,7 @@
     </div>
   </template>
   <template data-detail="ninety">
-    <p class="card__n">Grow it</p>
+    <p class="card__n">Frameworks</p>
     <h2 class="display d2" id="sheet-title">The first 90 days</h2>
     <p class="sub">This is our actual first quarter, handed over. Most of the value in it is not clever, it is sequencing. Doing the pricing work before the sales work, and the systems work before the hiring work.</p>
     <div class="chips mt-s"><span class="chip chip--on">PDF</span><span class="chip">6 pages</span></div>
@@ -468,7 +459,7 @@
     </div>
   </template>
   <template data-detail="exit">
-    <p class="card__n">Grow it</p>
+    <p class="card__n">Worksheets</p>
     <h2 class="display d2" id="sheet-title">Exit readiness checklist</h2>
     <p class="sub">Most founders are closer to a conversation about selling than they realise. Readiness is the part nobody has done. Twenty items, in the order a buyer works through them.</p>
     <div class="chips mt-s"><span class="chip chip--on">PDF</span><span class="chip">2 pages</span></div>
