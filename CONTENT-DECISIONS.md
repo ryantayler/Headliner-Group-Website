@@ -1543,22 +1543,27 @@ sit **over** the shaft, on the band's `::after`, because anything under it goes 
 the same blur and comes out flat again. Pixel sampled after: worst text on that band is
 13.2 to 1.
 
-**3. The logo beam itself, crossing a seam.** `.spice-beam-edge`, Who this is for on
-Partnerships. The same clip and the same gradient as `.hl-beam`, **mirrored and much
-larger**, entering from off the left edge with its centre on the seam so half sits in each
-band. Here clip after filter is what is wanted, the way the logo wants it, so the wedge
-keeps its edge.
+**3. The bar light.** `data-rule="bar"`, Partnerships. The rule under each heading is a
+bar light: a semi opaque housing with four globes in it, everything glowing cyan. It is
+the one piece of the industry the site is actually in, rather than a graphic. The housing
+is the `::after`, the four globes are four radial gradients inside it, and the bloom is a
+box shadow on the housing plus a wider falloff on each globe.
 
-A whole tilted band edge cannot use the logo's angle. 34 degrees across 1440 is 970px of
-slope, so the angle lives in the wedge rather than in the edge.
+It cannot reveal by growing its width the way the other two do, or the globes squash on
+the way in, so this one fades and stretches instead.
 
-Two things it needed. **No screen blend**: screen is how the logo sits on black, and on
-paper it washes to nothing, so on a light band the wedge is plain translucent aqua at a
-lower alpha instead. **z-index 0, not 2**: the shell is z-index 1, so at 2 the wedge
-painted over the copy and tinted it. At 0 it still covers the band above, because that
-band is an earlier sibling and neither of them makes a stacking context. `band--lit`
-clips, and the crossing is the point, so that one band overrides `overflow` to visible.
-Pixel sampled: worst text on that band is 5.1 to 1.
+**A fourth was built and cut.** The logo beam, mirrored and much larger, crossing the seam
+between two bands. It worked and Ryan did not want it.
 
 **What was not done: more beams in more places.** The logo works because the beam appears
 once. Four of them on a page is a pattern, and a pattern reads as wallpaper.
+
+
+## More of the centred head
+
+How we partner and invest is the cleanest section on Partnerships, so two more openers
+take the same treatment: **Two ways we help you grow** and **Who this is for**. Both sit
+over a symmetric block, three cards and three facts, which is why centring holds there.
+
+**Two, not every one.** Centred is a device and it stops meaning anything the moment it
+becomes the default. Every other head on the site stays on its left edge.

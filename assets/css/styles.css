@@ -1193,11 +1193,11 @@ body.sheet-open{overflow:hidden}
       comes back with a hard edge. The taper is in the gradient instead, and a grain
       layer sits over it, because a wide low alpha gradient on near black bands, the
       steps being one 255th apart and the blur doing nothing to hide them.
-   3. .spice-beam-edge, Who this is for on partnerships. The logo beam itself, mirrored
-      and much larger, entering from off the left edge and crossing the seam between two
-      bands. Same clip, same gradient, same screen blend as .hl-beam. Here clip after
-      filter is what is wanted, the way the logo wants it, so the wedge keeps its edge.
-   Delete any of the three on its own: the rule here and its marker in the markup. */
+   3. data-rule="bar", partnerships. The rule becomes a bar light, a semi opaque housing
+      with four globes in it and everything glowing cyan. It is the one piece of the
+      industry the site is actually in, rather than a graphic.
+   Delete any of the three on its own: the rule here and its marker in the markup.
+   A fourth, the logo beam crossing a band seam, was built and cut. */
 [data-spice="on"] [data-rule="beam"]::after{
   height:13px;border-radius:0;
   clip-path:polygon(0 38%,0 62%,100% 0,100% 100%);
@@ -1210,6 +1210,35 @@ body.sheet-open{overflow:hidden}
 }
 [data-spice="on"] .is-in [data-rule="beam"]::after,
 [data-spice="on"] [data-rule="beam"].is-in::after{width:74px}
+
+/* The bar light. The housing is the ::after, the four globes are four radial gradients
+   inside it, and the bloom is a box shadow on the housing plus a wider falloff on each
+   globe. It cannot reveal by growing its width like the other two, or the globes squash
+   on the way in, so this one fades and stretches instead. */
+[data-spice="on"] [data-rule="bar"]::after{
+  width:104px;height:17px;border-radius:3px;
+  opacity:0;transform:scaleX(.55);transform-origin:0 50%;
+  background-color:rgba(var(--accent-rgb),.14);
+  background-image:
+    radial-gradient(circle 9px at 12.5% 50%,rgba(222,255,250,.98) 0 2.3px,rgba(var(--accent-rgb),.8) 2.8px,rgba(var(--accent-rgb),0) 9px),
+    radial-gradient(circle 9px at 37.5% 50%,rgba(222,255,250,.98) 0 2.3px,rgba(var(--accent-rgb),.8) 2.8px,rgba(var(--accent-rgb),0) 9px),
+    radial-gradient(circle 9px at 62.5% 50%,rgba(222,255,250,.98) 0 2.3px,rgba(var(--accent-rgb),.8) 2.8px,rgba(var(--accent-rgb),0) 9px),
+    radial-gradient(circle 9px at 87.5% 50%,rgba(222,255,250,.98) 0 2.3px,rgba(var(--accent-rgb),.8) 2.8px,rgba(var(--accent-rgb),0) 9px);
+  box-shadow:
+    inset 0 0 0 1px rgba(var(--accent-rgb),.34),
+    0 0 18px rgba(var(--accent-rgb),.40),
+    0 0 44px rgba(var(--accent-rgb),.18);
+  transition:opacity .7s var(--ease) .12s,transform .8s var(--ease) .12s;
+}
+[data-spice="on"] .is-in [data-rule="bar"]::after,
+[data-spice="on"] [data-rule="bar"].is-in::after{width:104px;opacity:1;transform:scaleX(1)}
+
+/* The centred head on How we partner and invest is the cleanest thing on the page, so
+   two more section openers take it. Two, not every one: centred is a device and it stops
+   meaning anything once it is the default. */
+[data-spice="on"] .spice-center{text-align:center;margin-inline:auto}
+[data-spice="on"] .head.spice-center{justify-items:center;max-width:64ch}
+[data-spice="on"] .spice-center[data-rule]::after{margin-inline:auto}
 
 [data-spice="on"] .spice-beam-band{position:relative;overflow:hidden}
 [data-spice="on"] .spice-beam-band::before{
@@ -1237,27 +1266,6 @@ body.sheet-open{overflow:hidden}
 }
 [data-spice="on"] .spice-beam-band>.shell{position:relative;z-index:1}
 
-/* band--lit clips, so the beam would lose the half that sits in the section above and
-   the crossing is the whole idea. This band carries no lit beam of its own to bleed. */
-[data-spice="on"] .spice-beam-edge{position:relative;overflow:visible}
-[data-spice="on"] .spice-beam-edge::before{
-  /* z-index 0, not 2. The shell is z-index 1, so at 2 the wedge painted over the copy
-     and tinted it. At 0 it still covers the band above, because that band is an earlier
-     sibling and neither of them makes a stacking context. */
-  content:"";position:absolute;z-index:0;pointer-events:none;
-  top:0;left:0;
-  width:clamp(130px,16vw,250px);height:clamp(460px,56vw,880px);
-  margin:0 0 0 clamp(-120px,-9vw,-70px);
-  /* mirrored: the logo rakes its bright end to the right, this one comes in from the
-     left. Its centre sits on the seam, so half of it is in each band. */
-  transform:translateY(-50%) rotate(-34deg);
-  clip-path:polygon(43% 0,57% 0,100% 100%,0 100%);
-  /* no screen blend. Screen is how the logo sits on black; on paper it washes to nothing,
-     so on a light band the wedge is a plain translucent aqua instead. */
-  background:linear-gradient(to bottom,
-    rgba(var(--accent-rgb),.55),rgba(var(--accent-rgb),.13) 52%,rgba(var(--accent-rgb),0));
-  filter:blur(11px);
-}
 
 /* The plain card is the most generic thing on the site. A wash of the accent off the
    top edge and a soft drop, and it stops looking like a default. The cards that already
