@@ -1161,16 +1161,29 @@ the page is called everywhere else on the site.
 and we'll let you know if you're the right fit to work with us.* First person plural, not
 Ryan's I, because this page is the group's. The button text is unchanged.
 
-## The record on Ryan's page is five facts
+## The record on Ryan's page is four facts
 
 115+ live events, 56,000+ attendees, 8 figures generated from his events, 7 figures from
-optimisation and partnerships, based in Australia. The three that were already there are
-unchanged, the two money facts are new, and Australia closes it.
+optimisation and partnerships. **Based in Australia is cut.** It is a fact about the
+business, not a record, and Partnerships already says it in the place where it matters.
 
-Five across on desktop, **one column under 760**, not two. The stats row draws its rules
-as a 1px grid gap over a line coloured background, so a row that is not full shows an
-empty cell painted in the line colour. Two columns with five facts leaves one.
+Two of the four are phrases rather than figures, so the numeral steps down a size to keep
+every cell on one line.
 
 This puts the money numbers on the page in two places, the record and the bio. The
 `ryan-voice` skill still locks the proof set at 115+ and 56,000+ and says not to mix, so
 that skill and this page now disagree. The skill is synced, so it has to change there.
+
+
+## The home page names the two sections plainly
+
+**What we do** and **How we do it**. The old heads were *It's in the title* and *So we
+build you one*, which were a joke and a sentence fragment respectively and neither told a
+first time reader what the band held.
+
+The how now names all five things we move, revenue, margins, reach, connections and
+optimisation, which is the pillar order with optimisation on the end where it belongs.
+
+*See how it works* is a button now rather than a text link, and it carries no arrow. The
+text links on Free Sh!t keep theirs, because there they sit inside cards and the arrow is
+what marks them as a target.
