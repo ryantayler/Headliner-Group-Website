@@ -1267,3 +1267,25 @@ copy and the numerals do. **Pixel sampled at nine widths**, worst 4.81 to 1. Do 
 strengthen the bloom without re-running that check.
 
 **Still no second signature and no second handwritten line.** One per view holds.
+
+## Partnerships opens with the process
+
+**The belief section is cut.** *If you're not partnering, you're doing it wrong*, the
+Sydney summit story and the four paragraphs under it are off the page.
+
+**The locked pull quote went with it.** *"In an emergency a supplier says no when it's
+inconvenient and a partner says yes regardless." Ryan Tayler* lived inside that band and
+has no home now. It is not on any other page. The `.pull--hand` and `.pull--center` styles
+are left in the stylesheet against it coming back somewhere.
+
+**Our process is now the first band after the hero.** It is the section that connects Free
+Sh!t to the partnership, the downloads being the first steps of the same process, so it
+earns the top. The tones still alternate down the page, paper, paper2, paper, paper2.
+
+The page order is now hero, our process, two ways we help you grow, how we partner and
+invest, who this is for, have a conversation.
+
+**Australia only is now Aussie business owners**, and *firmly* is out of the line under
+it. The fact is about who they are, not where the office is.
+
+The close reads *we'll let you know if you're the right fit for us to work with you*.
