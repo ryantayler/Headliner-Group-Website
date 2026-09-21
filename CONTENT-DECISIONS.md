@@ -1200,17 +1200,19 @@ rather than a placeholder line about a framework. It is called **The optimisatio
 throughout. He wrote it as the business engine, and the site name is the one above.
 
 The argument, in his words. Customers in, work done, the ones you impress come back and
-the ones you don't are the exhaust. Fuel is what you pour in from outside, paid, SEO,
-organic. Efficiency and fuel together decide whether it grows, and it grows when the fuel
-beats the exhaust. Most small businesses get the engine running, then quietly throttle
-the fuel because they have not got the team or the time, and growth flatlines.
+the ones you don't leave. Inputs are what you pour in from outside, paid, SEO, organic.
+Efficiency and inputs together decide whether it grows, and it grows when what you add
+beats what you lose. Most small businesses get the engine running, then quietly cut the
+inputs because they have not got the team or the time, and growth flatlines.
 
-**Closing line.** *If your engine is running well and you're still not growing, check your
-own hand on the throttle.* This is the earned punch, not the manufactured kind the copy
-rules ban. The whole piece was built to land it.
+**The engine words only go on the diagram.** Exhaust, fuel and throttle are out of the
+prose. Ryan called it: renaming each part inside the explanation was forcing the metaphor
+where the plain word already worked. *Engine* stays, because that is the frame and the
+name of the thing. Everything else is inputs, and what you add against what you lose.
 
-It is not handwritten. **One hand per view** still holds and the pillars note above it has
-that slot. The punch is set in ink at a step up in size instead.
+**No closing line.** *If your engine is running well and you're still not growing, check
+your own hand on the throttle* is cut with the rest of the throttle language. The last
+paragraph ends the piece.
 
 ## Two IP blocks, one pair
 
