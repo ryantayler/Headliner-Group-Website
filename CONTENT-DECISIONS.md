@@ -1308,3 +1308,38 @@ paragraphs above it already make the argument, and the line was restating them.
 **The lead in on Three ways to work with me.** *Most of my time goes to the first one. The
 other two exist because people keep asking.* The cards say which is which, 01 in pink and
 the other two plain. The head is the heading alone now.
+
+## The two IP blocks are named as IP
+
+**The 4 pillars of partnership™** and **The optimisation engine™**. The trademark mark is
+set at .36em and raised, so it rides off the last letter rather than sitting on the line.
+
+Both block names step up from d3 to between d3 and d2, because they are the names of the
+things rather than sub headings inside a section.
+
+**The lanes are numbered again.** *1. Growth through partnerships*, *2. Growth through
+optimisation*, the number in the band's accent. They came off earlier in the build and
+they go back on now the two blocks are a matched pair worth counting.
+
+**The signature closes both blocks.** The earlier rule that one per page was enough is
+overruled. Each block is a piece of his IP and each one is signed.
+
+**The IP line is cut** from under *Two ways we help you grow*. The trademarks and the two
+signatures say it without a sentence explaining it.
+
+## Our process, second pass
+
+The copy names the saving. *That's exactly how he generated 7 figures of savings.* Ryan is
+**our founder** here rather than our director, and the frameworks exist **so anyone can
+solve them**, which is the point of giving the first steps away.
+
+Two buttons now, the free page in quiet black and **Let's chat in the action orange**, so
+the section offers both the free half and the paid one.
+
+On home, the free sh!t button is just **Get it**.
+
+## How we partner & invest is centred
+
+Head and the closing paragraphs centre, the three cards keep their own left aligned copy.
+The three ways read as equal options rather than a list running off a left edge, and
+centring the card bodies as well would have made them hard to read.

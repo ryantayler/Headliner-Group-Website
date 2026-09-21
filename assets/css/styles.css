@@ -136,7 +136,13 @@
      source order, so the dark card fill is pinned to the token as well as the rule */
   --card:var(--panel);
 }
-.pillars__h{color:var(--pink)}
+/* The two block names are the IP, so they are set well above d3, between d3 and d2, and
+   the trademark rides small and high off the last letter rather than sitting on the line */
+.pillars__h{
+  color:var(--pink);
+  font-size:clamp(24px,3.1vw,40px);letter-spacing:-.026em;line-height:1.06;
+}
+.tm{font-size:.36em;vertical-align:.95em;letter-spacing:0;margin-left:.08em}
 .pillars__intro{max-width:66ch}
 .pillars.theme-ryan .card{
   position:relative;overflow:hidden;
@@ -232,6 +238,7 @@
 @media (max-width:620px){
   .engine__fig{margin-inline:calc(clamp(22px,3vw,40px)*-1 + 8px);padding-inline:6px}
 }
+.pillars--engine .pillars__sig{margin-top:clamp(18px,2.4vw,28px)}
 .pillars__sig{
   display:block;margin-left:auto;width:clamp(140px,16vw,180px);
   margin-top:6px;color:var(--ink);opacity:.9;
@@ -557,6 +564,10 @@ button,input,textarea,select{font:inherit;color:inherit}
 .head{display:grid;gap:16px;margin-bottom:clamp(36px,4.5vw,58px);max-width:72ch}
 .head--split{max-width:none;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(20px,4vw,64px);align-items:end}
 .head--top{align-items:start}
+/* Centred head, for a section whose cards read as three equal options rather than a list
+   running off a left edge. The cards keep their own left aligned copy. */
+.head--center{justify-items:center;text-align:center;margin-inline:auto;max-width:64ch}
+.stack--center{text-align:center;margin-inline:auto}
 /* the lane numbers take whichever accent their band is running */
 .lane__n{color:var(--tx-accent)}
 @media (max-width:860px){.head--split{grid-template-columns:1fr}}
