@@ -1118,3 +1118,94 @@ body.sheet-open{overflow:hidden}
 .mt-s{margin-top:14px}.mt-m{margin-top:28px}.mt-l{margin-top:clamp(36px,4vw,56px)}
 .skip{position:absolute;left:-9999px}
 .skip:focus{left:var(--gutter);top:10px;z-index:99;background:var(--accent);color:#0A0A0A;padding:10px 16px;border-radius:100px;font-size:14px;font-weight:600}
+
+/* ---------- 12. SPICE. Test layer, off by default ----------
+   Everything below hangs off [data-spice="on"] on <html>, so with the toggle off the
+   site renders exactly as it did before this block existed. The button that sets it is
+   in the header of every page, marked data-spice-btn, and the choice is remembered in
+   localStorage so it holds across pages.
+
+   To remove the experiment: delete this block, the spice block at the end of main.js,
+   the button and the no flash script in each <head>, the spice-dark class on the two
+   bands and the data-eyebrow attributes. Nothing else refers to any of it. */
+
+/* The brand face carries every heading, not just the hero. d1 is excluded, because the
+   hero sets its own size and fit and there is nothing wrong with it. */
+[data-spice="on"] .display:not(.d1){
+  font-family:'Archivo Black',Impact,sans-serif;font-weight:400;
+  text-transform:uppercase;letter-spacing:-.026em;line-height:.98;
+}
+/* his page keeps Anton. That is his face, not the group's. */
+[data-spice="on"] .theme-ryan .display:not(.d1){
+  font-family:'Anton',Impact,sans-serif;letter-spacing:0;line-height:.92;
+}
+/* card headings stay sentence case. Uppercase at 18px is a shout, not a heading. */
+[data-spice="on"] .d4{text-transform:none;letter-spacing:-.012em;line-height:1.16}
+/* the wall magnets are business card sized and carry their own type. The display face
+   at that size runs Business constraint diagnosis to three lines and clips it. */
+[data-spice="on"] #wall .magnet h3.display{
+  font-family:'Inter',system-ui,sans-serif;font-weight:600;
+  text-transform:none;letter-spacing:-.02em;line-height:1.15;
+}
+
+/* A real jump between heading and body, which is most of what reads as premium. */
+[data-spice="on"] .d2{font-size:clamp(34px,5.2vw,72px);line-height:.94;letter-spacing:-.032em}
+[data-spice="on"] .d3{font-size:clamp(20px,2.5vw,32px);line-height:1.04}
+
+/* One band per page drops to the dark set, because five near identical light bands in
+   a row is what makes the page read flat. Same tokens the header and footer use. */
+[data-spice="on"] .spice-dark{
+  --ground:var(--base); --surface:var(--panel); --line:var(--rim);
+  --tx:var(--ink); --tx-sub:var(--ink); --tx-mute:var(--mute); --tx-accent:var(--accent);
+  background:var(--base); color:var(--ink);
+}
+/* the quiet button is black on light, so on a dark band it would vanish */
+[data-spice="on"] .spice-dark .btn--quiet{background:var(--panel);border-color:var(--rim);color:var(--ink)}
+[data-spice="on"] .spice-dark .btn--quiet:hover{background:#1C201F;border-color:#1C201F}
+
+/* Section eyebrows. The attribute sits in the markup all the time and renders nothing
+   until the layer is on. The rule under the heading draws itself on reveal. */
+[data-spice="on"] [data-eyebrow]::before{
+  content:attr(data-eyebrow);display:block;
+  font-family:'Inter',system-ui,sans-serif;font-weight:600;
+  font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--tx-accent);margin-bottom:clamp(10px,1.2vw,16px);
+}
+[data-spice="on"] [data-eyebrow]::after{
+  content:"";display:block;height:2px;width:0;background:var(--tx-accent);
+  margin-top:clamp(14px,1.4vw,20px);
+  transition:width .9s var(--ease) .18s;
+}
+[data-spice="on"] .is-in [data-eyebrow]::after,
+[data-spice="on"] [data-eyebrow].is-in::after{width:56px}
+
+/* The plain card is the most generic thing on the site. A wash of the accent off the
+   top edge and a soft drop, and it stops looking like a default. The cards that already
+   have a build of their own are left alone. */
+[data-spice="on"] .card{
+  box-shadow:0 1px 0 rgba(17,22,20,.05),0 22px 44px -28px rgba(17,22,20,.32);
+  background-image:linear-gradient(180deg,rgba(var(--accent-rgb),.09),rgba(var(--accent-rgb),0) 42%);
+}
+[data-spice="on"] .pillars .card,
+[data-spice="on"] .card--pink,
+[data-spice="on"] .magnet{box-shadow:none;background-image:none}
+
+/* The reveal gets further to travel and a focus pull. Delays open up with it, so a row
+   of cards arrives as a run rather than all at once. */
+[data-spice="on"] .rv{
+  opacity:0;transform:translateY(34px) scale(.988);filter:blur(6px);
+  transition:opacity .9s var(--ease),transform .9s var(--ease),filter .9s var(--ease);
+}
+[data-spice="on"] .rv.is-in{opacity:1;transform:none;filter:none}
+[data-spice="on"] .rv-d1{transition-delay:.10s}
+[data-spice="on"] .rv-d2{transition-delay:.20s}
+[data-spice="on"] .rv-d3{transition-delay:.30s}
+
+/* the toggle is a test control and is dressed as one */
+.spice-btn{border-style:dashed;font-size:13px;padding:11px 16px}
+@media (max-width:1100px) and (min-width:861px){.spice-btn{display:none}}
+
+@media (prefers-reduced-motion: reduce){
+  [data-spice="on"] .rv{opacity:1;transform:none;filter:none;transition:none}
+  [data-spice="on"] [data-eyebrow]::after{width:56px;transition:none}
+}

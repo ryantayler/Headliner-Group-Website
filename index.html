@@ -21,6 +21,9 @@
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="assets/fonts/fonts.css">
 <link rel="stylesheet" href="assets/css/styles.css">
+<!-- spice toggle, test only: set the flag before first paint so the page never flashes
+     the plain version first. Delete with the rest of the experiment. -->
+<script>try{if(localStorage.getItem('hg-spice')==='on')document.documentElement.setAttribute('data-spice','on')}catch(e){}</script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -35,6 +38,7 @@
       <a href="ryan.html">Ryan Tayler</a>
       <a href="free.html">Free Sh!t</a>
       <a class="btn btn--fill" href="contact.html">Let&rsquo;s chat</a>
+      <button class="btn btn--ghost spice-btn" type="button" data-spice-btn aria-pressed="false">Activate spice</button>
     </nav>
     <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav"><span></span></button>
   </div>
@@ -68,7 +72,7 @@
      nothing else. The section below is the how, so nothing here explains mechanics. -->
 <section class="band band--paper2 band--lit">
   <div class="shell shell--narrow">
-    <h2 class="display d2 rv">What we do</h2>
+    <h2 class="display d2 rv" data-eyebrow="The why">What we do</h2>
     <div class="stack-lg mt-m rv rv-d1">
       <p>We help founders in live events and production grow through partnerships. Everyone in this industry shops around for quotes and squeezes the cheapest one to increase their margin, which leaves you nobody to call in an emergency.</p>
       <p>We believe partnering makes you more money long term than any other strategy in this industry, and it might make your life a bit easier while you&rsquo;re doing it.</p>
@@ -85,9 +89,9 @@
      Same narrow shell as the band above, so the two sections share one left and right
      edge. A split head here put the heading and the copy on opposite sides of the page
      and broke that line. -->
-<section class="band band--paper band--tight band--lit">
+<section class="band band--paper band--tight band--lit spice-dark">
   <div class="shell shell--narrow">
-    <h2 class="display d2 rv">How we do it</h2>
+    <h2 class="display d2 rv" data-eyebrow="The how">How we do it</h2>
     <div class="stack-lg mt-m rv rv-d1">
       <p>We use the same strategies our founder used to build and grow our group, to help you build yours. We focus on increasing your revenue, margins, reach, connections, and optimisation.</p>
       <div class="row"><a class="btn btn--quiet" href="partnerships.html">See how it works</a></div>
@@ -103,7 +107,7 @@
   <div class="shell">
     <div class="pair pair--flip">
       <div class="pair__copy rv">
-        <h2 class="display d2">Our founder</h2>
+        <h2 class="display d2" data-eyebrow="Who runs it">Our founder</h2>
         <div class="byline mt-s">
         <svg class="sig byline__sig" viewBox="0 0 601.04 273.69" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-label="Ryan Tayler signature">
         <path d="M394.25,46.02c32.82.56,65.41,1.12,97.93,1.68.55-2.98,1-5.46,1.47-8.05,6.11,1.13,6.02,5.62,6.52,10.1,4.97,0,9.74.2,14.49-.05,5.58-.29,9.47,2.55,12.68,6.47,1.02,1.25,1.33,3.37,1.35,5.1.04,2.69-1.29,4.69-3.79,1.98-6.56-7.09-15.54-4.8-23.51-6.34-1.04-.2-3.15,1.45-3.63,2.68-6.12,15.73-11.35,31.84-18.19,47.24-6.12,13.79-13.8,26.92-21.18,40.12-1.1,1.98-4.36,2.75-6.62,4.08l-1.19-1.02c.64-2.21.8-4.73,2.01-6.57,8.7-13.24,16.1-27.13,21.86-41.91,5.65-14.52,11.38-29,17.56-44.72-6.9-.81-12.64-2.02-18.38-2.06-28.76-.19-57.52-.14-86.28.11-2.12.02-5.25,1.81-6.18,3.65-12.6,25.01-25.31,49.98-37.1,75.37-7.93,17.06-14.45,34.78-21.23,51.29-2.73-.29-4.63-.49-7.51-.8.2-2.64.47-6.06.72-9.49.31-4.31,1.14-8.65.82-12.91-1.41-19-6.87-36.27-22.12-49.15-10.1-8.53-21.47-14.71-33.84-19.23-9.74-3.56-19.52-7.05-29.13-10.93-2.19-.88-5.35-3.28-5.3-4.89.08-2.58,2.03-5.53,4.01-7.5,1.75-1.74,4.53-2.74,7.03-3.38,12.55-3.19,25.11-6.41,37.77-9.12,10.92-2.34,21.95-4.18,32.99-5.9,5.93-.93,11.98-1.13,17.97-1.69,9.24-.86,18.46-1.92,27.71-2.53,5.34-.35,10.73-.1,16.09.13,5.91.26,10.39-1.93,14.01-6.6,1.22-1.58,3.98-3.6,5.21-3.15,1.89.69,3.12,3.29,4.48,5.19.4.56.3,1.5.51,2.78ZM373.24,55.73c-46.61,1.06-92.54,8.58-137.92,20.46.71.88,1.4,1.22,2.12,1.47,23.34,8.13,46.84,15.94,65.22,33.68,9.73,9.39,16.05,20.68,19.22,33.73,1.13,4.64,1.8,9.38,2.68,14.12,16.33-34.71,32.45-68.96,48.68-103.46Z"/>
@@ -139,7 +143,7 @@
   <div class="shell">
     <div class="head head--split" style="margin-bottom:0">
       <div class="stack rv">
-        <h2 class="display d2">Get some free sh!t</h2>
+        <h2 class="display d2" data-eyebrow="Free">Get some free sh!t</h2>
         <p class="sub">Free tools and assets you or your team could use in the business this week to start optimising straight away.</p>
       </div>
       <div class="stack rv rv-d1" style="align-content:end">
@@ -154,7 +158,7 @@
   <div class="shell">
     <div class="cta-band__in">
       <div class="stack rv">
-        <h2 class="display d2">To the owners in the room</h2>
+        <h2 class="display d2" data-eyebrow="Next step">To the owners in the room</h2>
         <p class="sub">If you own an Australian business, somewhere in or around live events and production, turning over $1 million to $10 million, and you want to grow your revenue, margins, reach, connections, or you want it to run without you. Reach out to have a chat.</p>
       </div>
       <div class="rv rv-d1"><a class="btn btn--fill" href="contact.html">Let&rsquo;s chat about growth</a></div>

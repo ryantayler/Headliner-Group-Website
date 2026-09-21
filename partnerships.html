@@ -21,6 +21,9 @@
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="assets/fonts/fonts.css">
 <link rel="stylesheet" href="assets/css/styles.css">
+<!-- spice toggle, test only: set the flag before first paint so the page never flashes
+     the plain version first. Delete with the rest of the experiment. -->
+<script>try{if(localStorage.getItem('hg-spice')==='on')document.documentElement.setAttribute('data-spice','on')}catch(e){}</script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -34,6 +37,7 @@
       <a href="ryan.html">Ryan Tayler</a>
       <a href="free.html">Free Sh!t</a>
       <a class="btn btn--fill" href="contact.html">Let&rsquo;s chat</a>
+      <button class="btn btn--ghost spice-btn" type="button" data-spice-btn aria-pressed="false">Activate spice</button>
     </nav>
     <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav"><span></span></button>
   </div>
@@ -67,7 +71,7 @@
         <div class="ph" data-slot="Photo &middot; 4:3"><span>A printed process document on a desk, marked up in pen. The method as an object.</span></div>
       </div>
       <div class="pair__copy rv rv-d1">
-        <h2 class="display d2">Our process</h2>
+        <h2 class="display d2" data-eyebrow="How we work">Our process</h2>
         <p class="sub">All businesses run on patterns. Over the last 5 years our founder Ryan Tayler has been studying these patterns and creating frameworks and formulas so anyone can solve them.</p>
         <p class="sub">That&rsquo;s exactly how he generated 7 figures of savings. Everything we implement is a pre documented process that has worked in the past for us or for other partners.</p>
         <p class="sub">Tons of it is free for you, and if you want some help to implement and grow your business, let&rsquo;s have a chat.</p>
@@ -87,7 +91,7 @@
      closes the first block and is not repeated on the second. -->
 <section class="band band--paper2 band--lit">
   <div class="shell">
-    <h2 class="display d2 rv">Two ways we help you grow</h2>
+    <h2 class="display d2 rv" data-eyebrow="The offer">Two ways we help you grow</h2>
 
     <div class="lane mt-l">
       <div class="lane__h rv">
@@ -211,10 +215,10 @@
 </section>
 
 <!-- ===== HOW WE PARTNER AND INVEST ===== -->
-<section class="band band--paper band--lit">
+<section class="band band--paper band--lit spice-dark">
   <div class="shell">
     <div class="head head--center">
-      <h2 class="display d2 rv">How we partner &amp; invest</h2>
+      <h2 class="display d2 rv" data-eyebrow="The deal">How we partner &amp; invest</h2>
       <p class="sub rv rv-d1">We are in the game of partnerships, so we partner with every business we work with. There are three ways that happens.</p>
     </div>
 
@@ -247,7 +251,7 @@
 <section class="band band--paper2 band--lit">
   <div class="shell">
     <div class="head">
-      <h2 class="display d2 rv">Who this is for</h2>
+      <h2 class="display d2 rv" data-eyebrow="The fit">Who this is for</h2>
     </div>
 
     <div class="facts">
@@ -277,7 +281,7 @@
   <div class="shell">
     <div class="cta-band__in">
       <div class="stack rv">
-        <h2 class="display d2">Have a conversation</h2>
+        <h2 class="display d2" data-eyebrow="Next step">Have a conversation</h2>
         <p class="sub">Tell us about your business, your challenges, and your goals, and we&rsquo;ll let you know if you&rsquo;re the right fit for us to work with you.</p>
       </div>
       <div class="rv rv-d1"><a class="btn btn--fill" href="contact.html">Let&rsquo;s chat about growth</a></div>

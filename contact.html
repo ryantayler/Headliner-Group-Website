@@ -21,6 +21,9 @@
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="assets/fonts/fonts.css">
 <link rel="stylesheet" href="assets/css/styles.css">
+<!-- spice toggle, test only: set the flag before first paint so the page never flashes
+     the plain version first. Delete with the rest of the experiment. -->
+<script>try{if(localStorage.getItem('hg-spice')==='on')document.documentElement.setAttribute('data-spice','on')}catch(e){}</script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -34,6 +37,7 @@
       <a href="ryan.html">Ryan Tayler</a>
       <a href="free.html">Free Sh!t</a>
       <a class="btn btn--fill" href="contact.html">Let&rsquo;s chat</a>
+      <button class="btn btn--ghost spice-btn" type="button" data-spice-btn aria-pressed="false">Activate spice</button>
     </nav>
     <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav"><span></span></button>
   </div>

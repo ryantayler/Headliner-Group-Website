@@ -21,6 +21,9 @@
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="assets/fonts/fonts.css">
 <link rel="stylesheet" href="assets/css/styles.css">
+<!-- spice toggle, test only: set the flag before first paint so the page never flashes
+     the plain version first. Delete with the rest of the experiment. -->
+<script>try{if(localStorage.getItem('hg-spice')==='on')document.documentElement.setAttribute('data-spice','on')}catch(e){}</script>
 </head>
 <!-- theme-ryan swaps the group's aqua for his pink and drops the beam. This is
      the only page on his personal brand, and the only page with handwriting.
@@ -37,6 +40,7 @@
       <a href="ryan.html" class="is-here" aria-current="page">Ryan Tayler</a>
       <a href="free.html">Free Sh!t</a>
       <a class="btn btn--fill" href="contact.html">Let&rsquo;s chat</a>
+      <button class="btn btn--ghost spice-btn" type="button" data-spice-btn aria-pressed="false">Activate spice</button>
     </nav>
     <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav"><span></span></button>
   </div>
@@ -86,7 +90,7 @@
      it takes band padding with it, tight rather than full. -->
 <section class="band band--paper band--tight">
   <div class="shell">
-    <h2 class="display d2 rv">Why I should have an opinion</h2>
+    <h2 class="display d2 rv" data-eyebrow="The record">Why I should have an opinion</h2>
     <div class="stats stats--phrase mt-m rv rv-d1">
       <div class="stat"><span class="num">8 figures+</span><span>Generated from events</span></div>
       <div class="stat"><span class="num">7 figures+</span><span>From partnerships</span></div>
@@ -104,7 +108,7 @@
         <div class="ph" data-slot="Portrait 4:5"><span>The main portrait. Warm ground, natural light, no crossed arms.</span></div>
       </div>
       <div class="pair__copy rv rv-d1">
-        <h2 class="display d2">Where I learned the business</h2>
+        <h2 class="display d2" data-eyebrow="Background">Where I learned the business</h2>
         <div class="stack">
           <p>I'm an entrepreneur partnering with founders in live events and production. I buy into businesses in the industry, grow them through new ventures, partnerships and products, and I give founders the option to exit. <a class="tlink" href="index.html">Headliner Group</a> is the business I do that through.</p>
           <p>I've delivered more than 115 live events for over 56,000 attendees. Most of those hours were spent in the parts of an event the audience never sees. So I deeply understand our industry.</p>
@@ -132,7 +136,7 @@
 <section class="band band--paper2 band--lit">
   <div class="shell">
     <div class="head">
-      <h2 class="display d2 rv">Three ways to work with me</h2>
+      <h2 class="display d2 rv" data-eyebrow="Work with me">Three ways to work with me</h2>
     </div>
     <div class="grid g3">
       <div class="card card--pink rv">
@@ -161,7 +165,7 @@
 <!-- ===== SIGN OFF. Signature is ink only, on a clean ground, never tinted. ===== -->
 <section class="band band--paper2 band--tight">
   <div class="shell shell--narrow" style="text-align:left">
-    <h2 class="display d2 rv">I write about this most weeks</h2>
+    <h2 class="display d2 rv" data-eyebrow="Follow along">I write about this most weeks</h2>
     <p class="sub mt-s rv rv-d1">If you like what you see but you&rsquo;re not ready to make the commitment, follow me on your preferred platform to get some free content. Or just get some free sh!t right here.</p>
     <div class="row mt-m rv rv-d1">
       <a class="btn btn--plat btn--li" href="https://www.linkedin.com/" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>LinkedIn</a>
@@ -177,7 +181,7 @@
   <div class="shell">
     <div class="cta-band__in">
       <div class="stack rv">
-        <h2 class="display d2">If you run something in this industry</h2>
+        <h2 class="display d2" data-eyebrow="Next step">If you run something in this industry</h2>
         <p class="sub">Anywhere in or around live events and production, anywhere in Australia. Tell me what you run and what you want next out of it.</p>
       </div>
       <div class="rv rv-d1"><a class="btn btn--fill" href="contact.html">Let&rsquo;s chat about growth</a></div>

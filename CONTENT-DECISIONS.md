@@ -1472,3 +1472,45 @@ them, and the chip counts and the sheet still behave.
 one, everything else is pinned to column two, and row three takes the slack so the link
 stays on the bottom. The format badge moves to the top left, over the image, because top
 right now lands on the copy.
+
+## Spice, a test layer with a switch
+
+Ryan asked for the design suggestions built as something he can turn on and off, so the
+setup he already signed off on is never at risk.
+
+**A button in the header of every page, Activate spice.** It sets `data-spice` on
+`<html>`, remembers the choice in localStorage so it holds as you move between pages, and
+winds every reveal back so the new motion plays from the top rather than sitting there
+already finished. An inline script in each `<head>` reads the flag before first paint, so
+the page never flashes the plain version first.
+
+**Off is the current site, unchanged.** Screenshotted both states against the pages as
+they were: with the layer off, home and partnerships are pixel identical apart from the
+button itself.
+
+What the layer does:
+
+- **The brand face on every heading.** Archivo Black, uppercase, the same face as the
+  hero. His page keeps Anton, which is his face rather than the group's. The hero headline
+  is untouched, and card headings stay sentence case, because uppercase at 18px is a
+  shout. The wall magnets keep Inter too, since the display face runs a business card
+  title to three lines.
+- **A real jump in heading size.** d2 goes from 46 to 72 at the top of its clamp, d3 from
+  25 to 32. Most of what reads as premium is the gap between heading and body.
+- **One dark band per page.** How we do it on home, How we partner and invest on
+  partnerships. Five near identical light bands in a row is what made the pages read flat.
+  Same tokens the header and footer already use.
+- **Section eyebrows**, with a rule that draws itself under the heading on reveal. The
+  labels come from the section names already in the HTML comments.
+- **A wash of the accent off the top of the plain cards** and a soft drop. The cards that
+  have a build of their own, the pillars, the pink card and the magnets, are left alone.
+- **More travel and a focus pull on the reveal**, with the delays opened up so a row of
+  cards arrives as a run.
+
+**To remove it:** section 12 of the stylesheet, the spice block at the end of `main.js`,
+the button and the `<head>` script in each page, the `spice-dark` class on the two bands
+and the `data-eyebrow` attributes. Nothing else refers to any of it.
+
+Verified in both states: five pages clean at 1440 and 390, contrast passes on every
+text and ground pair, the wall still fits at thirteen widths, no JS errors, and the
+toggle behaves the same in the preview build as on the real pages.
