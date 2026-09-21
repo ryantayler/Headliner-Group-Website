@@ -1184,47 +1184,79 @@ body.sheet-open{overflow:hidden}
 [data-spice="on"] .head--center [data-rule]::after{margin-inline:auto}
 
 /* ---- three ways of using the logo beam, one example each, all independent ----
-   1. data-rule="beam", home. The rule under the heading becomes a slice of the mark,
-      a short wedge raked to the logo's 34 degrees with the same falloff. Home carries
-      it, the other pages keep the flat rule, so the two sit side by side.
+   1. data-rule="beam", home. The rule under the heading is the logo wedge laid on its
+      side: narrow and bright at the source, widening and fading away, ends raked to 34
+      degrees. Clipped, not blurred. The first pass skewed a soft bar and it read as a
+      smudge, because the shape was doing nothing and the blur was doing everything.
    2. .spice-beam-band, the dark band on home. One shaft raking across the section.
       No clip-path on it: clip applies after filter, so a blurred then clipped shaft
-      comes back with a hard edge. The taper is in the gradient instead.
-   3. .spice-beam-edge, Who this is for on partnerships. A single streak crossing the
-      seam between two bands at 34 degrees. A whole tilted band edge cannot use that
-      angle, 34 degrees across 1440 is 970px of slope, so the angle lives in the streak.
+      comes back with a hard edge. The taper is in the gradient instead, and a grain
+      layer sits over it, because a wide low alpha gradient on near black bands, the
+      steps being one 255th apart and the blur doing nothing to hide them.
+   3. .spice-beam-edge, Who this is for on partnerships. The logo beam itself, mirrored
+      and much larger, entering from off the left edge and crossing the seam between two
+      bands. Same clip, same gradient, same screen blend as .hl-beam. Here clip after
+      filter is what is wanted, the way the logo wants it, so the wedge keeps its edge.
    Delete any of the three on its own: the rule here and its marker in the markup. */
 [data-spice="on"] [data-rule="beam"]::after{
-  height:11px;border-radius:2px;
-  background:linear-gradient(100deg,
-    rgba(var(--accent-rgb),.92),rgba(var(--accent-rgb),.2) 58%,rgba(var(--accent-rgb),0));
+  height:13px;border-radius:0;
+  clip-path:polygon(0 38%,0 62%,100% 0,100% 100%);
+  background:linear-gradient(to right,
+    rgba(var(--accent-rgb),1),
+    rgba(var(--accent-rgb),.6) 40%,
+    rgba(var(--accent-rgb),.14) 76%,
+    rgba(var(--accent-rgb),0));
   transform:skewX(-34deg);transform-origin:0 100%;
-  filter:blur(.6px);
 }
 [data-spice="on"] .is-in [data-rule="beam"]::after,
-[data-spice="on"] [data-rule="beam"].is-in::after{width:66px}
+[data-spice="on"] [data-rule="beam"].is-in::after{width:74px}
 
 [data-spice="on"] .spice-beam-band{position:relative;overflow:hidden}
 [data-spice="on"] .spice-beam-band::before{
   content:"";position:absolute;z-index:0;pointer-events:none;
   top:-55%;left:6%;width:min(26vw,360px);height:210%;
   transform:rotate(34deg);
+  /* extra stops, because two stops across 700px is where the banding comes from */
   background:linear-gradient(to bottom,
-    rgba(var(--accent-rgb),.13),rgba(var(--accent-rgb),.05) 52%,rgba(var(--accent-rgb),0));
+    rgba(var(--accent-rgb),.13) 0%,
+    rgba(var(--accent-rgb),.105) 14%,
+    rgba(var(--accent-rgb),.082) 27%,
+    rgba(var(--accent-rgb),.062) 39%,
+    rgba(var(--accent-rgb),.044) 52%,
+    rgba(var(--accent-rgb),.028) 65%,
+    rgba(var(--accent-rgb),.015) 79%,
+    rgba(var(--accent-rgb),.006) 90%,
+    rgba(var(--accent-rgb),0) 100%);
   filter:blur(34px);
+}
+/* grain over the shaft, not under it, or the blur would take it straight back out */
+[data-spice="on"] .spice-beam-band::after{
+  content:"";position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.05;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/></filter><rect width='180' height='180' filter='url(%23n)'/></svg>");
+  background-size:180px 180px;
 }
 [data-spice="on"] .spice-beam-band>.shell{position:relative;z-index:1}
 
-/* band--lit clips, so the streak would lose the half that sits in the section above and
+/* band--lit clips, so the beam would lose the half that sits in the section above and
    the crossing is the whole idea. This band carries no lit beam of its own to bleed. */
 [data-spice="on"] .spice-beam-edge{position:relative;overflow:visible}
 [data-spice="on"] .spice-beam-edge::before{
-  content:"";position:absolute;z-index:2;pointer-events:none;
-  top:0;left:9%;width:3px;height:clamp(130px,15vw,210px);
-  transform:translateY(-50%) rotate(34deg);
+  /* z-index 0, not 2. The shell is z-index 1, so at 2 the wedge painted over the copy
+     and tinted it. At 0 it still covers the band above, because that band is an earlier
+     sibling and neither of them makes a stacking context. */
+  content:"";position:absolute;z-index:0;pointer-events:none;
+  top:0;left:0;
+  width:clamp(130px,16vw,250px);height:clamp(460px,56vw,880px);
+  margin:0 0 0 clamp(-120px,-9vw,-70px);
+  /* mirrored: the logo rakes its bright end to the right, this one comes in from the
+     left. Its centre sits on the seam, so half of it is in each band. */
+  transform:translateY(-50%) rotate(-34deg);
+  clip-path:polygon(43% 0,57% 0,100% 100%,0 100%);
+  /* no screen blend. Screen is how the logo sits on black; on paper it washes to nothing,
+     so on a light band the wedge is a plain translucent aqua instead. */
   background:linear-gradient(to bottom,
-    rgba(var(--accent-rgb),0),rgba(var(--accent-rgb),.85) 46%,rgba(var(--accent-rgb),0));
-  filter:blur(1px);
+    rgba(var(--accent-rgb),.55),rgba(var(--accent-rgb),.13) 52%,rgba(var(--accent-rgb),0));
+  filter:blur(11px);
 }
 
 /* The plain card is the most generic thing on the site. A wash of the accent off the

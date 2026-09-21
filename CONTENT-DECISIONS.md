@@ -1525,21 +1525,40 @@ toggle behaves the same in the preview build as on the real pages.
 All three live in the spice layer, all three are independent, and each is one rule in the
 stylesheet plus one marker in the markup.
 
-**1. The beam as the rule.** `data-rule="beam"`, home. The line under each heading becomes
-a slice of the mark, a short wedge raked to the logo's 34 degrees with the same falloff.
+**1. The beam as the rule.** `data-rule="beam"`, home. The logo wedge laid on its side:
+narrow and bright at the source, widening and fading away, ends raked to 34 degrees.
+Clipped, not blurred. The first pass skewed a soft bar and Ryan called it a paint smudge,
+which it was, because the shape was doing nothing and the blur was doing all the work.
 Home carries it, Partnerships and Ryan keep the flat rule, so the two sit side by side.
 
 **2. One beam per page, large and quiet.** `.spice-beam-band`, the dark band on home. A
 single shaft raking across the section at 13 percent. **No clip-path on it.** Clip applies
 after filter, so a blurred and then clipped shaft comes back with a hard edge, which is
-the trap the logo beam already documents. The taper is in the gradient instead. Pixel
-sampled: worst text on that band is 14.1 to 1.
+the trap the logo beam already documents. The taper is in the gradient instead.
 
-**3. The beam crossing a seam.** `.spice-beam-edge`, Who this is for on Partnerships. One
-streak crossing the join between two bands. A whole tilted band edge cannot use the
-logo's angle, 34 degrees across 1440 is 970px of slope, so the angle lives in the streak
-rather than the edge. `band--lit` clips, and the crossing is the whole point, so that one
-band overrides `overflow` back to visible. It carries no lit beam of its own to bleed.
+**It banded, and the fix is two things.** Nine gradient stops rather than three, and a
+grain layer over the shaft at 5 percent. A wide low alpha gradient on near black bands
+because its steps are one 255th apart and blur does nothing to hide them. The grain has to
+sit **over** the shaft, on the band's `::after`, because anything under it goes through
+the same blur and comes out flat again. Pixel sampled after: worst text on that band is
+13.2 to 1.
+
+**3. The logo beam itself, crossing a seam.** `.spice-beam-edge`, Who this is for on
+Partnerships. The same clip and the same gradient as `.hl-beam`, **mirrored and much
+larger**, entering from off the left edge with its centre on the seam so half sits in each
+band. Here clip after filter is what is wanted, the way the logo wants it, so the wedge
+keeps its edge.
+
+A whole tilted band edge cannot use the logo's angle. 34 degrees across 1440 is 970px of
+slope, so the angle lives in the wedge rather than in the edge.
+
+Two things it needed. **No screen blend**: screen is how the logo sits on black, and on
+paper it washes to nothing, so on a light band the wedge is plain translucent aqua at a
+lower alpha instead. **z-index 0, not 2**: the shell is z-index 1, so at 2 the wedge
+painted over the copy and tinted it. At 0 it still covers the band above, because that
+band is an earlier sibling and neither of them makes a stacking context. `band--lit`
+clips, and the crossing is the point, so that one band overrides `overflow` to visible.
+Pixel sampled: worst text on that band is 5.1 to 1.
 
 **What was not done: more beams in more places.** The logo works because the beam appears
 once. Four of them on a page is a pattern, and a pattern reads as wallpaper.
