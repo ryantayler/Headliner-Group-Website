@@ -931,30 +931,37 @@ a.card:hover,.card--hover:hover{transform:translateY(-4px);border-color:rgba(var
 .chip--f[aria-pressed="true"]{border-color:var(--tx-accent);color:var(--tx-accent)}
 .chip__n{opacity:.55;margin-left:5px;font-variant-numeric:tabular-nums}
 /* Business card proportions on the wall. The magnet turns landscape, image as a panel
-   down the left and the copy beside it, held at 1.74 to 1. Two across rather than four,
-   because a quarter width card at that ratio is 143px tall and nothing fits in it.
+   down the left and the copy beside it, held at 1.74 to 1, three across.
+
    .card is flex, so the whole thing is re-laid as a grid: the media spans every row in
    column one and everything else is pinned to column two, where row three takes the
    slack and pushes the foot to the bottom.
 
-   1180 is where two columns still leave the card wide enough for the copy. Below it the
-   card goes back to the portrait build, because at 1000 a half width card at this ratio
-   is 253px tall and the longer descriptions clip. */
-/* seven cards, so three across rather than four in the band below the card shape */
-@media (min-width:960px) and (max-width:1179px){ #wall{grid-template-columns:repeat(3,minmax(0,1fr))} }
-@media (min-width:1180px){
-  #wall{grid-template-columns:repeat(2,minmax(0,1fr))}
+   A third of the shell at this ratio is about 350 by 200, so the type inside steps down
+   a size and the padding tightens with it. Nothing here is the page's type scale, it is
+   card scale, and it is measured: no magnet clips its own content at any width. */
+/* seven cards, so three across rather than four below the card shape too */
+@media (min-width:960px) and (max-width:1119px){ #wall{grid-template-columns:repeat(3,minmax(0,1fr))} }
+@media (min-width:1120px){
+  #wall{grid-template-columns:repeat(3,minmax(0,1fr))}
   #wall .magnet{
-    aspect-ratio:1.74/1;display:grid;gap:10px 0;padding:0;
-    grid-template-columns:minmax(0,.58fr) minmax(0,1fr);
+    aspect-ratio:1.74/1;display:grid;gap:6px 0;padding:0;
+    grid-template-columns:minmax(0,.42fr) minmax(0,1fr);
     grid-template-rows:auto auto 1fr auto;
   }
   #wall .magnet>.media{grid-column:1;grid-row:1/-1;aspect-ratio:auto;height:100%;margin:0;padding:0}
-  #wall .magnet>:not(.media){grid-column:2;padding-inline:clamp(20px,2vw,28px);margin:0}
-  #wall .magnet>.card__n{padding-top:clamp(20px,2vw,28px)}
-  #wall .magnet>.card__foot{padding-bottom:clamp(20px,2vw,28px);padding-top:0}
+  #wall .magnet>:not(.media){grid-column:2;padding-inline:clamp(14px,1.3vw,18px);margin:0}
+  #wall .magnet>.card__n{padding-top:clamp(14px,1.3vw,18px);font-size:11px}
+  #wall .magnet>.card__foot{padding-bottom:clamp(14px,1.3vw,18px);padding-top:0}
+  #wall .magnet h3{font-size:clamp(15.5px,1.3vw,18.5px);line-height:1.15;letter-spacing:-.02em}
+  #wall .magnet p{font-size:12.8px;line-height:1.48}
+  #wall .magnet .tlink{font-size:12.5px;gap:6px}
   /* the badge belongs over the image, not over the copy it would otherwise land on */
-  #wall .magnet__fmt{left:14px;right:auto;top:14px}
+  #wall .magnet__fmt{left:12px;right:auto;top:12px;font-size:9px;padding:4px 7px}
+  /* the photo brief is a build note and the panel is about 100px wide, so the brief goes
+     and the slot label is tracked in to hold one line */
+  #wall .magnet .ph>span{display:none}
+  #wall .magnet .ph::before{font-size:8.5px;letter-spacing:.1em;white-space:nowrap}
 }
 .magnet[hidden]{display:none}
 .empty{margin-top:32px;color:var(--tx-mute)}

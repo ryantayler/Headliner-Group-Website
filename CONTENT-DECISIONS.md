@@ -1456,13 +1456,17 @@ magnet once he says what is in each.
 Landscape, **1.74 to 1**, which is a business card. The image is a panel down the left and
 the copy sits beside it.
 
-**Two across, not four.** At quarter width a card at this ratio is 143px tall and nothing
-fits in it. Three across in the band between 960 and 1180, since there are only seven.
+**Three across.** At 1440 that is 353 by 203, so everything inside steps down to card
+scale rather than page scale. Type, padding, the format badge and the link all shrink, the
+photo brief comes off entirely, and the slot label is tracked in to hold one line in a
+100px panel.
 
-**1180 is where the shape flips.** Below it the card goes back to the portrait build,
-because at 1000 a half width card at this ratio is 253px tall and the longer descriptions
-clip. Checked at nine widths from 390 to 1600, no card clips its own content at any of
-them.
+**The descriptions got shorter with it.** A business card does not carry a paragraph. The
+longest were five lines at this width, which clipped. They are two or three lines now.
+
+**1120 is where the shape flips.** Below it the card goes back to the portrait build.
+Checked at thirteen widths from 390 to 1920, no magnet clips its own content at any of
+them, and the chip counts and the sheet still behave.
 
 `.card` is flex, so the magnet is re-laid as a grid: the media spans every row in column
 one, everything else is pinned to column two, and row three takes the slack so the link
