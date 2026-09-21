@@ -1451,3 +1451,20 @@ The *What is in it* list is off every sheet rather than invented. It goes back o
 magnet once he says what is in each.
 
 `assets/downloads/README.txt` now names the seven files the page links to.
+## The magnets are business card shaped
+
+Landscape, **1.74 to 1**, which is a business card. The image is a panel down the left and
+the copy sits beside it.
+
+**Two across, not four.** At quarter width a card at this ratio is 143px tall and nothing
+fits in it. Three across in the band between 960 and 1180, since there are only seven.
+
+**1180 is where the shape flips.** Below it the card goes back to the portrait build,
+because at 1000 a half width card at this ratio is 253px tall and the longer descriptions
+clip. Checked at nine widths from 390 to 1600, no card clips its own content at any of
+them.
+
+`.card` is flex, so the magnet is re-laid as a grid: the media spans every row in column
+one, everything else is pinned to column two, and row three takes the slack so the link
+stays on the bottom. The format badge moves to the top left, over the image, because top
+right now lands on the copy.
