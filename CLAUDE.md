@@ -93,19 +93,21 @@ layer on; run both states before pushing anything that touches it.
 Three devices come out of the logo and each has a rule. They are rules, not preferences.
 Adding a fourth instance of any of them is a change to the system, not a tweak.
 
-**The beam rule under a heading: once per page, on the section that carries the offer.**
-`data-rule="beam"`. Home, how we do it. Partnerships, two ways we help you grow. Ryan,
-three ways to work with me. The mark appears at the point of the pitch and nowhere else.
-It was on every heading for a round and the site drowned in it. **Do not put a second one
-on a page.** A new section never inherits it; if the offer moves, the beam moves with it.
+**The beam rule under a heading: once per page, on the section that says how we work.**
+`data-rule="beam"`. Home, how we do it. Partnerships, our process. **Headliner pages
+only.** Ryan's page never takes it, and never takes the centred head either, because that
+page runs his brand and his brand has its own rules. It was on every heading on three
+pages for a round and the site drowned in it. **Do not put a second one on a page.** A new
+section never inherits it.
 
 **The background shaft: once per page, and never on a page without one.** Free Sh!t and
 Contact have none, because neither page makes an argument. It takes the accent token, so
 on Ryan's page it comes out pink on its own.
 
 **The centred head: a heading that opens a symmetric block.** Three cards, three facts, a
-pair of lanes. It is not a way to make a section feel important. A heading over prose
-stays on its left edge.
+pair of lanes. Headliner pages only, same as the beam. It is not a way to make a section
+feel important, so a heading over prose stays on its left edge. All three on the site are
+on Partnerships, because it is the only page whose sections are built as sets.
 
 ## Known traps
 
