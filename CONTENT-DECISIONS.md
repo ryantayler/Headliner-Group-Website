@@ -1529,7 +1529,13 @@ stylesheet plus one marker in the markup.
 narrow and bright at the source, widening and fading away, ends raked to 34 degrees.
 Clipped, not blurred. The first pass skewed a soft bar and Ryan called it a paint smudge,
 which it was, because the shape was doing nothing and the blur was doing all the work.
-Home carries it, Partnerships and Ryan keep the flat rule, so the two sit side by side.
+
+**The clip path was then wound wrong.** It listed the two left points together, which
+sends the outline left, left, right, right, so the shape crossed itself in the middle and
+the top and bottom rakes swapped over. Corners go round the shape in order, not down one
+side and then the other.
+
+Home and Partnerships carry it, Ryan keeps the flat rule.
 
 **2. One beam per page, large and quiet.** `.spice-beam-band`, the dark band on home. A
 single shaft raking across the section at 13 percent. **No clip-path on it.** Clip applies
@@ -1543,17 +1549,19 @@ sit **over** the shaft, on the band's `::after`, because anything under it goes 
 the same blur and comes out flat again. Pixel sampled after: worst text on that band is
 13.2 to 1.
 
-**3. The bar light.** `data-rule="bar"`, Partnerships. The rule under each heading is a
-bar light: a semi opaque housing with four globes in it, everything glowing cyan. It is
-the one piece of the industry the site is actually in, rather than a graphic. The housing
-is the `::after`, the four globes are four radial gradients inside it, and the bloom is a
-box shadow on the housing plus a wider falloff on each globe.
+**3. The same shaft again, twice more.** `.spice-beam-soft` on Who this is for on
+Partnerships, and `.spice-beam--r` on Three ways to work with me on Ryan's page.
 
-It cannot reveal by growing its width the way the other two do, or the globes squash on
-the way in, so this one fades and stretches instead.
+The soft one is the light band version, at about a third of the alpha. On paper the eye
+reads a wash rather than a light source, so it has to sit much further back or it looks
+like a printing fault. Same grain over it, same reason.
 
-**A fourth was built and cut.** The logo beam, mirrored and much larger, crossing the seam
-between two bands. It worked and Ryan did not want it.
+The mirrored one rakes the other way, so the second one on the site does not read as the
+same picture again. His page runs the pink accent, so his comes out pink without anything
+being said about it.
+
+**Three were built and cut.** The logo beam crossing a band seam. A four globe bar light,
+a housing with globes in it glowing cyan, which was the right idea and the wrong object.
 
 **What was not done: more beams in more places.** The logo works because the beam appears
 once. Four of them on a page is a pattern, and a pattern reads as wallpaper.
