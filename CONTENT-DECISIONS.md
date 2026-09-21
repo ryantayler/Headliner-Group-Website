@@ -1113,3 +1113,50 @@ Its colour rule has to outrank `.theme-ryan .hand`, which paints every hand pink
 cards on Partnerships, the intro above them, the how section on home and the home close.
 
 Numbered 1 to 4 in that order too, so the numerals behind the cards match.
+
+## Partnerships, the 21 September pass
+
+Ryan's batch, in his words, written at the length he briefed it.
+
+**The two way line** now carries the whole idea. *A good partnership has to create 1 of
+these 4, for you, and for the other party too. Usually not the same pillar for each party.
+A partnership only works two ways.* The middle sentence is the new part and it is the
+useful part, because it says the two sides are rarely after the same pillar.
+
+**The retainer line is gone** from the minority and majority shares card. It was a
+trailing reassurance and the card already says the share is the payment.
+
+**The stake paragraph** is now two. The first says why the share matters, our outcome is
+tied to growing the business. The second is the new one, that we are strict about who and
+how many we work with, so the focus holds. The per deal and the *anybody putting a
+percentage in front of you is guessing* lines are cut.
+
+## Who this is for is three facts and nothing else
+
+The sub heading paragraph is gone. So is the whole owner block underneath, both
+paragraphs, the ten sector chips and *not a closed list*.
+
+**Order is country, industry, size**, which is the order he screens in.
+
+1. **Australia only.** We partner and invest Australia wide, and we proudly keep our
+   partner network firmly Australian owned, and do not partner internationally.
+2. **Live events & production.** Directly in it, or working primarily with it.
+3. **$1m - $10m turnover.** Small businesses, part or fully owner operated.
+
+The home page close still reads *turning over $1 million to $10 million*. Left as is for
+now. If the shorter form is the house style, that line changes too.
+
+## Our process replaces All of it is written down
+
+Same section, same photo, new argument. Businesses run on patterns, Ryan has spent five
+years finding them and building the frameworks that solve them, everything we implement is
+already documented because it has worked somewhere before, and the first steps are free.
+
+The button goes to the free page and now says **Get some free sh!t here**, which is what
+the page is called everywhere else on the site.
+
+## The close
+
+**Have a conversation.** *Tell us about your business, your challenges, and your goals,
+and we'll let you know if you're the right fit to work with us.* First person plural, not
+Ryan's I, because this page is the group's. The button text is unchanged.
