@@ -1289,3 +1289,22 @@ invest, who this is for, have a conversation.
 it. The fact is about who they are, not where the office is.
 
 The close reads *we'll let you know if you're the right fit for us to work with you*.
+
+## Why I should have an opinion
+
+The numbers on Ryan's page were a bare ribbon between the hero and the bio, with nothing
+naming them. They now sit under **Why I should have an opinion**, which is the job they
+were always doing.
+
+The band takes padding with the heading, tight rather than full, so it still reads as a
+ribbon of facts rather than a section of its own weight.
+
+## Two lines cut from Ryan's page
+
+**The supplier quote.** *A supplier is someone you swap out when it's inconvenient. A
+partner is someone you stick with even when it is.* Off the belief section. The two
+paragraphs above it already make the argument, and the line was restating them.
+
+**The lead in on Three ways to work with me.** *Most of my time goes to the first one. The
+other two exist because people keep asking.* The cards say which is which, 01 in pink and
+the other two plain. The head is the heading alone now.
