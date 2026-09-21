@@ -1192,3 +1192,36 @@ what marks them as a target.
 one right edge straight down the page. The how band used a split head, which threw the
 heading to one side of the page and the copy to the other and broke that line against the
 hard column above it.
+
+## The optimisation engine
+
+The optimisation half of Two ways we help you grow now carries Ryan's engine argument
+rather than a placeholder line about a framework. It is called **The optimisation engine**
+throughout. He wrote it as the business engine, and the site name is the one above.
+
+The argument, in his words. Customers in, work done, the ones you impress come back and
+the ones you don't are the exhaust. Fuel is what you pour in from outside, paid, SEO,
+organic. Efficiency and fuel together decide whether it grows, and it grows when the fuel
+beats the exhaust. Most small businesses get the engine running, then quietly throttle
+the fuel because they have not got the team or the time, and growth flatlines.
+
+**Closing line.** *If your engine is running well and you're still not growing, check your
+own hand on the throttle.* This is the earned punch, not the manufactured kind the copy
+rules ban. The whole piece was built to land it.
+
+It is not handwritten. **One hand per view** still holds and the pillars note above it has
+that slot. The punch is set in ink at a step up in size instead.
+
+## Two IP blocks, one pair
+
+The engine sits in the same inset as the four pillars, same black ground, same pink
+heading, so the page reads as two halves of one offer rather than a branded block and a
+paragraph. Its lane head matches too.
+
+**The signature is not repeated.** It closes the first block and that is enough.
+
+The engine copy runs in **two columns above 1040**. The pillars block fills its width with
+four cards, the engine has only prose, so one measure left half the inset empty. Columns
+read down then across, which is the order the argument is written in, and no paragraph is
+allowed to split across the break. `.stack-lg` is a grid, so the display has to go back to
+block for columns to apply at all.
