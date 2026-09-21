@@ -1220,8 +1220,22 @@ paragraph. Its lane head matches too.
 
 **The signature is not repeated.** It closes the first block and that is enough.
 
-The engine copy runs in **two columns above 1040**. The pillars block fills its width with
-four cards, the engine has only prose, so one measure left half the inset empty. Columns
-read down then across, which is the order the argument is written in, and no paragraph is
-allowed to split across the break. `.stack-lg` is a grid, so the display has to go back to
-block for columns to apply at all.
+**The diagram is on the left, the argument on the right.** The pillars block fills its
+width with four cards, the engine has the drawing instead. Below 900 they stack, drawing
+first, because it is the thing the words are describing.
+
+## The engine diagram
+
+Redrawn from Ryan's sketch as inline SVG, colours reversed. Ink strokes and ink labels on
+the block's black ground rather than black on white. Hand paths as beziers, arrowheads as
+open chevrons, site type on the labels.
+
+Two things differ from the sketch, both deliberate. **REFEER is spelled refer.** And the
+sketch carries **IMPRESS twice**, once on the branch that loops back and once under the
+fork where the other branch runs out to leave. The second one is the one that goes out the
+back, so it reads **don't impress** here. That is what the copy beside it says.
+
+The labels scale with the drawing, so their size is set by the column. **On a phone the
+figure takes the inset's padding back** with a negative inline margin, because at the
+padded width the labels fall under our smallest type size. Checked at seven widths from
+390 to 1440. No label overlaps another and none spills the figure.
