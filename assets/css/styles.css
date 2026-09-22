@@ -92,9 +92,12 @@
   --tx:var(--ink); --tx-sub:var(--ink); --tx-mute:var(--mute); --tx-accent:var(--pink);
   color:var(--ink);
 }
-.theme-ryan .band--paper,.theme-ryan .cta-band{background:var(--base)}
-.theme-ryan .band--paper2{background:var(--panel)}
-.theme-ryan .ftr{background:var(--panel);border-top-color:var(--rim)}
+/* One ground, top to bottom. The page used to alternate base and panel band by band,
+   and because the cards flip the other way it read as three or four different blacks
+   stacked up. Now the ground never changes and the only raised surface is a card. */
+.theme-ryan .band--paper,.theme-ryan .band--paper2,.theme-ryan .cta-band{background:var(--base)}
+.theme-ryan .ftr{background:var(--base);border-top-color:var(--rim)}
+.theme-ryan .card,.theme-ryan .band--paper2 .card{background:var(--panel)}
 
 /* The site header is the one thing that does not change on his page, so it
    re-asserts Headliner's accent and action colour inside the bar. */
@@ -243,7 +246,7 @@
   display:block;margin-left:auto;width:clamp(140px,16vw,180px);
   margin-top:6px;color:var(--ink);opacity:.9;
 }
-.theme-ryan .band--paper2 .card{background:var(--base)}
+/* the band tone no longer alternates, so the card fill does not either */
 /* Pink statement card. Saturated fill, so it takes the inset glow and the
    pink rim. Black text, 5.5 to 1. */
 .theme-ryan .card.card--pink{
@@ -1170,80 +1173,10 @@ body.sheet-open{overflow:hidden}
 [data-spice="on"] .spice-dark .btn--quiet{background:var(--panel);border-color:var(--rim);color:var(--ink)}
 [data-spice="on"] .spice-dark .btn--quiet:hover{background:#1C201F;border-color:#1C201F}
 
-/* A rule under the heading that draws itself on reveal. There was a small uppercase
-   label above it as well and it went: a kicker over every heading is the thing that made
-   the first build look the same section after section, and it reads as filler. */
-[data-spice="on"] [data-rule]::after{
-  content:"";display:block;height:2px;width:0;background:var(--tx-accent);
-  margin-top:clamp(14px,1.4vw,20px);
-  transition:width .9s var(--ease) .18s;
-}
-[data-spice="on"] .is-in [data-rule]::after,
-[data-spice="on"] [data-rule].is-in::after{width:56px}
-/* a centred heading takes a centred rule, or it sits under the left edge of the block */
-[data-spice="on"] .head--center [data-rule]::after{margin-inline:auto}
-
-/* ---- three ways of using the logo beam, one example each, all independent ----
-   1. data-rule="beam", home. The rule under the heading is the logo wedge laid on its
-      side: narrow and bright at the source, widening and fading away, ends raked to 34
-      degrees. Clipped, not blurred. The first pass skewed a soft bar and it read as a
-      smudge, because the shape was doing nothing and the blur was doing everything.
-   2. .spice-beam-band, the dark band on home. One shaft raking across the section.
-      No clip-path on it: clip applies after filter, so a blurred then clipped shaft
-      comes back with a hard edge. The taper is in the gradient instead, and a grain
-      layer sits over it, because a wide low alpha gradient on near black bands, the
-      steps being one 255th apart and the blur doing nothing to hide them.
-   3. .spice-beam-soft, Who this is for on partnerships, and .spice-beam--r, Three ways
-      to work with me on Ryan's page. The same shaft again, once on paper at a third of
-      the alpha and once mirrored. His page runs the pink accent, so his comes out pink
-      without anything being said about it.
-   Delete any of these on its own: the rule here and its marker in the markup. Two more
-   were built and cut, the logo beam crossing a band seam and a four globe bar light. */
-[data-spice="on"] [data-rule="beam"]::after{
-  height:13px;border-radius:0;
-  /* wound in order. The first pass listed the two left points together, which sends the
-     path left, left, right, right and crosses itself in the middle. */
-  clip-path:polygon(0 38%,100% 0,100% 100%,0 62%);
-  background:linear-gradient(to right,
-    rgba(var(--accent-rgb),1),
-    rgba(var(--accent-rgb),.6) 40%,
-    rgba(var(--accent-rgb),.14) 76%,
-    rgba(var(--accent-rgb),0));
-  transform:skewX(-34deg);transform-origin:0 100%;
-}
-[data-spice="on"] .is-in [data-rule="beam"]::after,
-[data-spice="on"] [data-rule="beam"].is-in::after{width:74px}
-
-
-/* The centred head on How we partner and invest is the cleanest thing on the page, so
-   two more section openers take it. Two, not every one: centred is a device and it stops
-   meaning anything once it is the default. */
-[data-spice="on"] .spice-center{text-align:center;margin-inline:auto}
-[data-spice="on"] .head.spice-center{justify-items:center;max-width:64ch}
-[data-spice="on"] .spice-center[data-rule]::after{margin-inline:auto}
-
-[data-spice="on"] .spice-beam-band{position:relative;overflow:hidden}
-[data-spice="on"] .spice-beam-band::before{
-  content:"";position:absolute;z-index:0;pointer-events:none;
-  top:-55%;left:6%;width:min(26vw,360px);height:210%;
-  transform:rotate(34deg);
-  /* extra stops, because two stops across 700px is where the banding comes from */
-  background:linear-gradient(to bottom,
-    rgba(var(--accent-rgb),.13) 0%,
-    rgba(var(--accent-rgb),.105) 14%,
-    rgba(var(--accent-rgb),.082) 27%,
-    rgba(var(--accent-rgb),.062) 39%,
-    rgba(var(--accent-rgb),.044) 52%,
-    rgba(var(--accent-rgb),.028) 65%,
-    rgba(var(--accent-rgb),.015) 79%,
-    rgba(var(--accent-rgb),.006) 90%,
-    rgba(var(--accent-rgb),0) 100%);
-  filter:blur(34px);
-}
 /* grain over the shaft, not under it, or the blur would take it straight back out */
 [data-spice="on"] .spice-beam-band::after{
-  content:"";position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.05;
-  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/></filter><rect width='180' height='180' filter='url(%23n)'/></svg>");
+  content:"";position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.22;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/><feComponentTransfer><feFuncA type='discrete' tableValues='1'/></feComponentTransfer></filter><rect width='180' height='180' filter='url(%23n)'/></svg>");
   background-size:180px 180px;
 }
 [data-spice="on"] .spice-beam-band>.shell{position:relative;z-index:1}
@@ -1270,19 +1203,58 @@ body.sheet-open{overflow:hidden}
   filter:blur(38px);
 }
 [data-spice="on"] .spice-beam-soft::after{
-  content:"";position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.035;
-  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/></filter><rect width='180' height='180' filter='url(%23n)'/></svg>");
+  content:"";position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.16;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/><feComponentTransfer><feFuncA type='discrete' tableValues='1'/></feComponentTransfer></filter><rect width='180' height='180' filter='url(%23n)'/></svg>");
   background-size:180px 180px;
 }
 [data-spice="on"] .spice-beam-soft>.shell{position:relative;z-index:1}
+/* mirrored again, so the two on Partnerships do not read as the same picture twice */
+[data-spice="on"] .spice-beam--l::before{right:auto;left:8%;transform:rotate(34deg)}
+
+/* The centred head on How we partner and invest is the cleanest thing on the page, so
+   two more section openers take it. Two, not every one: centred is a device and it stops
+   meaning anything once it is the default. */
+[data-spice="on"] .spice-center{text-align:center;margin-inline:auto}
+[data-spice="on"] .head.spice-center{justify-items:center;max-width:64ch}
+
+/* The facts row takes the card build, so Who this is for reads the same way How we
+   partner and invest does: a centred head over three equal cards. The hairline grid it
+   used before is a different idea sitting next to that one. */
+[data-spice="on"] .facts.spice-cards{
+  gap:clamp(16px,2vw,26px);border-top:0;
+}
+[data-spice="on"] .facts.spice-cards .fact{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);
+  padding:clamp(22px,2.4vw,30px);border-bottom:1px solid var(--line);
+  box-shadow:0 1px 0 rgba(17,22,20,.05),0 22px 44px -28px rgba(17,22,20,.32);
+}
+[data-spice="on"] .facts.spice-cards .fact+.fact{border-left:1px solid var(--line);padding-left:clamp(22px,2.4vw,30px)}
+
+/* Grain on his page. Fixed to the viewport so it does not tile band by band.
+
+   Two things it needs or it renders as nothing. feTurbulence puts noise in the alpha
+   channel as well as the colour, so the layer averages about half transparent before
+   any opacity is applied; the alpha is forced opaque in the filter chain instead.
+
+   And it cannot use mix-blend-mode. Body's background propagates to the canvas, and the
+   canvas is not part of a blend's backdrop, so overlay on a child of body blends against
+   nothing and paints nothing. Plain opacity instead, low enough that the ground goes from
+   10,10,10 to about 13,13,13 and the wobble is a level or two either side of that. */
+[data-spice="on"] body.theme-ryan::after{
+  content:"";position:fixed;inset:0;z-index:70;pointer-events:none;
+  opacity:.019;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/><feComponentTransfer><feFuncA type='discrete' tableValues='1'/></feComponentTransfer></filter><rect width='200' height='200' filter='url(%23g)'/></svg>");
+  background-size:200px 200px;
+}
 
 
 /* The plain card is the most generic thing on the site. A wash of the accent off the
    top edge and a soft drop, and it stops looking like a default. The cards that already
    have a build of their own are left alone. */
+/* A soft drop and nothing else. There was a wash of the accent off the top edge as well
+   and it tinted every card. */
 [data-spice="on"] .card{
   box-shadow:0 1px 0 rgba(17,22,20,.05),0 22px 44px -28px rgba(17,22,20,.32);
-  background-image:linear-gradient(180deg,rgba(var(--accent-rgb),.09),rgba(var(--accent-rgb),0) 42%);
 }
 [data-spice="on"] .pillars .card,
 [data-spice="on"] .card--pink,

@@ -1605,3 +1605,44 @@ lanes, How we partner and invest over three cards, Who this is for over three fa
 not a way to make a section feel important, so a heading over prose stays on its left
 edge. Home has none because no section there is built as a set, and neither do Free Sh!t
 or Contact. Ryan's page is out by his brand's own rules.
+
+
+## The light stays, the rule goes
+
+**The rule under the heading is cut**, in every version. Four were built, the wedge, the
+logo beam crossing a seam, a four globe bar light and a flat line. Ryan settled it: the
+background light is the better idea, so the small mark goes entirely.
+
+**The shaft is on Partnerships twice now**, How we partner and invest and Who this is for,
+mirrored so the second is not the same picture again. Both are the paper version at about
+a third of the alpha. Home keeps its one on the dark band.
+
+**Ryan's page has none, in any form.**
+
+**The cyan wash is off the cards.** They keep the soft drop and nothing else. It tinted
+every card on the site and it was the one part of the card build that read as an effect.
+
+**Who this is for gets the How we partner and invest build**, a centred head over three
+equal cards. The hairline grid it used before is a different idea sitting next to that
+one.
+
+## One ground on Ryan's page
+
+His page alternated base and panel band by band, and because the cards flip the other way
+it read as three or four different blacks stacked up. **Now the ground never changes and
+the only raised surface is a card.** The footer goes with it and keeps its rim.
+
+This one is not in the spice layer. It is a fix, so it holds in both states.
+
+## Grain on Ryan's page
+
+One fixed layer over the whole viewport, spice only, so it can be compared against the
+clean version. It takes the ground from 10,10,10 to about 13,13,13 with a level or two of
+wobble either side, which is a tooth rather than noise.
+
+Two things it needed or it rendered as nothing at all. **feTurbulence writes noise into
+the alpha channel** as well as the colour, so the layer is about half transparent before
+any opacity is applied, and the alpha has to be forced opaque in the filter chain. And it
+**cannot use `mix-blend-mode`**: body's background propagates to the canvas, the canvas is
+not part of a blend's backdrop, so a blended child of body blends against nothing. Plain
+opacity instead, tuned low.

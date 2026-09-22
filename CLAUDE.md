@@ -88,26 +88,21 @@ attribute in front of it, and nothing outside it may be changed to serve it. The
 scripts `allspice.js`, `auditspice.js` and `fwspice.js` run the standard checks with the
 layer on; run both states before pushing anything that touches it.
 
-### Where the beam is allowed
+### Where the light is allowed
 
-Three devices come out of the logo and each has a rule. They are rules, not preferences.
-Adding a fourth instance of any of them is a change to the system, not a tweak.
+**The background shaft.** Home once, Partnerships twice, mirrored so the second is not the
+same picture again. On paper it runs at about a third of the dark band alpha. **Never on
+Ryan's page**, in any form: that page runs his brand and his brand has its own rules. Free
+Sh!t and Contact have none either.
 
-**The beam rule under a heading: once per page, on the section that says how we work.**
-`data-rule="beam"`. Home, how we do it. Partnerships, our process. **Headliner pages
-only.** Ryan's page never takes it, and never takes the centred head either, because that
-page runs his brand and his brand has its own rules. It was on every heading on three
-pages for a round and the site drowned in it. **Do not put a second one on a page.** A new
-section never inherits it.
-
-**The background shaft: once per page, and never on a page without one.** Free Sh!t and
-Contact have none, because neither page makes an argument. It takes the accent token, so
-on Ryan's page it comes out pink on its own.
+**The grain.** Ryan's page only, one fixed layer over the whole viewport.
 
 **The centred head: a heading that opens a symmetric block.** Three cards, three facts, a
-pair of lanes. Headliner pages only, same as the beam. It is not a way to make a section
-feel important, so a heading over prose stays on its left edge. All three on the site are
-on Partnerships, because it is the only page whose sections are built as sets.
+pair of lanes. Headliner pages only. It is not a way to make a section feel important, so
+a heading over prose stays on its left edge. All three are on Partnerships, because it is
+the only page whose sections are built as sets.
+
+**A rule under the heading was built and cut**, in four versions. Do not bring it back.
 
 ## Known traps
 
@@ -117,3 +112,12 @@ on Partnerships, because it is the only page whose sections are built as sets.
   which is negative under `object-fit: cover`. Use viewport units.
 - `[hidden]` is a UA rule at UA priority, so any author `display` un hides it. The
   stylesheet carries `[hidden]{display:none!important}` for this reason.
+- `feTurbulence` writes noise into the **alpha** channel as well as the colour, so a noise
+  layer is about half transparent before any opacity is applied. Force alpha opaque in the
+  filter chain.
+- **`mix-blend-mode` cannot see the canvas.** Body's background propagates to the canvas,
+  so a blended child of `body` blends against nothing and paints nothing. The page grain
+  uses plain opacity for this reason. A blended layer inside a section with its own
+  background is fine.
+- A `clip-path` polygon has to be **wound in order** round the shape. Listing the two left
+  corners together sends the outline left, left, right, right, and it crosses itself.
