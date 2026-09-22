@@ -1173,6 +1173,29 @@ body.sheet-open{overflow:hidden}
 [data-spice="on"] .spice-dark .btn--quiet{background:var(--panel);border-color:var(--rim);color:var(--ink)}
 [data-spice="on"] .spice-dark .btn--quiet:hover{background:#1C201F;border-color:#1C201F}
 
+/* ---- the background shaft ----
+   One soft rake of the accent across a section, the quiet half of the logo. On a dark
+   band it runs at full strength, on paper at about a third. No clip-path on it: clip
+   applies after filter, so a blurred then clipped shaft comes back with a hard edge,
+   which is the trap the logo beam already documents. The taper is in the gradient. */
+[data-spice="on"] .spice-beam-band{position:relative;overflow:hidden}
+[data-spice="on"] .spice-beam-band::before{
+  content:"";position:absolute;z-index:0;pointer-events:none;
+  top:-55%;left:6%;width:min(26vw,360px);height:210%;
+  transform:rotate(34deg);
+  /* extra stops, because two stops across 700px is where the banding comes from */
+  background:linear-gradient(to bottom,
+    rgba(var(--accent-rgb),.13) 0%,
+    rgba(var(--accent-rgb),.105) 14%,
+    rgba(var(--accent-rgb),.082) 27%,
+    rgba(var(--accent-rgb),.062) 39%,
+    rgba(var(--accent-rgb),.044) 52%,
+    rgba(var(--accent-rgb),.028) 65%,
+    rgba(var(--accent-rgb),.015) 79%,
+    rgba(var(--accent-rgb),.006) 90%,
+    rgba(var(--accent-rgb),0) 100%);
+  filter:blur(34px);
+}
 /* grain over the shaft, not under it, or the blur would take it straight back out */
 [data-spice="on"] .spice-beam-band::after{
   content:"";position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.22;mix-blend-mode:overlay;
