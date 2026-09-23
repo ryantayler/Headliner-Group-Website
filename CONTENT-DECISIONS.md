@@ -1722,3 +1722,62 @@ takes back most of the inset's padding. In the two column row the drawing lands 
 525, which puts Referred, Repeat, Impress and Don't Impress near nine pixels. That is the
 cost of using the file as drawn, and the fix, if Ryan wants one, is a larger export rather
 than a change on the page.
+
+## The first words on the site that are not Ryan's
+
+**Cory Hoyling, Director of Shadow AV**, reproduced as he wrote it. It sits on Ryan's page
+after the three ways to work with him, in a band of its own with no card, because the
+point of it is that the voice changed and a card would make it one more tile.
+
+## Three partnerships, nobody named
+
+On Partnerships, between Who this is for and the CTA, which is where the page reserved the
+slot. One per pillar, margin, revenue, and a margin and revenue matchup, all drawn from
+partnerships Ryan actually put together.
+
+**The anonymity is the position, not a gap.** "Nobody is named, because what two businesses
+agree between them is theirs to talk about, not mine." An owner reading it is deciding
+whether to tell a stranger about his numbers, so discretion said plainly is worth more
+than a logo would be.
+
+**The connection pillar has no case study.** Rather than quietly show three of four, the
+fourth carries a slot saying so. It comes out before launch or it gets filled.
+
+Each card leads with the pillar rather than a client name, and closes on who got what.
+The body takes the slack in the grid so the three result lines land on one line across the
+row however unevenly the stories run.
+
+## The share, in figures
+
+**10% to 30% minority when the owner is staying in. 70% to 90% majority when they want
+out.** Under the three ways we partner and invest, set as figures rather than a paragraph,
+because it is a number and it is the question every owner is holding while they read the
+cards above it.
+
+## Four blocks that are deliberately unfinished
+
+They carry `.slot` or `.vid`, a dashed rim and a label, and they are visible on the page on
+purpose, because an empty template Ryan can see beats a note in a file. **None of them can
+go live in this state.** They are the connection pillar case study, the first 90 days on
+Partnerships, the questions list on Partnerships, and the LinkedIn feed on Ryan's page,
+plus two video slots, one on home in How we do it and one on Ryan's page under the record.
+
+The questions are drafted and the answers are not, because the questions are scaffolding
+and the answers are positions only Ryan can take.
+
+## Rules between the sections on Ryan's page
+
+His page runs one ground top to bottom, so with no tone change between bands the sections
+ran into each other. `.band--rule` draws a hairline at the top of a band, inset to the
+shell rather than bled to the edges, because everything on the page sits on that measure
+and a full width rule reads as the edge of a band rather than a divider between two.
+
+## The eight figures line is gone
+
+Home now says **"My partnerships have generated 7 figures, and my optimisations have saved
+7 figures."** Same two facts as the stat row on Ryan's page, same order, same words. The
+site no longer contradicts itself across three pages.
+
+This overrides the `ryan-voice` skill's locked proof set, which says 115+ and 56,000+ and
+never to mix them with other figures. Ryan ruled on it directly. The skill is synced and
+will need the ruling added there, or the next session will put the old set back.

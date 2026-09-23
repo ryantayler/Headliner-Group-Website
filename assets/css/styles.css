@@ -1108,6 +1108,116 @@ body.sheet-open{overflow:hidden}
 .skip{position:absolute;left:-9999px}
 .skip:focus{left:var(--gutter);top:10px;z-index:99;background:var(--accent);color:#0A0A0A;padding:10px 16px;border-radius:100px;font-size:14px;font-weight:600}
 
+/* ---------- 19. Proof, and the blocks waiting on Ryan ----------
+   Four of the blocks below are deliberately unfinished and say so on the page, because
+   an empty template Ryan can see is more use to him than a note in a file. Anything
+   carrying .slot has to be written or deleted before the site goes live. */
+
+/* A hairline between sections. Ryan's page runs one ground top to bottom, so with no
+   tone change between bands the sections run into each other. Inset to the shell,
+   because everything on the page sits on that measure and a bled rule reads as the edge
+   of a band rather than a divider between two. */
+.band--rule::before{
+  content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:min(calc(100% - var(--gutter)*2),calc(var(--shell) - var(--gutter)*2));
+  height:1px;background:var(--line);
+}
+
+/* The unwritten block. Dashed, because a solid rim is a card and a card looks finished. */
+.slot{
+  display:grid;gap:8px;padding:clamp(18px,2.4vw,26px);
+  border:1px dashed var(--line);border-radius:var(--r-md);color:var(--tx-mute);
+}
+.slot::before{
+  content:attr(data-slot);font-size:10px;font-weight:600;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--tx-accent);
+}
+.slot p{font-size:13.5px;line-height:1.5}
+.slot--lg{min-height:clamp(140px,18vw,200px);align-content:start}
+
+/* Video. Sixteen by nine, the play mark centred, and the brief for the piece under it.
+   Swap the whole .vid block for an <iframe> or a <video> and nothing around it moves. */
+.vid{
+  position:relative;display:grid;place-items:center;gap:14px;aspect-ratio:16/9;
+  border:1px dashed var(--line);border-radius:var(--r-md);background:var(--surface);
+  padding:clamp(18px,2.4vw,26px);text-align:center;
+}
+.vid__play{
+  width:clamp(52px,6vw,72px);aspect-ratio:1;border-radius:50%;
+  border:1px solid var(--tx-accent);color:var(--tx-accent);
+  display:grid;place-items:center;
+}
+.vid__play svg{width:38%;fill:currentColor}
+.vid__cap{font-size:13px;line-height:1.5;color:var(--tx-mute);max-width:42ch}
+.vid__cap b{display:block;font-size:10px;font-weight:600;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--tx-accent);margin-bottom:6px}
+
+/* Case studies. One per pillar, so the card leads with which pillar it is rather than
+   with a client name it does not have. The result line is the argument, so it sits
+   under a rule at the foot where a card link would normally go. */
+/* Four rows, and the body takes the slack, so the three result lines land on one line
+   across the row however unevenly the three stories run. */
+.case{display:grid;gap:14px;grid-template-rows:auto auto 1fr auto}
+.case__pill{
+  font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--tx-accent);
+}
+.case__body{display:grid;gap:14px}
+.case__body p{font-size:14.5px;line-height:1.62;color:var(--tx-mute)}
+.case__out{
+  margin-top:4px;padding-top:16px;border-top:1px solid var(--line);
+  font-size:14.5px;font-weight:500;color:var(--tx);
+}
+
+/* The two share sizes, set as figures because that is the question being answered. */
+.splits{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(16px,2vw,26px)}
+@media (max-width:640px){.splits{grid-template-columns:1fr}}
+.split{display:grid;gap:10px;align-content:start}
+/* .split p below is class plus element and outranks a bare class, so the figure has to
+   be reached through its parent or it comes out at body size. */
+.split .split__n{
+  font-family:'Archivo Black',Impact,sans-serif;font-weight:400;
+  font-size:clamp(26px,3.4vw,44px);line-height:1;letter-spacing:-.026em;
+  color:var(--tx-accent);
+}
+.theme-ryan .split .split__n{font-family:'Anton',Impact,sans-serif;letter-spacing:0}
+.split p{font-size:14.5px;line-height:1.6;color:var(--tx-mute)}
+
+/* The question list. Plain disclosure, no script. The marker is rotated by the open
+   state rather than swapped, so there is nothing to keep in sync. */
+.faq{display:grid}
+.faq details{border-top:1px solid var(--line)}
+.faq details:last-of-type{border-bottom:1px solid var(--line)}
+.faq summary{
+  list-style:none;cursor:pointer;display:grid;grid-template-columns:1fr auto;gap:18px;
+  align-items:center;padding-block:clamp(18px,2.2vw,24px);
+  font-size:clamp(16px,1.5vw,19px);font-weight:500;color:var(--tx);
+}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{
+  content:"";width:11px;height:11px;border-right:1.5px solid var(--tx-accent);
+  border-bottom:1.5px solid var(--tx-accent);transform:translateY(-3px) rotate(45deg);
+  transition:transform .25s var(--ease);
+}
+.faq details[open] summary::after{transform:translateY(2px) rotate(225deg)}
+.faq__a{padding-bottom:clamp(18px,2.2vw,24px);max-width:68ch}
+
+/* The feed. Three post shaped blocks with the lines drawn rather than written, so the
+   block reads as a feed before a single real post is in it. */
+.feed{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2vw,26px)}
+@media (max-width:900px){.feed{grid-template-columns:1fr}}
+.feed__post{
+  display:grid;gap:12px;align-content:start;padding:clamp(18px,2.2vw,24px);
+  border:1px dashed var(--line);border-radius:var(--r-md);min-height:180px;
+}
+.feed__meta{
+  font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--tx-accent);
+}
+.feed__ln{height:9px;border-radius:99px;background:var(--line)}
+.feed__ln--s{width:62%}
+.feed__ln--m{width:88%}
+
 /* ---------- 12. The look ----------
    This began as an experiment behind a toggle and is now simply how the site looks, so
    the attribute that gated it is gone and these rules apply always. What is in here: the
