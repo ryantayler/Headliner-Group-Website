@@ -1632,12 +1632,11 @@ His page alternated base and panel band by band, and because the cards flip the 
 it read as three or four different blacks stacked up. **Now the ground never changes and
 the only raised surface is a card.** The footer goes with it and keeps its rim.
 
-This one is not in the spice layer. It is a fix, so it holds in both states.
+This one was never in the spice layer. It is a fix, so it held in both states.
 
 ## Grain on Ryan's page
 
-One fixed layer over the whole viewport, spice only, so it can be compared against the
-clean version. It takes the ground from 10,10,10 to about 13,13,13 with a level or two of
+One fixed layer over the whole viewport. It takes the ground from 10,10,10 to about 13,13,13 with a level or two of
 wobble either side, which is a tooth rather than noise.
 
 Two things it needed or it rendered as nothing at all. **feTurbulence writes noise into
@@ -1679,3 +1678,51 @@ losing. The source is in `assets/img/_src/` and the page carries a 720 and a 106
 
 It also does the job the copy could not. The paragraph beside it says he spent his hours
 in the parts of an event the audience never sees, and the picture is exactly that.
+
+
+## The spice layer is the site
+
+Ryan looked at both states and called it: *the spice we added should just be included as
+the website look, and you can remove the button now, it looks much better.* So the switch
+is gone rather than left in.
+
+**What went.** The `data-spice` attribute, the Activate spice button in every header, the
+no flash `<head>` script in all five pages, the toggle block at the end of `main.js` and
+the replay hook it hung off. The reveal is a plain run now, because nothing asks it to
+wind back and play again.
+
+**What stayed, renamed.** Every rule in section 12 lost its attribute prefix and the
+markers lost theirs with it. `spice-beam-band` is `beam-band`, `spice-beam-soft` is
+`beam-soft`, `spice-beam--l/--r` are `beam--l/--r`, `spice-dark` is `band--dark`,
+`spice-center` is `head--mid`, `spice-cards` is `facts--cards`. Everything above this
+section that names an old class is describing a rule that still exists under the new name.
+
+The word spice appears nowhere in the repo now. The things that were cut on the way, the
+rule under the heading in its four versions, the eyebrow labels and the cyan card wash,
+stay cut.
+
+## The optimisation engine, drawn again
+
+Ryan sent a second, cleaner version of the diagram and asked for it exactly, in the same
+style as the four pillars. It is an inline SVG on Partnerships, not an image, so it takes
+the page's own tokens and stays sharp.
+
+**Three readings, three colours.** The cycle that grows you is pink, Client to Work to
+Come Back and back round as Repeat and Referred. Marketing coming in and the half you lose
+are ink. The dollar in the middle is the one green on the site, and it is the only thing
+in the drawing that is not a box, an arrow or a label.
+
+The boxes take a pink rim and a faint diagonal hatch, drawn as a pattern rather than a
+fill, and the labels are Caveat, the site's own hand, which is the closest the site has to
+the face the sketch was drawn in.
+
+**It sits in a pillar card.** Same panel, rim, sixteen pixel corners and inset vignette as
+a pillar, with a weak pink bloom under the loop doing the job the numeral does behind a
+pillar card.
+
+**The labels are the whole layout problem.** They scale with the drawing, so the drawing's
+width decides whether they can be read. Two columns therefore start at 1040 rather than
+900, because the narrow two column state left them under the floor, and on a phone, where
+the drawing is never wide enough, the labels go up instead, in two steps. The widest of
+them has an arrow beside it, so it moves left as it grows. Checked at nineteen widths from
+1920 down to 360, and nothing falls under eleven pixels.

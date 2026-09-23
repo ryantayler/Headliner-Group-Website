@@ -79,14 +79,18 @@ Playwright scripts live in the session scratchpad, not in the repo. The ones tha
 discovers images and lifts the footer out of `index.html` rather than keeping copies. Do
 not reintroduce a hardcoded list of either.
 
-## The spice layer
+## The look
 
-`[data-spice="on"]` on `<html>` switches an experimental look, section 12 of the
-stylesheet plus the block at the end of `main.js`. **Off is the signed off site and has to
-stay pixel identical to it**, so nothing in that layer may be written without the
-attribute in front of it, and nothing outside it may be changed to serve it. The scratch
-scripts `allspice.js`, `auditspice.js` and `fwspice.js` run the standard checks with the
-layer on; run both states before pushing anything that touches it.
+Section 12 of the stylesheet is how the site looks. It was built behind a
+`[data-spice="on"]` switch so Ryan could compare it against the signed off build, he
+picked it, and the attribute, the header button and the no flash `<head>` script are all
+gone. The rules there apply always and there is no second state to check. Nothing in the
+repo should mention spice; if you find the word, it is a leftover.
+
+The markers it left behind are `beam-band`, `beam-soft`, `beam--l`, `beam--r`,
+`band--dark`, `head--mid` and `facts--cards`. Older notes in `CONTENT-DECISIONS.md` call
+them `spice-beam-band`, `spice-beam-soft`, `spice-beam--l/--r`, `spice-dark`,
+`spice-center` and `spice-cards`.
 
 ### Where the light is allowed
 

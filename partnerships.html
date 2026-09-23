@@ -21,9 +21,6 @@
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="assets/fonts/fonts.css">
 <link rel="stylesheet" href="assets/css/styles.css">
-<!-- spice toggle, test only: set the flag before first paint so the page never flashes
-     the plain version first. Delete with the rest of the experiment. -->
-<script>try{if(localStorage.getItem('hg-spice')==='on')document.documentElement.setAttribute('data-spice','on')}catch(e){}</script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -37,7 +34,6 @@
       <a href="ryan.html">Ryan Tayler</a>
       <a href="free.html">Free Sh!t</a>
       <a class="btn btn--fill" href="contact.html">Let&rsquo;s chat</a>
-      <button class="btn btn--ghost spice-btn" type="button" data-spice-btn aria-pressed="false">Activate spice</button>
     </nav>
     <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav"><span></span></button>
   </div>
@@ -91,7 +87,7 @@
      closes the first block and is not repeated on the second. -->
 <section class="band band--paper2 band--lit">
   <div class="shell">
-    <h2 class="display d2 rv spice-center">Two ways we help you grow</h2>
+    <h2 class="display d2 rv head--mid">Two ways we help you grow</h2>
 
     <div class="lane mt-l">
       <div class="lane__h rv">
@@ -147,46 +143,53 @@
         <h4 class="display pillars__h">The optimisation engine<span class="tm">&trade;</span></h4>
         <div class="engine mt-s">
           <figure class="engine__fig">
-            <svg class="engine__d" viewBox="0 0 520 344" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="engT engD">
-              <title id="engT">The optimisation engine</title>
-              <desc id="engD">Inputs feed into do work. The customers you impress come back or refer, which feeds the work again. The ones you do not impress leave.</desc>
-              <g fill="none" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
-                <g class="eng-in">
-                  <path d="M150 74C186 94 202 124 208 156"/>
-                  <path d="M200 145 209 158 217 145"/>
-                  <path d="M276 58C279 104 281 150 282 192"/>
-                  <path d="M274 181 282 194 290 181"/>
-                  <path d="M348 70C338 106 322 138 303 164"/>
-                  <path d="M304 151 302 166 315 159"/>
-                </g>
-                <g class="eng-loop" stroke-width="3">
-                  <path d="M116 282C94 254 86 202 118 178 144 158 186 156 208 162"/>
-                  <path d="M196 165 209 162 199 153"/>
-                  <path d="M132 280C112 256 106 212 136 194 158 178 196 180 212 186"/>
-                  <path d="M200 189 213 186 203 177"/>
-                  <path d="M268 258C254 282 228 300 200 307"/>
-                  <path d="M208 299 199 307 211 311"/>
-                </g>
-                <g class="eng-out">
-                  <path d="M292 260C316 286 348 296 380 297 396 298 410 297 424 297"/>
-                  <path d="M413 292 425 297 413 302"/>
-                </g>
-              </g>
-              <g font-family="Inter, system-ui, sans-serif" font-size="17" font-weight="600" letter-spacing=".05em">
-                <g class="eng-in">
-                  <text x="282" y="24" text-anchor="middle">INPUTS</text>
-                </g>
-                <text class="eng-hub" x="302" y="241" text-anchor="middle" font-size="21">DO WORK</text>
-                <g class="eng-loop">
-                  <text x="132" y="226" text-anchor="start">COME BACK</text>
-                  <text x="14" y="238" text-anchor="start">REFER</text>
-                  <text x="186" y="311" text-anchor="end">IMPRESS</text>
-                </g>
-                <g class="eng-out">
-                  <text x="352" y="330" text-anchor="middle">DON&#8217;T IMPRESS</text>
-                  <text x="438" y="288" text-anchor="start">LEAVE</text>
-                </g>
-              </g>
+            <svg class="engine__d" viewBox="0 0 775 676" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="engT engD">
+            <title id="engT">The optimisation engine</title>
+            <desc id="engD">Marketing feeds clients in. You do the work. The ones you impress come back, repeat and refer, which feeds the cycle again. The ones you do not impress leave.</desc>
+            <defs>
+            <pattern id="engHatch" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+            <line x1="0" y1="0" x2="0" y2="9" stroke="#FF2D6B" stroke-opacity=".085" stroke-width="1.7"/>
+            </pattern>
+            </defs>
+            <g class="eng-box">
+            <rect x="305" y="248" width="128" height="90" rx="15"/>
+            <rect x="62"  y="343" width="126" height="91" rx="15"/>
+            <rect x="295" y="446" width="127" height="90" rx="15"/>
+            </g>
+            <g class="eng-in" fill="none" stroke-width="2.1" stroke-linecap="round">
+            <path d="M334 74C321 112 327 162 345 199"/>
+            <path d="M338 181 346 203 353 180"/>
+            <path d="M375 72 375 200"/>
+            <path d="M368 181 375 204 382 181"/>
+            <path d="M420 76C431 113 421 163 403 199"/>
+            <path d="M396 180 402 203 410 180"/>
+            <path d="M436 344C446 372 448 404 443 431"/>
+            <path d="M435 411 443 435 452 412"/>
+            <path d="M427 543C462 565 494 585 529 603"/>
+            <path d="M556 625 594 625"/>
+            <path d="M585 619 596 625 585 631"/>
+            </g>
+            <g class="eng-loop" fill="none" stroke-width="2.2" stroke-linecap="round">
+            <path d="M104 338C106 296 156 232 232 221 268 216 294 221 310 227"/>
+            <path d="M294 218 313 228 295 238"/>
+            <path d="M143 333C158 310 201 280 252 272 276 269 291 271 302 275"/>
+            <path d="M288 266 306 275 289 284"/>
+            <path d="M283 549C246 562 203 553 172 528 152 512 136 485 129 457"/>
+            <path d="M120 476 128 453 138 473"/>
+            </g>
+            <g class="eng-t">
+            <text class="eng-h" x="375" y="47" text-anchor="middle">Marketing</text>
+            <text class="eng-p" x="369" y="307" text-anchor="middle">Client</text>
+            <text class="eng-p" x="125" y="384" text-anchor="middle">Come</text>
+            <text class="eng-p" x="125" y="420" text-anchor="middle">Back</text>
+            <text class="eng-p" x="358" y="505" text-anchor="middle">Work</text>
+            <text class="eng-m" x="263" y="397" text-anchor="middle">$</text>
+            <text class="eng-s" x="176" y="211" text-anchor="middle">Referred</text>
+            <text class="eng-s" x="184" y="259" text-anchor="middle">Repeat</text>
+            <text class="eng-s" x="185" y="519" text-anchor="middle">Impress</text>
+            <text class="eng-w" x="497" y="621" text-anchor="middle">Don&#8217;t Impress</text>
+            <text class="eng-h" x="612" y="637" text-anchor="start">Leave...</text>
+            </g>
             </svg>
           </figure>
           <div class="engine__copy">
@@ -215,7 +218,7 @@
 </section>
 
 <!-- ===== HOW WE PARTNER AND INVEST ===== -->
-<section class="band band--paper band--lit spice-beam-soft spice-beam--l">
+<section class="band band--paper band--lit beam-soft beam--l">
   <div class="shell">
     <div class="head head--center">
       <h2 class="display d2 rv">How we partner &amp; invest</h2>
@@ -248,13 +251,13 @@
      Three facts, nothing else. Set as a specification, a line and a paragraph separated
      by hairlines, because that is what it is. Country first, industry second, size last,
      which is the order Ryan screens in. -->
-<section class="band band--paper2 band--lit spice-beam-soft">
+<section class="band band--paper2 band--lit beam-soft">
   <div class="shell">
-    <div class="head spice-center">
+    <div class="head head--mid">
       <h2 class="display d2 rv">Who this is for</h2>
     </div>
 
-    <div class="facts spice-cards">
+    <div class="facts facts--cards">
       <div class="fact rv">
         <p class="fact__n">Aussie business owners</p>
         <p class="sub">We partner and invest Australia wide, and we proudly keep our partner network Australian owned, and do not partner internationally.</p>

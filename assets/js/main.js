@@ -34,9 +34,7 @@
     });
   }
 
-  /* 3. Reveal on scroll.
-     Wrapped in a function rather than run inline, because the spice toggle has to be
-     able to wind every reveal back and play it again. */
+  /* 3. Reveal on scroll. */
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var revealIO = null;
 
@@ -58,21 +56,7 @@
     items.forEach(function (el) { revealIO.observe(el); });
   }
 
-  function replayReveal() {
-    document.querySelectorAll('.rv.is-in').forEach(function (el) {
-      el.classList.remove('is-in');
-    });
-    /* read a layout value so the reset is committed before the class can come back on.
-       Without it the browser coalesces both writes and nothing animates. */
-    void document.body.offsetHeight;
-    runReveal();
-  }
-
   runReveal();
-  /* the preview build replaces this file's reveal with its own, so the hook is what the
-     spice block below talks to rather than the function itself */
-  window.HG = window.HG || {};
-  window.HG.replayReveal = replayReveal;
 
   /* 4. Demo form handling.
      Template only. Point the form at your real endpoint and delete this block. */
@@ -225,33 +209,4 @@
       else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
     });
   }
-
-  /* 6. Spice toggle. TEST CONTROL.
-     Flips [data-spice] on <html>, remembers the choice, and winds every reveal back so
-     the new motion plays from the top. The CSS layer it switches is section 12 of the
-     stylesheet. Delete this block, that block, the buttons and the <head> script to
-     take the experiment out. */
-  var SPICE_KEY = 'hg-spice';
-  var spiceBtns = document.querySelectorAll('[data-spice-btn]');
-  var spiceOn = false;
-  try { spiceOn = localStorage.getItem(SPICE_KEY) === 'on'; } catch (e) {}
-
-  function paintSpice() {
-    document.documentElement.setAttribute('data-spice', spiceOn ? 'on' : 'off');
-    spiceBtns.forEach(function (b) {
-      b.setAttribute('aria-pressed', String(spiceOn));
-      b.textContent = spiceOn ? 'Deactivate spice' : 'Activate spice';
-    });
-  }
-
-  paintSpice();
-
-  spiceBtns.forEach(function (b) {
-    b.addEventListener('click', function () {
-      spiceOn = !spiceOn;
-      try { localStorage.setItem(SPICE_KEY, spiceOn ? 'on' : 'off'); } catch (e) {}
-      paintSpice();
-      if (window.HG && window.HG.replayReveal) window.HG.replayReveal();
-    });
-  });
 })();

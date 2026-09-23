@@ -223,17 +223,36 @@
   box-shadow:inset 0 0 150px 30px rgba(10,10,10,.82);
 }
 .engine__d{position:relative;z-index:1;display:block;width:100%;height:auto;grid-area:1/1}
-/* Three readings in the one drawing. The loop that grows you is pink, the work at the
-   centre and the inputs feeding it are ink, and the half you lose is stepped back. */
-.engine__d .eng-loop{stroke:var(--pink);fill:var(--pink)}
-.engine__d .eng-in{stroke:var(--ink);fill:var(--ink)}
-.engine__d .eng-hub{fill:var(--ink)}
-.engine__d .eng-out{stroke:#8F8A82;fill:#8F8A82}
-/* the fills above are for the labels; the strokes are never filled */
-.engine__d path{fill:none}
-@media (min-width:900px){
+/* The drawing. Three readings in it: the cycle that grows you is pink, marketing coming
+   in and the half you lose are ink, and the money is the one green on the site. Labels
+   are Caveat, the site's own hand, which is the closest thing it has to the face the
+   sketch was drawn in. */
+.engine__d .eng-box rect{fill:url(#engHatch);stroke:var(--pink);stroke-width:2.2}
+.engine__d .eng-in{stroke:var(--ink);fill:none}
+.engine__d .eng-loop{stroke:var(--pink);fill:none}
+.engine__d .eng-t text{font-family:'Caveat',cursive;font-weight:600}
+.engine__d .eng-h{fill:var(--ink);font-size:36px}
+.engine__d .eng-p{fill:var(--pink);font-size:33px}
+.engine__d .eng-m{fill:#39994B;font-size:44px}
+.engine__d .eng-s{fill:var(--pink);font-size:21px}
+.engine__d .eng-w{fill:var(--ink);font-size:21px}
+/* The labels scale with the drawing, so the drawing's width sets whether they can be read.
+   Two columns only once the row is wide enough to leave the drawing big enough for them,
+   and on a phone, where it never is, they go up instead. */
+@media (min-width:1040px){
   /* the card takes the copy's full height, the way pillar cards match each other */
-  .engine{grid-template-columns:minmax(0,1.12fr) minmax(0,1fr);align-items:stretch}
+  /* the drawing is nearly square now, so it takes more of the row than the old wide one
+     did, or its small labels land under the readable floor */
+  .engine{grid-template-columns:minmax(0,1.34fr) minmax(0,1fr);align-items:stretch}
+}
+@media (max-width:620px){
+  .engine__d .eng-s,.engine__d .eng-w{font-size:24px}
+  /* the widest label is the one with an arrow beside it, so it moves left as it grows */
+  .engine__d .eng-w{transform:translateX(-14px)}
+}
+@media (max-width:470px){
+  .engine__d .eng-s,.engine__d .eng-w{font-size:30px}
+  .engine__d .eng-w{transform:translateX(-36px)}
 }
 /* On a phone the card takes back most of the inset's padding, because the labels scale
    with the drawing's width. Two pixels of it stay, so the card's rim never sits on the
@@ -1126,31 +1145,27 @@ body.sheet-open{overflow:hidden}
 .skip{position:absolute;left:-9999px}
 .skip:focus{left:var(--gutter);top:10px;z-index:99;background:var(--accent);color:#0A0A0A;padding:10px 16px;border-radius:100px;font-size:14px;font-weight:600}
 
-/* ---------- 12. SPICE. Test layer, off by default ----------
-   Everything below hangs off [data-spice="on"] on <html>, so with the toggle off the
-   site renders exactly as it did before this block existed. The button that sets it is
-   in the header of every page, marked data-spice-btn, and the choice is remembered in
-   localStorage so it holds across pages.
-
-   To remove the experiment: delete this block, the spice block at the end of main.js,
-   the button and the no flash script in each <head>, the spice-dark class on the two
-   bands and the data-eyebrow attributes. Nothing else refers to any of it. */
+/* ---------- 12. The look ----------
+   This began as an experiment behind a toggle and is now simply how the site looks, so
+   the attribute that gated it is gone and these rules apply always. What is in here: the
+   brand face and a bigger scale on the headings, one dark band on home, the background
+   shaft, the card build, the centred head, and the reveal. */
 
 /* The brand face carries every heading, not just the hero. d1 is excluded, because the
    hero sets its own size and fit and there is nothing wrong with it. */
-[data-spice="on"] .display:not(.d1){
+.display:not(.d1){
   font-family:'Archivo Black',Impact,sans-serif;font-weight:400;
   text-transform:uppercase;letter-spacing:-.026em;line-height:.98;
 }
 /* his page keeps Anton. That is his face, not the group's. */
-[data-spice="on"] .theme-ryan .display:not(.d1){
+.theme-ryan .display:not(.d1){
   font-family:'Anton',Impact,sans-serif;letter-spacing:0;line-height:.92;
 }
 /* card headings stay sentence case. Uppercase at 18px is a shout, not a heading. */
-[data-spice="on"] .d4{text-transform:none;letter-spacing:-.012em;line-height:1.16}
+.d4{text-transform:none;letter-spacing:-.012em;line-height:1.16}
 /* the wall magnets are business card sized and carry their own type. The display face
    at that size runs Business constraint diagnosis to three lines and clips it. */
-[data-spice="on"] #wall .magnet h3.display{
+#wall .magnet h3.display{
   font-family:'Inter',system-ui,sans-serif;font-weight:600;
   text-transform:none;letter-spacing:-.02em;line-height:1.15;
 }
@@ -1160,30 +1175,30 @@ body.sheet-open{overflow:hidden}
    size as the page headline flattens the order of the page. The hero cannot go up to
    make that gap: its lines are nowrap above 760 and the longest one already fills the
    shell at 64. */
-[data-spice="on"] .d2{font-size:clamp(30px,4.2vw,56px);line-height:.94;letter-spacing:-.032em}
-[data-spice="on"] .d3{font-size:clamp(19px,2.2vw,28px);line-height:1.04}
+.d2{font-size:clamp(30px,4.2vw,56px);line-height:.94;letter-spacing:-.032em}
+.d3{font-size:clamp(19px,2.2vw,28px);line-height:1.04}
 
 /* Home drops one band to the dark set, because five near identical light bands in a row
    is what makes the page read flat. Same tokens the header and footer use.
 
    Partnerships does not get one. Dark on that page is Ryan's personal brand, it is what
    the two IP blocks wear, and a dark Headliner band beside them reads as his. */
-[data-spice="on"] .spice-dark{
+.band--dark{
   --ground:var(--base); --surface:var(--panel); --line:var(--rim);
   --tx:var(--ink); --tx-sub:var(--ink); --tx-mute:var(--mute); --tx-accent:var(--accent);
   background:var(--base); color:var(--ink);
 }
 /* the quiet button is black on light, so on a dark band it would vanish */
-[data-spice="on"] .spice-dark .btn--quiet{background:var(--panel);border-color:var(--rim);color:var(--ink)}
-[data-spice="on"] .spice-dark .btn--quiet:hover{background:#1C201F;border-color:#1C201F}
+.band--dark .btn--quiet{background:var(--panel);border-color:var(--rim);color:var(--ink)}
+.band--dark .btn--quiet:hover{background:#1C201F;border-color:#1C201F}
 
 /* ---- the background shaft ----
    One soft rake of the accent across a section, the quiet half of the logo. On a dark
    band it runs at full strength, on paper at about a third. No clip-path on it: clip
    applies after filter, so a blurred then clipped shaft comes back with a hard edge,
    which is the trap the logo beam already documents. The taper is in the gradient. */
-[data-spice="on"] .spice-beam-band{position:relative;overflow:hidden}
-[data-spice="on"] .spice-beam-band::before{
+.beam-band{position:relative;overflow:hidden}
+.beam-band::before{
   content:"";position:absolute;z-index:0;pointer-events:none;
   top:-55%;left:6%;width:min(26vw,360px);height:210%;
   transform:rotate(34deg);
@@ -1201,20 +1216,20 @@ body.sheet-open{overflow:hidden}
   filter:blur(34px);
 }
 /* grain over the shaft, not under it, or the blur would take it straight back out */
-[data-spice="on"] .spice-beam-band::after{
+.beam-band::after{
   content:"";position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.22;mix-blend-mode:overlay;
   background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/><feComponentTransfer><feFuncA type='discrete' tableValues='1'/></feComponentTransfer></filter><rect width='180' height='180' filter='url(%23n)'/></svg>");
   background-size:180px 180px;
 }
-[data-spice="on"] .spice-beam-band>.shell{position:relative;z-index:1}
+.beam-band>.shell{position:relative;z-index:1}
 /* mirrored, so the second one on the site does not read as the same picture again */
-[data-spice="on"] .spice-beam--r::before{left:auto;right:6%;transform:rotate(-34deg)}
+.beam--r::before{left:auto;right:6%;transform:rotate(-34deg)}
 
 /* The same shaft for a light band, at a third of the alpha. On paper the eye reads a
    wash rather than a light source, so it has to sit much further back or it looks like
    a printing fault. Same grain over it, same reason. */
-[data-spice="on"] .spice-beam-soft{position:relative;overflow:hidden}
-[data-spice="on"] .spice-beam-soft::before{
+.beam-soft{position:relative;overflow:hidden}
+.beam-soft::before{
   content:"";position:absolute;z-index:0;pointer-events:none;
   top:-55%;right:8%;width:min(24vw,330px);height:210%;
   transform:rotate(-34deg);
@@ -1229,33 +1244,33 @@ body.sheet-open{overflow:hidden}
     rgba(var(--accent-rgb),0) 100%);
   filter:blur(38px);
 }
-[data-spice="on"] .spice-beam-soft::after{
+.beam-soft::after{
   content:"";position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.16;mix-blend-mode:overlay;
   background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/><feComponentTransfer><feFuncA type='discrete' tableValues='1'/></feComponentTransfer></filter><rect width='180' height='180' filter='url(%23n)'/></svg>");
   background-size:180px 180px;
 }
-[data-spice="on"] .spice-beam-soft>.shell{position:relative;z-index:1}
+.beam-soft>.shell{position:relative;z-index:1}
 /* mirrored again, so the two on Partnerships do not read as the same picture twice */
-[data-spice="on"] .spice-beam--l::before{right:auto;left:8%;transform:rotate(34deg)}
+.beam--l::before{right:auto;left:8%;transform:rotate(34deg)}
 
 /* The centred head on How we partner and invest is the cleanest thing on the page, so
    two more section openers take it. Two, not every one: centred is a device and it stops
    meaning anything once it is the default. */
-[data-spice="on"] .spice-center{text-align:center;margin-inline:auto}
-[data-spice="on"] .head.spice-center{justify-items:center;max-width:64ch}
+.head--mid{text-align:center;margin-inline:auto}
+.head.head--mid{justify-items:center;max-width:64ch}
 
 /* The facts row takes the card build, so Who this is for reads the same way How we
    partner and invest does: a centred head over three equal cards. The hairline grid it
    used before is a different idea sitting next to that one. */
-[data-spice="on"] .facts.spice-cards{
+.facts.facts--cards{
   gap:clamp(16px,2vw,26px);border-top:0;
 }
-[data-spice="on"] .facts.spice-cards .fact{
+.facts.facts--cards .fact{
   background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);
   padding:clamp(22px,2.4vw,30px);border-bottom:1px solid var(--line);
   box-shadow:0 1px 0 rgba(17,22,20,.05),0 22px 44px -28px rgba(17,22,20,.32);
 }
-[data-spice="on"] .facts.spice-cards .fact+.fact{border-left:1px solid var(--line);padding-left:clamp(22px,2.4vw,30px)}
+.facts.facts--cards .fact+.fact{border-left:1px solid var(--line);padding-left:clamp(22px,2.4vw,30px)}
 
 /* Grain on his page. Fixed to the viewport so it does not tile band by band.
 
@@ -1267,7 +1282,7 @@ body.sheet-open{overflow:hidden}
    canvas is not part of a blend's backdrop, so overlay on a child of body blends against
    nothing and paints nothing. Plain opacity instead, low enough that the ground goes from
    10,10,10 to about 13,13,13 and the wobble is a level or two either side of that. */
-[data-spice="on"] body.theme-ryan::after{
+body.theme-ryan::after{
   content:"";position:fixed;inset:0;z-index:70;pointer-events:none;
   opacity:.019;
   background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/><feComponentTransfer><feFuncA type='discrete' tableValues='1'/></feComponentTransfer></filter><rect width='200' height='200' filter='url(%23g)'/></svg>");
@@ -1280,29 +1295,26 @@ body.sheet-open{overflow:hidden}
    have a build of their own are left alone. */
 /* A soft drop and nothing else. There was a wash of the accent off the top edge as well
    and it tinted every card. */
-[data-spice="on"] .card{
+.card{
   box-shadow:0 1px 0 rgba(17,22,20,.05),0 22px 44px -28px rgba(17,22,20,.32);
 }
-[data-spice="on"] .pillars .card,
-[data-spice="on"] .card--pink,
-[data-spice="on"] .magnet{box-shadow:none;background-image:none}
+.pillars .card,
+.card--pink,
+.magnet{box-shadow:none;background-image:none}
 
 /* The reveal gets further to travel and a focus pull. Delays open up with it, so a row
    of cards arrives as a run rather than all at once. */
-[data-spice="on"] .rv{
+.rv{
   opacity:0;transform:translateY(34px) scale(.988);filter:blur(6px);
   transition:opacity .9s var(--ease),transform .9s var(--ease),filter .9s var(--ease);
 }
-[data-spice="on"] .rv.is-in{opacity:1;transform:none;filter:none}
-[data-spice="on"] .rv-d1{transition-delay:.10s}
-[data-spice="on"] .rv-d2{transition-delay:.20s}
-[data-spice="on"] .rv-d3{transition-delay:.30s}
+.rv.is-in{opacity:1;transform:none;filter:none}
+.rv-d1{transition-delay:.10s}
+.rv-d2{transition-delay:.20s}
+.rv-d3{transition-delay:.30s}
 
-/* the toggle is a test control and is dressed as one */
-.spice-btn{border-style:dashed;font-size:13px;padding:11px 16px}
-@media (max-width:1100px) and (min-width:861px){.spice-btn{display:none}}
 
 @media (prefers-reduced-motion: reduce){
-  [data-spice="on"] .rv{opacity:1;transform:none;filter:none;transition:none}
-  [data-spice="on"] [data-eyebrow]::after{width:56px;transition:none}
+  .rv{opacity:1;transform:none;filter:none;transition:none}
+  [data-eyebrow]::after{width:56px;transition:none}
 }
