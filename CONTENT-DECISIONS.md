@@ -1646,3 +1646,16 @@ any opacity is applied, and the alpha has to be forced opaque in the filter chai
 **cannot use `mix-blend-mode`**: body's background propagates to the canvas, the canvas is
 not part of a blend's backdrop, so a blended child of body blends against nothing. Plain
 opacity instead, tuned low.
+
+
+## The record is three facts
+
+**7+ figures generated from my partnerships. 115+ live events. 56,000+ attendees.**
+
+The 8 figures line is cut. Three across on desktop and one column on a phone, because the
+row draws its rules as a 1px gap over a line coloured ground and a part full row shows up
+as an empty cell.
+
+**The home bio still says it.** *My events have generated 8 figures in revenue, and I have
+created an additional 7 figures from optimisation and partnerships.* Ryan scoped this
+change to the stats on his own page, so that line is untouched and needs his call.
