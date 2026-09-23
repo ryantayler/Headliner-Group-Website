@@ -1650,8 +1650,11 @@ opacity instead, tuned low.
 
 ## The record is four facts
 
-**7+ figures from my partnerships. 7+ figures from my optimisations. 115+ live events.
-56,000+ attendees.**
+**7+ figures generated from my partnerships. 7+ figures saved from my optimisations.
+115+ live events. 56,000+ attendees.**
+
+Generated for the partnerships, **saved** for the optimisations. Optimisation does not make
+money, it stops money leaving, and the two words say which is which.
 
 The 8 figures line is cut and the two money facts are split by where the money came from,
 partnerships and optimisations, rather than events and everything else.
@@ -1662,3 +1665,17 @@ as a 1px gap over a line coloured ground, so a part full row shows up as an empt
 **The home bio still says it.** *My events have generated 8 figures in revenue, and I have
 created an additional 7 figures from optimisation and partnerships.* Ryan scoped this
 change to the stats on his own page, so that line is untouched and needs his call.
+
+
+## The first real photograph
+
+**Front of house, mid show.** Ryan and an engineer over a console, the room blue behind
+them. It replaces the portrait placeholder in Where I learned the business, and it is the
+first photograph on the site that is not a hero.
+
+It is 2:3 in a 4:5 box, so cover crops it top and bottom. Held at **34 percent** rather
+than centred, because the faces are in the upper half and the hands are the part worth
+losing. The source is in `assets/img/_src/` and the page carries a 720 and a 1064.
+
+It also does the job the copy could not. The paragraph beside it says he spent his hours
+in the parts of an event the audience never sees, and the picture is exactly that.

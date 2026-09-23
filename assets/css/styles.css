@@ -771,6 +771,9 @@ button,input,textarea,select{font:inherit;color:inherit}
    sits left of centre in the source, so the frame is offset to bring him back across.
    Lower percentage moves him right on screen. Height scaled, so the vertical is inert. */
 .portrait img{object-position:62% 50%}
+/* the front of house shot is 2:3 in a 4:5 box, so cover crops it top and bottom. Held
+   high, because the faces are in the upper half and the hands are the part to lose. */
+.foh img{object-position:50% 34%}
 .r-45{aspect-ratio:4/5}.r-169{aspect-ratio:16/9}.r-219{aspect-ratio:21/9}
 
 .ph{
