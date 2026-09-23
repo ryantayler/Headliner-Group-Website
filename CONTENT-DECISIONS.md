@@ -1648,13 +1648,16 @@ not part of a blend's backdrop, so a blended child of body blends against nothin
 opacity instead, tuned low.
 
 
-## The record is three facts
+## The record is four facts
 
-**7+ figures generated from my partnerships. 115+ live events. 56,000+ attendees.**
+**7+ figures from my partnerships. 7+ figures from my optimisations. 115+ live events.
+56,000+ attendees.**
 
-The 8 figures line is cut. Three across on desktop and one column on a phone, because the
-row draws its rules as a 1px gap over a line coloured ground and a part full row shows up
-as an empty cell.
+The 8 figures line is cut and the two money facts are split by where the money came from,
+partnerships and optimisations, rather than events and everything else.
+
+Four across on desktop and two on a phone, which fills both rows. The row draws its rules
+as a 1px gap over a line coloured ground, so a part full row shows up as an empty cell.
 
 **The home bio still says it.** *My events have generated 8 figures in revenue, and I have
 created an additional 7 figures from optimisation and partnerships.* Ryan scoped this
