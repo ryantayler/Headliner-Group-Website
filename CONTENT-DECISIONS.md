@@ -1701,28 +1701,24 @@ The word spice appears nowhere in the repo now. The things that were cut on the 
 rule under the heading in its four versions, the eyebrow labels and the cyan card wash,
 stay cut.
 
-## The optimisation engine, drawn again
+## The optimisation engine, his own drawing
 
-Ryan sent a second, cleaner version of the diagram and asked for it exactly, in the same
-style as the four pillars. It is an inline SVG on Partnerships, not an image, so it takes
-the page's own tokens and stays sharp.
+Ryan sent a second, cleaner version of the diagram. It was rebuilt as an inline SVG first,
+close but not identical, and he settled it: **use the image he gave.** So the picture on
+the page is his file, `assets/img/optimisation-engine.png`, 775 by 676, used as drawn.
 
-**Three readings, three colours.** The cycle that grows you is pink, Client to Work to
-Come Back and back round as Repeat and Referred. Marketing coming in and the half you lose
-are ink. The dollar in the middle is the one green on the site, and it is the only thing
-in the drawing that is not a box, an arrow or a label.
+**The card takes the picture's ground.** The drawing carries a flat #121212 behind it, so
+the figure is #121212 rather than `--panel` and the two meet with no seam. It keeps the
+pillar card's rim and 16px corners so the two blocks carry the same weight, and it lost
+the pink bloom and the inset vignette, because both would tint a picture that is already
+finished.
 
-The boxes take a pink rim and a faint diagonal hatch, drawn as a pattern rather than a
-fill, and the labels are Caveat, the site's own hand, which is the closest the site has to
-the face the sketch was drawn in.
+**It never renders above 775.** Past its natural size the labels go soft rather than
+bigger, so the drawing stops there and the card's ground fills the rest.
 
-**It sits in a pillar card.** Same panel, rim, sixteen pixel corners and inset vignette as
-a pillar, with a weak pink bloom under the loop doing the job the numeral does behind a
-pillar card.
-
-**The labels are the whole layout problem.** They scale with the drawing, so the drawing's
-width decides whether they can be read. Two columns therefore start at 1040 rather than
-900, because the narrow two column state left them under the floor, and on a phone, where
-the drawing is never wide enough, the labels go up instead, in two steps. The widest of
-them has an arrow beside it, so it moves left as it grows. Checked at nineteen widths from
-1920 down to 360, and nothing falls under eleven pixels.
+**Its labels are drawn into it, so the drawing's width is the only thing that sets how big
+they are.** Two columns therefore start at 1040 rather than 900, and on a phone the card
+takes back most of the inset's padding. In the two column row the drawing lands at about
+525, which puts Referred, Repeat, Impress and Don't Impress near nine pixels. That is the
+cost of using the file as drawn, and the fix, if Ryan wants one, is a larger export rather
+than a change on the page.

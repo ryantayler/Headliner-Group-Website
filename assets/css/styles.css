@@ -199,64 +199,27 @@
    because it is the thing the words are describing. */
 .engine{display:grid;gap:clamp(26px,3.2vw,48px)}
 .engine__copy{display:grid;align-content:center}
-/* The drawing gets the same build as a pillar card, panel fill, rim, 16px corners and the
-   inset vignette, so the two blocks carry the same weight. The pillars have four cards
-   here, this one has the engine. */
+/* The drawing sits in a pillar card, rim and 16px corners, so the two blocks carry the
+   same weight. The drawing carries its own flat ground at #121212, so the card takes that rather than
+   --panel and the two meet with no seam. It gets no bloom and no inset vignette either:
+   both would tint a picture that is already finished. */
 .engine__fig{
-  position:relative;overflow:hidden;margin:0;
+  overflow:hidden;margin:0;
   display:grid;place-items:center;
-  background:var(--panel);border:1px solid var(--rim);border-radius:16px;
+  background:#121212;border:1px solid var(--rim);border-radius:16px;
   padding:clamp(16px,2.2vw,26px) clamp(8px,1.4vw,18px);
 }
-/* A pink bloom under the loop, doing the job the numeral does behind a pillar card, and
-   the same inset shadow on top of it pulling the corners back down. Keep the bloom weak.
-   Pink labels sit on it and the two trade against each other the same way. */
-.engine__fig::before{
-  content:"";position:absolute;left:30%;top:56%;width:64%;aspect-ratio:1;z-index:0;
-  transform:translate(-50%,-50%);pointer-events:none;
-  background:radial-gradient(circle,rgba(255,45,107,.11) 0%,rgba(255,45,107,0) 72%);
-}
-/* softer and wider than the pillar card's, because this card is tall and a tight spread
-   leaves the shadow's own rounded edge showing as a ghost rectangle inside it */
-.engine__fig::after{
-  content:"";position:absolute;inset:0;z-index:0;pointer-events:none;border-radius:inherit;
-  box-shadow:inset 0 0 150px 30px rgba(10,10,10,.82);
-}
-.engine__d{position:relative;z-index:1;display:block;width:100%;height:auto;grid-area:1/1}
-/* The drawing. Three readings in it: the cycle that grows you is pink, marketing coming
-   in and the half you lose are ink, and the money is the one green on the site. Labels
-   are Caveat, the site's own hand, which is the closest thing it has to the face the
-   sketch was drawn in. */
-.engine__d .eng-box rect{fill:url(#engHatch);stroke:var(--pink);stroke-width:2.2}
-.engine__d .eng-in{stroke:var(--ink);fill:none}
-.engine__d .eng-loop{stroke:var(--pink);fill:none}
-.engine__d .eng-t text{font-family:'Caveat',cursive;font-weight:600}
-.engine__d .eng-h{fill:var(--ink);font-size:36px}
-.engine__d .eng-p{fill:var(--pink);font-size:33px}
-.engine__d .eng-m{fill:#39994B;font-size:44px}
-.engine__d .eng-s{fill:var(--pink);font-size:21px}
-.engine__d .eng-w{fill:var(--ink);font-size:21px}
-/* The labels scale with the drawing, so the drawing's width sets whether they can be read.
-   Two columns only once the row is wide enough to leave the drawing big enough for them,
-   and on a phone, where it never is, they go up instead. */
+/* Ryan's own drawing, used as he drew it. 775 wide is its natural size and it never goes
+   past that, because past it the labels go soft rather than bigger. */
+.engine__d{display:block;width:100%;max-width:775px;height:auto}
+/* Two columns from 1040 rather than 900. The drawing's labels are drawn into it, so its
+   width is the only thing deciding whether they can be read, and a narrow two column row
+   left them too small. The card takes the copy's full height, as pillar cards do. */
 @media (min-width:1040px){
-  /* the card takes the copy's full height, the way pillar cards match each other */
-  /* the drawing is nearly square now, so it takes more of the row than the old wide one
-     did, or its small labels land under the readable floor */
   .engine{grid-template-columns:minmax(0,1.34fr) minmax(0,1fr);align-items:stretch}
 }
-@media (max-width:620px){
-  .engine__d .eng-s,.engine__d .eng-w{font-size:24px}
-  /* the widest label is the one with an arrow beside it, so it moves left as it grows */
-  .engine__d .eng-w{transform:translateX(-14px)}
-}
-@media (max-width:470px){
-  .engine__d .eng-s,.engine__d .eng-w{font-size:30px}
-  .engine__d .eng-w{transform:translateX(-36px)}
-}
-/* On a phone the card takes back most of the inset's padding, because the labels scale
-   with the drawing's width. Two pixels of it stay, so the card's rim never sits on the
-   inset's own. */
+/* On a phone the card takes back most of the inset's padding, for the same reason. Two
+   pixels of it stay, so the card's rim never sits on the inset's own. */
 @media (max-width:620px){
   .engine__fig{margin-inline:calc(clamp(22px,3vw,40px)*-1 + 8px);padding-inline:6px}
 }
