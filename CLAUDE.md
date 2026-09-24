@@ -74,6 +74,9 @@ Playwright scripts live in the session scratchpad, not in the repo. The ones tha
   brightest pixel under the text box. A token audit passes while text sits on bright image
   pixels, so the token audit is not enough on its own.
 - **download wall**, every card opens, the form swaps in, the filters count correctly
+- **tag balance**, all five pages. A slice edit that eats a closing tag passes every
+  other check, because the browser repairs the tree and Playwright never sees it. It cost
+  the end of `ryan.html` once. Run it after any edit that cuts markup by index.
 
 `build-preview.py <dir>` inlines the whole site into one file for the preview artifact. It
 discovers images and lifts the footer out of `index.html` rather than keeping copies. Do

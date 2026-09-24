@@ -1729,8 +1729,8 @@ than a change on the page.
 after the three ways to work with him, in a band of its own with no card, because the
 point of it is that the voice changed and a card would make it one more tile.
 
-**The layout was built four ways and Ryan picked the split.** Who said it on the left,
-the words on the right. The quote is set in Caveat, the site's own hand, in the page's
+**The layout was built four ways and Ryan picked the split.** The words on the left, who
+said it on the right, vertically centred against them. The quote is set in Caveat, the site's own hand, in the page's
 white rather than an accent, with the quote marks typed in. Colour would make it a device
 and the point is that somebody else is talking. Caveat runs small for its point size, so
 it is set well above the scale another face would take there. Same two column
@@ -1821,3 +1821,30 @@ kicker idiom everywhere else.
 
 **The same bug is still live on the numbers.** `#1`, `#2` and `#3` on Ryan's page are grey
 for the same reason. Nobody has asked for them back.
+
+
+## The frames need something under them
+
+LinkedIn's embed is a white card and there is no dark version of it, no parameter and no
+setting. That is fine on the live page. It is not fine anywhere the frame cannot load,
+because an empty frame is a white box on a black page and reads as broken.
+
+**Each frame now has a card under it**, dark, rimmed, with the LinkedIn mark and a link
+straight to the post. LinkedIn's own card is opaque, so the moment the embed paints, the
+card underneath disappears behind it. The frame itself is transparent, so a frame that
+never paints shows the card rather than its own white.
+
+**The preview build drops every frame.** The artifact host admits nothing from another
+site, so every frame in the preview renders empty, and the card underneath is the better
+thing to show. It is a general rule in `build-preview.py`, one regex over any iframe, not
+a list of URLs.
+
+## Tag balance is now a check
+
+An edit that cut markup by index ate the end of `ryan.html`, the whole CTA band, the
+closing `</main>` and the top of the footer. **Every other check passed**, because the
+browser repairs the tree and Playwright sees a working page. `build-preview.py` was what
+caught it, by failing to find `</main>`.
+
+`tags.js` in the scratchpad walks the tags on all five pages and reports anything
+unclosed, stray or mismatched. Run it after any edit that removes markup.

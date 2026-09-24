@@ -37,6 +37,11 @@ def _inline(x):
     for src, data in _imgs.items():
         x = x.replace(src, data)
     return x
+# The preview is a single file served from an artifact host, and its content policy
+# admits nothing from another site, so every frame in it renders as an empty white box.
+# Each one on the real pages has a card underneath it for exactly that case, so the
+# frames are dropped here and the card is what shows. General rule, no list of URLs.
+bodies = [re.sub(r'<iframe\b[^>]*>.*?</iframe>', '', x, flags=re.S) for x in bodies]
 bodies = [_inline(x) for x in bodies]
 # Home is in the real nav, so the preview has to carry it too, or the two disagree
 nav = "\n      ".join(f'<a href="#{s}" data-pg="{s}">{l}</a>' for s,l in PAGES if s != 'contact')
