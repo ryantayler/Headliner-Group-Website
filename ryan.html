@@ -48,14 +48,25 @@
      His portrait holds the left and dissolves into the ground. The signature
      is the name mark, sitting on the clean right so it stays ink on a clean
      ground, which his system requires. No beam anywhere on this page. -->
-<section class="hero hero--tall hero--ryan">
-  <div class="hero__media">
+<section class="hero hero--tall hero--ryan" id="ryanHero" data-hero="a">
+  <!-- Two heroes, switched by the button at the foot of the page. A is the signed off
+       one. B is the same photograph extended to the right, so it can run the full width
+       and the scrim over the copy can be a wash rather than a wall. The extension is
+       pure, same scale and the same full height, so his face lands in the same place in
+       both and only the ground around it changes. The button is a test control. -->
+  <div class="hero__media hero__media--a">
     <img src="assets/img/ryan-hero.jpg"
          srcset="assets/img/ryan-hero-900.jpg 900w, assets/img/ryan-hero.jpg 1800w"
          sizes="66vw" alt="" width="1800" height="1201"
          fetchpriority="high" decoding="async">
   </div>
-  <div class="hero__scrim" data-slot="Hero &middot; Ryan, three quarter, face to the left of frame"></div>
+  <div class="hero__media hero__media--b">
+    <img src="assets/img/ryan-hero-wide.jpg"
+         srcset="assets/img/ryan-hero-wide-1200.jpg 1200w, assets/img/ryan-hero-wide.jpg 2000w"
+         sizes="100vw" alt="" width="2000" height="696"
+         decoding="async">
+  </div>
+  <div class="hero__scrim"></div>
   <div class="shell hero__in">
     <div class="hero__grid">
       <div class="hero__portrait" aria-hidden="true"></div>
@@ -259,6 +270,12 @@
     </div>
   </div>
 </section>
+
+<!-- Test control. Delete this button, the toggle block in main.js and whichever hero
+     loses, once Ryan has picked. -->
+<div class="shell" style="padding-bottom:28px">
+  <button class="btn btn--ghost" type="button" id="heroSwap" aria-pressed="false">Try the wide hero</button>
+</div>
 
 </main>
 

@@ -1930,3 +1930,33 @@ contradicts itself. His call to confirm.
 are both spoken about as Headliner's own and neither is on the Free Sh!t page. The Free
 page has a Business data sheet, which may be the KPI sheet under another name. That needs
 settling before the page goes live, because it names IP a reader can then go looking for.
+
+
+## The wide hero, on trial
+
+Ryan extended the right hand side of his hero photograph with AI, so it can run the full
+width instead of stopping at 60 percent and dissolving. **Both are on the page and a
+button at the foot of it swaps them.** The choice is remembered, so it survives a reload.
+
+**The extension is pure.** Same scale, same full height, and the original content is the
+left 52.5 percent of the new file. Confirmed by matching the two pictures against each
+other at 0.99 correlation, and the file is cropped so that portion is exactly full height.
+Both pictures then cover by height to the same number and his face comes out the same
+size in each.
+
+**Placing it took measuring, not arithmetic.** The original renders 1.499 times the hero
+height wide, right anchored in a box of min(60vw,980px), and the hero's height is set by
+its content rather than by anything in the stylesheet. So `main.js` measures the height
+and writes `--hero-b-x`. His face now lands within a few pixels of where it was at every
+width from 1000 to 1920.
+
+**The wash is a gradient rather than a wall.** The signed off hero puts solid #0A0A0A
+under the copy because there is nothing behind it worth seeing. Here there is, so the
+right hand side stops at 90 percent and the palms stay faintly readable. **The first
+attempt was far too light**, because the copy column starts at about 26 percent of the
+width and the gradient was not up to strength until 66. Pixel sampled at 1920, 1440 and
+1100, the worst text on the hero went from 3.90 to 1 up to 12.2 to 1.
+
+**Below 900 the wide state falls back to the original.** The phone hero is a full bleed
+band with the copy on clean ground under it, so there is no right hand side for the
+extension to fill, and the wide crop loses his face entirely.

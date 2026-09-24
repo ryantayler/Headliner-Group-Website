@@ -286,6 +286,59 @@
   opacity:1;
   object-position:right min(0px,calc(min(30vw,490px) - 470px)) top 32%;
 }
+/* ---------- The wide hero, on trial ----------
+   The same photograph with the right hand side extended, so it can run the full width
+   instead of stopping at 60 percent and dissolving. The extension is pure, same scale
+   and the same full height, and the original content is the left 52.8 percent of it.
+   The file is cropped so that portion is exactly full height, which means both pictures
+   scale by height to the same number and his face comes out the same size in each.
+
+   Only the placement had to be solved, and it was measured rather than derived. Delete
+   this block, the second media element and the button when Ryan picks one. */
+.hero--ryan[data-hero="a"] .hero__media--b,
+.hero--ryan[data-hero="b"] .hero__media--a{display:none}
+.hero--ryan .hero__media--b{
+  right:0;left:0;width:auto;
+  /* no mask. The point of the wide one is that it reaches the right hand edge. */
+  -webkit-mask-image:none;mask-image:none;
+}
+.hero--ryan .hero__media--b img{
+  opacity:.92;
+  /* The left of the photograph is untouched by the extension, so the only job is to put
+     this picture's left edge where the original's is. Both cover by height, so the sum
+     needs the hero's height, and the hero's height is set by its content rather than by
+     any value in here. So main.js measures it and writes --hero-b-x. */
+  object-position:left var(--hero-b-x,0px) top 32%;
+}
+/* The wash over the copy. The signed off hero puts a wall of #0A0A0A under the text,
+   because there is nothing behind it worth seeing. Here there is, so the right hand
+   side stops short of solid and the palms stay faintly readable through it. Pixel
+   sampled against the brightest ground under the text before it was set. */
+@media (min-width:901px){
+  .hero--ryan[data-hero="b"] .hero__scrim{
+    background:
+      linear-gradient(to bottom,rgba(10,10,10,.93) 0,rgba(10,10,10,.86) 100px,rgba(10,10,10,0) 300px),
+      /* The copy column starts at about 26 percent, not 66, so the wash has to be up to
+         strength by then. Set from pixel sampling the brightest ground under the lede at
+         1920, 1440 and 1100, not by eye. */
+      linear-gradient(to right,
+        rgba(10,10,10,.42) 0%,
+        rgba(10,10,10,.1) 13%,
+        rgba(10,10,10,.66) 25%,
+        rgba(10,10,10,.88) 36%,
+        rgba(10,10,10,.9) 100%),
+      linear-gradient(to top,rgba(10,10,10,.96) 0%,rgba(10,10,10,0) 44%);
+  }
+}
+
+/* On a phone the hero is a full bleed band with the copy on clean ground under it, so
+   there is no right hand side for the extension to fill and the wide crop loses his
+   face entirely. Below 900 the wide state falls back to the original. */
+@media (max-width:900px){
+  .hero--ryan[data-hero="b"] .hero__media--b{display:none}
+  .hero--ryan[data-hero="b"] .hero__media--a{display:block}
+}
+
 .hero--ryan .hero__scrim{
   background:
     /* the bar sits over the brightest part of the shot, so it gets its own

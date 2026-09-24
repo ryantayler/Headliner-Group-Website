@@ -209,4 +209,38 @@
       else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
     });
   }
+
+  /* 7. Hero swap, a test control. Delete with the button and the losing hero. */
+  var hero = document.getElementById('ryanHero'),
+      swap = document.getElementById('heroSwap');
+  if (hero && swap) {
+    /* Both pictures cover by height, so the original renders 1.499 times the hero height
+       wide and the wide one 2.874 times. The original sits in a box of min(60vw,980px),
+       right anchored past its right edge by the same amount the stylesheet uses, which
+       puts its left edge at box plus offset minus its own width. The wide one carries a
+       sliver of new ground on its left too, so that comes off as well. The hero's height
+       is set by its content, so none of this can live in the stylesheet. */
+    var place = function () {
+      var h = hero.getBoundingClientRect().height / 1.06,   /* undo the drift scale */
+          vw = document.documentElement.clientWidth,
+          box = Math.min(vw * 0.6, 980),
+          off = Math.max(0, 470 - Math.min(vw * 0.3, 490)),
+          leftA = box + off - (1800 / 1201) * h,
+          padB = 0.009 * (2000 / 696) * h;
+      hero.style.setProperty('--hero-b-x', (leftA - padB).toFixed(1) + 'px');
+    };
+    place();
+    addEventListener('resize', place, { passive: true });
+    var set = function (mode) {
+      hero.setAttribute('data-hero', mode);
+      swap.setAttribute('aria-pressed', mode === 'b' ? 'true' : 'false');
+      swap.textContent = mode === 'b' ? 'Back to the original hero' : 'Try the wide hero';
+      try { localStorage.setItem('hg-hero', mode); } catch (e) {}
+    };
+    try { if (localStorage.getItem('hg-hero') === 'b') set('b'); } catch (e) {}
+    swap.addEventListener('click', function () {
+      set(hero.getAttribute('data-hero') === 'b' ? 'a' : 'b');
+    });
+  }
+
 })();
