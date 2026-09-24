@@ -1745,22 +1745,28 @@ The monogram is a stand in. A photograph of Cory drops into it and nothing else 
 
 On Partnerships, between Who this is for and the CTA, which is where the page reserved the
 slot. Same card build as every other set of three on the site, so they sit in the page
-rather than beside it.
+rather than beside it. The heading is **Partnerships we've put together**, though the
+stories inside are in the first person, which is Ryan's own mix and stays.
+
+**Ryan wrote all three himself and they go in as written.** Only plain errors were
+touched, gained for gain, recurring for reoccurring, one comma splice and two apostrophes.
+The closing lines, Win win, Another massive win that allowed both businesses to grow, and
+Both parties got exactly what they wanted, are the shape the copy rules call a bolted on
+kicker. They stay, because that rule exists to stop a writer decorating his copy for him,
+not to take his own voice out of it. The third is the weakest of them and it is his call.
+
+**Every story now carries its numbers**, what each side saved and what each side gained.
+That is what turns them from anecdotes into the argument for the four pillars.
 
 **The kicker names the pillars the deal created, one for each side.** Margin and revenue,
 revenue and reach, margin and revenue. That is the whole argument of the four pillars
-block above, shown working, which is why the cards no longer need a line at the foot
-explaining who got what. The explanation was doing the job the kicker already does.
+block above, shown working, which is why the cards need no line at the foot explaining who
+got what.
 
-**All three run to about the same length**, roughly seventy five words, because three
-cards side by side are read as a set and an uneven set reads as one good story and two
-thin ones.
+**Nobody is named and the page does not say why.** An owner who cares will ask, and the
+ones who do not were never going to be reassured by a sentence about discretion.
 
-**Nobody is named and the page does not say why.** The line explaining it was cut. An
-owner who cares will ask, and the ones who do not were never going to be reassured by a
-sentence about discretion.
-
-**The connection pillar has no case study and the page no longer mentions it.** Three of
+**The connection pillar has no case study and the page does not mention it.** Three of
 four, with nothing drawing attention to the fourth.
 
 ## No numbers on the share
