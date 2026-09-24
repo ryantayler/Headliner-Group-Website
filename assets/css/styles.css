@@ -1285,78 +1285,62 @@ body.sheet-open{overflow:hidden}
    band it runs at full strength, on paper at about a third. No clip-path on it: clip
    applies after filter, so a blurred then clipped shaft comes back with a hard edge,
    which is the trap the logo beam already documents. The taper is in the gradient. */
-.beam-band{position:relative;overflow:hidden}
-.beam-band::before{
-  content:"";position:absolute;z-index:0;pointer-events:none;
-  top:-55%;left:2%;width:min(34vw,470px);height:210%;
-  transform:rotate(34deg);
-  /* A shaft, not a glow. The gradient runs down its length and the soft edges across it
-     come from a mask rather than `filter:blur()`.
+.beam-band{position:relative;overflow:hidden;--beam-a:124deg}
+/* The shaft is one angled gradient across the whole band, with nothing else in the
+   chain. No rotated box, no `filter:blur()`, and above all no `mask-image`.
 
-     The blur is what banded it. It renders in tiles at reduced precision, and on an
-     almost black ground that comes back as stair steps across the shaft, which is why
-     adding gradient stops never helped. A mask is interpolated straight to the canvas
-     and has none of them. A radial gradient fixed the banding too, but it reads as a
-     round glow rather than a beam, so this is the version that keeps the shape.
-     Do not put the blur back. */
-  background:linear-gradient(to bottom,
-    rgba(var(--accent-rgb),.125) 0%,
-    rgba(var(--accent-rgb),.088) 22%,
-    rgba(var(--accent-rgb),.052) 45%,
-    rgba(var(--accent-rgb),.024) 66%,
-    rgba(var(--accent-rgb),.007) 85%,
-    rgba(var(--accent-rgb),0) 100%);
-  -webkit-mask-image:linear-gradient(to right,transparent 0,#000 48%,#000 52%,transparent 100%);
-  mask-image:linear-gradient(to right,transparent 0,#000 48%,#000 52%,transparent 100%);
+   Every one of those was banding it, and the mask was the worst. A mask multiplies a
+   second quantised alpha into a gradient that is already only 27 integer values of
+   green wide, and the product lands on a coarse lattice whose contours run along the
+   shaft. Tested side by side at nine times brightness, the same gradient with a mask
+   bands and without a mask does not. One gradient, one composite, one quantisation.
+
+   The cost is that the shaft no longer fades along its length, so it runs edge to edge.
+   That is what a beam crossing a frame does anyway. The angle is perpendicular to the
+   shaft, so 124 degrees draws it raking up to the right, and 236 mirrors it. */
+.beam-band::before{
+  content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:linear-gradient(var(--beam-a),
+    rgba(var(--accent-rgb),0) 6%,
+    rgba(var(--accent-rgb),.125) 24%,
+    rgba(var(--accent-rgb),0) 42%);
 }
-/* The dither. A low amplitude gradient on an almost black ground is only ever twenty
-   levels wide, so its contours land as wide flat bands whatever the gradient is made of.
-   Nothing but noise breaks them, and the noise has to blend normally, because `overlay`
-   does almost nothing over near black. It carries the shaft's own geometry and mask, so
-   it only lifts the ground where the beam already is, and the band stays black
-   everywhere else. */
+/* The dither. 27 levels across a whole band puts a flat contour every 66px whatever the
+   gradient is made of, and only noise breaks them. It blends normally, because `overlay`
+   does almost nothing over near black, and it carries a mask of its own so it lifts
+   nothing outside the shaft. Banding in a mask over noise does not matter. */
 .beam-band::after{
-  content:"";position:absolute;z-index:0;pointer-events:none;opacity:.05;
-  top:-55%;left:2%;width:min(34vw,470px);height:210%;transform:rotate(34deg);
+  content:"";position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.05;
   background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='1' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/><feComponentTransfer><feFuncA type='discrete' tableValues='1'/></feComponentTransfer></filter><rect width='160' height='160' filter='url(%23n)'/></svg>");
   background-size:160px 160px;
-  -webkit-mask-image:linear-gradient(to right,transparent 0,#000 48%,#000 52%,transparent 100%);
-  mask-image:linear-gradient(to right,transparent 0,#000 48%,#000 52%,transparent 100%);
+  -webkit-mask-image:linear-gradient(var(--beam-a),transparent 4%,#000 16%,#000 32%,transparent 44%);
+  mask-image:linear-gradient(var(--beam-a),transparent 4%,#000 16%,#000 32%,transparent 44%);
 }
 .beam-band>.shell{position:relative;z-index:1}
 /* mirrored, so the second one on the site does not read as the same picture again */
-.beam--r::before,.beam--r::after{left:auto;right:2%;transform:rotate(-34deg)}
+.beam--r{--beam-a:236deg}
 
-/* The same shaft for a light band, at a third of the alpha. On paper the eye reads a
-   wash rather than a light source, so it has to sit much further back or it looks like
-   a printing fault. Same grain over it, same reason. */
-.beam-soft{position:relative;overflow:hidden}
+/* The same shaft for a light band, at about two thirds of the alpha. On paper the eye
+   reads a wash rather than a light source, so it has to sit further back or it looks
+   like a printing fault. */
+.beam-soft{position:relative;overflow:hidden;--beam-a:236deg}
 .beam-soft::before{
-  content:"";position:absolute;z-index:0;pointer-events:none;
-  top:-55%;right:4%;width:min(31vw,430px);height:210%;
-  transform:rotate(-34deg);
-  /* same construction as the dark one, same reason */
-  background:linear-gradient(to bottom,
-    rgba(var(--accent-rgb),.082) 0%,
-    rgba(var(--accent-rgb),.058) 22%,
-    rgba(var(--accent-rgb),.034) 45%,
-    rgba(var(--accent-rgb),.016) 66%,
-    rgba(var(--accent-rgb),.005) 85%,
-    rgba(var(--accent-rgb),0) 100%);
-  -webkit-mask-image:linear-gradient(to right,transparent 0,#000 48%,#000 52%,transparent 100%);
-  mask-image:linear-gradient(to right,transparent 0,#000 48%,#000 52%,transparent 100%);
+  content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:linear-gradient(var(--beam-a),
+    rgba(var(--accent-rgb),0) 6%,
+    rgba(var(--accent-rgb),.082) 24%,
+    rgba(var(--accent-rgb),0) 42%);
 }
 .beam-soft::after{
-  content:"";position:absolute;z-index:0;pointer-events:none;opacity:.05;
-  top:-55%;right:4%;width:min(31vw,430px);height:210%;transform:rotate(-34deg);
+  content:"";position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.05;
   background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='1' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/><feComponentTransfer><feFuncA type='discrete' tableValues='1'/></feComponentTransfer></filter><rect width='160' height='160' filter='url(%23n)'/></svg>");
   background-size:160px 160px;
-  -webkit-mask-image:linear-gradient(to right,transparent 0,#000 48%,#000 52%,transparent 100%);
-  mask-image:linear-gradient(to right,transparent 0,#000 48%,#000 52%,transparent 100%);
+  -webkit-mask-image:linear-gradient(var(--beam-a),transparent 4%,#000 16%,#000 32%,transparent 44%);
+  mask-image:linear-gradient(var(--beam-a),transparent 4%,#000 16%,#000 32%,transparent 44%);
 }
 .beam-soft>.shell{position:relative;z-index:1}
 /* mirrored again, so the two on Partnerships do not read as the same picture twice */
-.beam--l::before,.beam--l::after{right:auto;left:4%;transform:rotate(34deg)}
+.beam--l{--beam-a:124deg}
 
 /* The centred head on How we partner and invest is the cleanest thing on the page, so
    two more section openers take it. Two, not every one: centred is a device and it stops

@@ -1860,12 +1860,20 @@ unclosed, stray or mismatched. Run it after any edit that removes markup.
 
 Two separate problems were stacked on top of each other and the first one hid the second.
 
-**The blur was the first.** `filter:blur()` renders in tiles at reduced precision, so on an
-almost black ground it came back as stair steps across the shaft. Nine gradient stops were
-added to fix it and did nothing, because the stops were never the cause. The fade down the
-length of the shaft is still a gradient and the soft edges across its width come from a
-`mask-image` now, with no filter anywhere. A radial gradient also fixed it and was
-rejected, because it reads as a round glow rather than a beam.
+**The construction was the first.** `filter:blur()` renders in tiles at reduced precision,
+so on an almost black ground it came back as stair steps across the shaft. Nine gradient
+stops were added to fix it and did nothing, because the stops were never the cause. The
+blur came out and a `mask-image` took over the soft edges, and it banded again, this time
+in stripes running along the shaft. **A mask multiplies a second quantised alpha into a
+gradient that is already only 27 values wide**, and the product lands on a lattice. Tested
+side by side at nine times brightness, the same gradient with a mask bands and without one
+does not.
+
+**So the shaft is one angled linear gradient across the whole band and nothing else.** No
+rotated box, no filter, no mask. One composite, one quantisation. The cost is that it no
+longer fades along its length and runs edge to edge instead, which is what a beam crossing
+a frame does anyway. A radial gradient avoids all of it too and was rejected, because it
+reads as a round glow rather than a beam.
 
 **The second one is the bit depth and it cannot be coded around.** The beam is `#2DE2C3`
 over `#0A0A0A` at 12.5 percent. Composited, that is rgb(14,37,33) at the peak against

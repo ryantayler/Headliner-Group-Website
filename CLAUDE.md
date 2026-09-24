@@ -133,10 +133,14 @@ the only page whose sections are built as sets.
   what destroys the levels, so subtlety and smoothness are in direct tension. The fix is
   dithering, noise carrying the shaft's own mask so it lifts nothing outside the beam,
   blended normally because `overlay` does almost nothing over near black.
-- **`filter:blur()` bands it a second time, on top of that.** Blur renders in tiles at
-  reduced precision and returns stair steps. The beams carry the fade down their length
-  in the gradient and their soft edges in a `mask-image`, with no filter at all. A radial
-  gradient also removes the blur artefact but reads as a round glow rather than a beam,
-  and Ryan rejected that. Do not put the blur back.
+- **`filter:blur()` bands it a second time and `mask-image` a third.** Blur renders in
+  tiles at reduced precision and returns stair steps. A mask multiplies a second
+  quantised alpha into a gradient that is already only 27 values wide, and the product
+  lands on a lattice whose contours run along the shaft. Tested side by side at nine
+  times brightness, the same gradient with a mask bands and without one does not. **The
+  beams are a single angled `linear-gradient` across the whole band and nothing else**,
+  no rotated box, no filter, no mask on the shaft itself. The cost is that the shaft runs
+  edge to edge rather than fading along its length. A radial gradient also avoids all of
+  it but reads as a round glow rather than a beam, and Ryan rejected that.
 - A `clip-path` polygon has to be **wound in order** round the shape. Listing the two left
   corners together sends the outline left, left, right, right, and it crosses itself.
