@@ -364,10 +364,12 @@
        full bleed, so that cap has to come back off here. */
     right:0;left:0;width:auto;bottom:auto;height:calc(var(--hdr-h) + var(--ryan-photo-h));
     --hm:linear-gradient(to bottom,#000 0,#000 42%,rgba(0,0,0,.35) 82%,transparent 100%);}
-  /* full bleed, so the sunglasses want the middle of the screen rather than one side.
-     93 percent lands them within about 25px of centre from 390 through 500, which is
-     the width real phones actually are. */
-  .hero--ryan .hero__media img{object-position:93% 26%}
+  /* Full bleed. 93 percent landed the sunglasses within about 25px of centre, and Ryan
+     wanted them about a fifth of the screen further left than that. The overflow here
+     runs around 300px on a 390 wide phone, so 26 points of it is the 78px that moves.
+     Under cover a percentage resolves against box width minus image width, which is
+     negative, so a larger number moves the picture left. */
+  .hero--ryan .hero__media img{object-position:119% 26%}
   .hero--ryan .hero__scrim{
     background:linear-gradient(to bottom,rgba(10,10,10,.93) 0,rgba(10,10,10,.86) 92px,rgba(10,10,10,0) 220px)}
   .hero--tall.hero--ryan .hero__in{padding-top:calc(var(--hdr-h) + var(--ryan-photo-h) + 26px)}
