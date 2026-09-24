@@ -230,8 +230,13 @@
           box = Math.min(vw * 0.6, 980),
           off = Math.max(0, 470 - Math.min(vw * 0.3, 490)),
           leftA = box + off - (1800 / 1201) * h,
-          padB = 0.009 * (2000 / 696) * h;
-      hero.style.setProperty('--hero-b-x', (leftA - padB).toFixed(1) + 'px');
+          padB = 0.009 * (2000 / 696) * h,
+          /* As the window narrows the copy comes in over him, so the crop eats a little
+             further into the back of his head and brings his face forward of the wash.
+             Nothing above 1440, growing to about 65px by the time the phone layout
+             takes over at 900. */
+          bite = Math.max(0, (1440 - vw) * 0.12);
+      hero.style.setProperty('--hero-b-x', (leftA - padB - bite).toFixed(1) + 'px');
     };
     place();
     addEventListener('resize', place, { passive: true });

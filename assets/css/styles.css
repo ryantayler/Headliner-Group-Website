@@ -318,14 +318,15 @@
   .hero--ryan[data-hero="b"] .hero__scrim{
     background:
       linear-gradient(to bottom,rgba(10,10,10,.93) 0,rgba(10,10,10,.86) 100px,rgba(10,10,10,0) 300px),
-      /* The copy column starts at about 26 percent, not 66, so the wash has to be up to
-         strength by then. Set from pixel sampling the brightest ground under the lede at
-         1920, 1440 and 1100, not by eye. */
+      /* The copy column starts at about 49 percent, so the wash holds off until the high
+         thirties and is up to strength by 47. Set from pixel sampling the brightest
+         ground under the lede at 1920, 1440 and 1100, not by eye. */
       linear-gradient(to right,
         rgba(10,10,10,.42) 0%,
-        rgba(10,10,10,.1) 13%,
-        rgba(10,10,10,.66) 25%,
-        rgba(10,10,10,.88) 36%,
+        rgba(10,10,10,.08) 20%,
+        rgba(10,10,10,.34) 36%,
+        rgba(10,10,10,.8) 47%,
+        rgba(10,10,10,.9) 58%,
         rgba(10,10,10,.9) 100%),
       linear-gradient(to top,rgba(10,10,10,.96) 0%,rgba(10,10,10,0) 44%);
   }
