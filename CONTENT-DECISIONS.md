@@ -1780,9 +1780,9 @@ question in the questions list is still there and its answer has to hold that li
 
 They carry `.slot` or `.vid`, a dashed rim and a label, and they are visible on the page on
 purpose, because an empty template Ryan can see beats a note in a file. **None of them can
-go live in this state.** They are the first 90 days on Partnerships, the questions list on
-Partnerships, and the LinkedIn feed on Ryan's page, plus two video slots, one on home in
-How we do it and one on Ryan's page under the record.
+go live in this state.** They are the questions list on Partnerships and the
+LinkedIn feed on Ryan's page, plus two video slots, one on home in How we do it and one on
+Ryan's page under the record. The first 90 days is written now.
 
 The questions are drafted and the answers are not, because the questions are scaffolding
 and the answers are positions only Ryan can take.
@@ -1903,3 +1903,30 @@ it does it by making the beam louder.
 The footer sign up was headed Stay in the loop on all five pages. It says **Get access to
 exclusive content** now, which is a reason rather than a mood. The note under the Free
 Sh!t form, No spam, unsubscribe any time, is cut.
+
+
+## The first 90 days
+
+Ryan talked it through and it is his plan, written at the length he briefed it. Four beats
+rather than three, because the work starts before anything is signed.
+
+**Before the deal, and the first 30 days.** The business constraint diagnosis, the customer
+journey mapped against Headliner's own framework, every number that matters onto the
+Headliner KPI sheet, and the lot loaded into the optimisation engine step by step. His own
+line about it being a lot of work stays in, because it is the honest thing to say about a
+stretch that long. The deal closes somewhere inside it and he does not know where, so the
+page says so rather than pretending to a date.
+
+**Days 30 to 60.** The major constraints and risks the diagnosis found.
+
+**Days 60 to 90.** Growth. Partnerships in whichever pillar moves the business most, and
+refining the numbers in the optimisation engine.
+
+**From day 90.** Handholding and managing the process. **Ryan said 60 to 90 twice**, once
+for growth and once for this. Read as after the ninety, because the other reading
+contradicts itself. His call to confirm.
+
+**Two names in it are not assets yet.** The customer journey framework and the KPI sheet
+are both spoken about as Headliner's own and neither is on the Free Sh!t page. The Free
+page has a Business data sheet, which may be the KPI sheet under another name. That needs
+settling before the page goes live, because it names IP a reader can then go looking for.
