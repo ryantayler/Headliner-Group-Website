@@ -1288,21 +1288,26 @@ body.sheet-open{overflow:hidden}
 .beam-band{position:relative;overflow:hidden}
 .beam-band::before{
   content:"";position:absolute;z-index:0;pointer-events:none;
-  top:-55%;left:6%;width:min(34vw,470px);height:210%;
+  top:-55%;left:2%;width:min(34vw,470px);height:210%;
   transform:rotate(34deg);
-  /* An ellipse rather than a blurred rectangle, and no filter at all. More gradient
-     stops never fixed the banding, because the banding was not coming from the stops.
-     `filter:blur()` renders in tiles at reduced precision, and on an almost black ground
-     that comes back as stair steps across the shaft. A radial gradient is interpolated
-     straight to the canvas and has none of them. Measured on the dark band, flat runs of
-     eight pixels or more went from 674 to 92. Do not put the blur back. */
-  background:radial-gradient(farthest-side ellipse at 50% 10%,
+  /* A shaft, not a glow. The gradient runs down its length and the soft edges across it
+     come from a mask rather than `filter:blur()`.
+
+     The blur is what banded it. It renders in tiles at reduced precision, and on an
+     almost black ground that comes back as stair steps across the shaft, which is why
+     adding gradient stops never helped. A mask is interpolated straight to the canvas
+     and has none of them. A radial gradient fixed the banding too, but it reads as a
+     round glow rather than a beam, so this is the version that keeps the shape.
+     Do not put the blur back. */
+  background:linear-gradient(to bottom,
     rgba(var(--accent-rgb),.125) 0%,
-    rgba(var(--accent-rgb),.085) 16%,
-    rgba(var(--accent-rgb),.05) 34%,
-    rgba(var(--accent-rgb),.024) 56%,
-    rgba(var(--accent-rgb),.007) 80%,
+    rgba(var(--accent-rgb),.088) 22%,
+    rgba(var(--accent-rgb),.052) 45%,
+    rgba(var(--accent-rgb),.024) 66%,
+    rgba(var(--accent-rgb),.007) 85%,
     rgba(var(--accent-rgb),0) 100%);
+  -webkit-mask-image:linear-gradient(to right,transparent 0,#000 48%,#000 52%,transparent 100%);
+  mask-image:linear-gradient(to right,transparent 0,#000 48%,#000 52%,transparent 100%);
 }
 /* grain over the shaft, not under it, or the blur would take it straight back out */
 .beam-band::after{
@@ -1312,7 +1317,7 @@ body.sheet-open{overflow:hidden}
 }
 .beam-band>.shell{position:relative;z-index:1}
 /* mirrored, so the second one on the site does not read as the same picture again */
-.beam--r::before{left:auto;right:6%;transform:rotate(-34deg)}
+.beam--r::before{left:auto;right:2%;transform:rotate(-34deg)}
 
 /* The same shaft for a light band, at a third of the alpha. On paper the eye reads a
    wash rather than a light source, so it has to sit much further back or it looks like
@@ -1320,16 +1325,18 @@ body.sheet-open{overflow:hidden}
 .beam-soft{position:relative;overflow:hidden}
 .beam-soft::before{
   content:"";position:absolute;z-index:0;pointer-events:none;
-  top:-55%;right:8%;width:min(31vw,430px);height:210%;
+  top:-55%;right:4%;width:min(31vw,430px);height:210%;
   transform:rotate(-34deg);
   /* same construction as the dark one, same reason */
-  background:radial-gradient(farthest-side ellipse at 50% 10%,
+  background:linear-gradient(to bottom,
     rgba(var(--accent-rgb),.082) 0%,
-    rgba(var(--accent-rgb),.056) 16%,
-    rgba(var(--accent-rgb),.033) 34%,
-    rgba(var(--accent-rgb),.016) 56%,
-    rgba(var(--accent-rgb),.005) 80%,
+    rgba(var(--accent-rgb),.058) 22%,
+    rgba(var(--accent-rgb),.034) 45%,
+    rgba(var(--accent-rgb),.016) 66%,
+    rgba(var(--accent-rgb),.005) 85%,
     rgba(var(--accent-rgb),0) 100%);
+  -webkit-mask-image:linear-gradient(to right,transparent 0,#000 48%,#000 52%,transparent 100%);
+  mask-image:linear-gradient(to right,transparent 0,#000 48%,#000 52%,transparent 100%);
 }
 .beam-soft::after{
   content:"";position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.16;mix-blend-mode:overlay;
@@ -1338,7 +1345,7 @@ body.sheet-open{overflow:hidden}
 }
 .beam-soft>.shell{position:relative;z-index:1}
 /* mirrored again, so the two on Partnerships do not read as the same picture twice */
-.beam--l::before{right:auto;left:8%;transform:rotate(34deg)}
+.beam--l::before{right:auto;left:4%;transform:rotate(34deg)}
 
 /* The centred head on How we partner and invest is the cleanest thing on the page, so
    two more section openers take it. Two, not every one: centred is a device and it stops

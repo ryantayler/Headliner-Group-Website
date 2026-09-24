@@ -1865,10 +1865,15 @@ that is almost black those tiles come back as stair steps across the shaft. The 
 never going to help either, because it blends with `overlay` and overlay does almost
 nothing over near black.
 
-**Both beams are radial gradients now, with no filter at all**, sized and placed to land
-on the same shape. Measured on the home dark band, flat runs of eight pixels or more went
-from 674 to 24. Screenshotted at five and a half times brightness before and after, and
-the steps are gone rather than reduced.
+**A radial gradient fixed the banding and was rejected.** It is perfectly smooth, and it
+reads as a round glow rather than a beam. Ryan called it in one line and he was right.
+
+**The shafts are linear again, with the soft edges in a mask.** The gradient runs down the
+length of the shaft as it always did, and the fade across its width comes from a
+`mask-image` rather than a blur. A mask is interpolated straight to the canvas, so there
+are no tiles and nothing to step. Measured on the home dark band, flat runs of eight
+pixels or more went from 674 to about 20, and at six times brightness the steps are gone
+rather than reduced. The two on Partnerships measure the same way.
 
 ## Get access to exclusive content
 

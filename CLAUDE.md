@@ -130,7 +130,9 @@ the only page whose sections are built as sets.
   gradient stops. Blur renders in tiles at reduced precision, and on near black that
   comes back as stair steps across the shaft. Nine stops did not fix it and a grain
   layer over it did not either, because `mix-blend-mode:overlay` does almost nothing on
-  near black. The beams are radial gradients with no filter for this reason. Do not put
-  the blur back.
+  near black. The beams carry the fade down their length in the gradient and their soft
+  edges in a `mask-image`, with no filter at all. A radial gradient also fixes it but
+  reads as a round glow rather than a beam, and Ryan rejected that. Do not put the blur
+  back.
 - A `clip-path` polygon has to be **wound in order** round the shape. Listing the two left
   corners together sends the outline left, left, right, right, and it crosses itself.
