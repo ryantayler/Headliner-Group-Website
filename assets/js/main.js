@@ -237,7 +237,7 @@
       swap.textContent = mode === 'b' ? 'Back to the original hero' : 'Try the wide hero';
       try { localStorage.setItem('hg-hero', mode); } catch (e) {}
     };
-    try { if (localStorage.getItem('hg-hero') === 'b') set('b'); } catch (e) {}
+    try { var m = localStorage.getItem('hg-hero'); if (m) set(m); } catch (e) {}
     swap.addEventListener('click', function () {
       set(hero.getAttribute('data-hero') === 'b' ? 'a' : 'b');
     });
