@@ -1729,8 +1729,11 @@ than a change on the page.
 after the three ways to work with him, in a band of its own with no card, because the
 point of it is that the voice changed and a card would make it one more tile.
 
-**The layout was built four ways and Ryan picked the split.** Who said it on the left
-under the handwriting label, the words on the right at heading scale. Same two column
+**The layout was built four ways and Ryan picked the split.** Who said it on the left,
+the words on the right. The quote is set in Caveat, the site's own hand, in the page's
+white rather than an accent, with the quote marks typed in. Colour would make it a device
+and the point is that somebody else is talking. Caveat runs small for its point size, so
+it is set well above the scale another face would take there. Same two column
 split as the bio above it, so the block sits in the page rather than arriving as a widget,
 and the change of voice is obvious before a word is read. The other three were a card with
 a quote mark, the pink statement card, and a quiet centred version. The run on attribution
