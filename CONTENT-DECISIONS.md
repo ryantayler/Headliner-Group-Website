@@ -1856,24 +1856,39 @@ caught it, by failing to find `</main>`.
 unclosed, stray or mismatched. Run it after any edit that removes markup.
 
 
-## The beam banded because of the blur, not the stops
+## Why the beam bands, and what was actually done about it
 
-Nine gradient stops were added to fix the banding on the dark band and a grain layer was
-put over the shaft to dither it. **Neither of them was addressing the cause.** The steps
-come from `filter:blur()`, which renders in tiles at reduced precision, and on a ground
-that is almost black those tiles come back as stair steps across the shaft. The grain was
-never going to help either, because it blends with `overlay` and overlay does almost
-nothing over near black.
+Two separate problems were stacked on top of each other and the first one hid the second.
 
-**A radial gradient fixed the banding and was rejected.** It is perfectly smooth, and it
-reads as a round glow rather than a beam. Ryan called it in one line and he was right.
+**The blur was the first.** `filter:blur()` renders in tiles at reduced precision, so on an
+almost black ground it came back as stair steps across the shaft. Nine gradient stops were
+added to fix it and did nothing, because the stops were never the cause. The fade down the
+length of the shaft is still a gradient and the soft edges across its width come from a
+`mask-image` now, with no filter anywhere. A radial gradient also fixed it and was
+rejected, because it reads as a round glow rather than a beam.
 
-**The shafts are linear again, with the soft edges in a mask.** The gradient runs down the
-length of the shaft as it always did, and the fade across its width comes from a
-`mask-image` rather than a blur. A mask is interpolated straight to the canvas, so there
-are no tiles and nothing to step. Measured on the home dark band, flat runs of eight
-pixels or more went from 674 to about 20, and at six times brightness the steps are gone
-rather than reduced. The two on Partnerships measure the same way.
+**The second one is the bit depth and it cannot be coded around.** The beam is `#2DE2C3`
+over `#0A0A0A` at 12.5 percent. Composited, that is rgb(14,37,33) at the peak against
+rgb(10,10,10) behind it, which is **27 integer values of green, four of red, twenty three
+of blue.** That is every colour that exists between the two. Spread across about 1800px of
+shaft it puts a flat band every 66px. The light sections are worse, 18 steps and a band
+every 100px.
+
+There are 216 steps of green between full aqua and black. The beam never goes near full
+aqua, and **dropping the opacity is precisely what destroys the levels.** Subtlety and
+smoothness are in direct tension here and one of them has to give.
+
+**What gives is the flatness, through dithering.** Noise inside the shaft breaks the 66px
+flats into scatter so the eye reads a gradient rather than steps. On the home dark band it
+takes the section from 142 distinct colours to 467. It carries the shaft's own geometry
+and mask, so it only lifts the ground where the beam already is and the band stays black
+everywhere else, and it blends normally, because `overlay` does almost nothing over near
+black.
+
+**Three alternatives were rendered and are on the table.** Leave it flat, make the beam
+twice as bright so it genuinely has 54 levels, or halve its throw so the same 27 levels
+pack into half the distance. The second is the only one that fixes it without a trick, and
+it does it by making the beam louder.
 
 ## Get access to exclusive content
 

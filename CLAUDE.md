@@ -126,13 +126,17 @@ the only page whose sections are built as sets.
   so a blended child of `body` blends against nothing and paints nothing. The page grain
   uses plain opacity for this reason. A blended layer inside a section with its own
   background is fine.
-- **`filter:blur()` is what bands a soft shaft on a dark ground**, not the number of
-  gradient stops. Blur renders in tiles at reduced precision, and on near black that
-  comes back as stair steps across the shaft. Nine stops did not fix it and a grain
-  layer over it did not either, because `mix-blend-mode:overlay` does almost nothing on
-  near black. The beams carry the fade down their length in the gradient and their soft
-  edges in a `mask-image`, with no filter at all. A radial gradient also fixes it but
-  reads as a round glow rather than a beam, and Ryan rejected that. Do not put the blur
-  back.
+- **A low alpha gradient on a dark ground bands because of the bit depth, and adding
+  gradient stops can never fix it.** Aqua at 12.5 percent over `#0A0A0A` composites to
+  rgb(14,37,33), which is 27 integer values of green away from the ground. Those 27 have
+  to cover 1800px of shaft, so there is a flat band every 66px. Dropping the opacity is
+  what destroys the levels, so subtlety and smoothness are in direct tension. The fix is
+  dithering, noise carrying the shaft's own mask so it lifts nothing outside the beam,
+  blended normally because `overlay` does almost nothing over near black.
+- **`filter:blur()` bands it a second time, on top of that.** Blur renders in tiles at
+  reduced precision and returns stair steps. The beams carry the fade down their length
+  in the gradient and their soft edges in a `mask-image`, with no filter at all. A radial
+  gradient also removes the blur artefact but reads as a round glow rather than a beam,
+  and Ryan rejected that. Do not put the blur back.
 - A `clip-path` polygon has to be **wound in order** round the shape. Listing the two left
   corners together sends the outline left, left, right, right, and it crosses itself.
