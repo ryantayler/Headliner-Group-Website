@@ -1729,23 +1729,31 @@ than a change on the page.
 after the three ways to work with him, in a band of its own with no card, because the
 point of it is that the voice changed and a card would make it one more tile.
 
+**The attribution runs on from the closing quote mark**, hyphen and all, rather than
+sitting under the quote as a label. Ryan's call on the format. `.pull--run` does it and
+the hyphen is the one in the site's prose, by his instruction.
+
 ## Three partnerships, nobody named
 
 On Partnerships, between Who this is for and the CTA, which is where the page reserved the
-slot. One per pillar, margin, revenue, and a margin and revenue matchup, all drawn from
-partnerships Ryan actually put together.
+slot. Same card build as every other set of three on the site, so they sit in the page
+rather than beside it.
 
-**The anonymity is the position, not a gap.** "Nobody is named, because what two businesses
-agree between them is theirs to talk about, not mine." An owner reading it is deciding
-whether to tell a stranger about his numbers, so discretion said plainly is worth more
-than a logo would be.
+**The kicker names the pillars the deal created, one for each side.** Margin and revenue,
+revenue and reach, margin and revenue. That is the whole argument of the four pillars
+block above, shown working, which is why the cards no longer need a line at the foot
+explaining who got what. The explanation was doing the job the kicker already does.
 
-**The connection pillar has no case study.** Rather than quietly show three of four, the
-fourth carries a slot saying so. It comes out before launch or it gets filled.
+**All three run to about the same length**, roughly seventy five words, because three
+cards side by side are read as a set and an uneven set reads as one good story and two
+thin ones.
 
-Each card leads with the pillar rather than a client name, and closes on who got what.
-The body takes the slack in the grid so the three result lines land on one line across the
-row however unevenly the stories run.
+**Nobody is named and the page does not say why.** The line explaining it was cut. An
+owner who cares will ask, and the ones who do not were never going to be reassured by a
+sentence about discretion.
+
+**The connection pillar has no case study and the page no longer mentions it.** Three of
+four, with nothing drawing attention to the fourth.
 
 ## The share, in figures
 
@@ -1758,9 +1766,9 @@ cards above it.
 
 They carry `.slot` or `.vid`, a dashed rim and a label, and they are visible on the page on
 purpose, because an empty template Ryan can see beats a note in a file. **None of them can
-go live in this state.** They are the connection pillar case study, the first 90 days on
-Partnerships, the questions list on Partnerships, and the LinkedIn feed on Ryan's page,
-plus two video slots, one on home in How we do it and one on Ryan's page under the record.
+go live in this state.** They are the first 90 days on Partnerships, the questions list on
+Partnerships, and the LinkedIn feed on Ryan's page, plus two video slots, one on home in
+How we do it and one on Ryan's page under the record.
 
 The questions are drafted and the answers are not, because the questions are scaffolding
 and the answers are positions only Ryan can take.

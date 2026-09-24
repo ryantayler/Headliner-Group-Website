@@ -1152,22 +1152,21 @@ body.sheet-open{overflow:hidden}
 .vid__cap b{display:block;font-size:10px;font-weight:600;letter-spacing:.2em;
   text-transform:uppercase;color:var(--tx-accent);margin-bottom:6px}
 
-/* Case studies. One per pillar, so the card leads with which pillar it is rather than
-   with a client name it does not have. The result line is the argument, so it sits
-   under a rule at the foot where a card link would normally go. */
-/* Four rows, and the body takes the slack, so the three result lines land on one line
-   across the row however unevenly the three stories run. */
-.case{display:grid;gap:14px;grid-template-rows:auto auto 1fr auto}
-.case__pill{
-  font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;
-  color:var(--tx-accent);
+/* Attribution running on from the closing quote mark rather than sitting under the
+   quote as a label. Ryan's call, hyphen and all. The size lives on the wrapper so the
+   quote itself can go inline and the byline can follow it on the same line. */
+.pull--run{
+  gap:0;font-weight:500;font-size:clamp(21px,2.7vw,36px);line-height:1.26;
+  letter-spacing:-.026em;color:var(--tx);
 }
-.case__body{display:grid;gap:14px}
-.case__body p{font-size:14.5px;line-height:1.62;color:var(--tx-mute)}
-.case__out{
-  margin-top:4px;padding-top:16px;border-top:1px solid var(--line);
-  font-size:14.5px;font-weight:500;color:var(--tx);
+.pull--run .pull__t{max-width:26ch}
+.pull--run q{
+  display:inline;max-width:none;font-size:inherit;line-height:inherit;
+  letter-spacing:inherit;font-weight:inherit;
 }
+/* the base byline is nowrap for a two word name. This one is a name and two more
+   clauses, so it wraps or it runs off a phone. */
+.pull--run .pull__by{white-space:normal}
 
 /* The two share sizes, set as figures because that is the question being answered. */
 .splits{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(16px,2vw,26px)}
