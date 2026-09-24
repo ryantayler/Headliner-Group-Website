@@ -37,12 +37,15 @@ def _inline(x):
     for src, data in _imgs.items():
         x = x.replace(src, data)
     return x
-# The preview is a single file served from an artifact host, and its content policy
-# admits nothing from another site, so every frame in it renders as an empty white box.
-# Each one on the real pages has a card underneath it for exactly that case, so the
-# frames are dropped here and the card is what shows. General rule, no list of URLs.
-bodies = [re.sub(r'<iframe\b[^>]*>.*?</iframe>', '', x, flags=re.S) for x in bodies]
 bodies = [_inline(x) for x in bodies]
+# The artifact host's content policy admits nothing from another site, so every frame in
+# the published preview renders as an empty box. Each frame on the real pages has a card
+# underneath it for exactly that case, so the artifact build drops the frames and the
+# card is what shows. The second file keeps them, for opening off disk in a browser,
+# which is the only way to see an embed before the site is hosted. General rule over any
+# iframe, not a list of URLs.
+_framed = list(bodies)
+bodies = [re.sub(r'<iframe\b[^>]*>.*?</iframe>', '', x, flags=re.S) for x in bodies]
 # Home is in the real nav, so the preview has to carry it too, or the two disagree
 nav = "\n      ".join(f'<a href="#{s}" data-pg="{s}">{l}</a>' for s,l in PAGES if s != 'contact')
 
@@ -64,10 +67,13 @@ _js = open('assets/js/main.js').read()
 wall = _js[_js.index('  /* 5. Download wall'):_js.rindex('})();')].rstrip()
 
 tpl = open(os.path.join(scr,'preview-template.html')).read()
-html = (tpl.replace('/*__FONTS__*/', fonts).replace('/*__CSS__*/', css)
-           .replace('/*__WALL__*/', wall)
-           .replace('<!--__NAV__-->', nav).replace('<!--__BODIES__-->', "\n".join(bodies))
-           .replace('<!--__FOOTER__-->', footer))
-out = os.path.join(scr,'headliner-preview.html')
-open(out,'w').write(html)
-print('built', round(len(html)/1024), 'KB')
+def _render(bs):
+    return (tpl.replace('/*__FONTS__*/', fonts).replace('/*__CSS__*/', css)
+               .replace('/*__WALL__*/', wall)
+               .replace('<!--__NAV__-->', nav).replace('<!--__BODIES__-->', "\n".join(bs))
+               .replace('<!--__FOOTER__-->', footer))
+
+for name, bs in (('headliner-preview.html', bodies), ('headliner-preview-frames.html', _framed)):
+    doc = _render(bs)
+    open(os.path.join(scr,name),'w').write(doc)
+    print('built', name, round(len(doc)/1024), 'KB')

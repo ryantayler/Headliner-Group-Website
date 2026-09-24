@@ -126,5 +126,11 @@ the only page whose sections are built as sets.
   so a blended child of `body` blends against nothing and paints nothing. The page grain
   uses plain opacity for this reason. A blended layer inside a section with its own
   background is fine.
+- **`filter:blur()` is what bands a soft shaft on a dark ground**, not the number of
+  gradient stops. Blur renders in tiles at reduced precision, and on near black that
+  comes back as stair steps across the shaft. Nine stops did not fix it and a grain
+  layer over it did not either, because `mix-blend-mode:overlay` does almost nothing on
+  near black. The beams are radial gradients with no filter for this reason. Do not put
+  the blur back.
 - A `clip-path` polygon has to be **wound in order** round the shape. Listing the two left
   corners together sends the outline left, left, right, right, and it crosses itself.

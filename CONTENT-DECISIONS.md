@@ -1763,12 +1763,12 @@ sentence about discretion.
 **The connection pillar has no case study and the page no longer mentions it.** Three of
 four, with nothing drawing attention to the fourth.
 
-## The share, in figures
+## No numbers on the share
 
-**10% to 30% minority when the owner is staying in. 70% to 90% majority when they want
-out.** Under the three ways we partner and invest, set as figures rather than a paragraph,
-because it is a number and it is the question every owner is holding while they read the
-cards above it.
+The two figures went up and came straight back down. **Ryan's ruling: no specific amount
+anywhere on the site.** Under the three ways we partner and invest it now says the size of
+the share is negotiated per deal, on the business, what it needs and what we put in. The
+question in the questions list is still there and its answer has to hold that line.
 
 ## Four blocks that are deliberately unfinished
 
@@ -1848,3 +1848,24 @@ caught it, by failing to find `</main>`.
 
 `tags.js` in the scratchpad walks the tags on all five pages and reports anything
 unclosed, stray or mismatched. Run it after any edit that removes markup.
+
+
+## The beam banded because of the blur, not the stops
+
+Nine gradient stops were added to fix the banding on the dark band and a grain layer was
+put over the shaft to dither it. **Neither of them was addressing the cause.** The steps
+come from `filter:blur()`, which renders in tiles at reduced precision, and on a ground
+that is almost black those tiles come back as stair steps across the shaft. The grain was
+never going to help either, because it blends with `overlay` and overlay does almost
+nothing over near black.
+
+**Both beams are radial gradients now, with no filter at all**, sized and placed to land
+on the same shape. Measured on the home dark band, flat runs of eight pixels or more went
+from 674 to 24. Screenshotted at five and a half times brightness before and after, and
+the steps are gone rather than reduced.
+
+## Get access to exclusive content
+
+The footer sign up was headed Stay in the loop on all five pages. It says **Get access to
+exclusive content** now, which is a reason rather than a mood. The note under the Free
+Sh!t form, No spam, unsubscribe any time, is cut.
