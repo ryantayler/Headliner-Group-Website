@@ -1729,9 +1729,14 @@ than a change on the page.
 after the three ways to work with him, in a band of its own with no card, because the
 point of it is that the voice changed and a card would make it one more tile.
 
-**The attribution runs on from the closing quote mark**, hyphen and all, rather than
-sitting under the quote as a label. Ryan's call on the format. `.pull--run` does it and
-the hyphen is the one in the site's prose, by his instruction.
+**The layout was built four ways and Ryan picked the split.** Who said it on the left
+under the handwriting label, the words on the right at heading scale. Same two column
+split as the bio above it, so the block sits in the page rather than arriving as a widget,
+and the change of voice is obvious before a word is read. The other three were a card with
+a quote mark, the pink statement card, and a quiet centred version. The run on attribution
+with the hyphen belonged to a version that is gone.
+
+The monogram is a stand in. A photograph of Cory drops into it and nothing else moves.
 
 ## Three partnerships, nobody named
 
@@ -1789,3 +1794,27 @@ site no longer contradicts itself across three pages.
 This overrides the `ryan-voice` skill's locked proof set, which says 115+ and 56,000+ and
 never to mix them with other figures. Ryan ruled on it directly. The skill is synced and
 will need the ruling added there, or the next session will put the old set back.
+
+
+## The feed is live
+
+**Three of LinkedIn's own post embeds** under I write about this most weeks, so the posts
+render as the real thing and their reactions count up on their own. LinkedIn has no public
+embed for a profile feed, only for a single post, so the three are chosen rather than
+pulled. To swap one, open the post on LinkedIn, take Embed this post from its menu, and
+replace the src.
+
+**The feed takes the full shell**, not the narrow one the heading sits in. In the narrow
+shell three columns come out at 224 and a LinkedIn post has no layout that narrow. Three
+across down to 1180 at about 340 each, one column below that at LinkedIn's own 504.
+
+## The pillar kicker
+
+`.card p` is a class plus an element, so it outranks `.card__n` and every card kicker on
+the site has been coming out in the mute grey rather than the accent it was written for.
+Ryan likes that grey on the joiner and the noun, so it stays, and only the pillar words
+are pulled into the aqua. The whole line is uppercase and tracked, which is the site's
+kicker idiom everywhere else.
+
+**The same bug is still live on the numbers.** `#1`, `#2` and `#3` on Ryan's page are grey
+for the same reason. Nobody has asked for them back.

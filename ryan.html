@@ -179,9 +179,16 @@
      The first words on this site that are not Ryan's. It gets a band of its own and no
      card, because the point is that the voice changed. -->
 <section class="band band--paper band--tight band--rule">
-  <div class="shell shell--narrow">
-    <div class="pull pull--run rv">
-      <p class="pull__t"><q>Absolutely fantastic, thumbs up to Ryan on helping me get the ideas out, and building an action plan moving forward.</q><span class="pull__by">- Cory Hoyling, Director, Shadow AV</span></p>
+  <div class="shell">
+    <div class="said rv">
+      <div>
+        <p class="hand">what a partner said</p>
+        <div class="said__who">
+          <span class="said__i" aria-hidden="true">CH</span>
+          <span><span class="said__n">Cory Hoyling</span><br><span class="said__r">Director, Shadow AV</span></span>
+        </div>
+      </div>
+      <blockquote class="said__q">Absolutely fantastic, thumbs up to Ryan on helping me get the ideas out, and building an action plan moving forward.</blockquote>
     </div>
   </div>
 </section>
@@ -198,29 +205,30 @@
       <a class="btn btn--plat btn--fb" href="https://www.facebook.com/" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>Facebook</a>
       <a class="btn btn--fill" href="free.html">Free Sh!t</a>
     </div>
+  </div>
 
-    <!-- The feed, empty. Three post shaped blocks with the lines drawn rather than
-         written, so the block reads as a feed before a single real post is in it.
-         Unlinked on purpose until the LinkedIn profile URL is real. -->
-    <div class="feed mt-l rv rv-d2" aria-hidden="true">
+  <!-- The feed takes the full shell rather than the narrow one the heading sits in. In
+       the narrow shell three columns come out at 224 and a LinkedIn post does not have
+       a layout that narrow. -->
+  <div class="shell">
+    <!-- The feed, live. These are LinkedIn's own embeds, so each post renders as the
+         real thing and its reactions count up on their own. To swap one out, open the
+         post on LinkedIn, take Embed this post from its menu, and replace the src below.
+         The height is LinkedIn's own 670, held the same across all three so the row
+         stays level even though one of them ships at 658. -->
+    <div class="feed mt-l rv rv-d2">
       <div class="feed__post">
-        <p class="feed__meta">Latest &middot; LinkedIn</p>
-        <span class="feed__ln"></span><span class="feed__ln feed__ln--m"></span>
-        <span class="feed__ln feed__ln--s"></span>
+        <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7495721861784322048?collapsed=1"
+                title="Ryan Tayler on LinkedIn" frameborder="0" allowfullscreen loading="lazy"></iframe>
       </div>
       <div class="feed__post">
-        <p class="feed__meta">Latest &middot; LinkedIn</p>
-        <span class="feed__ln"></span><span class="feed__ln feed__ln--m"></span>
-        <span class="feed__ln feed__ln--s"></span>
+        <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7491357642158870528?collapsed=1"
+                title="Ryan Tayler on LinkedIn" frameborder="0" allowfullscreen loading="lazy"></iframe>
       </div>
       <div class="feed__post">
-        <p class="feed__meta">Latest &middot; LinkedIn</p>
-        <span class="feed__ln"></span><span class="feed__ln feed__ln--m"></span>
-        <span class="feed__ln feed__ln--s"></span>
+        <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7502976971413442560?collapsed=1"
+                title="Ryan Tayler on LinkedIn" frameborder="0" allowfullscreen loading="lazy"></iframe>
       </div>
-    </div>
-    <div class="slot mt-m rv rv-d2" data-slot="Slot &middot; LinkedIn feed">
-      <p>The last three posts, pulled live. Unlinked until the profile URL is real and the embed is chosen. The page claims he writes most weeks, so this is the block that proves it.</p>
     </div>
   </div>
 </section>
