@@ -221,8 +221,12 @@
        sliver of new ground on its left too, so that comes off as well. The hero's height
        is set by its content, so none of this can live in the stylesheet. */
     var place = function () {
-      var h = hero.getBoundingClientRect().height / 1.06,   /* undo the drift scale */
-          vw = document.documentElement.clientWidth,
+      var h = hero.getBoundingClientRect().height;
+      /* A hidden hero measures zero, and a zero height makes this sum come out hugely
+         positive, which shoves the photograph into the middle and blanks the left of the
+         screen. Nothing is better than that, so it waits until it has a real number. */
+      if (h < 200) return;
+      var vw = document.documentElement.clientWidth,
           box = Math.min(vw * 0.6, 980),
           off = Math.max(0, 470 - Math.min(vw * 0.3, 490)),
           leftA = box + off - (1800 / 1201) * h,
@@ -231,6 +235,10 @@
     };
     place();
     addEventListener('resize', place, { passive: true });
+    addEventListener('load', place);
+    /* catches the hero going from hidden to shown, which is what the single file
+       preview does when you move between its pages */
+    if (window.ResizeObserver) new ResizeObserver(place).observe(hero);
     var set = function (mode) {
       hero.setAttribute('data-hero', mode);
       swap.setAttribute('aria-pressed', mode === 'b' ? 'true' : 'false');
