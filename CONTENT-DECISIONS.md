@@ -2220,3 +2220,41 @@ Ryan's page keeps its paper, paper2 alternation and its hairline rules across th
 the band that held it is gone rather than left empty. The seven photo slots on Free Sh!t
 and the process shot on Partnerships are untouched, those are photographs not video.
 
+
+## The reveal can no longer empty a page
+
+Ryan pasted the home page into GoHighLevel and got the header and the hero photograph
+over nothing at all. Reproduced in a minute by loading the same paste with the script
+turned off.
+
+**Every piece of content on the site carries `.rv`, and `.rv` was `opacity:0` until the
+script said otherwise.** So the script was not optional, it was the thing that made the
+page visible, and anything that stopped it running left a blank page rather than a page
+without an animation. The likeliest cause in his case is a code box that takes markup
+being handed a bare `.js` file, which pastes in as text and never runs.
+
+**The hiding is now gated on `.rv-on`**, which `main.js` sets on its first line and which
+every page also sets in a one line script in its head so there is no flash. No class, no
+hiding. A page whose script never runs now reads in full, animation and all.
+
+`:where()` does the gating so it adds no specificity, which means `.rv.is-in` and the
+reduced motion rule both still win exactly as they did. Verified both ways: script off,
+all twelve reveals visible and all seventeen headings and paragraphs readable; script on,
+the reveal behaves as it always did.
+
+**The export now ships the script twice**, once as `script.js` and once as
+`script-in-tags.html` with the `<script>` tag already on it, and the README says which
+box takes which, because that is the trap that started this.
+
+### The check that let it through
+
+The paste harness reported all five pages clean while it was rendering them with no
+tokens at all, black text on white. A stylesheet that fails to parse throws no error,
+loads every image and logs nothing. The harness now reads `--ink` and the `rv-on` class
+and fails on either.
+
+What broke the parse was in the harness rather than the export: it stripped the leading
+`@import` by reading to the first semicolon, and the Google Fonts URL has semicolons of
+its own in `Inter:wght@400;500;600`. It cut the rule in half and left the tail as
+garbage above `:root`.
+

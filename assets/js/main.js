@@ -2,6 +2,11 @@
 (function () {
   'use strict';
 
+  /* Claim the reveal first. The stylesheet only hides .rv when this class is set, so
+     nothing can leave the page hidden if this file fails to load or to run. Every page
+     also sets it in its head, which is what keeps the content from flashing. */
+  document.documentElement.classList.add('rv-on');
+
   var hdr = document.querySelector('.hdr');
   var nav = document.querySelector('.nav');
   var burger = document.querySelector('.burger');

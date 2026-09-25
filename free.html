@@ -21,6 +21,10 @@
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="assets/fonts/fonts.css">
 <link rel="stylesheet" href="assets/css/styles.css">
+<!-- Sets the reveal before anything paints, so the fade in has no flash. The
+     stylesheet only hides .rv while this is set, so a page that never gets its
+     script still reads in full rather than coming out blank. -->
+<script>document.documentElement.classList.add('rv-on')</script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>

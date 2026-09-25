@@ -57,8 +57,13 @@ def main(dest):
     # main.js is an IIFE that reads the DOM as it runs. At the end of <body> that is
     # fine. Pasted into a builder's header slot it would run too early, so it waits.
     def wrap(extra=''):
-        return ('/* Runs once the markup exists, so it works whether this is pasted\n'
-                '   into a header slot or a footer slot. */\n'
+        return ('/* The reveal is claimed on the first line, outside the wait, so it is set\n'
+                '   before anything paints. The stylesheet only hides .rv while this class\n'
+                '   is there, so a box that never executes this file leaves the page\n'
+                '   readable rather than blank. */\n'
+                "document.documentElement.classList.add('rv-on');\n\n"
+                '/* The rest runs once the markup exists, so this works from a header slot\n'
+                '   as well as a footer one. */\n'
                 'document.addEventListener("DOMContentLoaded", function () {\n'
                 + extra + js.rstrip() + '\n});\n')
 
@@ -74,7 +79,12 @@ def main(dest):
         # page grain hangs off body.theme-ryan, so the script puts it there instead.
         extra = ('  document.body.classList.add("theme-ryan");\n'
                  if 'class="theme-ryan"' in doc[:doc.index('>', doc.index('<body'))] else '')
-        open(os.path.join(d, 'script.js'), 'w').write(wrap(extra))
+        body_js = wrap(extra)
+        open(os.path.join(d, 'script.js'), 'w').write(body_js)
+        # Some builders' code boxes take markup rather than bare JS and will paste this
+        # in as text, where it never runs. Same file, tags already on it.
+        open(os.path.join(d, 'script-in-tags.html'), 'w').write(
+            '<script>\n' + body_js + '</script>\n')
         print('page', folder)
 
     # Every image the five pages ask for, gathered by reading them rather than listed.
@@ -114,7 +124,7 @@ def readme(dest):
         rows.append((folder, slug, name, imgs))
 
     t = ["# Headliner Group, packaged for a page builder", "",
-         "Five pages. Each one is a folder holding the three files that page needs.", "",
+         "Five pages. Each one is a folder holding the files that page needs.", "",
          "```"]
     for folder, slug, name, imgs in rows:
         t.append("1-pages/%-13s page.html  styles.css  script.js     ->  %s" % (folder + '/', slug))
@@ -136,6 +146,16 @@ def readme(dest):
           "4. Paste `styles.css` into the page's custom CSS, or the site's.",
           "5. Paste `script.js` into the page's footer code, or the site's.", "",
           "The script waits for the markup before it runs, so a header slot works too.", "",
+          "### If the page comes out mostly blank", "",
+          "**The script is not running.** That is the one failure that empties a page, and",
+          "it looks like the header and the hero photograph over nothing at all.", "",
+          "Some code boxes want markup rather than bare JavaScript, and paste a `.js` file",
+          "in as text where it never runs. Every page folder carries the same script a",
+          "second time as `script-in-tags.html`, already inside a `<script>` tag. Use that",
+          "one in any box that is expecting HTML, such as a header or footer tracking code",
+          "field. Use the plain `script.js` only in a box that is expecting JavaScript.", "",
+          "To tell which happened, open the page and look at the browser console. If the",
+          "script ran, `document.documentElement.className` contains `rv-on`.", "",
           "## The pictures", "",
           "Every `src` in the markup reads `ASSETS_BASE/something.jpg`. Upload the contents of",
           "`2-images` and then find and replace `ASSETS_BASE` with the folder they landed in.",

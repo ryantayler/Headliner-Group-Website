@@ -89,7 +89,7 @@ JS: one folder per page holding `page.html` (body markup only), `styles.css` and
 Ryan's `theme-ryan` body class is set from his script because a pasted block cannot reach
 `<body>`. Every list in its README is read out of the files, so do not hardcode one.
 Verify a build by pasting each page into a bare document and rendering it, not by reading
-the output.
+the output, and have that check read a token and the `rv-on` class as well as the console.
 
 ## The look
 
@@ -160,5 +160,20 @@ the only page whose sections are built as sets.
   hero modifier. Anything about one photograph in particular, a crop, a blur, a scrim,
   goes on that page's own marker, never on the shared class. It silently moved the
   Partnerships hero once.
+- **The reveal hides the page, so its hiding is gated and must stay gated.**
+  `:where(.rv-on) .rv{opacity:0}` and nothing else sets that class but `main.js` and a
+  one line script in each page's head. Ungated, any page whose script does not run is a
+  header over an empty screen, which is what a pasted build does when the code box takes
+  markup and it was handed bare JavaScript. `:where()` carries no specificity, so
+  `.rv.is-in` and the reduced motion rule both still outrank it. Do not "simplify" it
+  back to a bare `.rv`.
+- **A paste of the stylesheet into a `<style>` block must be checked by its tokens, not
+  by its errors.** A sheet that fails to parse throws nothing, loads every image and
+  reports no console error. It renders as black on white. Read
+  `getComputedStyle(document.documentElement).getPropertyValue('--ink')` and require
+  `#ECE8E0`. A harness that only counted errors called a tokenless page clean.
+- **The Google Fonts URL has semicolons inside it**, in `Inter:wght@400;500;600`. Any
+  regex that strips the `@import` by reading to the first `;` cuts the rule in half and
+  leaves garbage that kills everything above the first valid rule, `:root` included.
 - A `clip-path` polygon has to be **wound in order** round the shape. Listing the two left
   corners together sends the outline left, left, right, right, and it crosses itself.

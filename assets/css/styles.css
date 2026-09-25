@@ -1199,8 +1199,13 @@ body.sheet-open{overflow:hidden}
   58.4%,100%{box-shadow:0 0 0 rgba(var(--accent-rgb),0)}
 }
 
-/* ---------- 17. Reveal ---------- */
-.rv{opacity:0;transform:translateY(18px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+/* ---------- 17. Reveal ----------
+   The hiding is gated on .rv-on, which main.js puts on <html> and every page sets in
+   its head so there is no flash. If the script never runs, in a page builder that did
+   not execute it or behind a blocker, nothing hides and the page reads in full. It
+   used to render as a header over an empty page. :where() has no specificity, so the
+   reduced motion rule below and .rv.is-in both still outrank this. */
+:where(.rv-on) .rv{opacity:0;transform:translateY(18px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
 .rv.is-in{opacity:1;transform:none}
 .rv-d1{transition-delay:.08s}.rv-d2{transition-delay:.16s}.rv-d3{transition-delay:.24s}
 @media (prefers-reduced-motion:reduce){
@@ -1532,7 +1537,7 @@ body.theme-ryan::after{
 
 /* The reveal gets further to travel and a focus pull. Delays open up with it, so a row
    of cards arrives as a run rather than all at once. */
-.rv{
+:where(.rv-on) .rv{
   opacity:0;transform:translateY(34px) scale(.988);filter:blur(6px);
   transition:opacity .9s var(--ease),transform .9s var(--ease),filter .9s var(--ease);
 }
