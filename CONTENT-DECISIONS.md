@@ -2042,3 +2042,22 @@ has been making vaguely since the beginning, now with a number on it.
 **The questions carry his wording**, not the drafted versions. Do I stop running my
 business rather than my own business, What does it cost upfront rather than cost me up
 front, How many do you work with at once rather than how many businesses.
+
+
+## The contact hero is a real photograph
+
+Ryan shaking hands in a lobby, back to camera, two people facing him. It replaces the last
+empty hero slot on the site. **It is the right picture for that page**, because the page
+promises a person on the other end and the photograph is him meeting one.
+
+**A square file in a wide box.** Cover throws away most of its height, and the faces and
+the handshake sit in the upper middle, so it is held at 56 percent across and 20 percent
+down rather than centred.
+
+**It needed its own scrim.** The lede lands on a yellow shirt and measured 3.06 to 1
+against the stock one. The bottom lift is carried much further up and the right hand wash
+comes back rather than fading out, while the top stays open where the faces are. Pixel
+sampled at 1440 and 390, the headline is 13.4 and the lede 4.9.
+
+Three empty photo slots left, all seven cards on Free Sh!t and the process shot on
+Partnerships.

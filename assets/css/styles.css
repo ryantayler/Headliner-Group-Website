@@ -252,6 +252,21 @@
 .theme-ryan .hero .eyebrow,.theme-ryan .hero .d1,.theme-ryan .hero .lede,
 .theme-ryan .hero .btn--fill,.theme-ryan .hero .btn--ghost{animation:none;text-shadow:none;box-shadow:none}
 
+/* The contact hero is a square photograph in a wide box, so cover throws away most of
+   its height. The faces and the handshake sit in the upper middle of the frame, which is
+   why it is held high rather than centred. */
+.hero--meet .hero__media img{object-position:56% 20%}
+/* The lede on this one lands on a yellow shirt and measured 3.06 to 1 against the stock
+   scrim. The bottom lift is carried much further up so the copy has ground, and the
+   right hand wash comes back up rather than fading out, while the top stays open where
+   the faces are. Pixel sampled at 1440 and 390. */
+.hero--meet .hero__scrim{
+  background:
+    linear-gradient(to bottom,rgba(10,10,10,.88) 0,rgba(10,10,10,.5) 130px,rgba(10,10,10,0) 320px),
+    linear-gradient(to right,rgba(10,10,10,.8) 0%,rgba(10,10,10,.4) 46%,rgba(10,10,10,.52) 100%),
+    linear-gradient(to top,rgba(10,10,10,.97) 0%,rgba(10,10,10,.86) 30%,rgba(10,10,10,.34) 58%,rgba(10,10,10,0) 80%);
+}
+
 .hero--ryan .hero__media{
   /* the portrait holds the left of the frame. Capped in px as well as percent, or
      past about 1900 the box outgrows the photo's aspect, cover switches to scaling
