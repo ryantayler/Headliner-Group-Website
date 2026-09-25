@@ -2074,9 +2074,10 @@ Four people round a table, printed plans marked up in pen, sticky notes everywhe
 reading. **It is the right picture for that page**, because the page gives away the tools
 and the photograph is the tools in use rather than a venue nobody is in.
 
-Held at 8 percent down, because everyone in it is leaning over a table in the upper half
-of the frame and a centred crop takes their heads off. The bright right scrim it already
-had still works, since the window light in this one is on the left. Headline measures 7.7
-to 1 at 1440 and 13.3 at 390.
+**Held low, at 62 percent, so the paperwork is in frame.** The heads go off the top for
+it, and that is the right trade on a page whose whole offer is the paperwork. The bottom
+of the scrim is eased through the band the headline sits in for the same reason, or the
+table is buried under it. Blurred six pixels, same as the contact hero. Headline measures
+8.6 to 1 at 1440 and 12.5 at 390.
 
 Two photo slots left, the seven Free Sh!t cards and the process shot on Partnerships.

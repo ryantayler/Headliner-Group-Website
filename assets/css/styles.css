@@ -785,14 +785,16 @@ button,input,textarea,select{font:inherit;color:inherit}
    is dark over there. Drop a lit monitor into that and the lede lands around 3.4:1.
    This one darkens the right instead and adds a band under the bar. Reach for it
    whenever a new hero photograph has its light source on the reading side. */
-/* Everyone in this one is leaning over a table in the upper half of the frame, so the
-   crop is held near the top or the heads go off it. */
-.hero--bright-right .hero__media img{object-position:50% 8%}
+/* Held low so the paperwork on the table is in frame, which is the point of the picture
+   on a page that gives the paperwork away. Same six pixel blur as the contact hero. */
+.hero--bright-right .hero__media img{object-position:50% 62%;filter:blur(6px)}
 .hero--bright-right .hero__scrim{
   background:
     linear-gradient(to bottom,rgba(10,10,10,.80) 0,rgba(10,10,10,.52) 110px,rgba(10,10,10,0) 300px),
     linear-gradient(to right,rgba(10,10,10,.92) 0%,rgba(10,10,10,.62) 34%,rgba(10,10,10,.74) 58%,rgba(10,10,10,.86) 100%),
-    linear-gradient(to top,rgba(10,10,10,.98) 0%,rgba(10,10,10,0) 58%);
+    /* eased off through the band the headline sits in, so the paperwork on the table
+       stays readable under it rather than being buried */
+    linear-gradient(to top,rgba(10,10,10,.94) 0%,rgba(10,10,10,.4) 24%,rgba(10,10,10,0) 62%);
 }
 .hero__media:has(img)+.hero__scrim::after{content:none}
 .hero__scrim::after{
