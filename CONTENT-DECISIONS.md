@@ -2100,8 +2100,23 @@ straight from the heading into the steps.
 
 **A LinkedIn card under the steps**, small, with the mark and his name on it. Step one
 names LinkedIn as the casual route, so the route is a thing you can click rather than a
-line you have to go and find. The LinkedIn line came out of the OR JUST card at the same
-time, which now carries the email and the travel line only.
+line you have to go and find.
+
+**The OR JUST card is gone and the two routes are now a centred pair.** It had held the
+email address and the travel line, and once LinkedIn had left it there was not enough in
+it to earn a card. LinkedIn sits on top in full brand blue, `#0A66C2`, white mark and
+white label. Email sits under it on the site's own surface and rim, with the accent mark.
+The blue is doing the work a logo does, which is to read as a destination rather than as
+a link, so the second card is deliberately quieter and the two do not compete. Both are
+380px wide and centred in the column, 350 and edge to edge on a phone.
+
+**Contrast on the blue card:** white on `#0A66C2` is 5.68 to 1 and the subtitle at 86
+percent white is 4.66. Both clear the floor, so the blue is the real LinkedIn blue and not
+a darkened one.
+
+**The travel line is not anywhere else on the site.** If *Australia wide, I travel for the
+right conversation* is worth keeping it needs a home, and the hero or the footer are the
+two candidates.
 
 **The voice on this page is now split and it needs his ruling.** The hero above still says
 *this comes to me and I answer it myself, there is no assistant, no team inbox and no
