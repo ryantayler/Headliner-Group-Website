@@ -1960,3 +1960,21 @@ width and the gradient was not up to strength until 66. Pixel sampled at 1920, 1
 **Below 900 the wide state falls back to the original.** The phone hero is a full bleed
 band with the copy on clean ground under it, so there is no right hand side for the
 extension to fill, and the wide crop loses his face entirely.
+
+
+## Where I learned the business, rewritten
+
+Ryan wrote it and it goes in as written. Two plain fixes, General Manager capitalised and
+a comma before Headliner Group.
+
+**It opens on Aaron now**, which is the strongest credential on the site and was buried in
+the third paragraph before. Past tense backstory throughout, which is the rule.
+
+**The record is attributed to those years.** More than 115 live events and over 56,000
+attendees were delivered during his time with Aaron, which the old version left floating.
+
+**Four years, junior to General Manager, of his larger business**, the one that ran live
+events and business coaching. The old copy said five years and his largest company.
+
+The opening line about buying into businesses is gone, and so is the option to exit, from
+this section. Both still appear in the hero lede above it.
