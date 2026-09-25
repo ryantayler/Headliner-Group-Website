@@ -2055,6 +2055,10 @@ half of it, so the crop sits at 2 percent down rather than centred, which is the
 all four heads clear the top of the frame. 52 percent across keeps the group in the middle
 when the box goes narrow.
 
+**It is blurred.** Six pixels, so it reads as ground rather than as a photograph
+competing with the copy. The 1.06 scale already on every hero image is what keeps the
+blurred edge off the frame.
+
 **It needed its own scrim.** The lede lands on a yellow shirt and measured 3.06 to 1
 against the stock one. The bottom lift is carried much further up and the right hand wash
 comes back rather than fading out, while the top stays open where the faces are. Pixel

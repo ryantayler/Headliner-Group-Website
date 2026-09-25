@@ -254,7 +254,13 @@
 
 /* Held high so the heads clear the top of the frame. Everyone in the shot is standing
    in the upper half of it, and centring the crop takes the tops of their heads off. */
-.hero--meet .hero__media img{object-position:52% 2%}
+.hero--meet .hero__media img{
+  object-position:52% 2%;
+  /* Softened so it reads as ground rather than as a photograph competing with the
+     copy. The 1.06 scale on .hero__media img is what keeps the blurred edge off the
+     frame. */
+  filter:blur(6px);
+}
 /* The lede on this one lands on a yellow shirt and measured 3.06 to 1 against the stock
    scrim. The bottom lift is carried much further up so the copy has ground, and the
    right hand wash comes back up rather than fading out, while the top stays open where
