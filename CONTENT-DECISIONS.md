@@ -1910,26 +1910,29 @@ Sh!t form, No spam, unsubscribe any time, is cut.
 Ryan talked it through and it is his plan, written at the length he briefed it. Four beats
 rather than three, because the work starts before anything is signed.
 
-**Before the deal, and the first 30 days.** The business constraint diagnosis, the customer
-journey mapped against Headliner's own framework, every number that matters onto the
-Headliner KPI sheet, and the lot loaded into the optimisation engine step by step. His own
-line about it being a lot of work stays in, because it is the honest thing to say about a
-stretch that long. The deal closes somewhere inside it and he does not know where, so the
-page says so rather than pretending to a date.
+**The whole section is flagged as high level**, and says each business needs its own plan.
+That is Ryan's line and it does real work, because an owner reading a fixed 90 day plan
+either believes it is generic or believes it is a promise.
 
-**Days 30 to 60.** The major constraints and risks the diagnosis found.
+**Before the deal, and the first 30 days.** The business constraint diagnosis, then the
+customer journey and the offer mapped, every business metric onto the **Headliner metrics
+sheet**, and the lot loaded into the optimisation engine. It closes on why, which is that
+this is what shows where the biggest impact actions are.
 
-**Days 60 to 90.** Growth. Partnerships in whichever pillar moves the business most, and
-refining the numbers in the optimisation engine.
+**Days 30 to 60.** The major constraints and risks, any high impact actions, and the
+metrics refined.
+
+**Days 60 to 90.** Growth. Partnerships in whichever of the 4 pillars would move the
+business most.
 
 **From day 90.** Handholding and managing the process. **Ryan said 60 to 90 twice**, once
 for growth and once for this. Read as after the ninety, because the other reading
 contradicts itself. His call to confirm.
 
-**Two names in it are not assets yet.** The customer journey framework and the KPI sheet
-are both spoken about as Headliner's own and neither is on the Free Sh!t page. The Free
-page has a Business data sheet, which may be the KPI sheet under another name. That needs
-settling before the page goes live, because it names IP a reader can then go looking for.
+**One name in it is not an asset yet.** The **Headliner metrics sheet**, called the KPI
+sheet in an earlier pass, is spoken about as Headliner's own and is not on the Free Sh!t
+page. That page has a Business data sheet, which may be the same thing under another
+name. It needs settling before launch, because it names IP a reader can go looking for.
 
 
 ## The wide hero, on trial
