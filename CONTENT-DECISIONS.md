@@ -2050,9 +2050,10 @@ Ryan shaking hands in a lobby, back to camera, two people facing him. It replace
 empty hero slot on the site. **It is the right picture for that page**, because the page
 promises a person on the other end and the photograph is him meeting one.
 
-**A square file in a wide box.** Cover throws away most of its height, and the faces and
-the handshake sit in the upper middle, so it is held at 56 percent across and 20 percent
-down rather than centred.
+**The wider frame, held at the very top.** Everyone in the shot is standing in the upper
+half of it, so the crop sits at 2 percent down rather than centred, which is the only way
+all four heads clear the top of the frame. 52 percent across keeps the group in the middle
+when the box goes narrow.
 
 **It needed its own scrim.** The lede lands on a yellow shirt and measured 3.06 to 1
 against the stock one. The bottom lift is carried much further up and the right hand wash
