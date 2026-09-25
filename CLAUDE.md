@@ -98,9 +98,9 @@ them `spice-beam-band`, `spice-beam-soft`, `spice-beam--l/--r`, `spice-dark`,
 ### Where the light is allowed
 
 **The background shaft.** Home once, Partnerships twice, mirrored so the second is not the
-same picture again. On paper it runs at about a third of the dark band alpha. **Never on
-Ryan's page**, in any form: that page runs his brand and his brand has its own rules. Free
-Sh!t and Contact have none either.
+same picture again, and Free Sh!t once on the download wall. On paper it runs at about a
+third of the dark band alpha. **Never on Ryan's page**, in any form: that page runs his
+brand and his brand has its own rules. Contact has none.
 
 **The grain.** Ryan's page only, one fixed layer over the whole viewport.
 

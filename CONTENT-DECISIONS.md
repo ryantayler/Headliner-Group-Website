@@ -2136,3 +2136,47 @@ sequence*, the note under the form says *everything you send stays between us*, 
 quote at the foot is his. Those are first person and personal. The steps between them are
 now we and us, and the promise of a reply in a couple of days is gone with them. Both
 readings are defensible. They cannot both be right on one page.
+
+
+## The heroes drift 20 percent faster
+
+`heroDrift` went from 26 seconds to **21.5**, on Ryan's call. The keyframes are untouched,
+so the travel is the same 26px at 1440 and 7px at 390, it just covers it sooner. All five
+heroes run the one rule and all five moved when they were measured, so this is a single
+number and there is nowhere else to change it. Reduced motion still kills it outright.
+
+**The asymmetry in those keyframes was tuned for the home page and nothing else.** It
+travels 1.15 percent one way and 0.58 the other, because on the front of house photograph
+the far left is the empty, darkest third and there is less there worth panning onto. The
+other four inherited it without anyone checking. Contact is cropped at 52 by 13 and Free
+Sh!t is pinned to the bottom of its frame, so on those two the favoured side was never
+argued for. Nothing looks wrong at 26px. It is the knob to turn if the movement should
+flatter each photograph rather than merely exist on it.
+
+
+## The shaft is on the Free Sh!t page now
+
+`beam-soft beam--l` on the download wall, the tall `band--paper2` that holds the seven
+cards. **This changes the rule**, which had been home once, Partnerships twice, and none
+on Free Sh!t or Contact.
+
+**Left rather than right**, because the grid runs out after the seventh card and leaves
+the bottom right corner empty. The left shaft lights that corner and the top left. The
+right one was built and compared and it runs the wash straight through the middle of the
+card block, which is busier and lights nothing that needed it.
+
+**It does not band.** A vertical sample through the shaft returns 95 distinct values over
+986px, against the 27 over 1800px that made the dark band a problem, because the paper
+ground sits nowhere near the bottom of the range. Amplified nine times off the ground it
+is smooth through the core, with faint steps only in the outer falloff. It is the same
+`beam-soft` already running twice on Partnerships.
+
+**Contact still has none**, and Ryan's page still has none in any form.
+
+
+## The share sizing line is cut
+
+*The size of the share is negotiated per deal. It depends on the business, what it needs,
+and what we put in.* It came out of how we partner and invest, leaving the two paragraphs
+under the three cards. The section already says we take a share as the investment for the
+work, so the line was answering a question the page had not been asked.

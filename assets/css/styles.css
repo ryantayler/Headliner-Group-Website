@@ -758,7 +758,7 @@ button,input,textarea,select{font:inherit;color:inherit}
   width:100%;height:100%;object-fit:cover;opacity:.92;
   /* scaled up so the drift never exposes an edge */
   transform:scale(1.06);
-  animation:heroDrift 26s var(--ease-sway) infinite alternate;
+  animation:heroDrift 21.5s var(--ease-sway) infinite alternate;
 }
 /* alternate + ease-in-out is the whole trick: it decelerates into each end,
    holds a beat, then accelerates back the other way. */
