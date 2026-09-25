@@ -785,6 +785,9 @@ button,input,textarea,select{font:inherit;color:inherit}
    is dark over there. Drop a lit monitor into that and the lede lands around 3.4:1.
    This one darkens the right instead and adds a band under the bar. Reach for it
    whenever a new hero photograph has its light source on the reading side. */
+/* Everyone in this one is leaning over a table in the upper half of the frame, so the
+   crop is held near the top or the heads go off it. */
+.hero--bright-right .hero__media img{object-position:50% 8%}
 .hero--bright-right .hero__scrim{
   background:
     linear-gradient(to bottom,rgba(10,10,10,.80) 0,rgba(10,10,10,.52) 110px,rgba(10,10,10,0) 300px),

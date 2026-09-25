@@ -2066,3 +2066,17 @@ sampled at 1440 and 390, the headline is 13.4 and the lede 4.9.
 
 Three empty photo slots left, all seven cards on Free Sh!t and the process shot on
 Partnerships.
+
+
+## The Free Sh!t hero is the work being done
+
+Four people round a table, printed plans marked up in pen, sticky notes everywhere, Ryan
+reading. **It is the right picture for that page**, because the page gives away the tools
+and the photograph is the tools in use rather than a venue nobody is in.
+
+Held at 8 percent down, because everyone in it is leaning over a table in the upper half
+of the frame and a centred crop takes their heads off. The bright right scrim it already
+had still works, since the window light in this one is on the left. Headline measures 7.7
+to 1 at 1440 and 13.3 at 390.
+
+Two photo slots left, the seven Free Sh!t cards and the process shot on Partnerships.
