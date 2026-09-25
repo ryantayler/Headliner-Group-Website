@@ -210,21 +210,19 @@
     });
   }
 
-  /* 7. Hero swap, a test control. Delete with the button and the losing hero. */
-  var hero = document.getElementById('ryanHero'),
-      swap = document.getElementById('heroSwap');
-  if (hero && swap) {
-    /* Both pictures cover by height, so the original renders 1.499 times the hero height
-       wide and the wide one 2.874 times. The original sits in a box of min(60vw,980px),
-       right anchored past its right edge by the same amount the stylesheet uses, which
-       puts its left edge at box plus offset minus its own width. The wide one carries a
-       sliver of new ground on its left too, so that comes off as well. The hero's height
-       is set by its content, so none of this can live in the stylesheet. */
+  /* 7. Places the wide hero. Both pictures cover by height, so the original renders
+     1.499 times the hero height wide and the wide one 2.874 times. The original sits in
+     a box of min(60vw,980px), right anchored past its right edge by the same amount the
+     stylesheet uses, which puts its left edge at box plus offset minus its own width.
+     The wide one carries a sliver of new ground on its left too, so that comes off as
+     well. The hero's height is set by its content, so none of this can live in CSS. */
+  var hero = document.getElementById('ryanHero');
+  if (hero) {
     var place = function () {
       var h = hero.getBoundingClientRect().height;
       /* A hidden hero measures zero, and a zero height makes this sum come out hugely
          positive, which shoves the photograph into the middle and blanks the left of the
-         screen. Nothing is better than that, so it waits until it has a real number. */
+         screen. Nothing is better than that, so it waits for a real number. */
       if (h < 200) return;
       var vw = document.documentElement.clientWidth,
           box = Math.min(vw * 0.6, 980),
@@ -232,9 +230,7 @@
           leftA = box + off - (1800 / 1201) * h,
           padB = 0.009 * (2000 / 696) * h,
           /* As the window narrows the copy comes in over him, so the crop eats a little
-             further into the back of his head and brings his face forward of the wash.
-             Nothing above 1440, growing to about 65px by the time the phone layout
-             takes over at 900. */
+             further into the back of his head and brings his face forward of the wash. */
           bite = Math.max(0, (1440 - vw) * 0.12);
       hero.style.setProperty('--hero-b-x', (leftA - padB - bite).toFixed(1) + 'px');
     };
@@ -244,16 +240,7 @@
     /* catches the hero going from hidden to shown, which is what the single file
        preview does when you move between its pages */
     if (window.ResizeObserver) new ResizeObserver(place).observe(hero);
-    var set = function (mode) {
-      hero.setAttribute('data-hero', mode);
-      swap.setAttribute('aria-pressed', mode === 'b' ? 'true' : 'false');
-      swap.textContent = mode === 'b' ? 'Back to the original hero' : 'Try the wide hero';
-      try { localStorage.setItem('hg-hero', mode); } catch (e) {}
-    };
-    try { var m = localStorage.getItem('hg-hero'); if (m) set(m); } catch (e) {}
-    swap.addEventListener('click', function () {
-      set(hero.getAttribute('data-hero') === 'b' ? 'a' : 'b');
-    });
   }
+
 
 })();

@@ -655,7 +655,18 @@ button,input,textarea,select{font:inherit;color:inherit}
 .btn--plat:hover{color:#fff;box-shadow:0 0 0 3px rgba(255,255,255,.16)}
 .btn--plat svg{width:17px;height:17px;flex:none;fill:currentColor}
 .btn--li{background:#0A66C2}
-.btn--ig{background:#C13584;background-image:linear-gradient(115deg,#833AB4,#C13584)}
+/* Instagram's own mark. Sampled off it on a five by five grid: yellow in the bottom
+   left corner, out through orange and red to magenta, and purple only in the top left.
+   Both right hand corners are still pink, so the ellipse is wider than it is tall. */
+/* The label sits over the orange third of it at about 2.6 to 1, which is what happens
+   with Instagram's real colours and a white word. The gradient is Ryan's call, so the
+   type gets a shadow to carry it rather than the gradient getting muddied. */
+.btn--plat{text-shadow:0 1px 2px rgba(0,0,0,.42)}
+.btn--ig{
+  background:#F60A5D;
+  background-image:radial-gradient(ellipse 160% 105% at 10% 96%,
+    #F7BB02 0%,#F79900 12%,#F75A04 24%,#F60A5D 44%,#F500CE 66%,#AB07E7 86%,#870AF2 100%);
+}
 .btn--yt{background:#DC0000}
 .btn--fb{background:#1469D8}
 .btn--quiet{background:var(--base);color:var(--ink);border-color:var(--base)}
@@ -1235,7 +1246,9 @@ body.sheet-open{overflow:hidden}
   font-family:'Caveat',cursive;font-weight:600;color:var(--tx);
   font-size:clamp(28px,3.4vw,46px);line-height:1.18;letter-spacing:0;
 }
-.said__who{display:flex;gap:14px;align-items:center}
+/* centred in its column, so the space either side of the pair is even */
+.said__who{display:flex;gap:14px;align-items:center;justify-content:center}
+@media (max-width:860px){.said__who{justify-content:flex-start}}
 .said__i{
   width:44px;height:44px;flex:0 0 auto;border-radius:50%;display:grid;place-items:center;
   border:1px solid var(--tx-accent);color:var(--tx-accent);

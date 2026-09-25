@@ -1935,8 +1935,8 @@ settling before the page goes live, because it names IP a reader can then go loo
 ## The wide hero, on trial
 
 Ryan extended the right hand side of his hero photograph with AI, so it can run the full
-width instead of stopping at 60 percent and dissolving. **Both are on the page and a
-button at the foot of it swaps them.** The choice is remembered, so it survives a reload.
+width instead of stopping at 60 percent and dissolving. **It is locked in.** The swap
+button is gone. The original is still in the markup because the phone layout uses it.
 
 **The extension is pure.** Same scale, same full height, and the original content is the
 left 52.5 percent of the new file. Confirmed by matching the two pictures against each
@@ -1991,3 +1991,29 @@ runs on, so his page and Partnerships now say the same thing.
 
 Shorter by half, and the emergency line is his own phrasing rather than the four in the
 afternoon version.
+
+
+## Instagram's own gradient, and what it costs
+
+Ryan sent the mark and asked for the gradient exactly. Sampled off it on a five by five
+grid, so it is the real thing rather than the usual approximation. Yellow in the bottom
+left corner, out through orange and red to magenta, purple only in the top left. Both
+right hand corners are still pink, which is why the ellipse is wider than it is tall.
+
+**It is the one failing pair in the contrast audit.** White on the pink measures 4.10 to 1
+against a floor of 4.5, and on the orange third under the label it is about 2.6. That is
+what Instagram's real colours do to a white word and no amount of darkening fixes it,
+because the yellow cannot carry white at any depth worth shipping. Ryan asked for the
+gradient, so the gradient stays and the label carries a shadow instead. Do not quietly
+swap the fallback colour to pass the audit.
+
+## Have a chat with me about growth
+
+The CTA at the foot of Ryan's page. It was Let's chat about growth, which is what the
+Headliner pages say. His page speaks as him, so the ask does too.
+
+## The testimonial sits centred in its column
+
+It was hard left with the whole right of the column empty. The name and the monogram now
+centre as a pair, so the space either side of them is even. Left aligned again below 860,
+where the column becomes the full width.
