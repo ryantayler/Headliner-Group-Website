@@ -789,7 +789,7 @@ button,input,textarea,select{font:inherit;color:inherit}
    this photograph in particular has to carry the page's own marker as well. Held low so
    the paperwork on the table is in frame, which is the point of the picture on a page
    that gives the paperwork away. Same six pixel blur as the contact hero. */
-.hero--wall .hero__media img{object-position:50% 62%;filter:blur(6px)}
+.hero--wall .hero__media img{object-position:50% 100%;filter:blur(6px)}
 .hero--bright-right .hero__scrim{
   background:
     linear-gradient(to bottom,rgba(10,10,10,.80) 0,rgba(10,10,10,.52) 110px,rgba(10,10,10,0) 300px),

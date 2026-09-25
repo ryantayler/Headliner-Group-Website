@@ -2079,7 +2079,7 @@ and the photograph is the tools in use rather than a venue nobody is in.
 scrim went onto both heroes at once before anyone noticed. Anything about one picture in
 particular carries its own page marker.
 
-**Held low, at 62 percent, so the paperwork is in frame.** The heads go off the top for
+**Held at the very bottom of the frame, so the paperwork is what fills it.** The heads go off the top for
 it, and that is the right trade on a page whose whole offer is the paperwork. The bottom
 of the scrim is eased through the band the headline sits in for the same reason, or the
 table is buried under it. Blurred six pixels, same as the contact hero. Headline measures
