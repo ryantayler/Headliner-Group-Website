@@ -2086,3 +2086,26 @@ table is buried under it. Blurred six pixels, same as the contact hero. Headline
 8.6 to 1 at 1440 and 12.5 at 390.
 
 Two photo slots left, the seven Free Sh!t cards and the process shot on Partnerships.
+
+
+## The contact page is a group page now
+
+**Talk to us about growth**, replacing Straight to me and straight back. The three steps
+are Ryan's rewrite and go in as written, with four spellings fixed.
+
+**The step order changed as well as the words.** It was form, reply, meeting, all in the
+first person. It is now tell us, Ryan will reach out, a coffee or a call, and the middle
+step names him in the third person. **The reassurance line is cut**, so the section runs
+straight from the heading into the steps.
+
+**A LinkedIn card under the steps**, small, with the mark and his name on it. Step one
+names LinkedIn as the casual route, so the route is a thing you can click rather than a
+line you have to go and find. The LinkedIn line came out of the OR JUST card at the same
+time, which now carries the email and the travel line only.
+
+**The voice on this page is now split and it needs his ruling.** The hero above still says
+*this comes to me and I answer it myself, there is no assistant, no team inbox and no
+sequence*, the note under the form says *everything you send stays between us*, and the
+quote at the foot is his. Those are first person and personal. The steps between them are
+now we and us, and the promise of a reply in a couple of days is gone with them. Both
+readings are defensible. They cannot both be right on one page.
