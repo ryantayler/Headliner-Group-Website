@@ -2104,19 +2104,31 @@ line you have to go and find.
 
 **The OR JUST card is gone and the two routes are now a centred pair.** It had held the
 email address and the travel line, and once LinkedIn had left it there was not enough in
-it to earn a card. LinkedIn sits on top in full brand blue, `#0A66C2`, white mark and
-white label. Email sits under it on the site's own surface and rim, with the accent mark.
-The blue is doing the work a logo does, which is to read as a destination rather than as
-a link, so the second card is deliberately quieter and the two do not compete. Both are
-380px wide and centred in the column, 350 and edge to edge on a phone.
+it to earn a card. Both are 380px wide and centred in the column, 350 and edge to edge on
+a phone.
 
-**Contrast on the blue card:** white on `#0A66C2` is 5.68 to 1 and the subtitle at 86
-percent white is 4.66. Both clear the floor, so the blue is the real LinkedIn blue and not
-a darkened one.
+**Both cards are the site's own white card and the mark is the only brand on them.** The
+LinkedIn one was built in full brand blue first, on the argument that a logo card reads as
+a destination rather than as a link, and Ryan ruled against it. The blue pulled the eye to
+the bottom of a page whose first job is the form. LinkedIn blue on the white surface is
+5.4 to 1, well past the 3 to 1 a graphic needs, so the mark still carries the brand.
+**Do not rebuild the blue card.**
 
 **The travel line is not anywhere else on the site.** If *Australia wide, I travel for the
 right conversation* is worth keeping it needs a home, and the hero or the footer are the
 two candidates.
+
+**The closing quote is cut.** *If it isn't a fit I'll tell you in the first week, and I'll
+tell you why*, with his byline under it, was the last band on the page. The page now ends
+on the free page handoff and runs straight into the footer.
+
+**If a partnership isn't right**, shortened from *if a partnership isn't the right thing*.
+The body is Ryan's, with two spellings fixed. It was *plenty of people who land on this
+page do not need a partner*, which told the reader what they were, and is now *plenty of
+people aren't ready for a partner yet*, which tells them where they are. The close moved
+with it, from *none of it costs anything or requires a conversation* to *ready for you to
+use straight away*, so the sentence ends on what they can do rather than on what it does
+not cost.
 
 **The voice on this page is now split and it needs his ruling.** The hero above still says
 *this comes to me and I answer it myself, there is no assistant, no team inbox and no
