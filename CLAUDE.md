@@ -82,6 +82,15 @@ Playwright scripts live in the session scratchpad, not in the repo. The ones tha
 discovers images and lifts the footer out of `index.html` rather than keeping copies. Do
 not reintroduce a hardcoded list of either.
 
+`build-ghl.py <dir>` packages the site for a page builder that takes pasted HTML, CSS and
+JS: one folder per page holding `page.html` (body markup only), `styles.css` and
+`script.js`, plus the images, a working copy and a README. Assets go behind an
+`ASSETS_BASE` token, page links become slugs, the fonts switch to the Google CDN, and
+Ryan's `theme-ryan` body class is set from his script because a pasted block cannot reach
+`<body>`. Every list in its README is read out of the files, so do not hardcode one.
+Verify a build by pasting each page into a bare document and rendering it, not by reading
+the output.
+
 ## The look
 
 Section 12 of the stylesheet is how the site looks. It was built behind a
