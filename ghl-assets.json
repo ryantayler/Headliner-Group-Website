@@ -1,0 +1,31 @@
+{
+  "_note": "Uploaded media, filename to public URL. build-ghl.py writes these straight into the exported markup, so a paste needs no find and replace. The host renames every upload to a random id, so this mapping is the only record of which file is which. Add a line when a file is uploaded, and re-run build-ghl.py. Any file not listed here falls back to the ASSETS_BASE token.",
+  "_uploaded": "25 September 2026",
+
+  "hero-foh.jpg":               "https://assets.cdn.filesafe.space/o4ouZJKFsMqn4NIUgEY6/media/6ab5f4d93dbd5f2bbbbeed3f.jpg",
+  "hero-foh-1200.jpg":          "https://assets.cdn.filesafe.space/o4ouZJKFsMqn4NIUgEY6/media/6ab5f4d9974a9da6eeb20650.jpg",
+
+  "hero-partnerships.jpg":      "https://assets.cdn.filesafe.space/o4ouZJKFsMqn4NIUgEY6/media/6ab5f4dc3dbd5f2bbbbeed93.jpg",
+  "hero-partnerships-1200.jpg": "https://assets.cdn.filesafe.space/o4ouZJKFsMqn4NIUgEY6/media/6ab5f4dc3ae3da26fb53bf8c.jpg",
+  "optimisation-engine.png":    "https://assets.cdn.filesafe.space/o4ouZJKFsMqn4NIUgEY6/media/6ab5f4df6407f2cbe4c71bcf.png",
+
+  "ryan-hero-wide.jpg":         "https://assets.cdn.filesafe.space/o4ouZJKFsMqn4NIUgEY6/media/6ab5f4e1974a9da6eeb2073e.jpg",
+  "ryan-hero-wide-1200.jpg":    "https://assets.cdn.filesafe.space/o4ouZJKFsMqn4NIUgEY6/media/6ab5f4e2974a9da6eeb20769.jpg",
+  "ryan-hero.jpg":              "https://assets.cdn.filesafe.space/o4ouZJKFsMqn4NIUgEY6/media/6ab5f4e16407f2cbe4c71c0a.jpg",
+  "ryan-hero-900.jpg":          "https://assets.cdn.filesafe.space/o4ouZJKFsMqn4NIUgEY6/media/6ab5f4e13dbd5f2bbbbeee24.jpg",
+  "ryan-foh.jpg":               "https://assets.cdn.filesafe.space/o4ouZJKFsMqn4NIUgEY6/media/6ab5f4e01f3be2be1ba23da4.jpg",
+  "ryan-foh-720.jpg":           "https://assets.cdn.filesafe.space/o4ouZJKFsMqn4NIUgEY6/media/6ab5f4e13dbd5f2bbbbeee19.jpg",
+
+  "hero-free.jpg":              "https://assets.cdn.filesafe.space/o4ouZJKFsMqn4NIUgEY6/media/6ab5f4d96407f2cbe4c71b1a.jpg",
+  "hero-free-1200.jpg":         "https://assets.cdn.filesafe.space/o4ouZJKFsMqn4NIUgEY6/media/6ab5f4d91f3be2be1ba23c9a.jpg",
+
+  "hero-contact.jpg":           "https://assets.cdn.filesafe.space/o4ouZJKFsMqn4NIUgEY6/media/6ab5f4d9974a9da6eeb20646.jpg",
+  "hero-contact-900.jpg":       "https://assets.cdn.filesafe.space/o4ouZJKFsMqn4NIUgEY6/media/6ab5f4d91f3be2be1ba23ca5.jpg",
+
+  "_og_note": "Not used by the markup. These go in each page's own SEO or sharing settings.",
+  "og-index.png":               "https://assets.cdn.filesafe.space/o4ouZJKFsMqn4NIUgEY6/media/6ab5f4dd3ae3da26fb53bfa8.png",
+  "og-partnerships.png":        "https://assets.cdn.filesafe.space/o4ouZJKFsMqn4NIUgEY6/media/6ab5f4dd3ae3da26fb53bfb4.png",
+  "og-ryan.png":                "https://assets.cdn.filesafe.space/o4ouZJKFsMqn4NIUgEY6/media/6ab5f4df3dbd5f2bbbbeedcf.png",
+  "og-free.png":                "https://assets.cdn.filesafe.space/o4ouZJKFsMqn4NIUgEY6/media/6ab5f4dd1f3be2be1ba23d2c.png",
+  "og-contact.png":             "https://assets.cdn.filesafe.space/o4ouZJKFsMqn4NIUgEY6/media/6ab5f4dd1f3be2be1ba23d1c.png"
+}

@@ -8,7 +8,7 @@ script; the README says so and says where to put them once instead.
 
     python3 build-ghl.py <output dir>
 """
-import os, re, shutil, sys, html
+import json, os, re, shutil, sys
 
 SRC = os.path.dirname(os.path.abspath(__file__))
 
@@ -28,6 +28,14 @@ FONTS = ("@import url('https://fonts.googleapis.com/css2?family=Anton&"
          "family=Inter:wght@400;500;600&display=swap');\n\n")
 
 TOKEN = 'ASSETS_BASE'
+FILES = 'DOWNLOADS_BASE'
+
+# filename -> uploaded URL. The host renames every upload to a random id, so without
+# this the markup cannot name a picture. Anything not in here keeps the token and has
+# to be found and replaced by hand.
+MAP = {k: v for k, v in json.load(
+    open(os.path.join(SRC, 'ghl-assets.json'))).items() if not k.startswith('_')} \
+    if os.path.exists(os.path.join(SRC, 'ghl-assets.json')) else {}
 
 
 def body_of(doc):
@@ -40,9 +48,11 @@ def body_of(doc):
 
 
 def relink(out):
-    """Assets go behind one token. Page links become the slugs in PAGES."""
-    out = out.replace('assets/img/', TOKEN + '/')
-    out = out.replace('assets/downloads/', TOKEN + '/downloads/')
+    """Pictures become their uploaded URLs where one is known, and fall back to a token
+    where it is not. The seven downloads have no files yet, so they keep their own."""
+    out = out.replace('assets/downloads/', FILES + '/')
+    out = re.sub(r'assets/img/([A-Za-z0-9_-]+\.(?:jpg|png|svg))',
+                 lambda m: MAP.get(m.group(1), TOKEN + '/' + m.group(1)), out)
     for name, (_, slug) in PAGES.items():
         out = re.sub(r'(href=")' + re.escape(name) + r'(#|")',
                      lambda m: m.group(1) + slug + ('#' if m.group(2) == '#' else '"'),
@@ -120,7 +130,9 @@ def readme(dest):
     rows = []
     for name, (folder, slug) in PAGES.items():
         doc = relink(body_of(open(os.path.join(SRC, name)).read()))
-        imgs = sorted(set(re.findall(TOKEN + r'/([A-Za-z0-9_-]+\.(?:jpg|png|svg))', doc)))
+        back = {v: k for k, v in MAP.items()}
+        imgs = sorted(set(re.findall(TOKEN + r'/([A-Za-z0-9_-]+\.(?:jpg|png|svg))', doc))) \
+             + sorted({back[u] + ' (linked)' for u in back if u in doc})
         rows.append((folder, slug, name, imgs))
 
     t = ["# Headliner Group, packaged for a page builder", "",
@@ -157,17 +169,21 @@ def readme(dest):
           "To tell which happened, open the page and look at the browser console. If the",
           "script ran, `document.documentElement.className` contains `rv-on`.", "",
           "## The pictures", "",
-          "Every `src` in the markup reads `ASSETS_BASE/something.jpg`. Upload the contents of",
-          "`2-images` and then find and replace `ASSETS_BASE` with the folder they landed in.",
-          "One replace per page in any text editor, before you paste.", "",
-          "If your media library gives each file its own address instead of keeping a folder,",
-          "there is no single folder to point at, so replace them one at a time. There are not",
-          "many. Per page, in full:", ""]
+          "**Already done.** Every `src` in the markup is the uploaded URL, so the pages load",
+          "their pictures the moment they are pasted. Nothing to find, nothing to replace.", "",
+          "`ghl-assets.json` in the repo holds filename to URL. The host renames every upload",
+          "to a random id, so that file is the only record of which picture is which. Upload a",
+          "new one, add its line, re-run `build-ghl.py`.", "",
+          "`2-images` is still here as the originals, in case anything has to go up again.",
+          "Anything marked `(linked)` below is live. Anything not marked is still a token.",
+          "Per page, in full:", ""]
     for folder, slug, name, imgs in rows:
         t.append("- **%s** (%d): %s" % (folder, len(imgs), ', '.join(imgs) if imgs else 'none'))
     t += ["",
-          "The five `og-*.png` in `2-images` are the social preview cards. They are not used by",
-          "the markup. Put them in the page's own SEO or sharing settings.", "",
+          "`favicon.svg` is the only picture with no URL. It is not in the markup, it is a head",
+          "tag, and the builder sets the favicon in its own settings.", "",
+          "The five `og-*.png` are the social preview cards. They are not in the markup either.",
+          "Their URLs are in `ghl-assets.json`, for each page's own SEO or sharing settings.", "",
           "## Links between pages", "",
           "The markup already points at these paths, so name the pages to match or edit the",
           "links once in the header and footer of each file.", ""]
@@ -193,9 +209,10 @@ def readme(dest):
           "- **Every form does nothing.** They carry `data-demo` and only show the thank you",
           "  note. Point them at a real endpoint, or swap them for your builder's own form",
           "  elements, which is the easier road if the builder holds the contacts.",
-          "- **The seven downloads do not exist.** The markup asks for",
-          "  `ASSETS_BASE/downloads/pillars.pdf` and six more. Until those files are up, the",
-          "  form on each card shows its note and releases nothing.",
+          "- **The seven downloads do not exist**, so they are the one thing still on a token.",
+          "  The markup asks for `DOWNLOADS_BASE/pillars.pdf` and six more. Upload the real",
+          "  files, add them to `ghl-assets.json`, and they will bake in like the pictures did.",
+          "  Until then the form on each card shows its note and releases nothing.",
           "- **The LinkedIn posts** are three real embeds. They need no work, but they will not",
           "  render anywhere that blocks third party frames.",
           "- **`headlinergroup.com.au` is a placeholder** in the social tags of the working copy.",
