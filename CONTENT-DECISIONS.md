@@ -2051,7 +2051,7 @@ empty hero slot on the site. **It is the right picture for that page**, because 
 promises a person on the other end and the photograph is him meeting one.
 
 **The wider frame, held at the very top.** Everyone in the shot is standing in the upper
-half of it, so the crop sits at 2 percent down rather than centred, which is the only way
+half of it, so the crop sits at 13 percent down rather than centred, which is the only way
 all four heads clear the top of the frame. 52 percent across keeps the group in the middle
 when the box goes narrow.
 

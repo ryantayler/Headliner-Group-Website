@@ -255,7 +255,7 @@
 /* Held high so the heads clear the top of the frame. Everyone in the shot is standing
    in the upper half of it, and centring the crop takes the tops of their heads off. */
 .hero--meet .hero__media img{
-  object-position:52% 2%;
+  object-position:52% 13%;
   /* Softened so it reads as ground rather than as a photograph competing with the
      copy. The 1.06 scale on .hero__media img is what keeps the blurred edge off the
      frame. */
