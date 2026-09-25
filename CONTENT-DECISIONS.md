@@ -2020,3 +2020,25 @@ Headliner pages say. His page speaks as him, so the ask does too.
 It was hard left with the whole right of the column empty. The name and the monogram now
 centre as a pair, so the space either side of them is even. Left aligned again below 860,
 where the column becomes the full width.
+
+
+## The questions are answered
+
+Ryan wrote all six and they go in as written. The intro line is cut, so the heading runs
+straight into the list. Plain fixes only, about a dozen spellings and apostrophes, one
+comma splice, and a subject verb agreement.
+
+**One word was changed and it needs his ruling.** He wrote *we take equity rather than an
+upfront fee*. The `ryan-voice` skill's hard rules say **equity, acquisition, acquire, roll
+up and PE never appear in public copy**, and the site has held that line everywhere else,
+which is why the three ways we partner and invest is headed Minority and majority shares.
+It now reads **a share of the business**. If he wants the word back it is one edit, but it
+would be the first time it appears on the site.
+
+**Two answers do real work.** Nothing upfront, because the share replaces the fee, and one
+primary partner every 60 days, six a year. That second one is the scarcity claim the page
+has been making vaguely since the beginning, now with a number on it.
+
+**The questions carry his wording**, not the drafted versions. Do I stop running my
+business rather than my own business, What does it cost upfront rather than cost me up
+front, How many do you work with at once rather than how many businesses.
