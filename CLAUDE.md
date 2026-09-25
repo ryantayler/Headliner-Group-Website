@@ -142,5 +142,10 @@ the only page whose sections are built as sets.
   no rotated box, no filter, no mask on the shaft itself. The cost is that the shaft runs
   edge to edge rather than fading along its length. A radial gradient also avoids all of
   it but reads as a round glow rather than a beam, and Ryan rejected that.
+- **A background is sized to the padding box but painted across the border box.** `.btn`
+  carries a 1px transparent border, so a gradient on a button paints into that ring by
+  tiling round to the opposite edge, which showed as a pixel of the wrong colour along
+  the top and bottom of the Instagram button. `background-origin:border-box` and
+  `background-repeat:no-repeat` on any gradient button.
 - A `clip-path` polygon has to be **wound in order** round the shape. Listing the two left
   corners together sends the outline left, left, right, right, and it crosses itself.

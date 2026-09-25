@@ -666,6 +666,11 @@ button,input,textarea,select{font:inherit;color:inherit}
   background:#F60A5D;
   background-image:radial-gradient(ellipse 160% 105% at 10% 96%,
     #F7BB02 0%,#F79900 12%,#F75A04 24%,#F60A5D 44%,#F500CE 66%,#AB07E7 86%,#870AF2 100%);
+  /* `.btn` carries a 1px transparent border, and a background is sized to the padding
+     box but painted across the border box, so that ring was showing the gradient tiling
+     round to the opposite edge. One pixel of orange along the top and the bottom. */
+  background-origin:border-box;
+  background-repeat:no-repeat;
 }
 .btn--yt{background:#DC0000}
 .btn--fb{background:#1469D8}
