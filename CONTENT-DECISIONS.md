@@ -2074,6 +2074,11 @@ Four people round a table, printed plans marked up in pen, sticky notes everywhe
 reading. **It is the right picture for that page**, because the page gives away the tools
 and the photograph is the tools in use rather than a venue nobody is in.
 
+**Everything about this photograph is scoped to `.hero--wall`**, not to
+`.hero--bright-right`. That class is shared with Partnerships, and a crop, a blur and a
+scrim went onto both heroes at once before anyone noticed. Anything about one picture in
+particular carries its own page marker.
+
 **Held low, at 62 percent, so the paperwork is in frame.** The heads go off the top for
 it, and that is the right trade on a page whose whole offer is the paperwork. The bottom
 of the scrim is eased through the band the headline sits in for the same reason, or the
