@@ -1978,3 +1978,16 @@ events and business coaching. The old copy said five years and his largest compa
 
 The opening line about buying into businesses is gone, and so is the option to exit, from
 this section. Both still appear in the hero lede above it.
+
+
+## Partners, not suppliers, rewritten
+
+Ryan's words, in as written, with one fix, a capital R on revenue mid sentence.
+
+**It lands on the four pillars now.** The old second paragraph listed what a partner gives
+you, somebody who answers, priority in the diary, the extra bits thrown in. The new one
+names revenue, margin, reach and connection, which is the framework the rest of the site
+runs on, so his page and Partnerships now say the same thing.
+
+Shorter by half, and the emergency line is his own phrasing rather than the four in the
+afternoon version.
