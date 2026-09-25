@@ -2180,3 +2180,43 @@ is smooth through the core, with faint steps only in the outer falloff. It is th
 and what we put in.* It came out of how we partner and invest, leaving the two paragraphs
 under the three cards. The section already says we take a share as the investment for the
 work, so the line was answering a question the page had not been asked.
+
+
+## The footer tagline runs on one line
+
+*Helping founders in live events & production grow through partnerships* was capped at 32
+characters wide and broke over two lines. It sat inside the footer's first column, under
+the logo, and that column is 362px at 1440 while the sentence needs 554.
+
+**It is now a grid item of its own, spanning every column.** Nothing was ever beside it:
+the three link lists and the signup all finish well above it, so the whole row to its
+right was empty. It stays exactly where it looked like it was and gets the full 1112px,
+so it runs on one line down to about a 600px window and wraps below that, which no font
+size can avoid for a 554px sentence.
+
+The footer got shorter by the line it saved, and the logo, the links and the signup did
+not move.
+
+
+## The two video slots are out until Ryan records them
+
+The home page one sat under *how we do it* in the dark band, and Ryan's sat in its own
+band between the record and the bio. Both were empty placeholders with a play mark and a
+caption describing what would go in them, and an empty slot that says *video, to come*
+reads as an unfinished page rather than as a promise.
+
+**The `.vid` CSS stays in the stylesheet.** It is dead until the videos exist, on purpose.
+Dropping a `.vid` block back into either place is then the whole job, and the captions
+that were on them are the brief:
+
+- **Home.** Two minutes on how a partnership works. The four pillars in his own words,
+  with the official statement in it, because it is the thing every new visitor needs said
+  to them once.
+- **Ryan.** Ninety seconds to camera. Who you are, what you partner into, and what a first
+  conversation is actually like. The one thing on this site that cannot be faked by
+  writing.
+
+Ryan's page keeps its paper, paper2 alternation and its hairline rules across the cut, so
+the band that held it is gone rather than left empty. The seven photo slots on Free Sh!t
+and the process shot on Partnerships are untouched, those are photographs not video.
+

@@ -1134,6 +1134,12 @@ body.sheet-open{overflow:hidden}
 
 .ftr{background:var(--panel);border-top:1px solid var(--rim);position:relative;overflow:hidden;padding-block:clamp(48px,6vw,72px) 28px}
 .ftr__top{display:grid;grid-template-columns:minmax(0,1.4fr) repeat(3,minmax(0,.8fr));gap:clamp(24px,3vw,48px)}
+/* The tagline sits under the logo, and always did, but it was inside the first column
+   and wrapped at 32 characters. Nothing has ever sat beside it, the three link lists
+   and the signup all end well above it, so it takes the whole row instead and runs on
+   one line. It needs 554px and gets the full shell, so it holds to about 640px wide. */
+.ftr__tag{grid-column:1/-1;margin-top:-14px;max-width:none}
+@media (max-width:900px){.ftr__tag{margin-top:0}}
 @media (max-width:900px){.ftr__top{grid-template-columns:1fr 1fr}}
 @media (max-width:560px){.ftr__top{grid-template-columns:1fr}}
 .ftr h4{font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--mute);margin-bottom:14px}
