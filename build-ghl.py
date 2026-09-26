@@ -27,6 +27,40 @@ FONTS = ("@import url('https://fonts.googleapis.com/css2?family=Anton&"
          "family=Archivo+Black&family=Caveat:wght@400..700&"
          "family=Inter:wght@400;500;600&display=swap');\n\n")
 
+OVERRIDES = """
+
+/* ==========================================================================
+   PAGE BUILDER OVERRIDES
+   Appended by build-ghl.py. These exist only in the pasted build and are not
+   in the site's own stylesheet.
+   ========================================================================== */
+
+/* A builder drops the block into a centred column with its own width and its own
+   padding, which is what puts a margin down each side of a design that is meant to
+   run edge to edge. This pulls the wrapper back out to the full viewport whatever
+   that column is doing. It works from any centred ancestor, because 50% is half the
+   column and 50vw is half the window. */
+.hl-root{
+  position:relative;
+  width:100vw;max-width:100vw;
+  margin-left:calc(50% - 50vw);
+  margin-right:calc(50% - 50vw);
+}
+/* The column's own padding would still inset the content inside the wrapper. */
+.hl-root>*{margin-left:0;margin-right:0}
+
+/* The reveal is off in a pasted build. On the site it fades each block in as it
+   comes up the screen, and it does that by starting every block invisible, which
+   makes the whole page depend on a script a builder may or may not run where and
+   when it says it will. Not worth the risk on a host we do not control, so the
+   content is simply there. Nothing else about the page changes. */
+.rv,.rv.is-in{opacity:1!important;transform:none!important;filter:none!important;transition:none!important}
+
+/* A builder's own reset can reach into the block. These are the ones that show. */
+.hl-root img,.hl-root svg{max-width:100%}
+.hl-root *,.hl-root *::before,.hl-root *::after{box-sizing:border-box}
+"""
+
 TOKEN = 'ASSETS_BASE'
 FILES = 'DOWNLOADS_BASE'
 
@@ -82,8 +116,11 @@ def main(dest):
         os.makedirs(d, exist_ok=True)
         doc = open(os.path.join(SRC, name)).read()
 
-        open(os.path.join(d, 'page.html'), 'w').write(relink(body_of(doc)) + '\n')
-        open(os.path.join(d, 'styles.css'), 'w').write(FONTS + css)
+        open(os.path.join(d, 'page.html'), 'w').write(
+            '<!-- One wrapper, so the page can break out of whatever column the builder\n'
+            '     drops it into. The stylesheet pins it to the full viewport width. -->\n'
+            '<div class="hl-root">\n' + relink(body_of(doc)) + '\n</div>\n')
+        open(os.path.join(d, 'styles.css'), 'w').write(FONTS + css + OVERRIDES)
 
         # ryan.html carries a class on <body> that a pasted block cannot set, and the
         # page grain hangs off body.theme-ryan, so the script puts it there instead.
