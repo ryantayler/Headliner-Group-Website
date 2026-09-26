@@ -717,7 +717,7 @@ button,input,textarea,select{font:inherit;color:inherit}
   transition:background-color .3s var(--ease),border-color .3s var(--ease);
 }
 .hdr__in{display:flex;align-items:center;justify-content:space-between;gap:24px;height:var(--hdr-h)}
-.hdr.is-stuck{background:rgba(10,10,10,.88);border-bottom-color:var(--rim);backdrop-filter:saturate(140%) blur(10px)}
+.hdr.is-stuck{background:rgba(10,10,10,.88);border-bottom-color:var(--rim);-webkit-backdrop-filter:saturate(140%) blur(10px);backdrop-filter:saturate(140%) blur(10px)}
 
 .nav{display:flex;align-items:center;gap:clamp(14px,2vw,30px)}
 .nav a:not(.btn){font-size:13.5px;font-weight:500;color:var(--ink);opacity:.82;transition:opacity .2s,color .2s}
@@ -1064,7 +1064,7 @@ a.card:hover,.card--hover:hover{transform:translateY(-4px);border-color:rgba(var
    One dialog reused by every magnet. Above the header (60), below nothing. */
 .sheet{position:fixed;inset:0;z-index:90;display:grid;place-items:center;padding:clamp(12px,3vw,40px)}
 .sheet[hidden]{display:none}
-.sheet__scrim{position:absolute;inset:0;background:rgba(6,7,7,.72);backdrop-filter:blur(6px);animation:sheetIn .25s var(--ease)}
+.sheet__scrim{position:absolute;inset:0;background:rgba(6,7,7,.72);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);animation:sheetIn .25s var(--ease)}
 .sheet__panel{
   position:relative;width:min(1080px,100%);max-height:100%;overflow:auto;
   background:var(--card);color:var(--ink-l);border:1px solid var(--rim-l);border-radius:var(--r-md);

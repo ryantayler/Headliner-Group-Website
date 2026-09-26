@@ -14,11 +14,11 @@ SRC = os.path.dirname(os.path.abspath(__file__))
 
 # file name -> (folder name, slug the other pages link to)
 PAGES = {
-    'index.html':        ('home',          '/'),
+    'index.html':        ('home',          '/home'),
     'partnerships.html': ('partnerships',  '/partnerships'),
-    'ryan.html':         ('ryan-tayler',   '/ryan'),
-    'free.html':         ('free-shit',     '/free'),
-    'contact.html':      ('lets-chat',     '/contact'),
+    'ryan.html':         ('ryan-tayler',   '/ryantayler'),
+    'free.html':         ('free-shit',     '/freeshit'),
+    'contact.html':      ('lets-chat',     '/letschat'),
 }
 
 # Anton, Archivo Black, Caveat and Inter are all Google faces, self hosted here only
@@ -55,6 +55,18 @@ OVERRIDES = """
    when it says it will. Not worth the risk on a host we do not control, so the
    content is simply there. Nothing else about the page changes. */
 .rv,.rv.is-in{opacity:1!important;transform:none!important;filter:none!important;transition:none!important}
+
+/* The bar carries its ground always. On the site it is clear over the hero and fades
+   in on scroll, which the script does by watching the window. A host that scrolls its
+   own container instead never fires that, so the bar stayed see through. The hero scrim
+   already lays a dark band under the bar, so this reads the same over the photograph
+   and the blur and the hairline are now there from the first frame. */
+.hdr{
+  background:rgba(10,10,10,.88);
+  border-bottom-color:var(--rim);
+  -webkit-backdrop-filter:saturate(140%) blur(10px);
+  backdrop-filter:saturate(140%) blur(10px);
+}
 
 /* A builder's own reset can reach into the block. These are the ones that show. */
 .hl-root img,.hl-root svg{max-width:100%}
