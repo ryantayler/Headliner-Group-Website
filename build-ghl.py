@@ -128,16 +128,23 @@ def main(dest):
         os.makedirs(d, exist_ok=True)
         doc = open(os.path.join(SRC, name)).read()
 
+        # ryan.html carries theme-ryan on <body>, which a pasted block cannot reach.
+        # It is a token block, so it works on any ancestor: putting it on the wrapper
+        # puts his palette in the markup and takes the script out of it entirely.
+        theme = ' theme-ryan' if 'class="theme-ryan"' in doc[:doc.index('>', doc.index('<body'))] else ''
         open(os.path.join(d, 'page.html'), 'w').write(
             '<!-- One wrapper, so the page can break out of whatever column the builder\n'
             '     drops it into. The stylesheet pins it to the full viewport width. -->\n'
-            '<div class="hl-root">\n' + relink(body_of(doc)) + '\n</div>\n')
+            '<div class="hl-root%s">\n' % theme + relink(body_of(doc)) + '\n</div>\n')
         open(os.path.join(d, 'styles.css'), 'w').write(FONTS + css + OVERRIDES)
 
         # ryan.html carries a class on <body> that a pasted block cannot set, and the
         # page grain hangs off body.theme-ryan, so the script puts it there instead.
-        extra = ('  document.body.classList.add("theme-ryan");\n'
-                 if 'class="theme-ryan"' in doc[:doc.index('>', doc.index('<body'))] else '')
+        # Identical on all five. The colours already come off the wrapper; this only
+        # reaches the page grain, which hangs off body. Guarded, so the one script is
+        # right on every page and pasting the wrong one cannot matter.
+        extra = ('  if (document.querySelector(".hero--ryan")) '
+                 'document.body.classList.add("theme-ryan");\n')
         # The tags are ON the file, not optional. A code box that takes markup prints
         # bare JavaScript into the page as text instead of running it, which is what it
         # did, and a box that takes JavaScript is fine with the tags in practice. One
