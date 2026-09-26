@@ -138,12 +138,12 @@ def main(dest):
         # page grain hangs off body.theme-ryan, so the script puts it there instead.
         extra = ('  document.body.classList.add("theme-ryan");\n'
                  if 'class="theme-ryan"' in doc[:doc.index('>', doc.index('<body'))] else '')
-        body_js = wrap(extra)
-        open(os.path.join(d, 'script.js'), 'w').write(body_js)
-        # Some builders' code boxes take markup rather than bare JS and will paste this
-        # in as text, where it never runs. Same file, tags already on it.
-        open(os.path.join(d, 'script-in-tags.html'), 'w').write(
-            '<script>\n' + body_js + '</script>\n')
+        # The tags are ON the file, not optional. A code box that takes markup prints
+        # bare JavaScript into the page as text instead of running it, which is what it
+        # did, and a box that takes JavaScript is fine with the tags in practice. One
+        # file, no choice to get wrong.
+        open(os.path.join(d, 'script.html'), 'w').write(
+            '<script>\n' + wrap(extra) + '</script>\n')
         print('page', folder)
 
     # Every image the five pages ask for, gathered by reading them rather than listed.
