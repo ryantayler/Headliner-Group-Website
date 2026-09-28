@@ -215,6 +215,24 @@
     });
   }
 
+  /* 6b. LinkedIn embeds, if they ever tell us how tall they are.
+     A cross origin frame cannot be measured from out here, so the height on each post
+     is set by hand. Some embeds do post their height to the parent though, and if
+     LinkedIn ever starts, this takes it. It does nothing until then. */
+  addEventListener('message', function (e) {
+    if (!/(^|\.)linkedin\.com$/.test(new URL(e.origin).hostname)) return;
+    var h = e.data && (e.data.height || e.data.offsetHeight ||
+            (typeof e.data === 'string' && /^\d+$/.test(e.data) && +e.data));
+    if (!h || h < 200 || h > 4000) return;
+    var frames = document.querySelectorAll('.feed__post iframe');
+    for (var i = 0; i < frames.length; i++) {
+      if (frames[i].contentWindow === e.source) {
+        frames[i].parentElement.style.setProperty('--feed-h', Math.round(h) + 'px');
+        return;
+      }
+    }
+  });
+
   /* 7. Places the wide hero. Both pictures cover by height, so the original renders
      1.499 times the hero height wide and the wide one 2.874 times. The original sits in
      a box of min(60vw,980px), right anchored past its right edge by the same amount the

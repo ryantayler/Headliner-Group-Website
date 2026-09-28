@@ -2274,3 +2274,25 @@ centred prose on Free Sh!t and Contact.
 The brief stands if the photograph is ever taken. Ryan has a process shot from China that
 was offered for this slot and not taken up.
 
+
+## The LinkedIn embeds have a height knob
+
+LinkedIn ships every embed at a flat 504 by 670 whatever the post is, so a short post sat
+in a tall box with a gap under it.
+
+**It cannot be automatic.** The embed is a cross origin frame, and nothing on our page is
+allowed to measure inside one. The only way a frame can size itself is if the page inside
+posts its height out to the parent, and LinkedIn's does not.
+
+**So the height is per post, set by hand.** Each `.feed__post` carries
+`style="--feed-h:670px"` and both the box and the frame read that one value. Change the
+number on a post, that post resizes. 670 is only the fallback.
+
+`.feed` is `align-items:start`, so each post takes its own height instead of being
+stretched to the tallest in the row. Bottoms run ragged, which is what a feed of
+different length posts looks like.
+
+**There is a listener in `main.js` in case LinkedIn ever starts posting a height.** It
+checks the origin, sanity checks the number and matches the frame by its content window.
+It does nothing today and costs nothing.
+
