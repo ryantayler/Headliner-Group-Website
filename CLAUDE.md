@@ -175,5 +175,13 @@ the only page whose sections are built as sets.
 - **The Google Fonts URL has semicolons inside it**, in `Inter:wght@400;500;600`. Any
   regex that strips the `@import` by reading to the first `;` cuts the rule in half and
   leaves garbage that kills everything above the first valid rule, `:root` included.
+- **Nothing in the exported markup may be a `<script>` tag or a void tag.** The builder
+  runs a security check that calls a `<link>` unclosed, and a rejected paste takes the
+  whole page with it. Third party embed scripts are appended by `main.js`, guarded by the
+  element they belong to. `build-ghl.py` ships zero script tags in `page.html`.
+- **An embed's own box carries its size inline, not from the stylesheet.** A frame with no
+  height collapses to nothing, and the page and the stylesheet are pasted separately into
+  a builder, so they are not always the same generation. `.ghlform` repeats its
+  `min-height` as an inline style for that reason.
 - A `clip-path` polygon has to be **wound in order** round the shape. Listing the two left
   corners together sends the outline left, left, right, right, and it crosses itself.

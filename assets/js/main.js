@@ -233,6 +233,19 @@
     }
   });
 
+  /* 6c. The CRM's form embed script. It is loaded from here rather than from a
+     script tag in the markup, because a builder's HTML block will not always take a
+     script tag and a rejected paste takes the whole page with it. Only on the page
+     that has a form. */
+  if (document.querySelector('.ghlform iframe') &&
+      !document.querySelector('script[data-hl-formembed]')) {
+    var fe = document.createElement('script');
+    fe.src = 'https://link.businessos.au/js/form_embed.js';
+    fe.async = true;
+    fe.setAttribute('data-hl-formembed', '');
+    document.body.appendChild(fe);
+  }
+
   /* 7. Places the wide hero. Both pictures cover by height, so the original renders
      1.499 times the hero height wide and the wide one 2.874 times. The original sits in
      a box of min(60vw,980px), right anchored past its right edge by the same amount the
