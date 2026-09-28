@@ -2296,3 +2296,28 @@ different length posts looks like.
 checks the origin, sanity checks the number and matches the frame by its content window.
 It does nothing today and costs nothing.
 
+
+## The take the whole lot form is the real one now
+
+The hand built form on Free Sh!t is replaced by the CRM's own inline embed, form id
+`ZWe0qYB89U7vjEQPpOZI`, *Give me all the Free Sh!t Form*. It is the first form on the site
+that actually goes somewhere. The other five are still `data-demo` and do nothing.
+
+**The brand styling cannot live in the site's stylesheet.** The form renders in a cross
+origin frame, so nothing on the page can reach inside it. It goes in the form's own custom
+CSS field in the CRM, and the copy that was pasted there is kept at the repo root as
+`ghl-form-style.css` so it is not only in a web form somewhere.
+
+**It is written against element selectors, not the builder's classes.** Their class names
+are not visible from outside and they move between versions. `input`, `label`, `button`
+and `textarea` do not.
+
+Every value in it is read off the live site rather than picked. Rendered against a stand in
+of the builder's markup and compared to the contact page's form, the input, the label and
+the button all come back identical: background, border, radius, padding, size, weight,
+tracking, case and colour.
+
+**`.ghlform` in the stylesheet holds the space only**, 434px, which is the height the embed
+ships at. Their `form_embed.js` posts the real height out and sizes the frame, which is the
+thing LinkedIn's embed does not do.
+

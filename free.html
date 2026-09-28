@@ -160,26 +160,32 @@
   <div class="shell shell--narrow">
     <h2 class="display d2 rv">Or take the whole lot at once</h2>
     <p class="sub mt-s rv rv-d1">Drop your email and we will send all twelve in one message, plus the new ones as they land and the updated versions when we change them. If it stops being useful there is an unsubscribe link on every email and no hard feelings.</p>
-    <form class="form mt-m rv rv-d1" data-demo>
-      <div class="form__row">
-        <div class="field">
-          <label for="g-name">First name</label>
-          <input id="g-name" name="first_name" type="text" placeholder="Ryan" required>
-        </div>
-        <div class="field">
-          <label for="g-email">Email</label>
-          <input id="g-email" name="email" type="email" placeholder="you@company.com" required>
-        </div>
-      </div>
-      <div class="field">
-        <label for="g-biz">Business (optional)</label>
-        <input id="g-biz" name="business" type="text" placeholder="What you run">
-      </div>
-      <div class="row">
-        <button class="btn btn--fill" type="submit">Send me everything</button>
-      </div>
-      <p class="formmsg">Sent. Check your inbox in the next minute.</p>
-    </form>
+    <!-- The real form, hosted by the CRM. It is a cross origin frame, so nothing in
+         this site's stylesheet can reach inside it. The brand styling lives in the
+         form's own custom CSS field in the CRM, and the copy of it that was pasted
+         there is kept in ghl-form-style.css at the repo root.
+         Their form_embed.js posts the height out and sizes the frame, so the
+         min-height here is only what holds the space until it does. -->
+    <div class="ghlform mt-m rv rv-d1">
+      <iframe src="https://link.businessos.au/widget/form/ZWe0qYB89U7vjEQPpOZI"
+              style="width:100%;height:100%;border:none;border-radius:8px"
+              id="inline-ZWe0qYB89U7vjEQPpOZI"
+              data-layout="{'id':'INLINE'}"
+              data-trigger-type="alwaysShow"
+              data-trigger-value=""
+              data-activation-type="alwaysActivated"
+              data-activation-value=""
+              data-deactivation-type="neverDeactivate"
+              data-deactivation-value=""
+              data-form-name="Give me all the Free Sh!t Form"
+              data-height="434"
+              data-layout-iframe-id="inline-ZWe0qYB89U7vjEQPpOZI"
+              data-form-id="ZWe0qYB89U7vjEQPpOZI"
+              data-cookie-consent="true"
+              data-cookie-consent-provider="auto"
+              title="Give me all the Free Sh!t Form"></iframe>
+    </div>
+    <script src="https://link.businessos.au/js/form_embed.js"></script>
   </div>
 </section>
 
