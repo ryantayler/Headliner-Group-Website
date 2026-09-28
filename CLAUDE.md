@@ -183,10 +183,14 @@ the only page whose sections are built as sets.
   height collapses to nothing, and the page and the stylesheet are pasted separately into
   a builder, so they are not always the same generation. `.ghlform` repeats its
   `min-height` as an inline style for that reason.
-- **Never ship a third party embed script in the exported markup.** An iframe is
-  sandboxed and can only affect its own box. The loader script that comes with it is
-  not: it runs in the page, walks the document and rearranges it. The CRM's
-  `form_embed.js` broke every page it was on. The frame alone renders fine; all the
-  script adds is auto resizing, and a fixed inline height buys that back.
+- **Third party embeds do not go in the exported markup at all.** The builder has its
+  own element for them. Putting a CRM form embed inside a pasted HTML block cost four
+  rounds on Ryan's live site: with its loader script it disturbed the whole page,
+  without the script the form did not render, and neither could be checked here because
+  this box cannot reach the form's host. **If an embed cannot be loaded from here it
+  does not get edited from here.** Hand it back untouched and let the builder host it.
+- **Anything this box cannot reach is not something to make changes against.** Check
+  reachability first and say so, rather than shipping guesses one variable at a time
+  to a live site.
 - A `clip-path` polygon has to be **wound in order** round the shape. Listing the two left
   corners together sends the outline left, left, right, right, and it crosses itself.

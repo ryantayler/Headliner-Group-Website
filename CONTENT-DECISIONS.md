@@ -2297,7 +2297,21 @@ checks the origin, sanity checks the number and matches the frame by its content
 It does nothing today and costs nothing.
 
 
-## The take the whole lot form is the real one now
+## The take the whole lot form, and how not to do it
+
+**The CRM form is not in the site's markup.** It belongs in the builder's own form
+element, as its own block on the page, with the embed code exactly as the CRM gives it.
+
+Four rounds were lost putting it inside the pasted HTML instead. With its loader script
+in the page it rearranged everything around it. With the script removed the form did not
+render at all. Neither could be tested, because this environment cannot reach the form's
+host, so every version was a guess shipped to a live site.
+
+The page's own markup is back to the hand built form, which still does nothing. Replace
+it by deleting that section and adding the builder's form element in its place.
+
+
+## The old note, kept for the styling values
 
 The hand built form on Free Sh!t is replaced by the CRM's own inline embed, form id
 `ZWe0qYB89U7vjEQPpOZI`, *Give me all the Free Sh!t Form*. It is the first form on the site
