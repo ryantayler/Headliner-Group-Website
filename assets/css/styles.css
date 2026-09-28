@@ -1122,12 +1122,6 @@ body.sheet-open{overflow:hidden}
 .form__row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
 @media (max-width:640px){.form__row{grid-template-columns:1fr}}
 
-/* The CRM's own form, in a frame. Everything inside it is styled from the form's
-   custom CSS field in the CRM, not from here, because it is cross origin. All this
-   does is hold the space until their script posts a height and sizes the frame. */
-.ghlform{position:relative;min-height:434px}
-.ghlform iframe{display:block;width:100%;min-height:434px;border:0;background:transparent}
-
 .inline-form{display:flex;gap:10px;flex-wrap:wrap}
 .inline-form input{flex:1 1 150px;min-width:0}
 .formmsg{display:none;gap:10px;align-items:center;padding:13px 16px;border-radius:var(--r-sm);background:rgba(var(--accent-rgb),.14);border:1px solid var(--tx-accent);color:var(--tx);font-size:14px}
