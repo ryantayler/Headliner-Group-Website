@@ -2258,3 +2258,19 @@ What broke the parse was in the harness rather than the export: it stripped the 
 its own in `Inter:wght@400;500;600`. It cut the rule in half and left the tail as
 garbage above `:root`.
 
+
+## The process photo slot is cut
+
+The empty picture box beside *Our process* is gone. It had asked for a printed process
+document on a desk marked up in pen, the method as an object, and it was the last photo
+slot on the page. An empty box reads as an unfinished page, same argument as the video
+slots.
+
+**The section is now a narrow single column** rather than half of a pair. A pair with one
+side missing leaves the copy in the left half with a hole beside it, so the block moved
+into `shell--narrow` and a plain `.stack`, which is the pattern the site already uses for
+centred prose on Free Sh!t and Contact.
+
+The brief stands if the photograph is ever taken. Ryan has a process shot from China that
+was offered for this slot and not taken up.
+
