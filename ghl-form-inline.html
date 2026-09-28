@@ -1,29 +1,29 @@
-<!-- ==========================================================================
-     HEADLINER GROUP, brand styling for this form.
+<div class="hl-brand-css"><style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
 
-     WHERE THIS GOES: a Custom HTML element inside the form itself, in the form
-     builder. Put it anywhere in the form, it draws nothing. A <style> tag in
-     here applies to the whole form, because it renders inside the form's own
-     frame, which is the only place anything can reach the fields from.
+/* ==========================================================================
+   HEADLINER GROUP, brand styling for this form.
 
-     Every value is read off the live site rather than picked, so the form
-     matches the one it replaced.
+   WHERE THIS GOES: a Custom HTML element inside the form, in the form builder.
+   Put it anywhere, it draws nothing. These rules reach the whole form because
+   the element renders inside the form's own frame.
 
-     It targets input, label, button and textarea rather than the builder's own
-     class names. Those are not visible from outside and they move between
-     versions. Elements do not.
-     ========================================================================== -->
+   Every value is read off the live site rather than picked, so the form matches
+   the one it replaced.
 
-<div class="hl-brand-css">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+   It targets input, label, button and textarea rather than the builder's own
+   class names. Those are not visible from outside and they move between
+   versions. Elements do not.
 
-<style>
-/* This element draws nothing. Hide it, and collapse the row the builder wraps it in,
-   or the form carries an empty row's worth of margin at the top.
-   :has() is scoped to a container whose ONLY child is this div, so it can never match
-   the container that holds the fields. A style tag still applies from inside a hidden
-   element, so nothing here is lost by collapsing it. */
+   There is no HTML in here but one div and one style, both closed, and no void
+   tags at all. A link tag for the font was rejected as unclosed.
+   ========================================================================== */
+
+/* This element draws nothing. Hide it, and collapse the row the builder wraps it
+   in, or the form carries an empty row's worth of margin. :has() is scoped to a
+   container whose ONLY child is this div, so it can never match the container
+   holding the fields, and a style tag still applies from inside a hidden
+   element. */
 .hl-brand-css { display: none !important; }
 *:has(> .hl-brand-css:only-child) {
   display: none !important;
@@ -132,5 +132,4 @@ input.error, textarea.error, input[aria-invalid="true"] { border-color: #C4361B 
 @media (max-width: 640px) {
   form > *, .ghl-question { width: 100% !important; }
 }
-</style>
-</div>
+</style></div>

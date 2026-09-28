@@ -2313,6 +2313,12 @@ frame. `ghl-form-inline.html` at the repo root is that block, ready to paste.
 `ghl-form-style.css` is the same rules as a plain stylesheet, kept for reading and for the
 day a CSS field exists.
 
+**The builder runs a security check on the markup and it rejects a `<link>` tag** as an
+unclosed tag, because a link is a void element and has no closing half. So the block is
+one div and one style, both opened and closed, no void tags and no HTML comments. The font
+comes in through `@import` at the top of the style, which is legal because it is the first
+thing in that sheet. Everything worth saying is a CSS comment.
+
 **The block is wrapped in one marker div and collapses its own row.** A custom HTML
 element still takes a row in the form, so the form would carry an empty row's margin at
 the top. `*:has(> .hl-brand-css:only-child)` collapses whatever the builder wrapped it in.
