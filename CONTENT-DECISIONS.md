@@ -2304,9 +2304,20 @@ The hand built form on Free Sh!t is replaced by the CRM's own inline embed, form
 that actually goes somewhere. The other five are still `data-demo` and do nothing.
 
 **The brand styling cannot live in the site's stylesheet.** The form renders in a cross
-origin frame, so nothing on the page can reach inside it. It goes in the form's own custom
-CSS field in the CRM, and the copy that was pasted there is kept at the repo root as
-`ghl-form-style.css` so it is not only in a web form somewhere.
+origin frame, so nothing on the page can reach inside it.
+
+**The builder has no custom CSS field.** It has a custom HTML element, so the styling goes
+in as a `<style>` tag inside one of those, dropped anywhere in the form. A style tag
+applies to the whole form from there, because the element renders inside the form's own
+frame. `ghl-form-inline.html` at the repo root is that block, ready to paste.
+`ghl-form-style.css` is the same rules as a plain stylesheet, kept for reading and for the
+day a CSS field exists.
+
+**The block is wrapped in one marker div and collapses its own row.** A custom HTML
+element still takes a row in the form, so the form would carry an empty row's margin at
+the top. `*:has(> .hl-brand-css:only-child)` collapses whatever the builder wrapped it in.
+It is scoped to a container whose only child is that div, so it can never match the
+container holding the fields, and a style tag still applies from inside a hidden element.
 
 **It is written against element selectors, not the builder's classes.** Their class names
 are not visible from outside and they move between versions. `input`, `label`, `button`

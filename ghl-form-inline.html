@@ -1,0 +1,136 @@
+<!-- ==========================================================================
+     HEADLINER GROUP, brand styling for this form.
+
+     WHERE THIS GOES: a Custom HTML element inside the form itself, in the form
+     builder. Put it anywhere in the form, it draws nothing. A <style> tag in
+     here applies to the whole form, because it renders inside the form's own
+     frame, which is the only place anything can reach the fields from.
+
+     Every value is read off the live site rather than picked, so the form
+     matches the one it replaced.
+
+     It targets input, label, button and textarea rather than the builder's own
+     class names. Those are not visible from outside and they move between
+     versions. Elements do not.
+     ========================================================================== -->
+
+<div class="hl-brand-css">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+
+<style>
+/* This element draws nothing. Hide it, and collapse the row the builder wraps it in,
+   or the form carries an empty row's worth of margin at the top.
+   :has() is scoped to a container whose ONLY child is this div, so it can never match
+   the container that holds the fields. A style tag still applies from inside a hidden
+   element, so nothing here is lost by collapsing it. */
+.hl-brand-css { display: none !important; }
+*:has(> .hl-brand-css:only-child) {
+  display: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* The ground. The form sits on the site's light band, so it brings no ground of
+   its own and the band shows through. */
+html, body,
+form, .form-builder--wrap, #form, .ghl-form {
+  background: transparent !important;
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif !important;
+  color: #111614;
+}
+
+/* Space between fields. 18px is the site's form gap. */
+form > *, .ghl-question, .form-builder--item { margin-bottom: 18px !important; }
+form > *:last-child, .ghl-question:last-child { margin-bottom: 0 !important; }
+
+/* Labels. Small, uppercase, wide tracking, muted. */
+label, .form-builder--label, legend {
+  display: block !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  letter-spacing: .1em !important;
+  text-transform: uppercase !important;
+  color: #5B6360 !important;
+  margin-bottom: 7px !important;
+  line-height: 1.4 !important;
+}
+
+/* Inputs. White on the light band, hairline rim, 6px corners. */
+input[type="text"], input[type="email"], input[type="tel"], input[type="number"],
+input[type="url"], input[type="date"], input[type="password"],
+textarea, select {
+  width: 100% !important;
+  padding: 13px 15px !important;
+  border-radius: 6px !important;
+  font-family: inherit !important;
+  font-size: 15px !important;
+  line-height: 1.5 !important;
+  background: #FFFFFF !important;
+  border: 1px solid #D7DDDA !important;
+  color: #111614 !important;
+  box-shadow: none !important;
+  transition: border-color .2s, box-shadow .2s !important;
+  -webkit-appearance: none;
+  appearance: none;
+}
+textarea { min-height: 130px !important; resize: vertical !important; }
+
+::placeholder { color: #5B6360 !important; opacity: 1 !important; }
+
+/* Focus. The deep aqua rim with the accent halo, same as the site. */
+input:focus, textarea:focus, select:focus {
+  outline: none !important;
+  border-color: #0A7261 !important;
+  box-shadow: 0 0 0 3px rgba(45, 226, 195, .22) !important;
+}
+
+/* The button. The site's fill: orange pill, near black label, no shadow. */
+button, input[type="submit"], .btn, .n-btn, .form-builder--submit {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  width: auto !important;
+  padding: 14px 24px !important;
+  border-radius: 100px !important;
+  border: 1px solid #FF5A36 !important;
+  background: #FF5A36 !important;
+  color: #0A0A0A !important;
+  font-family: inherit !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  letter-spacing: -.005em !important;
+  line-height: 1.2 !important;
+  box-shadow: none !important;
+  cursor: pointer !important;
+  transition: background-color .25s cubic-bezier(.22,.61,.36,1),
+              transform .25s cubic-bezier(.22,.61,.36,1) !important;
+}
+button:hover, input[type="submit"]:hover, .btn:hover, .n-btn:hover {
+  background: #FF7455 !important;
+  border-color: #FF7455 !important;
+  transform: translateY(-2px);
+}
+
+/* Checkbox and radio take the accent rather than the browser blue. */
+input[type="checkbox"], input[type="radio"] {
+  width: auto !important;
+  accent-color: #0A7261 !important;
+}
+
+/* Anything the form says in small print. */
+small, .form-builder--description, .text-xs, p {
+  font-size: 12.5px !important;
+  color: #5B6360 !important;
+}
+
+/* Errors, in the site's red rather than the builder's. */
+.error, .invalid-feedback, [class*="error"] { color: #C4361B !important; font-size: 12.5px !important; }
+input.error, textarea.error, input[aria-invalid="true"] { border-color: #C4361B !important; }
+
+/* Two across on a wide form, one across on a phone, same breakpoint as the site. */
+@media (max-width: 640px) {
+  form > *, .ghl-question { width: 100% !important; }
+}
+</style>
+</div>
