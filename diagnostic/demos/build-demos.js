@@ -18,7 +18,7 @@ function report(r) {
   const title = `${esc(r.primary.title.before)}<em>${esc(r.primary.title.phrase)}</em>${esc(r.primary.title.after)}`;
 
   h += `<div class="rep__lead"><p class="eyebrow">Your diagnosis</p>${para(r.opening)}
-        <p class="privacy">We do not use <u>any</u> AI in this tool, and <u>none</u> of your data is sent or stored offsite.</p></div>`;
+        <p class="privacy">We don’t use <u>any</u> AI in this tool. Your answers come to Headliner and go <u>nowhere</u> else.</p></div>`;
   h += `<div class="sec" style="padding-top:0">
         <div class="verdict"><div class="glow"></div>
         <h2 class="hl-face display">${title}</h2>

@@ -161,6 +161,11 @@
       if (el) el.scrollIntoView({ behavior: "smooth", block: "center" });
       return;
     }
+    // Every group boundary is a checkpoint. Somebody who stops at question 31 is
+    // still a record, which is the whole reason for sending before the end.
+    if (window.DiagCapture && D.capture && D.capture.progressive) {
+      window.DiagCapture.send(answers, "group-" + (step + 1));
+    }
     if (step === GROUPS.length - 1) { runReport(); return; }
     step++; renderStep();
   });
@@ -171,6 +176,7 @@
   function para(t) { return String(t).split("\n\n").map(function (p) { return "<p>" + esc(p) + "</p>"; }).join(""); }
   function runReport() {
     var r = E.diagnose(answers);
+    if (window.DiagCapture) window.DiagCapture.send(answers, "complete");
     var h = "", n = 0;
     // Sections number themselves as they print. Optional blocks come and go, and a
     // fixed number would leave a gap the moment one of them did not fire.
@@ -182,7 +188,7 @@
     // the constraint, explain itself, then announce the constraint again.
     h += '<div class="rep__lead">' +
       '<p class="eyebrow">Your diagnosis</p>' + para(r.opening) +
-      '<p class="privacy">We do not use <u>any</u> AI in this tool, and <u>none</u> of your data is sent or stored offsite.</p></div>';
+      '<p class="privacy">We don\u2019t use <u>any</u> AI in this tool. Your answers come to Headliner and go <u>nowhere</u> else.</p></div>';
     h += '<div class="sec" style="padding-top:0">' +
       '<div class="verdict"><div class="glow"></div>' +
       '<h1 class="hl-face display">' + esc(r.primary.title.before) +

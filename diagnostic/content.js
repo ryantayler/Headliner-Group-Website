@@ -7,7 +7,7 @@
    "Not sure" drops out of the sentence rather than leaving a gap in it. */
 window.DIAG ={
   "meta": {
-    "version": "0.1",
+    "version": "2026-10-04",
     "workingTitle": "Business Diagnostic",
     "questionCount": 52
   },
@@ -3270,5 +3270,11 @@ window.DIAG ={
       "test": "Double your clients tomorrow and you could handle it. The capacity is there and filling it is what caps you.",
       "due": "Due to"
     }
+  },
+  "capture": {
+    "url": "",
+    "_url": "Paste the GoHighLevel inbound webhook URL here. Empty means nothing is sent.",
+    "progressive": true,
+    "_progressive": "Send what has been answered at each group boundary, so somebody who walks away is still a record."
   }
 };
