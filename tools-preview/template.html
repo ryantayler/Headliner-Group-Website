@@ -1,0 +1,101 @@
+<title>Headliner Group</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+/*__FONTS__*/
+/*__CSS__*/
+
+/* preview shell only. the real site is five separate documents. */
+[hidden]{display:none !important}
+.pg{display:block}
+</style>
+
+<header class="hdr">
+  <div class="shell hdr__in">
+    <a class="hl-link" href="#index" data-pg="index" aria-label="Headliner Group, home"><div class="hl-stage"><div class="hl-logo"><div class="hl-beam"></div><span class="hl-word">Headliner</span><div class="hl-group">Group</div></div></div></a>
+    <nav class="nav" id="nav" aria-label="Main">
+      <!--__NAV__-->
+      <a class="btn btn--fill" href="#contact" data-pg="contact">Let&rsquo;s chat</a>
+    </nav>
+    <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav"><span></span></button>
+  </div>
+</header>
+
+<main id="app">
+<!--__BODIES__-->
+</main>
+
+<!--__FOOTER__-->
+
+<script>
+(function(){
+  var hdr=document.querySelector('.hdr'), nav=document.querySelector('.nav'),
+      burger=document.querySelector('.burger'), io=null;
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function reveal(page){
+    if(io) io.disconnect();
+    var items=page.querySelectorAll('.rv');
+    if(reduce||!('IntersectionObserver' in window)){
+      items.forEach(function(e){e.classList.add('is-in')}); return;
+    }
+    items.forEach(function(e){e.classList.remove('is-in')});
+    io=new IntersectionObserver(function(en){
+      en.forEach(function(x){ if(x.isIntersecting){x.target.classList.add('is-in'); io.unobserve(x.target);} });
+    },{rootMargin:'0px 0px -8% 0px',threshold:.08});
+    items.forEach(function(e){io.observe(e)});
+  }
+
+  function show(name,push){
+    var found=null;
+    document.querySelectorAll('.pg').forEach(function(p){
+      var on=p.dataset.pg===name; p.hidden=!on; if(on) found=p;
+    });
+    if(!found){ return show('index',push); }
+    // Ryan's page runs his own colours. The header and footer follow it.
+    document.body.classList.toggle('theme-ryan', name==='ryan');
+    document.querySelectorAll('[data-pg]').forEach(function(a){
+      if(a.classList.contains('btn')||a.classList.contains('wordmark')) return;
+      a.classList.toggle('is-here', a.dataset.pg===name);
+    });
+    scrollTo(0,0);
+    onScroll();
+    reveal(found);
+    if(push) history.replaceState(null,'','#'+name);
+  }
+
+  document.addEventListener('click',function(e){
+    var a=e.target.closest('a'); if(!a) return;
+    var pg=a.dataset.pg;
+    if(!pg){
+      var h=a.getAttribute('href')||'';
+      var m=h.match(/^([a-z]+)\.html$/); if(m) pg=m[1];
+    }
+    if(!pg) return;
+    e.preventDefault();
+    if(nav.classList.contains('is-open')) burger.click();
+    show(pg,true);
+  });
+
+  function onScroll(){ hdr.classList.toggle('is-stuck', scrollY>24); }
+  addEventListener('scroll',onScroll,{passive:true});
+
+  burger.addEventListener('click',function(){
+    var open=nav.classList.toggle('is-open');
+    hdr.classList.toggle('is-open',open);
+    burger.setAttribute('aria-expanded',String(open));
+    document.body.style.overflow=open?'hidden':'';
+  });
+
+  document.addEventListener('submit',function(e){
+    var f=e.target.closest('form[data-demo]'); if(!f) return;
+    e.preventDefault();
+    var msg=f.querySelector('.formmsg'); if(msg) msg.classList.add('is-on');
+    f.querySelectorAll('input,textarea,select').forEach(function(x){ if(x.type!=='submit') x.value=''; });
+  });
+
+  show((location.hash||'#index').slice(1),false);
+
+/*__WALL__*/
+})();
+</script>

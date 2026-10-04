@@ -66,7 +66,9 @@ footer = footer.replace('id="f-nl-home"', 'id="f-nl"').replace('for="f-nl-home"'
 _js = open('assets/js/main.js').read()
 wall = _js[_js.index('  /* 5. Download wall'):_js.rindex('})();')].rstrip()
 
-tpl = open(os.path.join(scr,'preview-template.html')).read()
+# the template lives in the repo. It lived in a session scratchpad once and was lost
+# with the session, and had to be rebuilt from the published artifact.
+tpl = open('tools-preview/template.html').read()
 def _render(bs):
     return (tpl.replace('/*__FONTS__*/', fonts).replace('/*__CSS__*/', css)
                .replace('/*__WALL__*/', wall)

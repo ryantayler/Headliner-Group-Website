@@ -80,7 +80,13 @@ Playwright scripts live in the session scratchpad, not in the repo. The ones tha
 
 `build-preview.py <dir>` inlines the whole site into one file for the preview artifact. It
 discovers images and lifts the footer out of `index.html` rather than keeping copies. Do
-not reintroduce a hardcoded list of either.
+not reintroduce a hardcoded list of either. Its shell is `tools-preview/template.html`.
+
+**The code and the artifact move together.** Ryan asked for this on 4 October 2026. Every
+change that is committed and pushed also rebuilds the preview and republishes it, in the
+same turn, to the one artifact: https://claude.ai/artifact/7ncnLENvJTMrSv5W9wiruT. Pass
+that `url` from a new session, or the publish makes a second artifact. Run the checks
+above on the build before publishing it. A push without a republish is unfinished work.
 
 `build-ghl.py <dir>` packages the site for a page builder that takes pasted HTML, CSS and
 JS: one folder per page holding `page.html` (body markup only), `styles.css` and
