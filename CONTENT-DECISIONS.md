@@ -2352,3 +2352,17 @@ tracking, case and colour.
 ships at. Their `form_embed.js` posts the real height out and sizes the frame, which is the
 thing LinkedIn's embed does not do.
 
+
+## The optimisation engine download page
+
+`optimisation-engine.html`, live slug `/optimisation-engine`. The step after the email
+form on Free Sh!t, so nothing on the site links to it and it carries `noindex`. Same
+header, footer and hero photograph as Free Sh!t, with a shorter hero.
+
+The white band holds the worksheet itself, embedded from the CRM's file host, with
+*Download the PDF* and *Back to Free Sh!t* under it. Below 700 the frame comes out,
+because a phone will not draw a PDF inside a page, and a card reading *Open the
+worksheet* takes its place.
+
+The copy is the name and one line. *It's yours. Have a read below, or download it and
+print it out.* Drafted, not yet ruled on by Ryan.

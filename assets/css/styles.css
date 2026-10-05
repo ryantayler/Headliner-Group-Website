@@ -1383,6 +1383,28 @@ body.sheet-open{overflow:hidden}
   border-radius:var(--r-md);background:transparent;
 }
 
+/* The worksheet on its download page, the same build as a LinkedIn post. A card under
+   the frame for when the frame is blocked. Below 700 the frame goes, because a phone
+   will not draw a PDF inside a page, and the card is the way in. */
+.pdfview{position:relative;width:100%;--pdf-h:min(78vh,880px)}
+.pdfview__fb{
+  position:absolute;inset:0;z-index:0;display:grid;place-content:center;gap:14px;
+  justify-items:center;text-align:center;padding:24px;
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);
+  font-size:15px;font-weight:500;color:var(--tx-sub);
+}
+.pdfview__fb:hover{color:var(--tx);border-color:var(--tx-accent)}
+.pdfview iframe{
+  position:relative;z-index:1;display:block;width:100%;height:var(--pdf-h);border:0;
+  border-radius:var(--r-md);background:transparent;
+}
+@media (max-width:700px){
+  .pdfview{--pdf-h:200px}
+  .pdfview iframe{display:none}
+}
+/* the download page's own hero, shorter so the worksheet sits near the top */
+.hero--got{min-height:clamp(380px,46vh,520px)}
+
 /* ---------- 12. The look ----------
    This began as an experiment behind a toggle and is now simply how the site looks, so
    the attribute that gated it is gone and these rules apply always. What is in here: the

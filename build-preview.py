@@ -1,7 +1,10 @@
 import re, sys, os, base64
 scr = sys.argv[1]
 PAGES = [('index','Home'),('partnerships','Partnerships'),
-         ('ryan','Ryan Tayler'),('free','Free Sh!t'),('contact','Contact')]
+         ('ryan','Ryan Tayler'),('free','Free Sh!t'),('contact','Contact'),
+         ('optimisation-engine','The optimisation engine')]
+# in the preview but not in its nav, same as the site. Open with #optimisation-engine.
+HIDDEN = {'optimisation-engine'}
 css = open('assets/css/styles.css').read()
 fonts = open('assets/fonts/fonts.css').read()
 fonts = re.sub(r'url\(\./([^)]+\.woff2)\)',
@@ -47,7 +50,7 @@ bodies = [_inline(x) for x in bodies]
 _framed = list(bodies)
 bodies = [re.sub(r'<iframe\b[^>]*>.*?</iframe>', '', x, flags=re.S) for x in bodies]
 # Home is in the real nav, so the preview has to carry it too, or the two disagree
-nav = "\n      ".join(f'<a href="#{s}" data-pg="{s}">{l}</a>' for s,l in PAGES if s != 'contact')
+nav = "\n      ".join(f'<a href="#{s}" data-pg="{s}">{l}</a>' for s,l in PAGES if s != 'contact' and s not in HIDDEN)
 
 # The footer is lifted out of index.html rather than kept as a second copy in the
 # template. It was a second copy for a while and it silently went stale, so an edit to

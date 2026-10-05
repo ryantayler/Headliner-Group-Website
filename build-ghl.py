@@ -19,6 +19,8 @@ PAGES = {
     'ryan.html':         ('ryan-tayler',   '/ryantayler'),
     'free.html':         ('free-shit',     '/freeshit'),
     'contact.html':      ('lets-chat',     '/letschat'),
+    # hidden. The Free Sh!t form sends people here, nothing on the site links to it
+    'optimisation-engine.html': ('optimisation-engine', '/optimisation-engine'),
 }
 
 # Anton, Archivo Black, Caveat and Inter are all Google faces, self hosted here only
