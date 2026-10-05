@@ -28,13 +28,15 @@
   --band-y:clamp(64px,8vw,112px);
   --r-sm:6px; --r-md:14px;
   --ease:cubic-bezier(.22,.61,.36,1);
+  --ease-sway:cubic-bezier(.45,0,.55,1);
+  --hdr-h:100px;
 }
 .band--paper,.band--paper2{
   --ground:var(--paper); --surface:var(--card); --line:var(--rim-l);
   --tx:var(--ink-l); --tx-sub:var(--sub-l); --tx-mute:var(--mute-l); --tx-accent:var(--accent-deep);
   color:var(--ink-l);
 }
-.band--dark,.hdr,.ftr{
+.band--dark,.hdr,.ftr,.hero{
   --ground:var(--base); --surface:var(--panel); --line:var(--rim);
   --tx:var(--ink); --tx-sub:var(--ink); --tx-mute:var(--mute); --tx-accent:var(--accent);
   color:var(--ink);
@@ -140,10 +142,263 @@ button{font:inherit}
 }
 
 /* ---------- Header ---------- */
-/* sits over the intro, so the shaft runs up behind the logo with no seam */
-.hdr{position:absolute;inset:0 0 auto 0;z-index:2;background:transparent}
-.hdr__in{display:flex;align-items:center;justify-content:space-between;gap:24px;height:100px}
-@media (max-width:640px){.hdr__in>.btn{display:none}}
+/* =========================================================================
+   Header, hero, beam and beam lit text, copied verbatim from the site's
+   assets/css/styles.css (sections 9, 10, 4 and Beam lit text). Change them
+   there first and copy them across.
+   ========================================================================= */
+/* ---------- 9. Header ---------- */
+.hdr{
+  position:fixed;inset:0 0 auto 0;z-index:60;
+  border-bottom:1px solid transparent;
+  transition:background-color .3s var(--ease),border-color .3s var(--ease);
+}
+.hdr__in{display:flex;align-items:center;justify-content:space-between;gap:24px;height:var(--hdr-h)}
+.hdr.is-stuck{background:rgba(10,10,10,.88);border-bottom-color:var(--rim);-webkit-backdrop-filter:saturate(140%) blur(10px);backdrop-filter:saturate(140%) blur(10px)}
+
+.nav{display:flex;align-items:center;gap:clamp(14px,2vw,30px)}
+.nav a:not(.btn){font-size:13.5px;font-weight:500;color:var(--ink);opacity:.82;transition:opacity .2s,color .2s}
+.nav a:not(.btn):hover{opacity:1;color:var(--accent)}
+/* the current page is underlined as well as coloured, so the state does not depend
+   on being able to tell aqua from off white */
+.nav a:not(.btn).is-here{
+  opacity:1;color:var(--accent);
+  background-image:linear-gradient(currentColor,currentColor);
+  background-repeat:no-repeat;background-position:0 100%;background-size:100% 1.5px;
+  padding-bottom:5px;
+}
+.nav .btn{padding:10px 18px}
+
+.burger{display:none;width:42px;height:42px;border:1px solid var(--rim);border-radius:100px;background:transparent;align-items:center;justify-content:center;cursor:pointer}
+.burger span{display:block;width:16px;height:1.5px;background:var(--ink);position:relative}
+.burger span::before,.burger span::after{content:"";position:absolute;left:0;width:16px;height:1.5px;background:var(--ink)}
+.burger span::before{top:-5px}
+.burger span::after{top:5px}
+
+@media (max-width:900px){
+  .nav{
+    position:fixed;inset:var(--hdr-h) 0 auto 0;flex-direction:column;align-items:stretch;gap:0;
+    background:var(--base);border-bottom:1px solid var(--rim);padding:8px var(--gutter) 24px;display:none;
+  }
+  .nav.is-open{display:flex}
+  .nav a:not(.btn){padding:15px 0;border-bottom:1px solid var(--rim);font-size:16px;opacity:1}
+  .nav .btn{margin-top:18px;justify-content:center}
+  .burger{display:inline-flex}
+  .hdr.is-open{background:var(--base)}
+}
+
+
+/* ---------- 4. The beam as a background accent ----------
+   Sized to the block, not the word, and soft rather than hard edged: the blur
+   sits on the element and the clip on ::before, so the throw fades out.
+   One per section, and not every section. It is a light source. */
+.hl-lit-beam{
+  position:absolute;top:-220px;left:12%;
+  width:260px;height:1100px;
+  transform:rotate(34deg);transform-origin:top center;
+  filter:blur(40px);
+  mix-blend-mode:screen;
+  pointer-events:none;
+}
+.hl-lit-beam::before{
+  content:"";position:absolute;inset:0;
+  clip-path:polygon(43% 0,57% 0,100% 100%,0 100%);
+  background:linear-gradient(to bottom,
+    rgba(var(--accent-rgb),.55),
+    rgba(var(--accent-rgb),.10) 55%,
+    rgba(var(--accent-rgb),0));
+}
+/* anchored right. same throw direction as the logo beam, down and to the left. */
+.hl-lit-beam--right{left:auto;right:10%}
+.hl-lit-beam--wide{width:340px;height:1300px}
+
+/* Hero. Enters top right and rakes down across the middle of the body. */
+.hl-lit-beam--hero{
+  /* The lamp sits off screen, up and to the right, and the beam pivots on it.
+     The element's top centre IS the lamp, so transform-origin stays top centre
+     and the whole throw swings from that point like a followspot. Long enough
+     that the tail always leaves the frame at both ends of the sweep. */
+  top:-300px;left:auto;right:-311px;width:462px;height:1800px;
+  transform-origin:top center;
+  filter:blur(52px);
+  animation:beamSway 16s var(--ease-sway) infinite alternate;
+}
+/* 45 degrees end to end, 22.5 either side of the spec's 34.
+   16s against the photo's 26s so the two never march in step. */
+@keyframes beamSway{
+  from{transform:rotate(11.5deg)}
+  to{transform:rotate(56.5deg)}
+}
+.hl-lit-beam--hero::before{
+  /* Tail 10% wider (420 -> 462). The source is held: the narrow end keeps its
+     58.8px and is re-expressed as a percentage of the wider box, 14% of 420
+     becoming 12.73% of 462. `right` on the element shifts by half the extra
+     width so the lamp stays put at x 1520.
+     The clip belongs HERE and not on the element. CSS applies clip-path after
+     filter, so putting both on the element re-cuts the blurred edge back to a
+     hard line and the soft falloff disappears. */
+  clip-path:polygon(43.64% 0,56.36% 0,100% 100%,0 100%);
+  /* 10% down on the section beam's .38/.08 */
+  background:linear-gradient(to bottom,
+    rgba(var(--accent-rgb),.342),
+    rgba(var(--accent-rgb),.072) 55%,
+    rgba(var(--accent-rgb),0));
+}
+@media (max-width:900px){
+  .hl-lit-beam--hero{right:-165px;width:330px;height:1400px}
+}
+
+
+/* ---------- 10. Hero ---------- */
+.hero{position:relative;background:var(--base);overflow:hidden;isolation:isolate;min-height:clamp(500px,64vh,720px);display:flex;align-items:flex-end}
+.hero>.shell{width:100%}
+.hero__media{position:absolute;inset:0;z-index:-2}
+.hero__media img{
+  width:100%;height:100%;object-fit:cover;opacity:.92;
+  /* scaled up so the drift never exposes an edge */
+  transform:scale(1.06);
+  animation:heroDrift 21.5s var(--ease-sway) infinite alternate;
+}
+/* alternate + ease-in-out is the whole trick: it decelerates into each end,
+   holds a beat, then accelerates back the other way. */
+/* Asymmetric on purpose. Positive translateX slides the photo right, which
+   pans the view onto the far left of the frame, and that side is the empty
+   one (darkest third, least detail). So the travel that way is halved. */
+@keyframes heroDrift{
+  from{transform:scale(1.06) translateX(-1.15%)}
+  to{transform:scale(1.06) translateX(.58%)}
+}
+.hero__scrim{
+  position:absolute;inset:0;z-index:-1;
+  /* Three jobs, in this order. A band under the header bar so the wordmark holds. A
+     gentle left to right wash so the headline has ground without flattening the room.
+     A bottom lift that carries the headline and hands off to the next band. The middle
+     of the frame is deliberately left alone, because that is where the photograph is. */
+  background:
+    linear-gradient(to bottom,rgba(10,10,10,.88) 0,rgba(10,10,10,.5) 130px,rgba(10,10,10,0) 320px),
+    linear-gradient(to right,rgba(10,10,10,.78) 0%,rgba(10,10,10,.44) 52%,rgba(10,10,10,.2) 100%),
+    linear-gradient(to top,rgba(10,10,10,.97) 0%,rgba(10,10,10,.6) 34%,rgba(10,10,10,0) 64%);
+}
+/* For photographs that are bright on the right, which is most rooms with a screen in
+   them. The default scrim eases OFF toward the right, because the front of house shot
+   is dark over there. Drop a lit monitor into that and the lede lands around 3.4:1.
+   This one darkens the right instead and adds a band under the bar. Reach for it
+   whenever a new hero photograph has its light source on the reading side. */
+/* Free Sh!t only. `.hero--bright-right` is shared with Partnerships, so anything about
+   this photograph in particular has to carry the page's own marker as well. Held low so
+   the paperwork on the table is in frame, which is the point of the picture on a page
+   that gives the paperwork away. Same six pixel blur as the contact hero. */
+.hero--wall .hero__media img{object-position:50% 100%;filter:blur(6px)}
+/* The funnel draws the photograph as a background, because the funnel builder rejects
+   void tags like <img> in pasted markup. Same crop, blur, scale and drift as the image. */
+.hero__img{
+  position:absolute;inset:0;background-size:cover;background-repeat:no-repeat;
+  background-position:50% 100%;filter:blur(6px);opacity:.92;
+  transform:scale(1.06);animation:heroDrift 21.5s var(--ease-sway) infinite alternate;
+}
+@media (prefers-reduced-motion:reduce){.hero__img,.hl-lit-beam--hero{animation:none}}
+.hero--bright-right .hero__scrim{
+  background:
+    linear-gradient(to bottom,rgba(10,10,10,.80) 0,rgba(10,10,10,.52) 110px,rgba(10,10,10,0) 300px),
+    linear-gradient(to right,rgba(10,10,10,.92) 0%,rgba(10,10,10,.62) 34%,rgba(10,10,10,.74) 58%,rgba(10,10,10,.86) 100%),
+    linear-gradient(to top,rgba(10,10,10,.98) 0%,rgba(10,10,10,0) 58%);
+}
+/* Free Sh!t only. The bottom is eased off through the band the headline sits in, so the
+   paperwork on the table stays readable under it rather than being buried. */
+.hero--wall .hero__scrim{
+  background:
+    linear-gradient(to bottom,rgba(10,10,10,.80) 0,rgba(10,10,10,.52) 110px,rgba(10,10,10,0) 300px),
+    linear-gradient(to right,rgba(10,10,10,.92) 0%,rgba(10,10,10,.62) 34%,rgba(10,10,10,.74) 58%,rgba(10,10,10,.86) 100%),
+    linear-gradient(to top,rgba(10,10,10,.94) 0%,rgba(10,10,10,.4) 24%,rgba(10,10,10,0) 62%);
+}
+.hero__media:has(img)+.hero__scrim::after{content:none}
+.hero__scrim::after{
+  content:attr(data-slot);position:absolute;left:0;bottom:0;padding:14px 18px;
+  font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);opacity:.55;
+}
+.hero__media{
+  background:
+    repeating-linear-gradient(-45deg,rgba(255,255,255,.02) 0 1px,transparent 1px 11px),
+    radial-gradient(90% 120% at 78% 10%,#1c1c20 0%,#131316 55%,#0A0A0A 100%);
+}
+.hero__in{padding-top:clamp(140px,17vw,205px);padding-bottom:clamp(64px,9vw,116px);position:relative;z-index:1}
+/* The home hero is bottom weighted rather than centred. More room above the headline,
+   less under the buttons, so the block sits low in the frame. */
+.hero--tall .hero__in{padding-top:clamp(196px,24vw,300px);padding-bottom:clamp(46px,6vw,84px)}
+.hero__grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(24px,5vw,72px);align-items:end}
+@media (max-width:900px){.hero__grid{grid-template-columns:1fr;gap:28px}}
+/* Every hero headline is set in the logo face, uppercase. Archivo Black is heavy
+   and wide, so it needs a smaller size and much tighter tracking than Inter did at
+   the same slot, or a five word line stops fitting anywhere. */
+.hero .d1{
+  font-family:'Archivo Black',Impact,sans-serif;font-weight:400;
+  text-transform:uppercase;letter-spacing:-.022em;line-height:.94;
+  font-size:clamp(24px,3.7vw,50px);max-width:none;overflow-wrap:anywhere;text-wrap:balance;
+}
+/* Full bleed headline with the two buttons tucked under its right hand end, the way
+   GROUP sits under HEADLINER in the mark. One column, not the old two up grid. */
+.hero__grid--wide{grid-template-columns:1fr;gap:clamp(18px,2.4vw,30px);align-content:end}
+/* balance shortens lines to even them up, which is the opposite of what a full bleed
+   headline wants, so the wide hero drops it and runs to the shell edge */
+.hero__grid--wide .d1{max-width:none;text-wrap:pretty;font-size:clamp(26px,4.85vw,64px)}
+/* The banner line breaks where the sense breaks, not where the box runs out. Below the
+   breakpoint the spans go back to normal flow, because forcing desktop breaks onto a
+   phone is worse than letting it wrap. */
+@media (min-width:760px){
+  .hero .d1 .ln{display:block;white-space:nowrap}
+}
+/* A two word headline with no lede under it leaves a hero mostly empty, so the short
+   ones are set as a poster instead of scaled to match the long ones. */
+.hero__grid--fill .d1{font-size:clamp(42px,10.1vw,142px);line-height:.86}
+.hero__grid--wide .cta{margin-top:0;justify-content:flex-end}
+@media (max-width:640px){.hero__grid--wide .cta{justify-content:flex-start}}
+/* over a photo the dimmest token does not hold, so the hero label lifts a step */
+.hero .eyebrow{color:var(--sub)}
+.hero .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+
+
+/* ---------- Beam lit text ----------
+   As the throw passes over a piece of hero copy it picks up the beam colour.
+   Each element runs the beam's own 16s clock, alternate, but with LINEAR
+   timing so its peak keyframe lands exactly where the eased beam crosses it,
+   and alternate mirrors it on the way back. Windows and amplitudes are
+   derived from the beam geometry: the angle it reaches each element at, the
+   angular width of the throw there (clip taper plus the 52px blur), and the
+   distance from the lamp, so the glow fades the further out it falls.
+   Recompute these if the hero copy moves or the beam is resized. */
+@media (prefers-reduced-motion:no-preference){
+  .hero .eyebrow{animation:lit-eyebrow 16s linear infinite alternate}
+  .hero .d1{animation:lit-d1 16s linear infinite alternate}
+  .hero .lede{animation:lit-lede 16s linear infinite alternate}
+  .hero .btn--fill{animation:lit-btn-fill 16s linear infinite alternate}
+  .hero .btn--ghost{animation:lit-btn-ghost 16s linear infinite alternate}
+}
+@keyframes lit-eyebrow{
+  0%,85.2%{text-shadow:0 0 0 rgba(var(--accent-rgb),0)}
+  100.0%{text-shadow:0 0 29px rgba(var(--accent-rgb),0.017)}
+  100%{text-shadow:0 0 29px rgba(var(--accent-rgb),0.017)}
+}
+@keyframes lit-d1{
+  0%,68.8%{text-shadow:0 0 0 rgba(var(--accent-rgb),0)}
+  100.0%{text-shadow:0 0 30px rgba(var(--accent-rgb),0.084)}
+  100%{text-shadow:0 0 30px rgba(var(--accent-rgb),0.084)}
+}
+@keyframes lit-lede{
+  0%,38.8%{text-shadow:0 0 0 rgba(var(--accent-rgb),0)}
+  54.4%{text-shadow:0 0 42px rgba(var(--accent-rgb),0.32)}
+  72.5%,100%{text-shadow:0 0 0 rgba(var(--accent-rgb),0)}
+}
+@keyframes lit-btn-fill{
+  0%,42.3%{box-shadow:0 0 0 rgba(var(--accent-rgb),0)}
+  56.4%{box-shadow:0 0 37px rgba(var(--accent-rgb),0.266)}
+  73.8%,100%{box-shadow:0 0 0 rgba(var(--accent-rgb),0)}
+}
+@keyframes lit-btn-ghost{
+  0%,24.6%{box-shadow:0 0 0 rgba(var(--accent-rgb),0)}
+  43.4%{box-shadow:0 0 40px rgba(var(--accent-rgb),0.301)}
+  58.4%,100%{box-shadow:0 0 0 rgba(var(--accent-rgb),0)}
+}
+
 
 /* ---------- The background shaft, as the site's .beam-band ---------- */
 .beam-band{position:relative;overflow:hidden;--beam-a:124deg}

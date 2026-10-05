@@ -426,7 +426,26 @@ function initResult(){
   });
 }
 
+/* ---------- The site header, as the site's main.js ----------
+   Transparent over the dark top of the page, solid once scrolled, and the
+   burger opens the menu below 900. */
+function initHeader(){
+  var hdr=document.querySelector(".hdr"), nav=document.querySelector(".nav"), burger=document.querySelector(".burger");
+  function onScroll(){ if(hdr) hdr.classList.toggle("is-stuck", window.scrollY>24); }
+  window.addEventListener("scroll",onScroll,{passive:true}); onScroll();
+  if(burger&&nav&&hdr){
+    burger.addEventListener("click",function(){
+      var open=nav.classList.toggle("is-open");
+      hdr.classList.toggle("is-open",open);
+      burger.setAttribute("aria-expanded",String(open));
+      document.body.style.overflow=open?"hidden":"";
+    });
+    nav.addEventListener("click",function(e){ if(e.target.closest("a")&&nav.classList.contains("is-open")) burger.click(); });
+  }
+}
+
 (function(){
+  initHeader();
   document.querySelectorAll("[data-link]").forEach(function(a){
     var to=LINKS[a.getAttribute("data-link")]; if(to) a.setAttribute("href",to);
   });
