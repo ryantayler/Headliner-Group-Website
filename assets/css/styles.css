@@ -1439,6 +1439,10 @@ body.sheet-open{overflow:hidden}
   .pdfview__fb img{max-height:none}
   .pdfview iframe{display:none}
 }
+/* A heading over a builder hosted form. The heading band stops at its text and the
+   form's band, ours here or the builder's section live, picks up under it. */
+.band--formhead{padding-bottom:0}
+.band--formbody{padding-top:clamp(28px,3vw,40px)}
 /* Where a builder hosted form sits on a form page. Only the repo and the preview show
    it. The export cuts it out and the builder's own form element goes in its place. */
 .formslot{display:grid;place-items:center;text-align:center;padding:24px;

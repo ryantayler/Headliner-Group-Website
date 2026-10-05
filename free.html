@@ -154,36 +154,30 @@
 </section>
 
 <!-- ===== ALL TWELVE AT ONCE =====
-     The per file form inside the sheet is the main route. This is the shortcut for
-     anyone who wants the whole set without opening twelve cards. -->
-<section class="band band--paper" id="everything">
+     The shortcut for anyone who wants the whole set without opening the cards. The
+     heading and its line are ours. The form under them is Go High Level's own, placed
+     with the builder's form element, so build-ghl.py cuts the page at the GHL:FORM
+     markers below: the block above ends on this heading, the block below is the sheet
+     and the footer. The band carries no bottom padding, so the builder's form section
+     continues it on the same ground. -->
+<section class="band band--paper band--formhead" id="everything">
   <div class="shell shell--narrow">
     <h2 class="display d2 rv">Or take the whole lot at once</h2>
     <p class="sub mt-s rv rv-d1">Drop your email and we will send all twelve in one message, plus the new ones as they land and the updated versions when we change them. If it stops being useful there is an unsubscribe link on every email and no hard feelings.</p>
-    <form class="form mt-m rv rv-d1" data-demo>
-      <div class="form__row">
-        <div class="field">
-          <label for="g-name">First name</label>
-          <input id="g-name" name="first_name" type="text" placeholder="Ryan" required>
-        </div>
-        <div class="field">
-          <label for="g-email">Email</label>
-          <input id="g-email" name="email" type="email" placeholder="you@company.com" required>
-        </div>
-      </div>
-      <div class="field">
-        <label for="g-biz">Business (optional)</label>
-        <input id="g-biz" name="business" type="text" placeholder="What you run">
-      </div>
-      <div class="row">
-        <button class="btn btn--fill" type="submit">Send me everything</button>
-      </div>
-      <p class="formmsg">Sent. Check your inbox in the next minute.</p>
-    </form>
   </div>
 </section>
-
 </main>
+
+<!-- GHL:FORM -->
+<section class="band band--paper band--formbody">
+  <div class="shell shell--narrow">
+    <div class="formslot" style="min-height:434px">
+      <p>Form: take the whole lot. Placed in Go High Level with the builder&rsquo;s form element.</p>
+    </div>
+  </div>
+</section>
+<!-- /GHL:FORM -->
+
 
 <!-- ===== DETAIL SHEET =====
      One dialog, filled from whichever template matches the card that was

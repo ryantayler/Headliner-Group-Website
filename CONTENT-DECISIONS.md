@@ -2434,3 +2434,13 @@ is a little darker to keep the wider title above 6 to 1.
 **Free Sh!t card images hold left.** The two worksheet images carry their left top
 position inline as well as in the stylesheet. Live, the page was ahead of its
 stylesheet and the images centred.
+
+## Free Sh!t's take the whole lot form is the builder's
+
+Ryan, 5 October 2026. *Or take the whole lot at once* keeps its heading and line, and the
+form under them is Go High Level's own, placed by Ryan with the builder's form element.
+The export cuts Free Sh!t at the GHL:FORM markers: the first block ends on that heading,
+the second is the detail sheet and the footer. The heading band has no bottom padding so
+the builder's form section carries on under it on the same ground.
+
+**Flagged, not changed.** The line says *all twelve*, and the wall has seven.
