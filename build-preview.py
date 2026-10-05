@@ -64,6 +64,12 @@ footer = re.sub(r'href="(?:(\w+)\.html|(index)\.html)"',
                 lambda m: _toroute(m), footer)
 footer = footer.replace('href="index.html"', 'href="#index" data-pg="index"')
 footer = footer.replace('id="f-nl-home"', 'id="f-nl"').replace('for="f-nl-home"', 'for="f-nl"')
+# The artifact runs in a frame, so a #page on its address never reaches the page and a
+# hidden page has no way in. The preview footer carries one, the real site does not.
+_hid = " ".join(f'<a href="#{s}" data-pg="{s}">{l}</a>' for s,l in PAGES if s in HIDDEN)
+if _hid:
+    footer = footer.replace('All rights reserved.</span>',
+        'All rights reserved.</span>\n      <span class="row">Preview only, hidden pages: ' + _hid + '</span>', 1)
 # lift the wall and dialog logic straight out of main.js rather than keeping a
 # second copy of it in the preview template
 _js = open('assets/js/main.js').read()
