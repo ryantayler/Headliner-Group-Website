@@ -2392,3 +2392,13 @@ picture of the sheet itself in place of the photo slot, cropped to its top left 
 card. Opened, the sheet shows the whole worksheet uncropped beside the copy, stacked on a
 phone, so people see what they are getting before the form. Live, both pictures are Ryan's
 uploads, through `ghl-assets.json`.
+
+## The 4 pillars form page
+
+`four-pillars-form.html`, live slug `/four-pillars-form`. The form step for the 4 pillars
+worksheet: header, the same hero as `/four-pillars`, the form on the light ground, footer.
+No copy of its own. The form is Go High Level's (*4 Pillars of Partnerships Worksheet,
+Lead Magnet*), placed with the builder's own form element, because its host cannot be
+reached from here and third party embeds stay out of the markup. The export ships the
+page as a block above the form and a block below it. On submit the form sends people to
+`/four-pillars`.

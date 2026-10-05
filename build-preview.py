@@ -3,9 +3,10 @@ scr = sys.argv[1]
 PAGES = [('index','Home'),('partnerships','Partnerships'),
          ('ryan','Ryan Tayler'),('free','Free Sh!t'),('contact','Contact'),
          ('optimisation-engine','The optimisation engine'),
-         ('four-pillars','The 4 pillars of partnership')]
+         ('four-pillars','The 4 pillars of partnership'),
+         ('four-pillars-form','The 4 pillars form')]
 # in the preview but not in its nav, same as the site. The preview footer links them.
-HIDDEN = {'optimisation-engine', 'four-pillars'}
+HIDDEN = {'optimisation-engine', 'four-pillars', 'four-pillars-form'}
 css = open('assets/css/styles.css').read()
 fonts = open('assets/fonts/fonts.css').read()
 fonts = re.sub(r'url\(\./([^)]+\.woff2)\)',

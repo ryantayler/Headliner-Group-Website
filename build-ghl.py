@@ -22,6 +22,8 @@ PAGES = {
     # hidden. The Free Sh!t form sends people here, nothing on the site links to it
     'optimisation-engine.html': ('optimisation-engine', '/optimisation-engine'),
     'four-pillars.html':        ('four-pillars',        '/four-pillars'),
+    # hidden. The 4 pillars card on Free Sh!t leads here, the form sends on to /four-pillars
+    'four-pillars-form.html':   ('four-pillars-form',   '/four-pillars-form'),
 }
 
 # Anton, Archivo Black, Caveat and Inter are all Google faces, self hosted here only
@@ -135,10 +137,22 @@ def main(dest):
         # It is a token block, so it works on any ancestor: putting it on the wrapper
         # puts his palette in the markup and takes the script out of it entirely.
         theme = ' theme-ryan' if 'class="theme-ryan"' in doc[:doc.index('>', doc.index('<body'))] else ''
-        open(os.path.join(d, 'page.html'), 'w').write(
-            '<!-- One wrapper, so the page can break out of whatever column the builder\n'
-            '     drops it into. The stylesheet pins it to the full viewport width. -->\n'
-            '<div class="hl-root%s">\n' % theme + relink(body_of(doc)) + '\n</div>\n')
+        def root(markup):
+            return ('<!-- One wrapper, so the page can break out of whatever column the builder\n'
+                    '     drops it into. The stylesheet pins it to the full viewport width. -->\n'
+                    '<div class="hl-root%s">\n' % theme + markup.strip('\n') + '\n</div>\n')
+        body = relink(body_of(doc))
+        # A page with a builder hosted form is cut at its GHL:FORM markers into the
+        # block above the form and the block below it, and the placeholder between
+        # them is dropped. The builder's own form element goes in the gap. Third party
+        # embeds never go in this markup, see CLAUDE.md.
+        if '<!-- GHL:FORM -->' in body:
+            top, rest = body.split('<!-- GHL:FORM -->')
+            bottom = rest.split('<!-- /GHL:FORM -->')[1]
+            open(os.path.join(d, 'page-1-above-form.html'), 'w').write(root(top))
+            open(os.path.join(d, 'page-2-below-form.html'), 'w').write(root(bottom))
+        else:
+            open(os.path.join(d, 'page.html'), 'w').write(root(body))
         open(os.path.join(d, 'styles.css'), 'w').write(FONTS + css + OVERRIDES)
 
         # ryan.html carries a class on <body> that a pasted block cannot set, and the
@@ -287,8 +301,9 @@ def unlinked(dest):
     to ghl-assets.json and build again."""
     out = {}
     for folder, _ in PAGES.values():
-        doc = open(os.path.join(dest, '1-pages', folder, 'page.html')).read()
-        doc += open(os.path.join(dest, '1-pages', folder, 'styles.css')).read()
+        d = os.path.join(dest, '1-pages', folder)
+        doc = ''.join(open(os.path.join(d, f)).read() for f in sorted(os.listdir(d))
+                      if f.startswith('page') or f == 'styles.css')
         hit = sorted(set(re.findall(TOKEN + r'/([A-Za-z0-9_.-]+)', doc)))
         if hit:
             out[folder] = hit

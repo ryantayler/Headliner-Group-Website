@@ -1425,6 +1425,12 @@ body.sheet-open{overflow:hidden}
   .pdfview__fb img{max-height:none}
   .pdfview iframe{display:none}
 }
+/* Where a builder hosted form sits on a form page. Only the repo and the preview show
+   it. The export cuts it out and the builder's own form element goes in its place. */
+.formslot{display:grid;place-items:center;text-align:center;padding:24px;
+  border:1.5px dashed var(--line);border-radius:var(--r-md);background:var(--surface);
+  color:var(--tx-mute);font-size:14px}
+.formslot p{max-width:40ch}
 /* the worksheet download pages' own hero, shorter so the worksheet sits near the top */
 .hero--got{min-height:clamp(380px,46vh,520px)}
 
