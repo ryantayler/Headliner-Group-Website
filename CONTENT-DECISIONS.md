@@ -2464,3 +2464,8 @@ bottom right. Two by two from 760 up.
 
 The two tools carry over the lines written for their old names until Ryan writes new
 ones, and have no pictures yet. The *Or take the whole lot* line still says *all twelve*.
+
+**The card type grows with the card.** Two across, each card is about 540 wide, half as
+wide again as at three across, so on desktop the title runs up to 27px (was 18.5), the
+line to about 15px (was 12.8), the label to 12.5px and the pill to 14px. Measured at every
+width from 1120 up, no card clips its own content.
