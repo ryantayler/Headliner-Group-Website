@@ -10,9 +10,10 @@
 
 /* ---------- Links ----------
    The only place the funnel's addresses live. In the funnel builder each step
-   has its own URL, so change these three and nothing else. Every element with
-   data-link="test", "result" or "site" takes its href from here. */
+   has its own URL, so change these four and nothing else. Every element with
+   data-link="landing", "test", "result" or "site" takes its href from here. */
 var LINKS={
+  landing:"landing.html",
   test:"questions.html",
   result:"result.html",
   site:"https://headlinergroup.com.au"
@@ -166,9 +167,9 @@ function heroHTML(r,tag){
              ["Manner",cap(r.man)],["Reactiveness",cap(r.rea)]];
   return '<div class="shell result__grid">'+
     '<div class="result__copy">'+
-      '<div class="minihead">'+tag+'</div>'+
+      '<div class="minihead minihead--quiet">'+tag+'</div>'+
       '<h2 class="display d1">'+r.s.n+'</h2>'+
-      '<div class="celeb"><b>'+r.s.c+'</b></div>'+
+      '<div class="celeb">Similar to <b>'+r.s.c+'</b></div>'+
       '<p class="desc">'+r.s.desc+'</p>'+
     '</div>'+
     '<div class="reads">'+reads.map(function(x){return '<div class="read"><span>'+x[0]+'</span><b>'+x[1]+'</b></div>';}).join("")+'</div>'+
@@ -185,10 +186,9 @@ function cellRect(r,top){
 function mapSVG(r){
   var cx=(8+r.tp/100*84).toFixed(2), cy=(8+r.dp/100*76).toFixed(2), lab="";
   GRID.forEach(function(k,i){
-    var left=i<3, y=[14.1,46,77.9][i%3], x=left?16.4:83.6, tx=left?19:81, an=left?"":' text-anchor="end"';
-    lab+='<circle cx="'+x+'" cy="'+y+'" r="1.1" fill="'+C.dot+'"></circle>'+
-      '<text class="zlab" x="'+tx+'" y="'+(y-.3)+'"'+an+'>'+short(k)+'</text>'+
-      '<text class="zceleb" x="'+tx+'" y="'+(y+3)+'"'+an+'>'+STYLES[k].c+'</text>';
+    var left=i<3, y=[15,46.9,78.8][i%3], tx=left?11:89, an=left?"":' text-anchor="end"', on=(k===r.key)?" on":"";
+    lab+='<text class="zlab'+on+'" x="'+tx+'" y="'+y+'"'+an+'>'+short(k)+'</text>'+
+      '<text class="zceleb'+on+'" x="'+tx+'" y="'+(y+(on?4.2:3.8))+'"'+an+'>'+STYLES[k].c+'</text>';
   });
   return '<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Where you sit on the Trigger and Drive map">'+
     '<rect x="8" y="8" width="84" height="76" fill="'+C.paper+'" stroke="'+C.rim+'" stroke-width=".4" rx="2"></rect>'+
@@ -265,8 +265,8 @@ function gridSVG(r){
   function mk(id,fill){return '<marker id="'+id+'" markerWidth="4.5" markerHeight="4.5" refX="3.6" refY="2.25" orient="auto-start-reverse" markerUnits="strokeWidth"><path d="M0,0 L4.5,2.25 L0,4.5 z" fill="'+fill+'"></path></marker>';}
   return '<svg class="pgrid" viewBox="0 0 100 66" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The six styles and how they pair">'+
     '<defs>'+mk("ah",C.deep)+mk("ahs",C.mid)+mk("ahg",C.grey)+'</defs>'+
-    '<text class="gaxis" x="26.5" y="7" text-anchor="middle">Trigger, gut</text>'+
-    '<text class="gaxis" x="76" y="7" text-anchor="middle">Trigger, proof</text>'+
+    '<text class="gaxis" x="26.5" y="7" text-anchor="middle">On gut</text>'+
+    '<text class="gaxis" x="76" y="7" text-anchor="middle">On proof</text>'+
     '<line x1="51" y1="11" x2="51" y2="64" stroke="'+C.rim+'" stroke-width=".4" stroke-dasharray="2 2"></line>'+
     '<text class="gaxis" x="12" y="18.4" text-anchor="end">Through</text><text class="gaxis" x="12" y="21.4" text-anchor="end">people</text>'+
     '<text class="gaxis" x="12" y="36.4" text-anchor="end">Through</text><text class="gaxis" x="12" y="39.4" text-anchor="end">systems</text>'+
@@ -297,8 +297,8 @@ function cardsHTML(r){
 function printHTML(r){
   var pcx=(8+r.tp/100*84).toFixed(2), pcy=(6+r.dp/100*76).toFixed(2), lab="";
   GRID.forEach(function(k,i){
-    var left=i<3, y=[12.1,44,75.9][i%3], x=left?16.4:83.6, tx=left?19:81, an=left?"":' text-anchor="end"';
-    lab+='<circle cx="'+x+'" cy="'+y+'" r="1" fill="'+C.dot+'"></circle><text class="pl" x="'+tx+'" y="'+(y-.3)+'"'+an+'>'+short(k)+'</text>'+
+    var left=i<3, y=[12.1,44,75.9][i%3], tx=left?11:89, an=left?"":' text-anchor="end"';
+    lab+='<text class="pl" x="'+tx+'" y="'+(y-.3)+'"'+an+'>'+short(k)+'</text>'+
       '<text class="pc" x="'+tx+'" y="'+(y+2.9)+'"'+an+'>'+STYLES[k].c+'</text>';
   });
   var SL=[["Trigger","Gut","Proof",r.tp,r.tri===0,r.tri===1],
@@ -417,6 +417,20 @@ function initResult(){
   var ps=document.createElement("div"); ps.id="printsheet"; ps.innerHTML=printHTML(r);
   document.body.appendChild(ps);
   $("retake").addEventListener("click",function(){clearSaved();});
+  // Share: the phone's own share sheet where there is one, otherwise copy the link.
+  // The link carries the answers, so whoever opens it sees this exact result.
+  var sh=$("share"), lab=sh.querySelector("span"), note=$("share-note");
+  sh.addEventListener("click",function(){
+    var url=location.href, said=lab.textContent;
+    function done(t){ lab.textContent=t; setTimeout(function(){lab.textContent=said;},2500); }
+    if(navigator.share){
+      navigator.share({title:"My leadership style",text:"My leadership style is "+r.s.n+".",url:url}).catch(function(){});
+      return;
+    }
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(url).then(function(){done("Link copied");},function(){note.textContent=url;note.hidden=false;});
+    } else { note.textContent=url; note.hidden=false; }
+  });
   document.querySelectorAll("[data-print]").forEach(function(b){
     b.addEventListener("click",function(){
       var dark=b.getAttribute("data-print")==="dark";

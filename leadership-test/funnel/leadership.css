@@ -67,6 +67,7 @@ button{font:inherit}
 .d3{font-size:clamp(18px,1.9vw,23px);line-height:1.04}
 .lede{font-size:clamp(17px,1.7vw,21px);line-height:1.45;letter-spacing:-.014em;color:var(--tx-sub);max-width:46ch}
 .minihead{font-size:11.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--tx-accent)}
+.minihead--quiet{color:var(--mute)}
 .sub{color:var(--tx-mute);max-width:60ch;font-size:.95rem}
 
 /* ---------- Layout ---------- */
@@ -478,6 +479,7 @@ button{font:inherit}
 .result__copy{display:grid;gap:16px}
 .result .d1{font-size:clamp(40px,8vw,104px);line-height:.88}
 .celeb{font-size:clamp(17px,1.6vw,20px);font-weight:500;color:var(--tx-sub);letter-spacing:-.01em}
+.celeb{color:var(--mute)}
 .celeb b{color:var(--accent);font-weight:600}
 .result p.desc{color:var(--sub);font-size:clamp(16px,1.4vw,18px);line-height:1.6;max-width:56ch}
 .reads{display:grid;gap:10px;align-content:end}
@@ -495,8 +497,11 @@ svg{width:100%;height:auto;display:block}
 .hire .pgrid{max-width:none}
 @media (max-width:860px){.hire{grid-template-columns:1fr}.hire .pgrid{max-width:560px}}
 .axlab{font-family:Inter,sans-serif;font-size:2.7px;fill:#5B6360;font-weight:600;letter-spacing:.12em;text-transform:uppercase}
-.zlab{font-family:'Archivo Black',Impact,sans-serif;font-size:2.9px;fill:#111614;text-transform:uppercase;letter-spacing:-.02em}
-.zceleb{font-family:Inter,sans-serif;font-size:2.3px;fill:#5B6360;font-weight:500}
+.zlab{font-family:'Archivo Black',Impact,sans-serif;font-size:3.5px;fill:#3F4744;text-transform:uppercase;letter-spacing:-.02em}
+.zceleb{font-family:Inter,sans-serif;font-size:2.5px;fill:#5B6360;font-weight:500}
+/* the cell you sit in: its style and its leader step up */
+.zlab.on{font-size:4.3px;fill:#0A7261}
+.zceleb.on{font-size:2.9px;fill:#111614;font-weight:600}
 .gname{font-family:'Archivo Black',Impact,sans-serif;font-size:2.6px;fill:#111614;text-transform:uppercase;letter-spacing:-.02em}
 .gsub{font-family:Inter,sans-serif;font-size:2px;fill:#5B6360;font-weight:500}
 .gaxis{font-family:Inter,sans-serif;font-size:1.9px;fill:#5B6360;font-weight:600;letter-spacing:.1em;text-transform:uppercase}
@@ -545,6 +550,10 @@ svg{width:100%;height:auto;display:block}
 /* ---------- Actions ---------- */
 .actions{display:grid;gap:16px;justify-items:start}
 .actions__row{display:flex;flex-wrap:wrap;gap:12px}
+.btn svg{width:17px;height:17px;flex:none}
+.share-note{font-size:13px;color:var(--tx);background:var(--paper-2);border-radius:var(--r-sm);padding:10px 14px;user-select:all;overflow-wrap:anywhere}
+.again{display:grid;gap:14px;justify-items:start;max-width:62ch}
+.again p{color:var(--tx-mute)}
 .pnote{font-size:13px;color:var(--tx-mute);max-width:62ch}
 .pnote b{color:var(--tx);font-weight:600}
 .tlink{

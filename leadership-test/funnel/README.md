@@ -28,7 +28,7 @@ questions page halfway comes back to where they were.
 1. Make three steps, one per page.
 2. Paste the markup between `<body>` and the `<script>` line of each page.
 3. Paste `leadership.css` into each page's CSS, and `leadership.js` into each page's script box.
-4. Change the three addresses in `LINKS` at the top of `leadership.js` to the funnel's step URLs and the website.
+4. Change the four addresses in `LINKS` at the top of `leadership.js` to the funnel's step URLs and the website.
 5. Upload `img/hero-free.jpg` to the builder's media and put its URL in the hero's `background-image` on the landing page.
 6. Add the fonts in the builder's settings, or as the `<link>` in each page's head. The families are Archivo Black and Inter 400, 500 and 600.
 
