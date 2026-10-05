@@ -804,6 +804,18 @@ button,input,textarea,select{font:inherit;color:inherit}
     linear-gradient(to right,rgba(10,10,10,.92) 0%,rgba(10,10,10,.62) 34%,rgba(10,10,10,.74) 58%,rgba(10,10,10,.86) 100%),
     linear-gradient(to top,rgba(10,10,10,.94) 0%,rgba(10,10,10,.4) 24%,rgba(10,10,10,0) 62%);
 }
+/* The worksheet pages. Their hero is the page's own worksheet, which is almost all
+   white, so it is blurred and sits under a far heavier scrim than any photograph: a
+   flat dark floor across the whole frame, then the usual header band, left wash and
+   bottom lift on top of it. Its own marker, never a shared hero class. */
+.hero--sheet .hero__media img{object-position:50% 30%;filter:blur(5px)}
+.hero--sheet .hero__scrim{
+  background:
+    linear-gradient(to bottom,rgba(10,10,10,.6) 0,rgba(10,10,10,0) 260px),
+    linear-gradient(to right,rgba(10,10,10,.55) 0%,rgba(10,10,10,.2) 60%,rgba(10,10,10,.1) 100%),
+    linear-gradient(to top,rgba(10,10,10,.7) 0%,rgba(10,10,10,0) 60%),
+    rgba(10,10,10,.5);
+}
 .hero__media:has(img)+.hero__scrim::after{content:none}
 .hero__scrim::after{
   content:attr(data-slot);position:absolute;left:0;bottom:0;padding:14px 18px;

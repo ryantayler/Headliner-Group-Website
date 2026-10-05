@@ -2414,3 +2414,11 @@ until their worksheets have pages.
 `optimisation-engine-form.html` is the engine's form page, built the same way as the
 4 pillars one: the engine hero, the light band for the builder's form element, the footer.
 On submit its form sends people to `/optimisation-engine`.
+
+## The worksheet pages wear their own worksheet
+
+Ryan, 5 October 2026. The four worksheet pages, both download pages and both form pages,
+drop the Free Sh!t photograph from the hero for the page's own worksheet, so each page
+reads as its own thing. The sheet is almost all white, so `hero--sheet` blurs it and puts a
+flat dark floor under the usual scrim. Pixel sampled, the headline holds 6.4 to 7 to 1 on
+the brightest pixel under it.
