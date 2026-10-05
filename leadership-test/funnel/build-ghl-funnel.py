@@ -18,13 +18,13 @@ import json, os, re, shutil, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.abspath(os.path.join(HERE, '..', '..'))
 
-# file -> (folder, the funnel step's path). The form path is the one Ryan set. The
-# others follow its pattern and must match what the steps are called in the builder.
+# file -> (folder, the funnel step's path). The paths are the live ones Ryan set on
+# 5 October 2026. "reults" is spelt as it is live; change both together if it is fixed.
 PAGES = {
-    'landing.html':   ('1-landing',   '/headliner-leadership-styles'),
-    'form.html':      ('2-form',      '/headliner-leadership-styles-form-page'),
-    'questions.html': ('3-questions', '/headliner-leadership-styles-questions'),
-    'result.html':    ('4-result',    '/headliner-leadership-styles-result'),
+    'landing.html':   ('1-landing',   '/headliner-leadership-styles-home'),
+    'form.html':      ('2-form',      '/headliner-leadership-styles-form'),
+    'questions.html': ('3-questions', '/headliner-leadership-styles-test'),
+    'result.html':    ('4-result',    '/headliner-leadership-styles-reults-page'),
 }
 KEYS = {'landing.html': 'landing', 'form.html': 'form', 'questions.html': 'test', 'result.html': 'result'}
 
@@ -172,9 +172,8 @@ def readme(dest, rows):
           "3. Custom HTML element with `page-2-below-form.html` (the footer).", "",
           "Set the form to send people to `%s` on submit." % rows[2][1], "",
           "## Step paths", "",
-          "Every button already points at these paths. The form path is the one you set. The",
-          "other three follow its pattern, so name the steps to match, or change the paths in",
-          "`PAGES` at the top of `build-ghl-funnel.py` and build again.", ""]
+          "Every button already points at these, the live paths. To change one, edit `PAGES`",
+          "at the top of `build-ghl-funnel.py` and build again.", ""]
     for folder, path, files in rows:
         t.append("- `%s` is %s" % (path, folder.split('-', 1)[1]))
     t += ["",
