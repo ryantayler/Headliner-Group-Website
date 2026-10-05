@@ -2508,3 +2508,12 @@ block, so *don't impress* out to *Leave* runs along the bottom and about 65px in
 the end of the words, as on the poster. Only that branch reaches the right hand strip.
 Checked at 1100, 1280, 1440 and 1920: it never meets the words, the handwritten line or
 the signature, and never reaches the name.
+
+## The Headliner Leadership Test card
+
+The card shows a results page from the test (*The Optimiser*), Ryan's screenshot with the
+browser's print lines cropped off, as `assets/img/leadership-test.png`, 806 by 954. It is
+portrait, so in the sheet it is held to the screen's height and opens whole. The sheet's
+button is **Take the test** and goes to Ryan's test at
+`https://headlinergroup.com.au/headliner-leadership-styles-home`, no form in between.
+The card and sheet lines are still the old personality test's.

@@ -1152,7 +1152,9 @@ a.card:hover,.card--hover:hover{transform:translateY(-4px);border-color:rgba(var
 .sheet__grid:has(.media--doc){grid-template-columns:minmax(0,1.55fr) minmax(0,1fr)}
 .sheet__media:has(.media--doc){min-height:0;display:grid;align-items:center;padding:clamp(14px,2.4vw,28px);background:var(--paper-2)}
 .sheet__media .media--doc{position:relative;inset:auto;aspect-ratio:auto;background:transparent;border-radius:0}
-.sheet__media .media--doc img{display:block;width:100%;height:auto;object-fit:contain;
+/* A portrait sheet, the leadership test's results page, is held to the screen's height
+   rather than the column's width, so it opens whole without the panel scrolling. */
+.sheet__media .media--doc img{display:block;width:auto;max-width:100%;max-height:min(80dvh,760px);height:auto;margin-inline:auto;object-fit:contain;
   border:1px solid var(--rim-l);border-radius:var(--r-sm)}
 .sheet__grid:has(.media--doc) .sheet__body{align-self:center}
 /* the copy column is narrower here, and OPTIMISATION is one long word in the brand face */
