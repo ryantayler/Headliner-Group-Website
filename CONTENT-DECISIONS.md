@@ -2501,3 +2501,10 @@ it stacks name, drawing, words.
 
 **The preview's hidden page links show on Home only**, and `build-ghl.py` refuses to
 finish if preview only markup ever reaches the export.
+
+**The engine drawing is bigger and sits low**, Ryan's call. From 1040 up it renders at 128
+percent of its column (about 600 wide at 1440, was 470) and sits on the bottom of the
+block, so *don't impress* out to *Leave* runs along the bottom and about 65px in under
+the end of the words, as on the poster. Only that branch reaches the right hand strip.
+Checked at 1100, 1280, 1440 and 1920: it never meets the words, the handwritten line or
+the signature, and never reaches the name.

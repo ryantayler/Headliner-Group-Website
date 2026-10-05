@@ -217,7 +217,14 @@
   .engine{grid-template-columns:minmax(0,1fr) minmax(0,1.08fr);
     grid-template-areas:"fig h" "fig copy";grid-template-rows:auto 1fr;
     column-gap:clamp(32px,3.6vw,56px);row-gap:clamp(14px,1.6vw,20px)}
-  .engine__fig{align-self:center}
+  /* Bigger than its column and sat on the bottom of the block, so the drawing's last
+     branch, don't impress out to Leave, runs low and slightly in under the end of the
+     words, as on the poster. Only that branch reaches into the right hand strip, and the
+     drawing's ground is the block's own, so the overlap shows no edge. The words sit
+     above it. */
+  .engine__fig{align-self:end;place-items:end start;position:relative;z-index:0}
+  .engine__d{width:var(--eng-w,128%);max-width:none}
+  .engine__h,.engine__copy{position:relative;z-index:1}
 }
 /* On a phone the drawing takes back most of the inset's padding, because its labels are
    drawn into it and its width is the only thing that sets how big they are. */
