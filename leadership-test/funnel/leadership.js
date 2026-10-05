@@ -86,7 +86,8 @@ var Q=[
 var LBL=["Strongly disagree","Mildly disagree","Mildly agree","Strongly agree"];
 
 /* Ryan's own answers, taken 17 August 2026. The landing page runs them
-   through the real scoring, so it shows his actual result. The Purist. */
+   through the real scoring, so the example is a real result. It is not
+   labelled as his on the page. The Purist. */
 var EXAMPLE=[3,1,3,3, 3,4,4,2, 4,2,1,1, 4,3,4,2, 3,1,3,3, 2,4,3,2, 4,3,3,3];
 
 var KEY="hl-leadership-v3";
@@ -138,14 +139,16 @@ function score(ans){
   raws.forEach(function(x){r.scored[x.k]=Math.max(0,Math.min(100,Math.round(100*topLin*(topCur>0?x.cur/topCur:0))));});
 
   // who to hire
-  var B=STYLES[r.s.best], W=STYLES[r.s.work], bits=[];
-  if(r.man!=="balanced") bits.push("you are <b>"+r.man+"</b> in manner, so screen for <b>"+(r.man==="blunt"?"measured":"blunt")+"</b>");
-  if(r.rea!=="balanced") bits.push("you are <b>"+r.rea+"</b> in reactiveness, so screen for <b>"+(r.rea==="immediate"?"deferred":"immediate")+"</b>");
+  var B=STYLES[r.s.best], W=STYLES[r.s.work], want=[], you=[];
+  if(r.man!=="balanced"){ want.push("<b>"+(r.man==="blunt"?"measured":"blunt")+"</b> in manner"); you.push(r.man); }
+  if(r.rea!=="balanced"){ want.push("<b>"+(r.rea==="immediate"?"deferred":"immediate")+"</b> in reactiveness"); you.push(r.rea); }
+  var an=/^[AEIOU]/.test(short(r.s.best))?"an ":"a ";
   r.best="<b>"+B.n+"</b>, "+B.c+". "+r.s.why;
   r.work="<b>"+W.n+"</b>, "+W.c+". Two drive steps across, so it works but you will both have to translate more.";
-  r.screen=bits.length
-    ? "Inside "+short(r.s.best)+", "+bits.join(", and ")+"."
-    : "You sit balanced on both screening axes, so no candidate is ruled out on either.";
+  // The screen is about the best fit hire. Look for one whose manner and pace are the opposite of yours.
+  r.screen=want.length
+    ? "When you hire "+an+short(r.s.best)+", look for one who's "+want.join(" and ")+". You're "+you.join(" and ")+", so they cover "+(want.length>1?"both":"it")+"."
+    : "You're balanced on manner and reactiveness, so any "+short(r.s.best)+" can work.";
   return r;
 }
 
@@ -158,7 +161,7 @@ function heroHTML(r,tag){
     '<div class="result__copy">'+
       '<div class="minihead">'+tag+'</div>'+
       '<h2 class="display d1">'+r.s.n+'</h2>'+
-      '<div class="celeb">Closest read, <b>'+r.s.c+'</b></div>'+
+      '<div class="celeb"><b>'+r.s.c+'</b></div>'+
       '<p class="desc">'+r.s.desc+'</p>'+
     '</div>'+
     '<div class="reads">'+reads.map(function(x){return '<div class="read"><span>'+x[0]+'</span><b>'+x[1]+'</b></div>';}).join("")+'</div>'+
@@ -293,7 +296,7 @@ function printHTML(r){
   var pairs=GRID.map(function(k){var s=STYLES[k];return '<tr><td class="n">'+short(k)+'</td><td><b>'+short(s.best)+'</b></td><td>'+short(s.work)+'</td><td>'+s.why+'</td></tr>';}).join("");
   return '<section class="psheet">'+
     '<div class="pbrand"><div class="pk">Leadership Styles Test</div><div class="pmark">Headliner<small>Group</small></div></div>'+
-    '<div class="phero"><div class="pk">Your leadership style</div><h1>'+r.s.n+'</h1><div class="pceleb">Closest read, '+r.s.c+'</div><p>'+r.s.desc+'</p></div>'+
+    '<div class="phero"><div class="pk">Your leadership style</div><h1>'+r.s.n+'</h1><div class="pceleb">'+r.s.c+'</div><p>'+r.s.desc+'</p></div>'+
     '<div class="pcols"><div><h2 style="margin-top:0">Where you sit</h2>'+
       '<svg viewBox="0 0 100 96" xmlns="http://www.w3.org/2000/svg">'+
       '<rect x="8" y="6" width="84" height="76" fill="'+C.paper+'" stroke="'+C.rim+'" stroke-width=".4" rx="2"></rect>'+cellRect(r,6)+
@@ -336,14 +339,13 @@ function printHTML(r){
 /* ---------- Pages ---------- */
 function initLanding(){
   var r=score(EXAMPLE);
-  $("example-hero").innerHTML=heroHTML(r,"Ryan Tayler's leadership style");
+  $("example-hero").innerHTML=heroHTML(r,"Leadership style");
   $("example-cards").innerHTML=cardsHTML(r);
   $("styles").innerHTML=GRID.map(function(k){
     var s=STYLES[k];
     return '<article class="card"><div class="style__top"><h3 class="display d3">'+s.n+'</h3>'+
-      '<div class="style__read">Closest read, <b>'+s.c+'</b></div></div>'+
-      '<span class="style__made">'+s.made+'</span><p>'+s.desc+'</p>'+
-      '<div class="style__pair">Pairs best with <b>'+STYLES[s.best].n+'</b>.</div></article>';
+      '<div class="style__read">'+s.c+'</div></div>'+
+      '<span class="style__made">'+s.made+'</span><p>'+s.desc+'</p></article>';
   }).join("");
 }
 
