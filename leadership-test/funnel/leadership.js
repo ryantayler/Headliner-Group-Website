@@ -249,7 +249,8 @@ function rawHTML(r){
   return 'Your scores out of 28. Trigger '+r.ts+', Drive '+r.ds+', Manner '+r.ms+', Reactiveness '+r.xs+'.';
 }
 
-function gridSVG(r){
+function gridSVG(r,pre){
+  pre=pre||"";
   var key=r.key, s=r.s, lines=[
     ["believer","architect",1,38.5,21,63.5,53],["purist","anchor",1,38.5,53,63.5,21],
     ["believer","optimiser",0,38.5,17,63.5,35],["charger","anchor",0,38.5,35,63.5,17],
@@ -258,7 +259,7 @@ function gridSVG(r){
     var lit=(l[0]===key||l[1]===key), sec=l[2]===1;
     var col=lit?(sec?C.mid:C.deep):C.grey, mk=lit?(sec?"ahs":"ah"):"ahg";
     return '<line x1="'+l[3]+'" y1="'+l[4]+'" x2="'+l[5]+'" y2="'+l[6]+'" stroke="'+col+'" stroke-width="'+(sec?".6":".95")+'"'+
-      (sec?' stroke-dasharray="2.2 1.8"':'')+' opacity="'+(lit?1:.8)+'" marker-end="url(#'+mk+')" marker-start="url(#'+mk+')"></line>';
+      (sec?' stroke-dasharray="2.2 1.8"':'')+' opacity="'+(lit?1:.8)+'" marker-end="url(#'+pre+mk+')" marker-start="url(#'+pre+mk+')"></line>';
   }).join("");
   var bx=Object.keys(BOX).map(function(k){
     var p=BOX[k], on=(k===key||k===s.best||k===s.work), o=on?1:.45;
@@ -267,7 +268,7 @@ function gridSVG(r){
       '<text class="gname" x="'+(p[0]+11.5)+'" y="'+(p[1]+5.2)+'" text-anchor="middle">'+short(k)+'</text>'+
       '<text class="gsub" x="'+(p[0]+11.5)+'" y="'+(p[1]+8.2)+'" text-anchor="middle">'+STYLES[k].c+'</text></g>';
   }).join("");
-  function mk(id,fill){return '<marker id="'+id+'" markerWidth="4.5" markerHeight="4.5" refX="3.6" refY="2.25" orient="auto-start-reverse" markerUnits="strokeWidth"><path d="M0,0 L4.5,2.25 L0,4.5 z" fill="'+fill+'"></path></marker>';}
+  function mk(id,fill){return '<marker id="'+pre+id+'" markerWidth="4.5" markerHeight="4.5" refX="3.6" refY="2.25" orient="auto-start-reverse" markerUnits="strokeWidth"><path d="M0,0 L4.5,2.25 L0,4.5 z" fill="'+fill+'"></path></marker>';}
   return '<svg class="pgrid" viewBox="0 0 100 66" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The six styles and how they pair">'+
     '<defs>'+mk("ah",C.deep)+mk("ahs",C.mid)+mk("ahg",C.grey)+'</defs>'+
     '<text class="gaxis" x="26.5" y="7" text-anchor="middle">On gut</text>'+
@@ -316,7 +317,7 @@ function printHTML(r){
     '<div class="pbrand"><div class="pk">Leadership Styles Test</div><div class="pmark">Headliner<small>Group</small></div></div>'+
     '<div class="phero"><div class="pk">Your leadership style</div><h1>'+r.s.n+'</h1><div class="pceleb">'+r.s.c+'</div><p>'+r.s.desc+'</p></div>'+
     '<div class="pcols"><div><h2 style="margin-top:0">Where you sit</h2>'+
-      '<svg viewBox="0 0 100 96" xmlns="http://www.w3.org/2000/svg">'+
+      '<svg class="pmap" viewBox="0 0 100 96" xmlns="http://www.w3.org/2000/svg">'+
       '<rect x="8" y="6" width="84" height="76" fill="'+C.paper+'" stroke="'+C.rim+'" stroke-width=".4" rx="2"></rect>'+cellRect(r,6)+
       '<line x1="50" y1="6" x2="50" y2="82" stroke="'+C.rim+'" stroke-width=".4"></line>'+
       '<line x1="8" y1="31.3" x2="92" y2="31.3" stroke="'+C.rim+'" stroke-width=".4"></line>'+
@@ -330,7 +331,7 @@ function printHTML(r){
           '<div class="pbar"><div class="pbarf" style="'+fromMid(a[3])+'"></div><div class="pdot" style="left:'+a[3]+'%"></div></div></div>';}).join("")+'</div></div>'+
     '<h2>Your blend</h2><div class="pblend">'+ORDER.map(function(k){var v=r.scored[k],on=(k===r.key);
       return '<div class="pbitem'+(on?" on":"")+'"><div class="pbrow"><span class="pbname">'+STYLES[k].n+(on?'<span class="pyou">You</span>':'')+'</span><span>'+v+'%</span></div><div class="pbtrack"><div class="pbfill" style="width:'+v+'%"></div></div></div>';}).join("")+'</div>'+
-    '<h2>Who to hire</h2><div class="phire"><div><span class="tg">Best fit</span><span>'+r.best+'</span></div><div><span class="tg">'+(r.two?"Best fit":"Workable")+'</span><span>'+r.work+'</span></div><div><span class="tg">Screen</span><span>'+r.screen+'</span></div></div>'+
+    '<h2>Who to hire</h2><div class="phirewrap">'+gridSVG(r,"p")+'<div class="phire"><div><span class="tg">Best fit</span><span>'+r.best+'</span></div><div><span class="tg">'+(r.two?"Best fit":"Workable")+'</span><span>'+r.work+'</span></div><div><span class="tg">Screen</span><span>'+r.screen+'</span></div></div></div>'+
     '<div class="pfoot">'+rawHTML(r)+' Headliner Leadership Styles Test. headlinergroup.com.au</div>'+
   '</section>'+
   '<section class="psheet">'+

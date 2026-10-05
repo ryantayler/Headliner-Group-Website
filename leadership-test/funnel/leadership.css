@@ -682,6 +682,9 @@ svg{width:100%;height:auto;display:block}
 #printsheet .pbfill{height:100%;background:#A9D9CF;border-radius:2mm}
 #printsheet .pbitem.on .pbfill{background:#0A7261}
 #printsheet .pyou{font-family:Inter,sans-serif;font-size:5.6pt;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#0A7261;border:1px solid #0A7261;border-radius:3mm;padding:.3mm 1.6mm;margin-left:1.6mm;vertical-align:middle}
+/* the pairing grid beside the three rows, as on screen */
+#printsheet .phirewrap{display:grid;grid-template-columns:74mm 1fr;gap:6mm;align-items:center}
+#printsheet .phirewrap .pgrid{max-width:none;width:100%}
 #printsheet .phire div{padding:2.2mm 0;border-bottom:1px solid #E7EBE9;font-size:8pt;color:#3F4744;display:flex;gap:4mm}
 #printsheet .phire .tg{font-size:6.2pt;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#0A7261;border:1px solid #0A7261;border-radius:3mm;padding:.8mm 2mm;white-space:nowrap;height:fit-content;min-width:20mm;text-align:center}
 #printsheet .phire b{color:#111614}
@@ -723,9 +726,14 @@ svg{width:100%;height:auto;display:block}
 .pdark #printsheet .phire div{color:#ADA9A3;border-bottom-color:#1c1c1c}
 .pdark #printsheet .phire b{color:#ECE8E0}
 .pdark #printsheet .phire .tg{color:#2DE2C3;border-color:#2DE2C3}
-.pdark #printsheet svg rect{fill:#111111;stroke:#2E2E2E}
-.pdark #printsheet svg line{stroke:#2E2E2E}
-.pdark #printsheet svg circle{fill:#3a3a3a}
+.pdark #printsheet svg.pmap rect{fill:#111111;stroke:#2E2E2E}
+.pdark #printsheet svg.pmap rect.cell{fill:#123a33;stroke:none}
+.pdark #printsheet svg.pmap line{stroke:#2E2E2E}
+.pdark #printsheet svg.pmap circle{fill:#3a3a3a}
+/* the pairing grid keeps its lit strokes and arrows; only its boxes and words turn */
+.pdark #printsheet .pgrid rect{fill:#111111}
+.pdark #printsheet .pgrid .gname{fill:#ECE8E0}
+.pdark #printsheet .pgrid .gsub,.pdark #printsheet .pgrid .gaxis{fill:#9AA0A8}
 .pdark #printsheet svg #pd3{fill:#2DE2C3;opacity:.2}
 .pdark #printsheet svg #pd1{fill:#0A0A0A;stroke:#2DE2C3}
 .pdark #printsheet svg text.pl{fill:#ECE8E0}
