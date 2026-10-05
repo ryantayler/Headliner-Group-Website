@@ -346,13 +346,21 @@
       ["supply", "Supply constrained", "More customers would not help you. Either you cannot deliver them, or delivering them does not pay."],
       ["demand", "Demand constrained", "More customers is exactly what you need. You can deliver them and the economics work."]
     ].map(function (f) {
-      return '<div class="lp-fam"><h3 class="hl-face d3">' + esc(f[1]) + "</h3>" +
+      return '<div class="lp-fam"><h3>' + esc(f[1]) + "</h3>" +
         '<p class="lp-fam__k">' + esc(f[2]) + "</p>" +
         D.families[f[0]].map(function (c) {
           return '<div class="lp-fam__row"><b>' + esc(D.constraints[c].short) + "</b><span>" +
                  esc(D.constraints[c].blurb) + "</span></div>";
         }).join("") + "</div>";
     }).join(""));
+
+    fill("lp-steps", [
+      ["Your diagnosis", "Supply or demand. Whether more customers would help you at all, settled from the answers before anything is scored."],
+      ["The verdict", "Which one of six, and the answers that put it there."],
+      ["How to fix it", "A sequence, not a menu. It ends with a window to run it for and an instruction to come back."],
+      ["Your risks", "Scored apart from the constraint, because what could end the business is rarely what is capping it."],
+      ["Don\u2019t do this yet", "The moves that make it worse while the constraint still stands. Usually the ones you were about to make."]
+    ].map(function (x) { return "<li><b>" + esc(x[0]) + "</b><span>" + esc(x[1]) + "</span></li>"; }).join(""));
 
     fill("lp-risks", Object.keys(D.flags).map(function (id) {
       return "<li>" + esc(D.flags[id].name) + "</li>";
@@ -369,6 +377,21 @@
     void scoring;
   }
   function cap(s) { return String(s).charAt(0).toUpperCase() + String(s).slice(1); }
+  // the site's own mobile nav behaviour, same shape as main.js
+  (function () {
+    var burger = document.querySelector(".burger"), nav = $("site-nav"), hdr = document.querySelector(".hdr");
+    if (!burger || !nav || !hdr) return;
+    burger.addEventListener("click", function () {
+      var open = !nav.classList.contains("is-open");
+      nav.classList.toggle("is-open", open);
+      hdr.classList.toggle("is-open", open);
+      burger.setAttribute("aria-expanded", String(open));
+    });
+    nav.addEventListener("click", function (e) {
+      if (e.target.closest("a") && nav.classList.contains("is-open")) burger.click();
+    });
+  })();
+
   [].forEach.call(document.querySelectorAll("[data-start]"), function (b) {
     b.addEventListener("click", function () { show("s-quiz"); renderStep(); window.scrollTo(0, 0); });
   });

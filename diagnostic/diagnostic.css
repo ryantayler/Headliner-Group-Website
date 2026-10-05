@@ -29,6 +29,7 @@
   --tx:var(--ink); --tx-sub:var(--sub); --tx-mute:var(--mute); --tx-accent:var(--accent);
 
   --gutter:clamp(20px,5vw,56px); --shell:820px; --hdr-h:100px;
+  --band-y:clamp(72px,10vw,132px);
   --ease:cubic-bezier(.22,.61,.36,1);
 }
 
@@ -372,80 +373,215 @@ body.has-dev{padding-bottom:56px}
   color:var(--tx);max-width:64ch}
 
 /* ================= the landing page =================
-   Bands lifted from the site stylesheet so the two match, with the contextual
-   token flip doing the light and dark rather than a second set of colours. */
-.band{padding-block:clamp(64px,8vw,112px);position:relative}
-.band--base{background:var(--base);color:var(--ink)}
+   The hero, nav, beam and split layouts below are lifted verbatim out of the site
+   stylesheet so the two cannot drift. Everything after the lifted block is the
+   handful of rules this page needs that the site has no equivalent for. */
+
+.hl-lit-beam{
+  position:absolute;top:-220px;left:12%;
+  width:260px;height:1100px;
+  transform:rotate(34deg);transform-origin:top center;
+  filter:blur(40px);
+  mix-blend-mode:screen;
+  pointer-events:none;
+}
+.hl-lit-beam::before{
+  content:"";position:absolute;inset:0;
+  clip-path:polygon(43% 0,57% 0,100% 100%,0 100%);
+  background:linear-gradient(to bottom,
+    rgba(var(--accent-rgb),.55),
+    rgba(var(--accent-rgb),.10) 55%,
+    rgba(var(--accent-rgb),0));
+}
+.hl-lit-beam--right{left:auto;right:10%}
+.hl-lit-beam--wide{width:340px;height:1300px}
+.hl-lit-beam--hero{
+  /* The lamp sits off screen, up and to the right, and the beam pivots on it.
+     The element's top centre IS the lamp, so transform-origin stays top centre
+     and the whole throw swings from that point like a followspot. Long enough
+     that the tail always leaves the frame at both ends of the sweep. */
+  top:-300px;left:auto;right:-311px;width:462px;height:1800px;
+  transform-origin:top center;
+  filter:blur(52px);
+  animation:beamSway 16s var(--ease-sway) infinite alternate;
+}
+.hl-lit-beam--hero::before{
+  /* Tail 10% wider (420 -> 462). The source is held: the narrow end keeps its
+     58.8px and is re-expressed as a percentage of the wider box, 14% of 420
+     becoming 12.73% of 462. `right` on the element shifts by half the extra
+     width so the lamp stays put at x 1520.
+     The clip belongs HERE and not on the element. CSS applies clip-path after
+     filter, so putting both on the element re-cuts the blurred edge back to a
+     hard line and the soft falloff disappears. */
+  clip-path:polygon(43.64% 0,56.36% 0,100% 100%,0 100%);
+  /* 10% down on the section beam's .38/.08 */
+  background:linear-gradient(to bottom,
+    rgba(var(--accent-rgb),.342),
+    rgba(var(--accent-rgb),.072) 55%,
+    rgba(var(--accent-rgb),0));
+}
+.head--split{max-width:none;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(20px,4vw,64px);align-items:end}
+.head--top{align-items:start}
+.tlink{
+  display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:14px;color:var(--tx-accent);
+  padding-bottom:3px;background-image:linear-gradient(var(--tx-accent),var(--tx-accent));
+  background-size:0% 1.5px;background-repeat:no-repeat;background-position:0 100%;
+  transition:background-size .3s var(--ease);
+}
+.tlink:hover{background-size:100% 1.5px}
+.site-nav{display:flex;align-items:center;gap:clamp(14px,2vw,30px)}
+.site-nav a:not(.btn){font-size:13.5px;font-weight:500;color:var(--ink);opacity:.82;transition:opacity .2s,color .2s}
+.site-nav a:not(.btn):hover{opacity:1;color:var(--accent)}
+.site-nav a:not(.btn).is-here{
+  opacity:1;color:var(--accent);
+  background-image:linear-gradient(currentColor,currentColor);
+  background-repeat:no-repeat;background-position:0 100%;background-size:100% 1.5px;
+  padding-bottom:5px;
+}
+.site-nav .btn{padding:10px 18px}
+.burger{display:none;width:42px;height:42px;border:1px solid var(--rim);border-radius:100px;background:transparent;align-items:center;justify-content:center;cursor:pointer}
+.burger span{display:block;width:16px;height:1.5px;background:var(--ink);position:relative}
+.burger span::before,.burger span::after{content:"";position:absolute;left:0;width:16px;height:1.5px;background:var(--ink)}
+.burger span::before{top:-5px}
+.burger span::after{top:5px}
+@media (max-width:900px){
+  .site-nav{
+    position:fixed;inset:var(--hdr-h) 0 auto 0;flex-direction:column;align-items:stretch;gap:0;
+    background:var(--base);border-bottom:1px solid var(--rim);padding:8px var(--gutter) 24px;display:none;
+  }
+  .site-nav.is-open{display:flex}
+  .site-nav a:not(.btn){padding:15px 0;border-bottom:1px solid var(--rim);font-size:16px;opacity:1}
+  .site-nav .btn{margin-top:18px;justify-content:center}
+  .burger{display:inline-flex}
+  .hdr.is-open{background:var(--base)}
+}
+
+.hero{position:relative;background:var(--base);overflow:hidden;isolation:isolate;min-height:clamp(500px,64vh,720px);display:flex;align-items:flex-end}
+.hero__media{position:absolute;inset:0;z-index:-2}
+.hero__media img{
+  width:100%;height:100%;object-fit:cover;opacity:.92;
+  /* scaled up so the drift never exposes an edge */
+  transform:scale(1.06);
+  animation:heroDrift 26s var(--ease-sway) infinite alternate;
+}
+.hero__scrim{
+  position:absolute;inset:0;z-index:-1;
+  /* Three jobs, in this order. A band under the header bar so the wordmark holds. A
+     gentle left to right wash so the headline has ground without flattening the room.
+     A bottom lift that carries the headline and hands off to the next band. The middle
+     of the frame is deliberately left alone, because that is where the photograph is. */
+  background:
+    linear-gradient(to bottom,rgba(10,10,10,.88) 0,rgba(10,10,10,.5) 130px,rgba(10,10,10,0) 320px),
+    linear-gradient(to right,rgba(10,10,10,.78) 0%,rgba(10,10,10,.44) 52%,rgba(10,10,10,.2) 100%),
+    linear-gradient(to top,rgba(10,10,10,.97) 0%,rgba(10,10,10,.6) 34%,rgba(10,10,10,0) 64%);
+}
+.hero__media:has(img)+.hero__scrim::after{content:none}
+.hero__scrim::after{
+  content:attr(data-slot);position:absolute;left:0;bottom:0;padding:14px 18px;
+  font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);opacity:.55;
+}
+.hero__in{padding-top:clamp(140px,17vw,205px);padding-bottom:clamp(64px,9vw,116px);position:relative;z-index:1}
+.hero--tall .hero__in{padding-top:clamp(196px,24vw,300px);padding-bottom:clamp(46px,6vw,84px)}
+.hero__grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(24px,5vw,72px);align-items:end}
+.hero .d1{
+  font-family:'Archivo Black',Impact,sans-serif;font-weight:400;
+  text-transform:uppercase;letter-spacing:-.022em;line-height:.94;
+  font-size:clamp(24px,3.7vw,50px);max-width:none;overflow-wrap:anywhere;text-wrap:balance;
+}
+.hero__grid--wide{grid-template-columns:1fr;gap:clamp(18px,2.4vw,30px);align-content:end}
+.hero .d1 .ln{display:block}
+.hero__grid--wide .d1{max-width:none;text-wrap:pretty;font-size:clamp(26px,4.85vw,64px)}
+.hero__grid--wide .cta{margin-top:0;justify-content:flex-end}
+.stack{display:grid;gap:16px}
+.stack>.btn,.pair__copy>.btn,.head>.btn{justify-self:start}
+.stack-lg{display:grid;gap:28px}
+.hero__grid--wide .cta{margin-top:0;justify-content:flex-end}
+@media (max-width:640px){.hero__grid--wide .cta{justify-content:flex-start}}
+.hero .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+
+
+/* The questionnaire and the report are reading columns, so 820 is right for them.
+   A landing page is not, and squeezing the site's layouts into 820 was what made
+   this look like a different site. The header and the intro get the site's shell. */
+.hdr .shell,#s-intro .shell{--shell:1240px;--gutter:clamp(20px,5vw,64px)}
+/* .hero is a flex container, so its shell is a flex item and shrinks to its own
+   content. The site only lines up because its headline happens to be wide enough. */
+.hero__in{width:100%}
+
+/* bands, same rhythm as the site */
+.band{padding-block:var(--band-y);position:relative}
 .band--paper{background:var(--paper)}
 .band--paper2{background:var(--paper-2)}
+.band--base{background:var(--base);color:var(--ink)}
 .band--tight{padding-block:clamp(48px,6vw,80px)}
 .band--lit{overflow:hidden}
 .band>.shell{position:relative;z-index:1}
 .on-light--2{--ground:var(--paper-2);background:var(--paper-2)}
+.head{display:grid;gap:16px;margin-bottom:clamp(36px,4.5vw,58px)}
+.head:not(.head--split){max-width:72ch}
+/* the site's own collapses, which the block lift had missed */
+@media (max-width:860px){.head--split{grid-template-columns:1fr}}
+@media (max-width:900px){.hero__grid{grid-template-columns:1fr;gap:28px}}
+.head .sub,.stack .sub{font-size:15px;line-height:1.62;color:var(--tx-sub);margin:0;max-width:62ch}
 .grid{display:grid;gap:clamp(16px,2vw,26px)}
 .g2{grid-template-columns:repeat(2,minmax(0,1fr))}
 @media(max-width:700px){.g2{grid-template-columns:1fr}}
-.head{display:grid;gap:14px;margin-bottom:clamp(30px,4vw,48px);max-width:72ch}
-.head .sub{font-size:16.5px;line-height:1.6;color:var(--tx-sub);margin:0;max-width:66ch}
+#s-intro{padding:0}
 
-.lp-hero{padding-block:clamp(72px,10vw,132px) clamp(56px,7vw,92px)}
-.lp-lede{margin-top:26px;max-width:58ch}
-.lp-cta{margin:34px 0 0}
-.lp-facts{list-style:none;display:grid;gap:0;margin:clamp(40px,5vw,64px) 0 0;padding:0;
-  grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--rim)}
+/* the four numbers under the hero headline */
+.lp-facts{list-style:none;display:grid;margin:0;padding:0;
+  grid-template-columns:repeat(4,minmax(0,1fr));gap:0}
 @media(max-width:860px){.lp-facts{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:520px){.lp-facts{grid-template-columns:1fr}}
-.lp-facts li{padding:20px 22px 20px 0;border-right:1px solid var(--rim)}
+.lp-facts{margin-top:clamp(40px,5vw,66px);border-top:1px solid var(--line)}
+.lp-facts li{padding:26px 26px 0 0;border-right:1px solid var(--line)}
 .lp-facts li:last-child{border-right:0}
 @media(max-width:860px){.lp-facts li:nth-child(2n){border-right:0}}
-@media(max-width:520px){.lp-facts li{border-right:0;border-bottom:1px solid var(--rim)}}
-.lp-facts b{display:block;font-family:'Archivo Black',Impact,sans-serif;font-weight:400;
-  font-size:clamp(24px,3vw,34px);line-height:1;color:var(--accent);margin-bottom:9px}
-.lp-facts span{font-size:14.5px;line-height:1.5;color:var(--sub);display:block}
+@media(max-width:520px){.lp-facts li{border-right:0;border-bottom:1px solid var(--line);padding:20px 0}}
+.lp-facts b{display:block;font-size:clamp(30px,4vw,46px);font-weight:600;letter-spacing:-.03em;
+  line-height:1;color:var(--tx);margin-bottom:11px}
+.lp-facts span{font-size:14px;line-height:1.55;color:var(--tx-sub);display:block;max-width:26ch}
 
+/* the ten groups */
 .lp-groups{list-style:none;counter-reset:g;margin:0;padding:0;
-  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 clamp(20px,3vw,44px)}
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 clamp(24px,4vw,64px)}
 @media(max-width:700px){.lp-groups{grid-template-columns:1fr}}
-.lp-groups li{counter-increment:g;display:flex;gap:14px;align-items:baseline;
-  padding:14px 0;border-top:1px solid var(--line)}
-.lp-groups li::before{content:counter(g,decimal-leading-zero);font-size:12px;font-weight:700;
-  color:var(--tx-accent);font-variant-numeric:tabular-nums;flex:0 0 auto}
-.lp-groups b{font-weight:600;font-size:16px;color:var(--tx)}
-.lp-groups i{font-style:normal;font-size:13.5px;color:var(--tx-mute);margin-left:auto;
-  padding-left:12px;white-space:nowrap}
-.lp-note{margin-top:clamp(28px,3.5vw,44px);padding:22px 24px;background:var(--surface);
-  border:1px solid var(--line);border-radius:14px}
-.lp-note p{margin:0;font-size:15.5px;line-height:1.6;color:var(--tx-sub);max-width:76ch}
-.lp-note b{color:var(--tx)}
+.lp-groups li{counter-increment:g;display:flex;gap:16px;align-items:baseline;
+  padding:17px 0;border-top:1px solid var(--line)}
+.lp-groups li::before{content:counter(g,decimal-leading-zero);font-size:12px;font-weight:600;
+  color:var(--tx-mute);font-variant-numeric:tabular-nums;flex:0 0 auto}
+.lp-groups b{font-weight:500;font-size:16px;color:var(--tx)}
+.lp-groups i{font-style:normal;font-size:13px;color:var(--tx-mute);margin-left:auto;
+  padding-left:14px;white-space:nowrap}
 
-.lp-sample{margin-bottom:clamp(30px,4vw,46px)}
-.lp-sample .verdict h3{font-size:clamp(26px,4vw,42px);line-height:1.04;color:#0A0A0A;
+/* the sample verdict */
+.lp-sample{max-width:600px}
+.lp-sample .verdict h3{font-size:clamp(26px,3.6vw,40px);line-height:1.04;color:#0A0A0A;
   text-transform:uppercase;letter-spacing:-.02em;margin:0}
-.lp-sample__cap{margin:12px 0 0;font-size:13.5px;color:var(--tx-mute);max-width:62ch}
+.lp-sample__cap{margin:14px 0 0;font-size:13px;color:var(--tx-mute);max-width:52ch}
+
+/* the report, part by part */
 .lp-steps{list-style:none;counter-reset:s;margin:0;padding:0}
-.lp-steps li{counter-increment:s;display:grid;grid-template-columns:30px minmax(0,1fr);
-  gap:4px 14px;padding:16px 0;border-top:1px solid var(--line)}
-.lp-steps li::before{content:counter(s);grid-row:span 2;font-size:13px;font-weight:700;
-  color:var(--tx-accent);font-variant-numeric:tabular-nums;padding-top:2px}
-.lp-steps b{font-size:16.5px;font-weight:600;color:var(--tx)}
-.lp-steps span{font-size:15px;line-height:1.55;color:var(--tx-sub);max-width:66ch}
+.lp-steps li{counter-increment:s;display:grid;grid-template-columns:28px minmax(0,1fr);
+  gap:5px 16px;padding:19px 0;border-top:1px solid var(--line)}
+.lp-steps li::before{content:counter(s,decimal-leading-zero);grid-row:span 2;font-size:12px;
+  font-weight:600;color:var(--tx-mute);font-variant-numeric:tabular-nums;padding-top:4px}
+.lp-steps b{font-size:16px;font-weight:600;color:var(--tx)}
+.lp-steps span{font-size:15px;line-height:1.6;color:var(--tx-sub);max-width:60ch}
 
-.lp-fam{background:var(--surface);border:1px solid var(--line);border-radius:16px;
-  padding:clamp(24px,3vw,34px);position:relative;overflow:hidden}
-.lp-fam::before{content:"";position:absolute;inset:0 0 auto 0;height:3px;background:var(--accent-deep)}
-.lp-fam h3{margin:0 0 6px;text-transform:uppercase}
-.lp-fam__k{margin:0 0 18px;font-size:15px;line-height:1.5;color:var(--tx-sub)}
-.lp-fam__row{display:flex;gap:14px;padding:14px 0;border-top:1px solid var(--line)}
-.lp-fam__row b{flex:0 0 104px;font-weight:700;font-size:15.5px;color:var(--tx)}
-.lp-fam__row span{font-size:14.5px;line-height:1.55;color:var(--tx-sub)}
-@media(max-width:480px){.lp-fam__row{display:block}.lp-fam__row b{margin-bottom:4px;display:block}}
+/* the two families */
+.lp-fam h3{margin:0 0 8px;font-size:clamp(20px,2.4vw,27px);font-weight:600;letter-spacing:-.025em;color:var(--tx)}
+.lp-fam__k{margin:0 0 6px;font-size:15px;line-height:1.6;color:var(--tx-sub);max-width:42ch}
+.lp-fam__row{display:flex;gap:16px;padding:17px 0;border-top:1px solid var(--line)}
+.lp-fam__row b{flex:0 0 104px;font-weight:600;font-size:15.5px;color:var(--tx)}
+.lp-fam__row span{font-size:14.5px;line-height:1.6;color:var(--tx-sub)}
+@media(max-width:480px){.lp-fam__row{display:block}.lp-fam__row b{margin-bottom:5px;display:block}}
 
-.lp-risks{list-style:none;display:flex;flex-wrap:wrap;gap:10px;margin:0;padding:0}
-.lp-risks li{font-size:14.5px;font-weight:600;color:var(--tx);background:var(--surface);
-  border:1px solid var(--line);border-radius:100px;padding:9px 18px}
+/* the risks */
+.lp-risks{list-style:none;display:flex;flex-wrap:wrap;gap:9px;margin:0;padding:0}
+.lp-risks li{font-size:14px;font-weight:500;color:var(--tx-sub);
+  border:1px solid var(--line);border-radius:100px;padding:9px 17px}
 
-.lp-end{text-align:center;display:grid;justify-items:center;gap:18px}
-.lp-end h2{max-width:22ch}
-.lp-end__sub{margin:0;color:var(--sub);font-size:16.5px}
-.lp-end__priv{margin:10px 0 0;max-width:52ch}
-.cta-band .privacy{color:var(--sub)}
+.lp-end .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.lp-end__priv{margin:26px 0 0;max-width:52ch;color:var(--tx-mute)}
+body:has(.dev) #s-intro>.band:last-child{padding-bottom:clamp(104px,11vw,150px)}
