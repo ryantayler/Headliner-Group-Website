@@ -485,8 +485,8 @@ button{font:inherit}
 .reads{display:grid;gap:10px;align-content:end}
 .read{display:flex;justify-content:space-between;gap:16px;align-items:baseline;padding:14px 0;border-top:1px solid var(--rim)}
 .read:last-child{border-bottom:1px solid var(--rim)}
-.read span{font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
-.read b{font-weight:600;color:var(--ink);font-size:15px}
+.read span{font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.read b{font-weight:600;color:var(--accent);font-size:15px}
 
 /* ---------- Result cards ---------- */
 .cardhead{display:grid;gap:8px}
@@ -550,6 +550,8 @@ svg{width:100%;height:auto;display:block}
 /* ---------- Actions ---------- */
 .actions{display:grid;gap:16px;justify-items:start}
 .actions__row{display:flex;flex-wrap:wrap;gap:12px}
+.btn--aqua{background:var(--accent);color:var(--base);border-color:var(--accent)}
+.btn--aqua:hover{background:#5BEBD2;border-color:#5BEBD2}
 .btn svg{width:17px;height:17px;flex:none}
 .share-note{font-size:13px;color:var(--tx);background:var(--paper-2);border-radius:var(--r-sm);padding:10px 14px;user-select:all;overflow-wrap:anywhere}
 .again{display:grid;gap:14px;justify-items:start;max-width:62ch}

@@ -23,27 +23,33 @@ var STYLES={
  believer:{n:"The Believer",c:"Richard Branson",t:0,d:0,made:"Gut, through people",
   desc:"Sells the vision before it exists and pulls people into it on belief alone. Moves fast, starts more than they finish, and the room follows because they want to.",
   best:"optimiser",work:"architect",
-  why:"You sell it, they prove it and build the machine that holds it up."},
+  why:"You sell it, they prove it and build the machine that holds it up.",
+  whyWork:"You start things on belief, they only commit when it's right, so the ideas you back get the discipline to last."},
  charger:{n:"The Charger",c:"Elon Musk",t:0,d:1,made:"Gut, through systems",
   desc:"Backs an instinct hard, then builds a machine around it at brutal speed. Rewrites the plan mid flight and expects everyone to keep up.",
   best:"anchor",work:"architect",
-  why:"You set the direction hard and fast, they keep the humans intact behind you."},
+  why:"You set the direction hard and fast, they keep the humans intact behind you.",
+  whyWork:"You move fast on instinct, they wait for the right call, so your speed lands on the bets worth making."},
  purist:{n:"The Purist",c:"Steve Jobs",t:0,d:2,made:"Gut, through the work",
   desc:"Knows what good looks like and will not ship until it is. Slow to release, uncompromising on detail, and usually right in a way that annoys people.",
   best:"optimiser",work:"anchor",
-  why:"You will not compromise the work, so they run everything around it."},
+  why:"You won't compromise the work, they run everything around it, so the detail gets the time it needs.",
+  whyWork:"You hold the standard on the work, they hold the team together, so people stay with you while you push."},
  anchor:{n:"The Anchor",c:"Ted Lasso",t:1,d:0,made:"Proof, through people",
   desc:"Reads the evidence, then moves the org through trust and patience rather than force. Steady, deeply consultative, plays a long game on culture.",
   best:"charger",work:"purist",
-  why:"You build the team, they supply the conviction to point it somewhere."},
+  why:"You build the team, they supply the conviction to point it somewhere.",
+  whyWork:"You build trust in the team, they hold the standard on the work, so the culture you build ships something great."},
  optimiser:{n:"The Optimiser",c:"Jeff Bezos",t:1,d:1,made:"Proof, through systems",
   desc:"Measures everything and lets the numbers pick the direction. Builds process that outlives them and scales aggressively once the data clears.",
   best:"believer",work:"purist",
-  why:"You measure and systemise, they create the thing worth measuring."},
+  why:"You measure and systemise, they create the thing worth measuring.",
+  whyWork:"You run the numbers, they refuse to ship anything ordinary, so what you scale is worth scaling."},
  architect:{n:"The Architect",c:"Warren Buffett",t:1,d:2,made:"Proof, through the work",
   desc:"Waits for the right thing, then commits and holds. Almost no activity for long stretches, enormous conviction when they finally act.",
   best:"charger",work:"believer",
-  why:"You wait for the right call, they create the momentum between calls."}
+  why:"You wait for the right call, they create the momentum between calls.",
+  whyWork:"You hold your conviction quietly, they sell the vision loudly, so people buy into the calls you make."}
 };
 var ANCHORS={believer:[10,8],charger:[10,50],purist:[10,92],
              anchor:[90,8],optimiser:[90,50],architect:[90,92]};
@@ -147,10 +153,8 @@ function score(ans){
   // The Charger and the Optimiser sit in the middle of Drive, so both of their matches are
   // one step across. They get two best fits and no workable. Everyone else has one of each.
   r.two=(r.s.d===1);
-  r.best="<b>"+B.n+"</b>, "+B.c+". "+r.s.why;
-  r.work= r.two
-    ? "<b>"+W.n+"</b>, "+W.c+". Also one step across on Drive, so they cover the ground you skip as well."
-    : "<b>"+W.n+"</b>, "+W.c+". Two drive steps across, so it works but you will both have to translate more.";
+  r.best="<b>"+B.n+"</b>, like "+B.c+". "+r.s.why;
+  r.work="<b>"+W.n+"</b>, like "+W.c+". "+r.s.whyWork;
   // The screen is about the best fit hire. Look for one whose manner and pace are the opposite of yours.
   var hire= r.two ? a(r.s.best)+" or "+a(r.s.work) : a(r.s.best);
   var any= r.two ? short(r.s.best)+" or "+short(r.s.work) : short(r.s.best);
