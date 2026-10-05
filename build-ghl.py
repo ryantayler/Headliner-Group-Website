@@ -62,7 +62,11 @@ OVERRIDES = """
    makes the whole page depend on a script a builder may or may not run where and
    when it says it will. Not worth the risk on a host we do not control, so the
    content is simply there. Nothing else about the page changes. */
-.rv,.rv.is-in{opacity:1!important;transform:none!important;filter:none!important;transition:none!important}
+/* Only the hover moves are left to transition. The Free Sh!t cards lift on hover with
+   translate and scale, which the reveal never touches. */
+.rv,.rv.is-in{opacity:1!important;transform:none!important;filter:none!important;
+  transition-property:translate,scale,box-shadow,border-color!important;
+  transition-duration:.3s!important;transition-delay:0s!important}
 
 /* The bar carries its ground always. On the site it is clear over the hero and fades
    in on scroll, which the script does by watching the window. A host that scrolls its
@@ -336,6 +340,15 @@ def unlinked(dest):
 if __name__ == '__main__':
     dest = sys.argv[1] if len(sys.argv) > 1 else 'ghl-export'
     main(dest)
+    # Preview only markup never ships. build-preview.py adds it, this never should, so
+    # finding it means something in the pipeline changed. Stop rather than hand it over.
+    leaks = [os.path.join(r, f) for r, _, fs in os.walk(os.path.join(dest, '1-pages'))
+             for f in fs if re.search(r'Preview only|pv-only', open(os.path.join(r, f)).read())]
+    if leaks:
+        print('\nNOT READY. Preview only markup in the export:')
+        for f in leaks:
+            print('  ' + f)
+        sys.exit(1)
     missing = unlinked(dest)
     if missing:
         print('\nNOT READY. No uploaded URL in ghl-assets.json for:')

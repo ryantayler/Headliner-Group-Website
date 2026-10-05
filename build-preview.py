@@ -72,7 +72,7 @@ footer = footer.replace('id="f-nl-home"', 'id="f-nl"').replace('for="f-nl-home"'
 _hid = " ".join(f'<a href="#{s}" data-pg="{s}">{l}</a>' for s,l in PAGES if s in HIDDEN)
 if _hid:
     footer = footer.replace('All rights reserved.</span>',
-        'All rights reserved.</span>\n      <span class="row">Preview only, hidden pages: ' + _hid + '</span>', 1)
+        'All rights reserved.</span>\n      <span class="row pv-only">Preview only, hidden pages: ' + _hid + '</span>', 1)
 # lift the wall and dialog logic straight out of main.js rather than keeping a
 # second copy of it in the preview template
 _js = open('assets/js/main.js').read()

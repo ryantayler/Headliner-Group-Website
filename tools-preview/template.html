@@ -52,6 +52,8 @@
       var on=p.dataset.pg===name; p.hidden=!on; if(on) found=p;
     });
     if(!found){ return show('index',push); }
+    // the preview's own way in to the hidden pages, on Home only
+    document.querySelectorAll('.pv-only').forEach(function(x){ x.hidden = name!=='index'; });
     // Ryan's page runs his own colours. The header and footer follow it.
     document.body.classList.toggle('theme-ryan', name==='ryan');
     document.querySelectorAll('[data-pg]').forEach(function(a){

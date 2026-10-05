@@ -194,34 +194,35 @@
 /* .theme-ryan .hand paints the hand pink, and this one is ink, so it has to outrank it */
 .pillars.theme-ryan .pillars__note{color:var(--ink)}
 .pillars--engine .pillars__intro{max-width:none}
-/* Diagram on the left, the argument on the right. The pillars block fills its width with
-   four cards, this one has the engine drawing instead. Stacked below 900, drawing first,
-   because it is the thing the words are describing. */
-.engine{display:grid;gap:clamp(26px,3.2vw,48px)}
-.engine__copy{display:grid;align-content:center}
-/* The drawing sits in a pillar card, rim and 16px corners, so the two blocks carry the
-   same weight. The drawing carries its own flat ground at #121212, so the card takes that rather than
-   --panel and the two meet with no seam. It gets no bloom and no inset vignette either:
-   both would tint a picture that is already finished. */
-.engine__fig{
-  overflow:hidden;margin:0;
-  display:grid;place-items:center;
-  background:#121212;border:1px solid var(--rim);border-radius:16px;
-  padding:clamp(16px,2.2vw,26px) clamp(8px,1.4vw,18px);
-}
-/* Ryan's own drawing, used as he drew it. 775 wide is its natural size and it never goes
-   past that, because past it the labels go soft rather than bigger. */
-.engine__d{display:block;width:100%;max-width:775px;height:auto}
-/* Two columns from 1040 rather than 900. The drawing's labels are drawn into it, so its
-   width is the only thing deciding whether they can be read, and a narrow two column row
-   left them too small. The card takes the copy's full height, as pillar cards do. */
+/* Laid out like Ryan's A3 poster of the engine, his call 5 October 2026. The drawing sits
+   straight on the block's ground with no card round it, so the block takes the drawing's
+   own flat #121212 and the two meet with no seam. The name, the argument, one handwritten
+   line and the signature run down the right. On a phone it stacks: name, drawing, words. */
+.pillars--engine{background:#121212}
+.engine{display:grid;gap:clamp(18px,2.4vw,30px);
+  grid-template-areas:"h" "fig" "copy"}
+.engine__h{grid-area:h;margin:0}
+.engine__fig{grid-area:fig;margin:0;display:grid;place-items:center}
+.engine__copy{grid-area:copy;display:grid;align-content:start}
+/* Ryan's own drawing, used as he drew it. It never renders past its natural 747, because
+   past it the labels go soft rather than bigger. */
+.engine__d{display:block;width:100%;max-width:747px;height:auto}
+.engine__note{margin:clamp(20px,2.4vw,28px) 0 0;color:var(--ink);font-size:clamp(22px,2.3vw,30px)}
+/* the poster sets its paragraphs a line apart, not the site's looser prose spacing */
+.engine__copy .pillars__intro{gap:1em}
+.pillars.theme-ryan .engine__note{color:var(--ink)}
+/* Two columns from 1040. Drawing left at about the poster's share, the name over the copy
+   on the right, and the drawing centred against the whole of the right column. */
 @media (min-width:1040px){
-  .engine{grid-template-columns:minmax(0,1.34fr) minmax(0,1fr);align-items:stretch}
+  .engine{grid-template-columns:minmax(0,1fr) minmax(0,1.08fr);
+    grid-template-areas:"fig h" "fig copy";grid-template-rows:auto 1fr;
+    column-gap:clamp(32px,3.6vw,56px);row-gap:clamp(14px,1.6vw,20px)}
+  .engine__fig{align-self:center}
 }
-/* On a phone the card takes back most of the inset's padding, for the same reason. Two
-   pixels of it stay, so the card's rim never sits on the inset's own. */
+/* On a phone the drawing takes back most of the inset's padding, because its labels are
+   drawn into it and its width is the only thing that sets how big they are. */
 @media (max-width:620px){
-  .engine__fig{margin-inline:calc(clamp(22px,3vw,40px)*-1 + 8px);padding-inline:6px}
+  .engine__fig{margin-inline:calc(clamp(22px,3vw,40px)*-1 + 4px)}
 }
 .pillars--engine .pillars__sig{margin-top:clamp(18px,2.4vw,28px)}
 .pillars__sig{
@@ -700,6 +701,23 @@ button,input,textarea,select{font:inherit;color:inherit}
    literal because --pink only exists inside theme-ryan. */
 .btn--pink{background:#FF2D6B;color:#0A0A0A;border-color:#FF2D6B}
 .btn--pink:hover{background:#FF5586;border-color:#FF5586}
+
+/* Ryan's card build on his full colour buttons, Ryan's call 5 October 2026: a soft dark
+   vignette inside the fill and a rim at 45 percent of the fill colour. The fill is clipped
+   to the padding box so the rim sits over the page ground and reads as an edge, not as
+   more of the same colour. The vignette is kept to the edges of the pill, so the middle,
+   where the black label sits, keeps its contrast. On the pink button on Home, and on every
+   full colour button on his page, platform buttons included. Ghost buttons stay flat. */
+.btn--pink,.theme-ryan .btn.btn--fill,.theme-ryan .btn.btn--plat{
+  background-clip:padding-box;
+  box-shadow:inset 0 0 14px 1px rgba(0,0,0,.34);
+}
+.btn--pink,.btn--pink:hover,.theme-ryan .btn.btn--fill,.theme-ryan .btn.btn--fill:hover{border-color:rgba(255,45,107,.45)}
+.theme-ryan .btn.btn--li{border-color:rgba(10,102,194,.45)}
+.theme-ryan .btn.btn--ig{border-color:rgba(246,10,93,.45)}
+.theme-ryan .btn.btn--yt{border-color:rgba(220,0,0,.45)}
+.theme-ryan .btn.btn--fb{border-color:rgba(20,105,216,.45)}
+.theme-ryan .btn.btn--plat:hover{box-shadow:inset 0 0 14px 1px rgba(0,0,0,.34),0 0 0 3px rgba(255,255,255,.16)}
 .btn--quiet:hover{background:#22262A;border-color:#22262A;color:var(--ink)}
 
 .tlink{
@@ -932,6 +950,8 @@ a.card:hover,.card--hover:hover{transform:translateY(-4px);border-color:rgba(var
    every cell stays on one line. Four fills two rows at the two column breakpoint, so the
    1px gap grid never shows an empty cell. */
 .stats--phrase .stat .num{font-size:clamp(24px,2.7vw,36px)}
+/* Ryan's record, each figure centred in its own cell, Ryan's call 5 October 2026 */
+.stats--phrase .stat{justify-items:center;align-content:center;text-align:center}
 .stat{background:var(--ground);padding:clamp(24px,3vw,38px) clamp(18px,2vw,28px);display:grid;gap:6px}
 .stat .num{font-size:clamp(30px,4.2vw,50px);line-height:1;color:var(--tx-accent)}
 .stat span{font-size:12.5px;letter-spacing:.02em;color:var(--tx-mute)}
@@ -1029,6 +1049,17 @@ a.card:hover,.card--hover:hover{transform:translateY(-4px);border-color:rgba(var
   transition:background-color .2s var(--ease),transform .2s var(--ease)}
 .magnet:hover .magnet__go{background:#5CEBD2;transform:translateX(-2px)}
 .magnet{cursor:pointer}
+/* The card lifts and grows a touch on hover. It uses translate and scale rather than
+   transform, because the reveal's .rv.is-in sets transform:none after the card has come
+   in, and the pasted build forces that with !important, so a transform lift never moved.
+   The reveal's own three transitions keep their stagger; the hover's run at once. */
+.magnet.rv{transition:opacity .9s var(--ease),transform .9s var(--ease),filter .9s var(--ease),
+  translate .3s var(--ease),scale .3s var(--ease),box-shadow .3s var(--ease),border-color .3s var(--ease)}
+.magnet.rv-d1{transition-delay:.1s,.1s,.1s,0s,0s,0s,0s}
+.magnet.rv-d2{transition-delay:.2s,.2s,.2s,0s,0s,0s,0s}
+.magnet.rv-d3{transition-delay:.3s,.3s,.3s,0s,0s,0s,0s}
+.magnet:hover{translate:0 -6px;scale:1.012;box-shadow:0 24px 44px -24px rgba(10,30,26,.38)}
+@media (prefers-reduced-motion:reduce){.magnet:hover{translate:none;scale:none}}
 .magnet .tlink{color:var(--tx-accent)}
 .magnet:hover .tlink{background-size:100% 1.5px}
 .magnet__gate{

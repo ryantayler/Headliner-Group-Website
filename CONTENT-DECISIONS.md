@@ -2469,3 +2469,35 @@ ones, and have no pictures yet. The *Or take the whole lot* line still says *all
 wide again as at three across, so on desktop the title runs up to 27px (was 18.5), the
 line to about 15px (was 12.8), the label to 12.5px and the pill to 14px. Measured at every
 width from 1120 up, no card clips its own content.
+
+## Round of changes, 5 October 2026
+
+**Free Sh!t cards lift on hover**, 6px up and 1.2 percent bigger over .3s, with a soft
+shadow under. Done with `translate` and `scale`, because the reveal's `transform:none` and
+the pasted build's `!important` on it had been silently cancelling the old transform lift.
+
+**The take the whole lot line is Ryan's own:** *Drop your email and we will send all our
+free assets to you, plus we'll let you know first if we release any new ones.* The
+*all twelve* problem goes with the old line.
+
+**Ryan's record figures are centred in their cells.**
+
+**His full colour buttons carry his card build**: a soft inset vignette and a rim at 45
+percent of the fill, the fill clipped to the padding box so the rim reads. The pink button
+on Home, and every full colour button on his page, platform buttons included. Ghost
+buttons stay flat. The black label holds 5.2 to 1 or better at the darkest point of the
+pink under it.
+
+**Let's chat.** The hero is two words, *Let's chat*, at Free Sh!t's full width scale, and
+*This comes to me and I answer it myself...* is cut.
+
+**The engine block is laid out like Ryan's A3 poster.** His new drawing
+(`optimisation-engine-dark.png`, 747 by 760, flat #121212 ground) sits straight on the
+block, which takes the same #121212, with no card, no rim and no seam. The name moves to
+the top of the right column, over the same four paragraphs, then one handwritten line in
+ink, *Add more than you lose and the engine grows.*, then the signature. The old *no
+closing line* ruling was about the throttle line. This one is from his poster. On a phone
+it stacks name, drawing, words.
+
+**The preview's hidden page links show on Home only**, and `build-ghl.py` refuses to
+finish if preview only markup ever reaches the export.
