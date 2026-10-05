@@ -416,6 +416,15 @@ button{font:inherit}
 }
 .beam-band>.shell{position:relative;z-index:1}
 .beam--r{--beam-a:236deg}
+/* The result hero. The same shaft, from the top right down to the left, slid along so its
+   brightest line crosses the style name rather than the left edge of the band. */
+.beam-band.result::before{
+  background:linear-gradient(var(--beam-a),rgba(var(--accent-rgb),0) 14%,rgba(var(--accent-rgb),.125) 33%,rgba(var(--accent-rgb),0) 52%);
+}
+.beam-band.result::after{
+  -webkit-mask-image:linear-gradient(var(--beam-a),transparent 12%,#000 25%,#000 41%,transparent 54%);
+  mask-image:linear-gradient(var(--beam-a),transparent 12%,#000 25%,#000 41%,transparent 54%);
+}
 
 /* The soft shaft, as the site's .beam-soft, for light bands. About two thirds of the dark
    band's alpha, so it reads as light on paper and not as a printing fault. 236deg rakes it
@@ -485,7 +494,7 @@ button{font:inherit}
 .reads{display:grid;gap:10px;align-content:end}
 .read{display:flex;justify-content:space-between;gap:16px;align-items:baseline;padding:14px 0;border-top:1px solid var(--rim)}
 .read:last-child{border-bottom:1px solid var(--rim)}
-.read span{font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.read span{font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
 .read b{font-weight:600;color:var(--accent);font-size:15px}
 
 /* ---------- Result cards ---------- */
