@@ -159,8 +159,9 @@
      with the builder's form element, so build-ghl.py cuts the page at the GHL:FORM
      markers below: the block above ends on this heading, the block below is the sheet
      and the footer. The band carries no bottom padding, so the builder's form section
-     continues it on the same ground. -->
-<section class="band band--paper band--formhead" id="everything">
+     continues it on the same ground. The zero is inline as well as in the stylesheet,
+     because live the stylesheet's rule did not reach it and left a 132px gap. -->
+<section class="band band--paper band--formhead" id="everything" style="padding-bottom:0">
   <div class="shell shell--narrow">
     <h2 class="display d2 rv">Or take the whole lot at once</h2>
     <p class="sub mt-s rv rv-d1">Drop your email and we will send all twelve in one message, plus the new ones as they land and the updated versions when we change them. If it stops being useful there is an unsubscribe link on every email and no hard feelings.</p>
