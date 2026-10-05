@@ -191,6 +191,12 @@ the only page whose sections are built as sets.
   runs a security check that calls a `<link>` unclosed, and a rejected paste takes the
   whole page with it. Third party embed scripts are appended by `main.js`, guarded by the
   element they belong to. `build-ghl.py` ships zero script tags in `page.html`.
+- **Go High Level adds footer code after the page has loaded.** A script that waits
+  for `DOMContentLoaded` there waits for an event that has already fired and never
+  runs, which left Free Sh!t with no click handlers at all: no pop ups, no filters, no
+  menu. The export's script runs at once when `document.readyState` is past `loading`
+  and only waits when it is not. Test a pasted build by injecting the script after
+  `load`, not only by putting it in the page.
 - **An embed's own box carries its size inline, not from the stylesheet.** A frame with no
   height collapses to nothing, and the page and the stylesheet are pasted separately into
   a builder, so they are not always the same generation. `.ghlform` repeats its

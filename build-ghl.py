@@ -125,9 +125,16 @@ def main(dest):
                 '   is there, so a box that never executes this file leaves the page\n'
                 '   readable rather than blank. */\n'
                 "document.documentElement.classList.add('rv-on');\n\n"
-                '/* The rest runs once the markup exists, so this works from a header slot\n'
-                '   as well as a footer one. */\n'
-                'document.addEventListener("DOMContentLoaded", function () {\n'
+                '/* The rest runs once the markup exists. A header slot runs this before the\n'
+                '   page is parsed, so it waits for DOMContentLoaded. Go High Level adds its\n'
+                '   footer code after that event has already fired, so waiting for it there\n'
+                '   meant the rest never ran: no click handlers, no pop ups, no filters, no\n'
+                '   menu. Confirmed live on 5 October 2026. So it runs now if the page is\n'
+                '   already parsed, and only waits if it is not. */\n'
+                '(function (run) {\n'
+                '  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", run);\n'
+                '  else run();\n'
+                '})(function () {\n'
                 + extra + js.rstrip() + '\n});\n')
 
     for name, (folder, _) in PAGES.items():
