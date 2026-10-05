@@ -306,6 +306,7 @@ svg{width:100%;height:auto;display:block}
 .pagehead__copy{display:grid;gap:18px;max-width:780px}
 .cta-row{display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px;margin-top:10px}
 .axes .d3{font-size:clamp(17px,1.5vw,21px)}
+.mini-cta{display:flex;justify-content:center;margin-top:clamp(28px,3.4vw,44px)}
 .cta-note{font-size:13px;color:var(--tx-mute)}
 
 /* the four axes. A symmetric set, so the head is centred over it */
@@ -315,13 +316,15 @@ svg{width:100%;height:auto;display:block}
 /* the scale, drawn the way the result draws it but empty */
 .axis__scale{display:grid;gap:8px}
 .axis__scale .slabels{gap:8px;white-space:nowrap}
+/* a dot on the middle of each scale, coloured, so the empty bar still reads as a scale */
+.axis__scale .sdot{left:50%;background:var(--accent-deep);border-color:#fff;box-shadow:0 0 0 1px var(--accent-deep),0 2px 8px -2px rgba(17,22,20,.35)}
 
 /* the six styles, laid out the way the map lays them out: gut on the left, proof on the right */
 .styles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2vw,26px)}
 @media (max-width:960px){.styles{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:620px){.styles{grid-template-columns:1fr}}
 .style__top{display:grid;gap:4px}
-.style__read{font-size:14px;font-weight:500;color:var(--tx-mute)}
+.style__read{font-size:14px;font-weight:600;color:var(--tx-accent)}
 .style__made{align-self:flex-start;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
   padding:5px 11px;border-radius:100px;border:1px solid var(--tx-accent);color:var(--tx-accent);background:rgba(10,114,97,.07)}
 
