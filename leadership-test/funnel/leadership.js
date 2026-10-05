@@ -195,7 +195,7 @@ function mapSVG(r){
     lab+='<text class="zlab'+on+'" x="'+tx+'" y="'+y+'"'+an+'>'+short(k)+'</text>'+
       '<text class="zceleb'+on+'" x="'+tx+'" y="'+(y+(on?4.2:3.8))+'"'+an+'>'+STYLES[k].c+'</text>';
   });
-  return '<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Where you sit on the Trigger and Drive map">'+
+  return '<svg class="map" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Where you sit on the Trigger and Drive map">'+
     '<rect x="8" y="8" width="84" height="76" fill="'+C.paper+'" stroke="'+C.rim+'" stroke-width=".4" rx="2"></rect>'+
     cellRect(r,8)+
     '<line x1="50" y1="8" x2="50" y2="84" stroke="'+C.rim+'" stroke-width=".4"></line>'+
@@ -286,72 +286,28 @@ function card(title,sub,body,extra){
 }
 
 /* the cards under the hero */
-function cardsHTML(r){
+function cardsHTML(r,pre){
   var gap=' style="margin-top:clamp(16px,2vw,26px)"';
   var out='<div class="grid g2">'+
     card("Where you sit","Trigger and Drive place your dot. The six labels are the anchor points those two axes produce.",
-      mapSVG(r)+'<div>'+slidersHTML(r)+'</div>')+
+      mapSVG(r)+'<div class="sliders">'+slidersHTML(r)+'</div>')+
     card("Your blend","Nobody is one style. This is how close your dot sits to each of the six, listed in the same order as the map. They're match scores, so they don't add to 100.",
       '<div class="blend">'+barsHTML(r)+'</div><div class="raw">'+rawHTML(r)+'</div>')+
   '</div>'+
   card("Who to hire","A match works whether you're hiring them or working for them. Your style and its two matches are lit on the grid.",
-    '<div class="hire">'+gridSVG(r)+'<div>'+hireHTML(r)+'</div></div>',gap);
+    '<div class="hire">'+gridSVG(r,pre)+'<div>'+hireHTML(r)+'</div></div>',gap);
   return out;
 }
 
 /* ---------- Print sheet, result page only ---------- */
+/* The print sheet is the result page itself, one A4 page: the same hero and the same
+   cards, built by the same functions and sized for paper by the print rules. */
 function printHTML(r){
-  var pcx=(8+r.tp/100*84).toFixed(2), pcy=(6+r.dp/100*76).toFixed(2), lab="";
-  GRID.forEach(function(k,i){
-    var left=i<3, y=[12.1,44,75.9][i%3], tx=left?11:89, an=left?"":' text-anchor="end"';
-    lab+='<text class="pl" x="'+tx+'" y="'+(y-.3)+'"'+an+'>'+short(k)+'</text>'+
-      '<text class="pc" x="'+tx+'" y="'+(y+2.9)+'"'+an+'>'+STYLES[k].c+'</text>';
-  });
-  var SL=[["Trigger","Gut","Proof",r.tp,r.tri===0,r.tri===1],
-          ["Drive","Through people","The work",r.dp,r.dri===0,r.dri===2],
-          ["Manner","Blunt","Measured",r.mp,r.man==="blunt",r.man==="measured"],
-          ["Reactiveness","Immediate","Deferred",r.xp,r.rea==="immediate",r.rea==="deferred"]];
-  var styles=GRID.map(function(k){var s=STYLES[k];return '<tr><td class="n">'+short(k)+'</td><td>'+s.c+'</td><td>'+s.made+'</td><td>'+s.desc.split(". ")[0]+'.</td></tr>';}).join("");
-  var pairs=GRID.map(function(k){var s=STYLES[k];return '<tr><td class="n">'+short(k)+'</td><td><b>'+short(s.best)+(s.d===1?', '+short(s.work):'')+'</b></td><td>'+(s.d===1?'None':short(s.work))+'</td><td>'+s.why+'</td></tr>';}).join("");
   return '<section class="psheet">'+
-    '<div class="pbrand"><div class="pk">Leadership Styles Test</div><div class="pmark">Headliner<small>Group</small></div></div>'+
-    '<div class="phero"><div class="pk">Your leadership style</div><h1>'+r.s.n+'</h1><div class="pceleb">'+r.s.c+'</div><p>'+r.s.desc+'</p></div>'+
-    '<div class="pcols"><div><h2 style="margin-top:0">Where you sit</h2>'+
-      '<svg class="pmap" viewBox="0 0 100 96" xmlns="http://www.w3.org/2000/svg">'+
-      '<rect x="8" y="6" width="84" height="76" fill="'+C.paper+'" stroke="'+C.rim+'" stroke-width=".4" rx="2"></rect>'+cellRect(r,6)+
-      '<line x1="50" y1="6" x2="50" y2="82" stroke="'+C.rim+'" stroke-width=".4"></line>'+
-      '<line x1="8" y1="31.3" x2="92" y2="31.3" stroke="'+C.rim+'" stroke-width=".4"></line>'+
-      '<line x1="8" y1="56.7" x2="92" y2="56.7" stroke="'+C.rim+'" stroke-width=".4"></line>'+lab+
-      '<circle id="pd3" cx="'+pcx+'" cy="'+pcy+'" r="6" fill="#2DE2C3" opacity=".3"></circle>'+
-      '<circle id="pd1" cx="'+pcx+'" cy="'+pcy+'" r="2" fill="#fff" stroke="'+C.deep+'" stroke-width="1.2"></circle>'+
-      '<text class="pa" x="8" y="89">Gut</text><text class="pa" x="92" y="89" text-anchor="end">Proof</text>'+
-      '<text class="pa" x="8" y="4">Through people</text><text class="pa" x="92" y="4" text-anchor="end">Through the work</text></svg></div>'+
-      '<div><h2 style="margin-top:0">Your axes</h2>'+SL.map(function(a){
-        return '<div class="psl"><div class="pslname">'+a[0]+'</div><div class="pslends"><span class="'+(a[4]?"on":"")+'">'+a[1]+'</span><span class="'+(a[5]?"on":"")+'">'+a[2]+'</span></div>'+
-          '<div class="pbar"><div class="pbarf" style="'+fromMid(a[3])+'"></div><div class="pdot" style="left:'+a[3]+'%"></div></div></div>';}).join("")+'</div></div>'+
-    '<h2>Your blend</h2><div class="pblend">'+ORDER.map(function(k){var v=r.scored[k],on=(k===r.key);
-      return '<div class="pbitem'+(on?" on":"")+'"><div class="pbrow"><span class="pbname">'+STYLES[k].n+(on?'<span class="pyou">You</span>':'')+'</span><span>'+v+'%</span></div><div class="pbtrack"><div class="pbfill" style="width:'+v+'%"></div></div></div>';}).join("")+'</div>'+
-    '<h2>Who to hire</h2><div class="phirewrap">'+gridSVG(r,"p")+'<div class="phire"><div><span class="tg">Best fit</span><span>'+r.best+'</span></div><div><span class="tg">'+(r.two?"Best fit":"Workable")+'</span><span>'+r.work+'</span></div><div><span class="tg">Screen</span><span>'+r.screen+'</span></div></div></div>'+
-    '<div class="pfoot">'+rawHTML(r)+' Headliner Leadership Styles Test. headlinergroup.com.au</div>'+
-  '</section>'+
-  '<section class="psheet">'+
-    '<div class="pbrand"><div class="pk">The model</div><div class="pmark">Headliner<small>Group</small></div></div>'+
-    '<h1>Headliner Leadership Styles</h1>'+
-    '<p class="pintro">Twenty eight statements, four axes, six styles. It tells you what kind of leader you are, who to hire under you, and who you work best under.</p>'+
-    '<h2>The four axes</h2><table><tr><th style="width:24mm">Axis</th><th style="width:44mm">Scale</th><th>What it measures</th><th style="width:30mm">Role</th></tr>'+
-    '<tr><td class="n">Trigger</td><td>Gut to Proof</td><td>What you need before you act. Some move on a read. Some need it in hand first.</td><td><b>Sets your style</b></td></tr>'+
-    '<tr><td class="n">Drive</td><td>People, Systems, The work</td><td>What moves the work forward. The people on it, the systems around it, or the work itself.</td><td><b>Sets your style</b></td></tr>'+
-    '<tr><td class="n">Manner</td><td>Blunt to Measured</td><td>How it lands. Blunt keeps the point intact. Measured protects the relationship.</td><td>Screens the hire</td></tr>'+
-    '<tr><td class="n">Reactiveness</td><td>Immediate to Deferred</td><td>How fast you get to it. Immediate hides nothing. Deferred arrives considered.</td><td>Screens the hire</td></tr></table>'+
-    '<h2>The six styles</h2><table><tr><th style="width:24mm">Style</th><th style="width:26mm">Closest read</th><th style="width:34mm">Made up of</th><th>In one line</th></tr>'+styles+'</table>'+
-    '<h2>Who pairs with who</h2><table><tr><th style="width:24mm">You are</th><th style="width:26mm">Best fit</th><th style="width:24mm">Workable</th><th>Why the best fit works</th></tr>'+pairs+'</table>'+
-    '<h2>The rules behind the pairings</h2><div class="prules">'+
-      '<div><b>Trigger, always opposite.</b> Someone has to be the one who says prove it, and someone has to be the one who moves before the proof arrives.</div>'+
-      '<div><b>Drive, one step across, not two.</b> Same drive and nobody covers the ground you skip. Two steps and you have no shared language.</div>'+
-      '<div><b>Manner, opposite.</b> Two blunt leaders and people stop bringing things forward. Two measured leaders and the point never lands hard enough.</div>'+
-      '<div><b>Reactiveness, opposite.</b> Two immediate leaders and every small thing becomes an event. Two deferred leaders and problems age while everyone plans.</div>'+
-      '<div><b>No hierarchy.</b> A match is a match whether you are hiring them or working for them.</div></div>'+
-    '<div class="pfoot">Headliner Leadership Styles Test. headlinergroup.com.au</div>'+
+    '<div class="pbrand"><div class="pk">Headliner Leadership Styles Test</div><div class="pmark">Headliner<small>Group</small></div></div>'+
+    '<div class="band--dark beam-band result phero">'+heroHTML(r,"Your leadership style is")+'</div>'+
+    '<div class="pcards band--paper2">'+cardsHTML(r,"p")+'</div>'+
+    '<div class="pfoot">headlinergroup.com.au</div>'+
   '</section>';
 }
 
