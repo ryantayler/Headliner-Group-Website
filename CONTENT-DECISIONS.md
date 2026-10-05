@@ -2361,8 +2361,11 @@ header, footer and hero photograph as Free Sh!t, with a shorter hero.
 
 The white band holds the worksheet itself, embedded from the CRM's file host, with
 *Download the PDF* and *Back to Free Sh!t* under it. Below 700 the frame comes out,
-because a phone will not draw a PDF inside a page, and a card reading *Open the
-worksheet* takes its place.
+because a phone will not draw a PDF inside a page, and a card takes its place. The card
+shows a picture of the worksheet with *Open the worksheet* under it, so a phone gets the
+sheet rather than a blank box. The picture, `assets/img/engine-worksheet.jpg`, is
+rendered from Ryan's design file for the worksheet, not from the PDF, which this box
+cannot reach.
 
-The copy is the name and one line. *It's yours. Have a read below, or download it and
-print it out.* Drafted, not yet ruled on by Ryan.
+**The hero is the name alone.** Ryan cut the line under it, *It's yours. Have a read
+below, or download it and print it out.*
