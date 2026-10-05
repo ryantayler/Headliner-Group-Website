@@ -97,6 +97,12 @@ Ryan's `theme-ryan` body class is set from his script because a pasted block can
 Verify a build by pasting each page into a bare document and rendering it, not by reading
 the output, and have that check read a token and the `rv-on` class as well as the console.
 
+**The live site runs on linked images only.** Ryan ruled this on 5 October 2026. Every
+picture in an export is an uploaded URL from `ghl-assets.json`, never the `ASSETS_BASE`
+token and never a file for him to upload and swap in. `build-ghl.py` exits 1 and names
+the file when one has no URL. When it does, stop and ask Ryan for the link before handing
+anything over. Do not ship the build with a find and replace step instead.
+
 ## The look
 
 Section 12 of the stylesheet is how the site looks. It was built behind a

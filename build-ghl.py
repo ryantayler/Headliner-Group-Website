@@ -280,5 +280,27 @@ def readme(dest):
     open(os.path.join(dest, 'README.md'), 'w').write('\n'.join(t))
 
 
+def unlinked(dest):
+    """Pictures still behind the token, by page. The live site runs on linked images
+    only, so a build that has any is not one to hand over. Ask Ryan for the URL, add it
+    to ghl-assets.json and build again."""
+    out = {}
+    for folder, _ in PAGES.values():
+        doc = open(os.path.join(dest, '1-pages', folder, 'page.html')).read()
+        doc += open(os.path.join(dest, '1-pages', folder, 'styles.css')).read()
+        hit = sorted(set(re.findall(TOKEN + r'/([A-Za-z0-9_.-]+)', doc)))
+        if hit:
+            out[folder] = hit
+    return out
+
+
 if __name__ == '__main__':
-    main(sys.argv[1] if len(sys.argv) > 1 else 'ghl-export')
+    dest = sys.argv[1] if len(sys.argv) > 1 else 'ghl-export'
+    main(dest)
+    missing = unlinked(dest)
+    if missing:
+        print('\nNOT READY. No uploaded URL in ghl-assets.json for:')
+        for folder, files in missing.items():
+            print('  %s: %s' % (folder, ', '.join(files)))
+        print('Ask Ryan for the link to each one before handing this over.')
+        sys.exit(1)
