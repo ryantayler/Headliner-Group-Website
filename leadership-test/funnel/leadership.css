@@ -217,6 +217,10 @@ button{font:inherit}
 .cardhead{display:grid;gap:8px}
 svg{width:100%;height:auto;display:block}
 .pgrid{max-width:760px;margin-inline:auto}
+/* who to hire: the pairing grid on the left, the three rows on the right */
+.hire{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:clamp(20px,3.4vw,48px);align-items:center}
+.hire .pgrid{max-width:none}
+@media (max-width:860px){.hire{grid-template-columns:1fr}.hire .pgrid{max-width:560px}}
 .axlab{font-family:Inter,sans-serif;font-size:2.7px;fill:#5B6360;font-weight:600;letter-spacing:.12em;text-transform:uppercase}
 .zlab{font-family:'Archivo Black',Impact,sans-serif;font-size:2.9px;fill:#111614;text-transform:uppercase;letter-spacing:-.02em}
 .zceleb{font-family:Inter,sans-serif;font-size:2.3px;fill:#5B6360;font-weight:500}
@@ -316,11 +320,6 @@ svg{width:100%;height:auto;display:block}
 .example .result{padding-block:clamp(40px,5vw,64px)}
 .example .result .d1{font-size:clamp(34px,5.6vw,72px)}
 .example__body{padding:clamp(16px,2.4vw,28px)}
-.gets{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 26px;list-style:none;margin-top:clamp(24px,3vw,36px)}
-@media (max-width:860px){.gets{grid-template-columns:1fr}}
-.gets li{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start;font-size:.97rem;color:var(--tx-mute)}
-.gets li b{color:var(--tx);font-weight:600}
-.gets li::before{content:"";width:8px;height:8px;margin-top:9px;border-radius:100px;background:var(--tx-accent)}
 
 /* ---------- Questions page ---------- */
 .prog__in{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:18px;align-items:center}

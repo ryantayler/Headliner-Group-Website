@@ -85,12 +85,12 @@ var Q=[
 ];
 var LBL=["Strongly disagree","Mildly disagree","Mildly agree","Strongly agree"];
 
-/* The landing page example. A real answer set run through the real scoring,
-   so the example is exactly what a visitor gets back. It lands on the Purist. */
+/* Ryan's own answers, taken 17 August 2026. The landing page runs them
+   through the real scoring, so it shows his actual result. The Purist. */
 var EXAMPLE=[3,1,3,3, 3,4,4,2, 4,2,1,1, 4,3,4,2, 3,1,3,3, 2,4,3,2, 4,3,3,3];
 
 var KEY="hl-leadership-v3";
-var C={deep:"#0A7261",mid:"#1FB89D",rim:"#D7DDDA",grey:"#C9D0CD",card:"#FFFFFF",paper:"#F2F4F3",dot:"#B5BDBA"};
+var C={cell:"#D5F3EC",deep:"#0A7261",mid:"#1FB89D",rim:"#D7DDDA",grey:"#C9D0CD",card:"#FFFFFF",paper:"#F2F4F3",dot:"#B5BDBA"};
 
 function $(id){return document.getElementById(id);}
 function cap(s){return s.charAt(0).toUpperCase()+s.slice(1);}
@@ -165,6 +165,13 @@ function heroHTML(r,tag){
   '</div>';
 }
 
+/* the cell the dot lands in, lit so the style reads off the map at a glance.
+   top is where the map's box starts, 8 on screen and 6 on the print sheet */
+function cellRect(r,top){
+  var h=76/3, x=r.tri?50:8, y=top+r.dri*h;
+  return '<rect class="cell" x="'+x+'" y="'+y.toFixed(2)+'" width="42" height="'+h.toFixed(2)+'" fill="'+C.cell+'"></rect>';
+}
+
 function mapSVG(r){
   var cx=(8+r.tp/100*84).toFixed(2), cy=(8+r.dp/100*76).toFixed(2), lab="";
   GRID.forEach(function(k,i){
@@ -175,6 +182,7 @@ function mapSVG(r){
   });
   return '<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Where you sit on the Trigger and Drive map">'+
     '<rect x="8" y="8" width="84" height="76" fill="'+C.paper+'" stroke="'+C.rim+'" stroke-width=".4" rx="2"></rect>'+
+    cellRect(r,8)+
     '<line x1="50" y1="8" x2="50" y2="84" stroke="'+C.rim+'" stroke-width=".4"></line>'+
     '<line x1="8" y1="33.3" x2="92" y2="33.3" stroke="'+C.rim+'" stroke-width=".4"></line>'+
     '<line x1="8" y1="58.7" x2="92" y2="58.7" stroke="'+C.rim+'" stroke-width=".4"></line>'+lab+
@@ -255,8 +263,8 @@ function card(title,sub,body,extra){
     (sub?'<p class="sub">'+sub+'</p>':'')+'</div>'+body+'</div>';
 }
 
-/* the cards under the hero. full adds the pairing grid */
-function cardsHTML(r,full){
+/* the cards under the hero */
+function cardsHTML(r){
   var gap=' style="margin-top:clamp(16px,2vw,26px)"';
   var out='<div class="grid g2">'+
     card("Where you sit","Trigger and Drive place your dot. The six labels are the anchor points those two axes produce.",
@@ -264,8 +272,8 @@ function cardsHTML(r,full){
     card("Your blend","Nobody is one style. This is how close your dot sits to each of the six, listed in the same order as the map. They're match scores, so they don't add to 100.",
       '<div>'+barsHTML(r)+'</div><div class="raw">'+rawHTML(r)+'</div>')+
   '</div>'+
-  card("Who to hire","A match works whether you're hiring them or working for them.",'<div>'+hireHTML(r)+'</div>',gap);
-  if(full) out+=card("The pairing grid","Your style and its two matches are lit.",gridSVG(r),gap);
+  card("Who to hire","A match works whether you're hiring them or working for them. Your style and its two matches are lit on the grid.",
+    '<div class="hire">'+gridSVG(r)+'<div>'+hireHTML(r)+'</div></div>',gap);
   return out;
 }
 
@@ -288,7 +296,7 @@ function printHTML(r){
     '<div class="phero"><div class="pk">Your leadership style</div><h1>'+r.s.n+'</h1><div class="pceleb">Closest read, '+r.s.c+'</div><p>'+r.s.desc+'</p></div>'+
     '<div class="pcols"><div><h2 style="margin-top:0">Where you sit</h2>'+
       '<svg viewBox="0 0 100 96" xmlns="http://www.w3.org/2000/svg">'+
-      '<rect x="8" y="6" width="84" height="76" fill="'+C.paper+'" stroke="'+C.rim+'" stroke-width=".4" rx="2"></rect>'+
+      '<rect x="8" y="6" width="84" height="76" fill="'+C.paper+'" stroke="'+C.rim+'" stroke-width=".4" rx="2"></rect>'+cellRect(r,6)+
       '<line x1="50" y1="6" x2="50" y2="82" stroke="'+C.rim+'" stroke-width=".4"></line>'+
       '<line x1="8" y1="31.3" x2="92" y2="31.3" stroke="'+C.rim+'" stroke-width=".4"></line>'+
       '<line x1="8" y1="56.7" x2="92" y2="56.7" stroke="'+C.rim+'" stroke-width=".4"></line>'+lab+
@@ -328,8 +336,8 @@ function printHTML(r){
 /* ---------- Pages ---------- */
 function initLanding(){
   var r=score(EXAMPLE);
-  $("example-hero").innerHTML=heroHTML(r,"Example result");
-  $("example-cards").innerHTML=cardsHTML(r,false);
+  $("example-hero").innerHTML=heroHTML(r,"Ryan Tayler's leadership style");
+  $("example-cards").innerHTML=cardsHTML(r);
   $("styles").innerHTML=GRID.map(function(k){
     var s=STYLES[k];
     return '<article class="card"><div class="style__top"><h3 class="display d3">'+s.n+'</h3>'+
@@ -387,7 +395,7 @@ function initResult(){
   if(!ans){ $("empty").hidden=false; return; }
   var r=score(ans);
   $("result-hero").innerHTML=heroHTML(r,"Your leadership style");
-  $("result-cards").innerHTML=cardsHTML(r,true);
+  $("result-cards").innerHTML=cardsHTML(r);
   $("result").hidden=false;
   document.title=r.s.n+", Headliner Leadership Styles Test";
   // the print sheet sits directly on body, so the print rules can hide everything else
