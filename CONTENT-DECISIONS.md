@@ -2379,3 +2379,16 @@ one in every way, for the other worksheet. Hidden, reached from the Free Sh!t fo
 worksheet embedded in the white band, and a picture of it in its place on a phone. The
 live picture is Ryan's upload. The local `assets/img/pillars-worksheet.jpg` is rendered
 from his design file, for the preview only.
+
+## Free Sh!t sheets, title, line and button
+
+Ryan, 5 October 2026. Every detail sheet is the title, the line under it and the download
+button, and nothing else. The group label above the title (*Framework & worksheet*), the
+format chip (*PDF*, *XLSX*) and *Free. One short form.* are off all seven. The wall cards
+keep their group label and format badge.
+
+**The two worksheets show the worksheet.** The engine and the 4 pillars cards carry a
+picture of the sheet itself in place of the photo slot, cropped to its top left on the
+card. Opened, the sheet shows the whole worksheet uncropped beside the copy, stacked on a
+phone, so people see what they are getting before the form. Live, both pictures are Ryan's
+uploads, through `ghl-assets.json`.

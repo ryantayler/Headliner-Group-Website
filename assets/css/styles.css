@@ -1057,6 +1057,9 @@ a.card:hover,.card--hover:hover{transform:translateY(-4px);border-color:rgba(var
   #wall .magnet .ph>span{display:none}
   #wall .magnet .ph::before{font-size:8.5px;letter-spacing:.1em;white-space:nowrap}
 }
+/* A worksheet as the card art. On the card it is cropped to its top left corner, the
+   logo and the start of the sheet, so it reads as a document at thumbnail size. */
+.media--doc img{object-position:left top}
 .magnet[hidden]{display:none}
 .empty{margin-top:32px;color:var(--tx-mute)}
 
@@ -1079,8 +1082,19 @@ a.card:hover,.card--hover:hover{transform:translateY(-4px);border-color:rgba(var
 .sheet__media .media{position:absolute;inset:0;border-radius:0;aspect-ratio:auto}
 .sheet__body{padding:clamp(26px,3.4vw,48px)}
 .sheet__body .sub{color:var(--sub-l);margin-top:14px}
-/* the format already has its own chip in the body, and up here it fouls the close */
+/* the badge fouls the close up here, and the sheet does not name the format */
 .sheet__media .magnet__fmt{display:none}
+/* A worksheet opens as the whole sheet, uncropped. It takes the wider column at its own
+   ratio and the copy sits beside it, so title, line and button stay on screen with it.
+   Below 860 the sheet stacks, worksheet on top. */
+.sheet__grid:has(.media--doc){grid-template-columns:minmax(0,1.55fr) minmax(0,1fr)}
+.sheet__media:has(.media--doc){min-height:0;display:grid;align-items:center;padding:clamp(14px,2.4vw,28px);background:var(--paper-2)}
+.sheet__media .media--doc{position:relative;inset:auto;aspect-ratio:auto;background:transparent;border-radius:0}
+.sheet__media .media--doc img{display:block;width:100%;height:auto;object-fit:contain;
+  border:1px solid var(--rim-l);border-radius:var(--r-sm)}
+.sheet__grid:has(.media--doc) .sheet__body{align-self:center}
+/* the copy column is narrower here, and OPTIMISATION is one long word in the brand face */
+.sheet__grid:has(.media--doc) .d2{font-size:clamp(24px,2.3vw,32px)}
 .sheet__x{
   position:absolute;top:14px;right:14px;z-index:3;width:42px;height:42px;border-radius:100px;
   background:rgba(10,10,10,.62);border:1px solid rgba(255,255,255,.14);cursor:pointer;color:var(--ink);
@@ -1097,6 +1111,10 @@ a.card:hover,.card--hover:hover{transform:translateY(-4px);border-color:rgba(var
   .sheet__panel{width:100%;max-height:none;min-height:100%;border:0;border-radius:0}
   .sheet__grid{grid-template-columns:1fr}
   .sheet__media{min-height:min(46vh,300px)}
+  .sheet__grid:has(.media--doc){grid-template-columns:1fr}
+  /* the top pad clears the close button off the worksheet */
+  .sheet__media:has(.media--doc){min-height:0;padding-top:66px}
+  .sheet__grid:has(.media--doc) .d2{font-size:clamp(26px,7vw,34px)}
 }
 body.sheet-open{overflow:hidden}
 
