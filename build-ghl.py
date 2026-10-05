@@ -22,8 +22,10 @@ PAGES = {
     # hidden. The Free Sh!t form sends people here, nothing on the site links to it
     'optimisation-engine.html': ('optimisation-engine', '/optimisation-engine'),
     'four-pillars.html':        ('four-pillars',        '/four-pillars'),
-    # hidden. The 4 pillars card on Free Sh!t leads here, the form sends on to /four-pillars
-    'four-pillars-form.html':   ('four-pillars-form',   '/four-pillars-form'),
+    # hidden. Each worksheet card on Free Sh!t leads to its form page, and the form sends
+    # on to the download page. The 4 pillars slug is the one Ryan set live.
+    'four-pillars-form.html':   ('four-pillars-form',   '/4-pillars-of-partnerships-form-page'),
+    'optimisation-engine-form.html': ('optimisation-engine-form', '/optimisation-engine-form-page'),
 }
 
 # Anton, Archivo Black, Caveat and Inter are all Google faces, self hosted here only

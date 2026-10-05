@@ -2402,3 +2402,15 @@ Lead Magnet*), placed with the builder's own form element, because its host cann
 reached from here and third party embeds stay out of the markup. The export ships the
 page as a block above the form and a block below it. On submit the form sends people to
 `/four-pillars`.
+
+## Worksheet buttons go to their form pages
+
+The *Download the PDF* button on the engine and 4 pillars sheets is now a link to that
+worksheet's form page, not the site's placeholder form. Live, the 4 pillars one is
+Ryan's `/4-pillars-of-partnerships-form-page`, and the engine one is
+`/optimisation-engine-form-page`. The other five sheets still open the placeholder form
+until their worksheets have pages.
+
+`optimisation-engine-form.html` is the engine's form page, built the same way as the
+4 pillars one: the engine hero, the light band for the builder's form element, the footer.
+On submit its form sends people to `/optimisation-engine`.

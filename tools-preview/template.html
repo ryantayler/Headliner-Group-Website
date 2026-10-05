@@ -69,10 +69,12 @@
     var pg=a.dataset.pg;
     if(!pg){
       var h=a.getAttribute('href')||'';
-      var m=h.match(/^([a-z]+)\.html$/); if(m) pg=m[1];
+      var m=h.match(/^([a-z0-9-]+)\.html$/); if(m) pg=m[1];
     }
     if(!pg) return;
     e.preventDefault();
+    var sh=document.getElementById('sheet');
+    if(sh&&!sh.hidden){ sh.hidden=true; document.body.classList.remove('sheet-open'); }
     if(nav.classList.contains('is-open')) burger.click();
     show(pg,true);
   });
