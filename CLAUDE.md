@@ -197,6 +197,12 @@ the only page whose sections are built as sets.
   menu. The export's script runs at once when `document.readyState` is past `loading`
   and only waits when it is not. Test a pasted build by injecting the script after
   `load`, not only by putting it in the page.
+- **The builder puts its own CSS ahead of ours, so the stylesheet's `@import` is
+  dropped.** A browser only honours `@import` as the first rule. Live, Archivo Black was
+  never defined and every heading fell back to Impact, while the builder's preview,
+  which keeps our CSS first, looked right. The export's script appends the Google Fonts
+  `<link>` itself. A token check does not catch this, so read `document.fonts` for a
+  loaded Archivo Black.
 - **An embed's own box carries its size inline, not from the stylesheet.** A frame with no
   height collapses to nothing, and the page and the stylesheet are pasted separately into
   a builder, so they are not always the same generation. `.ghlform` repeats its

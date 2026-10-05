@@ -30,9 +30,10 @@ PAGES = {
 
 # Anton, Archivo Black, Caveat and Inter are all Google faces, self hosted here only
 # because this build has no network. On a live site the CDN saves uploading nine files.
-FONTS = ("@import url('https://fonts.googleapis.com/css2?family=Anton&"
-         "family=Archivo+Black&family=Caveat:wght@400..700&"
-         "family=Inter:wght@400;500;600&display=swap');\n\n")
+FONTS_URL = ("https://fonts.googleapis.com/css2?family=Anton&"
+             "family=Archivo+Black&family=Caveat:wght@400..700&"
+             "family=Inter:wght@400;500;600&display=swap")
+FONTS = "@import url('" + FONTS_URL + "');\n\n"
 
 OVERRIDES = """
 
@@ -125,6 +126,19 @@ def main(dest):
                 '   is there, so a box that never executes this file leaves the page\n'
                 '   readable rather than blank. */\n'
                 "document.documentElement.classList.add('rv-on');\n\n"
+                '/* The fonts load from here as well as from the stylesheet. The stylesheet\n'
+                '   loads them with @import, which a browser only honours as the first rule,\n'
+                '   and the live site puts the builder\'s own CSS ahead of ours, so the import\n'
+                '   was dropped and every heading fell back to Impact. Confirmed live on\n'
+                '   5 October 2026: Roboto and Inter loaded, Archivo Black not defined. */\n'
+                '(function () {\n'
+                '  if (document.querySelector(\'link[data-hl-fonts]\')) return;\n'
+                '  var l = document.createElement("link");\n'
+                '  l.rel = "stylesheet";\n'
+                '  l.href = "' + FONTS_URL + '";\n'
+                '  l.setAttribute("data-hl-fonts", "");\n'
+                '  document.head.appendChild(l);\n'
+                '})();\n\n'
                 '/* The rest runs once the markup exists. A header slot runs this before the\n'
                 '   page is parsed, so it waits for DOMContentLoaded. Go High Level adds its\n'
                 '   footer code after that event has already fired, so waiting for it there\n'
