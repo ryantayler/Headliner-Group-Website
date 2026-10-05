@@ -3014,12 +3014,12 @@ window.DIAG ={
     },
     "dontDoYet": {
       "talent": {
-        "lead": "Until the layer exists, leave these alone.",
+        "lead": "Until the talent exists, leave these alone.",
         "items": [
           "Don't hire another doer. Every one you add reports to you, and you're the bottleneck.",
-          "Don't take on a new market or a new location. Both land on your desk.",
-          "Don't start anything that needs your attention for six months.",
-          "Don't increase lead generation. The work you win still has to route through you."
+          "Don't take on more work. It will make your constraint worse.",
+          "Don't start anything new that needs your attention for ninety days.",
+          "Don't increase lead generation. The work you win still has to route through the constraint."
         ]
       },
       "fulfilment": {

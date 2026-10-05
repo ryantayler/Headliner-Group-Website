@@ -19,9 +19,11 @@ const slots = t => esc(t)
 // Who wrote each line. Anything not listed in provenance.json is Claude's, because
 // claiming Ryan signed something off when he did not is the worse of the two errors.
 const PROV = JSON.parse(fs.readFileSync('./provenance.json', 'utf8'));
+// The path rides on the element so the page can be diffed against the ledger
+// rather than the two counts being eyeballed.
 const mark = path => PROV[path] === 'yes'
-  ? '<span class="who who--y" title="Ryan wrote this">\u2713</span>'
-  : '<span class="who who--n" title="Claude wrote this, not signed off">\u2715</span>';
+  ? `<span class="who who--y" data-p="${path}" title="Ryan wrote this">\u2713</span>`
+  : `<span class="who who--n" data-p="${path}" title="Claude wrote this, not signed off">\u2715</span>`;
 
 const TAG = { fixed:'<span class="t t--f">Same for everyone</span>',
               filled:'<span class="t t--s">Their answer dropped in</span>' };
@@ -45,15 +47,11 @@ const constraints = D.chain.map((c, i) => {
       ${(cd.evidence || []).map((e, n) => line(e.banded, null, `constraintDef.${c}.evidence[${n}]`)).join('')}
       ${line(cd.close, null, `constraintDef.${c}.close`)}</ul>
 
-    <p class="lbl">Printed above the steps, whatever the constraint is</p>
-    <ul class="lines">${(D.blocks.prompts || []).map((p, n) =>
-      line(p.text, p.when, `prompts[${n}]`)).join('')}</ul>
-
     <p class="lbl">How to fix it &nbsp;<i>${f.actions.length} written, ${cond} conditional, at most ${D.thresholds.MAX_ACTIONS} ever print</i></p>
     <ol class="lines lines--n">${f.actions.map((a, n) => line(a.text, a.when, `constraintFix.${c}.actions[${n}]`)).join('')}</ol>
 
     <p class="lbl">Don${String.fromCharCode(8217)}t do this yet</p>
-    <p class="sub">${esc(dd.lead)}</p>
+    <p class="sub">${mark(`dontDoYet.${c}.lead`)}${esc(dd.lead)}</p>
     <ol class="lines lines--x">${dd.items.map((x, n) => line(x, null, `dontDoYet.${c}.items[${n}]`)).join('')}</ol>
   </article>`;
 }).join('');
@@ -102,6 +100,7 @@ let mineN = 0, ryanN = 0;
     (cd.evidence || []).forEach((_, n) => bump(`constraintDef.${c}.evidence[${n}]`));
     bump(`constraintDef.${c}.close`);
     D.blocks.constraintFix[c].actions.forEach((_, n) => bump(`constraintFix.${c}.actions[${n}]`));
+    bump(`dontDoYet.${c}.lead`);
     D.blocks.dontDoYet[c].items.forEach((_, n) => bump(`dontDoYet.${c}.items[${n}]`));
   }
   (D.blocks.prompts || []).forEach((_, n) => bump(`prompts[${n}]`));
@@ -202,6 +201,9 @@ body.only-mine .sub.empty-after{display:none}
 </div></section>
 
 <main class="on-light"><div class="shell wrap">
+  <section class="grp"><div class="grp__h"><h2 class="hl-face d2" style="text-transform:uppercase">Printed above the steps, whatever the constraint is</h2></div>
+    <article class="item"><ul class="lines">${(D.blocks.prompts || []).map((p, n) =>
+      line(p.text, p.when, `prompts[${n}]`)).join('')}</ul></article></section>
   <section class="grp"><div class="grp__h"><h2 class="hl-face d2" style="text-transform:uppercase">The six constraints</h2></div>${constraints}</section>
   <section class="grp"><div class="grp__h"><h2 class="hl-face d2" style="text-transform:uppercase">The eleven risks</h2></div>
     ${Object.entries(D.flags).map(([id, m]) => riskCard(id, m)).join('')}

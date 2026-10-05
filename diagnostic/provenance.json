@@ -21,8 +21,8 @@
   "constraintDef.fulfilment.open[1]": "yes",
   "constraintDef.fulfilment.evidence[0]": "yes",
   "constraintDef.fulfilment.evidence[1]": "yes",
-  "constraintDef.fulfilment.evidence[2]": "no",
-  "constraintDef.fulfilment.evidence[3]": "no",
+  "constraintDef.fulfilment.evidence[2]": "yes",
+  "constraintDef.fulfilment.evidence[3]": "yes",
   "constraintDef.fulfilment.close": "yes",
   "constraintFix.fulfilment.actions[0]": "yes",
   "constraintFix.fulfilment.actions[1]": "yes",
@@ -83,5 +83,12 @@
   "dontDoYet.fulfilment.items[0]": "yes",
   "dontDoYet.fulfilment.items[1]": "yes",
   "_everythingElse": "no",
-  "prompts[0]": "yes"
+  "prompts[0]": "yes",
+  "dontDoYet.talent.lead": "yes",
+  "dontDoYet.talent.items[0]": "yes",
+  "dontDoYet.talent.items[1]": "yes",
+  "dontDoYet.talent.items[2]": "yes",
+  "dontDoYet.talent.items[3]": "yes",
+  "dontDoYet.fulfilment.items[2]": "yes",
+  "dontDoYet.fulfilment.items[3]": "yes"
 }
