@@ -10,10 +10,11 @@
 
 /* ---------- Links ----------
    The only place the funnel's addresses live. In the funnel builder each step
-   has its own URL, so change these four and nothing else. Every element with
-   data-link="landing", "test", "result" or "site" takes its href from here. */
+   has its own URL, so change these and nothing else. Every element with a
+   data-link naming one of them takes its href from here. */
 var LINKS={
   landing:"landing.html",
+  form:"form.html",
   test:"questions.html",
   result:"result.html",
   site:"https://headlinergroup.com.au"

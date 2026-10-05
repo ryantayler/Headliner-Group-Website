@@ -5,8 +5,9 @@ Three pages for the funnel builder, plus the stylesheet and script they share.
 | Step | File | Job |
 |---|---|---|
 | 1 | `landing.html` | What the test is, the four scales, an example result, the six styles, and the button into the test. |
-| 2 | `questions.html` | The 28 statements. The result button unlocks when all 28 are answered. |
-| 3 | `result.html` | The result, the print sheet, and links back to the test and the website. |
+| 2 | `form.html` | The builder's form. Header, hero and a heading above it, the footer below. Every Take the test button on the landing page comes here. |
+| 3 | `questions.html` | The 28 statements. The result button unlocks when all 28 are answered. |
+| 4 | `result.html` | The result, the print sheet, and links back to the test and the website. |
 
 `leadership.css` and `leadership.js` serve all three. `img/hero-free.jpg` is the
 Free Sh!t hero photograph, copied from `assets/img`.
@@ -23,7 +24,12 @@ The questions page sends the answers to the result page in the link, as
 can save or send. The browser also keeps a copy, so a visitor who leaves the
 questions page halfway comes back to where they were.
 
-## Putting it in the funnel builder
+## Go High Level
+
+`python3 build-ghl-funnel.py <dir>` writes one folder per step, ready to paste, with its own
+README. Use that rather than the steps below.
+
+## Putting it in the funnel builder by hand
 
 1. Make three steps, one per page.
 2. Paste the markup between `<body>` and the `<script>` line of each page.
