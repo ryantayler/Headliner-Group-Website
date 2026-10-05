@@ -21,6 +21,7 @@ PAGES = {
     'contact.html':      ('lets-chat',     '/letschat'),
     # hidden. The Free Sh!t form sends people here, nothing on the site links to it
     'optimisation-engine.html': ('optimisation-engine', '/optimisation-engine'),
+    'four-pillars.html':        ('four-pillars',        '/four-pillars'),
 }
 
 # Anton, Archivo Black, Caveat and Inter are all Google faces, self hosted here only

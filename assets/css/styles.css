@@ -1407,7 +1407,7 @@ body.sheet-open{overflow:hidden}
   .pdfview__fb img{max-height:none}
   .pdfview iframe{display:none}
 }
-/* the download page's own hero, shorter so the worksheet sits near the top */
+/* the worksheet download pages' own hero, shorter so the worksheet sits near the top */
 .hero--got{min-height:clamp(380px,46vh,520px)}
 
 /* ---------- 12. The look ----------

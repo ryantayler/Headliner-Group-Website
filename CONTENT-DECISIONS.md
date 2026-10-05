@@ -2371,3 +2371,11 @@ cannot reach.
 
 **The hero is the name alone.** Ryan cut the line under it, *It's yours. Have a read
 below, or download it and print it out.*
+
+## The 4 pillars of partnership download page
+
+`four-pillars.html`, live slug `/four-pillars`. The same page as the optimisation engine
+one in every way, for the other worksheet. Hidden, reached from the Free Sh!t form, the
+worksheet embedded in the white band, and a picture of it in its place on a phone. The
+live picture is Ryan's upload. The local `assets/img/pillars-worksheet.jpg` is rendered
+from his design file, for the preview only.
