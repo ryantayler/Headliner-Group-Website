@@ -161,14 +161,7 @@ const mrow = ([n, d], flag) => `<div class="mrow${flag?' mrow--flag':''}">
 // block, each shown with the option that scores worst.
 const GROUP = { talent:'Supply', fulfilment:'Supply', margin:'Supply',
                 demand:'Demand', offer:'Demand', value:'Demand' };
-const BLURB = {
-  talent:    'A missing layer. The work routes through the owner because nobody else owns a part of it.',
-  fulfilment:'Capacity, not capability. They know how to do the work and can’t do enough of it.',
-  margin:    'Busy, full, and nothing left at the end of it.',
-  demand:    'The calendar has room and not enough people are asking.',
-  offer:     'Enquiries arrive and stall at the quote.',
-  value:     'Customers buy once, then shrink or leave, so capacity keeps opening back up.',
-};
+const BLURB = Object.fromEntries(D.chain.map(c => [c, D.constraints[c].blurb]));
 const ORDER = ['talent','fulfilment','margin','value','offer','demand'];
 
 function examples(cid, n) {

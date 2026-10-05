@@ -32,37 +32,43 @@ window.DIAG ={
       "name": "Talent constrained",
       "short": "Talent",
       "loose": "Talent",
-      "phrase": "talent"
+      "phrase": "talent",
+      "blurb": "A missing layer. The work routes through the owner because nobody else owns a part of it."
     },
     "fulfilment": {
       "name": "Fulfilment constrained",
       "short": "Fulfilment",
       "loose": "Fulfilment",
-      "phrase": "fulfilment"
+      "phrase": "fulfilment",
+      "blurb": "Capacity, not capability. They know how to do the work and can’t do enough of it."
     },
     "value": {
       "name": "Value constrained",
       "short": "Value",
       "loose": "Value",
-      "phrase": "value"
+      "phrase": "value",
+      "blurb": "Customers buy once, then shrink or leave, so capacity keeps opening back up."
     },
     "offer": {
       "name": "Offer constrained",
       "short": "Offer",
       "loose": "Offer",
-      "phrase": "offer"
+      "phrase": "offer",
+      "blurb": "Enquiries arrive and stall at the price."
     },
     "demand": {
       "name": "Demand constrained",
       "short": "Demand",
       "loose": "Demand",
-      "phrase": "demand"
+      "phrase": "demand",
+      "blurb": "The calendar has room and not enough people are asking."
     },
     "margin": {
       "name": "Margin constrained",
       "short": "Margin",
       "loose": "Margin",
-      "phrase": "margin"
+      "phrase": "margin",
+      "blurb": "Busy, full, and nothing left at the end of it."
     }
   },
   "suppresses": {

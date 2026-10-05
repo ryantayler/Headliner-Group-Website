@@ -205,8 +205,6 @@ p{margin:0 0 16px;max-width:66ch}
 
 /* ---------- screens ---------- */
 .screen{display:none;padding:clamp(48px,8vw,88px) 0 96px}
-/* The landing page runs edge to edge in bands, so it brings its own padding. */
-#s-intro{padding:0}
 .screen.is-on{display:block}
 .intro__rules{list-style:none;margin:28px 0 0;padding:0;border-top:1px solid var(--line)}
 .intro__rules li{padding:15px 0;border-bottom:1px solid var(--line);display:flex;gap:14px;align-items:baseline;max-width:62ch}
@@ -317,9 +315,6 @@ p{margin:0 0 16px;max-width:66ch}
 .privacy u{text-decoration:underline;text-underline-offset:2px}
 
 /* ---------- dev bar and working out, screen only ---------- */
-/* It is fixed to the bottom, so the last thing on the page needs room under it
-   or the final button sits behind it. */
-body:has(.dev) #s-intro .cta-band{padding-bottom:clamp(96px,10vw,140px)}
 .dev{
   position:fixed;left:0;right:0;bottom:0;z-index:60;background:#141414;
   border-top:1px solid var(--rim);padding:9px var(--gutter);
@@ -372,85 +367,6 @@ body.has-dev{padding-bottom:56px}
 .prompt{margin:0 0 20px;padding:15px 18px;border-left:3px solid var(--cta-deep);
   background:var(--ground);border-radius:0 10px 10px 0;font-size:15.5px;line-height:1.55;
   color:var(--tx);max-width:64ch}
-
-/* ================= the landing page =================
-   Bands lifted from the site stylesheet so the two match, with the contextual
-   token flip doing the light and dark rather than a second set of colours. */
-.band{padding-block:clamp(64px,8vw,112px);position:relative}
-.band--base{background:var(--base);color:var(--ink)}
-.band--paper{background:var(--paper)}
-.band--paper2{background:var(--paper-2)}
-.band--tight{padding-block:clamp(48px,6vw,80px)}
-.band--lit{overflow:hidden}
-.band>.shell{position:relative;z-index:1}
-.on-light--2{--ground:var(--paper-2);background:var(--paper-2)}
-.grid{display:grid;gap:clamp(16px,2vw,26px)}
-.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
-@media(max-width:700px){.g2{grid-template-columns:1fr}}
-.head{display:grid;gap:14px;margin-bottom:clamp(30px,4vw,48px);max-width:72ch}
-.head .sub{font-size:16.5px;line-height:1.6;color:var(--tx-sub);margin:0;max-width:66ch}
-
-.lp-hero{padding-block:clamp(72px,10vw,132px) clamp(56px,7vw,92px)}
-.lp-lede{margin-top:26px;max-width:58ch}
-.lp-cta{margin:34px 0 0}
-.lp-facts{list-style:none;display:grid;gap:0;margin:clamp(40px,5vw,64px) 0 0;padding:0;
-  grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--rim)}
-@media(max-width:860px){.lp-facts{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:520px){.lp-facts{grid-template-columns:1fr}}
-.lp-facts li{padding:20px 22px 20px 0;border-right:1px solid var(--rim)}
-.lp-facts li:last-child{border-right:0}
-@media(max-width:860px){.lp-facts li:nth-child(2n){border-right:0}}
-@media(max-width:520px){.lp-facts li{border-right:0;border-bottom:1px solid var(--rim)}}
-.lp-facts b{display:block;font-family:'Archivo Black',Impact,sans-serif;font-weight:400;
-  font-size:clamp(24px,3vw,34px);line-height:1;color:var(--accent);margin-bottom:9px}
-.lp-facts span{font-size:14.5px;line-height:1.5;color:var(--sub);display:block}
-
-.lp-groups{list-style:none;counter-reset:g;margin:0;padding:0;
-  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 clamp(20px,3vw,44px)}
-@media(max-width:700px){.lp-groups{grid-template-columns:1fr}}
-.lp-groups li{counter-increment:g;display:flex;gap:14px;align-items:baseline;
-  padding:14px 0;border-top:1px solid var(--line)}
-.lp-groups li::before{content:counter(g,decimal-leading-zero);font-size:12px;font-weight:700;
-  color:var(--tx-accent);font-variant-numeric:tabular-nums;flex:0 0 auto}
-.lp-groups b{font-weight:600;font-size:16px;color:var(--tx)}
-.lp-groups i{font-style:normal;font-size:13.5px;color:var(--tx-mute);margin-left:auto;
-  padding-left:12px;white-space:nowrap}
-.lp-note{margin-top:clamp(28px,3.5vw,44px);padding:22px 24px;background:var(--surface);
-  border:1px solid var(--line);border-radius:14px}
-.lp-note p{margin:0;font-size:15.5px;line-height:1.6;color:var(--tx-sub);max-width:76ch}
-.lp-note b{color:var(--tx)}
-
-.lp-sample{margin-bottom:clamp(30px,4vw,46px)}
-.lp-sample .verdict h3{font-size:clamp(26px,4vw,42px);line-height:1.04;color:#0A0A0A;
-  text-transform:uppercase;letter-spacing:-.02em;margin:0}
-.lp-sample__cap{margin:12px 0 0;font-size:13.5px;color:var(--tx-mute);max-width:62ch}
-.lp-steps{list-style:none;counter-reset:s;margin:0;padding:0}
-.lp-steps li{counter-increment:s;display:grid;grid-template-columns:30px minmax(0,1fr);
-  gap:4px 14px;padding:16px 0;border-top:1px solid var(--line)}
-.lp-steps li::before{content:counter(s);grid-row:span 2;font-size:13px;font-weight:700;
-  color:var(--tx-accent);font-variant-numeric:tabular-nums;padding-top:2px}
-.lp-steps b{font-size:16.5px;font-weight:600;color:var(--tx)}
-.lp-steps span{font-size:15px;line-height:1.55;color:var(--tx-sub);max-width:66ch}
-
-.lp-fam{background:var(--surface);border:1px solid var(--line);border-radius:16px;
-  padding:clamp(24px,3vw,34px);position:relative;overflow:hidden}
-.lp-fam::before{content:"";position:absolute;inset:0 0 auto 0;height:3px;background:var(--accent-deep)}
-.lp-fam h3{margin:0 0 6px;text-transform:uppercase}
-.lp-fam__k{margin:0 0 18px;font-size:15px;line-height:1.5;color:var(--tx-sub)}
-.lp-fam__row{display:flex;gap:14px;padding:14px 0;border-top:1px solid var(--line)}
-.lp-fam__row b{flex:0 0 104px;font-weight:700;font-size:15.5px;color:var(--tx)}
-.lp-fam__row span{font-size:14.5px;line-height:1.55;color:var(--tx-sub)}
-@media(max-width:480px){.lp-fam__row{display:block}.lp-fam__row b{margin-bottom:4px;display:block}}
-
-.lp-risks{list-style:none;display:flex;flex-wrap:wrap;gap:10px;margin:0;padding:0}
-.lp-risks li{font-size:14.5px;font-weight:600;color:var(--tx);background:var(--surface);
-  border:1px solid var(--line);border-radius:100px;padding:9px 18px}
-
-.lp-end{text-align:center;display:grid;justify-items:center;gap:18px}
-.lp-end h2{max-width:22ch}
-.lp-end__sub{margin:0;color:var(--sub);font-size:16.5px}
-.lp-end__priv{margin:10px 0 0;max-width:52ch}
-.cta-band .privacy{color:var(--sub)}
 
 /* ---- demo page only ---- */
 .hero{padding:clamp(40px,6vw,72px) 0 clamp(24px,4vw,40px);background:var(--base);color:var(--ink)}

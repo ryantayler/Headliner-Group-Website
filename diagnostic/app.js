@@ -145,7 +145,6 @@
     updateProgress();
   });
   /* ---------- navigation ---------- */
-  $("start").addEventListener("click", function () { show("s-quiz"); renderStep(); });
   $("prev").addEventListener("click", function () {
     if (step === 0) { show("s-intro"); return; }
     step--; renderStep();
@@ -324,7 +323,58 @@
     var b = e.target.closest("button[data-p]");
     if (b) applyPreset(b.dataset.p);
   });
+  /* ---------- the landing page ----------
+     Anything on it that states a fact about the tool is generated from the content,
+     so the page cannot end up advertising a question set that no longer exists. */
+  function renderIntro() {
+    var scoring = D.questions.filter(function (q) { return D.chain.indexOf(q.section) !== -1 && q.weight > 0; });
+    var fill = function (id, html) { var el = $(id); if (el) el.innerHTML = html; };
+
+    fill("lp-facts", [
+      [D.questions.length, "questions, about fifteen minutes. You can answer all of them without opening your accounts."],
+      ["4", "answers to every one. Two good and two bad, so there is no middle to hide in."],
+      ["0", "AI anywhere in this tool. The same answers always produce the same report."],
+      ["1", "constraint at the end. Never a list, because the order you fix things in matters more than the list."]
+    ].map(function (f) { return "<li><b>" + esc(f[0]) + "</b><span>" + esc(f[1]) + "</span></li>"; }).join(""));
+
+    fill("lp-groups", GROUPS.map(function (g) {
+      var n = qsOf(g).length;
+      return "<li><b>" + esc(g.title) + "</b><i>" + n + (n === 1 ? " question" : " questions") + "</i></li>";
+    }).join(""));
+
+    fill("lp-fams", [
+      ["supply", "Supply constrained", "More customers would not help you. Either you cannot deliver them, or delivering them does not pay."],
+      ["demand", "Demand constrained", "More customers is exactly what you need. You can deliver them and the economics work."]
+    ].map(function (f) {
+      return '<div class="lp-fam"><h3 class="hl-face d3">' + esc(f[1]) + "</h3>" +
+        '<p class="lp-fam__k">' + esc(f[2]) + "</p>" +
+        D.families[f[0]].map(function (c) {
+          return '<div class="lp-fam__row"><b>' + esc(D.constraints[c].short) + "</b><span>" +
+                 esc(D.constraints[c].blurb) + "</span></div>";
+        }).join("") + "</div>";
+    }).join(""));
+
+    fill("lp-risks", Object.keys(D.flags).map(function (id) {
+      return "<li>" + esc(D.flags[id].name) + "</li>";
+    }).join(""));
+
+    // The heading says eleven. If a risk is ever added or dropped, the words follow.
+    var WORD = ["no", "one", "two", "three", "four", "five", "six", "seven", "eight",
+                "nine", "ten", "eleven", "twelve", "thirteen", "fourteen"];
+    var n = Object.keys(D.flags).length;
+    [].forEach.call(document.querySelectorAll("#s-intro h2"), function (h) {
+      h.innerHTML = h.innerHTML.replace(/\bEleven\b/, cap(WORD[n] || n))
+                               .replace(/\bSix constraints\b/, cap(WORD[D.chain.length] || D.chain.length) + " constraints");
+    });
+    void scoring;
+  }
+  function cap(s) { return String(s).charAt(0).toUpperCase() + String(s).slice(1); }
+  [].forEach.call(document.querySelectorAll("[data-start]"), function (b) {
+    b.addEventListener("click", function () { show("s-quiz"); renderStep(); window.scrollTo(0, 0); });
+  });
+
   /* ---------- boot ---------- */
+  renderIntro();
   load();
   document.body.classList.add("has-dev");
   if (answeredCount() > 0) {
