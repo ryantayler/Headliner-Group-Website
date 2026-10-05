@@ -204,11 +204,17 @@ function mapSVG(r){
   '</svg>';
 }
 
+/* The scales have two ends and no zero, so the fill runs out from the middle to the dot */
+function fromMid(v){
+  var lo=Math.min(v,50), w=Math.abs(v-50);
+  return "left:"+lo.toFixed(2)+"%;width:"+w.toFixed(2)+"%";
+}
+
 function slidersHTML(r){
   function one(name,ends,on,v){
     return '<div class="slider"><div class="axname">'+name+'</div>'+
-      '<div class="slabels">'+ends.map(function(e,i){return '<span class="'+(on===i?"on":"")+'">'+e+'</span>';}).join("")+'</div>'+
-      '<div class="strack"><div class="sfill" style="width:'+v+'%"></div><div class="sdot" style="left:'+v+'%"></div></div></div>';
+      '<div class="slabels'+(ends.length===3?' slabels--3':'')+'">'+ends.map(function(e,i){return '<span class="'+(on===i?"on":"")+'">'+e+'</span>';}).join("")+'</div>'+
+      '<div class="strack"><div class="sfill" style="'+fromMid(v)+'"></div><div class="sdot" style="left:'+v+'%"></div></div></div>';
   }
   return '<div class="sname">The two that set your style</div>'+
     one("Trigger",["Gut","Proof"],r.tri,r.tp)+
@@ -316,7 +322,7 @@ function printHTML(r){
       '<text class="pa" x="8" y="4">Through people</text><text class="pa" x="92" y="4" text-anchor="end">Through the work</text></svg></div>'+
       '<div><h2 style="margin-top:0">Your axes</h2>'+SL.map(function(a){
         return '<div class="psl"><div class="pslname">'+a[0]+'</div><div class="pslends"><span class="'+(a[4]?"on":"")+'">'+a[1]+'</span><span class="'+(a[5]?"on":"")+'">'+a[2]+'</span></div>'+
-          '<div class="pbar"><div class="pbarf" style="width:'+a[3]+'%"></div><div class="pdot" style="left:'+a[3]+'%"></div></div></div>';}).join("")+'</div></div>'+
+          '<div class="pbar"><div class="pbarf" style="'+fromMid(a[3])+'"></div><div class="pdot" style="left:'+a[3]+'%"></div></div></div>';}).join("")+'</div></div>'+
     '<h2>Your blend</h2><div class="pblend">'+ORDER.map(function(k){var v=r.scored[k],on=(k===r.key);
       return '<div class="pbitem'+(on?" on":"")+'"><div class="pbrow"><span class="pbname">'+STYLES[k].n+(on?'<span class="pyou">You</span>':'')+'</span><span>'+v+'%</span></div><div class="pbtrack"><div class="pbfill" style="width:'+v+'%"></div></div></div>';}).join("")+'</div>'+
     '<h2>Who to hire</h2><div class="phire"><div><span class="tg">Best fit</span><span>'+r.best+'</span></div><div><span class="tg">'+(r.two?"Best fit":"Workable")+'</span><span>'+r.work+'</span></div><div><span class="tg">Screen</span><span>'+r.screen+'</span></div></div>'+
