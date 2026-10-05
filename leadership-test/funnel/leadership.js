@@ -142,13 +142,20 @@ function score(ans){
   var B=STYLES[r.s.best], W=STYLES[r.s.work], want=[], you=[];
   if(r.man!=="balanced"){ want.push("<b>"+(r.man==="blunt"?"measured":"blunt")+"</b> in manner"); you.push(r.man); }
   if(r.rea!=="balanced"){ want.push("<b>"+(r.rea==="immediate"?"deferred":"immediate")+"</b> in reactiveness"); you.push(r.rea); }
-  var an=/^[AEIOU]/.test(short(r.s.best))?"an ":"a ";
+  function a(k){return (/^[AEIOU]/.test(short(k))?"an ":"a ")+short(k);}
+  // The Charger and the Optimiser sit in the middle of Drive, so both of their matches are
+  // one step across. They get two best fits and no workable. Everyone else has one of each.
+  r.two=(r.s.d===1);
   r.best="<b>"+B.n+"</b>, "+B.c+". "+r.s.why;
-  r.work="<b>"+W.n+"</b>, "+W.c+". Two drive steps across, so it works but you will both have to translate more.";
+  r.work= r.two
+    ? "<b>"+W.n+"</b>, "+W.c+". Also one step across on Drive, so they cover the ground you skip as well."
+    : "<b>"+W.n+"</b>, "+W.c+". Two drive steps across, so it works but you will both have to translate more.";
   // The screen is about the best fit hire. Look for one whose manner and pace are the opposite of yours.
+  var hire= r.two ? a(r.s.best)+" or "+a(r.s.work) : a(r.s.best);
+  var any= r.two ? short(r.s.best)+" or "+short(r.s.work) : short(r.s.best);
   r.screen=want.length
-    ? "When you hire "+an+short(r.s.best)+", look for one who's "+want.join(" and ")+". You're "+you.join(" and ")+", so they cover "+(want.length>1?"both":"it")+"."
-    : "You're balanced on manner and reactiveness, so any "+short(r.s.best)+" can work.";
+    ? "When you hire "+hire+", look for one who's "+want.join(" and ")+". You're "+you.join(" and ")+", so they cover "+(want.length>1?"both":"it")+"."
+    : "You're balanced on manner and reactiveness, so any "+any+" can work.";
   return r;
 }
 
@@ -223,7 +230,7 @@ function barsHTML(r){
 
 function hireHTML(r){
   return '<div class="mrow"><span class="mtag mtag--on">Best fit</span><p>'+r.best+'</p></div>'+
-    '<div class="mrow"><span class="mtag">Workable</span><p>'+r.work+'</p></div>'+
+    '<div class="mrow">'+(r.two?'<span class="mtag mtag--on">Best fit</span>':'<span class="mtag">Workable</span>')+'<p>'+r.work+'</p></div>'+
     '<div class="mrow"><span class="mtag">Screen</span><p>'+r.screen+'</p></div>';
 }
 
@@ -293,7 +300,7 @@ function printHTML(r){
           ["Manner","Blunt","Measured",r.mp,r.man==="blunt",r.man==="measured"],
           ["Reactiveness","Immediate","Deferred",r.xp,r.rea==="immediate",r.rea==="deferred"]];
   var styles=GRID.map(function(k){var s=STYLES[k];return '<tr><td class="n">'+short(k)+'</td><td>'+s.c+'</td><td>'+s.made+'</td><td>'+s.desc.split(". ")[0]+'.</td></tr>';}).join("");
-  var pairs=GRID.map(function(k){var s=STYLES[k];return '<tr><td class="n">'+short(k)+'</td><td><b>'+short(s.best)+'</b></td><td>'+short(s.work)+'</td><td>'+s.why+'</td></tr>';}).join("");
+  var pairs=GRID.map(function(k){var s=STYLES[k];return '<tr><td class="n">'+short(k)+'</td><td><b>'+short(s.best)+(s.d===1?', '+short(s.work):'')+'</b></td><td>'+(s.d===1?'None':short(s.work))+'</td><td>'+s.why+'</td></tr>';}).join("");
   return '<section class="psheet">'+
     '<div class="pbrand"><div class="pk">Leadership Styles Test</div><div class="pmark">Headliner<small>Group</small></div></div>'+
     '<div class="phero"><div class="pk">Your leadership style</div><h1>'+r.s.n+'</h1><div class="pceleb">'+r.s.c+'</div><p>'+r.s.desc+'</p></div>'+
@@ -312,7 +319,7 @@ function printHTML(r){
           '<div class="pbar"><div class="pbarf" style="width:'+a[3]+'%"></div><div class="pdot" style="left:'+a[3]+'%"></div></div></div>';}).join("")+'</div></div>'+
     '<h2>Your blend</h2><div class="pblend">'+ORDER.map(function(k){var v=r.scored[k],on=(k===r.key);
       return '<div class="pbitem'+(on?" on":"")+'"><div class="pbrow"><span class="pbname">'+STYLES[k].n+(on?'<span class="pyou">You</span>':'')+'</span><span>'+v+'%</span></div><div class="pbtrack"><div class="pbfill" style="width:'+v+'%"></div></div></div>';}).join("")+'</div>'+
-    '<h2>Who to hire</h2><div class="phire"><div><span class="tg">Best fit</span><span>'+r.best+'</span></div><div><span class="tg">Workable</span><span>'+r.work+'</span></div><div><span class="tg">Screen</span><span>'+r.screen+'</span></div></div>'+
+    '<h2>Who to hire</h2><div class="phire"><div><span class="tg">Best fit</span><span>'+r.best+'</span></div><div><span class="tg">'+(r.two?"Best fit":"Workable")+'</span><span>'+r.work+'</span></div><div><span class="tg">Screen</span><span>'+r.screen+'</span></div></div>'+
     '<div class="pfoot">'+rawHTML(r)+' Headliner Leadership Styles Test. headlinergroup.com.au</div>'+
   '</section>'+
   '<section class="psheet">'+

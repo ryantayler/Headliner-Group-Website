@@ -57,10 +57,10 @@ style = the one style whose (trigger band, drive band) matches yours
 | Key | Name | Closest read | Trigger | Drive | Pairing | |
 |---|---|---|---|---|---|---|
 | `believer` | The Believer | Richard Branson | 0 | 0 | pairs best with `optimiser` | works for `architect` |
-| `charger` | The Charger | Elon Musk | 0 | 1 | pairs best with `anchor` | works for `architect` |
+| `charger` | The Charger | Elon Musk | 0 | 1 | pairs best with `anchor` and `architect` | no workable |
 | `purist` | The Purist | Steve Jobs | 0 | 2 | pairs best with `optimiser` | works for `anchor` |
 | `anchor` | The Anchor | Ted Lasso | 1 | 0 | pairs best with `charger` | works for `purist` |
-| `optimiser` | The Optimiser | Jeff Bezos | 1 | 1 | pairs best with `believer` | works for `purist` |
+| `optimiser` | The Optimiser | Jeff Bezos | 1 | 1 | pairs best with `believer` and `purist` | no workable |
 | `architect` | The Architect | Warren Buffett | 1 | 2 | pairs best with `charger` | works for `believer` |
 
 **The Believer** (Richard Branson)
@@ -93,6 +93,14 @@ style = the one style whose (trigger band, drive band) matches yours
 
   Pairs best with `charger`. You wait for the right call, they create the momentum between calls.
 
+
+### Two best fits for the middle
+
+Best fit is one Drive step across, workable is two. The Charger and the
+Optimiser sit on systems, the middle of Drive, so both of their matches are one
+step across. They get two best fits and no workable. Ryan's ruling, October 2026.
+The funnel shows this. The single file tests in this folder still print the old
+Workable line for those two.
 
 ## 5. The question set
 
