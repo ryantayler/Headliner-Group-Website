@@ -76,35 +76,8 @@
     });
   });
 
-  /* 5. Download wall: category filters and the detail sheet.
-     Free Sh!t only. Both blocks no-op on every other page. */
-  var wall = document.getElementById('wall');
-  if (wall) {
-    var cards = Array.prototype.slice.call(wall.querySelectorAll('.magnet'));
-    var empty = document.getElementById('wall-empty');
-    var chips = document.querySelectorAll('.chip--f');
-
-    chips.forEach(function (chip) {
-      chip.addEventListener('click', function () {
-        var want = chip.dataset.filter;
-        chips.forEach(function (c) {
-          var on = c === chip;
-          c.setAttribute('aria-pressed', String(on));
-          c.classList.toggle('is-on', on);
-        });
-        var shown = 0;
-        cards.forEach(function (card) {
-          /* a magnet can sit in more than one group, pipe separated */
-          var cats = (card.dataset.cat || '').split('|');
-          var on = want === 'all' || cats.indexOf(want) > -1;
-          card.hidden = !on;
-          if (on) shown++;
-        });
-        if (empty) empty.hidden = shown > 0;
-      });
-    });
-  }
-
+  /* 5. Download wall: the detail sheet. Free Sh!t only, a no op on every other page.
+     The filters are gone, four cards do not need them. */
   var sheet = document.getElementById('sheet');
   if (sheet) {
     var sMedia = document.getElementById('sheet-media');
@@ -194,6 +167,9 @@
     document.addEventListener('click', function (e) {
       var open = e.target.closest('[data-open]');
       if (open) { e.preventDefault(); openSheet(open.dataset.open, open); return; }
+      /* anywhere on a card opens it, not only the title */
+      var card = e.target.closest('.magnet[data-id]');
+      if (card) { openSheet(card.dataset.id, card.querySelector('[data-open]')); return; }
       var get = e.target.closest('[data-getfile]');
       if (get) { e.preventDefault(); openGetForm(get); return; }
       var close = e.target.closest('[data-sheet-close]');

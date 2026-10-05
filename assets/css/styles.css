@@ -1021,7 +1021,14 @@ a.card:hover,.card--hover:hover{transform:translateY(-4px);border-color:rgba(var
 .magnet__hit::after{content:"";position:absolute;inset:0;z-index:2}
 .magnet__hit:focus-visible{outline:none}
 .magnet:has(.magnet__hit:focus-visible){outline:2px solid var(--tx-accent);outline-offset:3px}
-.magnet .card__foot{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.magnet .card__foot{display:flex;align-items:center;justify-content:flex-end;gap:12px}
+/* The card's call, an aqua pill bottom right. The whole card is the control, so this is
+   only the sign for it, and it brightens with the card's hover. */
+.magnet__go{display:inline-flex;align-items:center;padding:9px 16px;border-radius:100px;
+  background:var(--accent);color:#0A0A0A;font-size:13px;font-weight:600;line-height:1;
+  transition:background-color .2s var(--ease),transform .2s var(--ease)}
+.magnet:hover .magnet__go{background:#5CEBD2;transform:translateX(-2px)}
+.magnet{cursor:pointer}
 .magnet .tlink{color:var(--tx-accent)}
 .magnet:hover .tlink{background-size:100% 1.5px}
 .magnet__gate{
@@ -1047,9 +1054,10 @@ a.card:hover,.card--hover:hover{transform:translateY(-4px);border-color:rgba(var
    a size and the padding tightens with it. Nothing here is the page's type scale, it is
    card scale, and it is measured: no magnet clips its own content at any width. */
 /* seven cards, so three across rather than four below the card shape too */
-@media (min-width:960px) and (max-width:1119px){ #wall{grid-template-columns:repeat(3,minmax(0,1fr))} }
+/* four cards, so two by two from 760 up */
+@media (min-width:760px){ #wall{grid-template-columns:repeat(2,minmax(0,1fr))} }
 @media (min-width:1120px){
-  #wall{grid-template-columns:repeat(3,minmax(0,1fr))}
+  #wall{grid-template-columns:repeat(2,minmax(0,1fr))}
   #wall .magnet{
     aspect-ratio:1.74/1;display:grid;gap:6px 0;padding:0;
     grid-template-columns:minmax(0,.42fr) minmax(0,1fr);

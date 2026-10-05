@@ -2444,3 +2444,23 @@ the second is the detail sheet and the footer. The heading band has no bottom pa
 the builder's form section carries on under it on the same ground.
 
 **Flagged, not changed.** The line says *all twelve*, and the wall has seven.
+
+## Free Sh!t launches with four
+
+Ryan, 5 October 2026. The wall is four cards:
+
+- **The 4 pillars of partnership**, worksheet
+- **The optimisation engine**, worksheet
+- **The Headliner Leadership Test**, tool (was *Personality test*)
+- **The Headliner Business Diagnosis**, tool (was *Business constraint diagnosis*)
+
+Team longevity plan and both data sheets are off the page, cards and sheets.
+
+**No filters.** Everything, Frameworks, Tools and Worksheets are gone, and the label on
+each card is written in by hand. **No format badges** (PDF, XLSX) on any card.
+
+**The whole card opens the sheet.** *Have a look* loses its arrow and becomes an aqua pill,
+bottom right. Two by two from 760 up.
+
+The two tools carry over the lines written for their old names until Ryan writes new
+ones, and have no pictures yet. The *Or take the whole lot* line still says *all twelve*.

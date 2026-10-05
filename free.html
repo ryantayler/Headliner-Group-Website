@@ -62,94 +62,51 @@
 </section>
 
 <!-- ===== THE WALL =====
-     Filters and then the files, no preamble. Seven cards, grouped by what the thing is
-     rather than what it fixes. data-cat holds one or more groups, pipe separated, because
-     the four pillars is both a framework and a worksheet. Clicking one opens the sheet,
-     built from the matching <template data-detail="..."> at the bottom of this file. To
-     add a magnet, copy a card and its template, and put the real file in
-     assets/downloads/. -->
+     Four cards, no filters. The label on each card is written in by hand, worksheet or
+     tool. The whole card opens its sheet, built from the matching
+     <template data-detail="..."> at the bottom of this file. To add one, copy a card and
+     its template. -->
 <section class="band band--paper2 band--lit beam-soft beam--l">
   <div class="shell">
-    <div class="filters rv" role="group" aria-label="Filter downloads by category">
-      <button class="chip chip--f is-on" type="button" data-filter="all" aria-pressed="true">Everything <span class="chip__n">7</span></button>
-      <button class="chip chip--f" type="button" data-filter="Frameworks" aria-pressed="false">Frameworks <span class="chip__n">3</span></button>
-      <button class="chip chip--f" type="button" data-filter="Tools" aria-pressed="false">Tools <span class="chip__n">2</span></button>
-      <button class="chip chip--f" type="button" data-filter="Worksheets" aria-pressed="false">Worksheets <span class="chip__n">3</span></button>
-    </div>
 
     <div class="grid g4 mt-m" id="wall">
-      <article class="card card--media magnet card--hover rv" data-cat="Frameworks|Worksheets" data-id="pillars">
+      <article class="card card--media magnet card--hover rv" data-id="pillars">
         <div class="media media--doc r-43">
           <img src="assets/img/pillars-worksheet.jpg" style="object-position:left top" alt="The 4 pillars of partnership worksheet" width="1200" height="849" loading="lazy" decoding="async">
-          <span class="magnet__fmt">PDF</span>
         </div>
-        <p class="card__n">Framework &amp; worksheet</p>
+        <p class="card__n">Worksheet</p>
         <h3 class="display d3"><button class="magnet__hit" type="button" data-open="pillars">The 4 pillars of partnership</button></h3>
         <p>The four reasons to partner, and which one a partnership creates for each side.</p>
-        <span class="card__foot"><span class="tlink" aria-hidden="true">Have a look <span class="arw">&#8594;</span></span></span>
+        <span class="card__foot"><span class="magnet__go" aria-hidden="true">Have a look</span></span>
       </article>
-      <article class="card card--media magnet card--hover rv rv-d1" data-cat="Frameworks" data-id="engine">
+      <article class="card card--media magnet card--hover rv rv-d1" data-id="engine">
         <div class="media media--doc r-43">
           <img src="assets/img/engine-worksheet.jpg" style="object-position:left top" alt="The optimisation engine worksheet" width="1200" height="849" loading="lazy" decoding="async">
-          <span class="magnet__fmt">PDF</span>
         </div>
-        <p class="card__n">Framework</p>
+        <p class="card__n">Worksheet</p>
         <h3 class="display d3"><button class="magnet__hit" type="button" data-open="engine">The optimisation engine</button></h3>
         <p>The cycle your business runs on, where it loses customers, and what to add on top.</p>
-        <span class="card__foot"><span class="tlink" aria-hidden="true">Have a look <span class="arw">&#8594;</span></span></span>
+        <span class="card__foot"><span class="magnet__go" aria-hidden="true">Have a look</span></span>
       </article>
-      <article class="card card--media magnet card--hover rv rv-d2" data-cat="Frameworks" data-id="longevity">
-        <div class="media r-43">
-          <div class="ph" data-slot="Photo &middot; 4:3"><span>A crew on a job, years into working together</span></div>
-          <span class="magnet__fmt">PDF</span>
-        </div>
-        <p class="card__n">Framework</p>
-        <h3 class="display d3"><button class="magnet__hit" type="button" data-open="longevity">Team longevity plan</button></h3>
-        <p>How to keep the people who are good at this, in an industry that burns through them.</p>
-        <span class="card__foot"><span class="tlink" aria-hidden="true">Have a look <span class="arw">&#8594;</span></span></span>
-      </article>
-      <article class="card card--media magnet card--hover rv rv-d3" data-cat="Worksheets" data-id="bizdata">
-        <div class="media r-43">
-          <div class="ph" data-slot="Photo &middot; 4:3"><span>A one page summary of a business, printed and annotated</span></div>
-          <span class="magnet__fmt">XLSX</span>
-        </div>
-        <p class="card__n">Worksheet</p>
-        <h3 class="display d3"><button class="magnet__hit" type="button" data-open="bizdata">Business data sheet</button></h3>
-        <p>One page that holds the numbers that actually describe your business.</p>
-        <span class="card__foot"><span class="tlink" aria-hidden="true">Have a look <span class="arw">&#8594;</span></span></span>
-      </article>
-      <article class="card card--media magnet card--hover rv" data-cat="Worksheets" data-id="emdata">
-        <div class="media r-43">
-          <div class="ph" data-slot="Photo &middot; 4:3"><span>An event manager at a desk mid planning, sheets spread out</span></div>
-          <span class="magnet__fmt">XLSX</span>
-        </div>
-        <p class="card__n">Worksheet</p>
-        <h3 class="display d3"><button class="magnet__hit" type="button" data-open="emdata">Event managers data sheet</button></h3>
-        <p>The same sheet, built for the way an event manager holds a job together.</p>
-        <span class="card__foot"><span class="tlink" aria-hidden="true">Have a look <span class="arw">&#8594;</span></span></span>
-      </article>
-      <article class="card card--media magnet card--hover rv rv-d1" data-cat="Tools" data-id="personality">
+      <article class="card card--media magnet card--hover rv rv-d1" data-id="personality">
         <div class="media r-43">
           <div class="ph" data-slot="Photo &middot; 4:3"><span>Two people talking across a production office desk</span></div>
-          <span class="magnet__fmt">PDF</span>
         </div>
         <p class="card__n">Tool</p>
-        <h3 class="display d3"><button class="magnet__hit" type="button" data-open="personality">Personality test</button></h3>
+        <h3 class="display d3"><button class="magnet__hit" type="button" data-open="personality">The Headliner Leadership Test</button></h3>
         <p>Who you are working with, and how they want to be worked with.</p>
-        <span class="card__foot"><span class="tlink" aria-hidden="true">Have a look <span class="arw">&#8594;</span></span></span>
+        <span class="card__foot"><span class="magnet__go" aria-hidden="true">Have a look</span></span>
       </article>
-      <article class="card card--media magnet card--hover rv rv-d2" data-cat="Tools" data-id="constraint">
+      <article class="card card--media magnet card--hover rv rv-d2" data-id="constraint">
         <div class="media r-43">
           <div class="ph" data-slot="Photo &middot; 4:3"><span>A whiteboard with a single bottleneck circled</span></div>
-          <span class="magnet__fmt">XLSX</span>
         </div>
         <p class="card__n">Tool</p>
-        <h3 class="display d3"><button class="magnet__hit" type="button" data-open="constraint">Business constraint diagnosis</button></h3>
+        <h3 class="display d3"><button class="magnet__hit" type="button" data-open="constraint">The Headliner Business Diagnosis</button></h3>
         <p>Find the one thing holding the business back, before you fix the wrong one.</p>
-        <span class="card__foot"><span class="tlink" aria-hidden="true">Have a look <span class="arw">&#8594;</span></span></span>
+        <span class="card__foot"><span class="magnet__go" aria-hidden="true">Have a look</span></span>
       </article>
     </div>
-    <p class="empty" id="wall-empty" hidden>Nothing in that category yet.</p>
   </div>
 </section>
 
@@ -236,36 +193,15 @@
       <a class="btn btn--fill" href="optimisation-engine-form.html">Download the PDF</a>
     </div>
   </template>
-  <template data-detail="longevity">
-    <h2 class="display d2" id="sheet-title">Team longevity plan</h2>
-    <p class="sub">Keeping a good person is cheaper than replacing them and it is not an accident. This is the plan we use for it.</p>
-    <div class="row mt-m">
-      <button class="btn btn--fill" type="button" data-getfile="assets/downloads/longevity.pdf" data-fmt="PDF">Download the PDF</button>
-    </div>
-  </template>
-  <template data-detail="bizdata">
-    <h2 class="display d2" id="sheet-title">Business data sheet</h2>
-    <p class="sub">Everything about your business on one sheet. Fill it in once and you have the picture every other piece of work starts from.</p>
-    <div class="row mt-m">
-      <button class="btn btn--fill" type="button" data-getfile="assets/downloads/bizdata.xlsx" data-fmt="XLSX">Download the XLSX</button>
-    </div>
-  </template>
-  <template data-detail="emdata">
-    <h2 class="display d2" id="sheet-title">Event managers data sheet</h2>
-    <p class="sub">The data sheet rebuilt for an event manager rather than an owner, so the numbers you carry through a job are in one place.</p>
-    <div class="row mt-m">
-      <button class="btn btn--fill" type="button" data-getfile="assets/downloads/emdata.xlsx" data-fmt="XLSX">Download the XLSX</button>
-    </div>
-  </template>
   <template data-detail="personality">
-    <h2 class="display d2" id="sheet-title">Personality test</h2>
+    <h2 class="display d2" id="sheet-title">The Headliner Leadership Test</h2>
     <p class="sub">A short test for you and for the people around you. It is the difference between a partnership that reads each other and one that keeps missing.</p>
     <div class="row mt-m">
       <button class="btn btn--fill" type="button" data-getfile="assets/downloads/personality.pdf" data-fmt="PDF">Download the PDF</button>
     </div>
   </template>
   <template data-detail="constraint">
-    <h2 class="display d2" id="sheet-title">Business constraint diagnosis</h2>
+    <h2 class="display d2" id="sheet-title">The Headliner Business Diagnosis</h2>
     <p class="sub">A business only ever has one real constraint at a time. This works out which one yours is and what it costs you while it is there.</p>
     <div class="row mt-m">
       <button class="btn btn--fill" type="button" data-getfile="assets/downloads/constraint.xlsx" data-fmt="XLSX">Download the XLSX</button>
