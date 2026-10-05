@@ -286,7 +286,7 @@ function cardsHTML(r){
     card("Where you sit","Trigger and Drive place your dot. The six labels are the anchor points those two axes produce.",
       mapSVG(r)+'<div>'+slidersHTML(r)+'</div>')+
     card("Your blend","Nobody is one style. This is how close your dot sits to each of the six, listed in the same order as the map. They're match scores, so they don't add to 100.",
-      '<div>'+barsHTML(r)+'</div><div class="raw">'+rawHTML(r)+'</div>')+
+      '<div class="blend">'+barsHTML(r)+'</div><div class="raw">'+rawHTML(r)+'</div>')+
   '</div>'+
   card("Who to hire","A match works whether you're hiring them or working for them. Your style and its two matches are lit on the grid.",
     '<div class="hire">'+gridSVG(r)+'<div>'+hireHTML(r)+'</div></div>',gap);
@@ -352,7 +352,7 @@ function printHTML(r){
 /* ---------- Pages ---------- */
 function initLanding(){
   var r=score(EXAMPLE);
-  $("example-hero").innerHTML=heroHTML(r,"Leadership style");
+  $("example-hero").innerHTML=heroHTML(r,"Your leadership style is");
   $("example-cards").innerHTML=cardsHTML(r);
   $("styles").innerHTML=GRID.map(function(k){
     var s=STYLES[k];
@@ -409,7 +409,7 @@ function initResult(){
   if(ans&&ans.some(function(a){return a===null;})) ans=null;
   if(!ans){ $("empty").hidden=false; return; }
   var r=score(ans);
-  $("result-hero").innerHTML=heroHTML(r,"Your leadership style");
+  $("result-hero").innerHTML=heroHTML(r,"Your leadership style is");
   $("result-cards").innerHTML=cardsHTML(r);
   $("result").hidden=false;
   document.title=r.s.n+", Headliner Leadership Styles Test";
