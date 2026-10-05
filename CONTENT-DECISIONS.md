@@ -2359,11 +2359,13 @@ thing LinkedIn's embed does not do.
 form on Free Sh!t, so nothing on the site links to it and it carries `noindex`. Same
 header, footer and hero photograph as Free Sh!t, with a shorter hero.
 
-The white band holds the worksheet itself, embedded from the CRM's file host, with
-*Download the PDF* and *Back to Free Sh!t* under it. Below 700 the frame comes out,
-because a phone will not draw a PDF inside a page, and a card takes its place. The card
-shows a picture of the worksheet with *Open the worksheet* under it, so a phone gets the
-sheet rather than a blank box. The picture, `assets/img/engine-worksheet.jpg`, is
+The white band holds the worksheet itself, embedded from the CRM's file host, and
+nothing else. Below 700 the frame comes out, because a phone will not draw a PDF inside
+a page, and a picture of the worksheet takes its place. Tapping it opens the PDF.
+
+**No buttons and no label.** Ryan cut *Download the PDF*, *Back to Free Sh!t* and the
+*Open the worksheet* line under the picture. The header already gets people back, and a
+picture of a worksheet is clear enough as the way in. The picture, `assets/img/engine-worksheet.jpg`, is
 rendered from Ryan's design file for the worksheet, not from the PDF, which this box
 cannot reach.
 

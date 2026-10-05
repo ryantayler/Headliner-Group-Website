@@ -1395,17 +1395,15 @@ body.sheet-open{overflow:hidden}
   font-size:15px;font-weight:500;color:var(--tx-sub);
 }
 .pdfview__fb:hover{color:var(--tx);border-color:var(--tx-accent)}
-.pdfview__fb img{display:block;width:100%;max-width:1100px;height:auto;max-height:calc(var(--pdf-h) - 110px);object-fit:contain;
+.pdfview__fb img{display:block;width:100%;max-width:1100px;height:auto;max-height:calc(var(--pdf-h) - 50px);object-fit:contain;
   border:1px solid var(--line);border-radius:var(--r-sm)}
-.pdfview__go{display:inline-flex;align-items:center;gap:10px}
-.pdfview__go .feed__ic{width:22px}
 .pdfview iframe{
   position:relative;z-index:1;display:block;width:100%;height:var(--pdf-h);border:0;
   border-radius:var(--r-md);background:transparent;
 }
 @media (max-width:700px){
   .pdfview{--pdf-h:auto}
-  .pdfview__fb{position:relative;padding:14px 14px 18px;place-content:stretch}
+  .pdfview__fb{position:relative;padding:14px;place-content:stretch}
   .pdfview__fb img{max-height:none}
   .pdfview iframe{display:none}
 }
