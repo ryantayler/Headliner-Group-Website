@@ -812,7 +812,7 @@ button,input,textarea,select{font:inherit;color:inherit}
 .hero--sheet .hero__scrim{
   background:
     linear-gradient(to bottom,rgba(10,10,10,.6) 0,rgba(10,10,10,0) 260px),
-    linear-gradient(to right,rgba(10,10,10,.55) 0%,rgba(10,10,10,.2) 60%,rgba(10,10,10,.1) 100%),
+    linear-gradient(to right,rgba(10,10,10,.55) 0%,rgba(10,10,10,.34) 55%,rgba(10,10,10,.34) 100%),
     linear-gradient(to top,rgba(10,10,10,.7) 0%,rgba(10,10,10,0) 60%),
     rgba(10,10,10,.5);
 }
@@ -1070,7 +1070,9 @@ a.card:hover,.card--hover:hover{transform:translateY(-4px);border-color:rgba(var
   #wall .magnet .ph::before{font-size:8.5px;letter-spacing:.1em;white-space:nowrap}
 }
 /* A worksheet as the card art. On the card it is cropped to its top left corner, the
-   logo and the start of the sheet, so it reads as a document at thumbnail size. */
+   logo and the start of the sheet, so it reads as a document at thumbnail size. The two
+   images repeat this inline, because the page and the stylesheet are pasted into the
+   builder separately and a page ahead of its stylesheet centred them live. */
 .media--doc img{object-position:left top}
 .magnet[hidden]{display:none}
 .empty{margin-top:32px;color:var(--tx-mute)}
@@ -1445,6 +1447,10 @@ body.sheet-open{overflow:hidden}
 .formslot p{max-width:40ch}
 /* the worksheet download pages' own hero, shorter so the worksheet sits near the top */
 .hero--got{min-height:clamp(380px,46vh,520px)}
+/* Their title runs the full width at about Free Sh!t's scale, sized so the longest line,
+   THE OPTIMISATION or OF PARTNERSHIP, fills the shell at 1440 without breaking a word,
+   and PARTNERSHIP still fits one line at 390. */
+.hero--got .hero__grid--wide .d1{font-size:clamp(36px,7vw,100px);line-height:.9}
 
 /* ---------- 12. The look ----------
    This began as an experiment behind a toggle and is now simply how the site looks, so

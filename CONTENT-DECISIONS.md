@@ -2422,3 +2422,15 @@ drop the Free Sh!t photograph from the hero for the page's own worksheet, so eac
 reads as its own thing. The sheet is almost all white, so `hero--sheet` blurs it and puts a
 flat dark floor under the usual scrim. Pixel sampled, the headline holds 6.4 to 7 to 1 on
 the brightest pixel under it.
+
+## Worksheet page titles at the site's scale
+
+Ryan, 5 October 2026. The four worksheet pages' titles were the smallest on the site,
+50px at 1440. They now run the full width, `clamp(36px,7vw,100px)`, sized so the longest
+line fills the shell at 1440 without breaking a word. *Pillars of* is held together with
+a non breaking space so a phone never leaves *of* alone on a line. The hero's right side
+is a little darker to keep the wider title above 6 to 1.
+
+**Free Sh!t card images hold left.** The two worksheet images carry their left top
+position inline as well as in the stylesheet. Live, the page was ahead of its
+stylesheet and the images centred.
