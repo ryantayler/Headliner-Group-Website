@@ -664,6 +664,17 @@ svg{width:100%;height:auto;display:block}
 #printsheet .read span{font-size:5.6pt}
 #printsheet .read b{font-size:8pt}
 
+/* The light print is for paper, so its hero is not a black block. It keeps the hero's
+   layout and turns its ground white, its type to ink and its accent to the deep aqua that
+   carries on white. The dark print keeps the dark hero. */
+html:not(.pdark) #printsheet .phero{
+  --base:#FFFFFF; --ink:#111614; --tx:#111614; --tx-sub:#3F4744; --sub:#3F4744; --mute:#5B6360;
+  --accent:#0A7261; --tx-accent:#0A7261; --rim:#D7DDDA;
+  background:#FFFFFF; color:#111614; border:1px solid #D7DDDA;
+}
+html:not(.pdark) #printsheet .phero::before,
+html:not(.pdark) #printsheet .phero::after{display:none}
+
 /* the cards */
 #printsheet .pcards{background:transparent;margin-top:3.5mm}
 #printsheet .grid.g2{grid-template-columns:1fr 1fr;gap:3.5mm}
