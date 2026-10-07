@@ -242,8 +242,8 @@ function slidersHTML(r){
     one("Trigger",["Gut","Proof"],r.tri,r.tp)+
     one("Drive",["Through people","Systems","The work"],r.dri,r.dp)+
     '<div class="sname" style="margin-top:28px">The two that screen your hire</div>'+
-    one("Manner",["Blunt","Measured"],r.man==="blunt"?0:(r.man==="measured"?1:-1),r.mp)+
-    one("Reactiveness",["Immediate","Thought"],r.rea==="immediate"?0:(r.rea==="thought"?1:-1),r.xp);
+    one("Manner",["Blunt","Balanced","Measured"],{blunt:0,balanced:1,measured:2}[r.man],r.mp)+
+    one("Reactiveness",["Immediate","Balanced","Thought"],{immediate:0,balanced:1,thought:2}[r.rea],r.xp);
 }
 
 function barsHTML(r){
