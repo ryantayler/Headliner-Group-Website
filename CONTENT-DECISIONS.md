@@ -2517,3 +2517,24 @@ portrait, so in the sheet it is held to the screen's height and opens whole. The
 button is **Take the test** and goes to Ryan's test at
 `https://headlinergroup.com.au/headliner-leadership-styles-home`, no form in between.
 The card and sheet lines are still the old personality test's.
+
+## Free Sh!t card lines, Ryan's own, 7 October 2026
+
+One line per magnet, the same on the card and in its sheet. Typos fixed, wording his.
+
+- **The 4 pillars of partnership.** *A worksheet to help you map out your partnerships
+  using Ryan Tayler's 4 pillars of partnership framework. Map out potential partnerships
+  and decide which will have the biggest impact, and which to pursue first.*
+- **The optimisation engine.** *A worksheet to help you map out your business numbers
+  using Ryan Tayler's optimisation engine framework. Map all your numbers onto the cycle
+  so you can visualise the engine every month.*
+- **The Headliner Leadership Test.** *A short test for you and the people around you. It
+  measures the way you make decisions and how you act professionally. It will help you
+  understand how to get more out of your relationships, and how you can work with others
+  better.*
+- **The Headliner Business Diagnosis.** *A short test to help you diagnose the key
+  constraint in your business, and bring to light any risks you may have. It will give you
+  a simple step by step on actions you can take now to solve the key constraint.*
+
+The lines run to three sentences, so on desktop a card grows to fit its words, with the
+old 1.74 to 1 shape as its least.

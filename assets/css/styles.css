@@ -1096,8 +1096,11 @@ a.card:hover,.card--hover:hover{transform:translateY(-4px);border-color:rgba(var
 @media (min-width:760px){ #wall{grid-template-columns:repeat(2,minmax(0,1fr))} }
 @media (min-width:1120px){
   #wall{grid-template-columns:repeat(2,minmax(0,1fr))}
+  /* The old fixed 1.74 to 1 shape is now only the least a card can be. The lines are
+     Ryan's and run to three sentences, so a card grows to fit its words, and the grid
+     keeps both cards in a row the same height. */
   #wall .magnet{
-    aspect-ratio:1.74/1;display:grid;gap:6px 0;padding:0;
+    min-height:clamp(282px,20.6vw,310px);display:grid;gap:6px 0;padding:0;
     grid-template-columns:minmax(0,.42fr) minmax(0,1fr);
     grid-template-rows:auto auto 1fr auto;
   }
