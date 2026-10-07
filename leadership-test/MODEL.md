@@ -110,34 +110,34 @@ measures agreeableness instead of leadership.
 
 | # | Axis | Direction | Statement |
 |---|---|---|---|
-| 1 | Trigger | reverse | I have committed real money to something I could not have justified on paper at the time. |
-| 2 | Drive | reverse | When something goes wrong, my first instinct is who needs support, not what broke. |
-| 3 | Manner | reverse | I have said something in a meeting knowing it would embarrass someone, because it needed saying. |
-| 4 | Reactiveness | forward | I have let a problem run for a fortnight while I worked out how to raise it. |
-| 5 | Trigger | forward | I have asked for another round of numbers when the team was already ready to move. |
-| 6 | Drive | forward | I have let a team member struggle through a week because fixing the output mattered more. |
-| 7 | Manner | reverse | People have described me as blunt more than once. |
-| 8 | Reactiveness | forward | I will hold an issue until I can raise it privately, even if the group keeps working off bad information. |
-| 9 | Trigger | reverse | I have overruled an analysis because it did not match what I believed was true. |
-| 10 | Drive | reverse | I spend more of my week in conversations than producing anything myself. |
-| 11 | Manner | forward | I spend more time deciding how to say something than deciding whether it is true. |
-| 12 | Reactiveness | reverse | I would rather have an awkward conversation today than a smooth one on Friday. |
-| 13 | Trigger | forward | I have missed an opportunity because I wanted more certainty before committing. |
-| 14 | Drive | forward | I have redone someone's work myself instead of coaching them through it. |
-| 15 | Manner | reverse | I have named a problem in front of a group before checking how the person would take it. |
-| 16 | Reactiveness | reverse | When something annoys me, the person usually hears about it the same day. |
-| 17 | Trigger | reverse | I would rather back the wrong thing early than the right thing late. |
+| 1 | Trigger | reverse | I've committed real money in my business to something I couldn't have justified on paper at the time. |
+| 2 | Drive | reverse | When something goes wrong at work, my first instinct is who on the team needs support, not what broke. |
+| 3 | Manner | reverse | I've said something in a team meeting knowing it'd embarrass someone, because it needed saying. |
+| 4 | Reactiveness | forward | I've let a problem in the business run for a fortnight while I worked out how to raise it. |
+| 5 | Trigger | forward | I've asked my team for another round of numbers when they were already ready to move. |
+| 6 | Drive | forward | I've let a team member struggle through a week because fixing the output mattered more. |
+| 7 | Manner | reverse | Staff, clients or business partners have called me blunt more than once. |
+| 8 | Reactiveness | forward | I'll hold an issue until I can raise it privately, even if the team keeps working off bad information. |
+| 9 | Trigger | reverse | I've overruled the numbers on a business decision because they didn't match what I believed was true. |
+| 10 | Drive | reverse | I spend more of my working week in conversations with my team than producing anything myself. |
+| 11 | Manner | forward | At work, I spend more time deciding how to say something than deciding whether it's true. |
+| 12 | Reactiveness | reverse | With staff or clients, I'd rather have an awkward conversation today than a smooth one on Friday. |
+| 13 | Trigger | forward | I've missed a business opportunity because I wanted more certainty before committing. |
+| 14 | Drive | forward | I've redone a team member's work myself instead of coaching them through it. |
+| 15 | Manner | reverse | I've named a problem in front of the team before checking how the person would take it. |
+| 16 | Reactiveness | reverse | When something at work annoys me, the person responsible usually hears about it the same day. |
+| 17 | Trigger | reverse | In business, I'd rather back the wrong thing early than the right thing late. |
 | 18 | Drive | reverse | I could describe my team's mood more accurately than the status of the work. |
-| 19 | Manner | forward | I soften feedback so it lands, even when that means the point arrives weaker. |
-| 20 | Reactiveness | forward | I sit on bad news until I have worked out what to do about it. |
-| 21 | Trigger | forward | I need to see something work at small scale before I will put real weight behind it. |
-| 22 | Drive | forward | I would rather ship the right thing with a strained team than the wrong thing with a happy one. |
-| 23 | Manner | reverse | I would rather be understood than liked. |
-| 24 | Reactiveness | reverse | I have reacted to a problem before I had the full picture. |
-| 25 | Trigger | reverse | I have started work on something before the business case was finished. |
-| 26 | Drive | forward | I judge my week by what got finished, not by how the team is travelling. |
-| 27 | Manner | forward | I have rewritten a message several times to get the tone right. |
-| 28 | Reactiveness | forward | I would rather raise something once, properly, than raise it early and be half right. |
+| 19 | Manner | forward | I soften feedback to my team so it lands, even when that means the point arrives weaker. |
+| 20 | Reactiveness | forward | I sit on bad news in the business until I've worked out what to do about it. |
+| 21 | Trigger | forward | I need to see an idea work at small scale before I'll put real money or resources behind it. |
+| 22 | Drive | forward | I'd rather deliver the right thing with a strained team than the wrong thing with a happy one. |
+| 23 | Manner | reverse | At work, I'd rather be understood than liked. |
+| 24 | Reactiveness | reverse | I've reacted to a problem in the business before I had the full picture. |
+| 25 | Trigger | reverse | I've started work on a project before the business case was finished. |
+| 26 | Drive | forward | I judge my working week by what got finished, not by how the team is travelling. |
+| 27 | Manner | forward | I've rewritten an email or message to my team several times to get the tone right. |
+| 28 | Reactiveness | forward | I'd rather raise an issue at work once, properly, than raise it early and be half right. |
 
 ## 6. Output
 
