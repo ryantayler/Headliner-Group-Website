@@ -716,6 +716,12 @@ html:not(.pdark) #printsheet .phero::after{display:none}
 #printsheet .mtag{font-size:5.6pt;padding:.8mm 2mm}
 #printsheet .mrow p{font-size:7pt;line-height:1.45}
 
+/* Drawn for the PDF download. The sheet is laid out off screen at A4 width (794px at
+   96dpi) with the printed sheet's 11mm margin, white or black. */
+#printsheet.pdf-render{display:block;position:fixed;left:-10000px;top:0;width:794px;padding:11mm;background:#FFFFFF}
+.pdark #printsheet.pdf-render{background:#0A0A0A}
+.pdark #printsheet.pdf-render .psheet{box-shadow:none}
+
 /* ---------- PRINT SHEET, dark ----------
    The hero is dark already. The cards turn, and the drawings with them. */
 .pdark #printsheet{color:#ECE8E0}

@@ -369,6 +369,73 @@ function initQuestions(){
   paint();
 }
 
+/* ---------- Download as PDF ----------
+   The buttons save a finished one page A4 PDF, no print window. The page draws the
+   print sheet to an image with html-to-image, which renders through the browser itself
+   so the beam, the blur and the masks come out as they look, then jsPDF wraps that
+   image in an A4 page. Both libraries load from jsDelivr on the first click only.
+   The dark one is a digital poster, black to every edge. The light one keeps the white
+   page with the same margin the printed sheet has. */
+var PDF_LIBS=["https://cdn.jsdelivr.net/npm/html-to-image@1.11.11/dist/html-to-image.js",
+              "https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"];
+/* The brand fonts, handed to html-to-image as data. It cannot read Google's stylesheet
+   itself, because the browser hides a cross site sheet's rules from scripts, and without
+   this every heading in the PDF falls back to a system face. Latin only, fetched once. */
+var FONT_CSS="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600&display=swap";
+function fontCSS(){
+  if(fontCSS.p) return fontCSS.p;
+  fontCSS.p=fetch(FONT_CSS).then(function(res){return res.text();}).then(function(css){
+    var latin=css.split(/(?=\/\* )/).filter(function(b){return /^\/\* latin \*\//.test(b);});
+    if(latin.length) css=latin.join("");
+    var urls=(css.match(/url\([^)]+\)/g)||[]).filter(function(u,i,a){return a.indexOf(u)===i;});
+    return Promise.all(urls.map(function(u){
+      return fetch(u.slice(4,-1).replace(/["']/g,"")).then(function(res){return res.blob();}).then(function(blob){
+        return new Promise(function(ok){var fr=new FileReader();fr.onload=function(){ok([u,"url("+fr.result+")"]);};fr.readAsDataURL(blob);});
+      });
+    })).then(function(pairs){ pairs.forEach(function(p){css=css.split(p[0]).join(p[1]);}); return css; });
+  }).catch(function(){ fontCSS.p=null; return ""; });
+  return fontCSS.p;
+}
+function loadScript(src){
+  return new Promise(function(ok,fail){
+    var s=document.querySelector('script[data-src="'+src+'"]');
+    if(s){ if(s.dataset.ready) ok(); else { s.addEventListener("load",ok); s.addEventListener("error",fail); } return; }
+    s=document.createElement("script"); s.src=src; s.async=true; s.dataset.src=src;
+    s.onload=function(){ s.dataset.ready="1"; ok(); }; s.onerror=fail;
+    document.head.appendChild(s);
+  });
+}
+function downloadPDF(r,dark,btn){
+  if(btn.dataset.busy) return;
+  var lab=btn.querySelector("span")||btn, was=lab.textContent, root=document.documentElement, ps=$("printsheet");
+  btn.dataset.busy="1"; lab.textContent="Preparing your PDF";
+  var bg= dark ? "#0A0A0A" : "#FFFFFF";
+  function done(msg){
+    ps.classList.remove("pdf-render"); root.classList.remove("pdark");
+    lab.textContent=msg||was; delete btn.dataset.busy;
+    if(msg) setTimeout(function(){ lab.textContent=was; },3000);
+  }
+  var fonts="";
+  Promise.all(PDF_LIBS.map(loadScript).concat([fontCSS().then(function(c){fonts=c;})])).then(function(){
+    root.classList.toggle("pdark",dark);
+    ps.classList.add("pdf-render");
+    return (document.fonts&&document.fonts.ready) || null;
+  }).then(function(){
+    // the sheet sits off screen while it is drawn, so the copy is put back in place
+    return window.htmlToImage.toJpeg(ps,{quality:.95,pixelRatio:2.5,backgroundColor:bg,cacheBust:true,fontEmbedCSS:fonts||undefined,
+      style:{position:"static",left:"0",top:"0",margin:"0"}});
+  }).then(function(img){
+    var w=ps.offsetWidth, h=ps.offsetHeight;
+    var pdf=new window.jspdf.jsPDF({unit:"mm",format:"a4",orientation:"portrait"});
+    pdf.setFillColor(bg); pdf.rect(0,0,210,297,"F");
+    var pw=210, ph=210*h/w, x=0;
+    if(ph>297){ pw=297*w/h; ph=297; x=(210-pw)/2; }
+    pdf.addImage(img,"JPEG",x,0,pw,ph);
+    pdf.save("Headliner-Leadership-Style-"+r.s.n.replace(/^The /,"")+(dark?"-Dark":"")+".pdf");
+    done();
+  }).catch(function(){ done("Couldn't make the PDF, try again"); });
+}
+
 function initResult(){
   var m=/[?&]a=([1-4]{28})(?:&|$)/.exec(location.search);
   var ans=m?decode(m[1]):load();
@@ -397,12 +464,8 @@ function initResult(){
       navigator.clipboard.writeText(url).then(function(){done("Link copied");},function(){note.textContent=url;note.hidden=false;});
     } else { note.textContent=url; note.hidden=false; }
   });
-  document.querySelectorAll("[data-print]").forEach(function(b){
-    b.addEventListener("click",function(){
-      var dark=b.getAttribute("data-print")==="dark";
-      document.documentElement.classList.toggle("pdark",dark);
-      setTimeout(function(){window.print();setTimeout(function(){document.documentElement.classList.remove("pdark");},400);},60);
-    });
+  document.querySelectorAll("[data-pdf]").forEach(function(b){
+    b.addEventListener("click",function(){ downloadPDF(r,b.getAttribute("data-pdf")==="dark",b); });
   });
 }
 
