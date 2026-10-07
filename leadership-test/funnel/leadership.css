@@ -507,7 +507,6 @@ svg{width:100%;height:auto;display:block}
 @media (max-width:860px){.hire{grid-template-columns:1fr}.hire .pgrid{max-width:560px}}
 .axlab{font-family:Inter,sans-serif;font-size:2.7px;fill:#5B6360;font-weight:600;letter-spacing:.12em;text-transform:uppercase}
 .axlab.axrow{font-size:2.5px;letter-spacing:.1em}
-.axtitle{font-family:'Archivo Black',Impact,sans-serif;font-size:3px;fill:#111614;text-transform:uppercase;letter-spacing:.06em}
 .zlab{font-family:'Archivo Black',Impact,sans-serif;font-size:3.5px;fill:#3F4744;text-transform:uppercase;letter-spacing:-.02em}
 .zceleb{font-family:Inter,sans-serif;font-size:2.5px;fill:#5B6360;font-weight:500}
 /* the cell you sit in: its style and its leader step up */
@@ -750,7 +749,6 @@ html:not(.pdark) #printsheet .phero::after{display:none}
 .pdark #printsheet .zceleb{fill:#7C7C7C}
 .pdark #printsheet .zceleb.on{fill:#ECE8E0}
 .pdark #printsheet .axlab{fill:#7C7C7C}
-.pdark #printsheet .axtitle{fill:#ECE8E0}
 .pdark #printsheet .pgrid rect{fill:#0A0A0A}
 .pdark #printsheet .pgrid .gname{fill:#ECE8E0}
 .pdark #printsheet .pgrid .gsub,.pdark #printsheet .pgrid .gaxis{fill:#9AA0A8}

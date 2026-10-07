@@ -181,10 +181,10 @@ function heroHTML(r,tag){
   '</div>';
 }
 
-/* The map. Trigger runs along the bottom, gut to proof. Drive runs up the left side,
-   the work at the bottom to people at the top, with its three rows named. The box is set
-   in from the left to make room for those names. */
-var MAP={x:15,y:4,w:77,h:75};
+/* The map. Gut and proof name the two columns along the bottom. The three Drive rows
+   are named up the left side, the work at the bottom to people at the top. The box is
+   set in from the left to make room for those names. */
+var MAP={x:9,y:4,w:83,h:75};
 function cellRect(r){
   var h=MAP.h/3, w=MAP.w/2, x=MAP.x+(r.tri?w:0), y=MAP.y+r.dri*h;
   return '<rect class="cell" x="'+x+'" y="'+y.toFixed(2)+'" width="'+w+'" height="'+h.toFixed(2)+'" fill="'+C.cell+'"></rect>';
@@ -202,7 +202,6 @@ function mapSVG(r){
     var y=(M.y+h3*i+h3/2).toFixed(2), x=M.x-2.4;
     rows+='<text class="axlab axrow" x="'+x+'" y="'+y+'" text-anchor="middle" transform="rotate(-90 '+x+' '+y+')">'+t+'</text>';
   });
-  var dy=(M.y+M.h/2).toFixed(2);
   return '<svg class="map" viewBox="0 0 100 89" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Where you sit on the Trigger and Drive map">'+
     '<rect x="'+M.x+'" y="'+M.y+'" width="'+M.w+'" height="'+M.h+'" fill="'+C.paper+'" stroke="'+C.rim+'" stroke-width=".4" rx="2"></rect>'+
     cellRect(r)+
@@ -213,12 +212,10 @@ function mapSVG(r){
     '<circle cx="'+cx+'" cy="'+cy+'" r="3.6" fill="#2DE2C3" opacity=".45"></circle>'+
     '<circle cx="'+cx+'" cy="'+cy+'" r="2" fill="#fff" stroke="'+C.deep+'" stroke-width="1.1"></circle>'+
     // trigger, along the bottom
-    '<text class="axlab" x="'+M.x+'" y="'+(bottom+5)+'">Gut</text>'+
-    '<text class="axtitle" x="'+mx+'" y="'+(bottom+5)+'" text-anchor="middle">Trigger</text>'+
-    '<text class="axlab" x="'+right+'" y="'+(bottom+5)+'" text-anchor="end">Proof</text>'+
+    '<text class="axlab" x="'+(M.x+M.w/4)+'" y="'+(bottom+5)+'" text-anchor="middle">Gut</text>'+
+    '<text class="axlab" x="'+(M.x+3*M.w/4)+'" y="'+(bottom+5)+'" text-anchor="middle">Proof</text>'+
     // drive, up the left side
     rows+
-    '<text class="axtitle" x="4" y="'+dy+'" text-anchor="middle" transform="rotate(-90 4 '+dy+')">Drive</text>'+
   '</svg>';
 }
 
