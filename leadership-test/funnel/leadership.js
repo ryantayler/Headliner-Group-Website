@@ -167,9 +167,11 @@ function score(ans){
 
 /* ---------- Result pieces, shared by the landing example and the result page ---------- */
 function heroHTML(r,tag){
-  var reads=[["Trigger",r.tri===0?"Gut":"Proof"],
-             ["Drive",["Through people","Through systems","Through the work"][r.dri]],
-             ["Manner",cap(r.man)],["Reactiveness",cap(r.rea)]];
+  // each scale read as a sentence, so the result says what it means
+  var reads=[["Your decisions are triggered by",r.tri===0?"Gut":"Proof"],
+             ["You drive success through",["People","Systems","The work"][r.dri]],
+             ["Your professional manner is",cap(r.man)],
+             ["You react to problems",{immediate:"Immediately",balanced:"In good time",deferred:"After some thought"}[r.rea]]];
   return '<div class="shell result__grid">'+
     '<div class="result__copy">'+
       '<div class="minihead minihead--quiet">'+tag+'</div>'+
@@ -300,7 +302,7 @@ function cardsHTML(r,pre){
     card("Your blend","Nobody is 100% one style. This is your blend of each of the six styles. Your highest result defines your style, and if you come back again next month you may have moved slightly in your style.",
       '<div class="blend">'+barsHTML(r)+'</div>')+
   '</div>'+
-  card("Who to hire","A match works whether you're hiring them or working for them. Your style and its two matches are lit on the grid.",
+  card("Who to work with","This shows the styles that fit best alongside yours, as a business partner, a direct report or a manager. You generally want someone with a different trigger to you, so there's someone challenging how you make decisions. And you want someone with a slightly different drive, so you get another angle on the work.",
     '<div class="hire">'+gridSVG(r,pre)+'<div>'+hireHTML(r)+'</div></div>',gap);
   return out;
 }

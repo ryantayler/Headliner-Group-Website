@@ -494,8 +494,8 @@ button{font:inherit}
 .reads{display:grid;gap:10px;align-content:end}
 .read{display:flex;justify-content:space-between;gap:16px;align-items:baseline;padding:14px 0;border-top:1px solid var(--rim)}
 .read:last-child{border-bottom:1px solid var(--rim)}
-.read span{font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
-.read b{font-weight:600;color:var(--accent);font-size:15px}
+.read span{font-size:14px;font-weight:500;color:var(--mute)}
+.read b{font-weight:600;color:var(--accent);font-size:15px;text-align:right}
 
 /* ---------- Result cards ---------- */
 .cardhead{display:grid;gap:8px}
@@ -667,7 +667,7 @@ svg{width:100%;height:auto;display:block}
 #printsheet .celeb{font-size:9.5pt}
 #printsheet .result p.desc{font-size:8pt;line-height:1.5}
 #printsheet .read{padding:1.8mm 0}
-#printsheet .read span{font-size:5.6pt}
+#printsheet .read span{font-size:7pt}
 #printsheet .read b{font-size:8pt}
 
 /* The light print is for paper, so its hero is not a black block. It keeps the hero's
@@ -691,7 +691,7 @@ html:not(.pdark) #printsheet .phero::after{display:none}
 #printsheet .card{padding:4mm;gap:2mm;border-radius:3mm;box-shadow:none}
 #printsheet .card[style]{margin-top:3.5mm!important}
 #printsheet .card .d3{font-size:10.5pt}
-#printsheet .card .sub{font-size:6.6pt;line-height:1.45}
+#printsheet .card .sub{font-size:6.2pt;line-height:1.35}
 #printsheet .cardhead{gap:1mm}
 #printsheet .sname{font-size:5.6pt;margin:1.5mm 0 0}
 #printsheet .slider{gap:1.2mm;margin-top:1.8mm}
