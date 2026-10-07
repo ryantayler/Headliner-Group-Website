@@ -181,31 +181,44 @@ function heroHTML(r,tag){
   '</div>';
 }
 
-/* the cell the dot lands in, lit so the style reads off the map at a glance.
-   top is where the map's box starts, 8 on screen and 6 on the print sheet */
-function cellRect(r,top){
-  var h=76/3, x=r.tri?50:8, y=top+r.dri*h;
-  return '<rect class="cell" x="'+x+'" y="'+y.toFixed(2)+'" width="42" height="'+h.toFixed(2)+'" fill="'+C.cell+'"></rect>';
+/* The map. Trigger runs along the bottom, gut to proof. Drive runs up the left side,
+   the work at the bottom to people at the top, with its three rows named. The box is set
+   in from the left to make room for those names. */
+var MAP={x:15,y:4,w:77,h:75};
+function cellRect(r){
+  var h=MAP.h/3, w=MAP.w/2, x=MAP.x+(r.tri?w:0), y=MAP.y+r.dri*h;
+  return '<rect class="cell" x="'+x+'" y="'+y.toFixed(2)+'" width="'+w+'" height="'+h.toFixed(2)+'" fill="'+C.cell+'"></rect>';
 }
 
 function mapSVG(r){
-  var cx=(8+r.tp/100*84).toFixed(2), cy=(8+r.dp/100*76).toFixed(2), lab="";
+  var M=MAP, mx=M.x+M.w/2, h3=M.h/3, bottom=M.y+M.h, right=M.x+M.w;
+  var cx=(M.x+r.tp/100*M.w).toFixed(2), cy=(M.y+r.dp/100*M.h).toFixed(2), lab="", rows="";
   GRID.forEach(function(k,i){
-    var left=i<3, y=[15,46.9,78.8][i%3], tx=left?11:89, an=left?"":' text-anchor="end"', on=(k===r.key)?" on":"";
-    lab+='<text class="zlab'+on+'" x="'+tx+'" y="'+y+'"'+an+'>'+short(k)+'</text>'+
-      '<text class="zceleb'+on+'" x="'+tx+'" y="'+(y+(on?4.2:3.8))+'"'+an+'>'+STYLES[k].c+'</text>';
+    var left=i<3, y=M.y+7+(i%3)*h3, tx=left?M.x+3:right-3, an=left?"":' text-anchor="end"', on=(k===r.key)?" on":"";
+    lab+='<text class="zlab'+on+'" x="'+tx+'" y="'+y.toFixed(2)+'"'+an+'>'+short(k)+'</text>'+
+      '<text class="zceleb'+on+'" x="'+tx+'" y="'+(y+(on?4.2:3.8)).toFixed(2)+'"'+an+'>'+STYLES[k].c+'</text>';
   });
-  return '<svg class="map" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Where you sit on the Trigger and Drive map">'+
-    '<rect x="8" y="8" width="84" height="76" fill="'+C.paper+'" stroke="'+C.rim+'" stroke-width=".4" rx="2"></rect>'+
-    cellRect(r,8)+
-    '<line x1="50" y1="8" x2="50" y2="84" stroke="'+C.rim+'" stroke-width=".4"></line>'+
-    '<line x1="8" y1="33.3" x2="92" y2="33.3" stroke="'+C.rim+'" stroke-width=".4"></line>'+
-    '<line x1="8" y1="58.7" x2="92" y2="58.7" stroke="'+C.rim+'" stroke-width=".4"></line>'+lab+
+  ["People","Systems","The work"].forEach(function(t,i){
+    var y=(M.y+h3*i+h3/2).toFixed(2), x=M.x-2.4;
+    rows+='<text class="axlab axrow" x="'+x+'" y="'+y+'" text-anchor="middle" transform="rotate(-90 '+x+' '+y+')">'+t+'</text>';
+  });
+  var dy=(M.y+M.h/2).toFixed(2);
+  return '<svg class="map" viewBox="0 0 100 89" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Where you sit on the Trigger and Drive map">'+
+    '<rect x="'+M.x+'" y="'+M.y+'" width="'+M.w+'" height="'+M.h+'" fill="'+C.paper+'" stroke="'+C.rim+'" stroke-width=".4" rx="2"></rect>'+
+    cellRect(r)+
+    '<line x1="'+mx+'" y1="'+M.y+'" x2="'+mx+'" y2="'+bottom+'" stroke="'+C.rim+'" stroke-width=".4"></line>'+
+    '<line x1="'+M.x+'" y1="'+(M.y+h3).toFixed(2)+'" x2="'+right+'" y2="'+(M.y+h3).toFixed(2)+'" stroke="'+C.rim+'" stroke-width=".4"></line>'+
+    '<line x1="'+M.x+'" y1="'+(M.y+2*h3).toFixed(2)+'" x2="'+right+'" y2="'+(M.y+2*h3).toFixed(2)+'" stroke="'+C.rim+'" stroke-width=".4"></line>'+lab+
     '<circle cx="'+cx+'" cy="'+cy+'" r="6.5" fill="#2DE2C3" opacity=".22"></circle>'+
     '<circle cx="'+cx+'" cy="'+cy+'" r="3.6" fill="#2DE2C3" opacity=".45"></circle>'+
     '<circle cx="'+cx+'" cy="'+cy+'" r="2" fill="#fff" stroke="'+C.deep+'" stroke-width="1.1"></circle>'+
-    '<text class="axlab" x="8" y="92">Gut</text><text class="axlab" x="92" y="92" text-anchor="end">Proof</text>'+
-    '<text class="axlab" x="8" y="5">Through people</text><text class="axlab" x="92" y="5" text-anchor="end">Through the work</text>'+
+    // trigger, along the bottom
+    '<text class="axlab" x="'+M.x+'" y="'+(bottom+5)+'">Gut</text>'+
+    '<text class="axtitle" x="'+mx+'" y="'+(bottom+5)+'" text-anchor="middle">Trigger</text>'+
+    '<text class="axlab" x="'+right+'" y="'+(bottom+5)+'" text-anchor="end">Proof</text>'+
+    // drive, up the left side
+    rows+
+    '<text class="axtitle" x="4" y="'+dy+'" text-anchor="middle" transform="rotate(-90 4 '+dy+')">Drive</text>'+
   '</svg>';
 }
 
