@@ -1096,11 +1096,12 @@ a.card:hover,.card--hover:hover{transform:translateY(-4px);border-color:rgba(var
 @media (min-width:760px){ #wall{grid-template-columns:repeat(2,minmax(0,1fr))} }
 @media (min-width:1120px){
   #wall{grid-template-columns:repeat(2,minmax(0,1fr))}
-  /* The old fixed 1.74 to 1 shape is now only the least a card can be. The lines are
-     Ryan's and run to three sentences, so a card grows to fit its words, and the grid
-     keeps both cards in a row the same height. */
+  /* A fixed 1.74 to 1 shape, Ryan's call 7 October 2026. A line longer than the card
+     has room for is cut at the last line that fits and ends on an ellipsis. main.js
+     counts how many lines fit, because that changes with the width and with whether the
+     title takes one line or two. */
   #wall .magnet{
-    min-height:clamp(282px,20.6vw,310px);display:grid;gap:6px 0;padding:0;
+    aspect-ratio:1.74/1;display:grid;gap:6px 0;padding:0;
     grid-template-columns:minmax(0,.42fr) minmax(0,1fr);
     grid-template-rows:auto auto 1fr auto;
   }
@@ -1112,6 +1113,7 @@ a.card:hover,.card--hover:hover{transform:translateY(-4px);border-color:rgba(var
      site's own card heading at 1440 */
   #wall .magnet h3{font-size:clamp(22px,1.85vw,27px);line-height:1.12;letter-spacing:-.022em}
   #wall .magnet p{font-size:clamp(14px,1.05vw,15.2px);line-height:1.5}
+  #wall .magnet p:not(.card__n){display:-webkit-box;-webkit-box-orient:vertical;overflow:hidden;min-height:0}
   #wall .magnet__go{font-size:14px;padding:10px 18px}
   /* the badge belongs over the image, not over the copy it would otherwise land on */
   #wall .magnet__fmt{left:12px;right:auto;top:12px;font-size:9px;padding:4px 7px}

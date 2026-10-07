@@ -78,6 +78,32 @@
 
   /* 5. Download wall: the detail sheet. Free Sh!t only, a no op on every other page.
      The filters are gone, four cards do not need them. */
+
+  /* The cards keep a fixed shape on desktop, so a line that runs long is cut at the last
+     line that fits, with an ellipsis. How many fit depends on the width and on whether
+     the title wraps, so it is counted here, and again on resize. Below the fixed shape
+     nothing is cut. */
+  var wallLines = document.querySelectorAll('#wall .magnet p:not(.card__n)');
+  function fitWallLines() {
+    wallLines.forEach(function (p) {
+      p.style.webkitLineClamp = '';
+      p.style.maxHeight = '';
+      var card = p.closest('.magnet');
+      if (getComputedStyle(card).aspectRatio === 'auto') return;
+      var lh = parseFloat(getComputedStyle(p).lineHeight) || 22;
+      var n = Math.max(1, Math.floor((p.clientHeight + 1) / lh));
+      /* the clamp puts the ellipsis on line n, the height stops line n+1 showing under it */
+      if (p.scrollHeight > p.clientHeight + 1) {
+        p.style.webkitLineClamp = String(n);
+        p.style.maxHeight = (n * lh) + 'px';
+      }
+    });
+  }
+  if (wallLines.length) {
+    fitWallLines();
+    addEventListener('resize', fitWallLines);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitWallLines);
+  }
   var sheet = document.getElementById('sheet');
   if (sheet) {
     var sMedia = document.getElementById('sheet-media');

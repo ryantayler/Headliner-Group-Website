@@ -2538,3 +2538,9 @@ One line per magnet, the same on the card and in its sheet. Typos fixed, wording
 
 The lines run to three sentences, so on desktop a card grows to fit its words, with the
 old 1.74 to 1 shape as its least.
+
+**The cards keep their fixed shape**, Ryan's call 7 October 2026, overruling the grow to fit
+above. A line longer than its card is cut at the last line that fits and ends on an
+ellipsis, and the sheet shows it whole. Measured from 1120 to 1920, only the Leadership
+Test line runs over, by its last two words, *others better.*, at most widths. The other
+three fit.
