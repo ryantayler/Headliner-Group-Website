@@ -60,7 +60,7 @@ var BOX={believer:[15,14],charger:[15,32],purist:[15,50],
 var ORDER=["believer","anchor","charger","optimiser","purist","architect"];
 var GRID=["believer","charger","purist","anchor","optimiser","architect"];
 
-// axis: t trigger (high = proof), d drive (high = the work), m manner (high = measured), x reactiveness (high = deferred)
+// axis: t trigger (high = proof), d drive (high = the work), m manner (high = measured), x reactiveness (high = thought)
 var Q=[
  {a:"t",r:1,q:"I have committed real money to something I could not have justified on paper at the time."},
  {a:"d",r:1,q:"When something goes wrong, my first instinct is who needs support, not what broke."},
@@ -131,7 +131,7 @@ function score(ans){
   r.tri = r.ts<=17 ? 0 : 1;                          // 7 to 17 gut, 18 to 28 proof
   r.dri = r.ds<=14 ? 0 : (r.ds<=21 ? 1 : 2);         // inclusive bands
   r.man = r.ms<=14 ? "blunt" : (r.ms<=20 ? "balanced" : "measured");
-  r.rea = r.xs<=14 ? "immediate" : (r.xs<=20 ? "balanced" : "deferred");
+  r.rea = r.xs<=14 ? "immediate" : (r.xs<=20 ? "balanced" : "thought");
   r.key=Object.keys(STYLES).filter(function(k){return STYLES[k].t===r.tri&&STYLES[k].d===r.dri;})[0];
   r.s=STYLES[r.key];
 
@@ -148,8 +148,10 @@ function score(ans){
 
   // who to hire
   var B=STYLES[r.s.best], W=STYLES[r.s.work], want=[], you=[];
-  if(r.man!=="balanced"){ want.push("<b>"+(r.man==="blunt"?"measured":"blunt")+"</b> in manner"); you.push(r.man); }
-  if(r.rea!=="balanced"){ want.push("<b>"+(r.rea==="immediate"?"deferred":"immediate")+"</b> in reactiveness"); you.push(r.rea); }
+  // reactiveness reads as how someone reacts: immediately, or with thought
+  function reacts(v){ return v==="immediate" ? "<b>immediately</b>" : "with <b>thought</b>"; }
+  if(r.man!=="balanced"){ want.push("is <b>"+(r.man==="blunt"?"measured":"blunt")+"</b> in manner"); you.push("are "+r.man); }
+  if(r.rea!=="balanced"){ want.push("reacts "+reacts(r.rea==="immediate"?"thought":"immediate")); you.push("react "+reacts(r.rea).replace(/<\/?b>/g,"")); }
   function a(k){return (/^[AEIOU]/.test(short(k))?"an ":"a ")+short(k);}
   // The Charger and the Optimiser sit in the middle of Drive, so both of their matches are
   // one step across. They get two best fits and no workable. Everyone else has one of each.
@@ -160,7 +162,7 @@ function score(ans){
   var hire= r.two ? a(r.s.best)+" or "+a(r.s.work) : a(r.s.best);
   var any= r.two ? short(r.s.best)+" or "+short(r.s.work) : short(r.s.best);
   r.screen=want.length
-    ? "When you hire "+hire+", look for one who's "+want.join(" and ")+". You're "+you.join(" and ")+", so they cover "+(want.length>1?"both":"it")+"."
+    ? "When you hire "+hire+", look for one "+("who "+want.join(" and ")).replace(/^who is /,"who's ")+". "+("You "+you.join(" and ")).replace(/^You are /,"You're ")+", so they cover "+(want.length>1?"both":"it")+"."
     : "You're balanced on manner and reactiveness, so any "+any+" can work.";
   return r;
 }
@@ -168,10 +170,10 @@ function score(ans){
 /* ---------- Result pieces, shared by the landing example and the result page ---------- */
 function heroHTML(r,tag){
   // each scale read as a sentence, so the result says what it means
-  var reads=[["Your decisions are triggered by",r.tri===0?"Gut":"Proof"],
-             ["You drive success through",["People","Systems","The work"][r.dri]],
-             ["Your professional manner is",cap(r.man)],
-             ["You react to problems",{immediate:"Immediately",balanced:"In good time",deferred:"After some thought"}[r.rea]]];
+  var reads=[["Your decisions are triggered by","<b>"+(r.tri===0?"Gut":"Proof")+"</b>"],
+             ["You drive success through","<b>"+["People","Systems","The work"][r.dri]+"</b>"],
+             ["Your professional manner is","<b>"+cap(r.man)+"</b>"],
+             ["You react to problems",{immediate:"<b>Immediately</b>",balanced:"In a <b>balanced</b> way",thought:"After some <b>thought</b>"}[r.rea]]];
   return '<div class="shell result__grid">'+
     '<div class="result__copy">'+
       '<div class="minihead minihead--quiet">'+tag+'</div>'+
@@ -179,7 +181,7 @@ function heroHTML(r,tag){
       '<div class="celeb">Similar to <b>'+r.s.c+'</b></div>'+
       '<p class="desc">'+r.s.desc+'</p>'+
     '</div>'+
-    '<div class="reads">'+reads.map(function(x){return '<div class="read"><span>'+x[0]+'</span><b>'+x[1]+'</b></div>';}).join("")+'</div>'+
+    '<div class="reads">'+reads.map(function(x){return '<div class="read"><span>'+x[0]+'</span><span class="val">'+x[1]+'</span></div>';}).join("")+'</div>'+
   '</div>';
 }
 
@@ -238,7 +240,7 @@ function slidersHTML(r){
     one("Drive",["Through people","Systems","The work"],r.dri,r.dp)+
     '<div class="sname" style="margin-top:28px">The two that screen your hire</div>'+
     one("Manner",["Blunt","Measured"],r.man==="blunt"?0:(r.man==="measured"?1:-1),r.mp)+
-    one("Reactiveness",["Immediate","Deferred"],r.rea==="immediate"?0:(r.rea==="deferred"?1:-1),r.xp);
+    one("Reactiveness",["Immediate","Thought"],r.rea==="immediate"?0:(r.rea==="thought"?1:-1),r.xp);
 }
 
 function barsHTML(r){

@@ -495,7 +495,9 @@ button{font:inherit}
 .read{display:flex;justify-content:space-between;gap:16px;align-items:baseline;padding:14px 0;border-top:1px solid var(--rim)}
 .read:last-child{border-bottom:1px solid var(--rim)}
 .read span{font-size:14px;font-weight:500;color:var(--mute)}
-.read b{font-weight:600;color:var(--accent);font-size:15px;text-align:right}
+/* only the measured word is lit, so the read never highlights a word the test does not score */
+.read .val{font-size:15px;font-weight:500;color:var(--sub);text-align:right}
+.read .val b{font-weight:600;color:var(--accent)}
 
 /* ---------- Result cards ---------- */
 .cardhead{display:grid;gap:8px}
@@ -668,7 +670,7 @@ svg{width:100%;height:auto;display:block}
 #printsheet .result p.desc{font-size:8pt;line-height:1.5}
 #printsheet .read{padding:1.8mm 0}
 #printsheet .read span{font-size:7pt}
-#printsheet .read b{font-size:8pt}
+#printsheet .read .val{font-size:8pt}
 
 /* The light print is for paper, so its hero is not a black block. It keeps the hero's
    layout and turns its ground white, its type to ink and its accent to the deep aqua that

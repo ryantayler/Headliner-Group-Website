@@ -19,7 +19,7 @@ or edited without reading the code.
 | **Trigger** | gut, acts on instinct | proof, wants evidence first |
 | **Drive** | people | the work |
 | **Manner** | blunt | measured |
-| **Reactiveness** | immediate | deferred |
+| **Reactiveness** | immediate | thought |
 
 Manner and Reactiveness were split out of a single Delivery axis in v3,
 because how bluntly you say something and how fast you get around to saying
@@ -42,7 +42,7 @@ Bands:
 Trigger        7-17  gut            18-28 proof
 Drive          7-14  people         15-21 mixed        22-28 the work
 Manner         7-14  blunt          15-20 balanced     21-28 measured
-Reactiveness   7-14  immediate      15-20 balanced     21-28 deferred
+Reactiveness   7-14  immediate      15-20 balanced     21-28 thought
 ```
 
 The style is picked from Trigger and Drive only. Manner and Reactiveness
