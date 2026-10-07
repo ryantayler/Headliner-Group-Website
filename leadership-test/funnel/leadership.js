@@ -173,7 +173,10 @@ function heroHTML(r,tag){
   var reads=[["Your decisions are triggered by","<b>"+(r.tri===0?"Gut":"Proof")+"</b>"],
              ["You drive success through","<b>"+["People","Systems","The work"][r.dri]+"</b>"],
              ["Your professional manner is","<b>"+cap(r.man)+"</b>"],
-             ["You react to problems",{immediate:"<b>Immediately</b>",balanced:"In a <b>balanced</b> way",thought:"After some <b>thought</b>"}[r.rea]]];
+             {immediate:["You react to problems","<b>Immediately</b>"],
+              balanced:["You react to problems in a way that&rsquo;s","<b>Balanced</b>"],
+              thought:["You react to problems after some","<b>Thought</b>"]}[r.rea]];
+  // the lead in words sit with the label on the left, so the right only ever holds the scored word
   return '<div class="shell result__grid">'+
     '<div class="result__copy">'+
       '<div class="minihead minihead--quiet">'+tag+'</div>'+
