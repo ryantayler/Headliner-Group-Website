@@ -238,10 +238,8 @@ function slidersHTML(r){
       '<div class="slabels'+(ends.length===3?' slabels--3':'')+'">'+ends.map(function(e,i){return '<span class="'+(on===i?"on":"")+'">'+e+'</span>';}).join("")+'</div>'+
       '<div class="strack"><div class="sfill" style="'+fromMid(v)+'"></div><div class="sdot" style="left:'+v+'%"></div></div></div>';
   }
-  return '<div class="sname">The two that set your style</div>'+
-    one("Trigger",["Gut","Proof"],r.tri,r.tp)+
+  return one("Trigger",["Gut","Proof"],r.tri,r.tp)+
     one("Drive",["Through people","Systems","The work"],r.dri,r.dp)+
-    '<div class="sname" style="margin-top:28px">The two that screen your hire</div>'+
     one("Manner",["Blunt","Balanced","Measured"],{blunt:0,balanced:1,measured:2}[r.man],r.mp)+
     one("Reactiveness",["Immediate","Balanced","Thought"],{immediate:0,balanced:1,thought:2}[r.rea],r.xp);
 }
@@ -302,7 +300,7 @@ function card(title,sub,body,extra){
 function cardsHTML(r,pre){
   var gap=' style="margin-top:clamp(16px,2vw,26px)"';
   var out='<div class="grid g2">'+
-    card("Where you sit","Your dot is placed based on your trigger and drive result. This defines your leadership style.",
+    card("Where you sit","Your dot is placed based on your trigger and drive result. This defines your leadership style. Manner and reactiveness measure who you should hire alongside you.",
       mapSVG(r)+'<div class="sliders">'+slidersHTML(r)+'</div>')+
     card("Your blend","Nobody is 100% one style. This is your blend of each of the six styles. Your highest result defines your style, and if you come back again next month you may have moved slightly in your style.",
       '<div class="blend">'+barsHTML(r)+'</div>')+

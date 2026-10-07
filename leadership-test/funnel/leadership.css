@@ -518,7 +518,6 @@ svg{width:100%;height:auto;display:block}
 .gsub{font-family:Inter,sans-serif;font-size:2px;fill:#5B6360;font-weight:500}
 .gaxis{font-family:Inter,sans-serif;font-size:1.9px;fill:#5B6360;font-weight:600;letter-spacing:.1em;text-transform:uppercase}
 
-.sname{font-size:11.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--tx-accent);margin:10px 0 2px}
 .slider{display:grid;gap:8px;margin-top:14px}
 .axname{font-family:'Archivo Black',Impact,sans-serif;text-transform:uppercase;font-size:15px;letter-spacing:-.01em;color:var(--tx)}
 .slabels{display:flex;justify-content:space-between;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--tx-mute)}
@@ -695,7 +694,6 @@ html:not(.pdark) #printsheet .phero::after{display:none}
 #printsheet .card .d3{font-size:10.5pt}
 #printsheet .card .sub{font-size:6.2pt;line-height:1.35}
 #printsheet .cardhead{gap:1mm}
-#printsheet .sname{font-size:5.6pt;margin:1.5mm 0 0}
 #printsheet .slider{gap:1.2mm;margin-top:1.8mm}
 #printsheet .axname{font-size:7.5pt}
 #printsheet .slabels{font-size:5.4pt}
@@ -708,10 +706,9 @@ html:not(.pdark) #printsheet .phero::after{display:none}
 #printsheet .you{font-size:5pt;padding:.2mm 1.4mm}
 /* paper is shorter than a screen, so the two drawings are capped */
 #printsheet .map{max-width:54mm;margin-inline:auto}
-/* the four scales sit two by two under the map: the pair that sets the style on the
-   left, the pair that screens the hire on the right */
-#printsheet .sliders{display:grid;grid-template-rows:repeat(3,auto);grid-auto-flow:column;column-gap:5mm}
-#printsheet .sliders .sname[style]{margin-top:1.5mm!important}
+/* the four scales sit two by two under the map: trigger and drive on the left, manner
+   and reactiveness on the right */
+#printsheet .sliders{display:grid;grid-template-rows:repeat(2,auto);grid-auto-flow:column;column-gap:5mm}
 #printsheet .hire{grid-template-columns:62mm minmax(0,1fr);gap:6mm}
 #printsheet .hire .pgrid{max-width:62mm}
 #printsheet .mrow{grid-template-columns:20mm 1fr;gap:3mm;padding-block:2mm}
