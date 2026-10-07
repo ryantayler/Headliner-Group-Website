@@ -547,7 +547,6 @@ svg{width:100%;height:auto;display:block}
 .blend .bname{font-size:16px}
 .you{display:inline-block;font-family:Inter,sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
   color:var(--accent-deep);border:1px solid var(--accent-deep);border-radius:100px;padding:2px 8px;margin-left:8px;vertical-align:2px}
-.raw{font-size:12.5px;color:var(--tx-mute);margin-top:6px;padding-top:16px;border-top:1px solid var(--line);font-variant-numeric:tabular-nums;line-height:1.7}
 
 .mrow{display:grid;grid-template-columns:116px 1fr;gap:18px;align-items:start;padding-block:18px;border-top:1px solid var(--line)}
 .mrow:first-of-type{border-top:0;padding-top:4px}
@@ -705,7 +704,6 @@ html:not(.pdark) #printsheet .phero::after{display:none}
 #printsheet .bpct{font-size:6.6pt}
 #printsheet .btrack,#printsheet .blend .btrack{height:2mm}
 #printsheet .you{font-size:5pt;padding:.2mm 1.4mm}
-#printsheet .raw{font-size:6pt;padding-top:2mm;margin-top:1mm}
 /* paper is shorter than a screen, so the two drawings are capped */
 #printsheet .map{max-width:54mm;margin-inline:auto}
 /* the four scales sit two by two under the map: the pair that sets the style on the

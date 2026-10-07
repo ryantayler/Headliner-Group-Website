@@ -255,10 +255,6 @@ function hireHTML(r){
     '<div class="mrow"><span class="mtag">Screen</span><p>'+r.screen+'</p></div>';
 }
 
-function rawHTML(r){
-  return 'Your scores out of 28. Trigger '+r.ts+', Drive '+r.ds+', Manner '+r.ms+', Reactiveness '+r.xs+'.';
-}
-
 function gridSVG(r,pre){
   pre=pre||"";
   var key=r.key, s=r.s, lines=[
@@ -299,10 +295,10 @@ function card(title,sub,body,extra){
 function cardsHTML(r,pre){
   var gap=' style="margin-top:clamp(16px,2vw,26px)"';
   var out='<div class="grid g2">'+
-    card("Where you sit","Trigger and Drive place your dot. The six labels are the anchor points those two axes produce.",
+    card("Where you sit","Your dot is placed based on your trigger and drive result. This defines your leadership style.",
       mapSVG(r)+'<div class="sliders">'+slidersHTML(r)+'</div>')+
-    card("Your blend","Nobody is one style. This is how close your dot sits to each of the six, listed in the same order as the map. They're match scores, so they don't add to 100.",
-      '<div class="blend">'+barsHTML(r)+'</div><div class="raw">'+rawHTML(r)+'</div>')+
+    card("Your blend","Nobody is 100% one style. This is your blend of each of the six styles. Your highest result defines your style, and if you come back again next month you may have moved slightly in your style.",
+      '<div class="blend">'+barsHTML(r)+'</div>')+
   '</div>'+
   card("Who to hire","A match works whether you're hiring them or working for them. Your style and its two matches are lit on the grid.",
     '<div class="hire">'+gridSVG(r,pre)+'<div>'+hireHTML(r)+'</div></div>',gap);
