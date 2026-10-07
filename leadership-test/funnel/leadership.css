@@ -645,11 +645,16 @@ svg{width:100%;height:auto;display:block}
    them for paper; the look comes from the screen rules. */
 #printsheet{display:none;font-family:Inter,system-ui,sans-serif;color:#111614}
 .psheet{break-inside:avoid;page-break-inside:avoid;overflow:hidden}
-#printsheet .pbrand{display:flex;justify-content:space-between;align-items:flex-end;padding-bottom:2mm;margin-bottom:3mm;border-bottom:1.4px solid #111614}
+#printsheet .pbrand{display:flex;justify-content:space-between;align-items:center;padding-bottom:.5mm;margin-bottom:2.5mm;border-bottom:1.4px solid #111614}
 #printsheet .pk{font-size:6.4pt;letter-spacing:.18em;text-transform:uppercase;color:#0A7261;font-weight:600}
-#printsheet .pmark{font-family:'Archivo Black',Impact,sans-serif;font-size:11pt;line-height:1;text-transform:uppercase;letter-spacing:-.01em;color:#111614}
-#printsheet .pmark small{display:block;font-family:Inter,sans-serif;font-weight:600;font-size:4.2pt;letter-spacing:.42em;text-align:right;margin:.6mm -.42em 0 0;color:#5B6360}
-#printsheet .pfoot{font-size:6pt;color:#8A918E;margin-top:2.5mm;text-align:right}
+#printsheet .pfoot{display:flex;justify-content:space-between;align-items:flex-end;font-size:6pt;color:#8A918E;margin-top:1.5mm}
+/* the signature closes the sheet, bottom right, in ink */
+#printsheet .psig{width:30mm;height:auto;color:#111614;display:block}
+/* the real lockup, beam and all, cropped by the same stage the header uses */
+#printsheet .plogo{position:relative;width:153px;height:50px;flex:none;overflow:hidden}
+/* sized by font size rather than scaled, since every distance in the lockup is in em. A
+   scaled stage keeps its full size box, and the print shrinks the whole page to fit it. */
+#printsheet .plogo .hl-stage{font-size:8.5px;transform:none}
 
 /* the hero, dark as it is on screen */
 #printsheet .phero{padding:6mm 7mm 5mm;border-radius:3mm}
@@ -672,6 +677,10 @@ html:not(.pdark) #printsheet .phero{
   --accent:#0A7261; --tx-accent:#0A7261; --rim:#D7DDDA;
   background:#FFFFFF; color:#111614; border:1px solid #D7DDDA;
 }
+/* on white the logo's word turns to ink, and its beam is laid on normally, because a
+   screen blend over white adds nothing and the beam would vanish */
+html:not(.pdark) #printsheet .hl-logo{--ink:#111614;--sub:#5B6360}
+html:not(.pdark) #printsheet .hl-beam{mix-blend-mode:normal;opacity:.75}
 html:not(.pdark) #printsheet .phero::before,
 html:not(.pdark) #printsheet .phero::after{display:none}
 
@@ -696,13 +705,13 @@ html:not(.pdark) #printsheet .phero::after{display:none}
 #printsheet .you{font-size:5pt;padding:.2mm 1.4mm}
 #printsheet .raw{font-size:6pt;padding-top:2mm;margin-top:1mm}
 /* paper is shorter than a screen, so the two drawings are capped */
-#printsheet .map{max-width:60mm;margin-inline:auto}
+#printsheet .map{max-width:54mm;margin-inline:auto}
 /* the four scales sit two by two under the map: the pair that sets the style on the
    left, the pair that screens the hire on the right */
 #printsheet .sliders{display:grid;grid-template-rows:repeat(3,auto);grid-auto-flow:column;column-gap:5mm}
 #printsheet .sliders .sname[style]{margin-top:1.5mm!important}
-#printsheet .hire{grid-template-columns:66mm minmax(0,1fr);gap:6mm}
-#printsheet .hire .pgrid{max-width:66mm}
+#printsheet .hire{grid-template-columns:62mm minmax(0,1fr);gap:6mm}
+#printsheet .hire .pgrid{max-width:62mm}
 #printsheet .mrow{grid-template-columns:20mm 1fr;gap:3mm;padding-block:2mm}
 #printsheet .mtag{font-size:5.6pt;padding:.8mm 2mm}
 #printsheet .mrow p{font-size:7pt;line-height:1.45}
@@ -712,8 +721,7 @@ html:not(.pdark) #printsheet .phero::after{display:none}
 .pdark #printsheet{color:#ECE8E0}
 .pdark #printsheet .pbrand{border-bottom-color:#ECE8E0}
 .pdark #printsheet .pk{color:#2DE2C3}
-.pdark #printsheet .pmark{color:#ECE8E0}
-.pdark #printsheet .pmark small{color:#ADA9A3}
+.pdark #printsheet .psig{color:#ECE8E0}
 .pdark #printsheet .pfoot{color:#7C7C7C}
 .pdark #printsheet .pcards{
   --surface:#111111; --line:#2E2E2E; --tx:#ECE8E0; --tx-sub:#ECE8E0; --tx-mute:#9AA0A8;
