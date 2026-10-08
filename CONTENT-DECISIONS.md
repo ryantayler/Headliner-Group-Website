@@ -2592,3 +2592,10 @@ Ryan's call. *Ryan Tayler's* is a small grey line in capitals above each framewo
 heading on Partnerships, so it is there without being the heading. The headings read
 *4 pillars of partnership* and *Optimisation engine*, each with its trade mark. The class
 is `pillars__by`.
+
+## Ryan's hero line, 8 October 2026
+
+Ryan's own words, typos fixed and nothing else: *Australia's expert in partnerships for
+the live events & production industry. Helping founders in live events & production grow
+through partnerships.* It replaces *I partner with founders in live events and
+production, grow the business with them, and give them the option to exit.*
