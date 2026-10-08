@@ -81,8 +81,13 @@ OVERRIDES = """
 }
 
 /* A builder's own reset can reach into the block. These are the ones that show. */
-.hl-root img,.hl-root svg{max-width:100%}
-.hl-root *,.hl-root *::before,.hl-root *::after{box-sizing:border-box}
+.hl-root img,.hl-root svg,.hl-col img,.hl-col svg{max-width:100%}
+.hl-root *,.hl-root *::before,.hl-root *::after,
+.hl-col *,.hl-col *::before,.hl-col *::after{box-sizing:border-box}
+
+/* The left column beside a builder form. It stays in its column, on the light
+   ground, with the space a section would give it on the site. */
+.hl-col{position:relative;padding:clamp(24px,4vw,64px) 0}
 """
 
 TOKEN = 'ASSETS_BASE'
@@ -173,7 +178,25 @@ def main(dest):
         # block above the form and the block below it, and the placeholder between
         # them is dropped. The builder's own form element goes in the gap. Third party
         # embeds never go in this markup, see CLAUDE.md.
-        if '<!-- GHL:FORM -->' in body:
+        # A form beside copy is marked GHL:FORM side. The builder hosts that whole
+        # section as a row of two columns, so the left column goes out as a block of
+        # its own that stays in its column rather than breaking out to full width.
+        if '<!-- GHL:FORM side' in body:
+            top, rest = body.split('<!-- GHL:FORM side', 1)
+            mid, bottom = rest.split('<!-- /GHL:FORM -->')
+            left = mid.split('<!-- GHL:LEFT -->')[1].split('<!-- /GHL:LEFT -->')[0]
+            # Each block must close what it opens. When <main> runs on past the form,
+            # the top block closes it and the bottom one drops the stray close.
+            if top.count('<main') > top.count('</main>'):
+                top += '</main>\n'
+                bottom = bottom.replace('</main>', '', 1)
+            open(os.path.join(d, 'page-1-above-form.html'), 'w').write(root(top))
+            open(os.path.join(d, 'page-2-left-of-form.html'), 'w').write(
+                '<!-- The left column only. It sits in the builder\'s column and does not\n'
+                '     break out. Set the section ground to #F2F4F3 so it matches. -->\n'
+                '<div class="hl-col band--paper%s">\n' % theme + left.strip('\n') + '\n</div>\n')
+            open(os.path.join(d, 'page-3-below-form.html'), 'w').write(root(bottom))
+        elif '<!-- GHL:FORM -->' in body:
             top, rest = body.split('<!-- GHL:FORM -->')
             bottom = rest.split('<!-- /GHL:FORM -->')[1]
             open(os.path.join(d, 'page-1-above-form.html'), 'w').write(root(top))
@@ -397,7 +420,12 @@ def seo_files(dest):
                   '- CSS: styles.css in the page custom CSS. Script: script.html in the footer code.']
         if meta.get('redirect'):
             set_t.append('- The form on this page redirects on submit to ' + url(meta['redirect']))
-        if os.path.exists(os.path.join(dest, '1-pages', folder, 'page-1-above-form.html')):
+        if os.path.exists(os.path.join(dest, '1-pages', folder, 'page-2-left-of-form.html')):
+            set_t += ['- Three parts, top to bottom:',
+                      '  1. page-1-above-form in a full width HTML block.',
+                      '  2. A section with background #F2F4F3 and a row of two columns. Left column: page-2-left-of-form in an HTML block. Right column: the builder form element.',
+                      '  3. page-3-below-form in a full width HTML block.']
+        elif os.path.exists(os.path.join(dest, '1-pages', folder, 'page-1-above-form.html')):
             set_t.append('- Two HTML blocks with the builder form element between them: page-1-above-form, the form, page-2-below-form.')
         set_t.append('')
         if noindex:

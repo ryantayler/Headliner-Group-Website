@@ -2599,3 +2599,18 @@ Ryan's own words, typos fixed and nothing else: *Australia's expert in partnersh
 the live events & production industry. Helping founders in live events & production grow
 through partnerships.* It replaces *I partner with founders in live events and
 production, grow the business with them, and give them the option to exit.*
+
+## Ryan's story line, 8 October 2026
+
+*General Manager of his larger business* is now *his largest business*. Ryan's
+correction.
+
+## The Let's chat form is the builder's own, 8 October 2026
+
+On the live site the form on Let's chat is a Go High Level form element, kept in the
+right column beside the steps. The export cuts that section out at its `GHL:FORM side`
+markers into three blocks: the hero above, the left column on its own (it stays in its
+column and does not break out to full width), and everything below. In the builder it is
+a section on #F2F4F3 with a row of two columns, the left block in one and the form
+element in the other. On a phone the builder stacks them, steps first, form second. The
+site's own form stays as the stand in for the preview.
