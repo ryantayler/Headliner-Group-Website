@@ -2544,3 +2544,28 @@ above. A line longer than its card is cut at the last line that fits and ends on
 ellipsis, and the sheet shows it whole. Measured from 1120 to 1920, only the Leadership
 Test line runs over, by its last two words, *others better.*, at most widths. The other
 three fit.
+
+## Search and AI answers, 8 October 2026
+
+Ryan wants to be the answer when anyone asks about partnerships, or growing a business, in
+the live events industry, as Ryan Tayler, through Headliner Group. Nothing about the look
+changes for it.
+
+- **Headliner Group is always a group, never a company.** *What we do* on Home opens on
+  *Headliner Group is Ryan Tayler's partnership group.* and carries on as it was.
+- **The footer names both:** *Headliner Group, founded by Ryan Tayler. Helping founders
+  in live events & production grow through partnerships.*
+- **His name is behind every signature**, as the image's label and title, read by search
+  and screen readers, never seen. On his own page the signature is the page's heading,
+  with *Ryan Tayler* as its off screen text.
+- **The two frameworks carry his name:** *Ryan Tayler's 4 pillars of partnership* and
+  *Ryan Tayler's optimisation engine* on Partnerships. One word swapped, nothing else.
+- **Four FAQs added on Partnerships**, phrased as people ask search and AI tools: who runs
+  Headliner Group, who is an expert in partnerships in the live events industry in
+  Australia, how you grow a live events business, and what makes a good partnership.
+  The second states it plainly, with his figures beside it.
+- **His real profiles** replace the placeholder social links everywhere.
+- **Titles and descriptions change only in the background.** The Partnerships and Free
+  Sh!t headings stay as they are. Titles, descriptions and schema per page are in
+  `seo.json` and ship as SEO.txt and SCHEMA.txt with every export.
+- **The exclamation marks in the FAQ answers stay**, Ryan's call.

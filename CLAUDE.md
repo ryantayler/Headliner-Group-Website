@@ -97,6 +97,14 @@ Ryan's `theme-ryan` body class is set from his script because a pasted block can
 Verify a build by pasting each page into a bare document and rendering it, not by reading
 the output, and have that check read a token and the `rv-on` class as well as the console.
 
+**Every export carries SEO.txt, SCHEMA.txt and GHL settings.txt.** Ryan asked for this on
+8 October 2026. A pasted block only carries the body, so a page's title, description,
+canonical, social image, structured data and no index setting live in its Go High Level
+settings, and these three files are how he gets them. `build-ghl.py` writes all three out
+of `seo.json` and the pages. The schema is its own file, for each page's header code, and
+never goes in the pasted markup, which takes no script tags. Hidden pages get no schema
+and are marked no index. Headliner Group is always a *group*, never a company.
+
 **The live site runs on linked images only.** Ryan ruled this on 5 October 2026. Every
 picture in an export is an uploaded URL from `ghl-assets.json`, never the `ASSETS_BASE`
 token and never a file for him to upload and swap in. `build-ghl.py` exits 1 and names

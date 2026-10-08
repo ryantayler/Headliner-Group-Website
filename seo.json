@@ -1,0 +1,34 @@
+{
+  "_note": "Search titles, descriptions and indexing, per page. build-ghl.py writes SEO.txt, SCHEMA.txt and GHL settings.txt out of this and the pages themselves. These live in each page's settings in Go High Level, because a pasted block only carries the body. Titles and descriptions follow the copy rules: no dashes, Australian spelling.",
+  "_domain": "https://headlinergroup.com.au",
+
+  "index.html": {
+    "title": "Headliner Group | Partnerships in live events and production",
+    "description": "Headliner Group is Ryan Tayler's partnership group. We help founders in live events and production across Australia grow through partnerships.",
+    "og": "og-index.png", "home": true
+  },
+  "partnerships.html": {
+    "title": "Partnerships in live events and production | Headliner Group",
+    "description": "How Ryan Tayler and Headliner Group partner with founders in live events and production across Australia, what we bring, and what happens in the first 90 days.",
+    "og": "og-partnerships.png"
+  },
+  "ryan.html": {
+    "title": "Ryan Tayler | Partnerships in live events and production, Australia",
+    "description": "Ryan Tayler is an entrepreneur and the founder of Headliner Group, partnering with founders in live events and production across Australia. 115+ live events, 56,000+ attendees.",
+    "og": "og-ryan.png"
+  },
+  "free.html": {
+    "title": "Free tools for live events businesses | Headliner Group",
+    "description": "Free worksheets and tools from Ryan Tayler and Headliner Group for founders in live events and production, including the 4 pillars of partnership and the optimisation engine.",
+    "og": "og-free.png"
+  },
+  "contact.html": {
+    "title": "Contact Ryan Tayler | Headliner Group",
+    "description": "Talk to Ryan Tayler about growing your live events or production business through partnerships.",
+    "og": "og-contact.png"
+  },
+  "optimisation-engine.html": {"title": "The optimisation engine worksheet | Headliner Group", "description": "Ryan Tayler's optimisation engine worksheet.", "noindex": true},
+  "four-pillars.html": {"title": "The 4 pillars of partnership worksheet | Headliner Group", "description": "Ryan Tayler's 4 pillars of partnership worksheet.", "noindex": true},
+  "optimisation-engine-form.html": {"title": "Get the optimisation engine | Headliner Group", "description": "Get Ryan Tayler's optimisation engine worksheet.", "noindex": true, "redirect": "optimisation-engine.html"},
+  "four-pillars-form.html": {"title": "Get the 4 pillars of partnership | Headliner Group", "description": "Get Ryan Tayler's 4 pillars of partnership worksheet.", "noindex": true, "redirect": "four-pillars.html"}
+}

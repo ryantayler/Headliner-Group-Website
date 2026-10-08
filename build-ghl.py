@@ -222,6 +222,8 @@ def main(dest):
 
     readme(dest)
     print('readme')
+    seo_files(dest)
+    print('seo, schema, ghl settings')
     return want
 
 
@@ -320,6 +322,102 @@ def readme(dest):
           "- **The social links** point at bare linkedin.com, instagram.com, facebook.com and",
           "  youtube.com rather than at the real profiles. Seven of them are LinkedIn.", ""]
     open(os.path.join(dest, 'README.md'), 'w').write('\n'.join(t))
+
+
+SOCIAL = [
+    'https://www.linkedin.com/in/ryan-a-tayler-au/',
+    'https://www.instagram.com/ryan_a_tayler/',
+    'https://www.youtube.com/@RyanATayler',
+    'https://www.facebook.com/profile.php?id=61582253770046',
+]
+
+
+def seo_files(dest):
+    """Three files for the parts of a page a pasted block cannot reach: SEO.txt (title,
+    description, address, social image), SCHEMA.txt (the structured data, one block per
+    page, for the page's header code) and GHL settings.txt. Read out of seo.json and the
+    pages, so nothing is listed twice. Ryan asked for all three in every export."""
+    import html as H
+    seo = {k: v for k, v in json.load(open(os.path.join(SRC, 'seo.json'))).items()
+           if not k.startswith('_')}
+    dom = json.load(open(os.path.join(SRC, 'seo.json')))['_domain']
+    def url(name):
+        return dom + '/' if seo.get(name, {}).get('home') else dom + PAGES[name][1]
+    org_id, ryan_id, site_id = dom + '/#headliner-group', url('ryan.html') + '#ryan-tayler', dom + '/#website'
+    org = {'@type': 'Organization', '@id': org_id, 'name': 'Headliner Group', 'url': dom + '/',
+           'description': "Headliner Group is Ryan Tayler's partnership group. It partners with founders in live events and production across Australia.",
+           'founder': {'@id': ryan_id}, 'areaServed': {'@type': 'Country', 'name': 'Australia'},
+           'knowsAbout': ['Partnerships', 'Live events', 'Event production', 'Business growth']}
+    person = {'@type': 'Person', '@id': ryan_id, 'name': 'Ryan Tayler', 'alternateName': 'Ryan A Tayler',
+              'jobTitle': 'Founder', 'worksFor': {'@id': org_id}, 'url': url('ryan.html'),
+              'description': 'Ryan Tayler is an entrepreneur and the founder of Headliner Group. He is an expert in partnerships in the live events industry in Australia, with over 115 live events delivered for more than 56,000 attendees.',
+              'knowsAbout': ['Partnerships in the live events industry', 'Live events', 'Event production',
+                             'Growing a live events business', 'Business optimisation'],
+              'homeLocation': {'@type': 'Country', 'name': 'Australia'}, 'sameAs': SOCIAL}
+    if 'ryan-hero.jpg' in MAP:
+        person['image'] = MAP['ryan-hero.jpg']
+    site = {'@type': 'WebSite', '@id': site_id, 'name': 'Headliner Group', 'url': dom + '/',
+            'publisher': {'@id': org_id}}
+
+    def faqs(name):
+        doc = open(os.path.join(SRC, name)).read()
+        out = []
+        for q, a in re.findall(r'<summary>(.*?)</summary>\s*<div class="faq__a">(.*?)</div>', doc, re.S):
+            clean = lambda t: re.sub(r'\s+', ' ', H.unescape(re.sub(r'<[^>]+>', '', t))).strip()
+            out.append({'@type': 'Question', 'name': clean(q),
+                        'acceptedAnswer': {'@type': 'Answer', 'text': clean(a)}})
+        return out
+
+    seo_t = ['# SEO, page by page', '',
+             'Go High Level, each page, Settings, SEO. Paste the four lines in. The social image',
+             'is the picture a link shows when it is shared.', '']
+    sch_t = ['# SCHEMA, page by page', '',
+             "Go High Level, each page, Settings, Custom code, the HEADER code box (not the footer,",
+             'not the page). Paste the whole block for that page, from <script to </script>.',
+             'It is invisible. It tells Google and AI tools who Ryan Tayler is, what Headliner',
+             'Group is, how they connect, and where his profiles are. The hidden worksheet',
+             'pages get none, because they stay out of search.', '']
+    set_t = ['# GHL SETTINGS, page by page', '']
+    for name, (folder, slug) in PAGES.items():
+        meta = seo.get(name)
+        if not meta:
+            continue
+        noindex = meta.get('noindex', False)
+        seo_t += ['## %s  ->  %s' % (folder, url(name)), '',
+                  'Title:        ' + meta['title'],
+                  'Description:  ' + meta['description'],
+                  'Canonical:    ' + url(name)]
+        if meta.get('og') and meta['og'] in MAP:
+            seo_t.append('Social image: ' + MAP[meta['og']])
+        seo_t.append('')
+        set_t += ['## %s' % folder,
+                  '- Page address: ' + slug,
+                  '- Search engines: ' + ('NO INDEX, turn it on. Hidden page, it stays out of search.' if noindex else 'index, leave no index off.'),
+                  '- No template, and no builder header or footer. The blocks carry their own.',
+                  '- CSS: styles.css in the page custom CSS. Script: script.html in the footer code.']
+        if meta.get('redirect'):
+            set_t.append('- The form on this page redirects on submit to ' + url(meta['redirect']))
+        if os.path.exists(os.path.join(dest, '1-pages', folder, 'page-1-above-form.html')):
+            set_t.append('- Two HTML blocks with the builder form element between them: page-1-above-form, the form, page-2-below-form.')
+        set_t.append('')
+        if noindex:
+            continue
+        page_type = 'ProfilePage' if name == 'ryan.html' else 'WebPage'
+        page = {'@type': page_type, '@id': url(name) + '#page', 'url': url(name), 'name': meta['title'],
+                'description': meta['description'], 'isPartOf': {'@id': site_id},
+                'about': {'@id': ryan_id if name == 'ryan.html' else org_id}}
+        if name == 'ryan.html':
+            page['mainEntity'] = {'@id': ryan_id}
+        graph = [org, person, site, page]
+        qa = faqs(name)
+        if qa:
+            graph.append({'@type': 'FAQPage', '@id': url(name) + '#faq', 'mainEntity': qa})
+        block = json.dumps({'@context': 'https://schema.org', '@graph': graph}, indent=2, ensure_ascii=False)
+        sch_t += ['## %s  ->  %s' % (folder, url(name)), '',
+                  '<script type="application/ld+json">', block, '</script>', '']
+    open(os.path.join(dest, 'SEO.txt'), 'w').write('\n'.join(seo_t))
+    open(os.path.join(dest, 'SCHEMA.txt'), 'w').write('\n'.join(sch_t))
+    open(os.path.join(dest, 'GHL settings.txt'), 'w').write('\n'.join(set_t))
 
 
 def unlinked(dest):

@@ -381,6 +381,9 @@
 .hero--ryan .hero__sign{display:grid;gap:20px;justify-items:start}
 /* the signature IS the name mark here. ink only, on the clean side. */
 .sig.sig--hero{width:clamp(230px,30vw,380px);color:var(--ink);opacity:1}
+/* The signature is the page's heading. Its text is his name, off screen, so search and
+   screen readers read Ryan Tayler and the page still shows only the signature. */
+.hero__name{margin:0;line-height:0;font-size:inherit}
 /* Narrow: there is no clean right hand side to move to, so the split turns
    horizontal. The portrait takes a band under the bar and dissolves downward,
    and the whole text stack, signature included, sits on clean ground below it.
