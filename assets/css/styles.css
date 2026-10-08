@@ -1234,15 +1234,16 @@ body.sheet-open{overflow:hidden}
 @media (max-width:560px){.ftr__top{grid-template-columns:1fr}}
 .ftr h4{font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--mute);margin-bottom:14px}
 /* The sign up, Ryan's call 8 October 2026: the heading on one line, the field and Join as
-   one row of matching pills, and You're in beside the button once it is sent. */
+   one row of matching pills, and You're in underneath once it is sent. */
 .ftr h4{letter-spacing:.16em}
 @media (min-width:901px) and (max-width:1140px){.ftr h4{letter-spacing:.08em;font-size:10.5px}}
-.ftr .inline-form{flex-wrap:nowrap;align-items:center;gap:8px}
-.ftr .inline-form input{flex:1 1 auto;min-width:0;height:46px;padding:0 18px;border-radius:100px}
+.ftr .inline-form{flex-wrap:wrap;align-items:center;gap:8px}
+.ftr .inline-form input{flex:1 1 0%;min-width:0;height:46px;padding:0 18px;border-radius:100px}
 .ftr .inline-form .btn{flex:none;height:46px;padding:0 22px}
-.ftr .formmsg{display:none;flex:none;padding:0 0 0 4px;background:none;border:0;border-radius:0;
-  color:var(--accent);font-size:14px;font-weight:600;white-space:nowrap}
-.ftr .formmsg.is-on{display:inline-flex}
+/* You're in sits on its own line under the field, Ryan's call, not squeezed beside Join */
+.ftr .formmsg{display:none;flex:1 0 100%;padding:2px 0 0 18px;background:none;border:0;border-radius:0;
+  color:var(--accent);font-size:14px;font-weight:600}
+.ftr .formmsg.is-on{display:block}
 /* the two link columns lost their labels, so they sit up against the logo instead
    of hanging below where the heading used to be */
 .ftr__top ul{margin-top:2px}

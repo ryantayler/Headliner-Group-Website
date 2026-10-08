@@ -88,8 +88,6 @@
         /* set here too, so a footer pasted before the wording changed says the same */
         if (msg) { msg.textContent = 'You\u2019re in'; msg.classList.add('is-on'); }
         email.value = '';
-        /* the field gives up room to the message, so its hint would be cut off */
-        email.placeholder = '';
       };
       fetch(NEWSLETTER_HOOK, { method: 'POST', mode: 'no-cors', body: body, keepalive: true })
         .then(done, done);

@@ -97,6 +97,10 @@ Ryan's `theme-ryan` body class is set from his script because a pasted block can
 Verify a build by pasting each page into a bare document and rendering it, not by reading
 the output, and have that check read a token and the `rv-on` class as well as the console.
 
+**Do not send Ryan files unless he asks for them.** His call, 8 October 2026. Commit,
+push and republish the preview as usual, and say what changed. Exports and single files
+go to him only on request.
+
 **Every export carries SEO.txt, SCHEMA.txt and GHL settings.txt.** Ryan asked for this on
 8 October 2026. A pasted block only carries the body, so a page's title, description,
 canonical, social image, structured data and no index setting live in its Go High Level
