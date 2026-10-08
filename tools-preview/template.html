@@ -92,7 +92,7 @@
   });
 
   document.addEventListener('submit',function(e){
-    var f=e.target.closest('form[data-demo]'); if(!f) return;
+    var f=e.target.closest('form[data-demo],form[data-newsletter]'); if(!f) return; /* the preview never posts anywhere */
     e.preventDefault();
     var msg=f.querySelector('.formmsg'); if(msg) msg.classList.add('is-on');
     f.querySelectorAll('input,textarea,select').forEach(function(x){ if(x.type!=='submit') x.value=''; });

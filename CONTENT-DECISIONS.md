@@ -2569,3 +2569,12 @@ changes for it.
   Sh!t headings stay as they are. Titles, descriptions and schema per page are in
   `seo.json` and ship as SEO.txt and SCHEMA.txt with every export.
 - **The exclamation marks in the FAQ answers stay**, Ryan's call.
+
+## The footer email box is live, 8 October 2026
+
+Every footer's email box sends the address to Ryan's Go High Level inbound webhook, with
+`source=Website footer` and the page it came from, as a plain form post. A workflow there
+creates or updates the contact and tags it. The webhook address is in `main.js` only. The
+script also takes over the footer form already live, so connecting it needed the new
+script and no new markup. The preview never sends anything. This box cannot reach Go High
+Level, so the first real test is Ryan's.

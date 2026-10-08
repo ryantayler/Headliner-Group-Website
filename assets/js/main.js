@@ -63,9 +63,39 @@
 
   runReveal();
 
+  /* 4a. The footer's email box, live. Each sign up goes to Ryan's Go High Level inbound
+     webhook, which a workflow turns into a contact tagged for the newsletter. Sent as a
+     plain form post with no-cors, because a cross site JSON post asks the server's
+     permission first and a webhook is not guaranteed to answer, so the reply cannot be
+     read. The message shows once the browser has sent it. The address lives here only. */
+  var NEWSLETTER_HOOK = 'https://services.leadconnectorhq.com/hooks/o4ouZJKFsMqn4NIUgEY6/webhook-trigger/7c9c1368-3e74-4f9a-ab60-63ff91baff5d';
+  /* .ftr .inline-form too, so the footer already live, still marked data-demo, picks
+     this up from the new script alone */
+  var hooked = document.querySelectorAll('form[data-newsletter], .ftr form.inline-form');
+  hooked.forEach(function (form) {
+    form.setAttribute('data-newsletter', '');
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var email = form.querySelector('input[type="email"]');
+      if (!email || !email.value) return;
+      var body = new URLSearchParams({
+        email: email.value.trim(),
+        source: 'Website footer',
+        page: location.pathname
+      });
+      var done = function () {
+        var msg = form.querySelector('.formmsg');
+        if (msg) msg.classList.add('is-on');
+        email.value = '';
+      };
+      fetch(NEWSLETTER_HOOK, { method: 'POST', mode: 'no-cors', body: body, keepalive: true })
+        .then(done, done);
+    });
+  });
+
   /* 4. Demo form handling.
      Template only. Point the form at your real endpoint and delete this block. */
-  document.querySelectorAll('form[data-demo]').forEach(function (form) {
+  document.querySelectorAll('form[data-demo]:not([data-newsletter])').forEach(function (form) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       var msg = form.querySelector('.formmsg');
