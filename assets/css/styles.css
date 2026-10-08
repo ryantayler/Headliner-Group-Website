@@ -1130,6 +1130,13 @@ a.card:hover,.card--hover:hover{transform:translateY(-4px);border-color:rgba(var
   #wall .magnet .ph>span{display:none}
   #wall .magnet .ph::before{font-size:8.5px;letter-spacing:.1em;white-space:nowrap}
 }
+/* A tool not out yet. Its panel says so in the middle, at a size that reads, on the
+   card and in its pop up. On the narrow desktop card panel it wraps to two lines. */
+.ph--soon{justify-content:center;align-items:center;text-align:center}
+.ph--soon::before,#wall .magnet .ph--soon::before{font-family:'Archivo Black',Impact,sans-serif;
+  font-weight:400;font-size:clamp(16px,2vw,26px);letter-spacing:.04em;line-height:1.15;
+  white-space:normal;color:var(--ink)}
+@media (min-width:1120px){#wall .magnet .ph--soon::before{font-size:17px}}
 /* A worksheet as the card art. On the card it is cropped to its top left corner, the
    logo and the start of the sheet, so it reads as a document at thumbnail size. The two
    images repeat this inline, because the page and the stylesheet are pasted into the

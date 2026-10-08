@@ -2614,3 +2614,15 @@ column and does not break out to full width), and everything below. In the build
 a section on #F2F4F3 with a row of two columns, the left block in one and the form
 element in the other. On a phone the builder stacks them, steps first, form second. The
 site's own form stays as the stand in for the preview.
+
+## The Business Diagnosis is coming soon, 8 October 2026
+
+Ryan's call. The card stays, with *Coming soon* in the middle of its picture panel and on
+its pill, and its pop up has the panel and the description with no button. The XLSX
+download it pointed at is gone. When the tool is ready it needs a picture, a link and
+the pill back to *Have a look*.
+
+## The last two images are linked, 8 October 2026
+
+`leadership-test.png` and `optimisation-engine-dark.png` now have uploaded URLs in
+`ghl-assets.json`, so the export builds clean.
