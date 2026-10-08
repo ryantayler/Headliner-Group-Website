@@ -81,23 +81,46 @@ Google. The description is the grey text under it.
 
 ### Leadership test funnel
 
-| Step | Title | Description | Index |
-|---|---|---|---|
-| `/headliner-leadership-styles-home` | Headliner Leadership Styles Test by Ryan Tayler | Take Ryan Tayler's leadership test and find out which of Ryan's six leadership styles you lead with. | Yes |
-| `/headliner-leadership-styles-form` | Start the test \| Headliner Leadership Styles Test | (leave blank) | No |
-| `/headliner-leadership-styles-test` | The test \| Headliner Leadership Styles Test | (leave blank) | No |
-| `/headliner-leadership-styles-reults-page` | Your result \| Headliner Leadership Styles Test | (leave blank) | No |
+Same four lines as the main site, in each step's Settings, SEO.
 
-Only the landing step should show in Google. The other three are useless to someone
-arriving from a search, and the result step makes a new URL for every set of answers.
-Paste this into the head tracking code of each "No" step:
+```
+## landing  ->  https://headlinergroup.com.au/headliner-leadership-styles-home
 
-```html
-<meta name="robots" content="noindex, follow">
+Title:        Headliner Leadership Styles Test by Ryan Tayler
+Description:  Take Ryan Tayler's leadership test and find out which of Ryan's six leadership styles you lead with. Only takes 5 minutes.
+Canonical:    https://headlinergroup.com.au/headliner-leadership-styles-home
+Social image: https://assets.cdn.filesafe.space/o4ouZJKFsMqn4NIUgEY6/media/6ab5f4d96407f2cbe4c71b1a.jpg
+
+## form  ->  https://headlinergroup.com.au/headliner-leadership-styles-form
+
+Title:        Start the leadership styles test | Headliner Group
+Description:  Start Ryan Tayler's leadership styles test.
+Canonical:    https://headlinergroup.com.au/headliner-leadership-styles-form
+Social image: https://assets.cdn.filesafe.space/o4ouZJKFsMqn4NIUgEY6/media/6ab5f4d96407f2cbe4c71b1a.jpg
+
+## test  ->  https://headlinergroup.com.au/headliner-leadership-styles-test
+
+Title:        The leadership styles test | Headliner Group
+Description:  Ryan Tayler's leadership styles test.
+Canonical:    https://headlinergroup.com.au/headliner-leadership-styles-test
+Social image: https://assets.cdn.filesafe.space/o4ouZJKFsMqn4NIUgEY6/media/6ab5f4d96407f2cbe4c71b1a.jpg
+
+## result  ->  https://headlinergroup.com.au/headliner-leadership-styles-reults-page
+
+Title:        Your leadership style | Headliner Group
+Description:  Your result from Ryan Tayler's leadership styles test.
+Canonical:    https://headlinergroup.com.au/headliner-leadership-styles-reults-page
+Social image: https://assets.cdn.filesafe.space/o4ouZJKFsMqn4NIUgEY6/media/6ab5f4d96407f2cbe4c71b1a.jpg
 ```
 
-Social image for the landing step: the hero photo is fine for now. A proper 1200 by 630
-card in the style of the site's others would share better.
+Only the landing step should show in Google. The other three carry a noindex in their
+`head.html`. Their titles still matter, because they show in the browser tab and when
+a link is shared. The result step's canonical has no `?a=`, so every result points
+Google back at one address.
+
+The social image is the hero photo for now. A proper 1200 by 630 card in the style of
+the site's others would share better, and it matters most on the result step, since
+that's the link people share.
 
 ### Main site
 
