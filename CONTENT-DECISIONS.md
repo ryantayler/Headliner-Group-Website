@@ -2578,3 +2578,9 @@ creates or updates the contact and tags it. The webhook address is in `main.js` 
 script also takes over the footer form already live, so connecting it needed the new
 script and no new markup. The preview never sends anything. This box cannot reach Go High
 Level, so the first real test is Ryan's.
+
+**The footer sign up is one row**, Ryan's call 8 October 2026. *Get access to exclusive
+content* on one line at every width, the email field and *Join* as matching pills side by
+side, and *You're in* in aqua beside the button once it is sent (was *You're in. Check
+your inbox.* in a box underneath). The script sets the wording too, so a footer pasted
+before the change says the same.

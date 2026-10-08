@@ -1223,7 +1223,7 @@ body.sheet-open{overflow:hidden}
 @media (max-width:820px){.cta-band__in{grid-template-columns:1fr;align-items:start}}
 
 .ftr{background:var(--panel);border-top:1px solid var(--rim);position:relative;overflow:hidden;padding-block:clamp(48px,6vw,72px) 28px}
-.ftr__top{display:grid;grid-template-columns:minmax(0,1.4fr) repeat(3,minmax(0,.8fr));gap:clamp(24px,3vw,48px)}
+.ftr__top{display:grid;grid-template-columns:minmax(0,1.3fr) repeat(2,minmax(0,.7fr)) minmax(0,1.25fr);gap:clamp(24px,3vw,48px)}
 /* The tagline sits under the logo, and always did, but it was inside the first column
    and wrapped at 32 characters. Nothing has ever sat beside it, the three link lists
    and the signup all end well above it, so it takes the whole row instead and runs on
@@ -1233,6 +1233,16 @@ body.sheet-open{overflow:hidden}
 @media (max-width:900px){.ftr__top{grid-template-columns:1fr 1fr}}
 @media (max-width:560px){.ftr__top{grid-template-columns:1fr}}
 .ftr h4{font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--mute);margin-bottom:14px}
+/* The sign up, Ryan's call 8 October 2026: the heading on one line, the field and Join as
+   one row of matching pills, and You're in beside the button once it is sent. */
+.ftr h4{letter-spacing:.16em}
+@media (min-width:901px) and (max-width:1140px){.ftr h4{letter-spacing:.08em;font-size:10.5px}}
+.ftr .inline-form{flex-wrap:nowrap;align-items:center;gap:8px}
+.ftr .inline-form input{flex:1 1 auto;min-width:0;height:46px;padding:0 18px;border-radius:100px}
+.ftr .inline-form .btn{flex:none;height:46px;padding:0 22px}
+.ftr .formmsg{display:none;flex:none;padding:0 0 0 4px;background:none;border:0;border-radius:0;
+  color:var(--accent);font-size:14px;font-weight:600;white-space:nowrap}
+.ftr .formmsg.is-on{display:inline-flex}
 /* the two link columns lost their labels, so they sit up against the logo instead
    of hanging below where the heading used to be */
 .ftr__top ul{margin-top:2px}
