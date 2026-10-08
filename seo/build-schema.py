@@ -25,7 +25,7 @@ TEST_PATH = '/headliner-leadership-styles-home'   # the live landing step, see b
 # Ryan's own profiles. These are the strongest signal that every mention of
 # "Ryan Tayler" online is the same person. Paste the full URL of each.
 PROFILES = {
-    'linkedin':  '',
+    'linkedin':  'https://www.linkedin.com/in/ryan-a-tayler-au/',
     'instagram': '',
     'youtube':   '',
     'facebook':  '',
