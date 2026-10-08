@@ -146,6 +146,11 @@
   font-size:clamp(24px,3.1vw,40px);letter-spacing:-.026em;line-height:1.06;
 }
 .tm{font-size:.36em;vertical-align:.95em;letter-spacing:0;margin-left:.08em}
+/* His name on the two frameworks, a small grey line over the name rather than part of
+   it, Ryan's call 8 October 2026. Inside the heading, so search still reads the whole. */
+.pillars__by{display:block;margin-bottom:.5em;font-family:'Inter',system-ui,sans-serif;
+  font-size:clamp(12px,1vw,14px);font-weight:600;letter-spacing:.14em;line-height:1.2;
+  text-transform:uppercase;color:#8E8A84}
 .pillars__intro{max-width:66ch}
 .pillars.theme-ryan .card{
   position:relative;overflow:hidden;

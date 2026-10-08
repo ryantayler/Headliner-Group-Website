@@ -2581,6 +2581,14 @@ Level, so the first real test is Ryan's.
 
 **The footer sign up is one row**, Ryan's call 8 October 2026. *Get access to exclusive
 content* on one line at every width, the email field and *Join* as matching pills side by
-side, and *You're in* in aqua beside the button once it is sent (was *You're in. Check
-your inbox.* in a box underneath). The script sets the wording too, so a footer pasted
+side, and *You're in* in aqua on its own line under the email field once it is sent
+(Ryan moved it there from beside the button; it was *You're in. Check your inbox.* in a
+box underneath before that). The script sets the wording too, so a footer pasted
 before the change says the same.
+
+## His name sits above the framework headings, 8 October 2026
+
+Ryan's call. *Ryan Tayler's* is a small grey line in capitals above each framework
+heading on Partnerships, so it is there without being the heading. The headings read
+*4 pillars of partnership* and *Optimisation engine*, each with its trade mark. The class
+is `pillars__by`.
