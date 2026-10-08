@@ -123,6 +123,17 @@ def script():
             '</script>\n')
 
 
+NOINDEX = ('<!-- Keeps this step out of Google. Only the landing step should be found by search. -->\n'
+           '<meta name="robots" content="noindex, follow">\n')
+
+
+def head(name):
+    # the landing step carries the schema, built by seo/build-schema.py; the rest stay out of search
+    if KEYS[name] == 'landing':
+        return open(os.path.join(REPO, 'seo', 'schema', 'leadership-test.html')).read()
+    return NOINDEX
+
+
 def main(dest):
     if os.path.isdir(dest):
         shutil.rmtree(dest)
@@ -144,7 +155,11 @@ def main(dest):
             files = ['page.html']
         open(os.path.join(d, 'styles.css'), 'w').write(css)
         open(os.path.join(d, 'script.html'), 'w').write(js)
+        open(os.path.join(d, 'head.html'), 'w').write(head(name))
         rows.append((folder, path, files))
+    # the SEO guide and the main site's schema ride along, so one zip holds every paste
+    shutil.copytree(os.path.join(REPO, 'seo'), os.path.join(dest, 'seo'),
+                    ignore=shutil.ignore_patterns('*.py', '__pycache__'))
     readme(dest, rows)
     return rows
 
@@ -153,7 +168,7 @@ def readme(dest, rows):
     t = ["# Headliner Leadership Styles Test, for Go High Level", "",
          "Four funnel steps. Each folder holds what that step needs.", "", "```"]
     for folder, path, files in rows:
-        t.append("%-13s %-48s -> %s" % (folder + '/', '  '.join(files + ['styles.css', 'script.html']), path))
+        t.append("%-13s %-60s -> %s" % (folder + '/', '  '.join(files + ['styles.css', 'script.html', 'head.html']), path))
     t += ["```", "",
           "**styles.css and script.html are the same in every folder.** If the funnel has a",
           "funnel wide CSS box and a funnel wide footer code box, paste each once there and",
@@ -164,7 +179,12 @@ def readme(dest, rows):
           "3. Paste `page.html` into it.",
           "4. Paste `styles.css` into the step's custom CSS.",
           "5. Paste `script.html` into the step's footer tracking code. It is JavaScript,",
-          "   already inside a `<script>` tag, because that box expects markup.", "",
+          "   already inside a `<script>` tag, because that box expects markup.",
+          "6. Paste `head.html` into the step's head tracking code. On the landing step it is",
+          "   the schema that tells Google and AI tools the test is Ryan Tayler's. On the",
+          "   other three it keeps the step out of Google. It differs per step.", "",
+          "Set each step's page title and description in its SEO settings. They are listed in",
+          "`seo/README.md` at the root of the site repo.", "",
           "## The form step", "",
           "It is cut in two around the form, so the form is the builder's own:", "",
           "1. Custom HTML element with `page-1-above-form.html` (header, hero, the heading).",
