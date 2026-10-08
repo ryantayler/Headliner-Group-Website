@@ -498,8 +498,31 @@ function initHeader(){
   }
 }
 
+/* The footer's email box, the same as the main site's main.js. Each sign up goes to
+   Ryan's Go High Level inbound webhook, which a workflow turns into a contact tagged for
+   the newsletter. A plain form post with no-cors, so the reply cannot be read, and the
+   message shows once the browser has sent it. */
+var NEWSLETTER_HOOK="https://services.leadconnectorhq.com/hooks/o4ouZJKFsMqn4NIUgEY6/webhook-trigger/7c9c1368-3e74-4f9a-ab60-63ff91baff5d";
+function initNewsletter(){
+  document.querySelectorAll("form[data-newsletter]").forEach(function(form){
+    form.addEventListener("submit",function(e){
+      e.preventDefault();
+      var email=form.querySelector('input[type="email"]');
+      if(!email||!email.value) return;
+      var body=new URLSearchParams({email:email.value.trim(),source:"Website footer",page:location.pathname});
+      var done=function(){
+        var msg=form.querySelector(".formmsg");
+        if(msg){ msg.textContent="You\u2019re in"; msg.classList.add("is-on"); }
+        email.value="";
+      };
+      fetch(NEWSLETTER_HOOK,{method:"POST",mode:"no-cors",body:body,keepalive:true}).then(done,done);
+    });
+  });
+}
+
 (function(){
   initHeader();
+  initNewsletter();
   document.querySelectorAll("[data-link]").forEach(function(a){
     var to=LINKS[a.getAttribute("data-link")]; if(to) a.setAttribute("href",to);
   });

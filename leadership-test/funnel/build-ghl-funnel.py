@@ -215,7 +215,9 @@ if __name__ == '__main__':
     for folder, _, files in rows:
         for f in files:
             s = open(os.path.join(dest, folder, f)).read()
-            for tag in ('script', 'link', 'img', 'input', 'br', 'hr', 'meta'):
+            # <input> is allowed: the site's own footer sign up carries one and the builder
+            # has taken it live since 8 October 2026. <link> is the void tag it rejects.
+            for tag in ('script', 'link', 'img', 'br', 'hr', 'meta'):
                 if re.search(r'<' + tag + r'\b', s):
                     bad.append('%s/%s: <%s>' % (folder, f, tag))
             if 'img/' in s and 'filesafe' not in s:

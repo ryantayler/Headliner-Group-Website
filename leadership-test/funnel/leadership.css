@@ -577,12 +577,39 @@ svg{width:100%;height:auto;display:block}
 }
 .tlink:hover{background-size:100% 1.5px}
 
-/* ---------- Footer ---------- */
-.ftr{background:var(--panel);border-top:1px solid var(--rim);position:relative;overflow:hidden;padding-block:clamp(40px,5vw,64px) 28px}
-.ftr__top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px}
-.ftr__tag{color:var(--mute);font-size:.95rem;max-width:44ch}
-.ftr__base{display:flex;flex-wrap:wrap;justify-content:space-between;gap:14px;margin-top:clamp(28px,3.4vw,44px);padding-top:22px;border-top:1px solid var(--rim);font-size:12.5px;color:var(--mute)}
+/* ---------- Footer ----------
+   The site's own footer, links, sign up and all, copied from styles.css on 8 October
+   2026 so the test ends the way every other page does. */
+.ftr{background:var(--panel);border-top:1px solid var(--rim);position:relative;overflow:hidden;padding-block:clamp(48px,6vw,72px) 28px}
+.ftr__top{display:grid;grid-template-columns:minmax(0,1.3fr) repeat(2,minmax(0,.7fr)) minmax(0,1.25fr);gap:clamp(24px,3vw,48px)}
+.ftr__tag{grid-column:1/-1;margin-top:-14px;max-width:none}
+@media (max-width:900px){.ftr__tag{margin-top:0}}
+@media (max-width:900px){.ftr__top{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.ftr__top{grid-template-columns:1fr}}
+.ftr h4{font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--mute);margin-bottom:14px}
+@media (min-width:901px) and (max-width:1140px){.ftr h4{letter-spacing:.08em;font-size:10.5px}}
+.inline-form{display:flex;gap:10px;flex-wrap:wrap}
+.inline-form input{
+  width:100%;padding:13px 15px;border-radius:var(--r-sm);font-size:15px;
+  background:var(--surface);border:1px solid var(--line);color:var(--tx);
+  transition:border-color .2s,box-shadow .2s;
+}
+.inline-form input:focus{outline:none;border-color:var(--tx-accent);box-shadow:0 0 0 3px rgba(var(--accent-rgb),.22)}
+.inline-form input::placeholder{color:var(--tx-mute)}
+.ftr .inline-form{flex-wrap:wrap;align-items:center;gap:8px}
+.ftr .inline-form input{flex:1 1 0%;min-width:0;height:46px;padding:0 18px;border-radius:100px}
+.ftr .inline-form .btn{flex:none;height:46px;padding:0 22px}
+.ftr .formmsg{display:none;flex:1 0 100%;padding:2px 0 0 18px;color:var(--accent);font-size:14px;font-weight:600}
+.ftr .formmsg.is-on{display:block}
+.ftr__top ul{margin-top:2px}
+.ftr ul{list-style:none;display:grid;gap:9px}
+.ftr ul a{font-size:14.5px;opacity:.85;transition:opacity .2s,color .2s}
+.ftr ul a:hover{opacity:1;color:var(--accent)}
+.ftr__base{display:flex;flex-wrap:wrap;justify-content:space-between;gap:14px;margin-top:clamp(36px,4vw,56px);padding-top:22px;border-top:1px solid var(--rim);font-size:12.5px;color:var(--mute)}
 .ftr__base a:hover{color:var(--accent)}
+.row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.mt-s{margin-top:14px}
+.skip{position:absolute;left:-9999px}
 
 /* ---------- Funnel additions ---------- */
 
