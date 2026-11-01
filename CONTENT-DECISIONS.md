@@ -2652,3 +2652,21 @@ What it does differently:
 
 The case study cards pull out their figures (for example *$750k booked in one deal*). The
 short labels under them are new, written from the case study text.
+
+## The new view, second pass, 1 November 2026
+
+Ryan on the first pass: okay, but it felt cheap, and Headliner is mostly light while his
+page is dark. It was rebuilt from scratch. The follow spot, the dark Headliner stage and
+the beam wipe are gone.
+
+- **Headliner pages are light and editorial.** The paper ground, ink type, Archivo Black
+  headings set large, and one ink band at the end of each page carrying the invitation,
+  with the aqua button. The footer is ink.
+- **Ryan's page is dark, in his brand.** Pink the only accent, Anton, the Caveat note, the
+  grain, his signature writing itself on, and a pink band at the end.
+- **The motion is fewer and slower.** Headings rise out of their own line, pictures
+  uncover once, the opening photograph opens out to the full width as you scroll, the 4
+  pillars stack as cards, the case studies slide across while the section holds, the
+  levers run past as a marquee that speeds up with the scroll, and a panel carrying the
+  next page's name covers each page change.
+- The optimisation engine still runs, on a dark panel, with the two sliders.
