@@ -1,0 +1,1189 @@
+<!--
+  The NEW VIEW. Preview only. A redesign of the whole site built from the site's own
+  content, shown behind the toggle in the artifact so Ryan can compare it against the
+  live build. It is never exported to Go High Level and nothing on the real pages
+  depends on it.
+
+  build-preview.py drops this file into a <template id="nv-src"> and the preview shell
+  mounts it inside a shadow root, so none of the site's stylesheet reaches in and none
+  of this reaches out. The build fills its placeholders: Ryan's signature (SIG) and the
+  platform icons (ICON li, ig, yt, fb), both lifted from ryan.html, and every
+  assets/img path, inlined as a data URI.
+-->
+<style>
+:host{all:initial;display:block}
+*,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none!important}
+
+.nv{
+  --black:#0A0A0A; --ink:#ECE8E0; --ash:#8E8A84; --dim:#2A2C2E;
+  --aqua:#2DE2C3; --aqua-rgb:45,226,195; --haze:#0F1F1C;
+  --line:rgba(236,232,224,.12);
+  --pink:#FF2D6B; --pink-rgb:255,45,107;
+  --display:'Archivo Black',Impact,sans-serif;
+  --body:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --gut:clamp(20px,5vw,72px);
+  --ease:cubic-bezier(.2,.7,.1,1);
+  position:relative;min-height:100vh;background:var(--black);color:var(--ink);
+  font:400 clamp(16px,.3vw + 15px,18px)/1.6 var(--body);
+  -webkit-font-smoothing:antialiased;overflow-x:clip;
+}
+:where(.nv) a{color:inherit}
+.nv img{display:block;max-width:100%}
+:where(.nv) :is(button,input,select,textarea){font:inherit;color:inherit}
+.nv :focus-visible{outline:2px solid var(--aqua);outline-offset:3px;border-radius:6px}
+.nv.is-ryan :focus-visible{outline-color:var(--pink)}
+.wrap{width:min(1240px,100%);margin:0 auto;padding:0 var(--gut)}
+.narrow{width:min(860px,100%)}
+
+/* ---------- type ---------- */
+.d{font-family:var(--display);font-weight:400;text-transform:uppercase;line-height:.9;
+   letter-spacing:-.02em;margin:0;text-wrap:balance}
+.d1{font-size:clamp(34px,6.6vw,112px)}
+.d2{font-size:clamp(36px,5.4vw,84px)}
+.d3{font-size:clamp(24px,2.6vw,38px);line-height:.98}
+.lede{font-size:clamp(19px,1.5vw,23px);line-height:1.5;color:var(--ink);max-width:40ch;margin:0}
+.p{color:#B9B5AE;max-width:62ch;margin:0}
+.p + .p{margin-top:1em}
+.split > .p{margin-top:0}
+.small{font-size:14px;color:var(--ash)}
+.tm{font-family:var(--body);font-size:.32em;vertical-align:super;letter-spacing:0}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;gap:10px;height:52px;padding:0 26px;border-radius:100px;
+  border:1px solid var(--line);background:transparent;font:600 15px/1 var(--body);text-decoration:none;
+  cursor:pointer;transition:background .25s,color .25s,border-color .25s,translate .25s var(--ease)}
+.btn:hover{border-color:var(--ink)}
+.btn--go{background:var(--aqua);border-color:var(--aqua);color:var(--black)}
+.btn--go:hover{background:var(--ink);border-color:var(--ink)}
+.btn--pink{background:var(--pink);border-color:var(--pink);color:var(--black)}
+.btn--pink:hover{background:var(--ink);border-color:var(--ink)}
+.btn--dark{background:var(--black);border-color:var(--black);color:var(--ink)}
+.btn--dark:hover{background:#262626;border-color:#262626}
+.btn svg{width:18px;height:18px;fill:currentColor}
+.row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+
+/* ---------- nav ---------- */
+.bar{position:fixed;top:16px;left:50%;translate:-50% 0;z-index:40;display:flex;align-items:center;gap:6px;
+  padding:6px 6px 6px 20px;border-radius:100px;background:rgba(18,18,18,.72);border:1px solid var(--line);
+  -webkit-backdrop-filter:blur(14px) saturate(150%);backdrop-filter:blur(14px) saturate(150%);
+  transition:translate .45s var(--ease),opacity .3s}
+.bar.is-hid{translate:-50% -140%}
+.mark{font:400 17px/1 var(--display);letter-spacing:-.01em;text-transform:uppercase;text-decoration:none;
+  margin-right:14px;display:flex;flex-direction:column;align-items:flex-end;white-space:nowrap}
+.mark small{font:600 5.6px/1 var(--body);letter-spacing:.42em;margin:3px -.42em 0 0;color:var(--ash)}
+.links{position:relative;display:flex;gap:2px}
+.links a{position:relative;z-index:1;padding:11px 15px;border-radius:100px;font:500 14px/1 var(--body);
+  text-decoration:none;color:#C9C5BE;transition:color .25s}
+.links a:hover,.links a.is-here{color:var(--black)}
+.pill{position:absolute;z-index:0;top:0;height:100%;border-radius:100px;background:var(--ink);
+  transition:left .4s var(--ease),width .4s var(--ease),opacity .2s;opacity:0}
+.bar .btn{height:40px;padding:0 18px;font-size:14px;margin-left:6px}
+.menu{display:none;height:40px;width:40px;border-radius:50%;border:1px solid var(--line);background:none;cursor:pointer}
+.menu span,.menu span::before{display:block;width:16px;height:1.5px;background:var(--ink);margin:auto;position:relative;transition:.3s}
+.menu span::before{content:"";position:absolute;top:5px}
+.menu span{translate:0 -2.5px}
+.drawer{position:fixed;inset:0;z-index:39;background:rgba(10,10,10,.96);display:flex;flex-direction:column;
+  justify-content:center;gap:4px;padding:0 var(--gut);opacity:0;pointer-events:none;transition:opacity .3s}
+.drawer.is-open{opacity:1;pointer-events:auto}
+.drawer a{font:400 clamp(40px,11vw,64px)/1.05 var(--display);text-transform:uppercase;text-decoration:none}
+.drawer a.is-here{color:var(--aqua)}
+.is-ryan .drawer a.is-here{color:var(--pink)}
+@media (max-width:860px){
+  .links,.bar .btn{display:none}
+  .menu{display:block}
+  .bar{left:var(--gut);translate:0 0;padding-left:18px}
+  .bar.is-hid{translate:0 -140%}
+}
+
+/* ---------- the stage: the follow spot ----------
+   Every Headliner hero is a dark stage with one moving head rigged above it. The
+   beam follows the pointer and lights whatever it lands on, the headline included.
+   Idle or on touch, it runs its own slow sweep. */
+.stage{position:relative;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden;
+  padding:140px 0 clamp(56px,9vh,110px);isolation:isolate;--x:62%;--y:58%}
+.stage--short{min-height:78svh}
+.stage__ph{position:absolute;inset:0;z-index:-3;opacity:.5}
+.stage__ph img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.1) brightness(.55)}
+.stage__ph::after{content:"";position:absolute;inset:0;background:
+  linear-gradient(to top,var(--black) 4%,rgba(10,10,10,.55) 45%,rgba(10,10,10,.8))}
+/* the photo only shows its colour where the spot falls */
+.stage__lit{position:absolute;inset:0;z-index:-2;
+  -webkit-mask-image:radial-gradient(circle var(--r,260px) at var(--x) var(--y),#000 0,rgba(0,0,0,.6) 45%,transparent 100%);
+          mask-image:radial-gradient(circle var(--r,260px) at var(--x) var(--y),#000 0,rgba(0,0,0,.6) 45%,transparent 100%)}
+.stage__lit img{width:100%;height:100%;object-fit:cover;filter:brightness(.8) saturate(1.1)}
+.beam{position:absolute;z-index:-1;left:var(--rx,14%);top:-12%;width:var(--bw,40vmax);height:var(--bl,130vmax);
+  translate:-50% 0;transform-origin:50% 0;rotate:var(--a,0deg);pointer-events:none;mix-blend-mode:screen}
+.beam::before{content:"";position:absolute;inset:0;
+  /* a cone drawn from its own apex, so the edges fall off softly with no blur and no clip */
+  background:conic-gradient(from 158deg at 50% 0,rgba(var(--aqua-rgb),0) 0deg,rgba(var(--aqua-rgb),.08) 7deg,
+    rgba(var(--aqua-rgb),.36) 16deg,rgba(var(--aqua-rgb),.46) 22deg,rgba(var(--aqua-rgb),.36) 28deg,
+    rgba(var(--aqua-rgb),.08) 37deg,rgba(var(--aqua-rgb),0) 44deg,rgba(var(--aqua-rgb),0) 360deg);
+  -webkit-mask-image:linear-gradient(to bottom,#000 0,rgba(0,0,0,.7) 70%,rgba(0,0,0,.15) 100%);
+          mask-image:linear-gradient(to bottom,#000 0,rgba(0,0,0,.7) 70%,rgba(0,0,0,.15) 100%)}
+.pool{position:absolute;z-index:-1;left:var(--x);top:var(--y);width:var(--pw,520px);height:calc(var(--pw,520px) * .6);
+  translate:-50% -50%;border-radius:50%;pointer-events:none;mix-blend-mode:screen;
+  background:radial-gradient(closest-side,rgba(var(--aqua-rgb),.22),rgba(var(--aqua-rgb),0))}
+.lit{color:transparent;-webkit-background-clip:text;background-clip:text;
+  background-image:radial-gradient(circle var(--tr,340px) at var(--tx,50%) var(--ty,50%),
+    #FFFFFF 0,var(--ink) 30%,#4A4C4E 75%,#34363A 100%)}
+.stage__in{position:relative;width:100%}
+.stage .lede{margin-top:28px}
+.stage .row{margin-top:34px}
+
+/* ---------- sections ---------- */
+.sec{padding:clamp(88px,13vw,180px) 0;position:relative}
+.sec--tight{padding:clamp(64px,8vw,110px) 0}
+.sec + .sec{border-top:1px solid var(--line)}
+.head{display:grid;gap:22px;margin-bottom:clamp(40px,6vw,72px)}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,96px);align-items:start}
+@media (max-width:900px){.split{grid-template-columns:1fr}}
+
+/* the statement that lights up word by word as it is read */
+.read{font:500 clamp(26px,3.3vw,48px)/1.22 var(--body);letter-spacing:-.02em;margin:0;max-width:24ch}
+.read .w{color:#3A3C3F;transition:color .35s}
+.read .w.on{color:var(--ink)}
+.read .w.on.hot{color:var(--aqua)}
+
+/* the levers */
+.levers{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.levers li{position:relative;border-bottom:1px solid var(--line);overflow:hidden}
+.levers span{display:block;padding:20px 0;font:400 clamp(34px,6vw,92px)/.95 var(--display);
+  text-transform:uppercase;color:#2C2E30;transition:color .4s,translate .5s var(--ease)}
+.levers li::before{content:"";position:absolute;inset:0;z-index:-1;translate:-101% 0;
+  background:linear-gradient(90deg,rgba(var(--aqua-rgb),.0),rgba(var(--aqua-rgb),.16));transition:translate .6s var(--ease)}
+.levers li:hover span,.levers li.on span{color:var(--ink);translate:clamp(8px,2vw,28px) 0}
+.levers li:hover::before{translate:0 0}
+
+/* founder */
+.found{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(32px,6vw,96px);align-items:center}
+.portrait{position:relative;aspect-ratio:4/5;border-radius:18px;overflow:hidden;background:#141414}
+.portrait img{width:100%;height:100%;object-fit:cover;scale:1.08;transition:scale 1.2s var(--ease)}
+.portrait:hover img{scale:1}
+.facts{display:grid;grid-template-columns:repeat(3,auto);justify-content:start;gap:clamp(20px,4vw,56px);margin:34px 0}
+.facts b{display:block;font:400 clamp(28px,3.2vw,46px)/1 var(--display);white-space:nowrap}
+.facts span{font-size:14px;color:var(--ash)}
+@media (max-width:900px){.found{grid-template-columns:1fr}.portrait{max-width:420px}.facts{grid-template-columns:repeat(2,auto)}}
+
+/* free strip: the worksheets fan out */
+.fan{position:relative;height:clamp(240px,30vw,360px)}
+.fan img{position:absolute;left:50%;top:50%;width:min(58%,330px);border-radius:10px;
+  box-shadow:0 30px 60px rgba(0,0,0,.55);translate:-50% -50%;transition:rotate .6s var(--ease),translate .6s var(--ease)}
+.fan img:nth-child(1){rotate:-7deg}.fan img:nth-child(2){rotate:2deg}.fan img:nth-child(3){rotate:9deg}
+.fan:hover img:nth-child(1){rotate:-16deg;translate:-88% -50%}
+.fan:hover img:nth-child(3){rotate:16deg;translate:-12% -50%}
+
+/* house lights: the one light ground on a Headliner page */
+.house{background:var(--ink);color:var(--black);border-top:0!important}
+.house .p{color:#3F4744}
+.house .small{color:#5B6360}
+
+/* ---------- partnerships ---------- */
+.pillars{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.pil{position:relative;text-align:left;min-height:220px;padding:22px;border-radius:16px;border:1px solid var(--line);
+  background:#0E0E0E;cursor:pointer;display:flex;flex-direction:column;justify-content:flex-start;gap:16px;overflow:hidden;
+  transition:border-color .3s,background .3s}
+.pil h3{font:400 clamp(22px,2vw,30px)/1 var(--display);text-transform:uppercase;margin:0}
+.pil p{margin:0;font-size:15px;line-height:1.5;color:#9C9891;transition:color .3s}
+.pil::after{content:"";position:absolute;inset:auto 0 0 0;height:3px;background:var(--aqua);scale:0 1;transform-origin:left;transition:scale .5s var(--ease)}
+.pil[aria-pressed="true"]{border-color:rgba(var(--aqua-rgb),.5);background:var(--haze)}
+.pil[aria-pressed="true"] p{color:var(--ink)}
+.pil[aria-pressed="true"]::after{scale:1 1}
+@media (max-width:900px){.pillars{grid-template-columns:1fr 1fr}.pil{min-height:200px}}
+@media (max-width:520px){.pillars{grid-template-columns:1fr}.pil{min-height:0;gap:18px}}
+
+.engine{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(28px,5vw,72px);align-items:start}
+.engine .sim{position:sticky;top:96px}
+@media (max-width:900px){.engine .sim{position:relative;top:0}}
+.sim{position:relative;border:1px solid var(--line);border-radius:22px;background:radial-gradient(120% 90% at 50% 40%,#111614,#0B0B0B);overflow:hidden}
+.sim canvas{display:block;width:100%;aspect-ratio:1/1;max-height:560px}
+.sim__read{position:absolute;left:20px;right:20px;top:18px;display:flex;justify-content:space-between;gap:12px;font-size:14px;color:var(--ash)}
+.sim__read b{display:block;font:400 30px/1 var(--display);color:var(--ink)}
+.sim__state{align-self:flex-start;padding:7px 12px;border-radius:100px;font-weight:600;font-size:13px;background:#1B1B1B;color:var(--ink);transition:background .3s,color .3s}
+.sim__state.up{background:var(--aqua);color:var(--black)}
+.sim__state.down{background:#3A1A1A;color:#FFB4B4}
+.ctl{display:grid;gap:22px;margin-top:30px}
+.ctl label{display:grid;gap:10px;font-size:15px;font-weight:500}
+.ctl label span{display:flex;justify-content:space-between;color:var(--ash);font-weight:400}
+.ctl output{color:var(--ink);font-weight:600}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:4px;border-radius:4px;background:#2A2A2A;outline:none}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--aqua);cursor:grab;border:4px solid var(--black);box-shadow:0 0 0 1px var(--aqua)}
+input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--aqua);cursor:grab;border:4px solid var(--black)}
+.note{font-family:var(--display);text-transform:uppercase;font-size:clamp(20px,2vw,28px);line-height:1;color:var(--aqua);margin-top:30px}
+@media (max-width:900px){.engine{grid-template-columns:1fr}}
+
+.ways{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line)}
+.ways > div{padding:30px 28px 10px 0}
+.ways > div + div{padding-left:28px;border-left:1px solid var(--line)}
+.ways h3{font:400 clamp(22px,2vw,30px)/1 var(--display);text-transform:uppercase;margin:0 0 14px}
+@media (max-width:900px){.ways{grid-template-columns:1fr}.ways > div + div{padding-left:0;border-left:0;border-top:1px solid var(--line)}}
+
+.who{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.who > div{padding:28px;border-radius:16px;background:#111;border:1px solid var(--line)}
+.who h3{font:600 20px/1.2 var(--body);margin:0 0 10px}
+.who p{margin:0;color:#9C9891;font-size:15px}
+@media (max-width:900px){.who{grid-template-columns:1fr}}
+
+/* case studies run sideways, dragged or scrolled */
+.track{display:grid;grid-auto-flow:column;grid-auto-columns:min(560px,86vw);gap:14px;overflow-x:auto;
+  padding:4px var(--gut) 24px;margin:0 calc(var(--gut) * -1);scroll-snap-type:x mandatory;scroll-padding-inline:var(--gut);scrollbar-width:none;cursor:grab}
+.track::-webkit-scrollbar{display:none}
+.track.is-drag{cursor:grabbing;scroll-snap-type:none}
+.case{scroll-snap-align:start;padding:30px;border-radius:20px;border:1px solid var(--line);background:#0F0F0F;
+  display:flex;flex-direction:column;gap:16px;transition:opacity .4s,filter .4s,border-color .4s;user-select:none}
+.case.is-off{opacity:.28;filter:grayscale(1)}
+.case.is-match{border-color:rgba(var(--aqua-rgb),.5)}
+.tags{display:flex;gap:6px;flex-wrap:wrap}
+.tag{padding:6px 11px;border-radius:100px;border:1px solid var(--line);font-size:13px;font-weight:500;color:#C9C5BE}
+.case.is-match .tag.hit{background:var(--aqua);border-color:var(--aqua);color:var(--black)}
+.case h3{font:400 clamp(24px,2.4vw,34px)/1 var(--display);text-transform:uppercase;margin:0}
+.case p{margin:0;font-size:15.5px;color:#A9A59E}
+.nums{display:flex;gap:28px;flex-wrap:wrap;margin-top:auto;padding-top:18px;border-top:1px solid var(--line)}
+.nums b{display:block;font:400 30px/1 var(--display);color:var(--aqua)}
+.nums span{font-size:13px;color:var(--ash)}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{height:40px;padding:0 16px;border-radius:100px;border:1px solid var(--line);background:none;cursor:pointer;font-weight:500;font-size:14px;transition:.25s}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--black);border-color:var(--ink)}
+
+/* the first 90 days, a real sequence, so it is numbered */
+.days{position:relative;list-style:none;margin:0;padding:0 0 0 clamp(56px,8vw,110px)}
+.days::before,.days__fill{content:"";position:absolute;left:clamp(18px,3vw,40px);top:8px;bottom:8px;width:2px;background:#222}
+.days__fill{background:var(--aqua);bottom:auto;height:var(--fill,0%);transition:height .1s linear}
+.days li{position:relative;padding:0 0 clamp(40px,6vw,72px)}
+.days li:last-child{padding-bottom:0}
+.days__n{position:absolute;left:calc(clamp(56px,8vw,110px) * -1 + clamp(18px,3vw,40px) - 19px);top:-4px;width:40px;height:40px;
+  border-radius:50%;display:grid;place-items:center;background:var(--black);border:2px solid #333;font:600 13px/1 var(--body);color:var(--ash);transition:.4s}
+.days li.on .days__n{border-color:var(--aqua);color:var(--black);background:var(--aqua)}
+.days h3{font:400 clamp(22px,2.2vw,32px)/1 var(--display);text-transform:uppercase;margin:0 0 12px;color:#55575A;transition:color .4s}
+.days li.on h3{color:var(--ink)}
+
+/* questions */
+.faq{border-top:1px solid var(--line)}
+.q{border-bottom:1px solid var(--line)}
+.q button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:24px 0;background:none;border:0;
+  cursor:pointer;text-align:left;font:600 clamp(17px,1.4vw,21px)/1.35 var(--body)}
+.q i{flex:none;position:relative;width:30px;height:30px;border-radius:50%;border:1px solid var(--line);transition:.35s}
+.q i::before,.q i::after{content:"";position:absolute;left:50%;top:50%;width:11px;height:1.5px;background:currentColor;translate:-50% -50%;transition:.35s}
+.q i::after{rotate:90deg}
+.q[data-open] i{background:var(--aqua);border-color:var(--aqua);color:var(--black)}
+.q[data-open] i::after{rotate:0deg}
+.q__a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s var(--ease)}
+.q[data-open] .q__a{grid-template-rows:1fr}
+.q__a > div{overflow:hidden}
+.q__a p{margin:0 0 26px;color:#A9A59E;max-width:68ch}
+
+/* ---------- free ---------- */
+.wall{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.res{position:relative;display:grid;grid-template-rows:auto 1fr;border-radius:20px;border:1px solid var(--line);background:#0F0F0F;
+  overflow:hidden;cursor:pointer;text-align:left;padding:0;--mx:50%;--my:50%;
+  transition:border-color .3s,transform .5s var(--ease);color:inherit;font:inherit}
+.res::before{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;opacity:0;transition:opacity .3s;
+  background:radial-gradient(420px circle at var(--mx) var(--my),rgba(var(--aqua-rgb),.16),transparent 60%)}
+.res:hover{border-color:rgba(var(--aqua-rgb),.4)}
+.res:hover::before{opacity:1}
+.res__img{aspect-ratio:16/8;overflow:hidden;background:#151515}
+.res__img img{width:100%;height:100%;object-fit:cover;object-position:left top;transition:scale .8s var(--ease)}
+.res:hover .res__img img{scale:1.04}
+.res__soon{height:100%;display:grid;place-items:center;font:400 clamp(20px,2.4vw,30px)/1 var(--display);text-transform:uppercase;
+  background:repeating-linear-gradient(-45deg,rgba(255,255,255,.03) 0 1px,transparent 1px 10px),#121212;color:var(--ash)}
+.res__b{padding:26px 26px 28px;display:flex;flex-direction:column;gap:10px}
+.res__k{font-size:13px;font-weight:600;color:var(--aqua)}
+.res h3{font:400 clamp(22px,2vw,30px)/1 var(--display);text-transform:uppercase;margin:0}
+.res p{margin:0;font-size:15px;color:#A9A59E;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+@media (max-width:760px){.wall{grid-template-columns:1fr}}
+
+.sheet{position:fixed;inset:0;z-index:60;display:grid;place-items:center;padding:20px;background:rgba(5,5,5,.7);
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);opacity:0;pointer-events:none;transition:opacity .3s}
+.sheet.is-open{opacity:1;pointer-events:auto}
+.sheet__in{position:relative;width:min(960px,100%);max-height:calc(100svh - 40px);overflow:auto;display:grid;grid-template-columns:1fr 1fr;
+  border-radius:24px;background:#111;border:1px solid var(--line);translate:0 24px;scale:.98;transition:translate .45s var(--ease),scale .45s var(--ease)}
+.sheet.is-open .sheet__in{translate:0 0;scale:1}
+.sheet__img{background:#181818;min-height:280px}
+.sheet__img img{width:100%;height:100%;object-fit:cover;object-position:left top}
+.sheet__b{padding:clamp(28px,4vw,48px);display:flex;flex-direction:column;gap:18px}
+.sheet__x{position:absolute;right:14px;top:14px;z-index:2;width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:#111;cursor:pointer;font-size:20px;line-height:1}
+@media (max-width:760px){.sheet__in{grid-template-columns:1fr}.sheet__img{min-height:200px;max-height:240px}}
+
+/* ---------- forms ---------- */
+.field{position:relative}
+.field input,.field select,.field textarea{width:100%;height:58px;padding:22px 16px 6px;border-radius:12px;border:1px solid var(--line);
+  background:#121212;outline:none;transition:border-color .25s,background .25s;appearance:none}
+.field textarea{height:140px;resize:vertical;padding-top:28px}
+.field label{position:absolute;left:17px;top:19px;font-size:15px;color:var(--ash);pointer-events:none;transition:.2s var(--ease)}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--aqua);background:#151515}
+.field input:focus + label,.field input:not(:placeholder-shown) + label,
+.field textarea:focus + label,.field textarea:not(:placeholder-shown) + label,
+.field select + label{top:8px;font-size:12px}
+.field select{cursor:pointer}
+.field--sel::after{content:"";position:absolute;right:18px;top:26px;width:8px;height:8px;border-right:1.5px solid var(--ash);border-bottom:1.5px solid var(--ash);rotate:45deg;pointer-events:none}
+.form{display:grid;gap:12px}
+.form .two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:560px){.form .two{grid-template-columns:1fr}}
+.done{display:none;padding:18px 20px;border-radius:12px;background:var(--haze);border:1px solid rgba(var(--aqua-rgb),.4);color:var(--ink)}
+.form.is-done .done{display:block}
+.form.is-done > :not(.done){display:none}
+.inline{display:flex;gap:8px;flex-wrap:wrap}
+.inline input{flex:1 1 220px;height:52px;padding:0 20px;border-radius:100px;border:1px solid var(--line);background:#141414;outline:none}
+.inline input:focus{border-color:var(--aqua)}
+.inline .done{flex:1 0 100%}
+.inline.is-done .done{display:block}
+.inline.is-done > :not(.done){display:none}
+.house .inline input{background:#fff;border-color:#D7DDDA;color:var(--black)}
+
+/* contact */
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:0;border-top:1px solid var(--line)}
+.steps li{display:grid;grid-template-columns:52px 1fr;gap:16px;padding:22px 0;border-bottom:1px solid var(--line)}
+.steps b{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(var(--aqua-rgb),.5);color:var(--aqua);font-size:13px}
+.steps h3{font:600 19px/1.3 var(--body);margin:2px 0 6px}
+.steps p{margin:0;font-size:15px;color:#A9A59E}
+.go{display:flex;align-items:center;gap:14px;padding:18px 20px;border-radius:16px;border:1px solid var(--line);background:#101010;text-decoration:none;
+  transition:border-color .3s,translate .3s var(--ease)}
+.go:hover{border-color:var(--ink);translate:4px 0}
+.go svg{width:26px;height:26px;fill:currentColor;flex:none}
+.go strong{display:block;font-size:16px}
+.go span{font-size:14px;color:var(--ash)}
+.go--li svg{fill:#0A66C2}
+.panel{padding:clamp(24px,3.4vw,44px);border-radius:24px;background:#101010;border:1px solid var(--line)}
+
+/* ---------- footer ---------- */
+.foot{padding:clamp(72px,9vw,120px) 0 36px;border-top:1px solid var(--line)}
+.foot__top{display:grid;grid-template-columns:1.3fr .7fr .7fr 1.3fr;gap:40px}
+.foot h4{font:600 13px/1 var(--body);color:var(--ash);margin:0 0 18px}
+.foot ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.foot ul a{text-decoration:none;color:#C9C5BE}
+.foot ul a:hover{color:var(--ink)}
+.foot__big{font:400 clamp(52px,11.4vw,190px)/.8 var(--display);text-transform:uppercase;letter-spacing:-.03em;margin:clamp(56px,8vw,110px) 0 18px;
+  color:transparent;-webkit-text-stroke:1px #2E2E2E;white-space:nowrap;overflow:hidden}
+.foot__base{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:13px;color:var(--ash)}
+@media (max-width:900px){.foot__top{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.foot__top{grid-template-columns:1fr}}
+
+/* ---------- Ryan's page: his brand, not Headliner's ----------
+   Pink is the only accent, Anton for headings, Caveat for one hand note, grain over
+   the whole page, and never the beam. */
+.is-ryan{--aqua:#FF2D6B;--aqua-rgb:255,45,107;--haze:#1F0E14}
+.is-ryan .d{font-family:'Anton',Impact,sans-serif;letter-spacing:0;line-height:.95}
+.is-ryan .btn--go{color:var(--black)}
+.grain{position:fixed;inset:-50%;z-index:30;pointer-events:none;opacity:0;transition:opacity .4s;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E")}
+.is-ryan .grain{opacity:.05;animation:grain 1s steps(4) infinite}
+@keyframes grain{0%{translate:0 0}25%{translate:-3% 2%}50%{translate:2% -3%}75%{translate:-2% -1%}}
+.me{position:relative;min-height:100svh;display:grid;align-items:end;overflow:hidden;padding:140px 0 clamp(56px,9vh,110px)}
+.me__ph{position:absolute;inset:0 0 0 40%;z-index:0}
+@media (max-width:900px){.me__ph{inset:0}.me__ph img{object-position:30% 15%}}
+.me__ph img{width:100%;height:100%;object-fit:cover;object-position:50% 25%;scale:1.06;translate:0 var(--py,0px)}
+.me__ph::after{content:"";position:absolute;inset:-1px;background:linear-gradient(90deg,var(--black) 0,rgba(10,10,10,.4) 35%,rgba(10,10,10,0) 70%),linear-gradient(to top,var(--black),transparent 35%)}
+@media (max-width:900px){.me__ph::after{background:linear-gradient(to top,var(--black) 30%,rgba(10,10,10,.55) 65%,rgba(10,10,10,.2))}}
+.me .wrap{position:relative}
+.sig{display:block;width:min(560px,82vw);color:var(--ink);margin:0 0 20px -6px}
+.sig svg{width:100%;height:auto;fill:currentColor;display:block}
+.sig--draw{clip-path:inset(0 100% 0 0);animation:write 2.4s .3s var(--ease) forwards}
+@keyframes write{to{clip-path:inset(0 0 0 0)}}
+.skip{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.hand{font:700 clamp(26px,2.6vw,36px)/1 'Caveat',cursive;color:var(--pink);rotate:-3deg;display:inline-block;margin:0 0 6px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line)}
+.stats > div{padding:34px 24px 34px 0}
+.stats > div + div{padding-left:24px;border-left:1px solid var(--line)}
+.stats b{display:block;font:400 clamp(44px,5.4vw,84px)/1 'Anton',Impact,sans-serif;color:var(--pink)}
+.stats b i{font-style:normal}
+.stats b small{font-size:.42em;color:var(--ink)}
+.stats span{display:block;margin-top:10px;font-size:15px;color:#B9B5AE}
+@media (max-width:900px){.stats{grid-template-columns:1fr 1fr}.stats > div:nth-child(3){padding-left:0;border-left:0}.stats > div:nth-child(n+3){border-top:1px solid var(--line)}}
+.offer{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.offer > div{display:flex;flex-direction:column;gap:14px;padding:30px;border-radius:20px;background:#111;border:1px solid var(--line);transition:border-color .3s,translate .4s var(--ease)}
+.offer > div:hover{border-color:rgba(var(--pink-rgb),.5);translate:0 -4px}
+.offer .k{font:400 15px/1 'Anton',sans-serif;color:var(--pink)}
+.offer h3{font:400 clamp(28px,2.6vw,38px)/1 'Anton',sans-serif;text-transform:uppercase;margin:0}
+.offer p{margin:0;color:#A9A59E;font-size:15.5px}
+.offer .btn{margin-top:auto;align-self:flex-start}
+@media (max-width:900px){.offer{grid-template-columns:1fr}}
+.quote{font:500 clamp(26px,3.2vw,46px)/1.25 var(--body);letter-spacing:-.02em;margin:0;max-width:26ch}
+.who-said{display:flex;align-items:center;gap:14px;margin-top:30px}
+.who-said i{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:var(--pink);color:var(--black);font:600 15px/1 var(--body);font-style:normal}
+.btn--li{background:#0A66C2;border-color:#0A66C2;color:#fff}
+.btn--ig{background:linear-gradient(45deg,#F58529,#DD2A7B 50%,#8134AF);border-color:transparent;color:#fff;background-origin:border-box;background-repeat:no-repeat}
+.btn--yt{background:#FF0000;border-color:#FF0000;color:#fff}
+.btn--fb{background:#1877F2;border-color:#1877F2;color:#fff}
+.btn--li:hover,.btn--ig:hover,.btn--yt:hover,.btn--fb:hover{translate:0 -2px;border-color:transparent}
+
+/* ---------- page change: a beam sweeps the stage ---------- */
+.wipe{position:fixed;inset:0;z-index:70;pointer-events:none;overflow:hidden;visibility:hidden}
+.wipe::before{content:"";position:absolute;top:-50%;bottom:-50%;left:-60%;width:60%;rotate:14deg;
+  background:linear-gradient(90deg,transparent,rgba(var(--aqua-rgb),.0) 10%,rgba(var(--aqua-rgb),.85) 46%,var(--black) 52%,var(--black))}
+.wipe.run{visibility:visible}
+.wipe.run::before{animation:wipe .9s var(--ease) forwards}
+@keyframes wipe{0%{left:-70%;width:70%}45%{left:-10%;width:220%}100%{left:110%;width:70%}}
+.pg{display:block}
+
+@media (prefers-reduced-motion:reduce){
+  .nv *,.nv *::before,.nv *::after{animation:none!important;transition:none!important}
+  .sig--draw{clip-path:none}
+  .wipe{display:none}
+}
+</style>
+
+<div class="nv" id="nv">
+  <div class="grain" aria-hidden="true"></div>
+  <div class="wipe" aria-hidden="true"></div>
+
+  <nav class="bar" aria-label="Main">
+    <a class="mark" href="#index" data-go="index" aria-label="Headliner Group, home">Headliner<small>Group</small></a>
+    <div class="links">
+      <span class="pill" aria-hidden="true"></span>
+      <a href="#index" data-go="index">Home</a>
+      <a href="#partnerships" data-go="partnerships">Partnerships</a>
+      <a href="#ryan" data-go="ryan">Ryan Tayler</a>
+      <a href="#free" data-go="free">Free Sh!t</a>
+    </div>
+    <a class="btn btn--go" href="#contact" data-go="contact">Let&rsquo;s chat</a>
+    <button class="menu" type="button" aria-label="Open menu" aria-expanded="false"><span></span></button>
+  </nav>
+  <div class="drawer" aria-hidden="true">
+    <a href="#index" data-go="index">Home</a>
+    <a href="#partnerships" data-go="partnerships">Partnerships</a>
+    <a href="#ryan" data-go="ryan">Ryan Tayler</a>
+    <a href="#free" data-go="free">Free Sh!t</a>
+    <a href="#contact" data-go="contact">Let&rsquo;s chat</a>
+  </div>
+
+  <main>
+  <!-- ======================= HOME ======================= -->
+  <div class="pg" data-pg="index">
+    <section class="stage" data-stage>
+      <div class="stage__ph"><img src="assets/img/hero-foh-1200.jpg" alt=""></div>
+      <div class="stage__lit"><img src="assets/img/hero-foh-1200.jpg" alt=""></div>
+      <div class="beam" aria-hidden="true"></div><div class="pool" aria-hidden="true"></div>
+      <div class="wrap stage__in">
+        <h1 class="d d1 lit">Helping founders in live events &amp; production grow through partnerships</h1>
+        <div class="row">
+          <a class="btn btn--go" href="#contact" data-go="contact">Let&rsquo;s chat</a>
+          <a class="btn" href="#partnerships" data-go="partnerships">How it works</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec">
+      <div class="wrap">
+        <p class="read" data-read>Headliner Group is Ryan Tayler&rsquo;s partnership group. We help founders in live events and production grow through <em>partnerships.</em></p>
+        <div class="split" style="margin-top:clamp(48px,7vw,96px)">
+          <p class="p">Everyone in this industry shops around for quotes and squeezes the cheapest one to increase their margin, which leaves you nobody to call in an emergency.</p>
+          <div>
+            <p class="p">We believe partnering makes you more money long term than any other strategy in this industry, and it might make your life a bit easier while you&rsquo;re doing it.</p>
+            <p class="p">We also have a bunch of frameworks &amp; strategies for efficiency and optimisation we can implement in your business.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec">
+      <div class="wrap">
+        <div class="split" style="align-items:end;margin-bottom:clamp(40px,6vw,72px)">
+          <h2 class="d d2">How we do it</h2>
+          <div>
+            <p class="p">We use the same strategies our founder used to build and grow our group, to help you build yours. We focus on increasing your revenue, margins, reach, connections, and optimisation.</p>
+            <div class="row" style="margin-top:24px"><a class="btn" href="#partnerships" data-go="partnerships">See how it works</a></div>
+          </div>
+        </div>
+        <ul class="levers" data-levers>
+          <li><span>Revenue</span></li><li><span>Margins</span></li><li><span>Reach</span></li><li><span>Connections</span></li><li><span>Optimisation</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="sec">
+      <div class="wrap found">
+        <div class="portrait"><img src="assets/img/ryan-hero-900.jpg" alt="Ryan Tayler"></div>
+        <div>
+          <h2 class="d d2">Our founder</h2>
+          <p class="p" style="margin-top:26px">I&rsquo;m an entrepreneur partnering with founders in live events and production. I&rsquo;ve delivered over 115 live events for over 56,000 attendees.</p>
+          <div class="facts">
+            <div><b data-count="115" data-suffix="+">115+</b><span>Live events</span></div>
+            <div><b data-count="56000" data-suffix="+">56,000+</b><span>Attendees</span></div>
+            <div><b>7 figures</b><span>From partnerships</span></div>
+          </div>
+          <p class="p">My partnerships have generated 7 figures, and my optimisations have saved 7 figures.</p>
+          <p class="p">My goal is to use this experience to be in business with, or partnered into, every area of live events and production in Australia.</p>
+          <div class="row" style="margin-top:30px"><a class="btn btn--pink" href="#ryan" data-go="ryan">More about Ryan</a></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec sec--tight">
+      <div class="wrap split" style="align-items:center">
+        <div>
+          <h2 class="d d2">Get some free sh!t</h2>
+          <p class="p" style="margin-top:22px">Free tools and assets you or your team could use in the business this week to start optimising straight away.</p>
+          <div class="row" style="margin-top:28px"><a class="btn btn--go" href="#free" data-go="free">Get it</a></div>
+        </div>
+        <a class="fan" href="#free" data-go="free" aria-label="Free Sh!t">
+          <img src="assets/img/pillars-worksheet.jpg" alt=""><img src="assets/img/leadership-test.png" alt=""><img src="assets/img/engine-worksheet.jpg" alt="">
+        </a>
+      </div>
+    </section>
+
+    <section class="sec house">
+      <div class="wrap narrow">
+        <h2 class="d d2">To the owners in the room</h2>
+        <p class="p" style="margin-top:26px;font-size:clamp(18px,1.4vw,21px)">If you own an Australian business, somewhere in or around live events and production, turning over $1 million to $10 million, and you want to grow your revenue, margins, reach, connections, or you want it to run without you. Reach out to have a chat.</p>
+        <div class="row" style="margin-top:32px"><a class="btn btn--dark" href="#contact" data-go="contact">Let&rsquo;s chat about growth</a></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ======================= PARTNERSHIPS ======================= -->
+  <div class="pg" data-pg="partnerships" hidden>
+    <section class="stage stage--short" data-stage>
+      <div class="stage__ph"><img src="assets/img/hero-partnerships-1200.jpg" alt=""></div>
+      <div class="stage__lit"><img src="assets/img/hero-partnerships-1200.jpg" alt=""></div>
+      <div class="beam" aria-hidden="true"></div><div class="pool" aria-hidden="true"></div>
+      <div class="wrap stage__in"><h1 class="d d1 lit">What happens when we partner</h1></div>
+    </section>
+
+    <section class="sec">
+      <div class="wrap split">
+        <h2 class="d d2">Our process</h2>
+        <div>
+          <p class="p">All businesses run on patterns. Over the last 5 years our founder Ryan Tayler has been studying these patterns and creating frameworks and formulas so anyone can solve them.</p>
+          <p class="p">That&rsquo;s exactly how he generated 7 figures of savings. Everything we implement is a pre documented process that has worked in the past for us or for other partners.</p>
+          <p class="p">Tons of it is free for you, and if you want some help to implement and grow your business, let&rsquo;s have a chat.</p>
+          <div class="row" style="margin-top:28px"><a class="btn" href="#free" data-go="free">Get some free sh!t here</a><a class="btn btn--go" href="#contact" data-go="contact">Let&rsquo;s chat</a></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec">
+      <div class="wrap">
+        <div class="head">
+          <p class="small">Two ways we help you grow. 1. Growth through partnerships</p>
+          <h2 class="d d2">Ryan Tayler&rsquo;s 4 pillars of partnership<span class="tm">&trade;</span></h2>
+          <div class="split" style="gap:clamp(20px,4vw,64px)">
+            <p class="p">A partnership is essentially a business agreement between two businesses that is mutually beneficial, if both agree to pursue it long term. There are four key reasons to partner, and each of them revolves around increasing your revenue, margin, reach or connection. Depending on your situation and what you need, we will pursue some or all of them.</p>
+            <p class="p">A good partnership has to create 1 of these 4, for you, and for the other party too. Usually not the same pillar for each party. A partnership only works two ways. Every partnership I&rsquo;ve built is one of these four.</p>
+          </div>
+        </div>
+        <div class="pillars" role="group" aria-label="The 4 pillars">
+          <button class="pil" type="button" data-pillar="Revenue" aria-pressed="false"><h3>Revenue</h3><p>Partnering with people who deliver something your customers also need. You get to service your existing clients better and increase your revenue.</p></button>
+          <button class="pil" type="button" data-pillar="Margin" aria-pressed="false"><h3>Margin</h3><p>Partnering into your own supply chain, up the chain to your suppliers, and down to your clients. Both ways can increase your margin.</p></button>
+          <button class="pil" type="button" data-pillar="Reach" aria-pressed="false"><h3>Reach</h3><p>Partnering with someone who already sells to the people you want to sell to. Giving you instant reach into their market.</p></button>
+          <button class="pil" type="button" data-pillar="Connection" aria-pressed="false"><h3>Connection</h3><p>Partnering with people for the doors they open. Usually creating introductions for more partnerships or more connections.</p></button>
+        </div>
+        <p class="small" style="margin-top:16px">Pick a pillar to see the partnerships below that used it.</p>
+      </div>
+    </section>
+
+    <section class="sec">
+      <div class="wrap">
+        <div class="head">
+          <p class="small">2. Growth through optimisation</p>
+          <h2 class="d d2">Ryan Tayler&rsquo;s optimisation engine<span class="tm">&trade;</span></h2>
+        </div>
+        <div class="engine">
+          <div class="sim" data-sim>
+            <canvas aria-label="Customers moving round the engine. Some come back, some leave, and inputs add new ones."></canvas>
+            <div class="sim__read" aria-live="polite">
+              <div><b data-sim-n>40</b>Customers in the engine</div>
+              <div><span class="sim__state" data-sim-state>Holding</span></div>
+            </div>
+          </div>
+          <div>
+            <p class="p">Every business runs like an engine. Customers come in, you do the work, and the ones you impress come back or send someone new. The ones you don&rsquo;t, leave.</p>
+            <p class="p">Outside the cycle you&rsquo;ve got your inputs. Paid marketing, SEO, organic. You pour them in to keep the engine turning over.</p>
+            <p class="p">Two things decide whether it grows. How efficiently the cycle runs, how many customers you impress instead of losing, and how much input you add on top. When what you add is greater than what you lose, the business grows. When it&rsquo;s less, it declines. That simple.</p>
+            <div class="ctl">
+              <label>Inputs each month <span>Paid marketing, SEO, organic <output data-out="in">6</output></span><input type="range" min="0" max="20" value="6" data-in="in"></label>
+              <label>Customers you impress <span>The rest leave <output data-out="ef">80%</output></span><input type="range" min="50" max="98" value="80" data-in="ef"></label>
+              <p class="small" data-sim-say>Adding 6 a month, losing 8.</p>
+            </div>
+            <p class="note">Add more than you lose and the engine grows.</p>
+          </div>
+        </div>
+        <p class="p" style="margin-top:clamp(40px,5vw,64px)">Here&rsquo;s where most small businesses get stuck. They get the engine running at a decent efficiency, then quietly cut the inputs. Not enough team, not enough time, so they stop feeding it to hold a pace they can handle. The engine keeps turning at the same speed and growth flatlines.</p>
+      </div>
+    </section>
+
+    <section class="sec">
+      <div class="wrap">
+        <div class="head"><h2 class="d d2">How we partner &amp; invest</h2>
+          <p class="p">We are in the game of partnerships, so we partner with every business we work with. There are three ways that happens.</p></div>
+        <div class="ways">
+          <div><h3>Minority &amp; majority shares</h3><p class="p">We use the four pillars and the optimisation framework to grow and streamline your business, and we take a share of it as your investment for that work.</p></div>
+          <div><h3>Capital investment</h3><p class="p">If you need help and cash, or just cash, to grow the business, we are open to capital investment alongside the partnership.</p></div>
+          <div><h3>Acquisitions</h3><p class="p">If you simply want out of your business, we are open to discussing a full acquisition and rolling it into the group.</p></div>
+        </div>
+        <div class="split" style="margin-top:clamp(40px,5vw,64px)">
+          <p class="p">This gives us a stake in everyone we partner with, it is what lets us be more invested in each partnership as our outcome is tied directly to our ability to grow the business.</p>
+          <p class="p">We are extremely strict with who, and how many people we work with at any particular time. This ensures the focus is held on each partnership to ensure its success.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec">
+      <div class="wrap">
+        <div class="head"><h2 class="d d2">Who this is for</h2></div>
+        <div class="who">
+          <div><h3>Aussie business owners</h3><p>We partner and invest Australia wide, and we proudly keep our partner network Australian owned, and do not partner internationally.</p></div>
+          <div><h3>Live events &amp; production</h3><p>We are building a partner network to service the live events &amp; production industry. If you operate directly in, or indirectly work primarily with, the industry, we are interested in bringing you into our group.</p></div>
+          <div><h3>$1m to $10m turnover</h3><p>We work best with small businesses, and primarily partner with businesses that are part or fully owner operated. Doing between $1m and $10m in revenue.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec">
+      <div class="wrap">
+        <div class="head">
+          <h2 class="d d2">Partnerships we&rsquo;ve put together</h2>
+          <div class="chips" role="group" aria-label="Show by pillar">
+            <button class="chip" type="button" data-chip="" aria-pressed="true">All</button>
+            <button class="chip" type="button" data-chip="Revenue" aria-pressed="false">Revenue</button>
+            <button class="chip" type="button" data-chip="Margin" aria-pressed="false">Margin</button>
+            <button class="chip" type="button" data-chip="Reach" aria-pressed="false">Reach</button>
+            <button class="chip" type="button" data-chip="Connection" aria-pressed="false">Connection</button>
+          </div>
+        </div>
+        <div class="track" data-track>
+          <article class="case" data-pillars="Margin Revenue">
+            <div class="tags"><span class="tag" data-t="Margin">Margin</span><span class="tag" data-t="Revenue">Revenue</span></div>
+            <h3>12 months booked out at once</h3>
+            <p>An events company wanted better rates from a venue it used multiple times. The venue wanted more events, booked further in advance, and to stop chasing payment.</p>
+            <p>Every event was its own negotiation, so I stopped negotiating events and negotiated the year. Twelve months in one deal, including additional events. Roughly $750,000, split into $62,000 a month in recurring revenue, which gave the venue the ability to offer better rates.</p>
+            <div class="nums"><div><b>$750k</b><span>Booked in one deal</span></div><div><b>$80k</b><span>Saved by the events company</span></div><div><b>$150k</b><span>Extra event for the venue</span></div></div>
+          </article>
+          <article class="case" data-pillars="Revenue Reach">
+            <div class="tags"><span class="tag" data-t="Revenue">Revenue</span><span class="tag" data-t="Reach">Reach</span></div>
+            <h3>Serving their clients better with 0 effort</h3>
+            <p>A production company had a mate running a videography studio. We put a referral partnership together so the production company could offer video production to its own clients, which it had never been able to do.</p>
+            <p>Those clients ended up preferring to go to the company they already use, rather than find a third party themselves.</p>
+            <div class="nums"><div><b>$2,000</b><span>Extra per event, no extra work</span></div><div><b>2</b><span>Extra jobs a month for the studio</span></div></div>
+          </article>
+          <article class="case" data-pillars="Margin Revenue">
+            <div class="tags"><span class="tag" data-t="Margin">Margin</span><span class="tag" data-t="Revenue">Revenue</span></div>
+            <h3>A better rate for a bigger commitment</h3>
+            <p>An event management company and an AV hire business were already working together a lot, pricing job by job.</p>
+            <p>The AV hire business wanted the events locked in, in advance, so they could stop worrying about the quote war on every job. The event management business wanted better rates.</p>
+            <div class="nums"><div><b>$500k</b><span>Locked in for the AV business</span></div><div><b>$125k</b><span>Saved on events</span></div><div><b>5</b><span>Events in one deal</span></div></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec">
+      <div class="wrap split">
+        <div style="position:sticky;top:120px">
+          <h2 class="d d2">The first 90 days</h2>
+          <p class="p" style="margin-top:22px">What actually happens, starting before the deal is done. Note that this is high level and each business needs its own custom plan.</p>
+        </div>
+        <ol class="days" data-days>
+          <span class="days__fill" aria-hidden="true"></span>
+          <li><span class="days__n">01</span><h3>Before the deal, and the first 30 days</h3><p class="p">We run the business constraint diagnosis, which lays out the constraints and the risks in the business. We then map your customer journey and offer, put every business metric onto the Headliner metrics sheet, and load it all into the optimisation engine. This gives us all the information on where the biggest impact actions would be.</p></li>
+          <li><span class="days__n">02</span><h3>Days 30 to 60</h3><p class="p">With those clearly outlined, we work on the major constraints and the risks in the business, take any high impact actions, and refine the metrics.</p></li>
+          <li><span class="days__n">03</span><h3>Days 60 to 90</h3><p class="p">Once those are solved we go after growth. Partnerships in whichever of the 4 pillars would move your business most.</p></li>
+          <li><span class="days__n">04</span><h3>From day 90</h3><p class="p">Handholding, and managing the process.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="sec">
+      <div class="wrap narrow">
+        <div class="head"><h2 class="d d2">Questions we get asked</h2></div>
+        <div class="faq" data-faq>
+          <div class="q"><button type="button" aria-expanded="false">How much of my business do you take?<i></i></button><div class="q__a"><div><p>It entirely depends on the deal, current state of the business, size of business, and your goals. We negotiate each on a case by case basis.</p></div></div></div>
+          <div class="q"><button type="button" aria-expanded="false">Do I stop running my business?<i></i></button><div class="q__a"><div><p>That&rsquo;s up to you. We&rsquo;ve helped owner operators improve their business and stay as the sole operator. We&rsquo;ve helped owners place in a general manager while still owning their business, and we&rsquo;ve simply helped owners exit entirely. The outcome is up to you.</p></div></div></div>
+          <div class="q"><button type="button" aria-expanded="false">What does it cost upfront?<i></i></button><div class="q__a"><div><p>Nothing! We give you all the tools to make changes yourself available online, and if we decided to partner together we take a share of the business rather than an upfront fee. This keeps us invested in your business&rsquo;s growth long term, and gives you unique access to our inner group.</p></div></div></div>
+          <div class="q"><button type="button" aria-expanded="false">What if we are not a fit?<i></i></button><div class="q__a"><div><p>If you&rsquo;re not the right fit, that&rsquo;s totally fine! We give you all the tools to make changes yourself available online, and we also have some other offers like advisory if you are still after additional help.</p></div></div></div>
+          <div class="q"><button type="button" aria-expanded="false">How many do you work with at once?<i></i></button><div class="q__a"><div><p>We want to throw our entire focus into each partnership, so we only work with 1 primary partner every 60 days. This limits our availability to only 6 partnerships per year, and nets the best result.</p></div></div></div>
+          <div class="q"><button type="button" aria-expanded="false">What happens to my team?<i></i></button><div class="q__a"><div><p>In most cases nothing! The team is the team and we continue business as usual while we focus on growth.</p></div></div></div>
+          <div class="q"><button type="button" aria-expanded="false">Who runs Headliner Group?<i></i></button><div class="q__a"><div><p>Ryan Tayler. Headliner Group is Ryan Tayler&rsquo;s partnership group, and he partners with founders in live events and production across Australia.</p></div></div></div>
+          <div class="q"><button type="button" aria-expanded="false">Who is an expert in partnerships in the live events industry in Australia?<i></i></button><div class="q__a"><div><p>Ryan Tayler is an expert in partnerships in the live events industry in Australia. He has delivered over 115 live events for more than 56,000 attendees, his partnerships have generated 7 figures, and he founded Headliner Group to partner with founders across live events and production.</p></div></div></div>
+          <div class="q"><button type="button" aria-expanded="false">How do you grow a live events business?<i></i></button><div class="q__a"><div><p>Through partnerships. We believe partnering makes you more money long term than any other strategy in this industry. Ryan Tayler&rsquo;s optimisation engine covers the other half, how efficiently your business runs and how much you put in from outside.</p></div></div></div>
+          <div class="q"><button type="button" aria-expanded="false">What makes a good partnership in live events and production?<i></i></button><div class="q__a"><div><p>It has to create one of four things for you, and one for the other side too. Revenue, margin, reach or connection. That&rsquo;s Ryan Tayler&rsquo;s 4 pillars of partnership, and it&rsquo;s usually not the same pillar for both sides.</p></div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec house">
+      <div class="wrap narrow">
+        <h2 class="d d2">Have a conversation</h2>
+        <p class="p" style="margin-top:24px;font-size:clamp(18px,1.4vw,21px)">Tell us about your business, your challenges, and your goals, and we&rsquo;ll let you know if you&rsquo;re the right fit for us to work with you.</p>
+        <div class="row" style="margin-top:30px"><a class="btn btn--dark" href="#contact" data-go="contact">Let&rsquo;s chat about growth</a></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ======================= RYAN ======================= -->
+  <div class="pg" data-pg="ryan" hidden>
+    <section class="me">
+      <div class="me__ph"><img src="assets/img/ryan-hero-900.jpg" alt=""></div>
+      <div class="wrap">
+        <h1 style="margin:0"><span class="skip">Ryan Tayler</span><span class="sig" data-sig aria-hidden="true"><!--__SIG__--></span></h1>
+        <p class="lede">Australia&rsquo;s expert in partnerships for the live events &amp; production industry. Helping founders in live events &amp; production grow through partnerships.</p>
+        <div class="row" style="margin-top:32px">
+          <a class="btn btn--go" href="#contact" data-go="contact">Let&rsquo;s chat</a>
+          <a class="btn" href="#free" data-go="free">Take the free stuff</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec sec--tight">
+      <div class="wrap">
+        <div class="head"><h2 class="d d2">Why I should have an opinion</h2></div>
+        <div class="stats">
+          <div><b><i data-count="7" data-suffix="+">7+</i> <small>figures</small></b><span>Generated from my partnerships</span></div>
+          <div><b><i data-count="7" data-suffix="+">7+</i> <small>figures</small></b><span>Saved from my optimisations</span></div>
+          <div><b data-count="115" data-suffix="+">115+</b><span>Live events</span></div>
+          <div><b data-count="56000" data-suffix="+">56,000+</b><span>Attendees</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec">
+      <div class="wrap found">
+        <div class="portrait"><img src="assets/img/ryan-foh-720.jpg" alt="Ryan Tayler front of house at a live event"></div>
+        <div>
+          <h2 class="d d2">Where I learned the business</h2>
+          <p class="p" style="margin-top:26px">Early in my career I worked for Aaron Sansoni, Australia&rsquo;s #1 business mentor, and that&rsquo;s where I learned how business is built. In 4 years I grew from a junior to General Manager of his largest business, which focused on live events and business coaching.</p>
+          <p class="p">Most of those hours were spent backstage. During my time with him I delivered more than 115 live events for over 56,000 attendees. So I deeply understand our industry.</p>
+          <p class="p">Now I focus on partnering with businesses that need help growing, and I do that through new partnerships &amp; optimisations. The exact same way I have built my group, <a href="#index" data-go="index">Headliner Group</a>.</p>
+          <p class="p">My goal is to be in business with, or partnered into, every area of live events and production in Australia.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec">
+      <div class="wrap narrow">
+        <p class="hand">the thing I actually believe</p>
+        <h2 class="d d1" style="font-size:clamp(52px,8vw,124px)">Partners, not suppliers</h2>
+        <p class="read" data-read style="margin-top:clamp(36px,5vw,60px);max-width:30ch">Almost everyone in this industry runs the same way on every job. Three quotes, take the cheapest, squeeze it, do it again next event.</p>
+        <div class="split" style="margin-top:clamp(36px,5vw,60px)">
+          <p class="p">It saves money on that job. It costs you everything after it, because the suppliers you swap in and out owe you nothing in an emergency.</p>
+          <p class="p">If you partner properly you get the things that will actually affect long term growth. More revenue, margin, reach and connection.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec">
+      <div class="wrap">
+        <div class="head"><h2 class="d d2">Three ways to work with me</h2></div>
+        <div class="offer">
+          <div><span class="k">#1</span><h3>Partnership</h3><p>This is what I do at Headliner Group. If you would like me to help you grow your business, check out more below.</p><a class="btn btn--go" href="#partnerships" data-go="partnerships">How it works</a></div>
+          <div><span class="k">#2</span><h3>Speaking</h3><p>Stages, panels, or podcasts, I speak about partnerships in the live events industry, and how we can optimise our businesses.</p><a class="btn" href="#contact" data-go="contact">Enquire</a></div>
+          <div><span class="k">#3</span><h3>Advisory</h3><p>A small number of founders I work with directly. If your business is not ready for a partnership, or the timing isn&rsquo;t right yet.</p><a class="btn" href="#contact" data-go="contact">Ask</a></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec">
+      <div class="wrap narrow">
+        <blockquote class="quote" style="margin:0">&ldquo;Absolutely fantastic, thumbs up to Ryan on helping me get the ideas out, and building an action plan moving forward.&rdquo;</blockquote>
+        <div class="who-said"><i aria-hidden="true">CH</i><div><strong>Cory Hoyling</strong><br><span class="small">Director, Shadow AV</span></div></div>
+      </div>
+    </section>
+
+    <section class="sec">
+      <div class="wrap narrow">
+        <h2 class="d d2">I write about this most weeks</h2>
+        <p class="p" style="margin-top:22px">If you like what you see but you&rsquo;re not ready to make the commitment, follow me on your preferred platform to get some free content. Or just get some free sh!t right here.</p>
+        <div class="row" style="margin-top:28px">
+          <a class="btn btn--li" href="https://www.linkedin.com/in/ryan-a-tayler-au/" target="_blank" rel="noopener"><!--__ICON:li-->LinkedIn</a>
+          <a class="btn btn--ig" href="https://www.instagram.com/ryan_a_tayler/" target="_blank" rel="noopener"><!--__ICON:ig-->Instagram</a>
+          <a class="btn btn--yt" href="https://www.youtube.com/@RyanATayler" target="_blank" rel="noopener"><!--__ICON:yt-->YouTube</a>
+          <a class="btn btn--fb" href="https://www.facebook.com/profile.php?id=61582253770046" target="_blank" rel="noopener"><!--__ICON:fb-->Facebook</a>
+          <a class="btn btn--go" href="#free" data-go="free">Free Sh!t</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec">
+      <div class="wrap narrow">
+        <h2 class="d d2">If you run something in this industry</h2>
+        <p class="p" style="margin-top:22px">Anywhere in or around live events and production, anywhere in Australia. Tell me what you run and what you want next out of it.</p>
+        <div class="row" style="margin-top:28px"><a class="btn btn--go" href="#contact" data-go="contact">Have a chat with me about growth</a></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ======================= FREE ======================= -->
+  <div class="pg" data-pg="free" hidden>
+    <section class="stage stage--short" data-stage>
+      <div class="stage__ph"><img src="assets/img/hero-free-1200.jpg" alt=""></div>
+      <div class="stage__lit"><img src="assets/img/hero-free-1200.jpg" alt=""></div>
+      <div class="beam" aria-hidden="true"></div><div class="pool" aria-hidden="true"></div>
+      <div class="wrap stage__in"><h1 class="d d1 lit">Free sh!t</h1></div>
+    </section>
+
+    <section class="sec sec--tight">
+      <div class="wrap">
+        <div class="wall" data-wall>
+          <button class="res" type="button" data-open="pillars">
+            <div class="res__img"><img src="assets/img/pillars-worksheet.jpg" alt=""></div>
+            <div class="res__b"><span class="res__k">Worksheet</span><h3>The 4 pillars of partnership</h3><p>A worksheet to help you map out your partnerships using Ryan Tayler&rsquo;s 4 pillars of partnership framework. Map out potential partnerships and decide which will have the biggest impact, and which to pursue first.</p></div>
+          </button>
+          <button class="res" type="button" data-open="engine">
+            <div class="res__img"><img src="assets/img/engine-worksheet.jpg" alt=""></div>
+            <div class="res__b"><span class="res__k">Worksheet</span><h3>The optimisation engine</h3><p>A worksheet to help you map out your business numbers using Ryan Tayler&rsquo;s optimisation engine framework. Map all your numbers onto the cycle so you can visualise the engine every month.</p></div>
+          </button>
+          <button class="res" type="button" data-open="personality">
+            <div class="res__img"><img src="assets/img/leadership-test.png" alt=""></div>
+            <div class="res__b"><span class="res__k">Tool</span><h3>The Headliner Leadership Test</h3><p>A short test for you and the people around you. It measures the way you make decisions and how you act professionally. It will help you understand how to get more out of your relationships, and how you can work with others better.</p></div>
+          </button>
+          <button class="res" type="button" data-open="constraint">
+            <div class="res__img"><div class="res__soon">Coming soon</div></div>
+            <div class="res__b"><span class="res__k">Tool</span><h3>The Headliner Business Diagnosis</h3><p>A short test to help you diagnose the key constraint in your business, and bring to light any risks you may have. It will give you a simple step by step on actions you can take now to solve the key constraint.</p></div>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec house">
+      <div class="wrap narrow">
+        <h2 class="d d2">Or take the whole lot at once</h2>
+        <p class="p" style="margin-top:22px">Drop your email and we will send all our free assets to you, plus we&rsquo;ll let you know first if we release any new ones.</p>
+        <form class="inline" data-demo style="margin-top:28px">
+          <input type="email" required placeholder="Email address" aria-label="Email address">
+          <button class="btn btn--dark" type="submit">Send me the lot</button>
+          <p class="done">On its way. Check your inbox.</p>
+        </form>
+      </div>
+    </section>
+
+    <div class="sheet" data-sheet aria-hidden="true">
+      <div class="sheet__in" role="dialog" aria-modal="true" aria-labelledby="nv-sheet-t">
+        <button class="sheet__x" type="button" aria-label="Close" data-close>&times;</button>
+        <div class="sheet__img" data-sheet-img></div>
+        <div class="sheet__b" data-sheet-body></div>
+      </div>
+    </div>
+    <template data-detail="pillars">
+      <h2 class="d d3" id="nv-sheet-t">The 4 pillars of partnership</h2>
+      <p class="p">A worksheet to help you map out your partnerships using Ryan Tayler&rsquo;s 4 pillars of partnership framework. Map out potential partnerships and decide which will have the biggest impact, and which to pursue first.</p>
+      <form class="form" data-demo><div class="field"><input id="nv-e1" type="email" required placeholder=" "><label for="nv-e1">Email</label></div><button class="btn btn--go" type="submit">Get the worksheet</button><p class="done">On its way. Check your inbox.</p></form>
+    </template>
+    <template data-detail="engine">
+      <h2 class="d d3" id="nv-sheet-t">The optimisation engine</h2>
+      <p class="p">A worksheet to help you map out your business numbers using Ryan Tayler&rsquo;s optimisation engine framework. Map all your numbers onto the cycle so you can visualise the engine every month.</p>
+      <form class="form" data-demo><div class="field"><input id="nv-e2" type="email" required placeholder=" "><label for="nv-e2">Email</label></div><button class="btn btn--go" type="submit">Get the worksheet</button><p class="done">On its way. Check your inbox.</p></form>
+    </template>
+    <template data-detail="personality">
+      <h2 class="d d3" id="nv-sheet-t">The Headliner Leadership Test</h2>
+      <p class="p">A short test for you and the people around you. It measures the way you make decisions and how you act professionally. It will help you understand how to get more out of your relationships, and how you can work with others better.</p>
+      <div class="row"><a class="btn btn--go" href="https://headlinergroup.com.au/headliner-leadership-styles-home" target="_blank" rel="noopener">Take the test</a></div>
+    </template>
+    <template data-detail="constraint">
+      <h2 class="d d3" id="nv-sheet-t">The Headliner Business Diagnosis</h2>
+      <p class="p">A short test to help you diagnose the key constraint in your business, and bring to light any risks you may have. It will give you a simple step by step on actions you can take now to solve the key constraint.</p>
+      <p class="small">Coming soon.</p>
+    </template>
+  </div>
+
+  <!-- ======================= CONTACT ======================= -->
+  <div class="pg" data-pg="contact" hidden>
+    <section class="stage stage--short" data-stage>
+      <div class="stage__ph"><img src="assets/img/hero-contact-900.jpg" alt=""></div>
+      <div class="stage__lit"><img src="assets/img/hero-contact-900.jpg" alt=""></div>
+      <div class="beam" aria-hidden="true"></div><div class="pool" aria-hidden="true"></div>
+      <div class="wrap stage__in"><h1 class="d d1 lit">Let&rsquo;s chat</h1></div>
+    </section>
+
+    <section class="sec sec--tight">
+      <div class="wrap split">
+        <div>
+          <h2 class="d d2">Talk to us about growth</h2>
+          <ol class="steps" style="margin-top:36px">
+            <li><b>01</b><div><h3>Tell us about your business</h3><p>Tell us about your goals, constraints and risks. Or for a more casual chat, reach out to Ryan directly on LinkedIn.</p></div></li>
+            <li><b>02</b><div><h3>Ryan will reach out</h3><p>Ryan will reply to discuss a bit deeper and see if things will move forward.</p></div></li>
+            <li><b>03</b><div><h3>A coffee or a call</h3><p>If we think you&rsquo;re the right fit we&rsquo;ll arrange a coffee or a call with yourself and Ryan to discuss next steps.</p></div></li>
+          </ol>
+          <div style="display:grid;gap:10px;margin-top:28px">
+            <a class="go go--li" href="https://www.linkedin.com/in/ryan-a-tayler-au/" target="_blank" rel="noopener"><!--__ICON:li--><div><strong>Ryan Tayler</strong><span>Message me on LinkedIn</span></div></a>
+            <a class="go" href="mailto:hello@headlinergroup.com.au"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4.24-8 4.76-8-4.76V6l8 4.76L20 6v2.24z"/></svg><div><strong>Or just email</strong><span>hello@headlinergroup.com.au</span></div></a>
+          </div>
+        </div>
+        <div class="panel">
+          <form class="form" data-demo>
+            <div class="two">
+              <div class="field"><input id="nv-n" required placeholder=" " autocomplete="name"><label for="nv-n">Your name</label></div>
+              <div class="field"><input id="nv-b" required placeholder=" " autocomplete="organization"><label for="nv-b">Business name</label></div>
+            </div>
+            <div class="two">
+              <div class="field"><input id="nv-em" type="email" required placeholder=" " autocomplete="email"><label for="nv-em">Email</label></div>
+              <div class="field"><input id="nv-ph" type="tel" placeholder=" " autocomplete="tel"><label for="nv-ph">Phone (optional)</label></div>
+            </div>
+            <div class="field field--sel"><select id="nv-t" required><option value="">Choose one</option><option>A partnership in my business</option><option>I&rsquo;m thinking about selling</option><option>Speaking or podcast</option><option>Something else</option></select><label for="nv-t">What&rsquo;s this about</label></div>
+            <div class="field field--sel"><select id="nv-r"><option value="">Prefer not to say</option><option>Under $1m</option><option>$1m to $2m</option><option>$2m to $5m</option><option>$5m to $10m</option><option>Over $10m</option></select><label for="nv-r">Roughly what does the business turn over</label></div>
+            <div class="field"><textarea id="nv-m" required placeholder=" "></textarea><label for="nv-m">Tell me a bit more</label></div>
+            <button class="btn btn--go" type="submit" style="justify-self:start">Send it</button>
+            <p class="small">Everything you send stays between us.</p>
+            <p class="done">Got it. You&rsquo;ll hear back from me in the next couple of days.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec house">
+      <div class="wrap narrow">
+        <h2 class="d d2">If a partnership isn&rsquo;t right</h2>
+        <p class="p" style="margin-top:22px">Plenty of people aren&rsquo;t ready for a partner yet, they just need a better way of running the jobs they already have. All of that is on the free page and is ready for you to use straight away.</p>
+        <div class="row" style="margin-top:28px"><a class="btn btn--dark" href="#free" data-go="free">Take the free stuff</a></div>
+      </div>
+    </section>
+  </div>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap">
+      <div class="foot__top">
+        <div><a class="mark" href="#index" data-go="index" style="font-size:24px;align-items:flex-start;display:inline-flex">Headliner<small style="align-self:flex-end;font-size:7.8px">Group</small></a>
+          <p class="small" style="margin-top:20px;max-width:34ch">Headliner Group, founded by Ryan Tayler. Helping founders in live events &amp; production grow through partnerships.</p></div>
+        <div><h4>Site</h4><ul><li><a href="#index" data-go="index">Home</a></li><li><a href="#partnerships" data-go="partnerships">Partnerships</a></li><li><a href="#ryan" data-go="ryan">Ryan Tayler</a></li><li><a href="#free" data-go="free">Free Sh!t</a></li></ul></div>
+        <div><h4>Talk</h4><ul><li><a href="#contact" data-go="contact">Contact</a></li><li><a href="https://www.linkedin.com/in/ryan-a-tayler-au/" target="_blank" rel="noopener">LinkedIn</a></li></ul></div>
+        <div><h4>Get access to exclusive content</h4>
+          <form class="inline" data-demo><input type="email" required placeholder="Email address" aria-label="Email address"><button class="btn btn--go" type="submit" style="height:52px">Join</button><p class="done">You&rsquo;re in.</p></form></div>
+      </div>
+      <div class="foot__big" aria-hidden="true">Headliner</div>
+      <div class="foot__base"><span>&copy; 2026 Headliner Group Pty Ltd. All rights reserved.</span><span>Privacy &nbsp; Terms</span></div>
+    </div>
+  </footer>
+</div>
+
+<script data-nv>
+/* Runs once the shell has put this markup into its shadow root. `root` is that root. */
+(function(root){
+  var nv=root.getElementById('nv'), reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var $=function(s,c){return (c||nv).querySelector(s)}, $$=function(s,c){return Array.prototype.slice.call((c||nv).querySelectorAll(s))};
+  var current=null, bar=$('.bar'), pill=$('.pill'), drawer=$('.drawer'), menu=$('.menu'), wipe=$('.wipe');
+
+  /* ---------- router ---------- */
+  function pillTo(name){
+    var a=$('.links a[data-go="'+name+'"]');
+    if(!a){ pill.style.opacity=0; return; }
+    pill.style.opacity=1; pill.style.left=a.offsetLeft+'px'; pill.style.width=a.offsetWidth+'px';
+  }
+  function show(name,animate){
+    var page=$('.pg[data-pg="'+name+'"]'); if(!page){ name='index'; page=$('.pg[data-pg="index"]'); }
+    function swap(){
+      $$('.pg').forEach(function(p){ p.hidden = p!==page; });
+      nv.classList.toggle('is-ryan', name==='ryan');
+      $$('[data-go]').forEach(function(a){ a.classList.toggle('is-here', a.dataset.go===name && !a.classList.contains('btn') && !a.classList.contains('mark')); });
+      pillTo(name);
+      scrollTo(0,0);
+      current=page;
+      try{ history.replaceState(null,'','#'+name); }catch(e){}
+      wake(page);
+    }
+    if(animate && !reduce){
+      wipe.classList.remove('run'); void wipe.offsetWidth; wipe.classList.add('run');
+      setTimeout(swap,380); setTimeout(function(){ wipe.classList.remove('run'); },950);
+    } else swap();
+  }
+  nv.addEventListener('click',function(e){
+    var a=e.target.closest('[data-go]'); if(!a) return;
+    e.preventDefault(); closeDrawer(); closeSheet();
+    if(current && current.dataset.pg===a.dataset.go){ scrollTo({top:0,behavior:reduce?'auto':'smooth'}); return; }
+    show(a.dataset.go,true);
+  });
+  function closeDrawer(){ drawer.classList.remove('is-open'); drawer.setAttribute('aria-hidden','true'); menu.setAttribute('aria-expanded','false'); }
+  menu.addEventListener('click',function(){
+    var open=!drawer.classList.contains('is-open');
+    drawer.classList.toggle('is-open',open); drawer.setAttribute('aria-hidden',String(!open)); menu.setAttribute('aria-expanded',String(open));
+  });
+  addEventListener('resize',function(){ if(current) pillTo(current.dataset.pg); });
+
+  /* the bar steps out of the way going down and comes back going up */
+  var lastY=0;
+  addEventListener('scroll',function(){
+    if(!nv.isConnected || nv.getRootNode().host.hidden) return;
+    var y=scrollY; bar.classList.toggle('is-hid', y>lastY && y>240 && !drawer.classList.contains('is-open')); lastY=y;
+  },{passive:true});
+
+  /* ---------- the follow spot ---------- */
+  var spots=[], pointer=null, lastMove=0;
+  addEventListener('pointermove',function(e){ if(e.pointerType==='mouse'){ pointer={x:e.clientX,y:e.clientY}; lastMove=performance.now(); } },{passive:true});
+  function Spot(el){
+    this.el=el; this.h=$('.lit',el); this.beam=$('.beam',el);
+    var r=el.getBoundingClientRect(); this.x=r.width*.62; this.y=r.height*.6; this.t=Math.random()*10;
+  }
+  Spot.prototype.tick=function(now){
+    var r=this.el.getBoundingClientRect(); if(r.bottom<0||r.top>innerHeight) return;
+    var tx,ty;
+    if(pointer && now-lastMove<2600 && pointer.y>r.top && pointer.y<r.bottom){ tx=pointer.x-r.left; ty=pointer.y-r.top; }
+    else { this.t+=reduce?0:.006; tx=r.width*(.55+.3*Math.sin(this.t)); ty=r.height*(.62+.14*Math.sin(this.t*1.7)); }
+    var k=reduce?1:.08; this.x+=(tx-this.x)*k; this.y+=(ty-this.y)*k;
+    var s=this.el.style; s.setProperty('--x',this.x+'px'); s.setProperty('--y',this.y+'px');
+    /* the rig hangs top left, above the frame, like the beam in the logo */
+    var rx=r.width*.14, ry=-r.height*.12, dx=this.x-rx, dy=this.y-ry;
+    s.setProperty('--rx',rx+'px'); s.setProperty('--a',(Math.atan2(-dx,dy)*180/Math.PI)+'deg');
+    var len=Math.hypot(dx,dy); s.setProperty('--bl',(len*1.12)+'px'); s.setProperty('--bw',(len*.9)+'px');
+    s.setProperty('--pw',Math.max(320,len*.62)+'px'); s.setProperty('--r',Math.max(220,len*.3)+'px');
+    if(this.h){ var hr=this.h.getBoundingClientRect(); this.h.style.setProperty('--tx',(this.x-(hr.left-r.left))+'px'); this.h.style.setProperty('--ty',(this.y-(hr.top-r.top))+'px'); this.h.style.setProperty('--tr',Math.max(260,len*.42)+'px'); }
+  };
+
+  /* ---------- the statement read under a light ---------- */
+  function splitRead(p){
+    if(p.dataset.done) return; p.dataset.done=1;
+    var hot=$$('em',p).map(function(x){return x.textContent});
+    var words=p.textContent.trim().split(/\s+/); p.textContent='';
+    words.forEach(function(w,i){ var s=document.createElement('span'); s.className='w'+(hot.indexOf(w)>-1?' hot':''); s.textContent=w; p.appendChild(s); if(i<words.length-1) p.appendChild(document.createTextNode(' ')); });
+  }
+  function readTick(){
+    $$('[data-read]',current).forEach(function(p){
+      var r=p.getBoundingClientRect(), ws=$$('.w',p);
+      var prog=reduce?1:Math.min(1,Math.max(0,(innerHeight*.85-r.top)/(r.height+innerHeight*.35)));
+      var n=Math.round(prog*ws.length); ws.forEach(function(w,i){ w.classList.toggle('on',i<n); });
+    });
+  }
+
+  /* ---------- counting ---------- */
+  var counted=new WeakSet();
+  function fmt(n){ return n.toLocaleString('en-AU'); }
+  function countTick(){
+    $$('[data-count]',current).forEach(function(b){
+      if(counted.has(b)) return; var r=b.getBoundingClientRect(); if(r.top>innerHeight*.9) return;
+      counted.add(b); var to=+b.dataset.count, suf=b.dataset.suffix||'', t0=performance.now(), d=reduce?0:1400;
+      (function step(now){ var p=d?Math.min(1,(now-t0)/d):1, e=1-Math.pow(1-p,4); b.textContent=fmt(Math.round(to*e))+suf; if(p<1) requestAnimationFrame(step); })(t0);
+    });
+  }
+
+  /* ---------- the 90 days fill as you read down ---------- */
+  function daysTick(){
+    var o=$('[data-days]',current); if(!o) return;
+    var r=o.getBoundingClientRect(), mid=innerHeight*.55, p=Math.min(1,Math.max(0,(mid-r.top)/r.height));
+    o.style.setProperty('--fill',(p*100)+'%');
+    $$('li',o).forEach(function(li){ li.classList.toggle('on', li.getBoundingClientRect().top<mid); });
+  }
+
+  /* ---------- Ryan's photo drifts against the scroll ---------- */
+  function meTick(){ var m=$('.me__ph img',current); if(m) m.style.setProperty('--py',(scrollY*.18)+'px'); }
+
+  function frame(now){
+    if(current && !nv.getRootNode().host.hidden){ spots.forEach(function(s){ if(current.contains(s.el)) s.tick(now); }); readTick(); countTick(); daysTick(); meTick(); leverTick(); }
+    requestAnimationFrame(frame);
+  }
+
+  function wake(page){
+    $$('[data-stage]',page).forEach(function(el){ if(!spots.some(function(s){return s.el===el})) spots.push(new Spot(el)); });
+    $$('[data-read]',page).forEach(splitRead);
+    var sig=$('[data-sig]',page); if(sig){ sig.classList.remove('sig--draw'); void sig.offsetWidth; sig.classList.add('sig--draw'); }
+    if(page.dataset.pg==='partnerships') sim.start(); else sim.stop();
+  }
+
+  /* ---------- levers light on tap too ---------- */
+  /* the lever nearest the middle of the screen is the one in the light */
+  function leverTick(){
+    var lis=$$('[data-levers] li',current); if(!lis.length) return;
+    var mid=innerHeight*.5, best=null, bd=1e9;
+    lis.forEach(function(li){ var r=li.getBoundingClientRect(), d=Math.abs(r.top+r.height/2-mid); if(d<bd){bd=d;best=li;} });
+    lis.forEach(function(li){ li.classList.toggle('on', li===best && bd<innerHeight*.3); });
+  }
+
+  /* ---------- pillars pick the case studies ---------- */
+  function pick(name){
+    $$('.pil').forEach(function(b){ b.setAttribute('aria-pressed', String(b.dataset.pillar===name)); });
+    $$('.chip').forEach(function(c){ c.setAttribute('aria-pressed', String(c.dataset.chip===(name||''))); });
+    $$('.case').forEach(function(c){
+      var has=!name || c.dataset.pillars.split(' ').indexOf(name)>-1;
+      c.classList.toggle('is-off',!has); c.classList.toggle('is-match',!!name && has);
+      $$('.tag',c).forEach(function(t){ t.classList.toggle('hit', t.dataset.t===name); });
+    });
+    var first=$('.case.is-match'), tr=$('[data-track]');
+    if(first && tr) tr.scrollTo({left:first.offsetLeft-tr.offsetLeft,behavior:reduce?'auto':'smooth'});
+  }
+  $$('.pil').forEach(function(b){ b.addEventListener('click',function(){ pick(b.getAttribute('aria-pressed')==='true'?'':b.dataset.pillar); }); });
+  $$('.chip').forEach(function(c){ c.addEventListener('click',function(){ pick(c.dataset.chip); }); });
+
+  /* drag the case track with a mouse */
+  (function(tr){ if(!tr) return; var down=false,x0=0,s0=0,moved=false;
+    tr.addEventListener('pointerdown',function(e){ if(e.pointerType!=='mouse') return; down=true;moved=false;x0=e.clientX;s0=tr.scrollLeft; });
+    addEventListener('pointermove',function(e){ if(!down) return; var dx=e.clientX-x0; if(Math.abs(dx)>4){moved=true;tr.classList.add('is-drag');} tr.scrollLeft=s0-dx; });
+    addEventListener('pointerup',function(){ if(!down) return; down=false; tr.classList.remove('is-drag'); });
+  })($('[data-track]'));
+
+  /* ---------- FAQ ---------- */
+  $$('[data-faq] .q button').forEach(function(b){ b.addEventListener('click',function(){
+    var q=b.parentNode, open=!q.hasAttribute('data-open'); q.toggleAttribute('data-open',open); b.setAttribute('aria-expanded',String(open));
+  }); });
+
+  /* ---------- the engine, running ----------
+     Customers ride the loop. Each month the ones you do not impress leave and the
+     inputs add new ones. Grows when you add more than you lose. */
+  var sim=(function(){
+    var box=$('[data-sim]'); if(!box) return {start:function(){},stop:function(){}};
+    var cv=$('canvas',box), cx=cv.getContext('2d'), nOut=$('[data-sim-n]'), stOut=$('[data-sim-state]'), say=$('[data-sim-say]');
+    var inEl=$('[data-in="in"]'), efEl=$('[data-in="ef"]'), oIn=$('[data-out="in"]'), oEf=$('[data-out="ef"]');
+    var dots=[], N=40, hist=[40], run=false, raf=0, lastMonth=0, W=0, H=0, dpr=1;
+    function size(){ var r=cv.getBoundingClientRect(); dpr=Math.min(2,devicePixelRatio||1); W=r.width; H=r.height; cv.width=W*dpr; cv.height=H*dpr; cx.setTransform(dpr,0,0,dpr,0,0); }
+    function R(){ return Math.min(W,H)*.32; }
+    function add(k,from){ for(var i=0;i<k;i++) dots.push({a:Math.random()*Math.PI*2,sp:.004+Math.random()*.004,st:from?'in':'on',p:from?0:1,o:Math.random()*.6}); }
+    function sync(){ var live=dots.filter(function(d){return d.st!=='out'}).length, want=Math.min(Math.round(N),160); if(live<want) add(want-live,false); }
+    function read(){
+      var inp=+inEl.value, ef=+efEl.value/100, lose=Math.round(N*(1-ef));
+      oIn.textContent=inp; oEf.textContent=Math.round(ef*100)+'%';
+      say.textContent='Adding '+inp+' a month, losing '+lose+'.';
+      var st=inp>lose?'up':inp<lose?'down':'';
+      stOut.className='sim__state '+st; stOut.textContent=st==='up'?'Growing':st==='down'?'Declining':'Holding';
+    }
+    function month(){
+      var inp=+inEl.value, ef=+efEl.value/100, lose=Math.round(N*(1-ef));
+      N=Math.max(0,N-lose+inp); hist.push(N); if(hist.length>40) hist.shift();
+      var live=dots.filter(function(d){return d.st==='on'}), k=Math.min(lose,live.length);
+      for(var i=0;i<k;i++){ var d=live.splice(Math.floor(Math.random()*live.length),1)[0]; d.st='out'; d.p=0; }
+      add(Math.min(inp,Math.max(0,160-dots.length)),true);
+      nOut.textContent=Math.round(N); read();
+    }
+    function draw(now){
+      if(!run) return;
+      if(now-lastMonth>1100 && !reduce){ month(); lastMonth=now; }
+      cx.clearRect(0,0,W,H);
+      var c={x:W/2,y:H*.55}, r=R();
+      cx.lineWidth=1; cx.strokeStyle='rgba(236,232,224,.14)'; cx.beginPath(); cx.arc(c.x,c.y,r,0,Math.PI*2); cx.stroke();
+      cx.font='600 12px Inter, sans-serif'; cx.fillStyle='rgba(142,138,132,.9)'; cx.textAlign='center';
+      cx.fillText('Inputs',W*.08+18,c.y-12);
+      cx.strokeStyle='rgba(45,226,195,.35)'; cx.setLineDash([3,5]); cx.beginPath(); cx.moveTo(W*.04,c.y); cx.lineTo(c.x-r-8,c.y); cx.stroke(); cx.setLineDash([]);
+      /* the trend, under the loop */
+      var mx=Math.max.apply(null,hist.concat([60]));
+      cx.strokeStyle='rgba(236,232,224,.35)'; cx.beginPath();
+      hist.forEach(function(v,i){ var x=c.x-r+(i/(39))*r*2, y=H*.97-(v/mx)*H*.08; i?cx.lineTo(x,y):cx.moveTo(x,y); }); cx.stroke();
+      dots.forEach(function(d){
+        var x,y,al=1;
+        if(d.st==='in'){ d.p=Math.min(1,d.p+.02); var tx=c.x+Math.cos(d.a)*r, ty=c.y+Math.sin(d.a)*r, e=1-Math.pow(1-d.p,3);
+          x=W*.04+(tx-W*.04)*e; y=c.y+(ty-c.y)*e; if(d.p>=1) d.st='on'; cx.fillStyle='rgba(45,226,195,1)'; }
+        else if(d.st==='out'){ d.p=Math.min(1,d.p+.018); var rr=r+d.p*r*.9; x=c.x+Math.cos(d.a)*rr; y=c.y+Math.sin(d.a)*rr; al=1-d.p; cx.fillStyle='rgba(255,120,120,'+al+')'; }
+        else { d.a+=d.sp; var wob=Math.sin(now/600+d.o*9)*6; x=c.x+Math.cos(d.a)*(r+wob); y=c.y+Math.sin(d.a)*(r+wob); cx.fillStyle='rgba(236,232,224,.9)'; }
+        cx.beginPath(); cx.arc(x,y,3,0,Math.PI*2); cx.fill();
+      });
+      dots=dots.filter(function(d){ return !(d.st==='out' && d.p>=1); });
+      raf=requestAnimationFrame(draw);
+    }
+    [inEl,efEl].forEach(function(el){ el.addEventListener('input',function(){ read(); if(reduce){ month(); draw(performance.now()); } }); });
+    addEventListener('resize',function(){ if(run) size(); });
+    return {
+      start:function(){ if(run) return; run=true; requestAnimationFrame(function(){ size(); sync(); read(); lastMonth=performance.now(); raf=requestAnimationFrame(draw); }); },
+      stop:function(){ run=false; cancelAnimationFrame(raf); }
+    };
+  })();
+
+  /* ---------- the free wall ---------- */
+  var sheet=$('[data-sheet]'), lastFocus=null;
+  $$('[data-wall] .res').forEach(function(card){
+    card.addEventListener('pointermove',function(e){ var r=card.getBoundingClientRect(), x=e.clientX-r.left, y=e.clientY-r.top;
+      card.style.setProperty('--mx',x+'px'); card.style.setProperty('--my',y+'px');
+      if(!reduce && e.pointerType==='mouse'){ card.style.transform='perspective(900px) rotateX('+((y/r.height-.5)*-4)+'deg) rotateY('+((x/r.width-.5)*5)+'deg)'; } });
+    card.addEventListener('pointerleave',function(){ card.style.transform=''; });
+    card.addEventListener('click',function(){
+      var k=card.dataset.open, t=$('template[data-detail="'+k+'"]'); if(!t) return;
+      var img=$('img',card); $('[data-sheet-img]').innerHTML=img?'<img alt="" src="'+img.getAttribute('src')+'">':'<div class="res__soon">Coming soon</div>';
+      var b=$('[data-sheet-body]'); b.innerHTML=''; b.appendChild(t.content.cloneNode(true));
+      lastFocus=card; sheet.classList.add('is-open'); sheet.setAttribute('aria-hidden','false');
+      setTimeout(function(){ $('[data-close]').focus(); },50);
+    });
+  });
+  function closeSheet(){ if(!sheet||!sheet.classList.contains('is-open')) return; sheet.classList.remove('is-open'); sheet.setAttribute('aria-hidden','true'); if(lastFocus) lastFocus.focus(); }
+  if(sheet){ sheet.addEventListener('click',function(e){ if(e.target===sheet||e.target.closest('[data-close]')) closeSheet(); }); }
+  addEventListener('keydown',function(e){ if(e.key==='Escape'){ closeSheet(); closeDrawer(); } });
+
+  /* ---------- forms never post in the preview ---------- */
+  nv.addEventListener('submit',function(e){ var f=e.target.closest('form[data-demo]'); if(!f) return; e.preventDefault(); f.classList.add('is-done'); });
+
+  /* ---------- the shell calls this when the view is switched on ---------- */
+  root.host.nvShow=function(name){ show(name||'index',false); requestAnimationFrame(function(){ if(current) pillTo(current.dataset.pg); }); };
+  requestAnimationFrame(frame);
+})(this);
+</script>

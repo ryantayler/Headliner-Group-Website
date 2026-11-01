@@ -78,6 +78,23 @@ if _hid:
 _js = open('assets/js/main.js').read()
 wall = _js[_js.index('  /* 5. Download wall'):_js.rindex('})();')].rstrip()
 
+# The new view: a redesign that exists only in this preview, behind the toggle in the
+# top right. Its markup, style and script are one file, mounted by the shell inside a
+# shadow root so the site's stylesheet and it never touch. Images, the signature and
+# the platform icons are lifted from the real pages rather than copied in.
+_nv = open('tools-preview/next.html').read()
+_ryan = open('ryan.html').read()
+_sig = re.search(r'<svg class="sig sig--hero".*?</svg>', _ryan, re.S).group(0)
+_nv = _nv.replace('<!--__SIG__-->', re.sub(r' class="[^"]*"', '', _sig, count=1))
+for _k in ('li', 'ig', 'yt', 'fb'):
+    _ic = re.search(r'btn--' + _k + r'"[^>]*>(<svg.*?</svg>)', _ryan, re.S).group(1)
+    _nv = _nv.replace('<!--__ICON:' + _k + '-->', _ic)
+for _m in sorted(set(re.findall(r'assets/img/[\w.-]+\.(?:jpg|png)', _nv))):
+    _nv = _nv.replace(_m, _b64(_m))
+_left = re.findall(r'<!--__\w+(?::\w+)?__?-->', _nv)
+if _left:
+    sys.exit('new view placeholders not filled: ' + ', '.join(sorted(set(_left))))
+
 # the template lives in the repo. It lived in a session scratchpad once and was lost
 # with the session, and had to be rebuilt from the published artifact.
 tpl = open('tools-preview/template.html').read()
@@ -85,7 +102,8 @@ def _render(bs):
     return (tpl.replace('/*__FONTS__*/', fonts).replace('/*__CSS__*/', css)
                .replace('/*__WALL__*/', wall)
                .replace('<!--__NAV__-->', nav).replace('<!--__BODIES__-->', "\n".join(bs))
-               .replace('<!--__FOOTER__-->', footer))
+               .replace('<!--__FOOTER__-->', footer)
+               .replace('<!--__NEXT__-->', _nv))
 
 for name, bs in (('headliner-preview.html', bodies), ('headliner-preview-frames.html', _framed)):
     doc = _render(bs)

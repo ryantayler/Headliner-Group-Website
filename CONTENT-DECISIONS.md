@@ -2626,3 +2626,29 @@ the pill back to *Have a look*.
 
 `leadership-test.png` and `optimisation-engine-dark.png` now have uploaded URLs in
 `ghl-assets.json`, so the export builds clean.
+
+## A new view in the preview, 1 November 2026
+
+Ryan asked to see what the whole site could look like as a modern 2026 build, in the
+preview only. The preview has a switch in its top right corner, *Current view* and *New
+view*, and it remembers the last choice. The new view uses the same copy, pages and
+images, and nothing about the live site changes.
+
+What it does differently:
+- **Every Headliner hero is a dark stage with a follow spot.** The aqua beam from the
+  logo hangs top left and follows the pointer, and it lights up the headline and the
+  photograph where it lands. On a phone it runs a slow sweep of its own.
+- **The optimisation engine runs.** Customers ride the loop, the ones you don't impress
+  fly off, and inputs add new ones. Two sliders set inputs and how many you impress, and
+  it reads *Growing* or *Declining* on the rule from the page, add more than you lose.
+- **The 4 pillars pick the case studies.** Choose a pillar and the partnerships that used
+  it light up. The case studies run sideways.
+- **The first 90 days fill in as you scroll.** The opening statement on Home lights up word
+  by word as it's read, and the levers list lights the one in the middle of the screen.
+- **Ryan's page stays in his brand.** Pink, Anton, Caveat, grain, no beam, and his
+  signature writes itself on when the page opens.
+- **The last section of each Headliner page is the house lights up**, the one light ground.
+- Page changes sweep a beam across the screen.
+
+The case study cards pull out their figures (for example *$750k booked in one deal*). The
+short labels under them are new, written from the case study text.

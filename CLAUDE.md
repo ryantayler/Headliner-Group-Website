@@ -88,6 +88,13 @@ same turn, to the one artifact: https://claude.ai/artifact/7ncnLENvJTMrSv5W9wiru
 that `url` from a new session, or the publish makes a second artifact. Run the checks
 above on the build before publishing it. A push without a republish is unfinished work.
 
+**The preview carries a second, redesigned site behind a switch in its top right corner**,
+Ryan's ask on 1 November 2026, to see what the site could look like. It lives in
+`tools-preview/next.html`, is mounted in a shadow root so neither stylesheet reaches the
+other, and exists in the preview only. `build-ghl.py` never reads it and nothing on the
+real pages depends on it. Its copy is the site's own copy. When a page's copy changes,
+change it there too, or the two views disagree.
+
 `build-ghl.py <dir>` packages the site for a page builder that takes pasted HTML, CSS and
 JS: one folder per page holding `page.html` (body markup only), `styles.css` and
 `script.js`, plus the images, a working copy and a README. Assets go behind an
