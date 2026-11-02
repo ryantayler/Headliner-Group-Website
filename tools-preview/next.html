@@ -402,7 +402,26 @@
 /* ---------- partner with us ---------- */
 /* the four ways in, side by side and set like agreements: a numbered head, clauses, and the
    button sitting on a signing line. Kept to type and rules, not drawn as paper. */
-.deals{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(14px,1.4vw,22px);align-items:stretch;margin-inline:calc(min(64px,4.4vw) * -1)}
+
+
+/* two pairs. In each, the second card is the first one upgraded, and an arrow runs between
+   them. The ongoing pair, advisory and partnership, sits higher on a dark lit panel. */
+.deals{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(18px,2vw,32px);align-items:end;margin-inline:calc(min(64px,4.4vw) * -1)}
+.dpair{position:relative;display:grid;grid-template-columns:minmax(0,1fr) 34px minmax(0,1fr);align-items:stretch;padding:clamp(12px,1.2vw,18px);border-radius:14px;background:var(--bg2)}
+.dpair .deal{margin:0}
+.deal__plus{align-self:center;display:grid;place-items:center;width:34px;height:34px;margin:0 -10px;z-index:2;border-radius:50%;background:var(--fg);color:var(--bg)}
+.deal__plus svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.deal__up{align-self:start;padding:5px 10px;border-radius:100px;background:var(--fg);color:var(--bg);font:600 11.5px/1 var(--body);letter-spacing:.08em;text-transform:uppercase;margin-bottom:-4px}
+.dpair--hi{background:#0A0A0A;padding:clamp(16px,1.6vw,24px);translate:0 calc(clamp(18px,2.4vw,36px) * -1);
+  box-shadow:0 40px 70px -40px rgba(10,30,26,.6);overflow:hidden;isolation:isolate}
+.dpair--hi::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:linear-gradient(118deg,transparent 18%,rgba(45,226,195,.26) 34%,rgba(45,226,195,.05) 52%,transparent 62%)}
+.dpair--hi .deal{background:#1A1D1C;border-color:#2C302F;color:#ECE8E0;--sub:#B9B5AE;--mute:#8E8A84;--rim:#2C302F;--fg:#ECE8E0;--bg:#0A0A0A;--bg2:#252928}
+.dpair--hi .deal--eq{background:#2A2E2D;border-color:rgba(45,226,195,.55);box-shadow:0 0 0 1px rgba(45,226,195,.35),0 30px 50px -30px rgba(45,226,195,.35)}
+.dpair--hi .deal__up{background:#2DE2C3;color:#0A0A0A}
+.dpair--hi .deal__plus{background:#2DE2C3;color:#0A0A0A}
+@media (max-width:1100px){.deals{grid-template-columns:minmax(0,1fr);margin-inline:0}.dpair--hi{translate:none}}
+@media (max-width:620px){.dpair{grid-template-columns:minmax(0,1fr)}.deal__plus{justify-self:center;margin:-10px 0;rotate:90deg}}
 .deals__go{display:flex;justify-content:center;margin-top:clamp(32px,4vw,56px)}
 @media (max-width:900px){.deals{margin-inline:0}}
 .deal{display:flex;flex-direction:column;gap:14px;padding:clamp(24px,2.4vw,36px);border-radius:6px;background:var(--card);
@@ -600,7 +619,10 @@
 .foot__top{display:grid;grid-template-columns:1.4fr .6fr .8fr 1.4fr;gap:40px}
 .foot__tag .ln{display:block}
 .foot__btns{display:grid;gap:10px;justify-items:stretch;align-content:start}
-.foot__btns .btn{justify-content:flex-start;height:46px}
+.foot__btns{justify-items:start;gap:8px}
+.foot__btns .btn{justify-content:flex-start;height:36px;padding:0 14px;font-size:13px;gap:8px}
+.foot__btns .btn svg{width:15px;height:15px}
+.foot__btns .btn--go{height:44px;padding:0 20px;font-size:14.5px;margin-bottom:6px}
 .foot h4{font:500 14px/1 var(--body);color:var(--mute);margin:0 0 18px}
 .foot ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
 .foot ul a{text-decoration:none;color:var(--sub);transition:color .3s}
@@ -917,30 +939,38 @@
       <div class="wrap">
         <div class="sh"><h2 class="d d2" data-split>Partner with us</h2><p class="lead">Our services</p></div>
         <div class="deals">
+          <div class="dpair">
           <article class="deal">
             <h3>Consulting</h3>
             <p>We sit down with you and go through the business across the 4 pillars. Revenue, margin, reach and connection.</p>
             
             <ol><li><i>1.1</i>A workshop on your business</li><li><i>1.2</i>Every partnership that could work, mapped</li><li><i>1.3</i>A ranked list of which to chase first</li></ol>
           </article>
+          <i class="deal__plus" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i>
           <article class="deal">
+            <span class="deal__up">Upgrade</span>
             <h3>Negotiations</h3>
             <p>Everything in the consulting, and then we do the work. We go to the other side and negotiate the deal for you.</p>
             
             <ol><li><i>2.1</i>Everything in consulting</li><li><i>2.2</i>We approach the other party</li><li><i>2.3</i>We negotiate the terms</li><li><i>2.4</i>You sign off before anything is agreed</li></ol>
           </article>
-          <article class="deal">
+          </div>
+          <div class="dpair dpair--hi">
+          <article class="deal deal--hi">
             <h3>Advisory</h3>
             <p>Regular time with Ryan to keep the plan moving, and someone to hold you to it.</p>
             <div class="seg" role="group" aria-label="How often"><button type="button" data-cad="w" aria-pressed="true">Weekly</button><button type="button" data-cad="f" aria-pressed="false">Fortnightly</button><button type="button" data-cad="m" aria-pressed="false">Monthly</button></div>
             <ol><li><i>3.1</i><span data-cad-say>A call with Ryan every week</span></li><li><i>3.2</i>Accountability on the plan</li><li><i>3.3</i>Help putting it in place</li></ol>
           </article>
+          <i class="deal__plus" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i>
           <article class="deal deal--eq">
+            <span class="deal__up">Upgrade</span>
             <h3>Partnership</h3>
             <p>We take a minority stake and work on the business with you for the long term. There&rsquo;s no fee. We only do well if the business grows.</p>
             
             <ol><li><i>4.1</i>A business partner on board</li><li><i>4.2</i>Partnerships, negotiation and advisory as you need them</li><li><i>4.3</i>A place in our group, and group rates across it</li><li><i>4.4</i>Exit, or a general manager placed in, when you want it</li></ol>
           </article>
+          </div>
         </div>
         <div class="deals__go"><a class="btn btn--go" href="#contact" data-go="contact">Book a call</a></div>
       </div>
@@ -1145,11 +1175,12 @@
 
     <section class="sec">
       <div class="wrap">
-        <div class="sh"><h2 class="d d2" data-split style="max-width:none">Three ways to work with me</h2></div>
+        <div class="sh"><h2 class="d d2" data-split style="max-width:none">Four ways to work with me</h2></div>
         <div class="ways">
-          <div><span class="n">#1</span><h3>Partnership</h3><p>This is what I do at Headliner Group. If you would like me to help you grow your business, check out more below.</p><a class="btn btn--go" href="#partnerships" data-go="partnerships">How it works</a></div>
-          <div><span class="n">#2</span><h3>Speaking</h3><p>Stages, panels, or podcasts, I speak about partnerships in the live events industry, and how we can optimise our businesses.</p><a class="btn" href="#contact" data-go="contact">Enquire</a></div>
-          <div><span class="n">#3</span><h3>Advisory</h3><p>A small number of founders I work with directly. If your business is not ready for a partnership, or the timing isn&rsquo;t right yet.</p><a class="btn" href="#contact" data-go="contact">Ask</a></div>
+          <div><span class="n">#1</span><h3>Consulting</h3><p>We sit down and map every partnership that could work in your business, and which to chase first.</p><a class="btn" href="#partnerships" data-go="partnerships">How it works</a></div>
+          <div><span class="n">#2</span><h3>Advisory</h3><p>A small number of founders I work with directly. If your business is not ready for a partnership, or the timing isn&rsquo;t right yet.</p><a class="btn" href="#contact" data-go="contact">Ask</a></div>
+          <div><span class="n">#3</span><h3>Partnership</h3><p>This is what I do at Headliner Group. If you would like me to help you grow your business, check out more below.</p><a class="btn btn--go" href="#partnerships" data-go="partnerships">How it works</a></div>
+          <div><span class="n">#4</span><h3>Media</h3><p>Stages, panels, or podcasts, I speak about partnerships in the live events industry, and how we can optimise our businesses.</p><a class="btn" href="#contact" data-go="contact">Enquire</a></div>
         </div>
       </div>
     </section>
@@ -1166,7 +1197,7 @@
 
     <section class="sec social" data-social>
       <div class="wrap">
-        <h2 class="d social__t" data-split><span class="ln">I write about</span> <span class="ln">Partnerships &amp; Business most weeks</span></h2>
+        <h2 class="d social__t" data-split><span class="ln">I write about</span> <span class="ln">Partnerships &amp;</span> <span class="ln">Business most weeks</span></h2>
         <div class="fan" aria-hidden="true"><div class="fan__c" style="--i:0"><img src="assets/img/social-1.jpg" alt=""></div><div class="fan__c" style="--i:1"><img src="assets/img/social-2.jpg" alt=""></div><div class="fan__c" style="--i:2"><img src="assets/img/social-3.jpg" alt=""></div><div class="fan__c" style="--i:3"><img src="assets/img/social-4.jpg" alt=""></div><div class="fan__c" style="--i:4"><img src="assets/img/social-5.jpg" alt=""></div><div class="fan__c" style="--i:5"><img src="assets/img/social-6.jpg" alt=""></div><div class="fan__c" style="--i:6"><img src="assets/img/social-7.jpg" alt=""></div></div>
         <div class="row social__links">
           <a class="btn btn--li" href="https://www.linkedin.com/in/ryan-a-tayler-au/" target="_blank" rel="noopener"><!--__ICON:li-->LinkedIn</a>

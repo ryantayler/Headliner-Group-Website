@@ -2973,3 +2973,16 @@ Ryan's brief, written at the length he gave it.
   grow through partnerships." No "Site" or "Talk" labels, no Privacy and Terms. A stack of
   buttons: Book a call, LinkedIn, Instagram, YouTube, Facebook. The copyright line sits at
   the very bottom, under the logo.
+
+## The new view, services as two pairs, 2 November 2026
+
+- **The four services are two pairs.** Consulting then Negotiations, on a light panel, and
+  Advisory then Partnership, on a dark panel lit by a shaft and set higher. In each pair
+  an arrow runs from the first card to the second, and the second carries an "Upgrade"
+  tag. The partnership card has an aqua rim.
+- **Ryan's page**: "Four ways to work with me", in order Consulting, Advisory, Partnership,
+  Media. Consulting's line is new, drawn from the service: "We sit down and map every
+  partnership that could work in your business, and which to chase first." Media takes the
+  old Speaking line.
+- **Socials heading on three lines**: "I write about / Partnerships & / Business most weeks".
+- **Footer social buttons are smaller**, with Book a call kept at full size on top.
