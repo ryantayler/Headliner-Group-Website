@@ -2910,3 +2910,10 @@ Ryan's brief, written at the length he gave it.
   of the band with a soft drop shadow. The end of the heading just reaches his hair and the
   copy runs over his arm, so the text sits slightly over him while his face stays clear. On
   a phone he stands under the copy.
+
+## The new view, small fixes, 2 November 2026
+
+- **The socials fan jigs on hover**: point at it and every card does a small, staggered
+  bob and tilt. No single card lifts out any more.
+- **The boardroom photo is moved right** so the whole flower and vase are in frame, and the
+  slider's photos sit closer to full frame.

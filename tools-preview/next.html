@@ -682,8 +682,9 @@
   translate:calc((var(--i) - 3) * (var(--o) * clamp(26px,3.4vw,58px) + var(--w,0) * 12px)) calc((1 - var(--o)) * 40px);
   transition:rotate .7s var(--out),translate .6s var(--out),scale .5s var(--out),box-shadow .5s;z-index:calc(10 - (var(--i) - 3) * (var(--i) - 3))}
 .fan__c img{width:100%;height:100%;object-fit:cover}
-.fan:hover{--w:1}
-.fan__c:hover{translate:calc((var(--i) - 3) * (var(--o) * clamp(26px,3.4vw,58px) + 12px)) -28px;scale:1.06;z-index:20;box-shadow:0 30px 60px rgba(0,0,0,.7),0 0 0 2px #FF2D6B}
+.fan:hover .fan__c{animation:jig 1.1s ease-in-out infinite;animation-delay:calc(var(--i) * -160ms)}
+@keyframes jig{0%,100%{transform:translateY(0) rotate(0)}25%{transform:translateY(-7px) rotate(-1.4deg)}75%{transform:translateY(3px) rotate(1.4deg)}}
+@media (prefers-reduced-motion:reduce){.fan:hover .fan__c{animation:none}}
 @media (max-width:760px){.social__links{flex-wrap:wrap;justify-content:flex-start}.fan{height:340px}.fan__c{width:110px;margin-left:-55px}}
 .said__ph{aspect-ratio:3/4;border-radius:18px;max-width:460px}
 /* zoomed out so his hand on the left and his shoulder on the right stay in frame */
@@ -693,6 +694,8 @@
 /* each photo has its own clipped frame, so the zoom stays inside it and the two slide touching */
 .slider .sl{position:absolute;inset:0;overflow:hidden;translate:100% 0}
 .slider .sl.is-shown{translate:0 0}
+/* held near full frame, so the edges of each photo stay in shot */
+.slider .sl img{scale:calc(var(--gs,1.12) - .1)}
 .said{font:500 clamp(28px,3.4vw,52px)/1.2 var(--body);letter-spacing:-.025em;margin:0;max-width:24ch}
 .who-said{display:flex;align-items:center;gap:14px;margin-top:30px}
 .who-said i{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:#fff;overflow:hidden;flex:none}
