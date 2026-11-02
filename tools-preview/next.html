@@ -54,6 +54,7 @@
 .d2{font-size:clamp(36px,5vw,80px);max-width:17ch}
 .d3{font-size:clamp(22px,2vw,30px);line-height:1}
 .sh{margin-bottom:clamp(40px,5vw,72px)}
+.pre{margin:0 0 10px;font:600 clamp(16px,1.3vw,20px)/1 var(--body);color:var(--sub)}
 .sh .p,.sh .lead{margin-top:clamp(18px,2vw,28px)}
 .lead{font:500 clamp(20px,1.7vw,26px)/1.4 var(--body);letter-spacing:-.015em;margin:0;max-width:40ch}
 .p{color:var(--sub);max-width:62ch;margin:0}
@@ -135,11 +136,10 @@
 .curtain__s{inset:12px 0;background:var(--black)}
 .curtain span{position:relative}
 /* going Home the panel carries the lockup instead of a word */
-.curtain__home{position:absolute;inset:0;display:none;place-items:center;opacity:0;translate:0 30px;transition:opacity .4s,translate .6s var(--out)}
-.curtain.to-home .curtain__home{display:grid}
-.curtain.to-home.on .curtain__home{opacity:1;translate:0 0}
-.curtain__home .hl-logo{font-size:clamp(30px,5vw,72px)}
-.curtain__home .hl-beam{display:none}
+.curtain__home{position:absolute;inset:0;display:none;place-items:center}
+.curtain.to-home .curtain__home{display:grid;animation:homeIn .7s var(--out) both}
+@keyframes homeIn{from{opacity:0;translate:0 30px}to{opacity:1;translate:0 0}}
+.curtain__home .hl-stage{position:relative;transform:none;font-size:clamp(20px,3.4vw,50px);justify-content:center;padding-right:0}
 /* Going to Ryan's page it is his pink instead: a straight edge rises from the bottom, holds on his signature, and carries on off the top */
 .curtain.pinkc{left:0;right:0;top:0;bottom:0;color:#0A0A0A;transform-origin:50% 50%;
   filter:drop-shadow(0 0 22px rgba(255,45,107,.9)) drop-shadow(0 0 90px rgba(255,45,107,.5))}
@@ -326,11 +326,17 @@
 .quote{margin:clamp(40px,5vw,72px) 0 0;max-width:900px}
 .quote blockquote{margin:0;font:500 clamp(24px,2.6vw,40px)/1.25 var(--body);letter-spacing:-.02em}
 .quote .swipe{--acc:#2DE2C3}
+.quote--c{display:flex;align-items:center;justify-content:center;gap:clamp(24px,3vw,48px);max-width:1040px;margin-inline:auto}
+.quote--c blockquote{font-size:clamp(20px,2vw,30px);max-width:30ch}
+.quote--c .who-said{margin:0;flex:none}
+@media (max-width:760px){.quote--c{flex-direction:column;align-items:flex-start}}
 .who-said{display:flex;align-items:center;gap:14px;margin-top:24px}
 .who-said i{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:#fff;overflow:hidden;flex:none;box-shadow:0 0 0 1px var(--rim)}
 .who-said i img{width:100%;height:100%;object-fit:cover}
 .logos{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:28px 48px;margin-top:clamp(36px,4vw,56px);padding:clamp(24px,3vw,36px) clamp(8px,2vw,24px);border-top:1px solid var(--rim);border-bottom:1px solid var(--rim)}
 .logos img{height:clamp(28px,2.8vw,40px);width:auto;filter:grayscale(1);opacity:.75;transition:opacity .3s,filter .3s}
+.logos img[alt^="The Star"]{filter:grayscale(1) brightness(.5)}
+.logos img[alt^="The Star"]:hover{filter:none}
 .logos img.tall{height:clamp(48px,4.8vw,70px)}
 .logos img:hover{opacity:1;filter:none}
 @media (max-width:620px){.logos{justify-content:center}}
@@ -396,8 +402,10 @@
 /* ---------- partner with us ---------- */
 /* the four ways in, side by side and set like agreements: a numbered head, clauses, and the
    button sitting on a signing line. Kept to type and rules, not drawn as paper. */
-.deals{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;align-items:stretch}
-.deal{display:flex;flex-direction:column;gap:14px;padding:clamp(22px,2vw,30px);border-radius:6px;background:var(--card);
+.deals{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(14px,1.4vw,22px);align-items:stretch;margin-inline:calc(min(64px,4.4vw) * -1)}
+.deals__go{display:flex;justify-content:center;margin-top:clamp(32px,4vw,56px)}
+@media (max-width:900px){.deals{margin-inline:0}}
+.deal{display:flex;flex-direction:column;gap:14px;padding:clamp(24px,2.4vw,36px);border-radius:6px;background:var(--card);
   border:1px solid var(--rim);box-shadow:0 1px 0 var(--rim),0 24px 40px -30px rgba(10,30,26,.35);transition:translate .5s var(--out),box-shadow .5s var(--out)}
 .deal:hover{translate:0 -6px;box-shadow:0 1px 0 var(--rim),0 34px 50px -30px rgba(10,30,26,.45)}
 .deal__h{display:flex;justify-content:space-between;align-items:center;padding-bottom:12px;border-bottom:3px double var(--rim);
@@ -408,10 +416,11 @@
 .deal ol{list-style:none;margin:0;padding:12px 0 0;border-top:1px solid var(--rim);display:grid;gap:9px}
 .deal li{display:grid;grid-template-columns:30px minmax(0,1fr);font-size:14.5px;color:var(--sub);line-height:1.4}
 .deal li i{font-style:normal;font-variant-numeric:tabular-nums;color:var(--mute);font-size:12.5px;padding-top:1px}
-.deal .seg{margin-top:0;align-self:start}
+.deal .seg{margin-top:0;align-self:stretch;display:flex;max-width:100%}
+.deal .seg button{flex:1;min-width:0;padding:7px 4px;font-size:12.5px}
 .deal__s{margin-top:auto;padding-top:22px;display:flex;align-items:flex-end;gap:12px}
 .deal__s::before{content:"";flex:1;height:1px;background:var(--fg);opacity:.35;margin-bottom:12px;order:2}
-.deal--eq{background:var(--black);color:#ECE8E0;border-color:#0A0A0A;--sub:#B9B5AE;--mute:#8E8A84;--rim:#2A2A2A;--fg:#ECE8E0;--bg:#0A0A0A}
+.deal--eq{background:#2A2E2D;color:#ECE8E0;border-color:#2A2E2D;--sub:#B9B5AE;--mute:#8E8A84;--rim:#2A2A2A;--fg:#ECE8E0;--bg:#0A0A0A}
 .deal--eq .deal__h b{background:#2DE2C3;color:#0A0A0A}
 @media (max-width:1100px){.deals{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:620px){.deals{grid-template-columns:minmax(0,1fr)}}
@@ -479,55 +488,40 @@
 @media (max-width:900px){.pills{grid-template-columns:1fr 1fr}.pil{min-height:280px}}
 @media (max-width:520px){.pills{grid-template-columns:1fr}.pil{min-height:220px}}
 
-/* the engine, redrawn in the brand: the four stages as dark tiles, the good path in aqua
-   and the leaks in grey, and a box to type into beside every metric. The whole thing is
-   sized to fit one screen; everything inside scales with its width. */
-.eng{container-type:inline-size;width:min(100%,calc((100svh - 150px) * 1400 / 820));margin:0 auto}
-.eng__art{position:relative;aspect-ratio:1400/820;border-radius:24px;background:var(--card);box-shadow:0 0 0 1px var(--rim),0 40px 80px -48px rgba(10,30,26,.4)}
-.eng__map,.eng__nums{position:absolute;inset:0}
-.eng__lines{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
-.eng__lines path{fill:none;stroke-width:3;stroke-linecap:round}
-.eng__lines .heads path{stroke:none}
-.eng__lines .g path{stroke:#14B89B}
-.eng__lines .b path{stroke:#8E9794;stroke-dasharray:7 7}
-.en{position:absolute;display:flex;align-items:center;justify-content:center;gap:.6em;border-radius:1.4cqw;background:var(--black);color:#ECE8E0;
-  font-size:1.9cqw;box-shadow:0 1.6cqw 3cqw -1.6cqw rgba(10,10,10,.5)}
-.en svg{width:1.2em;height:1.2em;fill:none;stroke:#2DE2C3;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
-.en b{font:400 1em/1 var(--display);text-transform:uppercase;letter-spacing:-.01em}
-.en--out{background:none;color:#8E9794;box-shadow:none;border:2px dashed #C3CAC7}
-.en--out svg{stroke:#8E9794}
-.el{position:absolute;font:600 1.15cqw/1 var(--body);font-style:normal;color:#0A7261;white-space:nowrap;padding:.3em .55em;border-radius:100px;background:var(--card)}
-.el--bad{color:#7B8481}
-.eng__dollar{position:absolute;left:44.6%;top:46%;font:400 12cqw/1 var(--display);color:rgba(45,226,195,.16);pointer-events:none;translate:-50% -50%}
-.nb{position:absolute;display:flex;flex-direction:column;justify-content:center;gap:.25em;padding:0 .8em;border-radius:.8cqw;background:#fff;
-  border:1.5px solid #C9D0CD;color:#111614;font-size:1.05cqw;cursor:text;transition:border-color .3s,box-shadow .3s}
-.nb span{font:600 .8em/1 var(--body);letter-spacing:.06em;text-transform:uppercase;color:#6B7471;white-space:nowrap}
-.nb b{display:flex;align-items:baseline;gap:.2em;font:700 1.45em/1 var(--body)}
-.nb em{font-style:normal;font-weight:500;color:#6B7471;font-size:.75em}
+/* the engine: Ryan's drawing, extra large, with a box to type into over every metric.
+   CAC, AOGP and LTGP work themselves out, and the result sits in the empty corner. */
+/* sized so the whole drawing fits one screen */
+.eng{width:min(100%,calc((100svh - 150px) * 2290 / 2160));margin:0 auto;container-type:inline-size}
+.eng__art{position:relative;border-radius:24px;overflow:hidden;background:#fff;aspect-ratio:2290/2160;box-shadow:0 40px 80px -40px rgba(10,30,26,.35)}
+.eng__art > img{width:100%;height:100%;object-fit:cover}
+.nb{position:absolute;display:flex;flex-direction:column;justify-content:center;gap:2px;padding:0 .9em;border-radius:12px;background:#fff;
+  border:1.5px solid #B9C2C0;color:#111614;font-size:1.08cqw;cursor:text;transition:border-color .3s,box-shadow .3s}
+.nb span{font:600 .78em/1 var(--body);letter-spacing:.06em;text-transform:uppercase;color:#6B7471;white-space:nowrap}
+.nb b{display:flex;align-items:baseline;gap:.2em;font:700 1.35em/1 var(--body)}
+.nb em{font-style:normal;font-weight:500;color:#6B7471;font-size:.8em}
 .nb input{width:100%;min-width:0;border:0;background:none;outline:none;padding:0;font:inherit;color:inherit;-moz-appearance:textfield}
 .nb input::-webkit-outer-spin-button,.nb input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
 .nv .nb input:focus-visible{outline:none}
 .nb:hover{border-color:#0A7261}
-.nb:focus-within{border-color:#0A7261;box-shadow:0 0 0 .3cqw rgba(45,226,195,.35),0 0 1.8cqw rgba(45,226,195,.5)}
+.nb:focus-within{border-color:#0A7261;box-shadow:0 0 0 4px rgba(45,226,195,.35),0 0 24px rgba(45,226,195,.5)}
 .nb--out{background:#E6FBF6;border-color:#2DE2C3;cursor:default}
 .nb--out output{font:400 1.4em/1 var(--display);color:#0A7261}
-.out{position:absolute;left:2.2%;top:3%;width:21%;border-radius:1.4cqw;background:var(--black);color:#ECE8E0;padding:1.4cqw 1.6cqw;display:grid;gap:.6cqw}
-.out__big{font:400 4.2cqw/1 var(--display)}
-.out p{margin:0;color:#B9B5AE;font-size:1.05cqw}
-.out__state{justify-self:start;display:inline-block;padding:.5cqw .9cqw;border-radius:100px;font-weight:600;font-size:.95cqw;background:#262626}
+.out{position:absolute;left:3%;top:3%;width:28%;border-radius:1.4cqw;background:var(--black);color:#ECE8E0;padding:1.6cqw;display:grid;gap:.7cqw}
+.out__big{font:400 4.6cqw/1 var(--display)}
+.out p{margin:0;color:#B9B5AE;font-size:clamp(12px,1vw,15px)}
+.out__state{justify-self:start;display:inline-block;padding:7px 12px;border-radius:100px;font-weight:600;font-size:clamp(11px,.9vw,14px);background:#262626}
 .out__state.up{background:#2DE2C3;color:#0A0A0A}
 .out__state.down{background:#FF5A36;color:#0A0A0A}
 .eng__note{margin:18px 0 0;color:var(--mute);text-align:center}
-/* on a phone the drawing stays as a picture and the boxes line up under it */
+/* on a phone the boxes are too small to type in on the drawing, so they line up under it */
 @media (max-width:900px){
-  .eng{width:auto}
-  .eng__art{aspect-ratio:auto;background:none;box-shadow:none;border-radius:0}
-  .eng__map{position:relative;aspect-ratio:1400/820;border-radius:16px;background:var(--card);box-shadow:0 0 0 1px var(--rim)}
-  .eng__map .el,.eng__dollar{display:none}
+  .eng{width:auto;left:0;translate:none}
+  .eng__art{aspect-ratio:auto;overflow:visible;background:none;box-shadow:none}
+  .eng__art > img{height:auto;border-radius:18px;background:#fff}
   .out{position:static;width:auto;margin-top:12px;padding:18px;gap:8px;border-radius:16px}
-  .out__big{font-size:44px}.out p{font-size:14px}.out__state{font-size:13px;padding:7px 12px}
-  .eng__nums{position:static;display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
-  .nb{position:static;width:auto!important;height:auto!important;padding:10px 12px;font-size:15px;border-radius:10px}}
+  .out__big{font-size:44px}.out p{font-size:14px}
+  .eng__nums{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+  .nb{position:static;width:auto!important;height:auto!important;padding:10px 12px;font-size:15px}}
 
 /* are we a fit */
 .fit{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,64px);align-items:center}
@@ -603,7 +597,10 @@
 .foot{position:relative;z-index:3;background:var(--black);color:#ECE8E0;padding:calc(clamp(80px,9vw,128px) + var(--e)) 0 32px;overflow:hidden;margin-top:calc(var(--e) * -1);
   clip-path:polygon(0 var(--e),100% calc(var(--e) - var(--et,0px)),100% 100%,0 100%);--fg:#ECE8E0;--sub:#B9B5AE;--mute:#8E8A84;--rim:#2A2A2A;--card:#141414;--bg:#0A0A0A}
 .dk + .foot{margin-top:0;padding-top:clamp(80px,9vw,128px);clip-path:none}
-.foot__top{display:grid;grid-template-columns:1.4fr .6fr .6fr 1.4fr;gap:40px}
+.foot__top{display:grid;grid-template-columns:1.4fr .6fr .8fr 1.4fr;gap:40px}
+.foot__tag .ln{display:block}
+.foot__btns{display:grid;gap:10px;justify-items:stretch;align-content:start}
+.foot__btns .btn{justify-content:flex-start;height:46px}
 .foot h4{font:500 14px/1 var(--body);color:var(--mute);margin:0 0 18px}
 .foot ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
 .foot ul a{text-decoration:none;color:var(--sub);transition:color .3s}
@@ -648,6 +645,11 @@
 .swipe path{fill:none;stroke:var(--acc);stroke-width:96;stroke-linecap:butt;stroke-dasharray:440;stroke-dashoffset:440;transition:stroke-dashoffset 1.1s .5s var(--out)}
 .up .swipe path{stroke-dashoffset:0}
 .p .swipe{color:#0A0A0A;font-weight:600}
+/* a highlighter pass over a run of words, wrapping line to line, drawn left to right */
+.mark{color:#0A0A0A;font-weight:600;padding:0 .12em;-webkit-box-decoration-break:clone;box-decoration-break:clone;
+  background:linear-gradient(var(--acc),var(--acc)) 0 60% / 0 88% no-repeat;transition:background-size 1.2s .4s var(--out),color .4s .4s}
+.up .mark{background-size:100% 88%}
+:not(.up) > .mark{color:inherit}
 .p .swipe svg{top:-2%;height:104%}
 .tape{background:var(--acc);color:#0A0A0A;padding:16px 0;overflow:hidden;position:relative;z-index:2;box-shadow:inset 0 0 40px rgba(0,0,0,.28)}
 .tape__t{display:flex;width:max-content;gap:28px;align-items:center;font:400 clamp(28px,3.6vw,52px)/1 'Anton',Impact,sans-serif;text-transform:uppercase;white-space:nowrap}
@@ -674,14 +676,14 @@
 .pinkband__me.up{translate:0 0;opacity:1}
 .pinkband--me .big{text-shadow:0 4px 30px rgba(255,45,107,.35)}
 .pinkband__copy{max-width:min(640px,58%)}
+.pinkband__copy .p{font-size:clamp(17px,1.3vw,20px);font-weight:500;color:#0A0A0A}
+.pinkband .hand{color:#fff;margin-bottom:22px;translate:0 -10px}
 @media (max-width:900px){.pinkband--me{padding-bottom:min(118vw,620px)}.pinkband__me{right:0;height:min(110vw,560px);max-width:none}.pinkband__copy{max-width:none}}
 .big{font:400 clamp(64px,11vw,184px)/.86 'Anton',Impact,sans-serif;text-transform:uppercase;margin:0}
 .ways{border-top:1px solid var(--rim)}
 .ways > div{display:grid;grid-template-columns:80px minmax(0,1fr) minmax(0,1.1fr) 180px;gap:28px;align-items:center;padding:clamp(28px,3vw,40px) 0;border-bottom:1px solid var(--rim);transition:padding .5s var(--out)}
 .ways > div{position:relative;isolation:isolate}
-.ways > div::before{content:"";position:absolute;inset:8px -46px 4px -38px;z-index:-1;background:var(--acc);rotate:-.7deg;skew:-6deg 0;
-  border-radius:3px 14px 6px 18px / 10px 5px 14px 4px;
-  clip-path:polygon(0 12%,2% 0,97% 6%,100% 22%,99% 70%,100% 94%,4% 100%,1% 82%);
+.ways > div::before{content:"";position:absolute;inset:6px -46px 6px -38px;z-index:-1;background:var(--acc);border-radius:4px;rotate:-.4deg;
   transform-origin:left center;scale:0 1;transition:scale .26s cubic-bezier(.3,0,.1,1)}
 .ways > div:hover{padding-left:16px}
 .ways > div:hover::before{scale:1 1}
@@ -747,7 +749,7 @@
 
 <div class="nv" id="nv">
   <div class="grain" aria-hidden="true"></div>
-  <div class="curtain" aria-hidden="true"><i class="curtain__r"></i><i class="curtain__s"></i><span></span><div class="curtain__sig"></div><div class="curtain__home"><div class="hl-logo"><div class="hl-beam"></div><span class="hl-word">Headliner</span><div class="hl-group">Group</div></div></div></div>
+  <div class="curtain" aria-hidden="true"><i class="curtain__r"></i><i class="curtain__s"></i><span></span><div class="curtain__sig"></div><div class="curtain__home"><div class="hl-stage"><div class="hl-logo"><div class="hl-beam"></div><div class="hl-word">Headliner</div><div class="hl-group">Group</div></div></div></div></div>
 
   <header class="bar">
     <div class="wrap">
@@ -831,11 +833,11 @@
         <div class="ladder" data-ladder>
           <article class="tier">
             <div class="tier__art"><div class="a-bars"><i data-l="Revenue"></i><i data-l="Margin"></i><i data-l="Reach"></i><i data-l="Connect"></i></div></div>
-            <div class="tier__b"><div class="tier__k">1 <b>Paid</b></div><h3>Partnership consulting</h3><p>We map every partnership that could work in your business across the 4 pillars, and rank which to chase first.</p><a class="link" href="#partnerships" data-go="partnerships">What&rsquo;s included</a></div>
+            <div class="tier__b"><div class="tier__k">1 <b>Paid</b></div><h3>Consulting</h3><p>We map every partnership that could work in your business across the 4 pillars, and rank which to chase first.</p><a class="link" href="#partnerships" data-go="partnerships">What&rsquo;s included</a></div>
           </article>
           <article class="tier">
             <div class="tier__art"><div class="a-deal"><span>Their terms</span><span>Your terms</span><b>Deal done</b></div></div>
-            <div class="tier__b"><div class="tier__k">2 <b>Paid</b></div><h3>Partnership negotiation</h3><p>The consulting, and then we go and negotiate the deals for you. It&rsquo;s how the partnerships below were put together.</p><a class="link" href="#partnerships" data-go="partnerships">What&rsquo;s included</a></div>
+            <div class="tier__b"><div class="tier__k">2 <b>Paid</b></div><h3>Negotiations</h3><p>The consulting, and then we go and negotiate the deals for you. It&rsquo;s how the partnerships below were put together.</p><a class="link" href="#partnerships" data-go="partnerships">What&rsquo;s included</a></div>
           </article>
           <article class="tier">
             <div class="tier__art"><div class="a-cal"><i></i><i class="m" style="--n:0"></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="m" style="--n:1"></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="m" style="--n:2"></i><i></i><i></i><i></i><i></i><i></i></div></div>
@@ -843,7 +845,7 @@
           </article>
           <article class="tier tier--eq">
             <div class="tier__art"><div class="a-grp"><svg viewBox="0 0 300 190" aria-hidden="true"><circle class="ring" cx="150" cy="95" r="32"/><circle class="slice" cx="150" cy="95" r="32" pathLength="200" transform="rotate(-90 150 95)"/><path class="ln" d="M150 95L60 40M150 95L245 45M150 95L70 155M150 95L235 150" pathLength="60"/><circle class="nd" cx="60" cy="40" r="6"/><circle class="nd" cx="245" cy="45" r="6"/><circle class="nd" cx="70" cy="155" r="6"/><circle class="nd" cx="235" cy="150" r="6"/></svg></div></div>
-            <div class="tier__b"><div class="tier__k">4 <b>Equity</b></div><h3>Long-term partnership</h3><p>We take a minority stake and work on the business with you for the long term. You get a business partner, and a place in our group.</p><a class="link" href="#partnerships" data-go="partnerships">What&rsquo;s included</a></div>
+            <div class="tier__b"><div class="tier__k">4 <b>Equity</b></div><h3>Partnership</h3><p>We take a minority stake and work on the business with you for the long term. You get a business partner, and a place in our group.</p><a class="link" href="#partnerships" data-go="partnerships">What&rsquo;s included</a></div>
           </article>
         </div>
         <div class="start"><p class="p" style="margin:0"><strong style="color:var(--fg)">Not ready for any of that?</strong> Start with the free tools.</p><a class="btn" href="#free" data-go="free">Get the free tools</a></div>
@@ -858,8 +860,8 @@
           <article class="case fade" data-pillars="Revenue Reach"><div class="tags"><span class="tag" data-t="Revenue">Revenue</span><span class="tag" data-t="Reach">Reach</span></div><h3>Serving their clients better with 0 effort</h3><p>A referral partnership let a production company offer video to its own clients through a mate&rsquo;s studio, which it had never been able to do.</p><div class="nums"><div><b data-count="2000" data-pre="$">$2,000</b><span>Extra per event</span></div><div><b data-count="2">2</b><span>New jobs a month</span></div></div></article>
           <article class="case fade" data-pillars="Margin Revenue"><div class="tags"><span class="tag" data-t="Margin">Margin</span><span class="tag" data-t="Revenue">Revenue</span></div><h3>A better rate for a bigger commitment</h3><p>An event management company and an AV hire business priced job by job. We locked in 5 events at once, at better rates.</p><div class="nums"><div><b data-count="500" data-pre="$" data-suffix="k">$500k</b><span>Locked in</span></div><div><b data-count="125" data-pre="$" data-suffix="k">$125k</b><span>Saved</span></div></div></article>
         </div>
-        <div class="logos"><img src="assets/img/logo-shadow-av-word.png" alt="Shadow AV"><img src="assets/img/logo-pullman.png" alt="Pullman Hotels and Resorts"><img src="assets/img/logo-aaron-sansoni.png" alt="Aaron Sansoni"><img src="assets/img/logo-foundation-theatres.png" alt="Foundation Theatres" class="tall"></div>
-        <figure class="quote fade"><blockquote>&ldquo;<span class="swipe">Absolutely fantastic<svg viewBox="0 0 300 100" preserveAspectRatio="none" aria-hidden="true"><path d="M10 54C90 46 200 44 290 50"/></svg></span>, thumbs up to Ryan on helping me get the ideas out, and building an action plan moving forward.&rdquo;</blockquote><figcaption class="who-said"><i aria-hidden="true"><img src="assets/img/shadow-av.jpg" alt=""></i><div><strong>Cory Hoyling</strong><br><span class="small">Director, Shadow AV</span></div></figcaption></figure>
+        <div class="logos"><img src="assets/img/logo-shadow-av-word.png" alt="Shadow AV"><img src="assets/img/logo-pullman.png" alt="Pullman Hotels and Resorts"><img src="assets/img/logo-aaron-sansoni.png" alt="Aaron Sansoni"><img src="assets/img/logo-the-star.png" alt="The Star Entertainment Group"><img src="assets/img/logo-foundation-theatres.png" alt="Foundation Theatres" class="tall"></div>
+        <figure class="quote quote--c fade"><blockquote>&ldquo;<span class="swipe">Absolutely fantastic<svg viewBox="0 0 300 100" preserveAspectRatio="none" aria-hidden="true"><path d="M10 54C90 46 200 44 290 50"/></svg></span>, thumbs up to Ryan on helping me get the ideas out, and building an action plan moving forward.&rdquo;</blockquote><figcaption class="who-said"><i aria-hidden="true"><img src="assets/img/shadow-av.jpg" alt=""></i><div><strong>Cory Hoyling</strong><br><span class="small">Director, Shadow AV</span></div></figcaption></figure>
       </div>
     </section>
 
@@ -913,52 +915,42 @@
 
     <section class="sec">
       <div class="wrap">
-        <div class="sh"><h2 class="d d2" data-split>Partner with us</h2></div>
+        <div class="sh"><h2 class="d d2" data-split>Partner with us</h2><p class="lead">Our services</p></div>
         <div class="deals">
           <article class="deal">
-            <header class="deal__h"><span>No. 01</span></header>
-            <h3>Partnership consulting</h3>
+            <h3>Consulting</h3>
             <p>We sit down with you and go through the business across the 4 pillars. Revenue, margin, reach and connection.</p>
             
             <ol><li><i>1.1</i>A workshop on your business</li><li><i>1.2</i>Every partnership that could work, mapped</li><li><i>1.3</i>A ranked list of which to chase first</li></ol>
-            <footer class="deal__s"><a class="btn" href="#contact" data-go="contact">Book a call</a></footer>
           </article>
           <article class="deal">
-            <header class="deal__h"><span>No. 02</span></header>
-            <h3>Partnership negotiation</h3>
+            <h3>Negotiations</h3>
             <p>Everything in the consulting, and then we do the work. We go to the other side and negotiate the deal for you.</p>
             
-            <ol><li><i>2.1</i>Everything in partnership consulting</li><li><i>2.2</i>We approach the other party</li><li><i>2.3</i>We negotiate the terms</li><li><i>2.4</i>You sign off before anything is agreed</li></ol>
-            <footer class="deal__s"><a class="btn" href="#contact" data-go="contact">Book a call</a></footer>
+            <ol><li><i>2.1</i>Everything in consulting</li><li><i>2.2</i>We approach the other party</li><li><i>2.3</i>We negotiate the terms</li><li><i>2.4</i>You sign off before anything is agreed</li></ol>
           </article>
           <article class="deal">
-            <header class="deal__h"><span>No. 03</span></header>
             <h3>Advisory</h3>
             <p>Regular time with Ryan to keep the plan moving, and someone to hold you to it.</p>
             <div class="seg" role="group" aria-label="How often"><button type="button" data-cad="w" aria-pressed="true">Weekly</button><button type="button" data-cad="f" aria-pressed="false">Fortnightly</button><button type="button" data-cad="m" aria-pressed="false">Monthly</button></div>
             <ol><li><i>3.1</i><span data-cad-say>A call with Ryan every week</span></li><li><i>3.2</i>Accountability on the plan</li><li><i>3.3</i>Help putting it in place</li></ol>
-            <footer class="deal__s"><a class="btn" href="#contact" data-go="contact">Book a call</a></footer>
           </article>
           <article class="deal deal--eq">
-            <header class="deal__h"><span>No. 04</span></header>
-            <h3>Long-term partnership</h3>
+            <h3>Partnership</h3>
             <p>We take a minority stake and work on the business with you for the long term. There&rsquo;s no fee. We only do well if the business grows.</p>
             
             <ol><li><i>4.1</i>A business partner on board</li><li><i>4.2</i>Partnerships, negotiation and advisory as you need them</li><li><i>4.3</i>A place in our group, and group rates across it</li><li><i>4.4</i>Exit, or a general manager placed in, when you want it</li></ol>
-            <footer class="deal__s"><a class="btn btn--go" href="#contact" data-go="contact">Book a call</a></footer>
           </article>
         </div>
-        <div class="vs">
-          <div><h4>Advisory</h4><p>You pay for Ryan&rsquo;s time.</p></div>
-          <div><h4>Long-term partnership</h4><p>We&rsquo;re paid in equity, so we only win when the business grows.</p></div>
-        </div>
+        <div class="deals__go"><a class="btn btn--go" href="#contact" data-go="contact">Book a call</a></div>
       </div>
     </section>
 
     <section class="sec dk" data-dk data-edge>
       <div class="wrap">
         <div class="sh">
-          <h2 class="d d2" data-split>Ryan Tayler&rsquo;s 4 pillars of partnership<span class="tm">&trade;</span></h2>
+          <p class="pre">Ryan Tayler&rsquo;s</p>
+          <h2 class="d d2" data-split>4 pillars of partnership<span class="tm">&trade;</span></h2>
           <p class="p">A good partnership has to create 1 of these 4, for you, and for the other party too. Usually not the same pillar for each party. Pick one to see the partnerships that used it.</p>
         </div>
         <div class="pills">
@@ -978,63 +970,35 @@
     <section class="sec">
       <div class="wrap">
         <div class="sh">
-          <h2 class="d d2" data-split>Ryan Tayler&rsquo;s optimisation engine<span class="tm">&trade;</span></h2>
+          <p class="pre">Ryan Tayler&rsquo;s</p>
+          <h2 class="d d2" data-split>optimisation engine<span class="tm">&trade;</span></h2>
           <p class="p">Every business runs like an engine. Customers come in, you do the work, and the ones you impress come back or send someone new. The ones you don&rsquo;t, leave. Put your own numbers in.</p>
         </div>
         <div class="eng" data-eng>
           <div class="eng__art">
-            <div class="eng__map">
-            <svg class="eng__lines" viewBox="0 0 1400 820" preserveAspectRatio="none" aria-hidden="true">
-  
-  <g class="g">
-    <path d="M660 110L670 254"/><path d="M700 110V254"/><path d="M740 110L730 254"/>
-    <path d="M790 350C860 390 900 450 930 532"/>
-    <path d="M858 600C760 660 600 660 520 612"/>
-    <path d="M400 532C400 440 470 360 584 318"/>
-    <path d="M470 534C500 470 540 400 600 346"/>
-  </g>
-  <g class="b">
-    <path d="M812 300C930 330 1020 420 1010 532"/>
-    <path d="M1000 628C1030 700 1080 750 1144 766"/>
-  </g>
-  <g class="heads"><path d="M670.0 254.0L660.9 238.6L676.9 237.5z" fill="#14B89B"/><path d="M700.0 254.0L692.0 238.0L708.0 238.0z" fill="#14B89B"/><path d="M730.0 254.0L723.1 237.5L739.1 238.6z" fill="#14B89B"/><path d="M930.0 532.0L917.0 519.7L932.0 514.2z" fill="#14B89B"/><path d="M520.0 612.0L537.8 613.4L529.6 627.1z" fill="#14B89B"/><path d="M584.0 318.0L571.8 331.0L566.2 316.0z" fill="#14B89B"/><path d="M600.0 346.0L593.5 362.6L582.8 350.8z" fill="#14B89B"/><path d="M1010.0 532.0L1003.5 515.4L1019.4 516.8z" fill="#8E9794"/><path d="M1144.0 766.0L1126.5 769.9L1130.4 754.4z" fill="#8E9794"/></g>
-</svg>
-            <div class="eng__dollar" aria-hidden="true">$</div>
-            <div class="en" style="left:40.714%;top:2.683%;width:18.571%;height:10.244%"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10h3l8-4.5v13L7 14H4z"/><path d="M18 9.5a3.5 3.5 0 0 1 0 5"/></svg><b>Marketing</b></div>
-            <div class="en" style="left:42.143%;top:31.951%;width:15.714%;height:10.244%"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg><b>Client</b></div>
-            <div class="en" style="left:61.429%;top:65.854%;width:15.714%;height:10.244%"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7.5" width="18" height="12.5" rx="2"/><path d="M8.5 7.5V5h7v2.5M3 13h18"/></svg><b>Work</b></div>
-            <div class="en" style="left:22.857%;top:65.854%;width:15.714%;height:10.244%"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7.5-4.6-7.5-10.2A4.2 4.2 0 0 1 12 7.3a4.2 4.2 0 0 1 7.5 2.5C19.5 15.4 12 20 12 20z"/></svg><b>Loyal</b></div>
-            <div class="en en--out" style="left:82.143%;top:89.756%;width:13.571%;height:7.805%"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 4H6v16h7M10 12h10M17 9l3 3-3 3"/></svg><b>Leave</b></div>
-            <i class="el" style="left:51.143%;top:21.951%">Buy</i>
-            <i class="el" style="left:60.429%;top:46.585%">Upsell</i>
-            <i class="el el--bad" style="left:67.143%;top:36.585%">Don&rsquo;t upsell</i>
-            <i class="el" style="left:42.143%;top:84.146%">Impress</i>
-            <i class="el" style="left:27.000%;top:45.366%">Referral</i>
-            <i class="el" style="left:33.571%;top:52.439%">Buy again</i>
-            <i class="el el--bad" style="left:72.143%;top:84.146%">Don&rsquo;t impress</i>
-            </div>
+            <img src="assets/img/optimisation-engine-xl.jpg" alt="The optimisation engine. Marketing brings in clients, you do the work, impressed clients become loyal and buy again or refer, and the ones you don't impress leave. Each step carries its own metrics.">
             <div class="out" aria-live="polite">
               <span class="out__state" data-e-state>Aim for 3 : 1 or better</span>
               <div class="out__big" data-e-ratio>0 : 1</div>
               <p>LTGP : CAC</p>
             </div>
             <div class="eng__nums">
-              <label class="nb" style="left:59.857%;top:1.707%;width:10.714%;height:7.073%" title="Marketing spend &divide; leads"><span>CPL</span><b><em>$</em><input type="number" min="0" step="any" value="150" data-n="cpl" aria-label="CPL"></b></label>
-              <label class="nb" style="left:71.286%;top:1.707%;width:10.714%;height:7.073%" title="Calls attended &divide; calls booked"><span>Show rate</span><b><input type="number" min="0" step="any" value="60" data-n="show" aria-label="Show rate"><em>%</em></b></label>
-              <label class="nb" style="left:59.857%;top:10.244%;width:10.714%;height:7.073%" title="New customers &divide; calls attended"><span>Close rate</span><b><input type="number" min="0" step="any" value="25" data-n="close" aria-label="Close rate"><em>%</em></b></label>
-              <div class="nb nb--out" style="left:71.286%;top:10.244%;width:10.714%;height:7.073%" title="CPL &divide; show rate &divide; close rate"><span>CAC</span><output data-o="cac">$0</output></div>
-              <label class="nb" style="left:77.143%;top:27.073%;width:10.714%;height:7.073%" title="Customers who upsold &divide; total customers"><span>Upsell rate</span><b><input type="number" min="0" step="any" value="20" data-n="upsell" aria-label="Upsell rate"><em>%</em></b></label>
-              <label class="nb" style="left:77.143%;top:35.610%;width:10.714%;height:7.073%" title="Revenue &divide; number of orders"><span>AOV</span><b><em>$</em><input type="number" min="0" step="any" value="12000" data-n="aov" aria-label="AOV"></b></label>
-              <label class="nb" style="left:87.286%;top:35.610%;width:11.429%;height:7.073%" title="(Revenue &minus; cost to deliver) &divide; revenue"><span>Gross margin</span><b><input type="number" min="0" step="any" value="30" data-n="gm" aria-label="Gross margin"><em>%</em></b></label>
-              <div class="nb nb--out" style="left:82.857%;top:44.146%;width:10.714%;height:7.073%" title="AOV &times; gross margin"><span>AOGP</span><output data-o="aogp">$0</output></div>
-              <label class="nb" style="left:77.143%;top:68.293%;width:10.714%;height:7.073%" title="Customers lost &divide; customers at start"><span>Churn rate</span><b><input type="number" min="0" step="any" value="15" data-n="churn" aria-label="Churn rate"><em>%</em></b></label>
-              <label class="nb" style="left:87.286%;top:68.293%;width:11.429%;height:7.073%" title="Orders cancelled &divide; total orders"><span>Cancellation rate</span><b><input type="number" min="0" step="any" value="5" data-n="cancel" aria-label="Cancellation rate"><em>%</em></b></label>
-              <label class="nb" style="left:4.286%;top:36.585%;width:10.714%;height:7.073%" title="(Customers at end &minus; new) &divide; customers at start"><span>Retention rate</span><b><input type="number" min="0" step="any" value="70" data-n="ret" aria-label="Retention rate"><em>%</em></b></label>
-              <label class="nb" style="left:4.286%;top:45.122%;width:10.714%;height:7.073%" title="New customers from referrals &divide; total new"><span>Referral rate</span><b><input type="number" min="0" step="any" value="25" data-n="ref" aria-label="Referral rate"><em>%</em></b></label>
-              <label class="nb" style="left:21.429%;top:88.293%;width:10.714%;height:7.073%" title="Average of all review scores, off Google"><span>Avg. rating</span><b><input type="number" min="0" step=".1" value="4.8" data-n="rating" aria-label="Avg. rating"><em>&#9733;</em></b></label>
-              <label class="nb" style="left:32.857%;top:88.293%;width:10.714%;height:7.073%" title="New reviews &divide; customers served"><span>Review rate</span><b><input type="number" min="0" step="any" value="30" data-n="review" aria-label="Review rate"><em>%</em></b></label>
-              <div class="nb nb--out" style="left:44.643%;top:51.220%;width:10.714%;height:7.073%" title="AOGP &times; purchases in a lifetime"><span>LTGP</span><output data-o="ltgp">$0</output></div>
-              <label class="nb" style="left:44.643%;top:59.756%;width:10.714%;height:7.073%" title="How many times the average customer buys from you"><span>Purchases</span><b><input type="number" min="0" step="1" value="3" data-n="buys" aria-label="Purchases"><em>&times;</em></b></label>
+              <label class="nb" style="left:62.68%;top:5.13%;width:16.12%;height:4.88%" title="Marketing spend &divide; leads"><span>CPL</span><b><em>$</em><input type="number" min="0" step="any" value="150" data-n="cpl" aria-label="CPL"></b></label>
+              <label class="nb" style="left:61.62%;top:12.27%;width:16.30%;height:4.88%" title="Calls attended &divide; calls booked"><span>Show rate</span><b><input type="number" min="0" step="any" value="60" data-n="show" aria-label="Show rate"><em>%</em></b></label>
+              <label class="nb" style="left:59.85%;top:19.69%;width:16.12%;height:4.88%" title="New customers &divide; calls attended"><span>Close rate</span><b><input type="number" min="0" step="any" value="25" data-n="close" aria-label="Close rate"><em>%</em></b></label>
+              <div class="nb nb--out" style="left:57.37%;top:26.55%;width:16.12%;height:4.88%" title="CPL &divide; show rate &divide; close rate"><span>CAC</span><output data-o="cac">$0</output></div>
+              <label class="nb" style="left:65.87%;top:38.28%;width:16.21%;height:4.88%" title="Customers who upsold &divide; total customers"><span>Upsell rate</span><b><input type="number" min="0" step="any" value="20" data-n="upsell" aria-label="Upsell rate"><em>%</em></b></label>
+              <label class="nb" style="left:71.01%;top:45.33%;width:16.30%;height:4.88%" title="Revenue &divide; number of orders"><span>AOV</span><b><em>$</em><input type="number" min="0" step="any" value="12000" data-n="aov" aria-label="AOV"></b></label>
+              <label class="nb" style="left:70.83%;top:55.47%;width:18.25%;height:4.70%" title="(Revenue &minus; cost to deliver) &divide; revenue"><span>Gross margin</span><b><input type="number" min="0" step="any" value="30" data-n="gm" aria-label="Gross margin"><em>%</em></b></label>
+              <div class="nb nb--out" style="left:68.53%;top:63.64%;width:18.25%;height:4.70%" title="AOV &times; gross margin"><span>AOGP</span><output data-o="aogp">$0</output></div>
+              <label class="nb" style="left:61.53%;top:79.51%;width:16.12%;height:4.88%" title="Customers lost &divide; customers at start"><span>Churn rate</span><b><input type="number" min="0" step="any" value="15" data-n="churn" aria-label="Churn rate"><em>%</em></b></label>
+              <label class="nb" style="left:73.13%;top:86.18%;width:19.93%;height:4.88%" title="Orders cancelled &divide; total orders"><span>Cancellation rate</span><b><input type="number" min="0" step="any" value="5" data-n="cancel" aria-label="Cancellation rate"><em>%</em></b></label>
+              <label class="nb" style="left:8.11%;top:30.87%;width:17.98%;height:4.79%" title="(Customers at end &minus; new) &divide; customers at start"><span>Retention rate</span><b><input type="number" min="0" step="any" value="70" data-n="ret" aria-label="Retention rate"><em>%</em></b></label>
+              <label class="nb" style="left:2.80%;top:38.75%;width:17.89%;height:4.70%" title="New customers from referrals &divide; total new"><span>Referral rate</span><b><input type="number" min="0" step="any" value="25" data-n="ref" aria-label="Referral rate"><em>%</em></b></label>
+              <label class="nb" style="left:10.06%;top:70.87%;width:16.12%;height:4.88%" title="Average of all review scores, off Google"><span>Avg. rating</span><b><input type="number" min="0" step=".1" value="4.8" data-n="rating" aria-label="Avg. rating"><em>&#9733;</em></b></label>
+              <label class="nb" style="left:17.59%;top:77.17%;width:16.21%;height:4.98%" title="New reviews &divide; customers served"><span>Review rate</span><b><input type="number" min="0" step="any" value="30" data-n="review" aria-label="Review rate"><em>%</em></b></label>
+              <div class="nb nb--out" style="left:35.40%;top:56.04%;width:16.21%;height:4.98%" title="AOGP &times; purchases in a lifetime"><span>LTGP</span><output data-o="ltgp">$0</output></div>
+              <label class="nb" style="left:35.40%;top:62.42%;width:16.21%;height:4.98%" title="How many times the average customer buys from you"><span>Purchases</span><b><input type="number" min="0" step="1" value="3" data-n="buys" aria-label="Purchases"><em>&times;</em></b></label>
             </div>
           </div>
           <p class="small eng__note">Type your own numbers into the boxes. CAC here counts marketing only, so add your sales spend for the full figure.</p>
@@ -1157,7 +1121,7 @@
         <div class="slider found__stack" data-slider><div class="sl is-shown"><img src="assets/img/ryan-foh.jpg" alt="Ryan Tayler and Aaron Sansoni front of house at a live event" style="transform-origin:45% 35%"></div><div class="sl"><img src="assets/img/ryan-aaron-board.jpg" alt="Ryan Tayler with Aaron Sansoni as he signs at the boardroom table" style="transform-origin:50% 45%"></div></div>
         <div>
           <h2 class="d d2" data-split>Where I learned the business</h2>
-          <p class="p fade" style="margin-top:28px">Early in my career I worked for <span class="swipe">Aaron Sansoni<svg viewBox="0 0 300 100" preserveAspectRatio="none" aria-hidden="true"><path d="M10 54C90 46 200 44 290 50"/></svg></span>, Australia&rsquo;s #1 business mentor, and that&rsquo;s where I learned how business is built. In 4 years I grew from a junior to General Manager of his largest business, which focused on live events and business coaching.</p>
+          <p class="p fade" style="margin-top:28px">Early in my career <span class="mark">I worked for Aaron Sansoni, Australia&rsquo;s #1 business mentor</span>, and that&rsquo;s where I learned how business is built. In 4 years I grew from a junior to General Manager of his largest business, which focused on live events and business coaching.</p>
           <p class="p">Most of those hours were spent backstage. During my time with him I delivered more than 115 live events for over 56,000 attendees. So I deeply understand our industry.</p>
           <p class="p">I started creating partnerships in his companies, which allowed me to 3X my income in 4 years.</p>
           <p class="p">Now I focus on partnering with businesses that need help growing, and I do that through new partnerships &amp; optimisations. The exact same way I have built my group, <a href="#index" data-go="index">Headliner Group</a>.</p>
@@ -1172,7 +1136,7 @@
         <h2 class="big" data-split>Partners, not suppliers</h2>
         <div class="pinkband__copy" style="margin-top:clamp(40px,5vw,72px)">
           <div>
-            <p class="lead" style="max-width:32ch">Almost everyone in this industry runs the same way on every job. Three quotes, take the cheapest, squeeze it, do it again next event.</p>
+            <p class="p" style="max-width:60ch">Almost everyone in this industry runs the same way on every job. Three quotes, take the cheapest, squeeze it, do it again next event.</p>
             <p class="p" style="margin-top:24px">It saves money on that job. It costs you everything after it, because the suppliers you swap in and out owe you nothing in an emergency. If you partner properly you get the things that will actually affect long term growth. More revenue, margin, reach and connection.</p>
           </div>
         </div>
@@ -1328,7 +1292,7 @@
               <div class="field"><input id="nv-em" type="email" required placeholder=" " autocomplete="email"><label for="nv-em">Email</label></div>
               <div class="field"><input id="nv-ph" type="tel" placeholder=" " autocomplete="tel"><label for="nv-ph">Phone (optional)</label></div>
             </div>
-            <div class="field field--sel"><select id="nv-t" required><option value="">Choose one</option><option>Partnership consulting</option><option>Partnership negotiation</option><option>Advisory</option><option>A long-term partnership</option><option>I&rsquo;m thinking about selling</option><option>Speaking or podcast</option><option>Something else</option></select><label for="nv-t">What&rsquo;s this about</label></div>
+            <div class="field field--sel"><select id="nv-t" required><option value="">Choose one</option><option>Consulting</option><option>Negotiations</option><option>Advisory</option><option>Partnership</option><option>I&rsquo;m thinking about selling</option><option>Speaking or podcast</option><option>Something else</option></select><label for="nv-t">What&rsquo;s this about</label></div>
             <div class="field field--sel"><select id="nv-r"><option value="">Prefer not to say</option><option>Under $1m</option><option>$1m to $2m</option><option>$2m to $5m</option><option>$5m to $10m</option><option>Over $10m</option></select><label for="nv-r">Roughly what does the business turn over</label></div>
             <div class="field"><textarea id="nv-m" required placeholder=" "></textarea><label for="nv-m">Tell me a bit more</label></div>
             <button class="btn btn--go" type="submit" style="justify-self:start;margin-top:6px">Send it</button>
@@ -1344,13 +1308,19 @@
   <footer class="foot" data-edge>
     <div class="wrap">
       <div class="foot__top">
-        <div><p class="lead" style="max-width:24ch;color:#ECE8E0">Helping founders in live events &amp; production grow through partnerships.</p><p class="small" style="margin-top:16px">Headliner Group, founded by Ryan Tayler.</p></div>
-        <div><h4>Site</h4><ul><li><a href="#index" data-go="index">Home</a></li><li><a href="#partnerships" data-go="partnerships">Partner with us</a></li><li><a href="#ryan" data-go="ryan">Ryan Tayler</a></li><li><a href="#free" data-go="free">Free Sh!t</a></li></ul></div>
-        <div><h4>Talk</h4><ul><li><a href="#contact" data-go="contact">Book a call</a></li><li><a href="https://www.linkedin.com/in/ryan-a-tayler-au/" target="_blank" rel="noopener">LinkedIn</a></li></ul></div>
+        <div><p class="lead foot__tag" style="color:#ECE8E0"><span class="ln">Helping businesses in</span> <span class="ln">live events &amp; production</span> <span class="ln">grow through partnerships.</span></p><p class="small" style="margin-top:16px">Headliner Group, founded by Ryan Tayler.</p></div>
+        <div><ul><li><a href="#index" data-go="index">Home</a></li><li><a href="#partnerships" data-go="partnerships">Partner with us</a></li><li><a href="#ryan" data-go="ryan">Ryan Tayler</a></li><li><a href="#free" data-go="free">Free Sh!t</a></li></ul></div>
+        <div class="foot__btns">
+          <a class="btn btn--go" href="#contact" data-go="contact">Book a call</a>
+          <a class="btn btn--li" href="https://www.linkedin.com/in/ryan-a-tayler-au/" target="_blank" rel="noopener"><!--__ICON:li-->LinkedIn</a>
+          <a class="btn btn--ig" href="https://www.instagram.com/ryan_a_tayler/" target="_blank" rel="noopener"><!--__ICON:ig-->Instagram</a>
+          <a class="btn btn--yt" href="https://www.youtube.com/@RyanATayler" target="_blank" rel="noopener"><!--__ICON:yt-->YouTube</a>
+          <a class="btn btn--fb" href="https://www.facebook.com/profile.php?id=61582253770046" target="_blank" rel="noopener"><!--__ICON:fb-->Facebook</a>
+        </div>
         <div><h4>Get access to exclusive content</h4><form class="inline" data-demo><input type="email" required placeholder="Email address" aria-label="Email address"><button class="btn btn--go" type="submit">Join</button><p class="done">You&rsquo;re in.</p></form></div>
       </div>
-      <div class="foot__base"><span>&copy; 2026 Headliner Group Pty Ltd. All rights reserved.</span><span>Privacy &nbsp; Terms</span></div>
       <div class="foot__logo" aria-hidden="true"><div class="hl-stage"><div class="hl-logo"><div class="hl-beam"></div><span class="hl-word">Headliner</span><div class="hl-group">Group</div></div></div></div>
+      <div class="foot__base"><span>&copy; 2026 Headliner Group Pty Ltd. All rights reserved.</span></div>
     </div>
   </footer>
 </div>
@@ -1622,7 +1592,7 @@
       cards=$$('.fan__c',f); while(st.length<cards.length) st.push({a:0,v:0,y:0,yv:0});
       var mx=e.movementX||0, my=e.movementY||0;
       cards.forEach(function(c,k){ var r=c.getBoundingClientRect(), d=Math.abs(e.clientX-(r.left+r.width/2)), w=Math.max(0,1-d/(r.width*1.3));
-        st[k].v+=Math.max(-.24,Math.min(.24,mx*.01))*w; st[k].yv+=Math.max(-.4,Math.min(.4,-Math.abs(mx)*.012-my*.006))*w; });
+        st[k].v+=Math.max(-.12,Math.min(.12,mx*.005))*w; st[k].yv+=Math.max(-.2,Math.min(.2,-Math.abs(mx)*.006-my*.003))*w; });
       if(!raf) raf=requestAnimationFrame(run);
     },{passive:true});
   })();

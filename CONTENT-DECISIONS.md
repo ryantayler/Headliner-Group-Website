@@ -2949,3 +2949,27 @@ Ryan's brief, written at the length he gave it.
   Home, where his quote replaces the two testimonial placeholders.
 - **The socials fan reacts 80 percent less.**
 - **Going to Home, the page change shows the Headliner lockup** instead of the word "Home".
+
+## The new view, services and footer, 2 November 2026
+
+- **Partner with us**: "Our services" under the heading. The four are Consulting,
+  Negotiations, Advisory and Partnership, renamed the same way on Home's ladder and in the
+  contact form's list. No "No. 01" heads, no button on each card, one "Book a call" under
+  the four. The partnership card is a dark grey (#2A2E2D), not black. The cadence switch
+  fits its card. The cards reach further toward the screen edges. The "Advisory / Long-term
+  partnership" comparison under them is cut, because the cards already say it.
+- **"Ryan Tayler's" is a small line above** "4 pillars of partnership" and "optimisation
+  engine", not part of the heading.
+- **The optimisation engine is back on Ryan's own drawing**, one to one, with the boxes over
+  its own boxes, sized so the whole drawing fits one screen. The redrawn version is dropped.
+- **Ryan's page**: the highlight covers "I worked for Aaron Sansoni, Australia's #1 business
+  mentor", drawn left to right across the lines. "Three ways" highlighter back to its first
+  shape at the new length. "Partners, not suppliers" copy in one style, the handwriting in
+  white and lifted off the heading. Fan movement halved again.
+- **Home**: The Star Entertainment Group added to the logo row. Cory's quote centred and
+  smaller, with his logo and name to its right. The page change to Home carries the full
+  lockup with its beam.
+- **Footer**: tagline on three lines, "Helping businesses in / live events & production /
+  grow through partnerships." No "Site" or "Talk" labels, no Privacy and Terms. A stack of
+  buttons: Book a call, LinkedIn, Instagram, YouTube, Facebook. The copyright line sits at
+  the very bottom, under the logo.
