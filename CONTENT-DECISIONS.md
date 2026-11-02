@@ -2888,3 +2888,18 @@ Ryan's brief, written at the length he gave it.
 - **The consulting photo is Ryan's own recolour**, zoomed out so his hand on the left and his
   shoulder on the right stay in frame.
 - **Cory Hoyling's quote carries the Shadow AV logo** in place of the initials.
+
+## The new view, back to the live site's bones, 2 November 2026
+
+- **Our founder uses the live site's build**: two equal columns, the 1800px photo in a 4:5
+  frame held at 62 percent across, the signature at the live size, and the live pink button
+  with its rim at 45 percent and the dark vignette inside.
+- **No "Paid" or "Equity" tags** on the four agreements. They keep their numbers.
+- **No subheadings in the heroes**, every page. Ryan's own line on his page stays.
+- **Home hero sits on the live site's three lines**: "Helping founders in / live events &
+  production / grow through partnerships", sized so the longest line fits the width, with
+  the full lockup, beam and all, above it.
+- **Ryan and Aaron slider**: the boardroom shot is cut from Ryan's high resolution file to
+  just the two of them. Each photo sits in its own clipped frame so the two slide touching,
+  with no gap. The slide runs slower (1.5 seconds) and each photo holds about 70 percent
+  longer before it goes.

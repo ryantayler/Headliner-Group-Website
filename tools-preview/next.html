@@ -195,6 +195,12 @@
   background:linear-gradient(to bottom,rgba(45,226,195,.46),rgba(45,226,195,.1) 55%,rgba(45,226,195,0))}
 .hero .lead{margin-top:26px;color:#ECE8E0}
 .hero .row{margin-top:34px}
+/* home: the lockup above the heading, and the heading on the live site's three lines */
+.hero__logo{margin:0 0 clamp(18px,2.4vw,32px) calc(var(--gut) * -.2)}
+.hero__logo .hl-stage{position:relative;transform:none;font-size:clamp(20px,3.1vw,46px);justify-content:flex-start;padding:0 0 0 .2em;width:12em;height:4.4em}
+.d1--lines{max-width:none;font-size:clamp(30px,4.3vw,78px)}
+.d1--lines .ln{display:block;white-space:nowrap}
+@media (max-width:620px){.d1--lines .ln{white-space:normal}}
 .hero .btn:not(.btn--go){color:#ECE8E0}
 .hero .btn:not(.btn--go):hover{color:#0A0A0A}
 .hero .btn:not(.btn--go)::before{background:#ECE8E0}
@@ -323,13 +329,17 @@
 .facts span{display:block;margin-top:8px;font-size:13.5px;color:var(--mute)}
 @media (max-width:900px){.found{grid-template-columns:1fr}.found .px{max-width:440px}}
 /* the live site's build: copy on the left with the signature under the heading, photo on the right */
-.found--flip{grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(32px,5vw,88px)}
+/* the live site's pair: two equal columns, the photo a 4:5 frame held at 62% across */
+.found--flip{grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(24px,4vw,64px);align-items:center}
 .found--flip h2{white-space:nowrap;font-size:clamp(34px,4.3vw,66px)}
-.found--flip .px{aspect-ratio:auto;height:min(80vh,780px);max-width:none}
-.btn--pink{background:#FF2D6B;border-color:#FF2D6B;color:#0A0A0A;box-shadow:inset 0 0 14px 1px rgba(0,0,0,.25)}
+.found--flip .px{aspect-ratio:4/5;max-width:none}
+.found__ph img{object-position:62% 50%;scale:calc(var(--gs,1.12) - .12);translate:none}
+/* the live site's pink button: the fill clipped inside a rim at 45 percent, a soft dark vignette inside */
+.btn--pink{background:#FF2D6B;background-clip:padding-box;border-color:rgba(255,45,107,.45);color:#0A0A0A;box-shadow:inset 0 0 14px 1px rgba(0,0,0,.34)}
 .btn--pink::before{background:#FF5586}
-.btn--pink:hover{color:#0A0A0A;border-color:#FF5586}
-.found__sig{display:block;width:clamp(170px,16vw,240px);margin:14px 0 0 -4px;color:var(--fg)}
+.btn--pink:hover{color:#0A0A0A;border-color:rgba(255,45,107,.45)}
+.btn--pink::before{z-index:-1}
+.found__sig{display:block;width:clamp(160px,18vw,210px);margin:14px 0 0 -4px;color:var(--fg);opacity:.94}
 .found__sig svg{width:100%;height:auto;fill:currentColor;display:block}
 @media (max-width:900px){.found--flip{grid-template-columns:minmax(0,1fr)}.found--flip .px{order:-1}}
 /* Ryan's 'where I learned' photo: wider, reaching out past the column on the left, and it
@@ -672,8 +682,9 @@
 .said__ph img{scale:calc(var(--gs,1.12) - .12);translate:none;object-position:50% 40%}
 /* two photos that take turns, always sliding off to the left on a speed ramp */
 .slider{position:relative}
-.slider img{position:absolute;inset:0;translate:135% 0}
-.slider img.is-shown{translate:0 0}
+/* each photo has its own clipped frame, so the zoom stays inside it and the two slide touching */
+.slider .sl{position:absolute;inset:0;overflow:hidden;translate:100% 0}
+.slider .sl.is-shown{translate:0 0}
 .said{font:500 clamp(28px,3.4vw,52px)/1.2 var(--body);letter-spacing:-.025em;margin:0;max-width:24ch}
 .who-said{display:flex;align-items:center;gap:14px;margin-top:30px}
 .who-said i{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:#fff;overflow:hidden;flex:none}
@@ -731,8 +742,8 @@
       <div class="hero__ph"><img src="assets/img/hero-foh.jpg" alt=""></div>
       <div class="lamp" aria-hidden="true"></div>
       <div class="wrap">
-        <h1 class="d d1" data-split>Helping founders in live events &amp; production grow through partnerships</h1>
-        <p class="lead">Headliner Group is Ryan Tayler&rsquo;s partnership group.</p>
+        <div class="hero__logo" aria-hidden="true"><div class="hl-stage"><div class="hl-logo"><div class="hl-beam"></div><span class="hl-word">Headliner</span><div class="hl-group">Group</div></div></div></div>
+        <h1 class="d d1 d1--lines" data-split><span class="ln">Helping founders in</span> <span class="ln">live events &amp; production</span> <span class="ln">grow through partnerships</span></h1>
         <div class="row">
           <a class="btn btn--go" href="#contact" data-go="contact">Book a call</a>
           <a class="btn" href="#free" data-go="free">Get the free tools</a>
@@ -826,7 +837,7 @@
           <p class="p">My goal is to use this experience to be in business with, or partnered into, every area of live events and production in Australia.</p>
           <div class="row" style="margin-top:30px"><a class="btn btn--pink" href="#ryan" data-go="ryan">More about Ryan</a></div>
         </div>
-        <div class="px grow" data-grow><img src="assets/img/ryan-hero-900.jpg" alt="Ryan Tayler" style="object-position:84% 44%;transform-origin:66% 44%"></div>
+        <div class="px grow found__ph" data-grow><img src="assets/img/ryan-hero.jpg" alt="Ryan Tayler"></div>
       </div>
     </section>
 
@@ -859,7 +870,6 @@
       <div class="lamp" aria-hidden="true"></div>
       <div class="wrap">
         <h1 class="d d1" data-split>Partner with us</h1>
-        <p class="lead">Three paid ways to get partnerships working in your business, and one long-term partnership for equity.</p>
         <div class="row"><a class="btn btn--go" href="#contact" data-go="contact">Book a call</a></div>
       </div>
       </div>
@@ -870,7 +880,7 @@
         <div class="sh"><h2 class="d d2" data-split>Partner with us</h2></div>
         <div class="deals">
           <article class="deal">
-            <header class="deal__h"><span>No. 01</span><b>Paid</b></header>
+            <header class="deal__h"><span>No. 01</span></header>
             <h3>Partnership consulting</h3>
             <p>We sit down with you and go through the business across the 4 pillars. Revenue, margin, reach and connection.</p>
             
@@ -878,7 +888,7 @@
             <footer class="deal__s"><a class="btn" href="#contact" data-go="contact">Book a call</a></footer>
           </article>
           <article class="deal">
-            <header class="deal__h"><span>No. 02</span><b>Paid</b></header>
+            <header class="deal__h"><span>No. 02</span></header>
             <h3>Partnership negotiation</h3>
             <p>Everything in the consulting, and then we do the work. We go to the other side and negotiate the deal for you.</p>
             
@@ -886,7 +896,7 @@
             <footer class="deal__s"><a class="btn" href="#contact" data-go="contact">Book a call</a></footer>
           </article>
           <article class="deal">
-            <header class="deal__h"><span>No. 03</span><b>Paid</b></header>
+            <header class="deal__h"><span>No. 03</span></header>
             <h3>Advisory</h3>
             <p>Regular time with Ryan to keep the plan moving, and someone to hold you to it.</p>
             <div class="seg" role="group" aria-label="How often"><button type="button" data-cad="w" aria-pressed="true">Weekly</button><button type="button" data-cad="f" aria-pressed="false">Fortnightly</button><button type="button" data-cad="m" aria-pressed="false">Monthly</button></div>
@@ -894,7 +904,7 @@
             <footer class="deal__s"><a class="btn" href="#contact" data-go="contact">Book a call</a></footer>
           </article>
           <article class="deal deal--eq">
-            <header class="deal__h"><span>No. 04</span><b>Equity</b></header>
+            <header class="deal__h"><span>No. 04</span></header>
             <h3>Long-term partnership</h3>
             <p>We take a minority stake and work on the business with you for the long term. There&rsquo;s no fee. We only do well if the business grows.</p>
             
@@ -1108,7 +1118,7 @@
 
     <section class="sec">
       <div class="wrap found found--wide">
-        <div class="px grow slider" data-grow data-slider><img class="is-shown" src="assets/img/ryan-foh.jpg" alt="Ryan Tayler and Aaron Sansoni front of house at a live event" style="transform-origin:45% 35%"><img src="assets/img/ryan-aaron-board.jpg" alt="Ryan Tayler with Aaron Sansoni as he signs at the boardroom table" style="transform-origin:50% 45%"></div>
+        <div class="px grow slider" data-grow data-slider><div class="sl is-shown"><img src="assets/img/ryan-foh.jpg" alt="Ryan Tayler and Aaron Sansoni front of house at a live event" style="transform-origin:45% 35%"></div><div class="sl"><img src="assets/img/ryan-aaron-board.jpg" alt="Ryan Tayler with Aaron Sansoni as he signs at the boardroom table" style="transform-origin:50% 45%"></div></div>
         <div>
           <h2 class="d d2" data-split>Where I learned the business</h2>
           <p class="p fade" style="margin-top:28px">Early in my career I worked for <span class="swipe">Aaron Sansoni<svg viewBox="0 0 300 100" preserveAspectRatio="none" aria-hidden="true"><path d="M10 54C90 46 200 44 290 50"/></svg></span>, Australia&rsquo;s #1 business mentor, and that&rsquo;s where I learned how business is built. In 4 years I grew from a junior to General Manager of his largest business, which focused on live events and business coaching.</p>
@@ -1181,7 +1191,6 @@
       <div class="lamp" aria-hidden="true"></div>
       <div class="wrap">
         <h1 class="d d1" data-split>Free sh!t</h1>
-        <p class="lead">Free tools and assets you or your team could use in the business this week to start optimising straight away.</p>
         <div class="row"><a class="btn" href="#everything" data-jump="everything">Take the whole lot</a></div>
       </div>
       </div>
@@ -1256,7 +1265,6 @@
       <div class="lamp" aria-hidden="true"></div>
       <div class="wrap">
         <h1 class="d d1" data-split>Book a call</h1>
-        <p class="lead">A first call to talk about your business and which way of working with us fits.</p>
       </div>
       </div>
     </section>
@@ -1548,13 +1556,13 @@
     if(!current||!live()||reduce) return;
     $$('[data-slider]',current).forEach(function(sl){
       var r=sl.getBoundingClientRect(); if(r.bottom<0||r.top>innerHeight) return;
-      var ims=$$('img',sl), i=ims.findIndex(function(m){ return m.classList.contains('is-shown'); }), a=ims[i], b=ims[(i+1)%ims.length];
-      var o={duration:1150,easing:'cubic-bezier(.78,0,.18,1)',fill:'forwards'};
+      var ims=$$('.sl',sl), i=ims.findIndex(function(m){ return m.classList.contains('is-shown'); }), a=ims[i], b=ims[(i+1)%ims.length];
+      var o={duration:1500,easing:'cubic-bezier(.78,0,.18,1)',fill:'forwards'};
       a.getAnimations().forEach(function(x){ x.cancel(); }); b.getAnimations().forEach(function(x){ x.cancel(); });
-      a.animate([{translate:'0 0'},{translate:'-135% 0'}],o); b.animate([{translate:'135% 0'},{translate:'0 0'}],o);
+      a.animate([{translate:'0 0'},{translate:'-100% 0'}],o); b.animate([{translate:'100% 0'},{translate:'0 0'}],o);
       a.classList.remove('is-shown'); b.classList.add('is-shown');
     });
-  },4600);
+  },7400);
 
   /* advisory rhythm */
   var CAD={w:'A call with Ryan every week',f:'A call with Ryan every fortnight',m:'A call with Ryan every month'};
