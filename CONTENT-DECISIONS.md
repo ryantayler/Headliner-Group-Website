@@ -3019,3 +3019,17 @@ Ryan's brief, written at the length he gave it.
   squeeze a bit more out of it, repeat next event." / "Feels like you're saving money, but
   it costs you in the long term." / "We're here to fix that." / "Scroll down to find out
   how", with a hand drawn arrow that runs right and curls down, still bobbing.
+
+## The new view, Home's middle, 2 November 2026
+
+- **Truss, third go**: every member about 25 percent thicker, half the gradient contrast,
+  half the brightness. Hooks are short straight hangers running up behind the top chord.
+- **"We grow businesses / through partnerships"** on two lines, then Ryan's copy: "We believe
+  partnering makes you more money compared to any other strategy in this industry, and it
+  makes your life easier while you're at it." / "We're here to teach you our founder's
+  method, and help you do it." Ryan wrote "makes you so more money"; read as a slip and
+  written "makes you more money". The two lever cards are replaced by stats: 4 partnership
+  deals, 7+ figures from partnerships, 7+ figures from optimisations.
+- **The offer ladder is off Home.** Ryan: it made no sense there. In its place, "Know if
+  you're a fit", the same three toggles as Partner with us.
+- **"Partnerships we've / put together"** on two lines.
