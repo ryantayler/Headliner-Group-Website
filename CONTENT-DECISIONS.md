@@ -3041,3 +3041,11 @@ Ryan's brief, written at the length he gave it.
 - **"Headliner vs others"** under the questions on Home: three cards, Consultants & business
   coaches, Private equity, Headliner Group, each set out as Paid, Does, Wins. Drafted for
   Ryan to fix. The Headliner Group card is dark, slightly larger and glows aqua.
+- **Truss, made a nod rather than a feature**: lower contrast, darker, lighter outlines,
+  the ends feathered into the dark so it fades out toward both edges, and it dims a little
+  more once the header turns solid on scroll. The links plate is much fainter. The hangers
+  are gone.
+- **Home "Know if / you're a fit"** is no longer a toggle test: a ticked list, In or around
+  live events and production, Australian, Turning over $1m to $10m, Profitable, Founder
+  operated, with "Sounds like you?" and Book a call on the right. Partner with us keeps the
+  toggles.
