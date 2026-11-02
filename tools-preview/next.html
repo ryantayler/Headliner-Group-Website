@@ -176,7 +176,7 @@
 .glint::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;padding:1.5px;z-index:2;
   background:radial-gradient(120% 90% at 100% 0,rgba(45,226,195,calc(var(--g,0) * .95)),rgba(45,226,195,calc(var(--g,0) * .25)) 35%,transparent 62%);
   -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0)}
-.glint{box-shadow:14px -14px 40px -24px rgba(45,226,195,calc(var(--g,0) * .55))}
+.glint{box-shadow:14px -14px 40px -24px rgba(45,226,195,calc(var(--g,0) * .55)),inset -22px 22px 44px -30px rgba(45,226,195,calc(var(--g,0) * .22))}
 
 /* ---------- hero: the photograph, the scrim and the swaying lamp ---------- */
 .hero{position:relative;z-index:1;height:100svh;min-height:560px;overflow:hidden;background:var(--black);color:#ECE8E0;
@@ -323,7 +323,9 @@
 .facts span{display:block;margin-top:8px;font-size:13.5px;color:var(--mute)}
 @media (max-width:900px){.found{grid-template-columns:1fr}.found .px{max-width:440px}}
 /* the live site's build: copy on the left with the signature under the heading, photo on the right */
-.found--flip{grid-template-columns:minmax(0,7fr) minmax(0,5fr)}
+.found--flip{grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:clamp(32px,4vw,64px)}
+.found--flip h2{white-space:nowrap}
+.found--flip .px{aspect-ratio:4/5}
 .found__sig{display:block;width:clamp(170px,16vw,240px);margin:14px 0 0 -4px;color:var(--fg)}
 .found__sig svg{width:100%;height:auto;fill:currentColor;display:block}
 @media (max-width:900px){.found--flip{grid-template-columns:minmax(0,1fr)}.found--flip .px{order:-1}}
@@ -689,7 +691,7 @@
       </div>
     </section>
 
-    <section class="sec dk" data-dk data-edge data-snap>
+    <section class="sec dk" data-dk data-edge>
       <div class="wrap">
         <div class="sh">
           <h2 class="d d2" data-split>We grow businesses through partnerships</h2>
@@ -1299,7 +1301,7 @@
   /* The big transitions finish themselves. Once you nudge past the start of one, the
      page carries on to the far side and holds there, whether you keep scrolling or not,
      and the same going back up. The hero to the first section is one on every page, and
-     any section marked data-snap is another. */
+     nothing below the hero does it, Ryan's call. */
   var snapBusy=false, snapHold=0, snapY=scrollY;
   /* Each zone is [top rest, bottom rest, kind]. You scroll freely for about three clicks
      of the wheel before it takes over. Below the hero the zones are looser still: a longer
@@ -1307,7 +1309,6 @@
   function snapZones(){
     var z=[], E=Math.min(84,Math.max(36,innerWidth*.05)), vh=innerHeight;
     var h=$('[data-hero],.me',current); if(h) z.push([0,h.offsetHeight,'hero']);
-    $$('[data-snap]',current).forEach(function(s){ var b=s.getBoundingClientRect().top+scrollY+E, a=Math.max(0,b-vh,z.length?z[z.length-1][1]:0); if(b-a>40) z.push([a,b,'body']); });
     return z;
   }
   function glide(to,soft){

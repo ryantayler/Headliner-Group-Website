@@ -2836,3 +2836,11 @@ Ryan's brief, written at the length he gave it.
   suppliers you swap in and out owe you nothing in an emergency" is cut, because the next
   section now answers why.
 - **Last line:** "Scroll down to find out why", with a small aqua arrow nudging down.
+
+## The new view, small fixes, 2 November 2026
+
+- **Only the hero hands over by itself.** Nothing below it auto scrolls, Ryan's call.
+- **A lit card glows a little inside too**, from its top right corner, much fainter than
+  the glow outside it.
+- **Our founder takes the live site's proportions**: copy a little wider than the photo,
+  "Our founder" on one line, a taller photo.
