@@ -3011,3 +3011,11 @@ Ryan's brief, written at the length he gave it.
   partnerships", in the home hero and the footer.
 - **Services**: Negotiations takes Consulting's colour and Partnership takes Advisory's.
   Advisory offers fortnightly and monthly only. Partnership glows aqua on hover.
+- **Truss, second go**: thick tubes, each filled with a gradient lighter on its top edge
+  than its bottom and outlined in 1px, the diagonals with the gradient turned to match. Dark
+  steel rather than light grey, all at low opacity. The links plate is fainter and the hooks
+  darker and thicker. Book a call hangs without a plate behind it.
+- **Home, "Our industry's biggest mistake"**, Ryan's copy: "Get 3 quotes, take the cheapest,
+  squeeze a bit more out of it, repeat next event." / "Feels like you're saving money, but
+  it costs you in the long term." / "We're here to fix that." / "Scroll down to find out
+  how", with a hand drawn arrow that runs right and curls down, still bobbing.
