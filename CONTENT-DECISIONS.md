@@ -2844,3 +2844,33 @@ Ryan's brief, written at the length he gave it.
   the glow outside it.
 - **Our founder takes the live site's proportions**: copy a little wider than the photo,
   "Our founder" on one line, a taller photo.
+
+## The new view, eighth pass, 2 November 2026
+
+- **The hero hand over never cuts into your own scroll.** It waits until you stop, then
+  finishes the move if you had gone past the first three clicks or so. Scroll fast and it
+  stays out of the way.
+- **Repeat headings** at the top of the first section on Partner with us, Free Sh!t and
+  Book a call, so the page still has its title once the hero has gone.
+- **The four ways to partner sit side by side as agreements**: a numbered head with a
+  double rule, numbered clauses (1.1, 1.2), and the button on a signing line. Type and rules
+  only, not drawn paper. The equity one is dark.
+- **The optimisation engine is redrawn in the brand** rather than shown as Ryan's sketch:
+  the four stages as dark tiles with icons, the good path in aqua, the leaks dashed grey,
+  a box to type into beside every metric, and the result in the corner. It is sized to fit
+  one screen.
+- **How we partner & invest**: each of the three on its own card, lit by the shaft like the
+  others. Three parallel options read better as three things than as one wide card.
+- **The first 90 days is a strip off a calendar**: one row, vertical rules between the
+  periods, the periods as the headings (First 30 days, 30 to 60 days, 60 to 90 days, 90
+  days on), a row of day ticks under each. "Starting before the deal" moves into the first
+  period's copy.
+- **Ryan's page**: "Aaron Sansoni" highlighted in the first sentence. New paragraph, as Ryan
+  wrote it: "I started creating partnerships in his companies, which allowed me to 3X my
+  income in 4 years." Each row of "Three ways to work with me" is swept with the pink
+  highlighter on hover. The consulting photo, recoloured to a neutral white, sits beside
+  Cory Hoyling's quote. The socials: the heading across the full width, the fan under it,
+  wider at the base, and the links on one line under that. The line under the heading is cut.
+- **Home**: the quotes read $expensive, $good, $cheap, with no labels under them, and the
+  signing plays again every time you come back to them. Our founder uses the live site's
+  copy word for word and its pink button, with a bigger photo.
