@@ -3033,3 +3033,11 @@ Ryan's brief, written at the length he gave it.
 - **The offer ladder is off Home.** Ryan: it made no sense there. In its place, "Know if
   you're a fit", the same three toggles as Partner with us.
 - **"Partnerships we've / put together"** on two lines.
+- **Truss half as visible again.** Book a call's two hangers moved in to 30 percent either
+  side so neither lands on a lacing joint.
+- **Home fit test**: when all three are ticked it asks "Sounds like you?" over the Book a call
+  button. Partner with us keeps "Sounds like a fit".
+- **"Questions we get"** on Home.
+- **"Headliner vs others"** under the questions on Home: three cards, Consultants & business
+  coaches, Private equity, Headliner Group, each set out as Paid, Does, Wins. Drafted for
+  Ryan to fix. The Headliner Group card is dark, slightly larger and glows aqua.
