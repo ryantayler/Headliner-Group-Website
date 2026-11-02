@@ -2760,3 +2760,35 @@ Movement only. No copy changed.
   over the top. Its edges carry an aqua glow so it reads as light, not a black wipe.
   Going to or from Ryan's page it stays his straight pink panel, because the angle is
   Headliner's.
+
+## The new view, sixth pass, 2 November 2026
+
+- **Big transitions finish themselves.** The hero into the first section, on every page,
+  and the move into "We grow businesses through partnerships". Nudge past the start and
+  the page carries on to the far side whether you keep scrolling or not. Same going back.
+- **The hero lamp follows the mouse slower and later.**
+- **Hero photos are blurred again**, 6px, as on the live site. Ryan's own hero stays sharp
+  because it is his face.
+- **A dark section's light shaft comes in from off the left** as the section arrives, slows
+  and drifts while you read, then speeds up and swings off to the right as it leaves. Its
+  position is worked out against the screen, because the shaft leans and a shaft fixed to
+  the section seemed to slide left as the page scrolled.
+- **The founder photo on Home is centred on Ryan's eyes.** It and the photo of Ryan and
+  Aaron on his page open out from a smaller frame and ease their zoom as you reach them.
+- **The footer carries the full logo lockup with its beam**, whole, in place of the
+  cropped word.
+- **The 4 pillars follow Ryan's poster**: plain dark cards, the pillar name in the accent,
+  his copy, and a big number behind each one. The lit shafts are gone. Picking one still
+  filters the case studies.
+- **The optimisation engine is Ryan's drawing with every metric on it**, beside his
+  monthly worksheet: Buy (CPL, show rate, close rate, CAC), Client and work (upsell rate,
+  AOV, gross margin, AOGP, churn, cancellation), Loyal (retention, referral, average
+  rating, review rate) and Outcomes (LTGP, LTGP to CAC). Picking a row lights its box on
+  the drawing. CAC, AOGP and LTGP work themselves out, and the result is the ratio his
+  worksheet aims at, 3 to 1 or better. CAC here counts marketing only, and the page says so.
+  The sample numbers are placeholders for Ryan to set.
+- **Page change**: slower, with a thick aqua edge on the cone. Going to or from Ryan's page
+  it is a pink follow spot that opens from the middle, writes his signature, and closes
+  back to a point.
+- **Ryan's page**: each section sits a shade above black with a shadow on its top edge, and
+  the pink tape and the pink band cast shadows onto the sections next to them.

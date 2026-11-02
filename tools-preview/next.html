@@ -125,14 +125,27 @@
    towards the lamp, and it swings up across the screen from below and out over the top,
    pivoting on that far point. */
 .curtain{position:fixed;left:-15%;right:-15%;top:-45%;bottom:-45%;z-index:80;color:#ECE8E0;display:grid;place-items:center;
-  filter:drop-shadow(0 0 18px rgba(45,226,195,.55)) drop-shadow(0 0 70px rgba(45,226,195,.3));transform-origin:320% 50%;pointer-events:none;visibility:hidden}
-.curtain::before{content:"";position:absolute;inset:0;background:var(--black);clip-path:polygon(0 0,100% 22%,100% 78%,0 100%)}
+  filter:drop-shadow(0 0 10px rgba(45,226,195,.8)) drop-shadow(0 0 46px rgba(45,226,195,.5)) drop-shadow(0 0 120px rgba(45,226,195,.3));transform-origin:320% 50%;pointer-events:none;visibility:hidden}
+/* the rim is the cone in aqua, the shape is the cone in black set a little inside it */
+.curtain__r,.curtain__s{position:absolute;inset:0;clip-path:polygon(0 0,100% 22%,100% 78%,0 100%)}
+.curtain__r{background:linear-gradient(90deg,#2DE2C3,rgba(45,226,195,.75))}
+.curtain__s{inset:12px 0;background:var(--black)}
 .curtain span{position:relative}
-.curtain.pinkc{left:0;right:0;top:0;bottom:0;filter:none;transform-origin:50% 50%}
-.curtain.pinkc::before{background:#FF2D6B;clip-path:none}
-.curtain.pinkc{color:#0A0A0A}
+/* Ryan's page gets a follow spot instead: a pink circle that opens from the middle and closes back to a point */
+.curtain.pinkc{left:0;right:0;top:0;bottom:0;color:#0A0A0A;transform-origin:50% 50%;
+  filter:drop-shadow(0 0 22px rgba(255,45,107,.9)) drop-shadow(0 0 90px rgba(255,45,107,.5))}
+.curtain.pinkc .curtain__r{display:none}
+.curtain.pinkc .curtain__s{inset:0;clip-path:circle(0 at 50% 50%);
+  background:radial-gradient(circle at 50% 50%,#FF2D6B 0,#FF2D6B 38%,#C81E52 100%)}
+.curtain__sig{position:relative;display:none;width:min(560px,74vw);color:#0A0A0A}
+.curtain__sig svg{width:100%;height:auto;fill:currentColor;display:block}
+.curtain.pinkc.to-ryan .curtain__sig{display:block}
+.curtain.pinkc.to-ryan span{display:none}
+.curtain.pinkc span{font-family:'Archivo Black',Impact,sans-serif}
 .curtain span{font:400 clamp(40px,8vw,120px)/1 var(--display);text-transform:uppercase;letter-spacing:-.02em;opacity:0;translate:0 30px;transition:opacity .4s,translate .6s var(--out)}
 .curtain.on span{opacity:1;translate:0 0}
+.curtain__sig{opacity:0;transition:opacity .4s}.curtain.on .curtain__sig{opacity:1}
+.curtain.to-ryan.on .curtain__sig{clip-path:inset(0 100% 0 0);animation:write .85s .05s cubic-bezier(.6,.05,.3,1) forwards}
 
 /* ---------- sections ---------- */
 .sec{position:relative;z-index:2;padding:clamp(96px,11vw,160px) 0;background:var(--bg)}
@@ -149,9 +162,9 @@
   --fg:#ECE8E0;--sub:#B9B5AE;--mute:#8E8A84;--rim:#2A2A2A;--card:#141414;--bg:#0A0A0A;--bg2:#161616}
 .ends-dark .foot{margin-top:0;clip-path:none;padding-top:clamp(64px,8vw,112px);border-top:1px solid #1C1C1C}
 .dk:last-child{margin-bottom:0;padding-bottom:clamp(96px,11vw,160px);clip-path:polygon(0 var(--e),100% calc(var(--e) - var(--et,0px)),100% 100%,0 100%)}
-/* its light: one angled shaft that swings right as the section leaves the screen */
+/* its light: one angled shaft that sweeps in from the left, idles, then swings off to the right */
 .dk::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
-  background:linear-gradient(var(--ba,118deg),transparent 6%,rgba(45,226,195,.30) 20%,rgba(45,226,195,.07) 38%,transparent 50%)}
+  background:linear-gradient(var(--ba,118deg),transparent calc(6% + var(--bo,0%)),rgba(45,226,195,.30) calc(20% + var(--bo,0%)),rgba(45,226,195,.07) calc(38% + var(--bo,0%)),transparent calc(50% + var(--bo,0%)))}
 .dk + .sec{padding-top:calc(clamp(96px,11vw,160px) + var(--e))}
 
 /* ---------- hero: the photograph, the scrim and the swaying lamp ---------- */
@@ -163,7 +176,7 @@
   clip-path:polygon(0 var(--e),100% calc(var(--e) - var(--et,0px)),100% 100%,0 100%)}
 .hero + .dk{clip-path:polygon(0 var(--e),100% calc(var(--e) - var(--et,0px)),100% calc(100% - var(--e) + var(--eb,0px)),0 calc(100% - var(--e)))}
 .hero__ph{position:absolute;inset:0;z-index:0}
-.hero__ph img{width:100%;height:100%;object-fit:cover;scale:1.06}
+.hero__ph img{width:100%;height:100%;object-fit:cover;scale:1.06;filter:blur(6px)}
 .hero__ph::after{content:"";position:absolute;inset:-1px;background:linear-gradient(to top,rgba(10,10,10,.95) 8%,rgba(10,10,10,.55) 50%,rgba(10,10,10,.35)),linear-gradient(90deg,rgba(10,10,10,.75),rgba(10,10,10,0) 70%)}
 .lamp{position:absolute;z-index:1;top:-330px;right:-342px;width:508px;height:1980px;transform-origin:top center;filter:blur(57px);pointer-events:none;
   transform:rotate(var(--la,34deg))}
@@ -262,6 +275,9 @@
 /* founder */
 .found{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,6vw,112px);align-items:center}
 .found .px{aspect-ratio:4/5;border-radius:18px}
+/* a photo that opens out from a smaller frame and eases its zoom as you scroll down to it */
+.grow{clip-path:inset(var(--gi,0%) round 18px)}
+.grow img{scale:var(--gs,1.12)}
 .facts{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--rim);margin:clamp(28px,3.4vw,44px) 0}
 .facts > div{padding:22px 18px 0 0}
 .facts > div + div{padding-left:18px;border-left:1px solid var(--rim)}
@@ -331,40 +347,55 @@
 @media (max-width:1000px){.days{grid-template-columns:1fr 1fr}}
 @media (max-width:620px){.days{grid-template-columns:1fr}}
 
-/* the 4 pillars, lit: each is a beam until you pick it, then it fills */
-.pills{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:14px}
-.pil{position:relative;overflow:hidden;text-align:left;padding:26px 24px;border-radius:20px;border:1px solid #2A2A2A;background:#121212;cursor:pointer;
-  display:flex;flex-direction:column;justify-content:space-between;gap:28px;min-height:300px;color:#ECE8E0;transition:background .5s,color .5s,border-color .5s,translate .5s var(--out)}
-.pil::before{content:"";position:absolute;inset:0;pointer-events:none;
-  background:linear-gradient(122deg,transparent 18%,rgba(45,226,195,.32) 34%,rgba(45,226,195,.06) 54%,transparent 66%);transition:opacity .5s}
-.pil:hover{translate:0 -4px;border-color:rgba(45,226,195,.5)}
-.pil > *{position:relative}
-.pil h3{font:400 clamp(24px,2.1vw,34px)/.95 var(--display);text-transform:uppercase;margin:0}
-.pil p{margin:0;font-size:14.5px;line-height:1.5;color:#B9B5AE;transition:color .5s}
-.pil[aria-pressed="true"]{background:#2DE2C3;color:#0A0A0A;border-color:#2DE2C3}
-.pil[aria-pressed="true"]::before{opacity:0}
-.pil[aria-pressed="true"] p{color:#0A0A0A}
-@media (max-width:900px){.pills{grid-template-columns:1fr 1fr}.pil{min-height:240px}}
-@media (max-width:520px){.pills{grid-template-columns:1fr}.pil{min-height:0}}
+/* the 4 pillars, as on Ryan's poster: plain dark cards, each with its number big behind it */
+.pills{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:14px}
+.pil{position:relative;overflow:hidden;text-align:left;padding:28px 26px;border-radius:18px;border:1px solid #232323;background:#111;cursor:pointer;
+  display:flex;flex-direction:column;gap:14px;min-height:340px;color:#ECE8E0;transition:border-color .4s,background .4s}
+.pil::after{content:attr(data-n);position:absolute;right:-.04em;bottom:-.16em;z-index:0;pointer-events:none;
+  font:400 clamp(180px,17vw,280px)/1 'Archivo Black',Impact,sans-serif;
+  background:linear-gradient(to top,rgba(45,226,195,.42),rgba(45,226,195,.12) 55%,rgba(45,226,195,0) 85%);-webkit-background-clip:text;background-clip:text;color:transparent;transition:opacity .4s}
+.pil > *{position:relative;z-index:1}
+.pil h3{font:400 clamp(20px,1.6vw,24px)/1 var(--display);text-transform:uppercase;margin:0;color:#2DE2C3}
+.pil p{margin:0;font-size:15px;line-height:1.55;color:#B9B5AE}
+.pil:hover{border-color:rgba(45,226,195,.45)}
+.pil[aria-pressed="true"]{border-color:#2DE2C3;background:#0F1A18}
+.pil[aria-pressed="true"]::after{background:linear-gradient(to top,rgba(45,226,195,.75),rgba(45,226,195,.2) 55%,rgba(45,226,195,0) 85%);-webkit-background-clip:text;background-clip:text}
+@media (max-width:900px){.pills{grid-template-columns:1fr 1fr}.pil{min-height:280px}}
+@media (max-width:520px){.pills{grid-template-columns:1fr}.pil{min-height:220px}}
 
-/* the engine: Ryan's drawing, with boxes to put your own numbers in */
-.eng{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(32px,5vw,80px);align-items:start}
-.eng__art{position:relative;border-radius:22px;overflow:hidden;background:#121212;aspect-ratio:747/760}
+/* the engine: Ryan's drawing with every metric on it, and his worksheet beside it.
+   Pick a row and its box lights up on the drawing. */
+.eng{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,4vw,64px);align-items:start}
+.eng__side{position:sticky;top:110px;display:grid;gap:14px}
+.eng__art{position:relative;border-radius:20px;overflow:hidden;background:#fff;aspect-ratio:830/757;border:1px solid var(--rim)}
 .eng__art img{width:100%;height:100%;object-fit:contain}
-.num{position:absolute;display:flex;align-items:center;gap:8px;padding:6px 8px 6px 12px;border-radius:12px;background:rgba(10,10,10,.82);border:1px solid rgba(45,226,195,.55);
-  color:#ECE8E0;font:500 12.5px/1.2 var(--body);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
-.num input{width:64px;height:34px;border-radius:8px;border:1px solid #333;background:#0A0A0A;color:#2DE2C3;font:600 16px/1 var(--body);text-align:center;outline:none;-moz-appearance:textfield}
-.num input::-webkit-outer-spin-button,.num input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
-.num input:focus{border-color:#2DE2C3}
-.out{border-radius:22px;background:var(--black);color:#ECE8E0;padding:clamp(26px,3vw,40px);display:grid;gap:20px;position:sticky;top:120px}
+.eng__hl{position:absolute;left:var(--x);top:var(--y);width:var(--w);height:var(--h);border-radius:8px;border:2.5px solid #0A7261;
+  box-shadow:0 0 0 5px rgba(45,226,195,.35),0 0 26px rgba(45,226,195,.7);opacity:0;transition:opacity .3s,left .45s var(--out),top .45s var(--out),width .45s var(--out),height .45s var(--out)}
+.eng__hl.on{opacity:1}
+.ws{border-radius:20px;background:var(--card);padding:clamp(18px,2.4vw,30px);display:grid}
+.ws__g{margin:18px 0 6px;font:600 12.5px/1 var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--acc-t)}
+.ws__g:first-child{margin-top:0}
+.ws__r{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:16px;padding:12px 0;border-top:1px solid var(--rim);cursor:pointer}
+.ws__k{font-weight:600;font-size:15.5px;line-height:1.25}
+.ws__k small{font-weight:500;font-size:12.5px;color:var(--mute);margin-left:8px}
+.ws__k i{display:block;font-style:normal;font-weight:400;font-size:13px;color:var(--mute);margin-top:3px}
+.ws__in{display:inline-flex;align-items:center;gap:4px;height:40px;padding:0 12px;border-radius:10px;border:1px solid var(--rim);background:var(--bg);transition:border-color .3s}
+.ws__in:focus-within{border-color:#0A7261;box-shadow:0 0 0 3px rgba(45,226,195,.3)}
+.nv .ws__in input:focus-visible{outline:none}
+.ws__in em{font-style:normal;color:var(--mute);font-size:14px}
+.ws__in input{width:78px;border:0;background:none;outline:none;text-align:right;font:600 16px/1 var(--body);-moz-appearance:textfield}
+.ws__in input::-webkit-outer-spin-button,.ws__in input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.ws__r--out{cursor:default}
+.ws__r--out output{min-width:118px;text-align:right;font:400 20px/1 var(--display);color:#0A7261}
+.ws__note{margin:16px 0 0;color:var(--mute)}
+.out{border-radius:20px;background:var(--black);color:#ECE8E0;padding:clamp(22px,2.6vw,34px);display:grid;gap:18px}
 .out__big{font:400 clamp(44px,5vw,76px)/1 var(--display)}
 .out__state{justify-self:start;display:inline-block;padding:8px 14px;border-radius:100px;font-weight:600;font-size:14px;background:#262626}
 .out__state.up{background:#2DE2C3;color:#0A0A0A}
 .out__state.down{background:#FF5A36;color:#0A0A0A}
-.out dl{display:grid;grid-template-columns:1fr auto;gap:10px 20px;margin:0;padding-top:20px;border-top:1px solid #2A2A2A;font-size:15px}
+.out dl{display:grid;grid-template-columns:1fr auto;gap:10px 20px;margin:0;padding-top:18px;border-top:1px solid #2A2A2A;font-size:15px}
 .out dt{color:#B9B5AE}.out dd{margin:0;font-weight:600;text-align:right}
-@media (max-width:900px){.eng{grid-template-columns:1fr}.out{position:static}
-  .eng__nums{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}.eng__nums .num{position:static;justify-content:space-between}}
+@media (max-width:1000px){.eng{grid-template-columns:1fr}.eng__side{position:static}}
 
 /* are we a fit */
 .fit{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,64px);align-items:center}
@@ -439,12 +470,19 @@
 .foot ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
 .foot ul a{text-decoration:none;color:var(--sub);transition:color .3s}
 .foot ul a:hover{color:var(--fg)}
-.foot__big{display:block;font:400 clamp(64px,17.2vw,300px)/.76 'Archivo Black',Impact,sans-serif;text-transform:uppercase;letter-spacing:-.04em;margin:clamp(64px,8vw,120px) 0 0;white-space:nowrap;translate:0 var(--fy,30%);color:#ECE8E0}
+/* the full logo, beam and all, sized to the page and kept whole */
+.foot__logo{display:flex;justify-content:center;overflow:hidden;padding:clamp(80px,10vw,160px) 0 clamp(16px,2.4vw,32px);margin-top:clamp(24px,3vw,40px);
+  --m:linear-gradient(to bottom,transparent 0,#000 30%,#000 82%,transparent 100%);-webkit-mask-image:var(--m);mask-image:var(--m)}
+.foot__logo .hl-beam{opacity:.75}
+.foot__logo .hl-logo{font-size:clamp(28px,10.4vw,150px)}
 .foot__base{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:13px;color:var(--mute);margin-top:clamp(24px,3vw,40px)}
 @media (max-width:900px){.foot__top{grid-template-columns:1fr 1fr}}
 @media (max-width:520px){.foot__top{grid-template-columns:1fr}}
 
 /* ---------- Ryan: his brand, straight edges, and looser ---------- */
+.is-ryan .pg > .sec{background:#0F0F0F;box-shadow:inset 0 46px 56px -34px rgba(0,0,0,.95)}
+.is-ryan .tape{z-index:4;box-shadow:inset 0 0 40px rgba(0,0,0,.28),0 22px 44px rgba(0,0,0,.7),0 -22px 44px rgba(0,0,0,.55)}
+.is-ryan .pinkband{z-index:4;box-shadow:inset 0 0 160px 10px rgba(0,0,0,.34),0 26px 50px rgba(0,0,0,.65)}
 .is-ryan .foot{clip-path:none;margin-top:0;padding-top:clamp(80px,9vw,128px);border-top:1px solid #2A2A2A;background:#0A0A0A}
 .is-ryan .foot .btn--go{--cta:#FF2D6B}
 .grain{position:fixed;inset:-50%;z-index:30;pointer-events:none;opacity:0;transition:opacity .5s;
@@ -519,7 +557,7 @@
 
 <div class="nv" id="nv">
   <div class="grain" aria-hidden="true"></div>
-  <div class="curtain" aria-hidden="true"><span></span></div>
+  <div class="curtain" aria-hidden="true"><i class="curtain__r"></i><i class="curtain__s"></i><span></span><div class="curtain__sig"></div></div>
 
   <header class="bar">
     <div class="wrap">
@@ -579,7 +617,7 @@
       </div>
     </section>
 
-    <section class="sec dk" data-dk data-edge>
+    <section class="sec dk" data-dk data-edge data-snap>
       <div class="wrap">
         <div class="sh">
           <h2 class="d d2" data-split>We grow businesses through partnerships</h2>
@@ -635,7 +673,7 @@
 
     <section class="sec">
       <div class="wrap found">
-        <div class="px"><img src="assets/img/ryan-hero-900.jpg" alt="Ryan Tayler"></div>
+        <div class="px grow" data-grow><img src="assets/img/ryan-hero-900.jpg" alt="Ryan Tayler" style="object-position:84% 44%;transform-origin:66% 44%"></div>
         <div>
           <h2 class="d d2" data-split>Our founder, Ryan Tayler</h2>
           <p class="lead" style="margin-top:24px;max-width:30ch">An entrepreneur partnering with founders in live events and production.</p>
@@ -726,10 +764,10 @@
           <p class="p">A good partnership has to create 1 of these 4, for you, and for the other party too. Usually not the same pillar for each party. Pick one to see the partnerships that used it.</p>
         </div>
         <div class="pills">
-          <button class="pil" type="button" data-pillar="Revenue" aria-pressed="false"><h3>Revenue</h3><p>Partnering with people who deliver something your customers also need. You get to service your existing clients better and increase your revenue.</p></button>
-          <button class="pil" type="button" data-pillar="Margin" aria-pressed="false"><h3>Margin</h3><p>Partnering into your own supply chain, up the chain to your suppliers, and down to your clients. Both ways can increase your margin.</p></button>
-          <button class="pil" type="button" data-pillar="Reach" aria-pressed="false"><h3>Reach</h3><p>Partnering with someone who already sells to the people you want to sell to. Giving you instant reach into their market.</p></button>
-          <button class="pil" type="button" data-pillar="Connection" aria-pressed="false"><h3>Connection</h3><p>Partnering with people for the doors they open. Usually creating introductions for more partnerships or more connections.</p></button>
+          <button class="pil" type="button" data-pillar="Revenue" data-n="1" aria-pressed="false"><h3>Revenue</h3><p>Partnering with people who deliver something your customers also need. You get to service your existing clients better and increase your revenue.</p></button>
+          <button class="pil" type="button" data-pillar="Margin" data-n="2" aria-pressed="false"><h3>Margin</h3><p>Partnering into your own supply chain, up the chain to your suppliers, and down to your clients. Both ways can increase your margin.</p></button>
+          <button class="pil" type="button" data-pillar="Reach" data-n="3" aria-pressed="false"><h3>Reach</h3><p>Partnering with someone who already sells to the people you want to sell to. Giving you instant reach into their market.</p></button>
+          <button class="pil" type="button" data-pillar="Connection" data-n="4" aria-pressed="false"><h3>Connection</h3><p>Partnering with people for the doors they open. Usually creating introductions for more partnerships or more connections.</p></button>
         </div>
         <div class="cases">
           <article class="case" data-pillars="Margin Revenue"><div class="tags"><span class="tag" data-t="Margin">Margin</span><span class="tag" data-t="Revenue">Revenue</span></div><h3>12 months booked out at once</h3><p>Every event was its own negotiation, so I stopped negotiating events and negotiated the year. Roughly $750,000, split into $62,000 a month in recurring revenue for the venue.</p><div class="nums"><div><b>$80k</b><span>Saved by the events company</span></div><div><b>$150k</b><span>Extra event for the venue</span></div></div></article>
@@ -746,27 +784,43 @@
           <p class="p">Every business runs like an engine. Customers come in, you do the work, and the ones you impress come back or send someone new. The ones you don&rsquo;t, leave. Put your own numbers in.</p>
         </div>
         <div class="eng" data-eng>
-          <div>
+          <div class="eng__side">
             <div class="eng__art">
-              <img src="assets/img/optimisation-engine-dark.png" alt="The optimisation engine. Marketing brings in clients, you do the work, impressed clients become loyal and buy again or refer, and the ones you don't impress leave.">
-              <div class="eng__nums">
-                <label class="num" style="left:61%;top:3%">New a month <input type="number" min="0" value="6" data-n="in"></label>
-                <label class="num" style="left:27%;top:52%">Clients now <input type="number" min="0" value="40" data-n="n"></label>
-                <label class="num" style="left:2%;top:80%">Impress % <input type="number" min="0" max="100" value="80" data-n="ef"></label>
-                <label class="num" style="left:2%;top:18%">Refer % <input type="number" min="0" max="100" value="10" data-n="rf"></label>
-              </div>
+              <img src="assets/img/optimisation-engine-metrics.png" alt="The optimisation engine. Marketing brings in clients, you do the work, impressed clients become loyal and buy again or refer, and the ones you don't impress leave. Each step carries its own metrics.">
+              <i class="eng__hl" data-hl aria-hidden="true"></i>
+            </div>
+            <div class="out" aria-live="polite">
+              <span class="out__state" data-e-state>Aim for 3 : 1 or better</span>
+              <div><div class="out__big" data-e-ratio>0 : 1</div><p class="small" style="color:#B9B5AE">LTGP : CAC, lifetime gross profit to what it cost to win the customer</p></div>
+              <dl>
+                <dt>CAC</dt><dd data-e-cac>$0</dd>
+                <dt>AOGP</dt><dd data-e-aogp>$0</dd>
+                <dt>LTGP</dt><dd data-e-ltgp>$0</dd>
+              </dl>
             </div>
           </div>
-          <div class="out" aria-live="polite">
-            <span class="out__state" data-e-state>Holding</span>
-            <div><div class="out__big" data-e-next>40</div><p class="small" style="color:#B9B5AE">Clients next month</p></div>
-            <dl>
-              <dt>From marketing</dt><dd data-e-in>+6</dd>
-              <dt>From referrals</dt><dd data-e-rf>+3</dd>
-              <dt>Leaving</dt><dd data-e-out>&minus;8</dd>
-              <dt>In 12 months, at this rate</dt><dd data-e-yr>40</dd>
-            </dl>
-            <p class="small" style="color:#B9B5AE">Add more than you lose and the engine grows.</p>
+          <div class="ws">
+            <p class="ws__g">Buy</p>
+            <label class="ws__r" style="--x:62.89%;--y:2.25%;--w:16.99%;--h:5.68%"><span class="ws__k">CPL<small>Cost per lead</small><i>Marketing spend &divide; leads</i></span><span class="ws__in"><em>$</em><input type="number" min="0" step="any" value="150" data-n="cpl" aria-label="CPL"></span></label>
+            <label class="ws__r" style="--x:61.81%;--y:9.78%;--w:16.99%;--h:5.68%"><span class="ws__k">Show rate<i>Calls attended &divide; calls booked</i></span><span class="ws__in"><input type="number" min="0" step="any" value="60" data-n="show" aria-label="Show rate"><em>%</em></span></label>
+            <label class="ws__r" style="--x:60.12%;--y:17.31%;--w:16.99%;--h:5.68%"><span class="ws__k">Close rate<i>New customers &divide; calls attended</i></span><span class="ws__in"><input type="number" min="0" step="any" value="25" data-n="close" aria-label="Close rate"><em>%</em></span></label>
+            <div class="ws__r ws__r--out" style="--x:57.59%;--y:24.97%;--w:16.75%;--h:5.55%"><span class="ws__k">CAC<small>Customer acquisition cost</small><i>CPL &divide; show rate &divide; close rate</i></span><output data-o="cac">$0</output></div>
+            <p class="ws__g">Client &amp; work</p>
+            <label class="ws__r" style="--x:66.14%;--y:37.38%;--w:16.99%;--h:5.81%"><span class="ws__k">Upsell rate<i>Customers who upsold &divide; total customers</i></span><span class="ws__in"><input type="number" min="0" step="any" value="20" data-n="upsell" aria-label="Upsell rate"><em>%</em></span></label>
+            <label class="ws__r" style="--x:71.81%;--y:45.05%;--w:16.51%;--h:5.55%"><span class="ws__k">AOV<small>Average order value</small><i>Revenue &divide; number of orders</i></span><span class="ws__in"><em>$</em><input type="number" min="0" step="any" value="12000" data-n="aov" aria-label="AOV"></span></label>
+            <label class="ws__r" style="--x:71.57%;--y:55.61%;--w:18.67%;--h:5.55%"><span class="ws__k">Gross margin<i>(Revenue &minus; cost to deliver) &divide; revenue</i></span><span class="ws__in"><input type="number" min="0" step="any" value="30" data-n="gm" aria-label="Gross margin"><em>%</em></span></label>
+            <div class="ws__r ws__r--out" style="--x:69.16%;--y:64.33%;--w:18.67%;--h:5.42%"><span class="ws__k">AOGP<small>Average order gross profit</small><i>AOV &times; gross margin</i></span><output data-o="aogp">$0</output></div>
+            <label class="ws__r" style="--x:61.93%;--y:81.24%;--w:16.63%;--h:5.28%"><span class="ws__k">Churn rate<i>Customers lost &divide; customers at start</i></span><span class="ws__in"><input type="number" min="0" step="any" value="15" data-n="churn" aria-label="Churn rate"><em>%</em></span></label>
+            <label class="ws__r" style="--x:73.73%;--y:88.24%;--w:20.72%;--h:5.42%"><span class="ws__k">Cancellation rate<i>Orders cancelled &divide; total orders</i></span><span class="ws__in"><input type="number" min="0" step="any" value="5" data-n="cancel" aria-label="Cancellation rate"><em>%</em></span></label>
+            <p class="ws__g">Loyal</p>
+            <label class="ws__r" style="--x:6.99%;--y:29.59%;--w:18.92%;--h:5.55%"><span class="ws__k">Retention rate<i>(Customers at end &minus; new) &divide; customers at start</i></span><span class="ws__in"><input type="number" min="0" step="any" value="70" data-n="ret" aria-label="Retention rate"><em>%</em></span></label>
+            <label class="ws__r" style="--x:1.45%;--y:38.04%;--w:18.80%;--h:5.28%"><span class="ws__k">Referral rate<i>New customers from referrals &divide; total new</i></span><span class="ws__in"><input type="number" min="0" step="any" value="25" data-n="ref" aria-label="Referral rate"><em>%</em></span></label>
+            <label class="ws__r" style="--x:9.28%;--y:72.13%;--w:16.39%;--h:5.42%"><span class="ws__k">Avg. rating<i>Average of all review scores, off Google</i></span><span class="ws__in"><input type="number" min="0" max="5" step=".1" value="4.8" data-n="rating" aria-label="Avg. rating"><em>&#9733;</em></span></label>
+            <label class="ws__r" style="--x:16.87%;--y:78.86%;--w:16.63%;--h:5.42%"><span class="ws__k">Review rate<i>New reviews &divide; customers served</i></span><span class="ws__in"><input type="number" min="0" step="any" value="30" data-n="review" aria-label="Review rate"><em>%</em></span></label>
+            <p class="ws__g">Outcomes</p>
+            <label class="ws__r" style="--x:35.06%;--y:56.27%;--w:16.63%;--h:5.42%"><span class="ws__k">Purchases in a lifetime<i>How many times the average customer buys from you</i></span><span class="ws__in"><input type="number" min="0" step="1" value="3" data-n="buys" aria-label="Purchases in a lifetime"></span></label>
+            <div class="ws__r ws__r--out" style="--x:35.06%;--y:56.27%;--w:16.63%;--h:5.42%"><span class="ws__k">LTGP<small>Lifetime gross profit</small><i>AOGP &times; purchases in a lifetime</i></span><output data-o="ltgp">$0</output></div>
+            <p class="small ws__note">CAC here counts marketing only. Add your sales spend to get the full figure.</p>
           </div>
         </div>
         <p class="p" style="margin-top:clamp(40px,5vw,64px)">Here&rsquo;s where most small businesses get stuck. They get the engine running at a decent efficiency, then quietly cut the inputs. Not enough team, not enough time, so they stop feeding it to hold a pace they can handle. The engine keeps turning at the same speed and growth flatlines.</p>
@@ -884,7 +938,7 @@
 
     <section class="sec">
       <div class="wrap found">
-        <div class="px"><img src="assets/img/ryan-foh.jpg" alt="Ryan Tayler front of house at a live event"></div>
+        <div class="px grow" data-grow><img src="assets/img/ryan-foh.jpg" alt="Ryan Tayler front of house at a live event" style="transform-origin:45% 35%"></div>
         <div>
           <h2 class="d d2" data-split>Where I learned the business</h2>
           <p class="p" style="margin-top:28px">Early in my career I worked for Aaron Sansoni, Australia&rsquo;s #1 business mentor, and that&rsquo;s where I learned how business is built. In 4 years I grew from a junior to General Manager of his largest business, which focused on live events and business coaching.</p>
@@ -1080,7 +1134,7 @@
         <div><h4>Get access to exclusive content</h4><form class="inline" data-demo><input type="email" required placeholder="Email address" aria-label="Email address"><button class="btn btn--go" type="submit">Join</button><p class="done">You&rsquo;re in.</p></form></div>
       </div>
       <div class="foot__base"><span>&copy; 2026 Headliner Group Pty Ltd. All rights reserved.</span><span>Privacy &nbsp; Terms</span></div>
-      <span class="foot__big" aria-hidden="true" data-foot>Headliner</span>
+      <div class="foot__logo" aria-hidden="true"><div class="hl-logo"><div class="hl-beam"></div><span class="hl-word">Headliner</span><div class="hl-group">Group</div></div></div>
     </div>
   </footer>
 </div>
@@ -1139,31 +1193,33 @@
       nv.classList.toggle('is-ryan', name==='ryan');
       $$('[data-go]').forEach(function(a){ a.classList.toggle('is-here', a.dataset.go===name); });
       $$('.up,.on,.squeezed',page).forEach(function(e){ e.classList.remove('up','on','squeezed'); });
-      scrollTo(0,0); current=page;
+      scrollTo({top:0,behavior:'instant'}); snapY=0; current=page;
       try{ history.replaceState(null,'','#'+name); }catch(e){}
       wake(page);
     }
     if(animate && !reduce && curtain.animate){
       /* Headliner pages get the cone, swung up on its far pivot. Ryan's page is his
-         brand, so going to or from it the pink panel rises straight. */
-      var pinkc=name==='ryan'||nv.classList.contains('is-ryan');
-      curtain.classList.toggle('pinkc',pinkc);
-      var a=pinkc?[{translate:'0 100%'},{translate:'0 0'}]:[{rotate:'-26deg'},{rotate:'0deg'}],
-          b=pinkc?[{translate:'0 0'},{translate:'0 -100%'}]:[{rotate:'0deg'},{rotate:'26deg'}];
+         brand, so going to or from it a pink follow spot opens and closes on the middle. */
+      var pinkc=name==='ryan'||nv.classList.contains('is-ryan'), toR=name==='ryan', target=pinkc?$('.curtain__s',curtain):curtain;
+      curtain.classList.toggle('pinkc',pinkc); curtain.classList.toggle('to-ryan',toR);
+      if(toR && !$('.curtain__sig svg',curtain)){ var sg=$('[data-sig] svg'); if(sg) $('.curtain__sig',curtain).appendChild(sg.cloneNode(true)); }
+      curtain.getAnimations().concat($('.curtain__s',curtain).getAnimations()).forEach(function(x){ x.cancel(); });
+      var a=pinkc?[{clipPath:'circle(0% at 50% 50%)'},{clipPath:'circle(75% at 50% 50%)'}]:[{rotate:'-26deg'},{rotate:'0deg'}],
+          b=pinkc?[{clipPath:'circle(75% at 50% 50%)'},{clipPath:'circle(0% at 50% 50%)'}]:[{rotate:'0deg'},{rotate:'26deg'}];
       $('span',curtain).textContent=NAMES[name]||''; curtain.style.visibility='visible';
-      curtain.animate(a,{duration:700,easing:'cubic-bezier(.3,0,.15,1)',fill:'forwards'}).onfinish=function(){
+      target.animate(a,{duration:pinkc?1050:1000,easing:'cubic-bezier(.3,0,.15,1)',fill:'forwards'}).onfinish=function(){
         curtain.classList.add('on'); swap();
         setTimeout(function(){ curtain.classList.remove('on');
-          curtain.animate(b,{duration:800,easing:'cubic-bezier(.75,0,.7,1)',fill:'forwards'}).onfinish=function(){ curtain.style.visibility='hidden'; };
-        },420);
+          target.animate(b,{duration:pinkc?950:1100,easing:'cubic-bezier(.75,0,.7,1)',fill:'forwards'}).onfinish=function(){ curtain.style.visibility='hidden'; };
+        },toR?900:600);
       };
     } else swap();
   }
   nv.addEventListener('click',function(e){
-    var j=e.target.closest('[data-jump]'); if(j){ e.preventDefault(); var t=root.getElementById(j.dataset.jump); if(t) scrollTo({top:t.getBoundingClientRect().top+scrollY,behavior:reduce?'auto':'smooth'}); return; }
+    var j=e.target.closest('[data-jump]'); if(j){ e.preventDefault(); var t=root.getElementById(j.dataset.jump); if(t){ snapHold=performance.now()+1600; scrollTo({top:t.getBoundingClientRect().top+scrollY,behavior:reduce?'auto':'smooth'}); } return; }
     var a=e.target.closest('[data-go]'); if(!a) return;
     e.preventDefault(); closeDrawer(); closeSheet();
-    if(current && current.dataset.pg===a.dataset.go){ scrollTo({top:0,behavior:reduce?'auto':'smooth'}); return; }
+    if(current && current.dataset.pg===a.dataset.go){ snapHold=performance.now()+1600; scrollTo({top:0,behavior:reduce?'auto':'smooth'}); return; }
     show(a.dataset.go,true);
   });
   function closeDrawer(){ drawer.classList.remove('is-open'); drawer.setAttribute('aria-hidden','true'); menu.setAttribute('aria-expanded','false'); }
@@ -1176,6 +1232,39 @@
     bar.classList.toggle('is-hid', vel>0 && y>300 && !drawer.classList.contains('is-open'));
     lastY=y;
   },{passive:true});
+
+  /* The big transitions finish themselves. Once you nudge past the start of one, the
+     page carries on to the far side and holds there, whether you keep scrolling or not,
+     and the same going back up. The hero to the first section is one on every page, and
+     any section marked data-snap is another. */
+  var snapBusy=false, snapHold=0, snapY=scrollY;
+  function snapZones(){
+    var z=[], E=Math.min(84,Math.max(36,innerWidth*.05)), vh=innerHeight;
+    var h=$('[data-hero],.me',current); if(h) z.push([0,h.offsetHeight]);
+    $$('[data-snap]',current).forEach(function(s){ var b=s.getBoundingClientRect().top+scrollY+E, a=Math.max(0,b-vh,z.length?z[z.length-1][1]:0); if(b-a>40) z.push([a,b]); });
+    return z;
+  }
+  function glide(to){
+    snapBusy=true; var from=scrollY, t0=performance.now(), d=Math.min(1300,Math.max(700,Math.abs(to-from)*1.1));
+    (function step(now){ var q=Math.min(1,(now-t0)/d), e=q<.5?4*q*q*q:1-Math.pow(-2*q+2,3)/2;
+      scrollTo({top:from+(to-from)*e,behavior:'instant'});
+      if(q<1 && live()) requestAnimationFrame(step); else { snapBusy=false; snapHold=performance.now()+450; snapY=scrollY; } })(t0);
+  }
+  addEventListener('scroll',function(){
+    if(!live()||!current||reduce) return;
+    var y=scrollY, dy=y-snapY; snapY=y;
+    if(snapBusy||performance.now()<snapHold||!dy) return;
+    var nudge=Math.max(6,innerHeight*.03);
+    snapZones().some(function(z){
+      if(y<=z[0]||y>=z[1]) return false;
+      if(dy>0 && y>=z[0]+nudge && y-dy<z[0]+nudge*4){ glide(z[1]); return true; }
+      if(dy<0 && y<=z[1]-nudge && y-dy>z[1]-nudge*4){ glide(z[0]); return true; }
+      return false;
+    });
+  },{passive:true});
+  /* while it carries you, the wheel and the finger wait */
+  function hold(e){ if(snapBusy||performance.now()<snapHold) e.preventDefault(); }
+  addEventListener('wheel',hold,{passive:false}); addEventListener('touchmove',hold,{passive:false});
 
   var mqAnims=[];
   function marquee(page){ $$('[data-mq]',page).forEach(function(t){ if(t._a||reduce||!t.animate) return; t._a=t.animate([{transform:'translateX(0)'},{transform:'translateX(-50%)'}],{duration:30000,iterations:Infinity}); mqAnims.push(t._a); }); }
@@ -1190,6 +1279,10 @@
     $$('[data-ladder] .tier:not(.on),.day:not(.on),[data-quotes]:not(.on)',current).forEach(function(e){ if(vis(e,.75)){ e.classList.add('on'); if(e.hasAttribute('data-quotes')) setTimeout(function(){ e.classList.add('squeezed'); },900); } });
     /* pictures drift against the scroll */
     $$('.px img',current).forEach(function(im){ var r=im.parentNode.getBoundingClientRect(); if(r.bottom<0||r.top>vh) return; var c=(r.top+r.height/2-vh/2)/vh; im.style.setProperty('--d',(-c*r.height*.08)+'px'); });
+    /* a growing photo opens out from a smaller frame and its zoom settles as it comes up */
+    $$('[data-grow]',current).forEach(function(g){ var r=g.getBoundingClientRect(); if(r.top>vh||r.bottom<0) return;
+      var q=reduce?1:Math.min(1,Math.max(0,(vh-r.top)/(vh*.75))), e=1-Math.pow(1-q,3);
+      g.style.setProperty('--gi',((1-e)*16).toFixed(2)+'%'); g.style.setProperty('--gs',(1.12+(1-e)*.38).toFixed(3)); });
     /* the hero is held back at half the scroll, so the page slides up over it */
     var hero=$('[data-hero]',current), hin=hero&&$('.hero__in',hero), hy=0;
     if(hin){ hy=reduce?0:Math.min(hero.offsetHeight,scrollY*.5); hin.style.setProperty('--hy',hy+'px'); }
@@ -1206,20 +1299,28 @@
       if(pointer && performance.now()-lastMove<2500 && pointer.y<hr.bottom) target=Math.atan2(px-pointer.x,pointer.y-py)*180/Math.PI;
       else target=34+20*Math.sin(performance.now()/2600);
       target=Math.min(66,Math.max(10,target));
-      if(reduce){ lampA=34; } else { lampV+=(target-lampA)*.012; lampV*=.9; lampA+=lampV; }
+      if(reduce){ lampA=34; } else { lampV+=(target-lampA)*.0045; lampV*=.94; lampA+=lampV; }
       lamp.style.setProperty('--la',lampA.toFixed(2)+'deg');
     }
-    /* each dark section's shaft swings to the right as the section leaves the top */
-    $$('[data-dk]',current).forEach(function(s){ var r=s.getBoundingClientRect(); if(r.bottom<0||r.top>vh) return;
-      var gone=Math.min(1,Math.max(0,-r.top/Math.max(1,r.height-vh*.3)));
-      s.style.setProperty('--ba',(118+gone*52)+'deg'); });
+    /* each dark section's shaft comes in from off the left as the section arrives, slows
+       and drifts while you read, then speeds up and swings off to the right as it leaves */
+    $$('[data-dk]',current).forEach(function(s){ var r=s.getBoundingClientRect(); if(r.bottom<-50||r.top>vh+50) return;
+      /* X is where the shaft crosses the middle of the screen, as a share of its width. It is
+         worked out against the screen, not the section, because the shaft leans and a fixed
+         shaft would seem to slide left as the page scrolls up past it. */
+      var q=reduce?.5:Math.min(1,Math.max(0,(vh-r.top)/(vh+r.height))), X, ba;
+      if(q<.32){ var a=q/.32, e=1-Math.pow(1-a,3); X=-.5+e*.75; ba=124-e*4; }
+      else if(q<.55){ var m=(q-.32)/.23; X=.25+m*.1; ba=120-m*2; }
+      else { var c=Math.min(1,(q-.55)/.33), k=c*c; X=.35+k*1.35; ba=118+k*34; }
+      var W=r.width, H=r.height, rad=ba*Math.PI/180, dx=Math.sin(rad), dy=-Math.cos(rad), L=Math.abs(W*dx)+Math.abs(H*dy),
+          t=((X*W-W/2)*dx+((vh/2-r.top)-H/2)*dy+L/2)/L, bo=t*100-28;
+      s.style.setProperty('--bo',bo.toFixed(2)+'%'); s.style.setProperty('--ba',ba.toFixed(2)+'deg'); });
     $$('[data-count]',current).forEach(function(b){
       if(counted.has(b) || !vis(b,.92)) return; counted.add(b);
       var to=+b.dataset.count, pre=b.dataset.pre||'', suf=b.dataset.suffix||'', t0=performance.now(), d=reduce?0:1600;
       (function step(now){ var q=d?Math.min(1,(now-t0)/d):1, e=1-Math.pow(1-q,4); b.textContent=pre+Math.round(to*e).toLocaleString('en-AU')+suf; if(q<1) requestAnimationFrame(step); })(t0);
     });
     var m=$('.me__ph img',current); if(m && !reduce) m.style.setProperty('--py',(scrollY*.2)+'px');
-    var fb=$('[data-foot]'); if(fb){ var fr=fb.getBoundingClientRect(), fp=Math.min(1,Math.max(0,(vh-fr.top)/(fr.height*1.6))); fb.style.setProperty('--fy',((1-fp)*40)+'%'); }
     mqAnims.forEach(function(a){ a.playbackRate+=((1+Math.min(6,Math.abs(vel)*.25))-a.playbackRate)*.08; }); vel*=.9;
   }
   function frame(){ tick(); requestAnimationFrame(frame); }
@@ -1247,20 +1348,27 @@
     $$('[data-cad]').forEach(function(x){ x.setAttribute('aria-pressed',String(x===b)); }); var s=$('[data-cad-say]'); if(s) s.textContent=CAD[b.dataset.cad];
   }); });
 
-  /* the engine, on your numbers: next month is what you have, plus marketing and
-     referrals, less the ones you didn't impress */
+  /* the engine, on your numbers: CAC from the funnel, AOGP from the order, LTGP from
+     the purchases, and the ratio Ryan's worksheet aims at, 3 : 1 or better */
   function engine(){
     var box=$('[data-eng]'); if(!box) return;
-    function v(k,max){ var x=parseFloat($('[data-n="'+k+'"]',box).value); if(isNaN(x)||x<0) x=0; return max?Math.min(max,x):x; }
-    var n=v('n'), inp=v('in'), ef=v('ef',100)/100, rf=v('rf',100)/100;
-    var lose=Math.round(n*(1-ef)), ref=Math.round(n*ef*rf), next=Math.max(0,n+inp+ref-lose), yr=n;
-    for(var i=0;i<12;i++) yr=Math.max(0,yr+inp+yr*ef*rf-yr*(1-ef));
-    $('[data-e-in]').textContent='+'+inp; $('[data-e-rf]').textContent='+'+ref; $('[data-e-out]').textContent='\u2212'+lose;
-    $('[data-e-next]').textContent=next.toLocaleString('en-AU'); $('[data-e-yr]').textContent=Math.round(yr).toLocaleString('en-AU');
-    var st=$('[data-e-state]'), gain=inp+ref-lose;
-    st.className='out__state '+(gain>0?'up':gain<0?'down':''); st.textContent=gain>0?'Growing':gain<0?'Declining':'Holding';
+    function v(k){ var x=parseFloat($('[data-n="'+k+'"]',box).value); return isNaN(x)||x<0?0:x; }
+    function $f(n){ return '$'+Math.round(n).toLocaleString('en-AU'); }
+    var conv=(v('show')/100)*(v('close')/100), cac=conv?v('cpl')/conv:0, aogp=v('aov')*v('gm')/100, ltgp=aogp*v('buys'), ratio=cac?ltgp/cac:0;
+    $('[data-o="cac"]',box).textContent=$f(cac); $('[data-o="aogp"]',box).textContent=$f(aogp); $('[data-o="ltgp"]',box).textContent=$f(ltgp);
+    $('[data-e-cac]').textContent=$f(cac); $('[data-e-aogp]').textContent=$f(aogp); $('[data-e-ltgp]').textContent=$f(ltgp);
+    $('[data-e-ratio]').textContent=(ratio>=10?Math.round(ratio):ratio.toFixed(1))+' : 1';
+    var st=$('[data-e-state]'); st.className='out__state '+(!cac?'':ratio>=3?'up':'down');
+    st.textContent=!cac?'Aim for 3 : 1 or better':ratio>=3?'Healthy, 3 : 1 or better':'Under 3 : 1';
   }
   $$('[data-eng] input').forEach(function(i){ i.addEventListener('input',engine); });
+  /* a row lights its own box on the drawing */
+  (function(){ var hl=$('[data-hl]'); if(!hl) return;
+    function light(r){ ['--x','--y','--w','--h'].forEach(function(k){ hl.style.setProperty(k,r.style.getPropertyValue(k)); }); hl.classList.add('on'); }
+    $$('.ws__r').forEach(function(r){ r.addEventListener('pointerenter',function(){ light(r); }); r.addEventListener('focusin',function(){ light(r); }); });
+    var ws=$('.ws'); ws.addEventListener('pointerleave',function(){ if(!ws.contains(root.activeElement)) hl.classList.remove('on'); });
+    ws.addEventListener('focusout',function(){ setTimeout(function(){ if(!ws.contains(root.activeElement)) hl.classList.remove('on'); },0); });
+  })();
 
   /* are we a fit */
   (function(){ var box=$('[data-fit]'); if(!box) return; var a=$('[data-fit-a]'), t=$('[data-fit-t]'), p=$('[data-fit-p]'), go=$('[data-fit-go]');
