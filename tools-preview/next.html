@@ -646,6 +646,14 @@
   --fg:#0A0A0A;--sub:rgba(10,10,10,.8);--mute:rgba(10,10,10,.62);--rim:rgba(10,10,10,.2);--acc:#0A0A0A}
 .pink--ring::after{content:"";position:absolute;inset:8px;border:2px solid #FF2D6B;border-radius:inherit;pointer-events:none}
 .pinkband{padding:clamp(96px,11vw,160px) 0}
+/* Ryan cut out on the right, standing in the band; the heading and the copy run over his edge */
+.pinkband--me{overflow:hidden;isolation:isolate}
+.pinkband__me{position:absolute;right:max(-1vw,calc((100vw - 1320px) / 2 - 10px));bottom:0;height:min(96%,880px);width:auto;z-index:0;pointer-events:none;
+  filter:drop-shadow(0 20px 40px rgba(0,0,0,.35))}
+.pinkband--me .wrap{z-index:2}
+.pinkband--me .big{text-shadow:0 4px 30px rgba(255,45,107,.35)}
+.pinkband__copy{max-width:min(640px,58%)}
+@media (max-width:900px){.pinkband--me{padding-bottom:min(118vw,620px)}.pinkband__me{right:-6vw;height:min(100vw,560px)}.pinkband__copy{max-width:none}}
 .big{font:400 clamp(64px,11vw,184px)/.86 'Anton',Impact,sans-serif;text-transform:uppercase;margin:0}
 .ways{border-top:1px solid var(--rim)}
 .ways > div{display:grid;grid-template-columns:80px minmax(0,1fr) minmax(0,1.1fr) 180px;gap:28px;align-items:center;padding:clamp(28px,3vw,40px) 0;border-bottom:1px solid var(--rim);transition:padding .5s var(--out)}
@@ -1129,11 +1137,12 @@
       </div>
     </section>
 
-    <section class="pink pinkband">
+    <section class="pink pinkband pinkband--me">
+      <img class="pinkband__me" src="assets/img/ryan-cutout.png" alt="" aria-hidden="true">
       <div class="wrap">
         <p class="hand">the thing I actually believe</p>
         <h2 class="big" data-split>Partners, not suppliers</h2>
-        <div class="even" style="margin-top:clamp(40px,5vw,72px)"><div></div>
+        <div class="pinkband__copy" style="margin-top:clamp(40px,5vw,72px)">
           <div>
             <p class="lead" style="max-width:32ch">Almost everyone in this industry runs the same way on every job. Three quotes, take the cheapest, squeeze it, do it again next event.</p>
             <p class="p" style="margin-top:24px">It saves money on that job. It costs you everything after it, because the suppliers you swap in and out owe you nothing in an emergency. If you partner properly you get the things that will actually affect long term growth. More revenue, margin, reach and connection.</p>

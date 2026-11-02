@@ -2903,3 +2903,10 @@ Ryan's brief, written at the length he gave it.
   just the two of them. Each photo sits in its own clipped frame so the two slide touching,
   with no gap. The slide runs slower (1.5 seconds) and each photo holds about 70 percent
   longer before it goes.
+
+## The new view, Ryan cut out in the pink band, 2 November 2026
+
+- **"Partners, not suppliers" carries Ryan's cutout on the right**, standing on the bottom
+  of the band with a soft drop shadow. The end of the heading just reaches his hair and the
+  copy runs over his arm, so the text sits slightly over him while his face stays clear. On
+  a phone he stands under the copy.
