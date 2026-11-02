@@ -2917,3 +2917,20 @@ Ryan's brief, written at the length he gave it.
   bob and tilt. No single card lifts out any more.
 - **The boardroom photo is moved right** so the whole flower and vase are in frame, and the
   slider's photos sit closer to full frame.
+
+## The new view, logos and fixes, 2 November 2026
+
+- **Home hero heading**: "Helping businesses in / live events & production / grow through
+  partnerships". Ryan's change, "founders" to "businesses", on the new view only. The lockup
+  above it is the header's own stage at a bigger size, pulled left so the word lines up
+  with the heading and the beam is no longer cut off.
+- **A row of logos under the case studies on Home**: Shadow AV, Pullman Hotels and Resorts,
+  Aaron Sansoni, Foundation Theatres. Businesses Ryan has done partnerships with. Not all
+  were clients, so the row carries no label and nothing calls them clients. Grey until
+  hovered.
+- **Ryan's cutout is pinned to the right edge of the screen**, sitting on the bottom of the
+  pink band, and comes in as the window narrows. New cutout file from Ryan.
+- **The socials fan reacts to the pointer only while it moves**: cards near the pointer tip
+  in the direction of travel and spring back; when the pointer stops, they stop.
+- **Socials heading**: "I write about" on the top line, "Partnerships & Business most weeks"
+  on the second, centred.
