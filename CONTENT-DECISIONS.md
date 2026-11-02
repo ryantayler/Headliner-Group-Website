@@ -3049,3 +3049,22 @@ Ryan's brief, written at the length he gave it.
   live events and production, Australian, Turning over $1m to $10m, Profitable, Founder
   operated, with "Sounds like you?" and Book a call on the right. Partner with us keeps the
   toggles.
+
+## The new view, Home's lower half, 2 November 2026
+
+- **Header**: the box behind the links is gone; they sit straight on the truss.
+- **Stats** under "We grow businesses" sit on one dark card.
+- **"Know if / you're a fit"**: In the live events or production industry, Australian owned,
+  Founder operated (left column), Turning over $1m to $10m, Profitable, Want to grow or exit
+  (right column). Each has a grey box on its right where a cyan tick draws itself in, one
+  after another. One button under it: "Sounds like you?". No black card.
+- **"Headliner Group / vs others"** is a tick and cross table. Six lines, the same on each
+  card: Specialise in live events and production, Do the work with you, Paid when your
+  business grows, Partners across the industry, In it for the long term, Capital when you
+  need it. Consultants and coaches get all crosses, private equity a tick only for capital,
+  Headliner Group all ticks. Lines drafted for Ryan to fix.
+- **"We've heard it all"**, three objections with answers. The first is Ryan's ("We've tried
+  to grow profit, and we're already saturated" / eight figure plus businesses). The other
+  two are drafted: no time to take anything new on, and partnerships tried before.
+- **Home's last call**: "We've built something powerful. Let's talk." No line under it.
+  Two buttons, Get in touch (orange) and More info (to Partner with us).

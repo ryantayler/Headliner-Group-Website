@@ -110,7 +110,7 @@
 .bar::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22132%22%20height%3D%2294%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22a%22%20gradientUnits%3D%22userSpaceOnUse%22%20x1%3D%2229.7%22%20y1%3D%2243.7%22%20x2%3D%2236.3%22%20y2%3D%2250.3%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23262928%22/%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%231C1E1E%22/%3E%3C/linearGradient%3E%3ClinearGradient%20id%3D%22b%22%20gradientUnits%3D%22userSpaceOnUse%22%20x1%3D%22102.3%22%20y1%3D%2243.7%22%20x2%3D%2295.7%22%20y2%3D%2250.3%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23262928%22/%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%231C1E1E%22/%3E%3C/linearGradient%3E%3ClinearGradient%20id%3D%22t%22%20gradientUnits%3D%22userSpaceOnUse%22%20x1%3D%220.0%22%20y1%3D%221.0%22%20x2%3D%220.0%22%20y2%3D%2214.0%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23262928%22/%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%231C1E1E%22/%3E%3C/linearGradient%3E%3ClinearGradient%20id%3D%22u%22%20gradientUnits%3D%22userSpaceOnUse%22%20x1%3D%220.0%22%20y1%3D%2280.0%22%20x2%3D%220.0%22%20y2%3D%2293.0%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23262928%22/%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%231C1E1E%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg%20opacity%3D%22.45%22%3E%3Cpath%20d%3D%22M0%2084L66%2010%22%20stroke%3D%22%23000%22%20stroke-opacity%3D%22.3%22%20stroke-width%3D%229.4%22/%3E%3Cpath%20d%3D%22M0%2084L66%2010%22%20stroke%3D%22url%28%23a%29%22%20stroke-width%3D%227%22/%3E%3Cpath%20d%3D%22M66%2010L132%2084%22%20stroke%3D%22%23000%22%20stroke-opacity%3D%22.3%22%20stroke-width%3D%229.4%22/%3E%3Cpath%20d%3D%22M66%2010L132%2084%22%20stroke%3D%22url%28%23b%29%22%20stroke-width%3D%227%22/%3E%3Crect%20x%3D%22-1%22%20y%3D%221%22%20width%3D%22134%22%20height%3D%2213%22%20fill%3D%22url%28%23t%29%22%20stroke%3D%22%23000%22%20stroke-opacity%3D%22.3%22%20stroke-width%3D%221.25%22/%3E%3Crect%20x%3D%22-1%22%20y%3D%2280%22%20width%3D%22134%22%20height%3D%2213%22%20fill%3D%22url%28%23u%29%22%20stroke%3D%22%23000%22%20stroke-opacity%3D%22.3%22%20stroke-width%3D%221.25%22/%3E%3C/g%3E%3C/svg%3E") repeat-x 0 0 / auto 100%;--fm:linear-gradient(90deg,transparent,#000 18%,#000 82%,transparent);-webkit-mask-image:var(--fm);mask-image:var(--fm);transition:opacity .5s}
 .bar.is-solid::after{opacity:.6}
 .plate{position:relative;display:flex;align-items:center;padding:0 22px;height:46px;border-radius:8px;
-  background:rgba(14,16,16,.22);border:1px solid rgba(236,232,224,.04);-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px)}
+  background:none;border:0}
 .plate--go{padding:0;height:auto;border-radius:30px;background:none;border:0;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none}
 .bar .wrap{display:flex;align-items:center;gap:28px;padding-right:max(var(--gut),calc(236px - (100vw - min(1320px,100vw)) / 2))}
 .bar.is-solid{background:rgba(10,10,10,.88);-webkit-backdrop-filter:blur(14px) saturate(140%);backdrop-filter:blur(14px) saturate(140%);box-shadow:0 1px 0 #2E2E2E}
@@ -268,16 +268,24 @@
 .vsx{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;align-items:stretch}
 .vsx__c{padding:clamp(26px,2.6vw,40px);border-radius:16px;background:var(--card);box-shadow:0 0 0 1px var(--rim)}
 .vsx__c h3{font:400 clamp(22px,1.9vw,30px)/.95 var(--display);text-transform:uppercase;letter-spacing:-.02em;margin:0 0 22px;color:var(--mute)}
-.vsx dl{margin:0;display:grid;grid-template-columns:70px minmax(0,1fr);gap:14px 12px;padding-top:18px;border-top:1px solid var(--rim)}
-.vsx dt{font:600 12px/1.6 var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
-.vsx dd{margin:0;font-size:16px;line-height:1.45;color:var(--sub)}
 .vsx__c--us{background:#161616;color:#ECE8E0;scale:1.03;box-shadow:0 0 0 1px rgba(45,226,195,.55),0 0 46px rgba(45,226,195,.35),0 30px 70px -24px rgba(45,226,195,.35);--rim:#2C2C2C}
 .vsx__c--us h3{color:#2DE2C3}
-.vsx__c--us dd{color:#ECE8E0}
-.vsx__c--us dt{color:#8E8A84}
+.vsx ul{list-style:none;margin:0;padding:18px 0 0;border-top:1px solid var(--rim);display:grid;gap:14px}
+.vsx li{display:flex;align-items:flex-start;gap:12px;font-size:15.5px;line-height:1.4}
+.vsx li svg{flex:none;width:22px;height:22px;padding:3px;border-radius:50%;fill:none;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.vsx li.is-n{color:var(--mute)}
+.vsx li.is-n span{text-decoration:line-through;text-decoration-color:rgba(91,99,96,.45)}
+.vsx li .x{background:#F3DAD6;stroke:#C23A2A}
+.vsx li .v{background:#2DE2C3;stroke:#0A0A0A}
+.vsx__c--us li{color:#ECE8E0}
 @media (max-width:900px){.vsx{grid-template-columns:minmax(0,1fr)}.vsx__c--us{scale:1}}
-.tally{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid #2A2A2A}
-.tally > div{padding:clamp(24px,3vw,40px) 24px 0 0}
+.heard{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.heard__c{margin:0;padding:clamp(26px,2.6vw,40px);border-radius:16px;background:var(--card);box-shadow:0 0 0 1px var(--rim);display:flex;flex-direction:column;gap:18px}
+.heard__c blockquote{margin:0;font:500 clamp(19px,1.5vw,23px)/1.35 var(--body);letter-spacing:-.01em;color:var(--mute)}
+.heard__c figcaption{padding-top:18px;border-top:1px solid var(--rim);font:500 clamp(16px,1.2vw,18px)/1.5 var(--body);color:var(--fg)}
+@media (max-width:900px){.heard{grid-template-columns:minmax(0,1fr)}}
+.tally{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));padding:clamp(28px,3vw,48px) clamp(24px,3vw,48px) clamp(32px,3.4vw,52px);border-radius:18px;background:#141414;box-shadow:0 0 0 1px #262626;position:relative;z-index:1}
+.tally > div{padding:0 24px 0 0}
 .tally > div + div{padding-left:24px;border-left:1px solid #2A2A2A}
 .tally b{display:block;font:400 clamp(40px,4.6vw,76px)/1 var(--display);color:#ECE8E0;white-space:nowrap}
 .tally b i{font-style:normal;color:#2DE2C3}
@@ -431,6 +439,8 @@
 .roll i + i{color:var(--cta)}
 .book:hover .roll i{translate:0 -100%}
 .cta .row{margin-top:clamp(28px,3vw,40px)}
+.book--home .book__t{font-size:clamp(40px,6.2vw,104px);line-height:.98;max-width:16ch}
+.book--home .rw{line-height:.98}
 .cta .lead{color:#C9C5BE;margin-top:18px}
 
 /* ---------- partner with us ---------- */
@@ -569,9 +579,15 @@
 .tog[aria-pressed="true"] i{background:var(--acc)}
 .tog[aria-pressed="true"] i::after{translate:22px 0}
 .fit__a{padding:clamp(28px,3vw,44px);border-radius:22px;background:var(--card);min-height:260px;display:flex;flex-direction:column;justify-content:center;gap:16px;transition:background .5s,color .5s}
-.ticks{list-style:none;margin:32px 0 0;padding:0;display:grid;gap:10px}
-.ticks li{display:flex;align-items:center;gap:14px;padding:18px 22px;border-radius:16px;background:var(--card);font-size:16px;font-weight:500}
-.ticks svg{flex:none;width:26px;height:26px;padding:4px;border-radius:50%;background:#2DE2C3;fill:none;stroke:#0A0A0A;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.ticks{list-style:none;margin:clamp(32px,4vw,56px) 0 0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(3,auto);grid-auto-flow:column;gap:12px 16px}
+.ticks li{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 18px 18px 24px;border-radius:16px;background:var(--card);font-size:17px;font-weight:500}
+/* a greyed box with a cyan tick drawn into it, one after another */
+.tk{flex:none;width:36px;height:36px;border-radius:9px;background:var(--bg2);box-shadow:inset 0 0 0 1.5px var(--rim);display:grid;place-items:center}
+.tk svg{width:30px;height:30px;fill:none;stroke:#14C4A6;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.tk path{stroke-dasharray:40;stroke-dashoffset:40;transition:stroke-dashoffset .55s cubic-bezier(.5,0,.2,1);transition-delay:calc(.3s + var(--n) * .22s)}
+.ticks.up .tk path{stroke-dashoffset:0}
+.ticks__go{margin-top:clamp(28px,3vw,44px)}
+@media (max-width:760px){.ticks{grid-template-columns:minmax(0,1fr);grid-template-rows:none;grid-auto-flow:row}}
 .fit__a.yes{background:var(--black);color:#ECE8E0;--sub:#B9B5AE}
 .fit__a .d{font-size:clamp(28px,3vw,44px)}
 @media (max-width:900px){.fit{grid-template-columns:1fr}}
@@ -871,20 +887,18 @@
     </section>
 
     <section class="sec">
-      <div class="wrap fit">
+      <div class="wrap">
         <div>
           <h2 class="d d2" data-split><span class="ln">Know if</span> <span class="ln">you&rsquo;re a fit</span></h2>
-          <ul class="ticks">
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>In or around live events and production</li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Australian</li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Turning over $1m to $10m</li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Profitable</li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Founder operated</li>
+          <ul class="ticks fade">
+            <li style="--n:0"><span>In the live events or production industry</span><i class="tk" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M7 17.5c2.2 1.6 4 3.6 5.6 6 2.8-6.4 6.8-11.6 12.4-16"/></svg></i></li>
+            <li style="--n:1"><span>Australian owned</span><i class="tk" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M7 17.5c2.2 1.6 4 3.6 5.6 6 2.8-6.4 6.8-11.6 12.4-16"/></svg></i></li>
+            <li style="--n:2"><span>Founder operated</span><i class="tk" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M7 17.5c2.2 1.6 4 3.6 5.6 6 2.8-6.4 6.8-11.6 12.4-16"/></svg></i></li>
+            <li style="--n:3"><span>Turning over $1m to $10m</span><i class="tk" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M7 17.5c2.2 1.6 4 3.6 5.6 6 2.8-6.4 6.8-11.6 12.4-16"/></svg></i></li>
+            <li style="--n:4"><span>Profitable</span><i class="tk" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M7 17.5c2.2 1.6 4 3.6 5.6 6 2.8-6.4 6.8-11.6 12.4-16"/></svg></i></li>
+            <li style="--n:5"><span>Want to grow or exit</span><i class="tk" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M7 17.5c2.2 1.6 4 3.6 5.6 6 2.8-6.4 6.8-11.6 12.4-16"/></svg></i></li>
           </ul>
-        </div>
-        <div class="fit__a yes">
-          <p class="d">Sounds like you?</p>
-          <div class="row"><a class="btn btn--go" href="#contact" data-go="contact">Book a call</a></div>
+          <div class="row ticks__go"><a class="btn btn--go" href="#contact" data-go="contact">Sounds like you?</a></div>
         </div>
       </div>
     </section>
@@ -930,29 +944,39 @@
 
     <section class="sec">
       <div class="wrap">
-        <div class="sh"><h2 class="d d2" data-split>Headliner vs others</h2></div>
+        <div class="sh"><h2 class="d d2" data-split><span class="ln">Headliner Group</span> <span class="ln">vs others</span></h2></div>
         <div class="vsx">
           <div class="vsx__c fade">
             <h3>Consultants &amp; business coaches</h3>
-            <dl><dt>Paid</dt><dd>A fee, whether you grow or not</dd><dt>Does</dt><dd>Gives advice, you do the work</dd><dt>Wins</dt><dd>When you sign up again</dd></dl>
+            <ul><li class="is-n"><svg class="x" viewBox="0 0 24 24" aria-label="No"><path d="M7 7l10 10M17 7L7 17"/></svg><span>Specialise in live events and production</span></li><li class="is-n"><svg class="x" viewBox="0 0 24 24" aria-label="No"><path d="M7 7l10 10M17 7L7 17"/></svg><span>Do the work with you</span></li><li class="is-n"><svg class="x" viewBox="0 0 24 24" aria-label="No"><path d="M7 7l10 10M17 7L7 17"/></svg><span>Paid when your business grows</span></li><li class="is-n"><svg class="x" viewBox="0 0 24 24" aria-label="No"><path d="M7 7l10 10M17 7L7 17"/></svg><span>Partners across the industry</span></li><li class="is-n"><svg class="x" viewBox="0 0 24 24" aria-label="No"><path d="M7 7l10 10M17 7L7 17"/></svg><span>In it for the long term</span></li><li class="is-n"><svg class="x" viewBox="0 0 24 24" aria-label="No"><path d="M7 7l10 10M17 7L7 17"/></svg><span>Capital when you need it</span></li></ul>
           </div>
           <div class="vsx__c fade">
             <h3>Private equity</h3>
-            <dl><dt>Paid</dt><dd>A return on what they buy in</dd><dt>Does</dt><dd>Pushes the numbers to sell</dd><dt>Wins</dt><dd>When they exit</dd></dl>
+            <ul><li class="is-n"><svg class="x" viewBox="0 0 24 24" aria-label="No"><path d="M7 7l10 10M17 7L7 17"/></svg><span>Specialise in live events and production</span></li><li class="is-n"><svg class="x" viewBox="0 0 24 24" aria-label="No"><path d="M7 7l10 10M17 7L7 17"/></svg><span>Do the work with you</span></li><li class="is-n"><svg class="x" viewBox="0 0 24 24" aria-label="No"><path d="M7 7l10 10M17 7L7 17"/></svg><span>Paid when your business grows</span></li><li class="is-n"><svg class="x" viewBox="0 0 24 24" aria-label="No"><path d="M7 7l10 10M17 7L7 17"/></svg><span>Partners across the industry</span></li><li class="is-n"><svg class="x" viewBox="0 0 24 24" aria-label="No"><path d="M7 7l10 10M17 7L7 17"/></svg><span>In it for the long term</span></li><li class="is-y"><svg class="v" viewBox="0 0 24 24" aria-label="Yes"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Capital when you need it</span></li></ul>
           </div>
           <div class="vsx__c vsx__c--us fade">
             <h3>Headliner Group</h3>
-            <dl><dt>Paid</dt><dd>A share of the business</dd><dt>Does</dt><dd>Partnerships and optimisation, with you</dd><dt>Wins</dt><dd>When your business grows</dd></dl>
+            <ul><li class="is-y"><svg class="v" viewBox="0 0 24 24" aria-label="Yes"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Specialise in live events and production</span></li><li class="is-y"><svg class="v" viewBox="0 0 24 24" aria-label="Yes"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Do the work with you</span></li><li class="is-y"><svg class="v" viewBox="0 0 24 24" aria-label="Yes"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Paid when your business grows</span></li><li class="is-y"><svg class="v" viewBox="0 0 24 24" aria-label="Yes"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Partners across the industry</span></li><li class="is-y"><svg class="v" viewBox="0 0 24 24" aria-label="Yes"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>In it for the long term</span></li><li class="is-y"><svg class="v" viewBox="0 0 24 24" aria-label="Yes"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Capital when you need it</span></li></ul>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec" style="padding-top:0">
+      <div class="wrap">
+        <div class="sh"><h2 class="d d2" data-split>We&rsquo;ve heard it all</h2></div>
+        <div class="heard">
+          <figure class="heard__c fade"><blockquote>&ldquo;We&rsquo;ve tried to grow profit, and we&rsquo;re already saturated.&rdquo;</blockquote><figcaption>We&rsquo;ve seen eight figure plus businesses grow with this strategy, so we know it&rsquo;ll work for yours.</figcaption></figure>
+          <figure class="heard__c fade"><blockquote>&ldquo;We don&rsquo;t have time to take on anything new.&rdquo;</blockquote><figcaption>That&rsquo;s the point of a partner. We do the work with you, and the right partnership takes work off your plate.</figcaption></figure>
+          <figure class="heard__c fade"><blockquote>&ldquo;We&rsquo;ve tried partnerships before and they didn&rsquo;t work.&rdquo;</blockquote><figcaption>Most fail because they only work one way. Ours have to create revenue, margin, reach or connection for both sides.</figcaption></figure>
         </div>
       </div>
     </section>
 
     <section class="sec dk cta" data-dk>
       <div class="wrap">
-        <a class="book" href="#contact" data-go="contact"><span class="book__t" data-roll>Book a call</span></a>
-        <p class="lead">A first call to see where partnerships could take your business.</p>
-        <div class="row"><a class="btn btn--go" href="#contact" data-go="contact">Book a call</a><a class="link" href="#contact" data-go="contact" style="color:#ECE8E0">Or just send us a message</a></div>
+        <a class="book book--home" href="#contact" data-go="contact"><span class="book__t" data-roll>We&rsquo;ve built something powerful. Let&rsquo;s talk.</span></a>
+        <div class="row"><a class="btn btn--go" href="#contact" data-go="contact">Get in touch</a><a class="btn" href="#partnerships" data-go="partnerships">More info</a></div>
       </div>
     </section>
   </div>
