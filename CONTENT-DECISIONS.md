@@ -2986,3 +2986,14 @@ Ryan's brief, written at the length he gave it.
   old Speaking line.
 - **Socials heading on three lines**: "I write about / Partnerships & / Business most weeks".
 - **Footer social buttons are smaller**, with Book a call kept at full size on top.
+
+## The new view, services as a staircase, 2 November 2026
+
+- **The service pairs, the arrows and the "Upgrade" tags are gone.** Ryan: it looked
+  terrible. The four services are now one staircase with no boxes: one ground that steps up
+  left to right. Consulting to Negotiations is a small step on the light ground. The jump
+  to Advisory is big and the ground turns dark. Advisory to Partnership is a small step
+  again, and Partnership is the top step, lit by the shaft. One Book a call under it.
+- **One style per block of copy.** "Our industry's biggest mistake" had three: the lead, the
+  body and the bold "Scroll down" line. All three are now one size, weight and colour.
+- **The garden photo in Our founder sits as high as the frame allows**, less headroom.

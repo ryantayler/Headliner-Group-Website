@@ -245,7 +245,10 @@
   white-space:nowrap;padding:.18em .32em;border:.09em solid currentColor;border-radius:.12em;background:rgba(242,244,243,.82)}
 .quotes.nope-on .nope{opacity:1;scale:1}
 .quotes.nope-on .qd{opacity:.5}
-.why{display:flex;align-items:center;gap:10px;margin:clamp(28px,3vw,40px) 0 0;font-weight:600;color:var(--fg)}
+/* one size, one weight, one colour for a block of copy */
+.copy{font:500 clamp(18px,1.45vw,22px)/1.5 var(--body);letter-spacing:-.01em;color:var(--fg);margin:0;max-width:40ch}
+.copy + .copy{margin-top:.8em}
+.why{display:flex;align-items:center;gap:10px}
 .why svg{width:22px;height:22px;fill:none;stroke:#2DE2C3;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;animation:why 1.6s var(--out) infinite}
 @keyframes why{0%,100%{translate:0 -3px}50%{translate:0 4px}}
 @media (prefers-reduced-motion:reduce){.why svg{animation:none}}
@@ -400,49 +403,31 @@
 .cta .lead{color:#C9C5BE;margin-top:18px}
 
 /* ---------- partner with us ---------- */
-/* the four ways in, side by side and set like agreements: a numbered head, clauses, and the
-   button sitting on a signing line. Kept to type and rules, not drawn as paper. */
-
-
-/* two pairs. In each, the second card is the first one upgraded, and an arrow runs between
-   them. The ongoing pair, advisory and partnership, sits higher on a dark lit panel. */
-.deals{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(18px,2vw,32px);align-items:end;margin-inline:calc(min(64px,4.4vw) * -1)}
-.dpair{position:relative;display:grid;grid-template-columns:minmax(0,1fr) 34px minmax(0,1fr);align-items:stretch;padding:clamp(12px,1.2vw,18px);border-radius:14px;background:var(--bg2)}
-.dpair .deal{margin:0}
-.deal__plus{align-self:center;display:grid;place-items:center;width:34px;height:34px;margin:0 -10px;z-index:2;border-radius:50%;background:var(--fg);color:var(--bg)}
-.deal__plus svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
-.deal__up{align-self:start;padding:5px 10px;border-radius:100px;background:var(--fg);color:var(--bg);font:600 11.5px/1 var(--body);letter-spacing:.08em;text-transform:uppercase;margin-bottom:-4px}
-.dpair--hi{background:#0A0A0A;padding:clamp(16px,1.6vw,24px);translate:0 calc(clamp(18px,2.4vw,36px) * -1);
-  box-shadow:0 40px 70px -40px rgba(10,30,26,.6);overflow:hidden;isolation:isolate}
-.dpair--hi::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
-  background:linear-gradient(118deg,transparent 18%,rgba(45,226,195,.26) 34%,rgba(45,226,195,.05) 52%,transparent 62%)}
-.dpair--hi .deal{background:#1A1D1C;border-color:#2C302F;color:#ECE8E0;--sub:#B9B5AE;--mute:#8E8A84;--rim:#2C302F;--fg:#ECE8E0;--bg:#0A0A0A;--bg2:#252928}
-.dpair--hi .deal--eq{background:#2A2E2D;border-color:rgba(45,226,195,.55);box-shadow:0 0 0 1px rgba(45,226,195,.35),0 30px 50px -30px rgba(45,226,195,.35)}
-.dpair--hi .deal__up{background:#2DE2C3;color:#0A0A0A}
-.dpair--hi .deal__plus{background:#2DE2C3;color:#0A0A0A}
-@media (max-width:1100px){.deals{grid-template-columns:minmax(0,1fr);margin-inline:0}.dpair--hi{translate:none}}
-@media (max-width:620px){.dpair{grid-template-columns:minmax(0,1fr)}.deal__plus{justify-self:center;margin:-10px 0;rotate:90deg}}
+/* the four ways in as one staircase: no boxes, one ground that steps up left to right.
+   Consulting to negotiations is a small step on the light ground, the jump to advisory is
+   big and the ground turns dark and lit, and partnership is the top step. */
+.stairs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));align-items:stretch;margin-inline:calc(min(64px,4.4vw) * -1)}
+.step{display:flex;flex-direction:column;gap:14px;padding:clamp(26px,2.6vw,40px) clamp(20px,2vw,32px) clamp(30px,3vw,44px);border-top:3px solid var(--fg);position:relative}
+.step--1{background:#E6EBE9;margin-top:clamp(140px,13vw,190px);border-radius:12px 0 0 12px}
+.step--2{background:#DCE3E0;margin-top:clamp(116px,10.8vw,158px)}
+.step--3{background:#141414;margin-top:clamp(22px,2.2vw,32px);border-top-color:#2DE2C3}
+.step--4{background:#0A0A0A;margin-top:0;border-radius:0 12px 12px 0;border-top-color:#2DE2C3;overflow:hidden;isolation:isolate}
+.step--3,.step--4{color:#ECE8E0;--sub:#B9B5AE;--mute:#8E8A84;--rim:#2C2C2C;--fg:#ECE8E0;--bg:#0A0A0A;--bg2:#222}
+.step--4::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(118deg,transparent 10%,rgba(45,226,195,.28) 30%,rgba(45,226,195,.05) 52%,transparent 64%)}
+.step--3{border-radius:12px 0 0 0}
+.step h3{font:400 clamp(22px,1.9vw,30px)/.95 var(--display);text-transform:uppercase;letter-spacing:-.02em;margin:0}
+.step > p{margin:0;font-size:15.5px;line-height:1.55;color:var(--sub)}
+.step ol{list-style:none;margin:0;padding:14px 0 0;border-top:1px solid var(--rim);display:grid;gap:9px}
+.step li{display:grid;grid-template-columns:30px minmax(0,1fr);font-size:14.5px;color:var(--sub);line-height:1.4}
+.step li i{font-style:normal;font-variant-numeric:tabular-nums;color:var(--mute);font-size:12.5px;padding-top:1px}
+.step .seg{margin:0;align-self:stretch;display:flex;max-width:100%}
+.step .seg button{flex:1;min-width:0;padding:7px 4px;font-size:12.5px}
+@media (max-width:1000px){.stairs{grid-template-columns:repeat(2,minmax(0,1fr));margin-inline:0}
+  .step--1{margin-top:60px;border-radius:12px 0 0 0}.step--2{margin-top:30px;border-radius:0 12px 0 0}.step--3{margin-top:0;border-radius:0 0 0 12px}.step--4{border-radius:0 0 12px 0}}
+@media (max-width:620px){.stairs{grid-template-columns:minmax(0,1fr)}.step{margin:0!important;border-radius:0!important}.step--1{border-radius:12px 12px 0 0!important}.step--4{border-radius:0 0 12px 12px!important}}
 .deals__go{display:flex;justify-content:center;margin-top:clamp(32px,4vw,56px)}
-@media (max-width:900px){.deals{margin-inline:0}}
-.deal{display:flex;flex-direction:column;gap:14px;padding:clamp(24px,2.4vw,36px);border-radius:6px;background:var(--card);
   border:1px solid var(--rim);box-shadow:0 1px 0 var(--rim),0 24px 40px -30px rgba(10,30,26,.35);transition:translate .5s var(--out),box-shadow .5s var(--out)}
-.deal:hover{translate:0 -6px;box-shadow:0 1px 0 var(--rim),0 34px 50px -30px rgba(10,30,26,.45)}
-.deal__h{display:flex;justify-content:space-between;align-items:center;padding-bottom:12px;border-bottom:3px double var(--rim);
   font:600 11.5px/1 var(--body);letter-spacing:.16em;text-transform:uppercase;color:var(--mute)}
-.deal__h b{padding:5px 9px;border-radius:4px;background:var(--fg);color:var(--bg);letter-spacing:.1em}
-.deal h3{font:400 clamp(22px,1.9vw,30px)/.95 var(--display);text-transform:uppercase;letter-spacing:-.02em;margin:4px 0 0}
-.deal > p{margin:0;font-size:15px;color:var(--sub)}
-.deal ol{list-style:none;margin:0;padding:12px 0 0;border-top:1px solid var(--rim);display:grid;gap:9px}
-.deal li{display:grid;grid-template-columns:30px minmax(0,1fr);font-size:14.5px;color:var(--sub);line-height:1.4}
-.deal li i{font-style:normal;font-variant-numeric:tabular-nums;color:var(--mute);font-size:12.5px;padding-top:1px}
-.deal .seg{margin-top:0;align-self:stretch;display:flex;max-width:100%}
-.deal .seg button{flex:1;min-width:0;padding:7px 4px;font-size:12.5px}
-.deal__s{margin-top:auto;padding-top:22px;display:flex;align-items:flex-end;gap:12px}
-.deal__s::before{content:"";flex:1;height:1px;background:var(--fg);opacity:.35;margin-bottom:12px;order:2}
-.deal--eq{background:#2A2E2D;color:#ECE8E0;border-color:#2A2E2D;--sub:#B9B5AE;--mute:#8E8A84;--rim:#2A2A2A;--fg:#ECE8E0;--bg:#0A0A0A}
-.deal--eq .deal__h b{background:#2DE2C3;color:#0A0A0A}
-@media (max-width:1100px){.deals{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:620px){.deals{grid-template-columns:minmax(0,1fr)}}
 
 .offer{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,5fr) minmax(0,3fr);gap:clamp(24px,4vw,64px);padding:clamp(36px,4vw,56px) 0;border-top:1px solid var(--rim);align-items:start}
 .offer h3{font:400 clamp(30px,3.4vw,52px)/.92 var(--display);text-transform:uppercase;letter-spacing:-.025em;margin:10px 0 0}
@@ -819,9 +804,9 @@
         </div>
         <div class="problem">
           <div>
-            <p class="lead">Three quotes, take the cheapest, squeeze it, do it again next event.</p>
-            <p class="p" style="margin-top:20px">It saves money on that job. It costs you everything after it.</p>
-            <p class="why">Scroll down to find out why <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v15M5 12l7 7 7-7"/></svg></p>
+            <p class="copy">Three quotes, take the cheapest, squeeze it, do it again next event.</p>
+            <p class="copy">It saves money on that job. It costs you everything after it.</p>
+            <p class="copy why">Scroll down to find out why <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v15M5 12l7 7 7-7"/></svg></p>
           </div>
           <div class="quotes" data-quotes>
             <div class="qd" style="--i:0"><div class="qd__p"><i class="qd__h">Quote</i><i class="l"></i><i class="l"></i><i class="l s"></i><i class="l"></i><b>$expensive</b><i class="qd__sl"></i></div></div>
@@ -897,7 +882,7 @@
           <p class="p">My goal is to use this experience to be in business with, or partnered into, every area of live events and production in Australia.</p>
           <div class="row" style="margin-top:30px"><a class="btn btn--pink" href="#ryan" data-go="ryan">More about Ryan</a></div>
         </div>
-        <div class="slider found__ph" data-slider><div class="sl is-shown"><img src="assets/img/ryan-hero.jpg" alt="Ryan Tayler" style="object-position:62% 50%"></div><div class="sl"><img src="assets/img/ryan-jungle.jpg" alt="Ryan Tayler sitting in front of a garden" style="object-position:40% 40%"></div></div>
+        <div class="slider found__ph" data-slider><div class="sl is-shown"><img src="assets/img/ryan-hero.jpg" alt="Ryan Tayler" style="object-position:62% 50%"></div><div class="sl"><img src="assets/img/ryan-jungle.jpg" alt="Ryan Tayler sitting in front of a garden" style="object-position:40% 100%;scale:1.14;transform-origin:40% 100%"></div></div>
       </div>
     </section>
 
@@ -938,38 +923,30 @@
     <section class="sec">
       <div class="wrap">
         <div class="sh"><h2 class="d d2" data-split>Partner with us</h2><p class="lead">Our services</p></div>
-        <div class="deals">
-          <div class="dpair">
-          <article class="deal">
+        <div class="stairs">
+          <div class="step step--1">
             <h3>Consulting</h3>
             <p>We sit down with you and go through the business across the 4 pillars. Revenue, margin, reach and connection.</p>
             
             <ol><li><i>1.1</i>A workshop on your business</li><li><i>1.2</i>Every partnership that could work, mapped</li><li><i>1.3</i>A ranked list of which to chase first</li></ol>
-          </article>
-          <i class="deal__plus" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i>
-          <article class="deal">
-            <span class="deal__up">Upgrade</span>
+          </div>
+          <div class="step step--2">
             <h3>Negotiations</h3>
             <p>Everything in the consulting, and then we do the work. We go to the other side and negotiate the deal for you.</p>
             
             <ol><li><i>2.1</i>Everything in consulting</li><li><i>2.2</i>We approach the other party</li><li><i>2.3</i>We negotiate the terms</li><li><i>2.4</i>You sign off before anything is agreed</li></ol>
-          </article>
           </div>
-          <div class="dpair dpair--hi">
-          <article class="deal deal--hi">
+          <div class="step step--3">
             <h3>Advisory</h3>
             <p>Regular time with Ryan to keep the plan moving, and someone to hold you to it.</p>
             <div class="seg" role="group" aria-label="How often"><button type="button" data-cad="w" aria-pressed="true">Weekly</button><button type="button" data-cad="f" aria-pressed="false">Fortnightly</button><button type="button" data-cad="m" aria-pressed="false">Monthly</button></div>
             <ol><li><i>3.1</i><span data-cad-say>A call with Ryan every week</span></li><li><i>3.2</i>Accountability on the plan</li><li><i>3.3</i>Help putting it in place</li></ol>
-          </article>
-          <i class="deal__plus" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i>
-          <article class="deal deal--eq">
-            <span class="deal__up">Upgrade</span>
+          </div>
+          <div class="step step--4">
             <h3>Partnership</h3>
             <p>We take a minority stake and work on the business with you for the long term. There&rsquo;s no fee. We only do well if the business grows.</p>
             
             <ol><li><i>4.1</i>A business partner on board</li><li><i>4.2</i>Partnerships, negotiation and advisory as you need them</li><li><i>4.3</i>A place in our group, and group rates across it</li><li><i>4.4</i>Exit, or a general manager placed in, when you want it</li></ol>
-          </article>
           </div>
         </div>
         <div class="deals__go"><a class="btn btn--go" href="#contact" data-go="contact">Book a call</a></div>
