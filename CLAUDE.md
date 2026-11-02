@@ -94,8 +94,7 @@ Ryan's ask on 1 November 2026, to see what the site could look like. It lives in
 other, and exists in the preview only. `build-ghl.py` never reads it and nothing on the
 real pages depends on it. From its third pass it has its own sections and new copy,
 drafted in Ryan's voice for him to fix, so it no longer mirrors the site word for word.
-Its serif, Instrument Serif, lives in `tools-preview/fonts` and is declared in the page by
-the build, because a face declared inside a shadow root is ignored.
+A serif was tried in it and cut on 2 November 2026, Ryan: not on brand.
 
 `build-ghl.py <dir>` packages the site for a page builder that takes pasted HTML, CSS and
 JS: one folder per page holding `page.html` (body markup only), `styles.css` and

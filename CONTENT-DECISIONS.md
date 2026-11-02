@@ -2710,3 +2710,36 @@ Not "pay in cash or equity". Cash for the first three, equity only for the fourt
 booking calendar is a dotted placeholder until Ryan sends the Go High Level link. Dotted
 placeholders also hold client logos, partner testimonials, the group's businesses and a
 photo of Ryan on stage.
+
+## The new view, fourth pass, 2 November 2026
+
+Ryan's notes on the third pass, all applied. Preview only.
+
+- **Hero back to the photograph**, dark, with the swaying lamp from the live site. The
+  line drawings of show gear are gone.
+- **No serif anywhere.** Not on brand.
+- **No labels above headings** ("Proof", "The problem", and the rest) and no filler line
+  after a heading ("Three real deals, out of real businesses"). Both are AI tropes.
+- **One heading layout everywhere.** The heading runs full width on its own, the copy sits
+  under it. No heading squeezed into a narrow column one or two words a line.
+- **A dark section is a beam across the page.** Its top edge falls to the left and its
+  bottom edge rises to the left, opposite angles, so the two read as a cone. Its own light
+  shaft swings to the right as the section leaves the screen. The black line that used to
+  slide across "What we do" is gone.
+- **The real logo lockup with its beam** is back in the header, which is dark like the
+  live site's.
+- **Brand black #0A0A0A** for every dark ground and for the page change panel, not the
+  teal tinted near black.
+- **Orange to act**, the live site's call to action colour, on every Headliner button.
+- **The "Book a call" close is a dark beam section** with the words rolling on hover, not
+  a big rounded box.
+- **The optimisation engine is Ryan's own drawing again**, with boxes on it to type in new
+  clients a month, clients now, impress percentage and referral percentage. It works out
+  next month, the year at that rate, and whether the engine is growing or declining.
+- **The 4 pillars are lit cards on a dark beam section**, each with its own shaft, filling
+  aqua when picked. The case studies below them light up to match.
+- **Ryan's page:** the pink tape runs straight, because the angle is Headliner's. His
+  photo sits higher and further left so the signature is off his chin. The highlight on
+  "opinion" covers the whole word. "Partners, not suppliers" and the "Let's chat" block
+  carry a vignette, and the block has a ring of pure pink a few pixels in, the way his
+  buttons do.

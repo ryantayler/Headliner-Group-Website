@@ -95,15 +95,6 @@ _left = re.findall(r'<!--__\w+(?::\w+)?__?-->', _nv)
 if _left:
     sys.exit('new view placeholders not filled: ' + ', '.join(sorted(set(_left))))
 
-# The new view's own serif. A face declared inside a shadow root is ignored, so it is
-# declared here in the page, and only the new view uses it. Preview only.
-_nvfonts = ''.join(
-    "@font-face{font-family:'Instrument Serif';font-style:%s;font-weight:400;font-display:swap;"
-    "src:url(data:font/woff2;base64,%s) format('woff2')}\n"
-    % (st, base64.b64encode(open('tools-preview/fonts/' + f, 'rb').read()).decode())
-    for f, st in (('instrument-serif-latin.woff2', 'normal'), ('instrument-serif-italic-latin.woff2', 'italic'))
-    if os.path.exists('tools-preview/fonts/' + f))
-
 # the template lives in the repo. It lived in a session scratchpad once and was lost
 # with the session, and had to be rebuilt from the published artifact.
 tpl = open('tools-preview/template.html').read()
@@ -112,8 +103,7 @@ def _render(bs):
                .replace('/*__WALL__*/', wall)
                .replace('<!--__NAV__-->', nav).replace('<!--__BODIES__-->', "\n".join(bs))
                .replace('<!--__FOOTER__-->', footer)
-               .replace('<!--__NEXT__-->', _nv)
-               .replace('/*__NVFONTS__*/', _nvfonts))
+               .replace('<!--__NEXT__-->', _nv))
 
 for name, bs in (('headliner-preview.html', bodies), ('headliner-preview-frames.html', _framed)):
     doc = _render(bs)
