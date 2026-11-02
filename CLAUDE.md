@@ -92,8 +92,10 @@ above on the build before publishing it. A push without a republish is unfinishe
 Ryan's ask on 1 November 2026, to see what the site could look like. It lives in
 `tools-preview/next.html`, is mounted in a shadow root so neither stylesheet reaches the
 other, and exists in the preview only. `build-ghl.py` never reads it and nothing on the
-real pages depends on it. Its copy is the site's own copy. When a page's copy changes,
-change it there too, or the two views disagree.
+real pages depends on it. From its third pass it has its own sections and new copy,
+drafted in Ryan's voice for him to fix, so it no longer mirrors the site word for word.
+Its serif, Instrument Serif, lives in `tools-preview/fonts` and is declared in the page by
+the build, because a face declared inside a shadow root is ignored.
 
 `build-ghl.py <dir>` packages the site for a page builder that takes pasted HTML, CSS and
 JS: one folder per page holding `page.html` (body markup only), `styles.css` and

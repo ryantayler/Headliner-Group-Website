@@ -2670,3 +2670,43 @@ the beam wipe are gone.
   levers run past as a marquee that speeds up with the scroll, and a panel carrying the
   next page's name covers each page change.
 - The optimisation engine still runs, on a dark panel, with the two sliders.
+
+## The new view, third pass, 2 November 2026
+
+Built from Ryan's notes on reference sites (Lando Norris closest, with pieces from Apple,
+Collins, Tiny, Basement, Linear and Lusion), re-applied to this brand. New sections, new
+copy drafted in his voice for him to fix. Preview only.
+
+**The offer ladder**, Ryan's call:
+1. Partnership consulting, paid. The low ticket.
+2. Partnership negotiation, paid. The consulting, then we negotiate the deals for them.
+3. Advisory, paid. Weekly, fortnightly or monthly time with Ryan. Placed between
+   negotiation and the long-term partnership because it takes the most time. Ryan isn't
+   sure yet whether it is its own tier or part of the long-term partnership. The page
+   draws the line as "you pay for Ryan's time" against "we're paid in equity".
+4. Long-term partnership, equity only, a minority stake. Group access and group rates,
+   exit or general manager placement. Majority shares, capital and full acquisition stay
+   on the page as options. Ryan: equity is the whole goal of the company.
+
+Not "pay in cash or equity". Cash for the first three, equity only for the fourth.
+
+**The look:**
+- Headliner light, Ryan dark with pink.
+- Section edges cut on the beam's angle, down to the left, deepening slightly as they come
+  up the screen. Not curves, which are Lando's.
+- Aqua lights whole sections in a few places only, modelled on the current "How we do it"
+  beam band.
+- A background pattern of the beam plus line drawings of show gear (truss, a moving head,
+  chairs, a camera, a speaker), drifting with the scroll. On trial, Ryan to judge.
+- Instrument Serif on a few words per heading. On trial, Ryan to judge.
+- Pictures zoom and drift slightly the whole time, the first grows into place, and
+  nothing locks the scroll.
+- Tiny style moving cards on the offer ladder, a "Book a call" block where a beam
+  crosses it and the letters roll, an "Are we a fit?" check, and the advisory rhythm switch.
+- Ryan's page plays more. A pink tape strip, pink brush underlines, the Caveat notes,
+  and a full pink block for "Partners, not suppliers".
+
+**The main action is "Book a call"**, with "just send us a message" under it. The
+booking calendar is a dotted placeholder until Ryan sends the Go High Level link. Dotted
+placeholders also hold client logos, partner testimonials, the group's businesses and a
+photo of Ryan on stage.
