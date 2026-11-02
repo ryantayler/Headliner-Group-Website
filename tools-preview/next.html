@@ -101,6 +101,9 @@
 
 /* ---------- bar: dark, like the site's own header ---------- */
 .bar{position:fixed;inset:0 0 auto 0;z-index:40;height:94px;display:flex;align-items:center;color:#ECE8E0;transition:background .4s,translate .5s var(--out),height .4s}
+/* over a hero photograph it carries a soft dark wash so the links stay readable */
+.bar::before{content:"";position:absolute;inset:0 0 -40px 0;z-index:-1;pointer-events:none;background:linear-gradient(to bottom,rgba(10,10,10,.72),rgba(10,10,10,.38) 60%,rgba(10,10,10,0));transition:opacity .4s}
+.bar.is-solid::before{opacity:0}
 .bar .wrap{display:flex;align-items:center;gap:28px;padding-right:max(var(--gut),calc(236px - (100vw - min(1320px,100vw)) / 2))}
 .bar.is-solid{background:rgba(10,10,10,.88);-webkit-backdrop-filter:blur(14px) saturate(140%);backdrop-filter:blur(14px) saturate(140%);box-shadow:0 1px 0 #2E2E2E}
 .bar.is-hid{translate:0 -100%}
@@ -131,12 +134,12 @@
 .curtain__r{background:linear-gradient(90deg,#2DE2C3,rgba(45,226,195,.75))}
 .curtain__s{inset:12px 0;background:var(--black)}
 .curtain span{position:relative}
-/* Ryan's page gets a follow spot instead: a pink circle that opens from the middle and closes back to a point */
+/* Going to Ryan's page it is his pink instead: a straight edge rises from the bottom, holds on his signature, and carries on off the top */
 .curtain.pinkc{left:0;right:0;top:0;bottom:0;color:#0A0A0A;transform-origin:50% 50%;
   filter:drop-shadow(0 0 22px rgba(255,45,107,.9)) drop-shadow(0 0 90px rgba(255,45,107,.5))}
 .curtain.pinkc .curtain__r{display:none}
-.curtain.pinkc .curtain__s{inset:0;clip-path:circle(0 at 50% 50%);
-  background:radial-gradient(circle at 50% 50%,#FF2D6B 0,#FF2D6B 38%,#C81E52 100%)}
+.curtain.pinkc .curtain__s{inset:0;clip-path:inset(100% 0 0 0);
+  background:radial-gradient(120% 90% at 50% 50%,#FF2D6B 0,#FF2D6B 45%,#C81E52 100%)}
 .curtain__sig{position:relative;display:none;width:min(560px,74vw);color:#0A0A0A}
 .curtain__sig svg{width:100%;height:auto;fill:currentColor;display:block}
 .curtain.pinkc.to-ryan .curtain__sig{display:block}
@@ -167,6 +170,14 @@
   background:linear-gradient(var(--ba,118deg),transparent calc(6% + var(--bo,0%)),rgba(45,226,195,.30) calc(20% + var(--bo,0%)),rgba(45,226,195,.07) calc(38% + var(--bo,0%)),transparent calc(50% + var(--bo,0%)))}
 .dk + .sec{padding-top:calc(clamp(96px,11vw,160px) + var(--e))}
 
+/* a card on a dark section is solid, so the shaft runs behind it, and its top right
+   rim catches the light as the shaft passes */
+.glint{position:relative;isolation:isolate}
+.glint::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;padding:1.5px;z-index:2;
+  background:radial-gradient(120% 90% at 100% 0,rgba(45,226,195,calc(var(--g,0) * .95)),rgba(45,226,195,calc(var(--g,0) * .25)) 35%,transparent 62%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0)}
+.glint{box-shadow:14px -14px 40px -24px rgba(45,226,195,calc(var(--g,0) * .55))}
+
 /* ---------- hero: the photograph, the scrim and the swaying lamp ---------- */
 .hero{position:relative;z-index:1;height:100svh;min-height:560px;overflow:hidden;background:var(--black);color:#ECE8E0;
   --fg:#ECE8E0;--sub:#C9C5BE;--mute:#8E8A84;--bg:#0A0A0A}
@@ -189,6 +200,12 @@
 .hero .btn:not(.btn--go)::before{background:#ECE8E0}
 @media (max-width:760px){.lamp{top:-330px;right:-182px;width:363px;height:1540px}}
 
+/* the section a hero hands over to fills the screen and holds its content in the middle,
+   so it settles centred when the hero carries you down to it */
+.hero + .sec{min-height:calc(100svh + var(--e));display:flex;flex-direction:column;justify-content:center;
+  padding-top:calc(var(--e) + 72px);padding-bottom:72px}
+.hero + .sec > .wrap{width:min(1320px,100%)}
+
 /* ---------- home: the problem ---------- */
 .problem{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,6vw,96px);align-items:center}
 @media (max-width:900px){.problem{grid-template-columns:1fr}}
@@ -203,7 +220,7 @@
 
 /* the two levers on the beam */
 .levers{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(16px,2vw,24px)}
-.lever{padding:clamp(26px,3vw,44px);border-radius:20px;border:1px solid #2A2A2A;background:rgba(236,232,224,.03)}
+.lever{padding:clamp(26px,3vw,44px);border-radius:20px;border:1px solid #2A2A2A;background:#121212}
 .lever h3{font:400 clamp(28px,3vw,46px)/.95 var(--display);text-transform:uppercase;margin:0 0 14px}
 .lever ul{list-style:none;margin:22px 0 0;padding:0;display:flex;gap:8px;flex-wrap:wrap}
 .lever li{padding:7px 12px;border-radius:100px;border:1px solid rgba(45,226,195,.45);color:#2DE2C3;font-size:13px;font-weight:500}
@@ -266,6 +283,8 @@
 .nums span{font-size:12.5px;color:var(--mute)}
 .dk .case{background:#141414;border:1px solid #232323}
 .dk .tag{background:#1E1E1E;color:#C9C5BE}
+.dk .slot{background:#121212;border-color:#2E2E2E;color:#8E8A84}
+.dk .case{background:#121212}
 .dk .nums b{color:#2DE2C3}
 @media (max-width:1000px){.cases{grid-template-columns:1fr}}
 .slot{display:grid;place-items:center;text-align:center;padding:24px;border-radius:18px;border:1.5px dashed var(--rim);color:var(--mute);font-size:13.5px;font-weight:500;min-height:96px}
@@ -284,6 +303,17 @@
 .facts b{display:block;font:400 clamp(28px,3vw,46px)/1 var(--display);letter-spacing:-.02em;white-space:nowrap}
 .facts span{display:block;margin-top:8px;font-size:13.5px;color:var(--mute)}
 @media (max-width:900px){.found{grid-template-columns:1fr}.found .px{max-width:440px}}
+/* the live site's build: copy on the left with the signature under the heading, photo on the right */
+.found--flip{grid-template-columns:minmax(0,7fr) minmax(0,5fr)}
+.found__sig{display:block;width:clamp(170px,16vw,240px);margin:14px 0 0 -4px;color:var(--fg)}
+.found__sig svg{width:100%;height:auto;fill:currentColor;display:block}
+@media (max-width:900px){.found--flip{grid-template-columns:minmax(0,1fr)}.found--flip .px{order:-1}}
+/* Ryan's 'where I learned' photo: wider, reaching out past the column on the left, and it
+   gives the room back as the window narrows */
+.found--wide{grid-template-columns:minmax(0,6fr) minmax(0,7fr)}
+.found--wide .px{margin-left:calc(min(5vw,80px) * -1);aspect-ratio:5/6}
+@media (max-width:1100px){.found--wide .px{margin-left:calc(min(4vw,40px) * -1)}}
+@media (max-width:900px){.found--wide{grid-template-columns:minmax(0,1fr)}.found--wide .px{margin-left:0}}
 
 /* questions */
 .faq{border-top:1px solid var(--rim);max-width:900px}
@@ -363,39 +393,38 @@
 @media (max-width:900px){.pills{grid-template-columns:1fr 1fr}.pil{min-height:280px}}
 @media (max-width:520px){.pills{grid-template-columns:1fr}.pil{min-height:220px}}
 
-/* the engine: Ryan's drawing with every metric on it, and his worksheet beside it.
-   Pick a row and its box lights up on the drawing. */
-.eng{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,4vw,64px);align-items:start}
-.eng__side{position:sticky;top:110px;display:grid;gap:14px}
-.eng__art{position:relative;border-radius:20px;overflow:hidden;background:#fff;aspect-ratio:830/757;border:1px solid var(--rim)}
-.eng__art img{width:100%;height:100%;object-fit:contain}
-.eng__hl{position:absolute;left:var(--x);top:var(--y);width:var(--w);height:var(--h);border-radius:8px;border:2.5px solid #0A7261;
-  box-shadow:0 0 0 5px rgba(45,226,195,.35),0 0 26px rgba(45,226,195,.7);opacity:0;transition:opacity .3s,left .45s var(--out),top .45s var(--out),width .45s var(--out),height .45s var(--out)}
-.eng__hl.on{opacity:1}
-.ws{border-radius:20px;background:var(--card);padding:clamp(18px,2.4vw,30px);display:grid}
-.ws__g{margin:18px 0 6px;font:600 12.5px/1 var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--acc-t)}
-.ws__g:first-child{margin-top:0}
-.ws__r{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:16px;padding:12px 0;border-top:1px solid var(--rim);cursor:pointer}
-.ws__k{font-weight:600;font-size:15.5px;line-height:1.25}
-.ws__k small{font-weight:500;font-size:12.5px;color:var(--mute);margin-left:8px}
-.ws__k i{display:block;font-style:normal;font-weight:400;font-size:13px;color:var(--mute);margin-top:3px}
-.ws__in{display:inline-flex;align-items:center;gap:4px;height:40px;padding:0 12px;border-radius:10px;border:1px solid var(--rim);background:var(--bg);transition:border-color .3s}
-.ws__in:focus-within{border-color:#0A7261;box-shadow:0 0 0 3px rgba(45,226,195,.3)}
-.nv .ws__in input:focus-visible{outline:none}
-.ws__in em{font-style:normal;color:var(--mute);font-size:14px}
-.ws__in input{width:78px;border:0;background:none;outline:none;text-align:right;font:600 16px/1 var(--body);-moz-appearance:textfield}
-.ws__in input::-webkit-outer-spin-button,.ws__in input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
-.ws__r--out{cursor:default}
-.ws__r--out output{min-width:118px;text-align:right;font:400 20px/1 var(--display);color:#0A7261}
-.ws__note{margin:16px 0 0;color:var(--mute)}
-.out{border-radius:20px;background:var(--black);color:#ECE8E0;padding:clamp(22px,2.6vw,34px);display:grid;gap:18px}
-.out__big{font:400 clamp(44px,5vw,76px)/1 var(--display)}
-.out__state{justify-self:start;display:inline-block;padding:8px 14px;border-radius:100px;font-weight:600;font-size:14px;background:#262626}
+/* the engine: Ryan's drawing, extra large, with a box to type into over every metric.
+   CAC, AOGP and LTGP work themselves out, and the result sits in the empty corner. */
+.eng{width:min(1560px,calc(100vw - var(--gut) * 2));margin:0 auto;position:relative;left:50%;translate:-50% 0}
+.eng__art{position:relative;border-radius:24px;overflow:hidden;background:#fff;aspect-ratio:2290/2160;box-shadow:0 40px 80px -40px rgba(10,30,26,.35)}
+.eng__art > img{width:100%;height:100%;object-fit:cover}
+.nb{position:absolute;display:flex;flex-direction:column;justify-content:center;gap:2px;padding:0 .9em;border-radius:12px;background:#fff;
+  border:1.5px solid #B9C2C0;color:#111614;font-size:clamp(9px,.95vw,15px);cursor:text;transition:border-color .3s,box-shadow .3s}
+.nb span{font:600 .78em/1 var(--body);letter-spacing:.06em;text-transform:uppercase;color:#6B7471;white-space:nowrap}
+.nb b{display:flex;align-items:baseline;gap:.2em;font:700 1.35em/1 var(--body)}
+.nb em{font-style:normal;font-weight:500;color:#6B7471;font-size:.8em}
+.nb input{width:100%;min-width:0;border:0;background:none;outline:none;padding:0;font:inherit;color:inherit;-moz-appearance:textfield}
+.nb input::-webkit-outer-spin-button,.nb input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.nv .nb input:focus-visible{outline:none}
+.nb:hover{border-color:#0A7261}
+.nb:focus-within{border-color:#0A7261;box-shadow:0 0 0 4px rgba(45,226,195,.35),0 0 24px rgba(45,226,195,.5)}
+.nb--out{background:#E6FBF6;border-color:#2DE2C3;cursor:default}
+.nb--out output{font:400 1.4em/1 var(--display);color:#0A7261}
+.out{position:absolute;left:3%;top:3%;width:28%;border-radius:18px;background:var(--black);color:#ECE8E0;padding:clamp(14px,1.8vw,28px);display:grid;gap:10px}
+.out__big{font:400 clamp(30px,4.4vw,72px)/1 var(--display)}
+.out p{margin:0;color:#B9B5AE;font-size:clamp(12px,1vw,15px)}
+.out__state{justify-self:start;display:inline-block;padding:7px 12px;border-radius:100px;font-weight:600;font-size:clamp(11px,.9vw,14px);background:#262626}
 .out__state.up{background:#2DE2C3;color:#0A0A0A}
 .out__state.down{background:#FF5A36;color:#0A0A0A}
-.out dl{display:grid;grid-template-columns:1fr auto;gap:10px 20px;margin:0;padding-top:18px;border-top:1px solid #2A2A2A;font-size:15px}
-.out dt{color:#B9B5AE}.out dd{margin:0;font-weight:600;text-align:right}
-@media (max-width:1000px){.eng{grid-template-columns:1fr}.eng__side{position:static}}
+.eng__note{margin:18px 0 0;color:var(--mute);text-align:center}
+/* on a phone the boxes are too small to type in on the drawing, so they line up under it */
+@media (max-width:900px){
+  .eng{width:auto;left:0;translate:none}
+  .eng__art{aspect-ratio:auto;overflow:visible;background:none;box-shadow:none}
+  .eng__art > img{height:auto;border-radius:18px;background:#fff}
+  .out{position:static;width:auto;margin-top:12px}
+  .eng__nums{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+  .nb{position:static;width:auto!important;height:auto!important;padding:10px 12px;font-size:15px}}
 
 /* are we a fit */
 .fit{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,64px);align-items:center}
@@ -411,15 +440,21 @@
 @media (max-width:900px){.fit{grid-template-columns:1fr}}
 
 /* ---------- free ---------- */
-.wall{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(16px,2vw,28px)}
+.wall{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(64px,7vw,112px) clamp(32px,4.4vw,72px)}
 .res{display:block;padding:0;border:0;background:none;text-align:left;cursor:pointer}
-.res .px{position:relative;aspect-ratio:16/10;border-radius:18px;background:var(--card)}
+.res .px{position:relative;aspect-ratio:16/10;border-radius:18px;background:var(--card);
+  box-shadow:0 34px 60px -28px rgba(10,30,26,.45),0 12px 24px -12px rgba(10,30,26,.25);transition:translate .6s var(--out),box-shadow .6s var(--out),rotate .6s var(--out)}
+.res .px img{transition:scale .9s var(--out),translate .2s}
+.res:hover .px,.res:focus-visible .px{translate:0 -10px;rotate:-.6deg;box-shadow:0 50px 80px -30px rgba(10,30,26,.55),0 18px 30px -14px rgba(10,30,26,.3)}
+.res:hover .px img{scale:1.2}
+.res h3{background:linear-gradient(currentColor,currentColor) 0 100% / 0 2px no-repeat;transition:background-size .6s var(--out);justify-self:start;padding-bottom:4px}
+.res:hover h3{background-size:100% 2px}
 .res .px img{object-position:left top}
 .res .px::after{content:"Have a look";position:absolute;right:16px;bottom:16px;padding:10px 16px;border-radius:100px;background:var(--black);color:#ECE8E0;font:500 14px/1 var(--body);opacity:0;translate:0 8px;transition:opacity .4s,translate .5s var(--out)}
 .res:hover .px::after,.res:focus-visible .px::after{opacity:1;translate:0 0}
 .res--soon .px::after{content:"Coming soon"}
 .res__soon{height:100%;display:grid;place-items:center;font:400 clamp(22px,2.4vw,34px)/1 var(--display);text-transform:uppercase;color:var(--mute);background:var(--bg2)}
-.res__b{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 20px;padding:20px 4px 0}
+.res__b{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 20px;padding:28px 4px 0}
 .res h3{font:400 clamp(22px,2vw,30px)/1 var(--display);text-transform:uppercase;letter-spacing:-.02em;margin:0}
 .res__k{font-size:14px;color:var(--mute);padding-top:4px}
 .res p{grid-column:1 / -1;margin:6px 0 0;font-size:15px;color:var(--sub);max-width:52ch}
@@ -471,16 +506,18 @@
 .foot ul a{text-decoration:none;color:var(--sub);transition:color .3s}
 .foot ul a:hover{color:var(--fg)}
 /* the full logo, beam and all, sized to the page and kept whole */
-.foot__logo{display:flex;justify-content:center;overflow:hidden;padding:clamp(80px,10vw,160px) 0 clamp(16px,2.4vw,32px);margin-top:clamp(24px,3vw,40px);
-  --m:linear-gradient(to bottom,transparent 0,#000 30%,#000 82%,transparent 100%);-webkit-mask-image:var(--m);mask-image:var(--m)}
-.foot__logo .hl-beam{opacity:.75}
-.foot__logo .hl-logo{font-size:clamp(28px,10.4vw,150px)}
+/* the header's own lockup, stage, beam and fade, at a bigger size */
+.foot__logo{display:flex;justify-content:center;margin-top:clamp(56px,7vw,112px)}
+.foot__logo .hl-stage{position:relative;transform:none;font-size:clamp(19px,4.6vw,66px);justify-content:center;padding-right:0}
 .foot__base{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:13px;color:var(--mute);margin-top:clamp(24px,3vw,40px)}
 @media (max-width:900px){.foot__top{grid-template-columns:1fr 1fr}}
 @media (max-width:520px){.foot__top{grid-template-columns:1fr}}
 
 /* ---------- Ryan: his brand, straight edges, and looser ---------- */
-.is-ryan .pg > .sec{background:#0F0F0F;box-shadow:inset 0 46px 56px -34px rgba(0,0,0,.95)}
+.is-ryan .pg > .sec{background:#0F0F0F}
+/* a shadow only where a dark section meets something that isn't one, so a run of dark
+   sections reads as one ground rather than a stack of seams */
+.is-ryan .pg > :not(.sec) + .sec{box-shadow:inset 0 46px 56px -34px rgba(0,0,0,.95)}
 .is-ryan .tape{z-index:4;box-shadow:inset 0 0 40px rgba(0,0,0,.28),0 22px 44px rgba(0,0,0,.7),0 -22px 44px rgba(0,0,0,.55)}
 .is-ryan .pinkband{z-index:4;box-shadow:inset 0 0 160px 10px rgba(0,0,0,.34),0 26px 50px rgba(0,0,0,.65)}
 .is-ryan .foot{clip-path:none;margin-top:0;padding-top:clamp(80px,9vw,128px);border-top:1px solid #2A2A2A;background:#0A0A0A}
@@ -532,6 +569,20 @@
 .ways p{margin:0;color:var(--sub)}
 .ways .btn{justify-self:end}
 @media (max-width:900px){.ways > div{grid-template-columns:1fr;gap:14px}.ways .btn{justify-self:start}}
+
+/* his socials: a hand of post covers that opens as you reach it and spreads when you
+   point at it, the card under the pointer lifting out */
+.social__in{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,5vw,80px);align-items:center}
+.social .row{margin-top:clamp(24px,3vw,36px)}
+.fan{position:relative;height:clamp(380px,40vw,560px);--o:0}
+.fan__c{position:absolute;left:50%;bottom:4%;width:clamp(150px,15vw,220px);aspect-ratio:9/16;margin-left:calc(clamp(150px,15vw,220px) / -2);border-radius:16px;overflow:hidden;
+  transform-origin:50% 135%;box-shadow:0 22px 50px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.06);
+  rotate:calc((var(--i) - 3) * (2deg + var(--o) * 8deg + var(--w,0) * 3deg));translate:0 calc((1 - var(--o)) * 40px);
+  transition:rotate .7s var(--out),translate .5s var(--out),scale .5s var(--out),box-shadow .5s;z-index:calc(10 - (var(--i) - 3) * (var(--i) - 3))}
+.fan__c img{width:100%;height:100%;object-fit:cover}
+.fan:hover{--w:1}
+.fan__c:hover{translate:0 -28px;scale:1.06;z-index:20;box-shadow:0 30px 60px rgba(0,0,0,.7),0 0 0 2px #FF2D6B}
+@media (max-width:900px){.social__in{grid-template-columns:minmax(0,1fr)}.fan{height:420px;margin-top:20px}}
 .said{font:500 clamp(28px,3.4vw,52px)/1.2 var(--body);letter-spacing:-.025em;margin:0;max-width:24ch}
 .who-said{display:flex;align-items:center;gap:14px;margin-top:30px}
 .who-said i{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:var(--acc);color:#0A0A0A;font:600 15px/1 var(--body);font-style:normal}
@@ -672,10 +723,10 @@
     </section>
 
     <section class="sec">
-      <div class="wrap found">
-        <div class="px grow" data-grow><img src="assets/img/ryan-hero-900.jpg" alt="Ryan Tayler" style="object-position:84% 44%;transform-origin:66% 44%"></div>
+      <div class="wrap found found--flip">
         <div>
-          <h2 class="d d2" data-split>Our founder, Ryan Tayler</h2>
+          <h2 class="d d2" data-split>Our founder</h2>
+          <span class="found__sig" aria-label="Ryan Tayler"><!--__SIG__--></span>
           <p class="lead" style="margin-top:24px;max-width:30ch">An entrepreneur partnering with founders in live events and production.</p>
           <div class="facts">
             <div><b data-count="115" data-suffix="+">115+</b><span>Live events</span></div>
@@ -685,6 +736,7 @@
           <p class="p">His goal is to be in business with, or partnered into, every area of live events and production in Australia.</p>
           <div class="row" style="margin-top:30px"><a class="btn" href="#ryan" data-go="ryan">More about Ryan</a></div>
         </div>
+        <div class="px grow" data-grow><img src="assets/img/ryan-hero-900.jpg" alt="Ryan Tayler" style="object-position:84% 44%;transform-origin:66% 44%"></div>
       </div>
     </section>
 
@@ -784,44 +836,33 @@
           <p class="p">Every business runs like an engine. Customers come in, you do the work, and the ones you impress come back or send someone new. The ones you don&rsquo;t, leave. Put your own numbers in.</p>
         </div>
         <div class="eng" data-eng>
-          <div class="eng__side">
-            <div class="eng__art">
-              <img src="assets/img/optimisation-engine-metrics.png" alt="The optimisation engine. Marketing brings in clients, you do the work, impressed clients become loyal and buy again or refer, and the ones you don't impress leave. Each step carries its own metrics.">
-              <i class="eng__hl" data-hl aria-hidden="true"></i>
-            </div>
+          <div class="eng__art">
+            <img src="assets/img/optimisation-engine-xl.jpg" alt="The optimisation engine. Marketing brings in clients, you do the work, impressed clients become loyal and buy again or refer, and the ones you don't impress leave. Each step carries its own metrics.">
             <div class="out" aria-live="polite">
               <span class="out__state" data-e-state>Aim for 3 : 1 or better</span>
-              <div><div class="out__big" data-e-ratio>0 : 1</div><p class="small" style="color:#B9B5AE">LTGP : CAC, lifetime gross profit to what it cost to win the customer</p></div>
-              <dl>
-                <dt>CAC</dt><dd data-e-cac>$0</dd>
-                <dt>AOGP</dt><dd data-e-aogp>$0</dd>
-                <dt>LTGP</dt><dd data-e-ltgp>$0</dd>
-              </dl>
+              <div class="out__big" data-e-ratio>0 : 1</div>
+              <p>LTGP : CAC</p>
+            </div>
+            <div class="eng__nums">
+              <label class="nb" style="left:62.68%;top:5.13%;width:16.12%;height:4.88%" title="Marketing spend &divide; leads"><span>CPL</span><b><em>$</em><input type="number" min="0" step="any" value="150" data-n="cpl" aria-label="CPL"></b></label>
+              <label class="nb" style="left:61.62%;top:12.27%;width:16.30%;height:4.88%" title="Calls attended &divide; calls booked"><span>Show rate</span><b><input type="number" min="0" step="any" value="60" data-n="show" aria-label="Show rate"><em>%</em></b></label>
+              <label class="nb" style="left:59.85%;top:19.69%;width:16.12%;height:4.88%" title="New customers &divide; calls attended"><span>Close rate</span><b><input type="number" min="0" step="any" value="25" data-n="close" aria-label="Close rate"><em>%</em></b></label>
+              <div class="nb nb--out" style="left:57.37%;top:26.55%;width:16.12%;height:4.88%" title="CPL &divide; show rate &divide; close rate"><span>CAC</span><output data-o="cac">$0</output></div>
+              <label class="nb" style="left:65.87%;top:38.28%;width:16.21%;height:4.88%" title="Customers who upsold &divide; total customers"><span>Upsell rate</span><b><input type="number" min="0" step="any" value="20" data-n="upsell" aria-label="Upsell rate"><em>%</em></b></label>
+              <label class="nb" style="left:71.01%;top:45.33%;width:16.30%;height:4.88%" title="Revenue &divide; number of orders"><span>AOV</span><b><em>$</em><input type="number" min="0" step="any" value="12000" data-n="aov" aria-label="AOV"></b></label>
+              <label class="nb" style="left:70.83%;top:55.47%;width:18.25%;height:4.70%" title="(Revenue &minus; cost to deliver) &divide; revenue"><span>Gross margin</span><b><input type="number" min="0" step="any" value="30" data-n="gm" aria-label="Gross margin"><em>%</em></b></label>
+              <div class="nb nb--out" style="left:68.53%;top:63.64%;width:18.25%;height:4.70%" title="AOV &times; gross margin"><span>AOGP</span><output data-o="aogp">$0</output></div>
+              <label class="nb" style="left:61.53%;top:79.51%;width:16.12%;height:4.88%" title="Customers lost &divide; customers at start"><span>Churn rate</span><b><input type="number" min="0" step="any" value="15" data-n="churn" aria-label="Churn rate"><em>%</em></b></label>
+              <label class="nb" style="left:73.13%;top:86.18%;width:19.93%;height:4.88%" title="Orders cancelled &divide; total orders"><span>Cancellation rate</span><b><input type="number" min="0" step="any" value="5" data-n="cancel" aria-label="Cancellation rate"><em>%</em></b></label>
+              <label class="nb" style="left:8.11%;top:30.87%;width:17.98%;height:4.79%" title="(Customers at end &minus; new) &divide; customers at start"><span>Retention rate</span><b><input type="number" min="0" step="any" value="70" data-n="ret" aria-label="Retention rate"><em>%</em></b></label>
+              <label class="nb" style="left:2.80%;top:38.75%;width:17.89%;height:4.70%" title="New customers from referrals &divide; total new"><span>Referral rate</span><b><input type="number" min="0" step="any" value="25" data-n="ref" aria-label="Referral rate"><em>%</em></b></label>
+              <label class="nb" style="left:10.06%;top:70.87%;width:16.12%;height:4.88%" title="Average of all review scores, off Google"><span>Avg. rating</span><b><input type="number" min="0" step=".1" value="4.8" data-n="rating" aria-label="Avg. rating"><em>&#9733;</em></b></label>
+              <label class="nb" style="left:17.59%;top:77.17%;width:16.21%;height:4.98%" title="New reviews &divide; customers served"><span>Review rate</span><b><input type="number" min="0" step="any" value="30" data-n="review" aria-label="Review rate"><em>%</em></b></label>
+              <div class="nb nb--out" style="left:35.40%;top:56.04%;width:16.21%;height:4.98%" title="AOGP &times; purchases in a lifetime"><span>LTGP</span><output data-o="ltgp">$0</output></div>
+              <label class="nb" style="left:35.40%;top:62.42%;width:16.21%;height:4.98%" title="How many times the average customer buys from you"><span>Purchases</span><b><input type="number" min="0" step="1" value="3" data-n="buys" aria-label="Purchases"><em>&times;</em></b></label>
             </div>
           </div>
-          <div class="ws">
-            <p class="ws__g">Buy</p>
-            <label class="ws__r" style="--x:62.89%;--y:2.25%;--w:16.99%;--h:5.68%"><span class="ws__k">CPL<small>Cost per lead</small><i>Marketing spend &divide; leads</i></span><span class="ws__in"><em>$</em><input type="number" min="0" step="any" value="150" data-n="cpl" aria-label="CPL"></span></label>
-            <label class="ws__r" style="--x:61.81%;--y:9.78%;--w:16.99%;--h:5.68%"><span class="ws__k">Show rate<i>Calls attended &divide; calls booked</i></span><span class="ws__in"><input type="number" min="0" step="any" value="60" data-n="show" aria-label="Show rate"><em>%</em></span></label>
-            <label class="ws__r" style="--x:60.12%;--y:17.31%;--w:16.99%;--h:5.68%"><span class="ws__k">Close rate<i>New customers &divide; calls attended</i></span><span class="ws__in"><input type="number" min="0" step="any" value="25" data-n="close" aria-label="Close rate"><em>%</em></span></label>
-            <div class="ws__r ws__r--out" style="--x:57.59%;--y:24.97%;--w:16.75%;--h:5.55%"><span class="ws__k">CAC<small>Customer acquisition cost</small><i>CPL &divide; show rate &divide; close rate</i></span><output data-o="cac">$0</output></div>
-            <p class="ws__g">Client &amp; work</p>
-            <label class="ws__r" style="--x:66.14%;--y:37.38%;--w:16.99%;--h:5.81%"><span class="ws__k">Upsell rate<i>Customers who upsold &divide; total customers</i></span><span class="ws__in"><input type="number" min="0" step="any" value="20" data-n="upsell" aria-label="Upsell rate"><em>%</em></span></label>
-            <label class="ws__r" style="--x:71.81%;--y:45.05%;--w:16.51%;--h:5.55%"><span class="ws__k">AOV<small>Average order value</small><i>Revenue &divide; number of orders</i></span><span class="ws__in"><em>$</em><input type="number" min="0" step="any" value="12000" data-n="aov" aria-label="AOV"></span></label>
-            <label class="ws__r" style="--x:71.57%;--y:55.61%;--w:18.67%;--h:5.55%"><span class="ws__k">Gross margin<i>(Revenue &minus; cost to deliver) &divide; revenue</i></span><span class="ws__in"><input type="number" min="0" step="any" value="30" data-n="gm" aria-label="Gross margin"><em>%</em></span></label>
-            <div class="ws__r ws__r--out" style="--x:69.16%;--y:64.33%;--w:18.67%;--h:5.42%"><span class="ws__k">AOGP<small>Average order gross profit</small><i>AOV &times; gross margin</i></span><output data-o="aogp">$0</output></div>
-            <label class="ws__r" style="--x:61.93%;--y:81.24%;--w:16.63%;--h:5.28%"><span class="ws__k">Churn rate<i>Customers lost &divide; customers at start</i></span><span class="ws__in"><input type="number" min="0" step="any" value="15" data-n="churn" aria-label="Churn rate"><em>%</em></span></label>
-            <label class="ws__r" style="--x:73.73%;--y:88.24%;--w:20.72%;--h:5.42%"><span class="ws__k">Cancellation rate<i>Orders cancelled &divide; total orders</i></span><span class="ws__in"><input type="number" min="0" step="any" value="5" data-n="cancel" aria-label="Cancellation rate"><em>%</em></span></label>
-            <p class="ws__g">Loyal</p>
-            <label class="ws__r" style="--x:6.99%;--y:29.59%;--w:18.92%;--h:5.55%"><span class="ws__k">Retention rate<i>(Customers at end &minus; new) &divide; customers at start</i></span><span class="ws__in"><input type="number" min="0" step="any" value="70" data-n="ret" aria-label="Retention rate"><em>%</em></span></label>
-            <label class="ws__r" style="--x:1.45%;--y:38.04%;--w:18.80%;--h:5.28%"><span class="ws__k">Referral rate<i>New customers from referrals &divide; total new</i></span><span class="ws__in"><input type="number" min="0" step="any" value="25" data-n="ref" aria-label="Referral rate"><em>%</em></span></label>
-            <label class="ws__r" style="--x:9.28%;--y:72.13%;--w:16.39%;--h:5.42%"><span class="ws__k">Avg. rating<i>Average of all review scores, off Google</i></span><span class="ws__in"><input type="number" min="0" max="5" step=".1" value="4.8" data-n="rating" aria-label="Avg. rating"><em>&#9733;</em></span></label>
-            <label class="ws__r" style="--x:16.87%;--y:78.86%;--w:16.63%;--h:5.42%"><span class="ws__k">Review rate<i>New reviews &divide; customers served</i></span><span class="ws__in"><input type="number" min="0" step="any" value="30" data-n="review" aria-label="Review rate"><em>%</em></span></label>
-            <p class="ws__g">Outcomes</p>
-            <label class="ws__r" style="--x:35.06%;--y:56.27%;--w:16.63%;--h:5.42%"><span class="ws__k">Purchases in a lifetime<i>How many times the average customer buys from you</i></span><span class="ws__in"><input type="number" min="0" step="1" value="3" data-n="buys" aria-label="Purchases in a lifetime"></span></label>
-            <div class="ws__r ws__r--out" style="--x:35.06%;--y:56.27%;--w:16.63%;--h:5.42%"><span class="ws__k">LTGP<small>Lifetime gross profit</small><i>AOGP &times; purchases in a lifetime</i></span><output data-o="ltgp">$0</output></div>
-            <p class="small ws__note">CAC here counts marketing only. Add your sales spend to get the full figure.</p>
-          </div>
+          <p class="small eng__note">Type your own numbers into the boxes. CAC here counts marketing only, so add your sales spend for the full figure.</p>
         </div>
         <p class="p" style="margin-top:clamp(40px,5vw,64px)">Here&rsquo;s where most small businesses get stuck. They get the engine running at a decent efficiency, then quietly cut the inputs. Not enough team, not enough time, so they stop feeding it to hold a pace they can handle. The engine keeps turning at the same speed and growth flatlines.</p>
       </div>
@@ -937,7 +978,7 @@
     </section>
 
     <section class="sec">
-      <div class="wrap found">
+      <div class="wrap found found--wide">
         <div class="px grow" data-grow><img src="assets/img/ryan-foh.jpg" alt="Ryan Tayler front of house at a live event" style="transform-origin:45% 35%"></div>
         <div>
           <h2 class="d d2" data-split>Where I learned the business</h2>
@@ -972,7 +1013,7 @@
       </div>
     </section>
 
-    <section class="sec" style="padding-top:0">
+    <section class="sec">
       <div class="wrap even" style="align-items:center">
         <div class="slot" style="min-height:240px">Photo of Ryan on stage</div>
         <div>
@@ -982,18 +1023,19 @@
       </div>
     </section>
 
-    <section class="sec" style="padding-top:0">
-      <div class="wrap">
-        <div class="sh">
+    <section class="sec social" data-social>
+      <div class="wrap social__in">
+        <div>
           <h2 class="d d2" data-split>I write about this most weeks</h2>
-          <p class="p">If you like what you see but you&rsquo;re not ready to make the commitment, follow me on your preferred platform to get some free content. Or just get some free sh!t right here.</p>
-        </div>
-        <div class="row">
+          <p class="p" style="margin-top:clamp(18px,2vw,28px)">If you like what you see but you&rsquo;re not ready to make the commitment, follow me on your preferred platform to get some free content. Or just get some free sh!t right here.</p>
+          <div class="row">
           <a class="btn btn--li" href="https://www.linkedin.com/in/ryan-a-tayler-au/" target="_blank" rel="noopener"><!--__ICON:li-->LinkedIn</a>
           <a class="btn btn--ig" href="https://www.instagram.com/ryan_a_tayler/" target="_blank" rel="noopener"><!--__ICON:ig-->Instagram</a>
           <a class="btn btn--yt" href="https://www.youtube.com/@RyanATayler" target="_blank" rel="noopener"><!--__ICON:yt-->YouTube</a>
           <a class="btn btn--fb" href="https://www.facebook.com/profile.php?id=61582253770046" target="_blank" rel="noopener"><!--__ICON:fb-->Facebook</a>
         </div>
+        </div>
+        <div class="fan" aria-hidden="true"><div class="fan__c" style="--i:0"><img src="assets/img/social-1.jpg" alt=""></div><div class="fan__c" style="--i:1"><img src="assets/img/social-2.jpg" alt=""></div><div class="fan__c" style="--i:2"><img src="assets/img/social-3.jpg" alt=""></div><div class="fan__c" style="--i:3"><img src="assets/img/social-4.jpg" alt=""></div><div class="fan__c" style="--i:4"><img src="assets/img/social-5.jpg" alt=""></div><div class="fan__c" style="--i:5"><img src="assets/img/social-6.jpg" alt=""></div><div class="fan__c" style="--i:6"><img src="assets/img/social-7.jpg" alt=""></div></div>
       </div>
     </section>
 
@@ -1134,7 +1176,7 @@
         <div><h4>Get access to exclusive content</h4><form class="inline" data-demo><input type="email" required placeholder="Email address" aria-label="Email address"><button class="btn btn--go" type="submit">Join</button><p class="done">You&rsquo;re in.</p></form></div>
       </div>
       <div class="foot__base"><span>&copy; 2026 Headliner Group Pty Ltd. All rights reserved.</span><span>Privacy &nbsp; Terms</span></div>
-      <div class="foot__logo" aria-hidden="true"><div class="hl-logo"><div class="hl-beam"></div><span class="hl-word">Headliner</span><div class="hl-group">Group</div></div></div>
+      <div class="foot__logo" aria-hidden="true"><div class="hl-stage"><div class="hl-logo"><div class="hl-beam"></div><span class="hl-word">Headliner</span><div class="hl-group">Group</div></div></div></div>
     </div>
   </footer>
 </div>
@@ -1198,14 +1240,14 @@
       wake(page);
     }
     if(animate && !reduce && curtain.animate){
-      /* Headliner pages get the cone, swung up on its far pivot. Ryan's page is his
-         brand, so going to or from it a pink follow spot opens and closes on the middle. */
-      var pinkc=name==='ryan'||nv.classList.contains('is-ryan'), toR=name==='ryan', target=pinkc?$('.curtain__s',curtain):curtain;
+      /* Every page change is the cone, swung up on its far pivot, leaving Ryan's page
+         included. Only going to Ryan's page is his: a straight pink edge rising. */
+      var pinkc=name==='ryan', toR=pinkc, target=pinkc?$('.curtain__s',curtain):curtain;
       curtain.classList.toggle('pinkc',pinkc); curtain.classList.toggle('to-ryan',toR);
       if(toR && !$('.curtain__sig svg',curtain)){ var sg=$('[data-sig] svg'); if(sg) $('.curtain__sig',curtain).appendChild(sg.cloneNode(true)); }
       curtain.getAnimations().concat($('.curtain__s',curtain).getAnimations()).forEach(function(x){ x.cancel(); });
-      var a=pinkc?[{clipPath:'circle(0% at 50% 50%)'},{clipPath:'circle(75% at 50% 50%)'}]:[{rotate:'-26deg'},{rotate:'0deg'}],
-          b=pinkc?[{clipPath:'circle(75% at 50% 50%)'},{clipPath:'circle(0% at 50% 50%)'}]:[{rotate:'0deg'},{rotate:'26deg'}];
+      var a=pinkc?[{clipPath:'inset(100% 0 0 0)'},{clipPath:'inset(0% 0 0 0)'}]:[{rotate:'-26deg'},{rotate:'0deg'}],
+          b=pinkc?[{clipPath:'inset(0 0 0% 0)'},{clipPath:'inset(0 0 100% 0)'}]:[{rotate:'0deg'},{rotate:'26deg'}];
       $('span',curtain).textContent=NAMES[name]||''; curtain.style.visibility='visible';
       target.animate(a,{duration:pinkc?1050:1000,easing:'cubic-bezier(.3,0,.15,1)',fill:'forwards'}).onfinish=function(){
         curtain.classList.add('on'); swap();
@@ -1238,27 +1280,33 @@
      and the same going back up. The hero to the first section is one on every page, and
      any section marked data-snap is another. */
   var snapBusy=false, snapHold=0, snapY=scrollY;
+  /* Each zone is [top rest, bottom rest, kind]. You scroll freely for about three clicks
+     of the wheel before it takes over. Below the hero the zones are looser still: a longer
+     run before it takes over, and a slower, softer glide. */
   function snapZones(){
     var z=[], E=Math.min(84,Math.max(36,innerWidth*.05)), vh=innerHeight;
-    var h=$('[data-hero],.me',current); if(h) z.push([0,h.offsetHeight]);
-    $$('[data-snap]',current).forEach(function(s){ var b=s.getBoundingClientRect().top+scrollY+E, a=Math.max(0,b-vh,z.length?z[z.length-1][1]:0); if(b-a>40) z.push([a,b]); });
+    var h=$('[data-hero],.me',current); if(h) z.push([0,h.offsetHeight,'hero']);
+    $$('[data-snap]',current).forEach(function(s){ var b=s.getBoundingClientRect().top+scrollY+E, a=Math.max(0,b-vh,z.length?z[z.length-1][1]:0); if(b-a>40) z.push([a,b,'body']); });
     return z;
   }
-  function glide(to){
-    snapBusy=true; var from=scrollY, t0=performance.now(), d=Math.min(1300,Math.max(700,Math.abs(to-from)*1.1));
-    (function step(now){ var q=Math.min(1,(now-t0)/d), e=q<.5?4*q*q*q:1-Math.pow(-2*q+2,3)/2;
+  function glide(to,soft){
+    snapBusy=true; var from=scrollY, t0=performance.now(), dist=Math.abs(to-from),
+        d=soft?Math.min(2000,Math.max(1300,dist*1.9)):Math.min(1250,Math.max(800,dist*1.3));
+    (function step(now){ var q=Math.min(1,(now-t0)/d),
+        e=soft?-(Math.cos(Math.PI*q)-1)/2:(q<.5?4*q*q*q:1-Math.pow(-2*q+2,3)/2);
       scrollTo({top:from+(to-from)*e,behavior:'instant'});
-      if(q<1 && live()) requestAnimationFrame(step); else { snapBusy=false; snapHold=performance.now()+450; snapY=scrollY; } })(t0);
+      if(q<1 && live()) requestAnimationFrame(step); else { snapBusy=false; snapHold=performance.now()+(soft?300:450); snapY=scrollY; } })(t0);
   }
   addEventListener('scroll',function(){
     if(!live()||!current||reduce) return;
-    var y=scrollY, dy=y-snapY; snapY=y;
+    var y=scrollY, dy=y-snapY, prev=snapY; snapY=y;
     if(snapBusy||performance.now()<snapHold||!dy) return;
-    var nudge=Math.max(6,innerHeight*.03);
+    var vh=innerHeight;
     snapZones().some(function(z){
-      if(y<=z[0]||y>=z[1]) return false;
-      if(dy>0 && y>=z[0]+nudge && y-dy<z[0]+nudge*4){ glide(z[1]); return true; }
-      if(dy<0 && y<=z[1]-nudge && y-dy>z[1]-nudge*4){ glide(z[0]); return true; }
+      var soft=z[2]==='body', run=soft?Math.max(360,vh*.42):Math.max(280,vh*.3);
+      if(run>(z[1]-z[0])*.6) run=(z[1]-z[0])*.6;
+      if(dy>0 && prev<z[0]+run && y>=z[0]+run && y<z[1]){ glide(z[1],soft); return true; }
+      if(dy<0 && prev>z[1]-run && y<=z[1]-run && y>z[0]){ glide(z[0],soft); return true; }
       return false;
     });
   },{passive:true});
@@ -1283,6 +1331,8 @@
     $$('[data-grow]',current).forEach(function(g){ var r=g.getBoundingClientRect(); if(r.top>vh||r.bottom<0) return;
       var q=reduce?1:Math.min(1,Math.max(0,(vh-r.top)/(vh*.75))), e=1-Math.pow(1-q,3);
       g.style.setProperty('--gi',((1-e)*16).toFixed(2)+'%'); g.style.setProperty('--gs',(1.12+(1-e)*.38).toFixed(3)); });
+    $$('[data-social] .fan',current).forEach(function(f){ var r=f.getBoundingClientRect(); if(r.top>vh||r.bottom<0) return;
+      var q=reduce?1:Math.min(1,Math.max(0,(vh-r.top)/(vh*.7))); f.style.setProperty('--o',(1-Math.pow(1-q,3)).toFixed(3)); });
     /* the hero is held back at half the scroll, so the page slides up over it */
     var hero=$('[data-hero]',current), hin=hero&&$('.hero__in',hero), hy=0;
     if(hin){ hy=reduce?0:Math.min(hero.offsetHeight,scrollY*.5); hin.style.setProperty('--hy',hy+'px'); }
@@ -1302,19 +1352,25 @@
       if(reduce){ lampA=34; } else { lampV+=(target-lampA)*.0045; lampV*=.94; lampA+=lampV; }
       lamp.style.setProperty('--la',lampA.toFixed(2)+'deg');
     }
-    /* each dark section's shaft comes in from off the left as the section arrives, slows
-       and drifts while you read, then speeds up and swings off to the right as it leaves */
+    /* Each dark section's shaft is a beam from one lamp, hung off the top right of the
+       screen. It only turns, it never slides: it swings in from off the left as the
+       section arrives, slows and drifts while you read, then turns faster and sweeps off
+       to the right as the section leaves. The gradient is set so its line always passes
+       through the lamp, which is what makes it read as a rotation. */
     $$('[data-dk]',current).forEach(function(s){ var r=s.getBoundingClientRect(); if(r.bottom<-50||r.top>vh+50) return;
-      /* X is where the shaft crosses the middle of the screen, as a share of its width. It is
-         worked out against the screen, not the section, because the shaft leans and a fixed
-         shaft would seem to slide left as the page scrolls up past it. */
-      var q=reduce?.5:Math.min(1,Math.max(0,(vh-r.top)/(vh+r.height))), X, ba;
-      if(q<.32){ var a=q/.32, e=1-Math.pow(1-a,3); X=-.5+e*.75; ba=124-e*4; }
-      else if(q<.55){ var m=(q-.32)/.23; X=.25+m*.1; ba=120-m*2; }
-      else { var c=Math.min(1,(q-.55)/.33), k=c*c; X=.35+k*1.35; ba=118+k*34; }
-      var W=r.width, H=r.height, rad=ba*Math.PI/180, dx=Math.sin(rad), dy=-Math.cos(rad), L=Math.abs(W*dx)+Math.abs(H*dy),
-          t=((X*W-W/2)*dx+((vh/2-r.top)-H/2)*dy+L/2)/L, bo=t*100-28;
-      s.style.setProperty('--bo',bo.toFixed(2)+'%'); s.style.setProperty('--ba',ba.toFixed(2)+'deg'); });
+      var q=reduce?.45:Math.min(1,Math.max(0,(vh-r.top)/(vh+r.height))), phi;
+      if(q<.32){ var a=q/.32, e=1-Math.pow(1-a,3); phi=66-e*26; }
+      else if(q<.58){ phi=40-(q-.32)/.26*5; }
+      else { var c=Math.min(1,(q-.58)/.32); phi=35-c*c*52; }
+      var lx=innerWidth*1.05, ly=-vh, ba=90+phi, rad=ba*Math.PI/180, dx=Math.sin(rad), dy=-Math.cos(rad),
+          W=r.width, H=r.height, L=Math.abs(W*dx)+Math.abs(H*dy),
+          px=lx-r.left, py=ly-r.top, t=((px-W/2)*dx+(py-H/2)*dy+L/2)/L;
+      s.style.setProperty('--bo',(t*100-20).toFixed(2)+'%'); s.style.setProperty('--ba',ba.toFixed(2)+'deg');
+      /* a card the beam passes behind catches it on its top right edge */
+      var ux=-Math.sin(phi*Math.PI/180), uy=Math.cos(phi*Math.PI/180);
+      $$('.glint',s).forEach(function(c){ var cr=c.getBoundingClientRect(), qx=cr.right-lx, qy=cr.top-ly,
+          d=Math.abs(qx*uy-qy*ux), g=Math.max(0,1-d/380); c.style.setProperty('--g',Math.pow(g,1.3).toFixed(3)); });
+    });
     $$('[data-count]',current).forEach(function(b){
       if(counted.has(b) || !vis(b,.92)) return; counted.add(b);
       var to=+b.dataset.count, pre=b.dataset.pre||'', suf=b.dataset.suffix||'', t0=performance.now(), d=reduce?0:1600;
@@ -1328,6 +1384,7 @@
   function wake(page){
     $$('[data-split]',page).forEach(split); $$('[data-roll]',page).forEach(roll);
     var sig=$('[data-sig]',page); if(sig){ sig.classList.remove('sig--draw'); void sig.offsetWidth; sig.classList.add('sig--draw'); }
+    $$('.dk .lever,.dk .slot,.dk .pil,.dk .case',page).forEach(function(c){ c.classList.add('glint'); });
     marquee(page); engine();
     var last=page.lastElementChild; while(last && last.tagName!=='SECTION') last=last.previousElementSibling;
     nv.classList.toggle('ends-dark', !!last && last.classList.contains('dk'));
@@ -1356,19 +1413,11 @@
     function $f(n){ return '$'+Math.round(n).toLocaleString('en-AU'); }
     var conv=(v('show')/100)*(v('close')/100), cac=conv?v('cpl')/conv:0, aogp=v('aov')*v('gm')/100, ltgp=aogp*v('buys'), ratio=cac?ltgp/cac:0;
     $('[data-o="cac"]',box).textContent=$f(cac); $('[data-o="aogp"]',box).textContent=$f(aogp); $('[data-o="ltgp"]',box).textContent=$f(ltgp);
-    $('[data-e-cac]').textContent=$f(cac); $('[data-e-aogp]').textContent=$f(aogp); $('[data-e-ltgp]').textContent=$f(ltgp);
     $('[data-e-ratio]').textContent=(ratio>=10?Math.round(ratio):ratio.toFixed(1))+' : 1';
     var st=$('[data-e-state]'); st.className='out__state '+(!cac?'':ratio>=3?'up':'down');
     st.textContent=!cac?'Aim for 3 : 1 or better':ratio>=3?'Healthy, 3 : 1 or better':'Under 3 : 1';
   }
   $$('[data-eng] input').forEach(function(i){ i.addEventListener('input',engine); });
-  /* a row lights its own box on the drawing */
-  (function(){ var hl=$('[data-hl]'); if(!hl) return;
-    function light(r){ ['--x','--y','--w','--h'].forEach(function(k){ hl.style.setProperty(k,r.style.getPropertyValue(k)); }); hl.classList.add('on'); }
-    $$('.ws__r').forEach(function(r){ r.addEventListener('pointerenter',function(){ light(r); }); r.addEventListener('focusin',function(){ light(r); }); });
-    var ws=$('.ws'); ws.addEventListener('pointerleave',function(){ if(!ws.contains(root.activeElement)) hl.classList.remove('on'); });
-    ws.addEventListener('focusout',function(){ setTimeout(function(){ if(!ws.contains(root.activeElement)) hl.classList.remove('on'); },0); });
-  })();
 
   /* are we a fit */
   (function(){ var box=$('[data-fit]'); if(!box) return; var a=$('[data-fit-a]'), t=$('[data-fit-t]'), p=$('[data-fit-p]'), go=$('[data-fit-go]');

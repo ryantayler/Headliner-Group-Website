@@ -2792,3 +2792,33 @@ Movement only. No copy changed.
   back to a point.
 - **Ryan's page**: each section sits a shade above black with a shadow on its top edge, and
   the pink tape and the pink band cast shadows onto the sections next to them.
+
+## The new view, seventh pass, 2 November 2026
+
+- **The hero hands over after about three clicks of the wheel**, both ways, not one. The
+  section it hands over to fills the screen and holds its content in the middle, so "Most
+  of this industry buys on price" settles centred.
+- **Below the hero the hand over is looser**: a longer run before it takes over, and a
+  slower, softer glide.
+- **A dark section's shaft only turns, it never slides.** It is a beam from one lamp hung
+  off the top right of the screen, worked out so the gradient's line always passes through
+  that lamp. It swings in from off the left, slows, then turns faster and sweeps off right.
+- **Cards on a dark section are solid**, so the shaft runs behind them, and each catches
+  the light on its top right rim as the shaft passes. On Home, Partner with us and the
+  group block under "How we partner & invest".
+- **Our founder is built as on the live site**: copy on the left, "Our founder" with the
+  signature under it, the photo on the right with its open out effect.
+- **The footer logo is the header's own lockup**, stage, beam and fade, at a bigger size.
+- **The optimisation engine is a sharp, extra large drawing**, cut from the A3 worksheet,
+  with a box to type in over every metric and the LTGP to CAC result in its empty corner.
+  On a phone the boxes line up under the drawing.
+- **Page change**: leaving Ryan's page uses the Headliner cone. Only going to Ryan's page is
+  his: a straight pink edge rising from the bottom, his signature, then off the top.
+- **The header carries a soft dark wash** while it sits on a hero photograph.
+- **Ryan's page**: the Aaron photo is wider and reaches out to the left, giving the room
+  back as the window narrows. The testimonial and socials sections have their spacing
+  back. A shadow only where a dark section meets something that is not one, so the run of
+  dark sections near the bottom reads as one ground. "I write about this most weeks" sits
+  beside a fan of his Shorts covers that opens as you reach it and spreads on hover.
+- **Free Sh!t**: more space between the cards, a shadow under each picture, and on hover
+  the picture lifts and zooms and the title underlines.
