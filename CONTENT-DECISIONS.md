@@ -3068,3 +3068,14 @@ Ryan's brief, written at the length he gave it.
   two are drafted: no time to take anything new on, and partnerships tried before.
 - **Home's last call**: "We've built something powerful. Let's talk." No line under it.
   Two buttons, Get in touch (orange) and More info (to Partner with us).
+
+## The new view, stats and highlighter, 2 November 2026
+
+- **Every highlight in body text is a real highlighter stroke**: ragged ends, uneven top and
+  bottom, wrapping line to line, drawn left to right. Aaron Sansoni line, both "Absolutely
+  fantastic"s, and "Partnership" in the services. Aqua on Headliner pages, pink on Ryan's.
+- **Stats**: $2.5m generated from partnerships for others, $3.3m saved from optimisations for
+  others. On Home's card (centred, alongside 4 partnership deals) and on Ryan's page in
+  place of the two "7+ figures". The live site still says 7 figures; unchanged.
+- **The stats card catches the shaft.** Large cards now light where the shaft crosses their
+  top edge, not only at the top right corner, so a wide card glints as the light passes.
