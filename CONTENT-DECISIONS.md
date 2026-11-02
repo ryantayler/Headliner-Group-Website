@@ -2743,3 +2743,20 @@ Ryan's notes on the third pass, all applied. Preview only.
   "opinion" covers the whole word. "Partners, not suppliers" and the "Let's chat" block
   carry a vignette, and the block has a ring of pure pink a few pixels in, the way his
   buttons do.
+
+## The new view, fifth pass, 2 November 2026
+
+Movement only. No copy changed.
+
+- **Every hero fills the screen.** The next section only shows once you scroll.
+- **The hero scrolls away at half speed**, so the section under it slides up over it.
+- **Every section edge starts flat and tips to its angle as it rises up the screen.** It
+  is flat as it enters at the bottom and reaches the full angle a little over halfway up.
+- **The hero light beam is 10 percent brighter and 10 percent larger, and it follows the
+  mouse** on a spring, so it lags behind and settles with a small bounce. With no mouse
+  it drifts slowly on its own.
+- **The page change is a cone of light**, edges not parallel, pivoting on a point far off
+  to the right. It swings up from below, slows as it covers the screen, then swings out
+  over the top. Its edges carry an aqua glow so it reads as light, not a black wipe.
+  Going to or from Ryan's page it stays his straight pink panel, because the angle is
+  Headliner's.

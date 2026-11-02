@@ -121,14 +121,21 @@
 @media (max-width:960px){.links,.bar .btn{display:none}.menu{display:block;margin:0;position:absolute;right:154px;top:50%;translate:0 -50%}.hl-link{width:206px;height:68px}.hl-stage{transform:scale(.26)}}
 
 /* page change: a panel cut on the beam's angle carries the next page's name */
-.curtain{position:fixed;inset:-10% 0;z-index:80;background:var(--black);color:#ECE8E0;display:grid;place-items:center;
-  clip-path:polygon(0 12%,100% 0,100% 88%,0 100%);translate:0 110%;pointer-events:none;visibility:hidden}
-.is-ryan .curtain{background:#FF2D6B;color:#0A0A0A;clip-path:none}
+/* The panel is a cone of light from a lamp far off to the right: its edges close in
+   towards the lamp, and it swings up across the screen from below and out over the top,
+   pivoting on that far point. */
+.curtain{position:fixed;left:-15%;right:-15%;top:-45%;bottom:-45%;z-index:80;color:#ECE8E0;display:grid;place-items:center;
+  filter:drop-shadow(0 0 18px rgba(45,226,195,.55)) drop-shadow(0 0 70px rgba(45,226,195,.3));transform-origin:320% 50%;pointer-events:none;visibility:hidden}
+.curtain::before{content:"";position:absolute;inset:0;background:var(--black);clip-path:polygon(0 0,100% 22%,100% 78%,0 100%)}
+.curtain span{position:relative}
+.curtain.pinkc{left:0;right:0;top:0;bottom:0;filter:none;transform-origin:50% 50%}
+.curtain.pinkc::before{background:#FF2D6B;clip-path:none}
+.curtain.pinkc{color:#0A0A0A}
 .curtain span{font:400 clamp(40px,8vw,120px)/1 var(--display);text-transform:uppercase;letter-spacing:-.02em;opacity:0;translate:0 30px;transition:opacity .4s,translate .6s var(--out)}
 .curtain.on span{opacity:1;translate:0 0}
 
 /* ---------- sections ---------- */
-.sec{position:relative;z-index:1;padding:clamp(96px,11vw,160px) 0}
+.sec{position:relative;z-index:2;padding:clamp(96px,11vw,160px) 0;background:var(--bg)}
 .white{background:var(--card)}
 .even{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,56px)}
 @media (max-width:900px){.even{grid-template-columns:1fr}}
@@ -136,36 +143,38 @@
 /* A dark section is a beam across the page: its top edge falls to the left and its
    bottom edge rises to the left, so the two cuts open out like a cone. It sits over the
    sections either side, which reach in under its cuts. */
-.dk{background:var(--black);color:#ECE8E0;z-index:2;overflow:hidden;
+.dk{background:var(--black);color:#ECE8E0;z-index:3;overflow:hidden;
   margin:calc(var(--e) * -1) 0;padding:calc(clamp(96px,11vw,160px) + var(--e)) 0;
-  clip-path:polygon(0 var(--e),100% 0,100% 100%,0 calc(100% - var(--e)));
+  clip-path:polygon(0 var(--e),100% calc(var(--e) - var(--et,0px)),100% calc(100% - var(--e) + var(--eb,0px)),0 calc(100% - var(--e)));
   --fg:#ECE8E0;--sub:#B9B5AE;--mute:#8E8A84;--rim:#2A2A2A;--card:#141414;--bg:#0A0A0A;--bg2:#161616}
 .ends-dark .foot{margin-top:0;clip-path:none;padding-top:clamp(64px,8vw,112px);border-top:1px solid #1C1C1C}
-.dk:last-child{margin-bottom:0;padding-bottom:clamp(96px,11vw,160px);clip-path:polygon(0 var(--e),100% 0,100% 100%,0 100%)}
+.dk:last-child{margin-bottom:0;padding-bottom:clamp(96px,11vw,160px);clip-path:polygon(0 var(--e),100% calc(var(--e) - var(--et,0px)),100% 100%,0 100%)}
 /* its light: one angled shaft that swings right as the section leaves the screen */
 .dk::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
   background:linear-gradient(var(--ba,118deg),transparent 6%,rgba(45,226,195,.30) 20%,rgba(45,226,195,.07) 38%,transparent 50%)}
 .dk + .sec{padding-top:calc(clamp(96px,11vw,160px) + var(--e))}
 
 /* ---------- hero: the photograph, the scrim and the swaying lamp ---------- */
-.hero{position:relative;z-index:2;min-height:min(100svh,940px);display:flex;align-items:flex-end;overflow:hidden;background:var(--black);color:#ECE8E0;
-  padding:150px 0 calc(clamp(56px,8vh,96px) + var(--e));clip-path:polygon(0 0,100% 0,100% 100%,0 calc(100% - var(--e)));margin-bottom:calc(var(--e) * -1);
+.hero{position:relative;z-index:1;height:100svh;min-height:560px;overflow:hidden;background:var(--black);color:#ECE8E0;
   --fg:#ECE8E0;--sub:#C9C5BE;--mute:#8E8A84;--bg:#0A0A0A}
-.hero + .sec{padding-top:calc(clamp(96px,11vw,160px) + var(--e))}
+/* everything in the hero moves at half the scroll, so the next section slides over it */
+.hero__in{position:absolute;inset:0;display:flex;align-items:flex-end;padding:150px 0 calc(clamp(56px,8vh,96px) + var(--e));translate:0 var(--hy,0px);will-change:translate}
+.hero + .sec,.hero + .dk{margin-top:calc(var(--e) * -1);padding-top:calc(clamp(96px,11vw,160px) + var(--e));
+  clip-path:polygon(0 var(--e),100% calc(var(--e) - var(--et,0px)),100% 100%,0 100%)}
+.hero + .dk{clip-path:polygon(0 var(--e),100% calc(var(--e) - var(--et,0px)),100% calc(100% - var(--e) + var(--eb,0px)),0 calc(100% - var(--e)))}
 .hero__ph{position:absolute;inset:0;z-index:0}
-.hero__ph img{width:100%;height:100%;object-fit:cover;scale:1.08;translate:0 var(--py,0px)}
+.hero__ph img{width:100%;height:100%;object-fit:cover;scale:1.06}
 .hero__ph::after{content:"";position:absolute;inset:-1px;background:linear-gradient(to top,rgba(10,10,10,.95) 8%,rgba(10,10,10,.55) 50%,rgba(10,10,10,.35)),linear-gradient(90deg,rgba(10,10,10,.75),rgba(10,10,10,0) 70%)}
-.lamp{position:absolute;z-index:1;top:-300px;right:-311px;width:462px;height:1800px;transform-origin:top center;filter:blur(52px);pointer-events:none;
-  animation:sway 16s cubic-bezier(.45,0,.55,1) infinite alternate}
+.lamp{position:absolute;z-index:1;top:-330px;right:-342px;width:508px;height:1980px;transform-origin:top center;filter:blur(57px);pointer-events:none;
+  transform:rotate(var(--la,34deg))}
 .lamp::before{content:"";position:absolute;inset:0;clip-path:polygon(43.64% 0,56.36% 0,100% 100%,0 100%);
-  background:linear-gradient(to bottom,rgba(45,226,195,.42),rgba(45,226,195,.09) 55%,rgba(45,226,195,0))}
-@keyframes sway{from{transform:rotate(11.5deg)}to{transform:rotate(56.5deg)}}
+  background:linear-gradient(to bottom,rgba(45,226,195,.46),rgba(45,226,195,.1) 55%,rgba(45,226,195,0))}
 .hero .lead{margin-top:26px;color:#ECE8E0}
 .hero .row{margin-top:34px}
 .hero .btn:not(.btn--go){color:#ECE8E0}
 .hero .btn:not(.btn--go):hover{color:#0A0A0A}
 .hero .btn:not(.btn--go)::before{background:#ECE8E0}
-@media (max-width:760px){.lamp{right:-165px;width:330px;height:1400px}}
+@media (max-width:760px){.lamp{top:-330px;right:-182px;width:363px;height:1540px}}
 
 /* ---------- home: the problem ---------- */
 .problem{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,6vw,96px);align-items:center}
@@ -422,8 +431,8 @@
 .go span{font-size:14px;color:var(--mute)}
 
 /* ---------- footer ---------- */
-.foot{position:relative;z-index:2;background:var(--black);color:#ECE8E0;padding:calc(clamp(80px,9vw,128px) + var(--e)) 0 32px;overflow:hidden;margin-top:calc(var(--e) * -1);
-  clip-path:polygon(0 var(--e),100% 0,100% 100%,0 100%);--fg:#ECE8E0;--sub:#B9B5AE;--mute:#8E8A84;--rim:#2A2A2A;--card:#141414;--bg:#0A0A0A}
+.foot{position:relative;z-index:3;background:var(--black);color:#ECE8E0;padding:calc(clamp(80px,9vw,128px) + var(--e)) 0 32px;overflow:hidden;margin-top:calc(var(--e) * -1);
+  clip-path:polygon(0 var(--e),100% calc(var(--e) - var(--et,0px)),100% 100%,0 100%);--fg:#ECE8E0;--sub:#B9B5AE;--mute:#8E8A84;--rim:#2A2A2A;--card:#141414;--bg:#0A0A0A}
 .dk + .foot{margin-top:0;padding-top:clamp(80px,9vw,128px);clip-path:none}
 .foot__top{display:grid;grid-template-columns:1.4fr .6fr .6fr 1.4fr;gap:40px}
 .foot h4{font:500 14px/1 var(--body);color:var(--mute);margin:0 0 18px}
@@ -536,7 +545,8 @@
   <main>
   <!-- ======================= HOME ======================= -->
   <div class="pg" data-pg="index">
-    <section class="hero">
+    <section class="hero" data-hero>
+      <div class="hero__in">
       <div class="hero__ph"><img src="assets/img/hero-foh.jpg" alt=""></div>
       <div class="lamp" aria-hidden="true"></div>
       <div class="wrap">
@@ -546,6 +556,7 @@
           <a class="btn btn--go" href="#contact" data-go="contact">Book a call</a>
           <a class="btn" href="#free" data-go="free">Get the free tools</a>
         </div>
+      </div>
       </div>
     </section>
 
@@ -568,7 +579,7 @@
       </div>
     </section>
 
-    <section class="sec dk" data-dk>
+    <section class="sec dk" data-dk data-edge>
       <div class="wrap">
         <div class="sh">
           <h2 class="d d2" data-split>We grow businesses through partnerships</h2>
@@ -662,13 +673,15 @@
 
   <!-- ======================= PARTNER WITH US ======================= -->
   <div class="pg" data-pg="partnerships" hidden>
-    <section class="hero">
+    <section class="hero" data-hero>
+      <div class="hero__in">
       <div class="hero__ph"><img src="assets/img/hero-partnerships.jpg" alt=""></div>
       <div class="lamp" aria-hidden="true"></div>
       <div class="wrap">
         <h1 class="d d1" data-split>Partner with us</h1>
         <p class="lead">Three paid ways to get partnerships working in your business, and one long-term partnership for equity.</p>
         <div class="row"><a class="btn btn--go" href="#contact" data-go="contact">Book a call</a></div>
+      </div>
       </div>
     </section>
 
@@ -706,7 +719,7 @@
       </div>
     </section>
 
-    <section class="sec dk" data-dk>
+    <section class="sec dk" data-dk data-edge>
       <div class="wrap">
         <div class="sh">
           <h2 class="d d2" data-split>Ryan Tayler&rsquo;s 4 pillars of partnership<span class="tm">&trade;</span></h2>
@@ -760,7 +773,7 @@
       </div>
     </section>
 
-    <section class="sec dk" data-dk>
+    <section class="sec dk" data-dk data-edge>
       <div class="wrap">
         <div class="sh">
           <h2 class="d d2" data-split>How we partner &amp; invest</h2>
@@ -939,13 +952,15 @@
 
   <!-- ======================= FREE ======================= -->
   <div class="pg" data-pg="free" hidden>
-    <section class="hero">
+    <section class="hero" data-hero>
+      <div class="hero__in">
       <div class="hero__ph"><img src="assets/img/hero-free.jpg" alt=""></div>
       <div class="lamp" aria-hidden="true"></div>
       <div class="wrap">
         <h1 class="d d1" data-split>Free sh!t</h1>
         <p class="lead">Free tools and assets you or your team could use in the business this week to start optimising straight away.</p>
         <div class="row"><a class="btn" href="#everything" data-jump="everything">Take the whole lot</a></div>
+      </div>
       </div>
     </section>
 
@@ -960,7 +975,7 @@
       </div>
     </section>
 
-    <section class="sec dk" data-dk id="everything">
+    <section class="sec dk" data-dk data-edge id="everything">
       <div class="wrap">
         <div class="sh">
           <h2 class="d d2" data-split>Or take the whole lot at once</h2>
@@ -1011,12 +1026,14 @@
 
   <!-- ======================= CONTACT ======================= -->
   <div class="pg" data-pg="contact" hidden>
-    <section class="hero">
+    <section class="hero" data-hero>
+      <div class="hero__in">
       <div class="hero__ph"><img src="assets/img/hero-contact.jpg" alt=""></div>
       <div class="lamp" aria-hidden="true"></div>
       <div class="wrap">
         <h1 class="d d1" data-split>Book a call</h1>
         <p class="lead">A first call to talk about your business and which way of working with us fits.</p>
+      </div>
       </div>
     </section>
 
@@ -1054,7 +1071,7 @@
   </div>
   </main>
 
-  <footer class="foot">
+  <footer class="foot" data-edge>
     <div class="wrap">
       <div class="foot__top">
         <div><p class="lead" style="max-width:24ch;color:#ECE8E0">Helping founders in live events &amp; production grow through partnerships.</p><p class="small" style="margin-top:16px">Headliner Group, founded by Ryan Tayler.</p></div>
@@ -1127,12 +1144,18 @@
       wake(page);
     }
     if(animate && !reduce && curtain.animate){
+      /* Headliner pages get the cone, swung up on its far pivot. Ryan's page is his
+         brand, so going to or from it the pink panel rises straight. */
+      var pinkc=name==='ryan'||nv.classList.contains('is-ryan');
+      curtain.classList.toggle('pinkc',pinkc);
+      var a=pinkc?[{translate:'0 100%'},{translate:'0 0'}]:[{rotate:'-26deg'},{rotate:'0deg'}],
+          b=pinkc?[{translate:'0 0'},{translate:'0 -100%'}]:[{rotate:'0deg'},{rotate:'26deg'}];
       $('span',curtain).textContent=NAMES[name]||''; curtain.style.visibility='visible';
-      curtain.animate([{translate:'0 110%'},{translate:'0 0'}],{duration:650,easing:'cubic-bezier(.7,0,.3,1)',fill:'forwards'}).onfinish=function(){
+      curtain.animate(a,{duration:700,easing:'cubic-bezier(.3,0,.15,1)',fill:'forwards'}).onfinish=function(){
         curtain.classList.add('on'); swap();
         setTimeout(function(){ curtain.classList.remove('on');
-          curtain.animate([{translate:'0 0'},{translate:'0 -110%'}],{duration:750,easing:'cubic-bezier(.7,0,.3,1)',fill:'forwards'}).onfinish=function(){ curtain.style.visibility='hidden'; };
-        },380);
+          curtain.animate(b,{duration:800,easing:'cubic-bezier(.75,0,.7,1)',fill:'forwards'}).onfinish=function(){ curtain.style.visibility='hidden'; };
+        },420);
       };
     } else swap();
   }
@@ -1157,7 +1180,8 @@
   var mqAnims=[];
   function marquee(page){ $$('[data-mq]',page).forEach(function(t){ if(t._a||reduce||!t.animate) return; t._a=t.animate([{transform:'translateX(0)'},{transform:'translateX(-50%)'}],{duration:30000,iterations:Infinity}); mqAnims.push(t._a); }); }
 
-  var counted=new WeakSet();
+  var counted=new WeakSet(), pointer=null, lastMove=0, lampA=34, lampV=0;
+  addEventListener('pointermove',function(e){ if(e.pointerType==='mouse'){ pointer={x:e.clientX,y:e.clientY}; lastMove=performance.now(); } },{passive:true});
   function vis(el,at){ var r=el.getBoundingClientRect(); return r.top<innerHeight*(at||.86) && r.bottom>0; }
   function tick(){
     if(!current || !live()) return;
@@ -1166,7 +1190,25 @@
     $$('[data-ladder] .tier:not(.on),.day:not(.on),[data-quotes]:not(.on)',current).forEach(function(e){ if(vis(e,.75)){ e.classList.add('on'); if(e.hasAttribute('data-quotes')) setTimeout(function(){ e.classList.add('squeezed'); },900); } });
     /* pictures drift against the scroll */
     $$('.px img',current).forEach(function(im){ var r=im.parentNode.getBoundingClientRect(); if(r.bottom<0||r.top>vh) return; var c=(r.top+r.height/2-vh/2)/vh; im.style.setProperty('--d',(-c*r.height*.08)+'px'); });
-    var hp=$('.hero__ph img',current); if(hp && !reduce) hp.style.setProperty('--py',(scrollY*.2)+'px');
+    /* the hero is held back at half the scroll, so the page slides up over it */
+    var hero=$('[data-hero]',current), hin=hero&&$('.hero__in',hero), hy=0;
+    if(hin){ hy=reduce?0:Math.min(hero.offsetHeight,scrollY*.5); hin.style.setProperty('--hy',hy+'px'); }
+    /* every edge starts flat and tips to the beam's angle as it comes up the screen */
+    var E=Math.min(84,Math.max(36,innerWidth*.05));
+    function tip(y){ return E*Math.min(1,Math.max(0,(vh-y)/(vh*.55))); }
+    var edges=$$('[data-dk]',current); if(hero && hero.nextElementSibling) edges.push(hero.nextElementSibling); edges.push($('.foot'));
+    edges.forEach(function(el){ if(!el) return; var r=el.getBoundingClientRect(); if(r.top>vh*1.1||r.bottom<-vh*.2) return;
+      el.style.setProperty('--et',(reduce?E:tip(r.top+E))+'px'); el.style.setProperty('--eb',(reduce?E:tip(r.bottom-E))+'px'); });
+    /* the lamp swings after the pointer, late and with a little bounce */
+    var lamp=hero&&$('.lamp',hero);
+    if(lamp){
+      var hr=hero.getBoundingClientRect(), px=hr.left+lamp.offsetLeft+lamp.offsetWidth/2, py=hr.top+hy+lamp.offsetTop, target;
+      if(pointer && performance.now()-lastMove<2500 && pointer.y<hr.bottom) target=Math.atan2(px-pointer.x,pointer.y-py)*180/Math.PI;
+      else target=34+20*Math.sin(performance.now()/2600);
+      target=Math.min(66,Math.max(10,target));
+      if(reduce){ lampA=34; } else { lampV+=(target-lampA)*.012; lampV*=.9; lampA+=lampV; }
+      lamp.style.setProperty('--la',lampA.toFixed(2)+'deg');
+    }
     /* each dark section's shaft swings to the right as the section leaves the top */
     $$('[data-dk]',current).forEach(function(s){ var r=s.getBoundingClientRect(); if(r.bottom<0||r.top>vh) return;
       var gone=Math.min(1,Math.max(0,-r.top/Math.max(1,r.height-vh*.3)));
