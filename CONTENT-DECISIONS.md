@@ -2874,3 +2874,17 @@ Ryan's brief, written at the length he gave it.
 - **Home**: the quotes read $expensive, $good, $cheap, with no labels under them, and the
   signing plays again every time you come back to them. Our founder uses the live site's
   copy word for word and its pink button, with a bigger photo.
+
+## The new view, Ryan's page photos, 2 November 2026
+
+- **"Where I learned the business" slides between two photos of Ryan and Aaron**, the front
+  of house shot and the boardroom signing. Every few seconds, while it is on screen, the
+  shown one leaves to the left and the next comes in from the right on a speed ramp, slow
+  off the mark, fast through the middle, slow to settle. Always to the left. The boardroom
+  shot is cropped so the two of them sit in the centre. Ryan sent a retouched version with
+  the other two people taken out, but it only arrived as a chat picture, so the crop is cut
+  from his first version and is tight enough to leave them out. Swap the file in when it
+  comes as an attachment.
+- **The consulting photo is Ryan's own recolour**, zoomed out so his hand on the left and his
+  shoulder on the right stay in frame.
+- **Cory Hoyling's quote carries the Shadow AV logo** in place of the initials.

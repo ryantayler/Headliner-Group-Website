@@ -667,10 +667,17 @@
 .fan:hover{--w:1}
 .fan__c:hover{translate:calc((var(--i) - 3) * (var(--o) * clamp(26px,3.4vw,58px) + 12px)) -28px;scale:1.06;z-index:20;box-shadow:0 30px 60px rgba(0,0,0,.7),0 0 0 2px #FF2D6B}
 @media (max-width:760px){.social__links{flex-wrap:wrap;justify-content:flex-start}.fan{height:340px}.fan__c{width:110px;margin-left:-55px}}
-.said__ph{aspect-ratio:4/5;border-radius:18px;max-width:460px}
+.said__ph{aspect-ratio:3/4;border-radius:18px;max-width:460px}
+/* zoomed out so his hand on the left and his shoulder on the right stay in frame */
+.said__ph img{scale:calc(var(--gs,1.12) - .12);translate:none;object-position:50% 40%}
+/* two photos that take turns, always sliding off to the left on a speed ramp */
+.slider{position:relative}
+.slider img{position:absolute;inset:0;translate:135% 0}
+.slider img.is-shown{translate:0 0}
 .said{font:500 clamp(28px,3.4vw,52px)/1.2 var(--body);letter-spacing:-.025em;margin:0;max-width:24ch}
 .who-said{display:flex;align-items:center;gap:14px;margin-top:30px}
-.who-said i{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:var(--acc);color:#0A0A0A;font:600 15px/1 var(--body);font-style:normal}
+.who-said i{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:#fff;overflow:hidden;flex:none}
+.who-said i img{width:100%;height:100%;object-fit:cover}
 .mebook{display:block;text-decoration:none;border-radius:24px;padding:clamp(36px,5vw,72px) clamp(28px,4vw,64px)}
 .mebook .book__t{font-family:'Anton',Impact,sans-serif;letter-spacing:0}
 .mebook .roll i + i{color:#ECE8E0}
@@ -1101,7 +1108,7 @@
 
     <section class="sec">
       <div class="wrap found found--wide">
-        <div class="px grow" data-grow><img src="assets/img/ryan-foh.jpg" alt="Ryan Tayler front of house at a live event" style="transform-origin:45% 35%"></div>
+        <div class="px grow slider" data-grow data-slider><img class="is-shown" src="assets/img/ryan-foh.jpg" alt="Ryan Tayler and Aaron Sansoni front of house at a live event" style="transform-origin:45% 35%"><img src="assets/img/ryan-aaron-board.jpg" alt="Ryan Tayler with Aaron Sansoni as he signs at the boardroom table" style="transform-origin:50% 45%"></div>
         <div>
           <h2 class="d d2" data-split>Where I learned the business</h2>
           <p class="p fade" style="margin-top:28px">Early in my career I worked for <span class="swipe">Aaron Sansoni<svg viewBox="0 0 300 100" preserveAspectRatio="none" aria-hidden="true"><path d="M10 54C90 46 200 44 290 50"/></svg></span>, Australia&rsquo;s #1 business mentor, and that&rsquo;s where I learned how business is built. In 4 years I grew from a junior to General Manager of his largest business, which focused on live events and business coaching.</p>
@@ -1141,7 +1148,7 @@
         <div class="px grow said__ph" data-grow><img src="assets/img/ryan-consulting.jpg" alt="Ryan Tayler running a consulting session in front of a wall of planning sheets"></div>
         <div>
           <blockquote class="said" style="margin:0">&ldquo;Absolutely fantastic, thumbs up to Ryan on helping me get the ideas out, and building an action plan moving forward.&rdquo;</blockquote>
-          <div class="who-said"><i aria-hidden="true">CH</i><div><strong>Cory Hoyling</strong><br><span class="small">Director, Shadow AV</span></div></div>
+          <div class="who-said"><i aria-hidden="true"><img src="assets/img/shadow-av.jpg" alt=""></i><div><strong>Cory Hoyling</strong><br><span class="small">Director, Shadow AV</span></div></div>
         </div>
       </div>
     </section>
@@ -1533,6 +1540,21 @@
       c.classList.toggle('is-off',!has); c.classList.toggle('is-match',!!name&&has); $$('.tag',c).forEach(function(t){ t.classList.toggle('hit',t.dataset.t===name); }); });
   }
   $$('.pil').forEach(function(b){ b.addEventListener('click',function(){ pick(b.getAttribute('aria-pressed')==='true'?'':b.dataset.pillar); }); });
+
+  /* the photo slider: every few seconds, while it is on screen, the shown photo leaves to the
+     left and the next comes in from the right, slow off the mark, fast through the middle,
+     slow to settle */
+  setInterval(function(){
+    if(!current||!live()||reduce) return;
+    $$('[data-slider]',current).forEach(function(sl){
+      var r=sl.getBoundingClientRect(); if(r.bottom<0||r.top>innerHeight) return;
+      var ims=$$('img',sl), i=ims.findIndex(function(m){ return m.classList.contains('is-shown'); }), a=ims[i], b=ims[(i+1)%ims.length];
+      var o={duration:1150,easing:'cubic-bezier(.78,0,.18,1)',fill:'forwards'};
+      a.getAnimations().forEach(function(x){ x.cancel(); }); b.getAnimations().forEach(function(x){ x.cancel(); });
+      a.animate([{translate:'0 0'},{translate:'-135% 0'}],o); b.animate([{translate:'135% 0'},{translate:'0 0'}],o);
+      a.classList.remove('is-shown'); b.classList.add('is-shown');
+    });
+  },4600);
 
   /* advisory rhythm */
   var CAD={w:'A call with Ryan every week',f:'A call with Ryan every fortnight',m:'A call with Ryan every month'};
