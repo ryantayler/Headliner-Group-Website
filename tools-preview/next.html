@@ -134,6 +134,12 @@
 .curtain__r{background:linear-gradient(90deg,#2DE2C3,rgba(45,226,195,.75))}
 .curtain__s{inset:12px 0;background:var(--black)}
 .curtain span{position:relative}
+/* going Home the panel carries the lockup instead of a word */
+.curtain__home{position:absolute;inset:0;display:none;place-items:center;opacity:0;translate:0 30px;transition:opacity .4s,translate .6s var(--out)}
+.curtain.to-home .curtain__home{display:grid}
+.curtain.to-home.on .curtain__home{opacity:1;translate:0 0}
+.curtain__home .hl-logo{font-size:clamp(30px,5vw,72px)}
+.curtain__home .hl-beam{display:none}
 /* Going to Ryan's page it is his pink instead: a straight edge rises from the bottom, holds on his signature, and carries on off the top */
 .curtain.pinkc{left:0;right:0;top:0;bottom:0;color:#0A0A0A;transform-origin:50% 50%;
   filter:drop-shadow(0 0 22px rgba(255,45,107,.9)) drop-shadow(0 0 90px rgba(255,45,107,.5))}
@@ -317,6 +323,12 @@
 .slots{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:14px}
 @media (max-width:760px){.slots{grid-template-columns:repeat(2,1fr)}}
 /* the businesses Ryan has partnered with, as a quiet row of marks; no label on purpose */
+.quote{margin:clamp(40px,5vw,72px) 0 0;max-width:900px}
+.quote blockquote{margin:0;font:500 clamp(24px,2.6vw,40px)/1.25 var(--body);letter-spacing:-.02em}
+.quote .swipe{--acc:#2DE2C3}
+.who-said{display:flex;align-items:center;gap:14px;margin-top:24px}
+.who-said i{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:#fff;overflow:hidden;flex:none;box-shadow:0 0 0 1px var(--rim)}
+.who-said i img{width:100%;height:100%;object-fit:cover}
 .logos{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:28px 48px;margin-top:clamp(36px,4vw,56px);padding:clamp(24px,3vw,36px) clamp(8px,2vw,24px);border-top:1px solid var(--rim);border-bottom:1px solid var(--rim)}
 .logos img{height:clamp(28px,2.8vw,40px);width:auto;filter:grayscale(1);opacity:.75;transition:opacity .3s,filter .3s}
 .logos img.tall{height:clamp(48px,4.8vw,70px)}
@@ -340,7 +352,7 @@
 .found--flip{grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(24px,4vw,64px);align-items:center}
 .found--flip h2{white-space:nowrap;font-size:clamp(34px,4.3vw,66px)}
 .found--flip .px{aspect-ratio:4/5;max-width:none}
-.found__ph img{object-position:62% 50%;scale:calc(var(--gs,1.12) - .12);translate:none}
+
 /* the live site's pink button: the fill clipped inside a rim at 45 percent, a soft dark vignette inside */
 .btn--pink{background:#FF2D6B;background-clip:padding-box;border-color:rgba(255,45,107,.45);color:#0A0A0A;box-shadow:inset 0 0 14px 1px rgba(0,0,0,.34)}
 .btn--pink::before{background:#FF5586}
@@ -352,9 +364,9 @@
 /* Ryan's 'where I learned' photo: wider, reaching out past the column on the left, and it
    gives the room back as the window narrows */
 .found--wide{grid-template-columns:minmax(0,6fr) minmax(0,7fr)}
-.found--wide .px{margin-left:calc(min(5vw,80px) * -1);aspect-ratio:5/6}
-@media (max-width:1100px){.found--wide .px{margin-left:calc(min(4vw,40px) * -1)}}
-@media (max-width:900px){.found--wide{grid-template-columns:minmax(0,1fr)}.found--wide .px{margin-left:0}}
+.found--wide .slider{margin-left:calc(min(5vw,80px) * -1)}
+@media (max-width:1100px){.found--wide .slider{margin-left:calc(min(4vw,40px) * -1)}}
+@media (max-width:900px){.found--wide{grid-template-columns:minmax(0,1fr)}.found--wide .slider{margin-left:0}}
 
 /* questions */
 .faq{border-top:1px solid var(--rim);max-width:900px}
@@ -658,6 +670,8 @@
 .pinkband__me{position:absolute;right:0;bottom:0;height:min(92%,860px);max-width:58vw;object-fit:contain;object-position:right bottom;width:auto;z-index:0;pointer-events:none;
   filter:drop-shadow(0 20px 40px rgba(0,0,0,.35))}
 .pinkband--me .wrap{z-index:2}
+.pinkband__me{translate:60% 0;opacity:0;transition:translate 1.3s var(--out),opacity .6s}
+.pinkband__me.up{translate:0 0;opacity:1}
 .pinkband--me .big{text-shadow:0 4px 30px rgba(255,45,107,.35)}
 .pinkband__copy{max-width:min(640px,58%)}
 @media (max-width:900px){.pinkband--me{padding-bottom:min(118vw,620px)}.pinkband__me{right:0;height:min(110vw,560px);max-width:none}.pinkband__copy{max-width:none}}
@@ -665,8 +679,10 @@
 .ways{border-top:1px solid var(--rim)}
 .ways > div{display:grid;grid-template-columns:80px minmax(0,1fr) minmax(0,1.1fr) 180px;gap:28px;align-items:center;padding:clamp(28px,3vw,40px) 0;border-bottom:1px solid var(--rim);transition:padding .5s var(--out)}
 .ways > div{position:relative;isolation:isolate}
-.ways > div::before{content:"";position:absolute;inset:6px -12px;z-index:-1;background:var(--acc);border-radius:4px;rotate:-.4deg;
-  transform-origin:left center;scale:0 1;transition:scale .55s var(--out)}
+.ways > div::before{content:"";position:absolute;inset:8px -46px 4px -38px;z-index:-1;background:var(--acc);rotate:-.7deg;skew:-6deg 0;
+  border-radius:3px 14px 6px 18px / 10px 5px 14px 4px;
+  clip-path:polygon(0 12%,2% 0,97% 6%,100% 22%,99% 70%,100% 94%,4% 100%,1% 82%);
+  transform-origin:left center;scale:0 1;transition:scale .26s cubic-bezier(.3,0,.1,1)}
 .ways > div:hover{padding-left:16px}
 .ways > div:hover::before{scale:1 1}
 .ways > div:hover,.ways > div:hover p,.ways > div:hover .n{color:#0A0A0A}
@@ -695,13 +711,16 @@
 .said__ph{aspect-ratio:3/4;border-radius:18px;max-width:460px}
 /* zoomed out so his hand on the left and his shoulder on the right stay in frame */
 .said__ph img{scale:calc(var(--gs,1.12) - .12);translate:none;object-position:50% 40%}
-/* two photos that take turns, always sliding off to the left on a speed ramp */
-.slider{position:relative}
-/* each photo has its own clipped frame, so the zoom stays inside it and the two slide touching */
-.slider .sl{position:absolute;inset:0;overflow:hidden;translate:100% 0}
-.slider .sl.is-shown{translate:0 0}
-/* held near full frame, so the edges of each photo stay in shot */
-.slider .sl img{scale:calc(var(--gs,1.12) - .1)}
+/* two photos stacked, one on top. Every while the top one steps out to the left as the
+   back one steps out to the right, they pass round each other quickly, and the new one
+   slows as it settles on top. The back one peeks out a little behind. */
+.slider{position:relative;aspect-ratio:4/5;isolation:isolate}
+.found--wide .slider{aspect-ratio:5/6}
+.slider .sl{position:absolute;inset:0;overflow:hidden;border-radius:18px;background:#121212;
+  translate:3% 2.5%;rotate:2.5deg;scale:.95;z-index:1;filter:brightness(.55);box-shadow:0 30px 60px -30px rgba(0,0,0,.6)}
+.slider .sl.is-shown{translate:0 0;rotate:0deg;scale:1;z-index:2;filter:none}
+.slider .sl img{width:100%;height:100%;object-fit:cover}
+.said .swipe{color:#0A0A0A}
 .said{font:500 clamp(28px,3.4vw,52px)/1.2 var(--body);letter-spacing:-.025em;margin:0;max-width:24ch}
 .who-said{display:flex;align-items:center;gap:14px;margin-top:30px}
 .who-said i{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:#fff;overflow:hidden;flex:none}
@@ -728,7 +747,7 @@
 
 <div class="nv" id="nv">
   <div class="grain" aria-hidden="true"></div>
-  <div class="curtain" aria-hidden="true"><i class="curtain__r"></i><i class="curtain__s"></i><span></span><div class="curtain__sig"></div></div>
+  <div class="curtain" aria-hidden="true"><i class="curtain__r"></i><i class="curtain__s"></i><span></span><div class="curtain__sig"></div><div class="curtain__home"><div class="hl-logo"><div class="hl-beam"></div><span class="hl-word">Headliner</span><div class="hl-group">Group</div></div></div></div>
 
   <header class="bar">
     <div class="wrap">
@@ -840,7 +859,7 @@
           <article class="case fade" data-pillars="Margin Revenue"><div class="tags"><span class="tag" data-t="Margin">Margin</span><span class="tag" data-t="Revenue">Revenue</span></div><h3>A better rate for a bigger commitment</h3><p>An event management company and an AV hire business priced job by job. We locked in 5 events at once, at better rates.</p><div class="nums"><div><b data-count="500" data-pre="$" data-suffix="k">$500k</b><span>Locked in</span></div><div><b data-count="125" data-pre="$" data-suffix="k">$125k</b><span>Saved</span></div></div></article>
         </div>
         <div class="logos"><img src="assets/img/logo-shadow-av-word.png" alt="Shadow AV"><img src="assets/img/logo-pullman.png" alt="Pullman Hotels and Resorts"><img src="assets/img/logo-aaron-sansoni.png" alt="Aaron Sansoni"><img src="assets/img/logo-foundation-theatres.png" alt="Foundation Theatres" class="tall"></div>
-        <div class="even" style="margin-top:14px;gap:14px"><div class="slot" style="min-height:160px">Testimonial from a partner</div><div class="slot" style="min-height:160px">Testimonial from a partner</div></div>
+        <figure class="quote fade"><blockquote>&ldquo;<span class="swipe">Absolutely fantastic<svg viewBox="0 0 300 100" preserveAspectRatio="none" aria-hidden="true"><path d="M10 54C90 46 200 44 290 50"/></svg></span>, thumbs up to Ryan on helping me get the ideas out, and building an action plan moving forward.&rdquo;</blockquote><figcaption class="who-said"><i aria-hidden="true"><img src="assets/img/shadow-av.jpg" alt=""></i><div><strong>Cory Hoyling</strong><br><span class="small">Director, Shadow AV</span></div></figcaption></figure>
       </div>
     </section>
 
@@ -854,7 +873,7 @@
           <p class="p">My goal is to use this experience to be in business with, or partnered into, every area of live events and production in Australia.</p>
           <div class="row" style="margin-top:30px"><a class="btn btn--pink" href="#ryan" data-go="ryan">More about Ryan</a></div>
         </div>
-        <div class="px grow found__ph" data-grow><img src="assets/img/ryan-hero.jpg" alt="Ryan Tayler"></div>
+        <div class="slider found__ph" data-slider><div class="sl is-shown"><img src="assets/img/ryan-hero.jpg" alt="Ryan Tayler" style="object-position:62% 50%"></div><div class="sl"><img src="assets/img/ryan-jungle.jpg" alt="Ryan Tayler sitting in front of a garden" style="object-position:40% 40%"></div></div>
       </div>
     </section>
 
@@ -1135,7 +1154,7 @@
 
     <section class="sec">
       <div class="wrap found found--wide">
-        <div class="px grow slider" data-grow data-slider><div class="sl is-shown"><img src="assets/img/ryan-foh.jpg" alt="Ryan Tayler and Aaron Sansoni front of house at a live event" style="transform-origin:45% 35%"></div><div class="sl"><img src="assets/img/ryan-aaron-board.jpg" alt="Ryan Tayler with Aaron Sansoni as he signs at the boardroom table" style="transform-origin:50% 45%"></div></div>
+        <div class="slider found__stack" data-slider><div class="sl is-shown"><img src="assets/img/ryan-foh.jpg" alt="Ryan Tayler and Aaron Sansoni front of house at a live event" style="transform-origin:45% 35%"></div><div class="sl"><img src="assets/img/ryan-aaron-board.jpg" alt="Ryan Tayler with Aaron Sansoni as he signs at the boardroom table" style="transform-origin:50% 45%"></div></div>
         <div>
           <h2 class="d d2" data-split>Where I learned the business</h2>
           <p class="p fade" style="margin-top:28px">Early in my career I worked for <span class="swipe">Aaron Sansoni<svg viewBox="0 0 300 100" preserveAspectRatio="none" aria-hidden="true"><path d="M10 54C90 46 200 44 290 50"/></svg></span>, Australia&rsquo;s #1 business mentor, and that&rsquo;s where I learned how business is built. In 4 years I grew from a junior to General Manager of his largest business, which focused on live events and business coaching.</p>
@@ -1175,7 +1194,7 @@
       <div class="wrap even" style="align-items:center">
         <div class="px grow said__ph" data-grow><img src="assets/img/ryan-consulting.jpg" alt="Ryan Tayler running a consulting session in front of a wall of planning sheets"></div>
         <div>
-          <blockquote class="said" style="margin:0">&ldquo;Absolutely fantastic, thumbs up to Ryan on helping me get the ideas out, and building an action plan moving forward.&rdquo;</blockquote>
+          <blockquote class="said fade" style="margin:0">&ldquo;<span class="swipe">Absolutely fantastic<svg viewBox="0 0 300 100" preserveAspectRatio="none" aria-hidden="true"><path d="M10 54C90 46 200 44 290 50"/></svg></span>, thumbs up to Ryan on helping me get the ideas out, and building an action plan moving forward.&rdquo;</blockquote>
           <div class="who-said"><i aria-hidden="true"><img src="assets/img/shadow-av.jpg" alt=""></i><div><strong>Cory Hoyling</strong><br><span class="small">Director, Shadow AV</span></div></div>
         </div>
       </div>
@@ -1403,7 +1422,7 @@
       curtain.getAnimations().concat($('.curtain__s',curtain).getAnimations()).forEach(function(x){ x.cancel(); });
       var a=pinkc?[{clipPath:'inset(100% 0 0 0)'},{clipPath:'inset(0% 0 0 0)'}]:[{rotate:'-26deg'},{rotate:'0deg'}],
           b=pinkc?[{clipPath:'inset(0 0 0% 0)'},{clipPath:'inset(0 0 100% 0)'}]:[{rotate:'0deg'},{rotate:'26deg'}];
-      $('span',curtain).textContent=NAMES[name]||''; curtain.style.visibility='visible';
+      curtain.classList.toggle('to-home',name==='index'); $('span',curtain).textContent=name==='index'?'':(NAMES[name]||''); curtain.style.visibility='visible';
       target.animate(a,{duration:pinkc?1050:1000,easing:'cubic-bezier(.3,0,.15,1)',fill:'forwards'}).onfinish=function(){
         curtain.classList.add('on'); swap();
         setTimeout(function(){ curtain.classList.remove('on');
@@ -1440,6 +1459,7 @@
      run before it takes over, and a slower, softer glide. */
   function snapZones(){
     var z=[], E=Math.min(84,Math.max(36,innerWidth*.05)), vh=innerHeight;
+    if(current.dataset.pg==='ryan') return z;
     var h=$('[data-hero],.me',current); if(h) z.push([0,h.offsetHeight,'hero']);
     return z;
   }
@@ -1486,7 +1506,7 @@
   function tick(){
     if(!current || !live()) return;
     var vh=innerHeight;
-    $$('[data-split]:not(.up),.fade:not(.up)',current).forEach(function(e){ if(vis(e)) e.classList.add('up'); });
+    $$('[data-split]:not(.up),.fade:not(.up),.pinkband__me:not(.up)',current).forEach(function(e){ if(vis(e)) e.classList.add('up'); });
     $$('[data-ladder] .tier:not(.on),.day:not(.on),[data-cal]:not(.on),[data-quotes]:not(.on)',current).forEach(function(e){ if(vis(e,.75)){ e.classList.add('on');  } });
     /* pictures drift against the scroll */
     $$('.px img',current).forEach(function(im){ var r=im.parentNode.getBoundingClientRect(); if(r.bottom<0||r.top>vh) return; var c=(r.top+r.height/2-vh/2)/vh; im.style.setProperty('--d',(-c*r.height*.08)+'px'); });
@@ -1567,18 +1587,22 @@
   }
   $$('.pil').forEach(function(b){ b.addEventListener('click',function(){ pick(b.getAttribute('aria-pressed')==='true'?'':b.dataset.pillar); }); });
 
-  /* the photo slider: every few seconds, while it is on screen, the shown photo leaves to the
-     left and the next comes in from the right, slow off the mark, fast through the middle,
-     slow to settle */
+  /* the stacked photos swap round each other every so often while on screen */
+  var BACK={translate:'3% 2.5%',rotate:'2.5deg',scale:'.95',filter:'brightness(.55)'}, TOP={translate:'0% 0%',rotate:'0deg',scale:'1',filter:'brightness(1)'};
   setInterval(function(){
     if(!current||!live()||reduce) return;
     $$('[data-slider]',current).forEach(function(sl){
       var r=sl.getBoundingClientRect(); if(r.bottom<0||r.top>innerHeight) return;
       var ims=$$('.sl',sl), i=ims.findIndex(function(m){ return m.classList.contains('is-shown'); }), a=ims[i], b=ims[(i+1)%ims.length];
-      var o={duration:1500,easing:'cubic-bezier(.78,0,.18,1)',fill:'forwards'};
-      a.getAnimations().forEach(function(x){ x.cancel(); }); b.getAnimations().forEach(function(x){ x.cancel(); });
-      a.animate([{translate:'0 0'},{translate:'-100% 0'}],o); b.animate([{translate:'100% 0'},{translate:'0 0'}],o);
-      a.classList.remove('is-shown'); b.classList.add('is-shown');
+      ims.forEach(function(m){ m.getAnimations().forEach(function(x){ x.cancel(); }); });
+      var out={duration:560,easing:'cubic-bezier(.55,0,.85,.35)',fill:'forwards'};
+      a.animate([TOP,{translate:'-22% -2%',rotate:'-7deg',scale:'.97',filter:'brightness(.85)'}],out);
+      b.animate([BACK,{translate:'22% -1%',rotate:'7deg',scale:'.99',filter:'brightness(.95)'}],out).onfinish=function(){
+        a.classList.remove('is-shown'); b.classList.add('is-shown');
+        var back={duration:1050,easing:'cubic-bezier(.1,.65,.2,1)',fill:'forwards'};
+        b.animate([{translate:'22% -1%',rotate:'7deg',scale:'.99',filter:'brightness(.95)'},TOP],back);
+        a.animate([{translate:'-22% -2%',rotate:'-7deg',scale:'.97',filter:'brightness(.85)'},BACK],back).onfinish=function(){ ims.forEach(function(m){ m.getAnimations().forEach(function(x){ x.cancel(); }); }); };
+      };
     });
   },7400);
 
@@ -1598,7 +1622,7 @@
       cards=$$('.fan__c',f); while(st.length<cards.length) st.push({a:0,v:0,y:0,yv:0});
       var mx=e.movementX||0, my=e.movementY||0;
       cards.forEach(function(c,k){ var r=c.getBoundingClientRect(), d=Math.abs(e.clientX-(r.left+r.width/2)), w=Math.max(0,1-d/(r.width*1.3));
-        st[k].v+=Math.max(-1.2,Math.min(1.2,mx*.05))*w; st[k].yv+=Math.max(-2,Math.min(2,-Math.abs(mx)*.06-my*.03))*w; });
+        st[k].v+=Math.max(-.24,Math.min(.24,mx*.01))*w; st[k].yv+=Math.max(-.4,Math.min(.4,-Math.abs(mx)*.012-my*.006))*w; });
       if(!raf) raf=requestAnimationFrame(run);
     },{passive:true});
   })();

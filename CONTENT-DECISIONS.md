@@ -2934,3 +2934,18 @@ Ryan's brief, written at the length he gave it.
   in the direction of travel and spring back; when the pointer stops, they stop.
 - **Socials heading**: "I write about" on the top line, "Partnerships & Business most weeks"
   on the second, centred.
+
+## The new view, stacked photos and Cory on Home, 2 November 2026
+
+- **Ryan's page has no hand over at all.** Only the Headliner heroes do it.
+- **The two photo pairs are stacked**, one on top with the other peeking out behind. Every
+  while, the top one steps out to the left as the back one steps out to the right, they
+  pass round each other quickly, and the new top one slows as it settles. Ryan and Aaron on
+  his page, and on Home's Our founder, the beach shot and a new one of Ryan in a garden.
+- **Ryan's cutout slides in from the right** when the pink band comes up.
+- **The highlighter on "Three ways to work with me" is a quick swipe** that starts past the
+  left of the table and runs past the right, with ragged ends.
+- **"Absolutely fantastic" is highlighted** in Cory Hoyling's quote, on Ryan's page and on
+  Home, where his quote replaces the two testimonial placeholders.
+- **The socials fan reacts 80 percent less.**
+- **Going to Home, the page change shows the Headliner lockup** instead of the word "Home".
