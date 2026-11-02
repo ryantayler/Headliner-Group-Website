@@ -2997,3 +2997,6 @@ Ryan's brief, written at the length he gave it.
 - **One style per block of copy.** "Our industry's biggest mistake" had three: the lead, the
   body and the bold "Scroll down" line. All three are now one size, weight and colour.
 - **The garden photo in Our founder sits as high as the frame allows**, less headroom.
+- **Staircase, second go**: no coloured top rules, every step fully rounded, a small gap
+  between steps, each grows slightly under the pointer. No shaft in the partnership step;
+  "Partnership" carries the aqua highlighter instead.

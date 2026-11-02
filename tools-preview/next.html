@@ -403,28 +403,29 @@
 .cta .lead{color:#C9C5BE;margin-top:18px}
 
 /* ---------- partner with us ---------- */
-/* the four ways in as one staircase: no boxes, one ground that steps up left to right.
-   Consulting to negotiations is a small step on the light ground, the jump to advisory is
-   big and the ground turns dark and lit, and partnership is the top step. */
-.stairs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));align-items:stretch;margin-inline:calc(min(64px,4.4vw) * -1)}
-.step{display:flex;flex-direction:column;gap:14px;padding:clamp(26px,2.6vw,40px) clamp(20px,2vw,32px) clamp(30px,3vw,44px);border-top:3px solid var(--fg);position:relative}
-.step--1{background:#E6EBE9;margin-top:clamp(140px,13vw,190px);border-radius:12px 0 0 12px}
+/* the four ways in as a staircase of rounded steps rising left to right, with a small gap
+   between them. Consulting to negotiations is a small step on the light ground, the jump to
+   advisory is big and the ground turns dark, partnership is the top step. Each grows a
+   little under the pointer. */
+.stairs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));align-items:stretch;gap:10px;margin-inline:calc(min(64px,4.4vw) * -1)}
+.step{display:flex;flex-direction:column;gap:14px;padding:clamp(26px,2.6vw,40px) clamp(20px,2vw,32px) clamp(30px,3vw,44px);border-radius:16px;position:relative;
+  transition:scale .5s var(--out),box-shadow .5s var(--out);transform-origin:50% 100%}
+.step:hover{scale:1.03;z-index:2;box-shadow:0 30px 60px -30px rgba(10,30,26,.45)}
+.step--1{background:#E6EBE9;margin-top:clamp(140px,13vw,190px)}
 .step--2{background:#DCE3E0;margin-top:clamp(116px,10.8vw,158px)}
-.step--3{background:#141414;margin-top:clamp(22px,2.2vw,32px);border-top-color:#2DE2C3}
-.step--4{background:#0A0A0A;margin-top:0;border-radius:0 12px 12px 0;border-top-color:#2DE2C3;overflow:hidden;isolation:isolate}
+.step--3{background:#161616;margin-top:clamp(22px,2.2vw,32px)}
+.step--4{background:#0A0A0A;margin-top:0}
 .step--3,.step--4{color:#ECE8E0;--sub:#B9B5AE;--mute:#8E8A84;--rim:#2C2C2C;--fg:#ECE8E0;--bg:#0A0A0A;--bg2:#222}
-.step--4::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(118deg,transparent 10%,rgba(45,226,195,.28) 30%,rgba(45,226,195,.05) 52%,transparent 64%)}
-.step--3{border-radius:12px 0 0 0}
 .step h3{font:400 clamp(22px,1.9vw,30px)/.95 var(--display);text-transform:uppercase;letter-spacing:-.02em;margin:0}
+.step--4 h3 .mark{color:#0A0A0A;font-weight:400;background-size:100% 88%;padding:.04em .14em}
 .step > p{margin:0;font-size:15.5px;line-height:1.55;color:var(--sub)}
 .step ol{list-style:none;margin:0;padding:14px 0 0;border-top:1px solid var(--rim);display:grid;gap:9px}
 .step li{display:grid;grid-template-columns:30px minmax(0,1fr);font-size:14.5px;color:var(--sub);line-height:1.4}
 .step li i{font-style:normal;font-variant-numeric:tabular-nums;color:var(--mute);font-size:12.5px;padding-top:1px}
 .step .seg{margin:0;align-self:stretch;display:flex;max-width:100%}
 .step .seg button{flex:1;min-width:0;padding:7px 4px;font-size:12.5px}
-@media (max-width:1000px){.stairs{grid-template-columns:repeat(2,minmax(0,1fr));margin-inline:0}
-  .step--1{margin-top:60px;border-radius:12px 0 0 0}.step--2{margin-top:30px;border-radius:0 12px 0 0}.step--3{margin-top:0;border-radius:0 0 0 12px}.step--4{border-radius:0 0 12px 0}}
-@media (max-width:620px){.stairs{grid-template-columns:minmax(0,1fr)}.step{margin:0!important;border-radius:0!important}.step--1{border-radius:12px 12px 0 0!important}.step--4{border-radius:0 0 12px 12px!important}}
+@media (max-width:1000px){.stairs{grid-template-columns:repeat(2,minmax(0,1fr));margin-inline:0}.step--1{margin-top:60px}.step--2{margin-top:30px}.step--3,.step--4{margin-top:0}}
+@media (max-width:620px){.stairs{grid-template-columns:minmax(0,1fr)}.step{margin:0!important}}
 .deals__go{display:flex;justify-content:center;margin-top:clamp(32px,4vw,56px)}
   border:1px solid var(--rim);box-shadow:0 1px 0 var(--rim),0 24px 40px -30px rgba(10,30,26,.35);transition:translate .5s var(--out),box-shadow .5s var(--out)}
   font:600 11.5px/1 var(--body);letter-spacing:.16em;text-transform:uppercase;color:var(--mute)}
@@ -943,7 +944,7 @@
             <ol><li><i>3.1</i><span data-cad-say>A call with Ryan every week</span></li><li><i>3.2</i>Accountability on the plan</li><li><i>3.3</i>Help putting it in place</li></ol>
           </div>
           <div class="step step--4">
-            <h3>Partnership</h3>
+            <h3><span class="mark">Partnership</span></h3>
             <p>We take a minority stake and work on the business with you for the long term. There&rsquo;s no fee. We only do well if the business grows.</p>
             
             <ol><li><i>4.1</i>A business partner on board</li><li><i>4.2</i>Partnerships, negotiation and advisory as you need them</li><li><i>4.3</i>A place in our group, and group rates across it</li><li><i>4.4</i>Exit, or a general manager placed in, when you want it</li></ol>
