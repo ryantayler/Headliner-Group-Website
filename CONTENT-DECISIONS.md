@@ -2822,3 +2822,17 @@ Movement only. No copy changed.
   beside a fan of his Shorts covers that opens as you reach it and spreads on hover.
 - **Free Sh!t**: more space between the cards, a shadow under each picture, and on hover
   the picture lifts and zooms and the title underlines.
+
+## The new view, Home's second section, 2 November 2026
+
+Ryan's brief, written at the length he gave it.
+
+- **Heading:** "Our industry's biggest mistake", replacing "Most of this industry buys on price".
+- **The graphic is three mini quotes** labelled Expensive, Medium and Cheap. A signature
+  writes itself onto the cheap one. Once you scroll on from where the hero sets you down,
+  a red stamp lands over all three: "Don't f*cking do this". Ryan typed "thit", read as "this".
+- **Copy:** "Three quotes, take the cheapest, squeeze it, do it again next event." then
+  "It saves money on that job. It costs you everything after it." The old "because the
+  suppliers you swap in and out owe you nothing in an emergency" is cut, because the next
+  section now answers why.
+- **Last line:** "Scroll down to find out why", with a small aqua arrow nudging down.
