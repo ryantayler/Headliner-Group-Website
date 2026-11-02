@@ -3000,3 +3000,14 @@ Ryan's brief, written at the length he gave it.
 - **Staircase, second go**: no coloured top rules, every step fully rounded, a small gap
   between steps, each grows slightly under the pointer. No shaft in the partnership step;
   "Partnership" carries the aqua highlighter instead.
+
+## The new view, truss header, 2 November 2026
+
+- **The header is a length of truss**, Ryan's idea to try: a top and a bottom chord and 45
+  degree lacing across the full width, faint and see through. The links sit on one plate
+  and Book a call on its own, each hung from the top chord on two small hooks. The logo
+  stays as it is. On a phone the plates are hidden with the links, so only the truss shows.
+- **Tagline**: "We help businesses in / live events & production / grow through
+  partnerships", in the home hero and the footer.
+- **Services**: Negotiations takes Consulting's colour and Partnership takes Advisory's.
+  Advisory offers fortnightly and monthly only. Partnership glows aqua on hover.

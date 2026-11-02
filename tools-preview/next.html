@@ -105,6 +105,16 @@
 /* over a hero photograph it carries a soft dark wash so the links stay readable */
 .bar::before{content:"";position:absolute;inset:0 0 -40px 0;z-index:-1;pointer-events:none;background:linear-gradient(to bottom,rgba(10,10,10,.72),rgba(10,10,10,.38) 60%,rgba(10,10,10,0));transition:opacity .4s}
 .bar.is-solid::before{opacity:0}
+/* the header hangs off a length of truss: two chords and 45 degree lacing across the whole
+   width, faint, with the links and the button on plates hooked onto the top chord */
+.bar::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22164%22%20height%3D%2294%22%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23ECE8E0%22%3E%3Cpath%20stroke-opacity%3D%22.2%22%20stroke-width%3D%223%22%20d%3D%22M0%206H164M0%2088H164%22/%3E%3Cpath%20stroke-opacity%3D%22.11%22%20stroke-width%3D%221.6%22%20d%3D%22M0%2088L82%206L164%2088%22/%3E%3Cpath%20stroke-opacity%3D%22.08%22%20stroke-width%3D%221.2%22%20d%3D%22M0%2012H164M0%2082H164%22/%3E%3C/g%3E%3C/svg%3E") repeat-x 0 0 / auto 100%}
+.plate{position:relative;display:flex;align-items:center;padding:0 22px;height:46px;border-radius:8px;
+  background:rgba(14,16,16,.58);border:1px solid rgba(236,232,224,.14);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+  box-shadow:inset 0 1px 0 rgba(236,232,224,.06),0 8px 20px -10px rgba(0,0,0,.6)}
+.plate::before,.plate::after{content:"";position:absolute;bottom:calc(100% - 2px);width:14px;height:24px;background:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2214%22%20height%3D%2224%22%3E%3Cpath%20d%3D%22M4%2024V9a4.5%204.5%200%200%201%209%200v3%22%20fill%3D%22none%22%20stroke%3D%22%23ECE8E0%22%20stroke-opacity%3D%22.55%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22/%3E%3C/svg%3E") no-repeat center / contain;pointer-events:none}
+.plate::before{left:16%}.plate::after{right:16%;scale:-1 1}
+.plate--go{padding:0 5px;height:54px;border-radius:30px}
+.plate--go::before{left:22%}.plate--go::after{right:22%}
 .bar .wrap{display:flex;align-items:center;gap:28px;padding-right:max(var(--gut),calc(236px - (100vw - min(1320px,100vw)) / 2))}
 .bar.is-solid{background:rgba(10,10,10,.88);-webkit-backdrop-filter:blur(14px) saturate(140%);backdrop-filter:blur(14px) saturate(140%);box-shadow:0 1px 0 #2E2E2E}
 .bar.is-hid{translate:0 -100%}
@@ -122,7 +132,7 @@
 .drawer.is-open{clip-path:polygon(0 0,100% 0,100% 100%,0 100%)}
 .drawer a{font:400 clamp(44px,13vw,72px)/1 var(--display);text-transform:uppercase;text-decoration:none}
 .drawer a.is-here{color:var(--acc)}
-@media (max-width:960px){.links,.bar .btn{display:none}.menu{display:block;margin:0;position:absolute;right:154px;top:50%;translate:0 -50%}.hl-link{width:206px;height:68px}.hl-stage{transform:scale(.26)}}
+@media (max-width:960px){.links,.bar .btn,.plate--go{display:none}.menu{display:block;margin:0;position:absolute;right:154px;top:50%;translate:0 -50%}.hl-link{width:206px;height:68px}.hl-stage{transform:scale(.26)}}
 
 /* page change: a panel cut on the beam's angle carries the next page's name */
 /* The panel is a cone of light from a lamp far off to the right: its edges close in
@@ -412,9 +422,10 @@
   transition:scale .5s var(--out),box-shadow .5s var(--out);transform-origin:50% 100%}
 .step:hover{scale:1.03;z-index:2;box-shadow:0 30px 60px -30px rgba(10,30,26,.45)}
 .step--1{background:#E6EBE9;margin-top:clamp(140px,13vw,190px)}
-.step--2{background:#DCE3E0;margin-top:clamp(116px,10.8vw,158px)}
+.step--2{background:#E6EBE9;margin-top:clamp(116px,10.8vw,158px)}
 .step--3{background:#161616;margin-top:clamp(22px,2.2vw,32px)}
-.step--4{background:#0A0A0A;margin-top:0}
+.step--4{background:#161616;margin-top:0}
+.step--4:hover{box-shadow:0 0 0 1px rgba(45,226,195,.5),0 0 40px rgba(45,226,195,.45),0 30px 70px -20px rgba(45,226,195,.35)}
 .step--3,.step--4{color:#ECE8E0;--sub:#B9B5AE;--mute:#8E8A84;--rim:#2C2C2C;--fg:#ECE8E0;--bg:#0A0A0A;--bg2:#222}
 .step h3{font:400 clamp(22px,1.9vw,30px)/.95 var(--display);text-transform:uppercase;letter-spacing:-.02em;margin:0}
 .step--4 h3 .mark{color:#0A0A0A;font-weight:400;background-size:100% 88%;padding:.04em .14em}
@@ -762,13 +773,13 @@
   <header class="bar">
     <div class="wrap">
       <a class="hl-link" href="#index" data-go="index" aria-label="Headliner Group, home"><div class="hl-stage"><div class="hl-logo"><div class="hl-beam"></div><span class="hl-word">Headliner</span><div class="hl-group">Group</div></div></div></a>
-      <nav class="links" aria-label="Main">
+      <nav class="links plate" aria-label="Main">
         <a href="#index" data-go="index">Home</a>
         <a href="#partnerships" data-go="partnerships">Partner with us</a>
         <a href="#ryan" data-go="ryan">Ryan Tayler</a>
         <a href="#free" data-go="free">Free Sh!t</a>
       </nav>
-      <a class="btn btn--go" href="#contact" data-go="contact">Book a call</a>
+      <span class="plate plate--go"><a class="btn btn--go" href="#contact" data-go="contact">Book a call</a></span>
       <button class="menu" type="button" aria-label="Open menu" aria-expanded="false"><span></span></button>
     </div>
   </header>
@@ -789,7 +800,7 @@
       <div class="lamp" aria-hidden="true"></div>
       <div class="wrap">
         <div class="hero__logo" aria-hidden="true"><div class="hl-stage"><div class="hl-logo"><div class="hl-beam"></div><span class="hl-word">Headliner</span><div class="hl-group">Group</div></div></div></div>
-        <h1 class="d d1 d1--lines" data-split><span class="ln">Helping businesses in</span> <span class="ln">live events &amp; production</span> <span class="ln">grow through partnerships</span></h1>
+        <h1 class="d d1 d1--lines" data-split><span class="ln">We help businesses in</span> <span class="ln">live events &amp; production</span> <span class="ln">grow through partnerships</span></h1>
         <div class="row">
           <a class="btn btn--go" href="#contact" data-go="contact">Book a call</a>
           <a class="btn" href="#free" data-go="free">Get the free tools</a>
@@ -940,8 +951,8 @@
           <div class="step step--3">
             <h3>Advisory</h3>
             <p>Regular time with Ryan to keep the plan moving, and someone to hold you to it.</p>
-            <div class="seg" role="group" aria-label="How often"><button type="button" data-cad="w" aria-pressed="true">Weekly</button><button type="button" data-cad="f" aria-pressed="false">Fortnightly</button><button type="button" data-cad="m" aria-pressed="false">Monthly</button></div>
-            <ol><li><i>3.1</i><span data-cad-say>A call with Ryan every week</span></li><li><i>3.2</i>Accountability on the plan</li><li><i>3.3</i>Help putting it in place</li></ol>
+            <div class="seg" role="group" aria-label="How often"><button type="button" data-cad="f" aria-pressed="true">Fortnightly</button><button type="button" data-cad="m" aria-pressed="false">Monthly</button></div>
+            <ol><li><i>3.1</i><span data-cad-say>A call with Ryan every fortnight</span></li><li><i>3.2</i>Accountability on the plan</li><li><i>3.3</i>Help putting it in place</li></ol>
           </div>
           <div class="step step--4">
             <h3><span class="mark">Partnership</span></h3>
@@ -1317,7 +1328,7 @@
   <footer class="foot" data-edge>
     <div class="wrap">
       <div class="foot__top">
-        <div><p class="lead foot__tag" style="color:#ECE8E0"><span class="ln">Helping businesses in</span> <span class="ln">live events &amp; production</span> <span class="ln">grow through partnerships.</span></p><p class="small" style="margin-top:16px">Headliner Group, founded by Ryan Tayler.</p></div>
+        <div><p class="lead foot__tag" style="color:#ECE8E0"><span class="ln">We help businesses in</span> <span class="ln">live events &amp; production</span> <span class="ln">grow through partnerships.</span></p><p class="small" style="margin-top:16px">Headliner Group, founded by Ryan Tayler.</p></div>
         <div><ul><li><a href="#index" data-go="index">Home</a></li><li><a href="#partnerships" data-go="partnerships">Partner with us</a></li><li><a href="#ryan" data-go="ryan">Ryan Tayler</a></li><li><a href="#free" data-go="free">Free Sh!t</a></li></ul></div>
         <div class="foot__btns">
           <a class="btn btn--go" href="#contact" data-go="contact">Book a call</a>
