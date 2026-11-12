@@ -19,6 +19,13 @@ PAGES = {
     'ryan.html':         ('ryan-tayler',   '/ryantayler'),
     'free.html':         ('free-shit',     '/freeshit'),
     'contact.html':      ('lets-chat',     '/letschat'),
+    # The worksheet pages hang off Free Sh!t: a form page gates each download, and the
+    # worksheet page is where the form sends people. Their slugs are a best guess in the
+    # site's own style; confirm them against the builder before wiring the forms.
+    'four-pillars.html':             ('four-pillars',             '/fourpillars'),
+    'four-pillars-form.html':        ('four-pillars-form',        '/fourpillarsform'),
+    'optimisation-engine.html':      ('optimisation-engine',      '/optimisationengine'),
+    'optimisation-engine-form.html': ('optimisation-engine-form', '/optimisationengineform'),
 }
 
 # Anton, Archivo Black, Caveat and Inter are all Google faces, self hosted here only
@@ -93,6 +100,30 @@ def body_of(doc):
     return out.strip('\n')
 
 
+def cut_form(body):
+    """Third party embeds do not go in the exported markup (see CLAUDE.md), and a form
+    is the builder's own element. A page marks where its form section sits with
+    <!-- GHL:FORM --> ... <!-- /GHL:FORM -->, and this cuts the page there: the block
+    above the form, the block below it, and whatever the markers hold is dropped. If
+    the dropped section marks a column with <!-- GHL:LEFT --> ... <!-- /GHL:LEFT -->,
+    that column comes back as its own fragment, for an HTML block beside the builder's
+    form element. Returns (above, left, below); left and below are None when absent."""
+    m = re.search(r'<!--\s*GHL:FORM.*?-->', body, re.S)
+    if not m:
+        return body, None, None
+    end = re.search(r'<!--\s*/GHL:FORM\s*-->', body)
+    if not end:
+        raise SystemExit('GHL:FORM opened but never closed')
+    above = body[:m.start()].rstrip('\n')
+    inside = body[m.end():end.start()]
+    below = body[end.end():].strip('\n') or None
+    left = None
+    lm = re.search(r'<!--\s*GHL:LEFT\s*-->(.*?)<!--\s*/GHL:LEFT\s*-->', inside, re.S)
+    if lm:
+        left = lm.group(1).strip('\n')
+    return above, left, below
+
+
 def relink(out):
     """Pictures become their uploaded URLs where one is known, and fall back to a token
     where it is not. The seven downloads have no files yet, so they keep their own."""
@@ -132,10 +163,16 @@ def main(dest):
         # It is a token block, so it works on any ancestor: putting it on the wrapper
         # puts his palette in the markup and takes the script out of it entirely.
         theme = ' theme-ryan' if 'class="theme-ryan"' in doc[:doc.index('>', doc.index('<body'))] else ''
-        open(os.path.join(d, 'page.html'), 'w').write(
-            '<!-- One wrapper, so the page can break out of whatever column the builder\n'
-            '     drops it into. The stylesheet pins it to the full viewport width. -->\n'
-            '<div class="hl-root%s">\n' % theme + relink(body_of(doc)) + '\n</div>\n')
+        wrap_note = ('<!-- One wrapper, so the page can break out of whatever column the builder\n'
+                     '     drops it into. The stylesheet pins it to the full viewport width. -->\n')
+        def block(frag):
+            return wrap_note + '<div class="hl-root%s">\n' % theme + relink(frag) + '\n</div>\n'
+        above, left, below = cut_form(body_of(doc))
+        open(os.path.join(d, 'page.html'), 'w').write(block(above))
+        if left:
+            open(os.path.join(d, 'form-left.html'), 'w').write(block(left))
+        if below:
+            open(os.path.join(d, 'page-below.html'), 'w').write(block(below))
         open(os.path.join(d, 'styles.css'), 'w').write(FONTS + css + OVERRIDES)
 
         # ryan.html carries a class on <body> that a pasted block cannot set, and the
@@ -192,19 +229,23 @@ def readme(dest):
         rows.append((folder, slug, name, imgs))
 
     t = ["# Headliner Group, packaged for a page builder", "",
-         "Five pages. Each one is a folder holding the files that page needs.", "",
+         "%d pages. Each one is a folder holding the files that page needs." % len(rows), "",
          "```"]
     for folder, slug, name, imgs in rows:
-        t.append("1-pages/%-13s page.html  styles.css  script.js     ->  %s" % (folder + '/', slug))
-    t += ["2-images/       every picture the five pages ask for",
+        t.append("1-pages/%-26s page.html  styles.css  script.html  ->  %s" % (folder + '/', slug))
+    t += ["2-images/       every picture the pages ask for",
           "3-working-copy/ the site as it stands. Open index.html in a browser to",
           "                compare against once it is live.",
           "```", "",
-          "**styles.css and script.js are the same file five times over**, because the site is",
+          "**styles.css and script.html are the same file in every folder**, because the site is",
           "one stylesheet and one script. If your builder has a site wide custom CSS box and a",
-          "site wide custom JS box, paste each one once there and skip them on the other four",
-          "pages. The one exception is `1-pages/ryan-tayler/script.js`, which carries an extra",
-          "line at the top. See **Ryan's page** below.", "",
+          "site wide custom JS box, paste each one once there and skip it on the other",
+          "pages.", "",
+          "A page with a Go High Level form carries its markup in two blocks. `page.html`",
+          "is everything above the form section and `page-below.html`, where it exists, is",
+          "everything below it. Between them goes the builder's own form element, never a",
+          "pasted embed. Where a page also ships `form-left.html`, that block is the copy",
+          "column that sits in a two column row beside the form.", "",
           "---", "", "## Putting a page in", "",
           "1. Make a blank page, no template and no builder header or footer. The markup",
           "   carries its own header and footer, and two headers will fight.",
@@ -212,16 +253,15 @@ def readme(dest):
           "   edge, with no padding. The page sets its own margins.",
           "3. Paste `page.html` into it.",
           "4. Paste `styles.css` into the page's custom CSS, or the site's.",
-          "5. Paste `script.js` into the page's footer code, or the site's.", "",
+          "5. Paste `script.html` into the page's footer code, or the site's.", "",
           "The script waits for the markup before it runs, so a header slot works too.", "",
           "### If the page comes out mostly blank", "",
           "**The script is not running.** That is the one failure that empties a page, and",
           "it looks like the header and the hero photograph over nothing at all.", "",
-          "Some code boxes want markup rather than bare JavaScript, and paste a `.js` file",
-          "in as text where it never runs. Every page folder carries the same script a",
-          "second time as `script-in-tags.html`, already inside a `<script>` tag. Use that",
-          "one in any box that is expecting HTML, such as a header or footer tracking code",
-          "field. Use the plain `script.js` only in a box that is expecting JavaScript.", "",
+          "Some code boxes want markup rather than bare JavaScript, and print a bare `.js`",
+          "file into the page as text where it never runs. `script.html` already carries its",
+          "`<script>` tags for that reason, so it works in a box that is expecting HTML,",
+          "such as a header or footer tracking code field.", "",
           "To tell which happened, open the page and look at the browser console. If the",
           "script ran, `document.documentElement.className` contains `rv-on`.", "",
           "## The pictures", "",
@@ -238,7 +278,7 @@ def readme(dest):
     t += ["",
           "`favicon.svg` is the only picture with no URL. It is not in the markup, it is a head",
           "tag, and the builder sets the favicon in its own settings.", "",
-          "The five `og-*.png` are the social preview cards. They are not in the markup either.",
+          "The `og-*.png` files are the social preview cards. They are not in the markup either.",
           "Their URLs are in `ghl-assets.json`, for each page's own SEO or sharing settings.", "",
           "## Links between pages", "",
           "The markup already points at these paths, so name the pages to match or edit the",
@@ -262,19 +302,16 @@ def readme(dest):
           "the page renders in the group's colours.", "",
           "## What is still a placeholder", "",
           "None of this is broken by the packaging. It was already outstanding.", "",
-          "- **Every form does nothing.** They carry `data-demo` and only show the thank you",
-          "  note. Point them at a real endpoint, or swap them for your builder's own form",
-          "  elements, which is the easier road if the builder holds the contacts.",
-          "- **The seven downloads do not exist**, so they are the one thing still on a token.",
-          "  The markup asks for `DOWNLOADS_BASE/pillars.pdf` and six more. Upload the real",
-          "  files, add them to `ghl-assets.json`, and they will bake in like the pictures did.",
-          "  Until then the form on each card shows its note and releases nothing.",
+          "- **The real forms are the builder's.** Each page with a form marks where it goes",
+          "  (see the two block note above) and the remaining `data-demo` and `data-newsletter`",
+          "  forms in the markup only show their thank you note. Swap them for the builder's",
+          "  own form elements, or point them at a real endpoint.",
+          "- **The worksheet form pages' slugs are a guess** in the site's own style. Confirm",
+          "  the real page paths in the builder before wiring the Free Sh!t cards to them.",
           "- **The LinkedIn posts** are three real embeds. They need no work, but they will not",
           "  render anywhere that blocks third party frames.",
           "- **`headlinergroup.com.au` is a placeholder** in the social tags of the working copy.",
-          "  It is not in the pasted markup, because those tags live in the head.",
-          "- **The social links** point at bare linkedin.com, instagram.com, facebook.com and",
-          "  youtube.com rather than at the real profiles. Seven of them are LinkedIn.", ""]
+          "  It is not in the pasted markup, because those tags live in the head.", ""]
     open(os.path.join(dest, 'README.md'), 'w').write('\n'.join(t))
 
 

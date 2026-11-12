@@ -55,13 +55,8 @@
   <div class="hero__scrim"></div>
     <div class="hl-lit-beam hl-lit-beam--hero"></div>
   <div class="shell hero__in">
-    <div class="hero__grid">
-      <div>
-        <h1 class="display d1 rv rv-d1">Tell me what you&rsquo;ve built</h1>
-      </div>
-      <div class="rv rv-d2">
-        <p class="lede">This comes to me and I answer it myself. There is no assistant, no team inbox and no sequence.</p>
-      </div>
+    <div class="hero__grid hero__grid--wide hero__grid--fill">
+      <h1 class="display d1 rv rv-d1">Let&rsquo;s chat</h1>
     </div>
   </div>
 </section>
@@ -69,9 +64,11 @@
 <!-- ===== FORM =====
      Two routes on purpose. The form for founders who want to lay it out properly,
      LinkedIn for the ones who would rather just send a message. Both reach Ryan. -->
+<!-- GHL:FORM side In the live build this whole section is the builder's own: a section with the light ground, a row of two columns, the left column below in an HTML block and the builder's form element on the right. build-ghl.py cuts it out here. -->
 <section class="band band--paper band--lit">
   <div class="shell">
     <div class="pair">
+      <!-- GHL:LEFT -->
       <div class="pair__copy rv">
         <h2 class="display d2">Talk to us about growth</h2>
 
@@ -86,7 +83,7 @@
              destination rather than as a link. Email takes the site's own card so the
              two do not compete. PLACEHOLDER profile URL and address. -->
         <div class="licards mt-m">
-          <a class="licard licard--li" href="https://www.linkedin.com/" rel="noopener">
+          <a class="licard licard--li" href="https://www.linkedin.com/in/ryan-a-tayler-au/" rel="noopener">
             <span class="licard__ic" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></span>
             <span class="licard__t">
               <span class="licard__n">Ryan Tayler</span>
@@ -104,6 +101,7 @@
           </a>
         </div>
       </div>
+      <!-- /GHL:LEFT -->
 
       <div class="rv rv-d1">
         <div class="card" style="padding:clamp(24px,3vw,40px)">
@@ -163,6 +161,7 @@
     </div>
   </div>
 </section>
+<!-- /GHL:FORM -->
 
 <!-- ===== NOT A FIT =====
      Most people landing here are not partnership material. This gives them
@@ -190,17 +189,17 @@
         <a class="hl-link" href="index.html" aria-label="Headliner Group, home"><div class="hl-stage"><div class="hl-logo"><div class="hl-beam"></div><span class="hl-word">Headliner</span><div class="hl-group">Group</div></div></div></a>
       </div>
       <div><ul><li><a href="index.html">Home</a></li><li><a href="partnerships.html">Partnerships</a></li><li><a href="ryan.html">Ryan Tayler</a></li></ul></div>
-      <div><ul><li><a href="free.html">Free Sh!t</a></li><li><a href="contact.html">Contact</a></li><li><a href="https://www.linkedin.com/" rel="noopener">LinkedIn</a></li></ul></div>
+      <div><ul><li><a href="free.html">Free Sh!t</a></li><li><a href="contact.html">Contact</a></li><li><a href="https://www.linkedin.com/in/ryan-a-tayler-au/" rel="noopener">LinkedIn</a></li></ul></div>
       <div>
         <h4>Get access to exclusive content</h4>
-        <form class="inline-form mt-s" data-demo>
+        <form class="inline-form mt-s" data-newsletter>
           <label class="skip" for="f-nl-c">Email address</label>
           <input id="f-nl-c" type="email" name="email" placeholder="you@company.com" required>
           <button class="btn btn--fill" type="submit">Join</button>
-          <p class="formmsg">You're in. Check your inbox.</p>
+          <p class="formmsg" role="status">You&rsquo;re in</p>
         </form>
       </div>
-      <p class="sub ftr__tag">Helping founders in live events &amp; production grow through partnerships.</p>
+      <p class="sub ftr__tag">Headliner Group, founded by Ryan Tayler. Helping founders in live events &amp; production grow through partnerships.</p>
     </div>
     <div class="ftr__base">
       <span>&copy; 2026 Headliner Group Pty Ltd. All rights reserved.</span>

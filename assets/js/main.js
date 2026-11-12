@@ -64,8 +64,9 @@
   runReveal();
 
   /* 4. Demo form handling.
-     Template only. Point the form at your real endpoint and delete this block. */
-  document.querySelectorAll('form[data-demo]').forEach(function (form) {
+     Template only. Point the form at your real endpoint and delete this block.
+     The footer sign up carries data-newsletter so the export can tell it apart. */
+  document.querySelectorAll('form[data-demo], form[data-newsletter]').forEach(function (form) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       var msg = form.querySelector('.formmsg');
@@ -76,35 +77,34 @@
     });
   });
 
-  /* 5. Download wall: category filters and the detail sheet.
-     Free Sh!t only. Both blocks no-op on every other page. */
-  var wall = document.getElementById('wall');
-  if (wall) {
-    var cards = Array.prototype.slice.call(wall.querySelectorAll('.magnet'));
-    var empty = document.getElementById('wall-empty');
-    var chips = document.querySelectorAll('.chip--f');
+  /* 5. Download wall: the detail sheet. Free Sh!t only, a no op on every other page.
+     The filters are gone, four cards do not need them. */
 
-    chips.forEach(function (chip) {
-      chip.addEventListener('click', function () {
-        var want = chip.dataset.filter;
-        chips.forEach(function (c) {
-          var on = c === chip;
-          c.setAttribute('aria-pressed', String(on));
-          c.classList.toggle('is-on', on);
-        });
-        var shown = 0;
-        cards.forEach(function (card) {
-          /* a magnet can sit in more than one group, pipe separated */
-          var cats = (card.dataset.cat || '').split('|');
-          var on = want === 'all' || cats.indexOf(want) > -1;
-          card.hidden = !on;
-          if (on) shown++;
-        });
-        if (empty) empty.hidden = shown > 0;
-      });
+  /* The cards keep a fixed shape on desktop, so a line that runs long is cut at the last
+     line that fits, with an ellipsis. How many fit depends on the width and on whether
+     the title wraps, so it is counted here, and again on resize. Below the fixed shape
+     nothing is cut. */
+  var wallLines = document.querySelectorAll('#wall .magnet p:not(.card__n)');
+  function fitWallLines() {
+    wallLines.forEach(function (p) {
+      p.style.webkitLineClamp = '';
+      p.style.maxHeight = '';
+      var card = p.closest('.magnet');
+      if (getComputedStyle(card).aspectRatio === 'auto') return;
+      var lh = parseFloat(getComputedStyle(p).lineHeight) || 22;
+      var n = Math.max(1, Math.floor((p.clientHeight + 1) / lh));
+      /* the clamp puts the ellipsis on line n, the height stops line n+1 showing under it */
+      if (p.scrollHeight > p.clientHeight + 1) {
+        p.style.webkitLineClamp = String(n);
+        p.style.maxHeight = (n * lh) + 'px';
+      }
     });
   }
-
+  if (wallLines.length) {
+    fitWallLines();
+    addEventListener('resize', fitWallLines);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitWallLines);
+  }
   var sheet = document.getElementById('sheet');
   if (sheet) {
     var sMedia = document.getElementById('sheet-media');
@@ -194,6 +194,9 @@
     document.addEventListener('click', function (e) {
       var open = e.target.closest('[data-open]');
       if (open) { e.preventDefault(); openSheet(open.dataset.open, open); return; }
+      /* anywhere on a card opens it, not only the title */
+      var card = e.target.closest('.magnet[data-id]');
+      if (card) { openSheet(card.dataset.id, card.querySelector('[data-open]')); return; }
       var get = e.target.closest('[data-getfile]');
       if (get) { e.preventDefault(); openGetForm(get); return; }
       var close = e.target.closest('[data-sheet-close]');

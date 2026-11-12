@@ -1,7 +1,7 @@
 # Headliner Group website
 
-Static multi page site. Five hand written HTML files, one stylesheet, one JS file, no
-build step. `CONTENT-DECISIONS.md` is the source of truth for every copy decision Ryan has
+Static multi page site. Nine hand written HTML files, five in the nav and four
+worksheet pages off Free Sh!t, one stylesheet, one JS file, no build step. `CONTENT-DECISIONS.md` is the source of truth for every copy decision Ryan has
 made. Where it contradicts the HTML, it wins.
 
 ---
@@ -73,8 +73,9 @@ Playwright scripts live in the session scratchpad, not in the repo. The ones tha
 - **hero contrast**, pixel sampled: hide the headline, screenshot the ground, find the
   brightest pixel under the text box. A token audit passes while text sits on bright image
   pixels, so the token audit is not enough on its own.
-- **download wall**, every card opens, the form swaps in, the filters count correctly
-- **tag balance**, all five pages. A slice edit that eats a closing tag passes every
+- **download wall**, every card opens anywhere on the card, the sheet fills from its
+  template, and the two worksheet buttons land on their form pages
+- **tag balance**, all nine pages. A slice edit that eats a closing tag passes every
   other check, because the browser repairs the tree and Playwright never sees it. It cost
   the end of `ryan.html` once. Run it after any edit that cuts markup by index.
 

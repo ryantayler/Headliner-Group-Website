@@ -2352,3 +2352,46 @@ tracking, case and colour.
 ships at. Their `form_embed.js` posts the real height out and sizes the frame, which is the
 thing LinkedIn's embed does not do.
 
+
+---
+
+## Synced from the preview artifact, 12 November 2026
+
+The repo had fallen behind the preview artifact, where several later rounds of Ryan's
+calls were built and signed off between 5 October and 12 November. This brings the pages,
+stylesheet, script, exporter and images level with the artifact's live build. The calls
+themselves, with their dates, are recorded as comments where they landed in the files.
+The headlines:
+
+**The download wall is four cards, no filters.** The 4 pillars worksheet, the
+optimisation engine worksheet, the Headliner Leadership Test (live at
+headlinergroup.com.au/headliner-leadership-styles-home) and the Headliner Business
+Diagnosis, which is marked coming soon. Each worksheet card opens its sheet and the
+button goes to that worksheet's form page. The old seven card wall, its filters and the
+per card download forms are gone.
+
+**Four new pages.** `four-pillars.html` and `optimisation-engine.html` show each
+worksheet's PDF from the CRM's file host, with the worksheet's own first page as the
+image fallback. `four-pillars-form.html` and `optimisation-engine-form.html` gate the
+downloads; the form on each is the builder's own element, marked with GHL:FORM comments
+that `build-ghl.py` cuts at. Their export slugs are a best guess in the site's naming
+style and still need confirming against the builder.
+
+**The optimisation engine block on Partnerships is laid out like Ryan's A3 poster**, on
+the drawing's own #121212, drawing left, name and argument right, one handwritten line,
+his signature. The drawing itself is Ryan's new version, 747 by 760. Both framework
+headings carry a small grey RYAN TAYLER'S over the name.
+
+**Copy and identity.** Home opens with "Headliner Group is Ryan Tayler's partnership
+group." Ryan's lede is "Australia's expert in partnerships for the live events &
+production industry." The contact hero is just "Let's chat". The footer tagline names
+him. Four FAQ entries were added to Partnerships, written to answer the questions people
+actually ask a search engine. The social links point at his real profiles.
+
+**Mechanics.** The signatures are marked up as images with his name for screen readers,
+and on his page the signature is the h1. The footer sign up is `data-newsletter`, one
+row of matching pills, "You're in" on its own line. The worksheet pages' heroes blur
+their own sheet under a heavy scrim (`hero--sheet`).
+
+The artifact also carries a NEW VIEW redesign behind a view switch. It is preview only,
+Ryan has not picked it, so none of it is in these pages.
