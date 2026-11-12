@@ -2395,3 +2395,18 @@ their own sheet under a heavy scrim (`hero--sheet`).
 
 The artifact also carries a NEW VIEW redesign behind a view switch. It is preview only,
 Ryan has not picked it, so none of it is in these pages.
+
+---
+
+## Ryan picked the new view, 12 November 2026
+
+The redesign that sat behind the preview's compare switch is the website now. The
+switch and the old build are gone from the preview artifact, which shows only the new
+view. Same pattern as spice: compared behind a switch, picked, switch removed.
+
+`newview.html` in the repo root is the picked design's source, one self contained page
+that opens off disk: its styles, markup, script and a shadow root mount, with the
+pictures in `assets/img/nv/` and each picture's hosted URL kept on its `data-ghl`
+attribute. The old site stays in the repo as the nine real pages; they are the backup
+of the signed off build, and they are also still what `build-ghl.py` exports. Turning
+the new view into real pages and an export is its own job and has not been done.
