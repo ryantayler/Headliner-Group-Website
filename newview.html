@@ -1709,6 +1709,22 @@
   var $=function(s,c){return (c||nv).querySelector(s)}, $$=function(s,c){return Array.prototype.slice.call((c||nv).querySelectorAll(s))};
   var current=null, bar=$('.bar'), drawer=$('.drawer'), menu=$('.menu'), curtain=$('.curtain');
   var NAMES={index:'Home',partnerships:'Partner with us',ryan:'Ryan Tayler',free:'Resources',contact:'Book a call'};
+  /* THE FINAL BUILD'S ADDRESSES, Ryan's call 13 November 2026. The preview routes with
+     data-go because it is one document, but live these are separate pages on two
+     separate domains: Ryan's page is its own site at ryantayler.com (Tayler, his
+     spelling, as in his signature and rtayler.com) and the rest live on
+     headlinergroup.com.au. When this view is exported, every <a data-go="..."> must be
+     written as a real link from this map, never an internal route: on Ryan's page all
+     of them, because nothing it points at is on its domain, and on the Headliner pages
+     at least the ryan entry. The Headliner slugs below are a best guess in the pages'
+     own names; confirm them against the builder before wiring. */
+  var LIVE={
+    index:'https://headlinergroup.com.au/',
+    partnerships:'https://headlinergroup.com.au/partner-with-us',
+    free:'https://headlinergroup.com.au/resources',
+    contact:'https://headlinergroup.com.au/book-a-call',
+    ryan:'https://ryantayler.com/'
+  };
   function live(){ return nv.isConnected && !nv.getRootNode().host.hidden; }
 
   /* words rise out of their line; a highlighted word rises whole */

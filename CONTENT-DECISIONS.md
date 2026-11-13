@@ -2410,3 +2410,18 @@ pictures in `assets/img/nv/` and each picture's hosted URL kept on its `data-ghl
 attribute. The old site stays in the repo as the nine real pages; they are the backup
 of the signed off build, and they are also still what `build-ghl.py` exports. Turning
 the new view into real pages and an export is its own job and has not been done.
+
+---
+
+## Ryan's page is its own site, 13 November 2026
+
+Ryan Tayler's page ships on its own domain, ryantayler.com, while the Headliner pages
+live on headlinergroup.com.au. Spelling: Tayler, as in his signature and his rtayler.com
+email; the brief's "ryanTaylor.com" read as autocorrect.
+
+In the preview the pages route internally, one document, so nothing changes there. The
+rule binds the final build: every cross page link is written as a real absolute link
+from the LIVE map at the top of the view's script, never an internal route. On Ryan's
+page that is every nav link, because nothing it points at is on its domain. Links to his
+page from the Headliner pages go to ryantayler.com. The Headliner slugs in the map are a
+best guess in the pages' own names and need confirming in the builder.
