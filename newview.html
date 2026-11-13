@@ -778,7 +778,11 @@
 
 /* ---------- free ---------- */
 .wall{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(64px,7vw,112px) clamp(32px,4.4vw,72px)}
-.res{display:block;padding:0;border:0;background:none;text-align:left;cursor:pointer}
+/* A button taller than its content centres it, so a card with a one line title sat
+   lower than its two line neighbour. Top anchored, and the title holds two lines on
+   the two column wall, so the pictures and the text line up across a row. */
+.res{display:block;padding:0;border:0;background:none;text-align:left;cursor:pointer;align-self:start}
+@media (min-width:761px){.res h3{min-height:calc(2em + 4px)}}
 .res .px{position:relative;aspect-ratio:16/10;border-radius:18px;background:var(--card);
   box-shadow:0 34px 60px -28px rgba(10,30,26,.45),0 12px 24px -12px rgba(10,30,26,.25);transition:translate .6s var(--out),box-shadow .6s var(--out),rotate .6s var(--out)}
 .res .px img{transition:scale .9s var(--out),translate .2s}
