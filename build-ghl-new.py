@@ -148,6 +148,8 @@ def main(dest):
         ('.wi{display:inline-block;translate:0 108%;transition:translate 1.1s var(--out);transition-delay:calc(var(--i,0) * 40ms)}',
          '.wi{display:inline-block;transition:translate 1.1s var(--out);transition-delay:calc(var(--i,0) * 40ms)}\n'
          ':where(.nv-on) .wi{translate:0 108%}'),
+        ('.tk path{opacity:0;transform:scale(.4);transform-origin:40% 70%;transition:opacity .35s ease,transform .5s cubic-bezier(.2,1.5,.4,1);transition-delay:calc(.3s + var(--n) * .22s)}',
+         '.tk path{transform-origin:40% 70%;transition:opacity .35s ease,transform .5s cubic-bezier(.2,1.5,.4,1);transition-delay:calc(.3s + var(--n) * .22s)}\n:where(.nv-on) .tk path{opacity:0;transform:scale(.4)}'),
         ('.pinkband__me{translate:60% 0;opacity:0;transition:translate 1.3s var(--out),opacity .6s}',
          '.pinkband__me{transition:translate 1.3s var(--out),opacity .6s}\n'
          ':where(.nv-on) .pinkband__me{translate:60% 0;opacity:0}'),
@@ -169,8 +171,11 @@ def main(dest):
     swaps = [
         # claim the reveal the moment the script runs
         ("var nv=root.getElementById('nv'), reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;",
-         "var nv=root.getElementById('nv'), reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;\n"
+         "var nv=root.getElementById('nv'), reduce=matchMedia('(prefers-reduced-motion: reduce)').matches, extra=[];\n"
          "  if(nv) nv.classList.add('nv-on');"),
+        ("    $$('[data-split]:not(.up),.fade:not(.up),.pinkband__me:not(.up)',current).forEach(function(e){ if(vis(e)) e.classList.add('up'); });",
+         "    $$('[data-split]:not(.up),.fade:not(.up),.pinkband__me:not(.up)',current).forEach(function(e){ if(vis(e)) e.classList.add('up'); });\n"
+         "    extra.forEach(function(x){ $$('[data-split]:not(.up),.fade:not(.up)',x).forEach(function(e){ if(vis(e)) e.classList.add('up'); }); });"),
         # no shadow root live
         ('function live(){ return nv.isConnected && !nv.getRootNode().host.hidden; }',
          'function live(){ return nv.isConnected; }'),
@@ -186,6 +191,10 @@ def main(dest):
          """  /* One page per document live, so there is no router: the only page is shown,
      named and woken. Markup below a builder element (page-2.html) is a second .nv
      wrapper; it stays out of nv-on, so it reads in full without the animations. */
+  /* Markup below a builder element is its own .nv block. It is claimed and watched
+     like the page, so its reveals and ticks play as they come up the screen. */
+  extra=Array.prototype.slice.call(document.querySelectorAll('.nv')).filter(function(n){ return n!==nv; });
+  extra.forEach(function(x){ x.classList.add('nv-on'); });
   current=$('.pg'); if(current){ current.hidden=false;
     if(current.dataset.pg==='ryan') nv.classList.add('is-ryan');
     wake(current); }
