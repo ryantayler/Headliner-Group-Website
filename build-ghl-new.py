@@ -47,6 +47,13 @@ OVERRIDES = """
    first is the fallback for engines without clip. */
 html:has(.nv),body:has(.nv){overflow-x:hidden;overflow-x:clip}
 body:has(.nv){margin:0 !important;padding:0 !important;background:#0A0A0A !important}
+
+/* A builder element that loads its own stylesheet after the page, the booking calendar
+   on Book a call, brings a generic .btn rule of the same weight as ours, and arriving
+   later it wins and squares the corners. Under the wrapper ours outweigh it, and the
+   hover fill is rounded on its own so no engine can paint it square. */
+.nv .btn{border-radius:100px !important;line-height:1 !important;vertical-align:middle}
+.nv .btn::before{border-radius:inherit}
 body :has(.nv){padding:0 !important;margin:0 !important;background:transparent !important;min-height:0 !important}
 """
 
