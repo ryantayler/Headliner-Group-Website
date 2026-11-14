@@ -138,7 +138,7 @@ def main(dest):
      named and woken. Markup below a builder element (page-2.html) is a second .nv
      wrapper; it stays out of nv-on, so it reads in full without the animations. */
   current=$('.pg'); if(current){ current.hidden=false;
-    nv.classList.toggle('is-ryan', current.dataset.pg==='ryan');
+    if(current.dataset.pg==='ryan') nv.classList.add('is-ryan');
     wake(current); }
   requestAnimationFrame(frame);"""),
     ]
@@ -203,7 +203,15 @@ def main(dest):
                     % (ryan, ' id="nv"' if i == 0 else '', chunk.strip('\n')))
             name = 'page.html' if i == 0 else 'page-%d.html' % (i + 1)
             open(os.path.join(d, name), 'w').write(wrap)
-        open(os.path.join(d, 'styles.css'), 'w').write(css)
+        page_css = css
+        if ryan:
+            m2 = re.search(r'\.nv\.is-ryan\{([^}]*)\}', css)
+            base = re.search(r'(\.nv\{\n  --bg[^}]*)(\})', css)
+            assert m2 and base, 'token blocks not found'
+            page_css = css.replace(base.group(0),
+                base.group(1).rstrip() + '\n  /* his page: his tokens are the default, no class needed */\n  '
+                + m2.group(1).strip() + '\n' + base.group(2), 1)
+        open(os.path.join(d, 'styles.css'), 'w').write(page_css)
         open(os.path.join(d, 'script.js'), 'w').write(js)
         written.append((pg, folder[pg], len(chunks)))
         print('page', folder[pg], '(%d html file%s)' % (len(chunks), 's' if len(chunks) > 1 else ''))
