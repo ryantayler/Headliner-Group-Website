@@ -147,7 +147,13 @@ def main(dest):
         js = js.replace(old, new)
     assert js.rstrip().endswith('})(this);')
     js = js.rstrip()[:-len('})(this);')] + '})(document);'
-    js = ('/* The new view, packaged for the page builder by build-ghl-new.py. */\n' + js.strip() + '\n')
+    # The builder decides where this lands. From a footer box it runs after the markup,
+    # from a head box it would run before any of it exists, so it waits for the page,
+    # the same guard the old exporter carried.
+    js = ('/* The new view, packaged for the page builder by build-ghl-new.py.\n'
+          '   In a box that takes HTML, wrap this whole file in script tags. */\n'
+          '(function(){function boot(){\n' + js.strip() + '\n}\n'
+          "if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',boot);}else{boot();}})();\n")
 
     # ---------- the markup, per page ----------
     pre, curtain, rest = cut_block(body, r'<div class="curtain"')
