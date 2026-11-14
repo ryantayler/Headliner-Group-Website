@@ -54,6 +54,21 @@ body:has(.nv){margin:0 !important;padding:0 !important;background:#0A0A0A !impor
    hover fill is rounded on its own so no engine can paint it square. */
 .nv .btn{border-radius:100px !important;line-height:1 !important;vertical-align:middle}
 .nv .btn::before{border-radius:inherit}
+
+/* A page split round a builder element (the calendar on Book a call) closes the cut
+   section on its copy and reopens it right under the element, with none of the
+   section's own height or spacing at the cut, so the element sits in the flow. */
+.nv .split-a{min-height:0 !important;padding-bottom:clamp(24px,2.6vw,36px) !important}
+.nv .split-a .sh{margin-bottom:0}
+.nv .split-b{margin-top:0 !important;padding-top:clamp(14px,1.6vw,20px) !important;clip-path:none !important}
+
+/* letschat: centre the GHL booking calendar. The rule above zeroes the margin on
+   every wrapper that holds a .nv block, including the section's 1170px inner, so
+   that container sits hard left. Native elements in the same section, like the
+   calendar, go with it. This gives the calendar's row the full window and centres
+   its content. The ID is that row's; if the row is rebuilt in GHL, update it. */
+#row-LG9l3Gmsnc{width:100vw;max-width:100vw;background:#F2F4F3}
+#row-LG9l3Gmsnc > .inner{max-width:1170px;margin-left:auto;margin-right:auto}
 body :has(.nv){padding:0 !important;margin:0 !important;background:transparent !important;min-height:0 !important}
 """
 
@@ -92,8 +107,15 @@ def open_stack(fragment):
             if stack and stack[-1][0] == tag:
                 stack.pop()
         elif tag not in VOID and not attrs.rstrip().endswith('/'):
-            stack.append((tag, m.group(0)))
+            stack.append((tag, m.group(0), m.start()))
     return stack
+
+
+def add_class(tag, cls):
+    """The open tag with one more class on it."""
+    if 'class="' in tag:
+        return tag.replace('class="', 'class="%s ' % cls, 1)
+    return re.sub(r'^<(\w+)', r'<\1 class="%s"' % cls, tag)
 
 
 def main(dest):
@@ -133,6 +155,14 @@ def main(dest):
     for old, new in swaps:
         assert css.count(old) == 1, old[:60]
         css = css.replace(old, new)
+    # Rules that start with .btn are scoped under the wrapper, one class heavier, so a
+    # widget's own .btn sheet loading after ours cannot restyle our buttons. Source order
+    # among our own rules is untouched, so every later .bar .btn or .foot__btns .btn
+    # still wins the way it did.
+    def scope(m):
+        sels = [s.strip() for s in m.group(1).split(',')]
+        return ','.join(('.nv ' + s) if s.startswith('.btn') else s for s in sels) + '{'
+    css = re.sub(r'(?m)^(\.btn[^{}@]*)\{', scope, css)
     css = FONTS + css + OVERRIDES
 
     # ---------- the script, once, same file in every folder ----------
@@ -214,8 +244,15 @@ def main(dest):
         while '<div class="slot"' in remainder:
             above, slot, below = cut_block(remainder, r'<div class="slot"')
             stack = open_stack(above)
-            chunks.append(above + ''.join('</%s>' % t for t, _ in reversed(stack)))
-            remainder = ''.join(o for _, o in stack) + below
+            # The section the element cuts through is marked on both sides, so the CSS
+            # can drop the section's own spacing at the cut: the block above ends at its
+            # copy, and the block below starts right under the element.
+            for t, o, at in reversed(stack):
+                if t == 'section':
+                    above = above[:at] + add_class(o, 'split-a') + above[at + len(o):]
+            chunks.append(above + ''.join('</%s>' % t for t, _, _ in reversed(stack)))
+            remainder = ''.join(add_class(o, 'split-b') if t == 'section' else o
+                                for t, o, _ in stack) + below
         chunks.append(remainder)
 
         d = os.path.join(dest, '1-pages', folder[pg])
