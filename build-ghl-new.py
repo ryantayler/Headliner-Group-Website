@@ -2,7 +2,7 @@
 """Package the new view for the page builder.
 
 Reads newview.html, the picked design, and writes one folder per live page holding
-the three files Ryan pastes: page.html, styles.css and script.js. A page that a
+the three files Ryan pastes: page.html, styles.css and script.html. A page that a
 native builder element splits (the booking calendar on Book a call) ships its
 markup below the element as page-2.html. Images are already the builder's own
 hosted URLs, carried on each img's data-ghl, so nothing needs uploading.
@@ -58,6 +58,15 @@ body:has(.nv){margin:0 !important;padding:0 !important;background:#0A0A0A !impor
 /* A page split round a builder element (the calendar on Book a call) closes the cut
    section on its copy and reopens it right under the element, with none of the
    section's own height or spacing at the cut, so the element sits in the flow. */
+/* Page changes across separate pages. A page opened by a transition arrives with
+   #nv-in in its address, which makes the curtain its :target, so it covers the page
+   from the first paint, before any script. The script plays the second half. If the
+   script never runs, the cover lets go on its own after 3 seconds. */
+.curtain:target,.curtain.is-cover{visibility:visible}
+.curtain:target{animation:nvBail 0s 3s forwards}
+@keyframes nvBail{to{visibility:hidden}}
+.curtain.pinkc:target .curtain__s,.curtain.pinkc.is-cover .curtain__s{clip-path:inset(0)}
+
 .nv .split-a{min-height:0 !important;padding-bottom:clamp(24px,2.6vw,36px) !important}
 .nv .split-a .sh{margin-bottom:0}
 .nv .split-b{margin-top:0 !important;padding-top:clamp(14px,1.6vw,20px) !important;clip-path:none !important}
@@ -184,7 +193,15 @@ def main(dest):
     e.preventDefault(); closeDrawer(); closeSheet();
     if(current && current.dataset.pg===a.dataset.go){ snapHold=performance.now()+1600; scrollTo({top:0,behavior:reduce?'auto':'smooth'}); return; }
     show(a.dataset.go,true,a.dataset.goto);
-""", ''),
+""", """    var a=e.target.closest('a[data-go]'); if(!a) return;
+    if(e.defaultPrevented||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey||a.target==='_blank') return;
+    closeDrawer(); closeSheet();
+    if(current && current.dataset.pg===a.dataset.go){
+      if((a.getAttribute('href')||'').charAt(0)==='#') return;
+      e.preventDefault(); snapHold=performance.now()+1600; scrollTo({top:0,behavior:reduce?'auto':'smooth'}); return; }
+    if(reduce||!curtain||!curtain.animate) return;
+    e.preventDefault(); leave(a.dataset.go,a.href);
+"""),
         # one page per document: show it, name it, wake it
         ("""  root.host.nvShow=function(name){ show(name||'index',false); };
   requestAnimationFrame(frame);""",
@@ -195,9 +212,47 @@ def main(dest):
      like the page, so its reveals and ticks play as they come up the screen. */
   extra=Array.prototype.slice.call(document.querySelectorAll('.nv')).filter(function(n){ return n!==nv; });
   extra.forEach(function(x){ x.classList.add('nv-on'); });
+  /* Page changes across separate pages. Leaving plays the first half of the
+     transition, the cone of light swinging up over the page or Ryan's pink rising,
+     and then the browser goes. The next page opens already covered and plays the
+     second half: its name, the lockup going Home, or Ryan's signature writing itself,
+     then the cover swings off. */
+  function stopCurtain(){
+    curtain.getAnimations().concat($('.curtain__s',curtain).getAnimations()).forEach(function(x){ x.cancel(); });
+  }
+  function leave(name,href){
+    var pinkc=name==='ryan', target=pinkc?$('.curtain__s',curtain):curtain;
+    stopCurtain(); curtain.classList.remove('on','is-cover');
+    curtain.classList.toggle('pinkc',pinkc); curtain.classList.toggle('to-ryan',pinkc);
+    curtain.style.animation='none'; curtain.style.visibility='visible';
+    var u=href.split('#'), dest=u[1]?(u[0]+(u[0].indexOf('?')>-1?'&':'?')+'nvc=1#'+u[1]):(u[0]+'#nv-in');
+    var a=pinkc?[{clipPath:'inset(100% 0 0 0)'},{clipPath:'inset(0% 0 0 0)'}]:[{rotate:'-26deg'},{rotate:'0deg'}];
+    target.animate(a,{duration:pinkc?1050:1000,easing:'cubic-bezier(.3,0,.15,1)',fill:'forwards'}).onfinish=function(){ location.href=dest; };
+  }
+  function arrive(){
+    var viaHash=location.hash==='#nv-in', viaQ=/[?&]nvc=1(&|$)/.test(location.search);
+    if(!curtain||!current||!(viaHash||viaQ)) return;
+    var q=location.search.replace(/([?&])nvc=1(&|$)/,function(m,p,s){ return s?p:''; });
+    try{ history.replaceState(null,'',location.pathname+q+(viaHash?'':location.hash)); }catch(e){}
+    if(reduce||!curtain.animate) return;
+    var name=current.dataset.pg, pinkc=name==='ryan', target=pinkc?$('.curtain__s',curtain):curtain;
+    curtain.style.animation='none';
+    curtain.classList.toggle('pinkc',pinkc); curtain.classList.toggle('to-ryan',pinkc); curtain.classList.add('is-cover');
+    curtain.style.visibility='visible';
+    if(pinkc && !$('.curtain__sig svg',curtain)){ var sg=$('[data-sig] svg'); if(sg){ var cl=sg.cloneNode(true); $$('mask',cl).forEach(function(m){ m.id=m.id.replace('sigm','sigc'); }); $$('[mask]',cl).forEach(function(x){ x.setAttribute('mask',x.getAttribute('mask').replace('sigm','sigc')); }); $('.curtain__sig',curtain).appendChild(cl); } }
+    curtain.classList.toggle('to-home',name==='index'); $('span',curtain).textContent=name==='index'?'':(NAMES[name]||'');
+    requestAnimationFrame(function(){ requestAnimationFrame(function(){ curtain.classList.add('on'); }); });
+    setTimeout(function(){
+      curtain.classList.remove('on');
+      var b=pinkc?[{clipPath:'inset(0 0 0% 0)'},{clipPath:'inset(0 0 100% 0)'}]:[{rotate:'0deg'},{rotate:'26deg'}];
+      target.animate(b,{duration:pinkc?950:1100,easing:'cubic-bezier(.75,0,.7,1)',fill:'forwards'}).onfinish=function(){ curtain.style.visibility='hidden'; curtain.classList.remove('is-cover'); };
+    },pinkc?1500:600);
+  }
+  /* back and forward can restore a page from memory mid transition, so it resets */
+  addEventListener('pageshow',function(e){ if(!e.persisted||!curtain) return; stopCurtain(); curtain.classList.remove('on','is-cover'); curtain.style.visibility='hidden'; });
   current=$('.pg'); if(current){ current.hidden=false;
     if(current.dataset.pg==='ryan') nv.classList.add('is-ryan');
-    wake(current); }
+    wake(current); arrive(); }
   requestAnimationFrame(frame);"""),
     ]
     for old, new in swaps:
@@ -209,13 +264,16 @@ def main(dest):
     # from a head box it would run before any of it exists, so it waits for the page,
     # the same guard the old exporter carried.
     js = ('/* The new view, packaged for the page builder by build-ghl-new.py.\n'
-          '   In a box that takes HTML, wrap this whole file in script tags. */\n'
+          '   Paste this whole file, tags and all, into the page footer code box. */\n'
           '(function(){function boot(){\n' + js.strip() + '\n}\n'
           "if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',boot);}else{boot();}})();\n")
 
     # ---------- the markup, per page ----------
     pre, curtain, rest = cut_block(body, r'<div class="curtain"')
-    chrome = pre + rest  # bar, drawer, main with every pg, foot
+    # The curtain is the page change transition. It rides in every page, with the
+    # id the arrival marker targets, so a page opened mid transition is covered from
+    # its first paint.
+    chrome = pre + curtain.replace('<div class="curtain"', '<div class="curtain" id="nv-in"', 1) + rest
     before_main, main, after_main = cut_block(chrome, r'<main\b')
 
     def links(html, pg):
@@ -229,7 +287,7 @@ def main(dest):
                 url = '/' + live[go].rstrip('/').rsplit('/', 1)[-1]
             if goto:
                 url = ('#' + goto.group(1)) if go == pg else (url + '#' + goto.group(1))
-            tag = re.sub(r'\s*data-go(to)?="[\w-]+"', '', tag)
+            tag = re.sub(r'\s*data-goto="[\w-]+"', '', tag)
             tag = re.sub(r'href="[^"]*"', 'href="' + url + '"', tag, count=1)
             if go == pg and re.match(r'<a\b', tag) and 'class="btn' not in tag and 'hl-link' not in tag and 'rt-mark' not in tag:
                 tag = re.sub(r'class="', 'class="is-here ', tag, count=1) if 'class="' in tag \
@@ -247,6 +305,8 @@ def main(dest):
         pgdiv = re.sub(r'(<div class="pg" data-pg="' + pg + r'")[^>]*>', r'\1>', pgdiv, count=1)
         page = before_main + '<main>\n' + pgdiv + '\n</main>' + after_main
         page = hosted(links(page, pg))
+        if pg == 'ryan':
+            page = page.replace('<div class="curtain" id="nv-in"', '<div class="curtain pinkc to-ryan" id="nv-in"', 1)
 
         # a native builder element splits the page at each slot
         chunks, remainder = [], page
@@ -283,7 +343,10 @@ def main(dest):
                 base.group(1).rstrip() + '\n  /* his page: his tokens are the default, no class needed */\n  '
                 + m2.group(1).strip() + '\n' + base.group(2), 1)
         open(os.path.join(d, 'styles.css'), 'w').write(page_css)
-        open(os.path.join(d, 'script.js'), 'w').write(js)
+        # The tags are ON the file. The builder's footer box takes HTML, and bare
+        # JavaScript pasted there prints onto the page as text and never runs, which
+        # is what it did on Book a call. One file, nothing to wrap, nothing to forget.
+        open(os.path.join(d, 'script.html'), 'w').write('<script>\n' + js + '</script>\n')
         written.append((pg, folder[pg], len(chunks)))
         print('page', folder[pg], '(%d html file%s)' % (len(chunks), 's' if len(chunks) > 1 else ''))
 
@@ -295,7 +358,7 @@ def main(dest):
 def readme(dest, written, live):
     t = ["# The new view, packaged for the page builder", "",
          "%d pages. Each folder holds what its live page takes: `page.html` in a full" % len(written),
-         "width custom code element, `styles.css` in the page's custom CSS, `script.js`",
+         "width custom code element, `styles.css` in the page's custom CSS, `script.html`",
          "in the page's footer code (wrap it in script tags if the box wants HTML).", "",
          "```"]
     for pg, f, n in written:
@@ -318,7 +381,7 @@ def readme(dest, written, live):
           "img's `data-ghl`. Nothing to upload.", "",
           "## If a page comes out blank below the hero", "",
           "The script is not running. The start-hidden animation states only apply once",
-          "`script.js` adds `nv-on`, so with no script the page reads in full; if things",
+          "`script.html` adds `nv-on`, so with no script the page reads in full; if things",
           "sit frozen mid-animation instead, the script ran and then failed, so check the",
           "console.", ""]
     open(os.path.join(dest, 'README.md'), 'w').write('\n'.join(t))
