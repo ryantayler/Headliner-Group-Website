@@ -41,6 +41,11 @@ OVERRIDES = """
    which showed as a bare strip above the hero. The page is entirely ours, so every
    wrapper above it goes flush and clear, and the document ground behind the page
    matches the heroes and the foot. */
+/* The breakout is 100vw wide, and 100vw includes the vertical scrollbar where
+   scrollbars take space, which left every page one scrollbar-width of sideways
+   scroll. Clipping at the document kills it without touching the layout; hidden
+   first is the fallback for engines without clip. */
+html:has(.nv),body:has(.nv){overflow-x:hidden;overflow-x:clip}
 body:has(.nv){margin:0 !important;padding:0 !important;background:#0A0A0A !important}
 body :has(.nv){padding:0 !important;margin:0 !important;background:transparent !important;min-height:0 !important}
 """
