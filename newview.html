@@ -304,6 +304,9 @@
 .hero + .dk{clip-path:polygon(0 var(--e),100% calc(var(--e) - var(--et,0px)),100% calc(100% - var(--e) + var(--eb,0px)),0 calc(100% - var(--e)))}
 .hero__ph{position:absolute;inset:0;z-index:0}
 .hero__ph img{width:100%;height:100%;object-fit:cover;scale:1.06;filter:blur(6px)}
+/* its own marker, never the shared class: this photograph's heads sit high, so the
+   frame rides up to keep them whole */
+.pg[data-pg="contact"] .hero__ph img{object-position:50% 26%;scale:1}
 .hero__ph::after{content:"";position:absolute;inset:-1px;background:linear-gradient(to top,rgba(10,10,10,.95) 8%,rgba(10,10,10,.55) 50%,rgba(10,10,10,.35)),linear-gradient(90deg,rgba(10,10,10,.75),rgba(10,10,10,0) 70%)}
 .lamp{position:absolute;z-index:1;top:-330px;right:-342px;width:508px;height:1980px;transform-origin:top center;filter:blur(57px);pointer-events:none;
   transform:rotate(var(--la,34deg))}
@@ -524,7 +527,14 @@
 .who-said i img{width:100%;height:100%;object-fit:cover}
 .logos--mid{border-bottom:0;margin-bottom:0}
 .logos{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:28px 48px;margin-top:clamp(36px,4vw,56px);padding:clamp(24px,3vw,36px) clamp(8px,2vw,24px);border-top:1px solid var(--rim);border-bottom:1px solid var(--rim)}
-.logos img{height:clamp(28px,2.8vw,40px);width:auto;filter:grayscale(1);opacity:.75;transition:opacity .3s,filter .3s}
+.logos img{height:clamp(28px,2.8vw,40px);width:auto;mix-blend-mode:multiply;
+  filter:grayscale(1) contrast(1.45);opacity:.9;transition:opacity .3s,filter .3s}
+/* Two of the files are mostly empty padding round a small mark, and one carries its
+   own white square, so they get bigger boxes to bring their marks level with the row.
+   Sized to the files as uploaded; re-tune here if a logo file is replaced. */
+.logos img[src*="pullman"]{height:clamp(48px,4.6vw,68px)}
+.logos img[src*="aaron"]{height:clamp(44px,4.2vw,62px)}
+.logos img[src*="images-2"]{height:clamp(52px,5vw,74px)}
 .logos img[alt^="The Star"]{filter:grayscale(1) brightness(.5)}
 .logos img[alt^="The Star"]:hover{filter:none}
 .logos img.tall{height:clamp(48px,4.8vw,70px)}
