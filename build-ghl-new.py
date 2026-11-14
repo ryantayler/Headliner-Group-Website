@@ -36,6 +36,13 @@ OVERRIDES = """
    the column and 50vw is half the window. */
 .nv{position:relative;width:100vw;max-width:100vw;
   margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw)}
+
+/* The builder's section, row and column wrappers carry their own padding and ground,
+   which showed as a bare strip above the hero. The page is entirely ours, so every
+   wrapper above it goes flush and clear, and the document ground behind the page
+   matches the heroes and the foot. */
+body:has(.nv){margin:0 !important;padding:0 !important;background:#0A0A0A !important}
+body :has(.nv){padding:0 !important;margin:0 !important;background:transparent !important;min-height:0 !important}
 """
 
 
