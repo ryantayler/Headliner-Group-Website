@@ -265,6 +265,15 @@ def main(dest):
     # the same guard the old exporter carried.
     js = ('/* The new view, packaged for the page builder by build-ghl-new.py.\n'
           '   Paste this whole file, tags and all, into the page footer code box. */\n'
+          # The fonts are loaded from here as well as from the stylesheet's @import. The
+          # builder puts its own CSS ahead of ours in the same block, and a browser only
+          # honours an @import that comes first, so on the live pages it was ignored and
+          # Anton and Caveat, which only Ryan's page uses, never loaded. A link added by
+          # script is not markup, so the builder's check on void tags never sees it.
+          "(function(){if(document.querySelector('link[data-nv-fonts]'))return;var l=document.createElement('link');"
+          "l.rel='stylesheet';l.setAttribute('data-nv-fonts','');"
+          "l.href='https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=Caveat:wght@400..700&family=Inter:wght@400;500;600&display=swap';"
+          "(document.head||document.documentElement).appendChild(l);})();\n"
           '(function(){function boot(){\n' + js.strip() + '\n}\n'
           "if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',boot);}else{boot();}})();\n")
 
