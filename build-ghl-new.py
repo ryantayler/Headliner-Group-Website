@@ -174,7 +174,9 @@ def main(dest):
         sels = [s.strip() for s in m.group(1).split(',')]
         return ','.join(('.nv ' + s) if s.startswith('.btn') else s for s in sels) + '{'
     css = re.sub(r'(?m)^(\.btn[^{}@]*)\{', scope, css)
-    css = FONTS + css + OVERRIDES
+    # The faces are declared directly, ahead of everything. The @import stays for any
+    # host that honours it, but the @font-face rules are what the live pages rely on.
+    css = FONTS + open(os.path.join(SRC, 'assets/fonts/ghl-fontface.css')).read() + '\n' + css + OVERRIDES
 
     # ---------- the script, once, same file in every folder ----------
     swaps = [

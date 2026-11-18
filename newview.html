@@ -927,8 +927,11 @@
   /* The photograph is a wide strip, so covering a portrait screen blows his face up to
      the full width. On a phone it runs as a band across the top instead, small enough
      that the face reads whole, on the left, and its gradient hands it to the black. */
-  .me__ph{height:min(62svh,520px);bottom:auto}
-  .me__ph img{object-position:26% 30%;scale:1;transform-origin:50% 20%;translate:0 calc(0% + var(--py,0px))}}
+  /* clipped to its band, so the photograph can never slide out past its own fade */
+  .me__ph{height:min(62svh,520px);bottom:auto;overflow:hidden}
+  /* no drift on a phone: the band is short, and a photograph moving under a fade that
+     does not move opened a strip of unfaded photo below it as you scrolled */
+  .me__ph img{object-position:26% 30%;scale:1;transform-origin:50% 20%;translate:none}}
 .sig{display:block;width:min(600px,84vw);color:#ECE8E0;margin:0 0 0 -8px}
 .sig svg{width:100%;height:auto;fill:currentColor;display:block}
 /* The signature writes itself. Each glyph is masked by pen strokes traced down its centre
