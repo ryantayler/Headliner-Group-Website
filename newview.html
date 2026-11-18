@@ -312,6 +312,8 @@
 /* its own marker, never the shared class: this photograph's heads sit high, so the
    frame rides up to keep them whole */
 .pg[data-pg="contact"] .hero__ph img{object-position:50% 26%;scale:1}
+/* phone: a portrait frame shows a quarter of the width, so it slides left onto the handshake */
+@media (max-width:620px){.pg[data-pg="contact"] .hero__ph img{object-position:22% 26%}}
 .hero__ph::after{content:"";position:absolute;inset:-1px;background:linear-gradient(to top,rgba(10,10,10,.95) 8%,rgba(10,10,10,.55) 50%,rgba(10,10,10,.35)),linear-gradient(90deg,rgba(10,10,10,.75),rgba(10,10,10,0) 70%)}
 .lamp{position:absolute;z-index:1;top:-330px;right:-342px;width:508px;height:1980px;transform-origin:top center;filter:blur(57px);pointer-events:none;
   transform:rotate(var(--la,34deg))}
