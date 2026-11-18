@@ -227,6 +227,11 @@
 .drawer.is-open{clip-path:polygon(0 0,100% 0,100% 100%,0 100%)}
 .drawer a{font:400 clamp(30px,8.6vw,72px)/1 var(--display);text-transform:uppercase;text-decoration:none;white-space:nowrap}
 .drawer a.is-here{color:var(--acc)}
+/* phone: the bar carries no links, only the menu with its own dark ground, so the
+   wash that keeps links readable is not needed at the top, and it was dimming the
+   home lockup that starts under it. Ryan's page uses the layer for its scrolled
+   fade and keeps it. */
+@media (max-width:960px){.nv:not(.is-ryan) .bar:not(.is-solid)::before{opacity:0}}
 @media (max-width:960px){.links,.bar .btn,.plate--go,.is-ryan .bar .links.rt-links{display:none}.bar .wrap{padding-right:var(--gut)}.menu{display:block;margin:0;position:absolute;right:var(--gut);top:50%;translate:0 -50%}.hl-link{width:206px;height:68px}.hl-stage{transform:scale(.26)}}
 
 /* page change: a panel cut on the beam's angle carries the next page's name */
