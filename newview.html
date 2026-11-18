@@ -343,7 +343,8 @@
   .hero .row{justify-content:center}
   .hero .d1,.hero .lead{margin-inline:auto}
   .hero__logo{position:absolute;left:0;right:0;top:max(34px,env(safe-area-inset-top));margin:0;display:flex;justify-content:center}
-  .hero__logo .hl-stage,.hl-fly{width:auto;height:auto;padding:0;overflow:visible;justify-content:center;margin-left:0;font-size:20px}
+  .hero__logo .hl-stage,.hl-fly{width:auto;height:auto;padding:0;overflow:visible;justify-content:center;margin-left:0;font-size:20px;
+    -webkit-mask-image:none;mask-image:none}
   .me .wrap{text-align:center}
   .me .row{justify-content:center}
 }
@@ -2075,16 +2076,21 @@
              rect every frame made the path wobble, because the hero slides at half the
              scroll while the flight is going. The hero moves at half scroll, so the start
              drifts down screen at half the delta. */
-          if(!clone._a){ var r0=st.getBoundingClientRect(); clone._a={l:r0.left,t:r0.top,w:r0.width,y:scrollY};
+          /* The flight maps the word onto the word, not box onto box. The two stages are
+             different shapes on a phone, so sizing by the boxes grew the lockup on its way
+             up; sizing by the logos themselves lands it at the bar logo's true size. */
+          if(!clone._a){ var r0=st.getBoundingClientRect(), l0=st.querySelector('.hl-logo').getBoundingClientRect();
+            clone._a={sl:r0.left,st:r0.top,ll:l0.left,lt:l0.top,lw:l0.width,y:scrollY};
             clone.style.fontSize=getComputedStyle(st).fontSize; }
           st.style.visibility='hidden'; link.style.opacity='0'; clone.style.display='flex';
           /* On a phone the lockup starts at the top centre, so it holds its height and
              glides into the bar's corner; on a wide screen it rides the hero up at half
              the scroll, as the live rect used to. */
           var hold=innerWidth<=620?0:.5;
-          var A=clone._a, at=A.t-(scrollY-A.y)*hold, b=link.getBoundingClientRect(), e=t*t*(3-2*t);
-          clone.style.translate=(A.l+(b.left-A.l)*e).toFixed(1)+'px '+(at+(b.top-at)*e).toFixed(1)+'px';
-          clone.style.scale=(1+((b.width/A.w)-1)*e).toFixed(4);
+          var A=clone._a, dy=(scrollY-A.y)*hold, lt=A.lt-dy, b=link.querySelector('.hl-logo').getBoundingClientRect(), e=t*t*(3-2*t);
+          var k=1+((b.width/A.lw)-1)*e, lx=A.ll+(b.left-A.ll)*e, ly=lt+(b.top-lt)*e;
+          clone.style.translate=(lx-(A.ll-A.sl)*k).toFixed(1)+'px '+(ly-(A.lt-A.st)*k).toFixed(1)+'px';
+          clone.style.scale=k.toFixed(4);
         }
       }
       requestAnimationFrame(go);
